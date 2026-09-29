@@ -1,5 +1,7 @@
 # CHANGELOG
 
+- [2026-10-01 02:20] REFACTOR: 解耦批次 15 完成——utils/settings 子系统整目录迁入 src/server/utils/settings/（含 mdm 子目录），全仓引用方重指（./与../混合层级、根式、settings.js×18 等最大簇）；mdm 常量分离为 mdmConstants 并以根 constants 再导出兼容；E2E PASS (Files: src/server/utils/settings/*, src/utils/* 消费方)
+
 - [2026-10-01 01:30] REFACTOR: 解耦批次 14 完成——plugins 组对 permissions 的最后两条 expandTilde 引用改用 server 本地 pathAndTemp，server→utils/permissions 直接消费边全断 (Files: src/server/utils/plugins/{pluginDirectories,zipCache}.ts)
 
 - [2026-10-01 00:40] FIX: 补迁 performStartupChecks.tsx（.tsx 扩展名遗漏于批次 13 移动清单）并修正 REPL 导入；E2E PASS (Files: src/server/utils/plugins/performStartupChecks.tsx, src/screens/REPL.tsx)
