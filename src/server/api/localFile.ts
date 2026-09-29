@@ -1,5 +1,5 @@
 import * as path from 'node:path'
-import { expandTilde } from '../../utils/permissions/pathValidation.js'
+import { expandTilde } from '../utils/pathAndTemp.js'
 import { isAllowedFilesystemPath } from './filesystem.js'
 import { serveFileWithRange } from './previewFs.js'
 import { canonicalizeExistingFilesystemPath } from '../services/filesystemPathSecurity.js'
