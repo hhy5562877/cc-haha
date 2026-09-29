@@ -43,11 +43,11 @@ export type PersistableScope = Exclude<PluginScope, never> // All scopes are per
 import { getOriginalCwd } from '../../../bootstrap/state.js'
 import { getCwd } from '../../../utils/cwd.js'
 import { getHeadForDir } from '../../../utils/git/gitFilesystem.js'
-import type { EditableSettingSource } from '../../../utils/settings/constants.js'
+import type { EditableSettingSource } from '../settings/constants.js'
 import {
   getSettings_DEPRECATED,
   getSettingsForSource,
-} from '../../../utils/settings/settings.js'
+} from '../settings/settings.js'
 import { getPluginById } from './marketplaceManager.js'
 import {
   parsePluginIdentifier,

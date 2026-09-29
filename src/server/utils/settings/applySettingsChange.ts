@@ -1,6 +1,6 @@
-import type { AppState } from '../../state/AppState.js'
-import { logForDebugging } from '../debug.js'
-import { updateHooksConfigSnapshot } from '../hooks/hooksConfigSnapshot.js'
+import type { AppState } from '../../../state/AppState.js'
+import { logForDebugging } from '../../../utils/debug.js'
+import { updateHooksConfigSnapshot } from '../../../utils/hooks/hooksConfigSnapshot.js'
 import {
   createDisabledBypassPermissionsContext,
   findOverlyBroadBashPermissions,
@@ -8,9 +8,9 @@ import {
   reconcileAutoModePermissionsAfterSettingsChange,
   removeDangerousPermissions,
   transitionPlanAutoMode,
-} from '../permissions/permissionSetup.js'
-import { syncPermissionRulesFromDisk } from '../permissions/permissions.js'
-import { loadAllPermissionRulesFromDisk } from '../permissions/permissionsLoader.js'
+} from '../../../utils/permissions/permissionSetup.js'
+import { syncPermissionRulesFromDisk } from '../../../utils/permissions/permissions.js'
+import { loadAllPermissionRulesFromDisk } from '../../../utils/permissions/permissionsLoader.js'
 import type { SettingSource } from './constants.js'
 import { getInitialSettings } from './settings.js'
 

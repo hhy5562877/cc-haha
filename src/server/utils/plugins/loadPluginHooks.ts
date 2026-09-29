@@ -7,12 +7,12 @@ import {
 } from '../../../bootstrap/state.js'
 import type { LoadedPlugin } from '../../../types/plugin.js'
 import { logForDebugging } from '../../../utils/debug.js'
-import { settingsChangeDetector } from '../../../utils/settings/changeDetector.js'
+import { settingsChangeDetector } from '../settings/changeDetector.js'
 import {
   getSettings_DEPRECATED,
   getSettingsForSource,
-} from '../../../utils/settings/settings.js'
-import type { PluginHookMatcher } from '../../../utils/settings/types.js'
+} from '../settings/settings.js'
+import type { PluginHookMatcher } from '../settings/types.js'
 import { jsonStringify } from '../../../utils/slowOperations.js'
 import { clearPluginCache, loadAllPluginsCacheOnly } from './pluginLoader.js'
 

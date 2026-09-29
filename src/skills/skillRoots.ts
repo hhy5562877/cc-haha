@@ -24,7 +24,7 @@ import { getClaudeConfigHomeDir, isEnvTruthy } from '../utils/envUtils.js'
 import { isFsInaccessible } from '../utils/errors.js'
 import { walkProjectDirsUpToHome } from '../utils/markdownConfigLoader.js'
 // Import as module object so spyOn works in tests (direct imports bypass spies)
-import * as settingsModule from '../utils/settings/settings.js'
+import * as settingsModule from '../server/utils/settings/settings.js'
 
 export type SkillRootFlavor = 'claude' | 'agents'
 

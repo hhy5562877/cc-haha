@@ -17,7 +17,7 @@ import { getSecureStorage } from '../../../utils/secureStorage/index.js'
 import {
   getSettings_DEPRECATED,
   updateSettingsForSource,
-} from '../../../utils/settings/settings.js'
+} from '../settings/settings.js'
 import { jsonParse, jsonStringify } from '../../../utils/slowOperations.js'
 import { getSystemDirectories } from '../../../utils/systemDirectories.js'
 import { classifyFetchError, logPluginFetch } from './fetchTelemetry.js'

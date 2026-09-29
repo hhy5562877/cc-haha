@@ -4,7 +4,7 @@ import { logError } from '../utils/log.js'
 import {
   hasSkipDangerousModePermissionPrompt,
   updateSettingsForSource,
-} from '../utils/settings/settings.js'
+} from '../server/utils/settings/settings.js'
 
 /**
  * Migration: Move bypassPermissionsModeAccepted from global config to settings.json

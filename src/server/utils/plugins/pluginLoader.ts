@@ -73,15 +73,15 @@ import { getFsImplementation } from '../../../utils/fsOperations.js'
 import { gitExe } from '../../../utils/git.js'
 import { lazySchema } from '../../../utils/lazySchema.js'
 import { logError } from '../../../utils/log.js'
-import { getSettings_DEPRECATED, getSettingsForSource } from '../../../utils/settings/settings.js'
+import { getSettings_DEPRECATED, getSettingsForSource } from '../settings/settings.js'
 import {
   clearPluginSettingsBase,
   getPluginSettingsBase,
   resetSettingsCache,
   setPluginSettingsBase,
-} from '../../../utils/settings/settingsCache.js'
-import type { HooksSettings } from '../../../utils/settings/types.js'
-import { SettingsSchema } from '../../../utils/settings/types.js'
+} from '../settings/settingsCache.js'
+import type { HooksSettings } from '../settings/types.js'
+import { SettingsSchema } from '../settings/types.js'
 import { jsonParse, jsonStringify } from '../../../utils/slowOperations.js'
 import { getAddDirEnabledPlugins } from './addDirPluginSettings.js'
 import {

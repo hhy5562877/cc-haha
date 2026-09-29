@@ -1,8 +1,8 @@
 import { c as _c } from "react/compiler-runtime";
 import figures from 'figures';
 import React, { useCallback, useMemo, useState } from 'react';
-import { mcpInfoFromString } from 'src/server/services/mcp/mcpStringUtils.js';
-import { isMcpTool } from 'src/server/services/mcp/utils.js';
+import { mcpInfoFromString } from '../../server/services/mcp/mcpStringUtils.js';
+import { isMcpTool } from '../../server/services/mcp/utils.js';
 import type { Tool, Tools } from 'src/Tool.js';
 import { filterToolsForAgent } from 'src/tools/AgentTool/agentToolUtils.js';
 import { AGENT_TOOL_NAME } from 'src/tools/AgentTool/constants.js';

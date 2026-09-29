@@ -21,7 +21,7 @@ import { Box, Text } from '../../ink.js';
 import { useKeybinding } from '../../keybindings/useKeybinding.js';
 import { getHookEventMetadata, getHooksForMatcher, getMatcherMetadata, getSortedMatchersForEvent, groupHooksByEventAndMatcher } from '../../utils/hooks/hooksConfigManager.js';
 import type { IndividualHookConfig } from '../../utils/hooks/hooksSettings.js';
-import { getSettings_DEPRECATED, getSettingsForSource } from '../../utils/settings/settings.js';
+import { getSettings_DEPRECATED, getSettingsForSource } from '../../server/utils/settings/settings.js';
 import { plural } from '../../utils/stringUtils.js';
 import { Dialog } from '../design-system/Dialog.js';
 import { SelectEventMode } from './SelectEventMode.js';

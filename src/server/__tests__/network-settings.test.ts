@@ -16,7 +16,7 @@ import {
   normalizeNetworkSettings,
 } from '../services/networkSettings.js'
 import { SettingsService } from '../services/settingsService.js'
-import { resetSettingsCache } from '../../utils/settings/settingsCache.js'
+import { resetSettingsCache } from '../utils/settings/settingsCache.js'
 
 let tmpDir: string
 let originalConfigDir: string | undefined

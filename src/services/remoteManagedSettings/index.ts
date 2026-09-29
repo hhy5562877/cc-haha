@@ -24,11 +24,11 @@ import {
 import { registerCleanup } from '../../utils/cleanupRegistry.js'
 import { logForDebugging } from '../../utils/debug.js'
 import { classifyAxiosError, getErrnoCode } from '../../utils/errors.js'
-import { settingsChangeDetector } from '../../utils/settings/changeDetector.js'
+import { settingsChangeDetector } from '../../server/utils/settings/changeDetector.js'
 import {
   type SettingsJson,
   SettingsSchema,
-} from '../../utils/settings/types.js'
+} from '../../server/utils/settings/types.js'
 import { sleep } from '../../utils/sleep.js'
 import { jsonStringify } from '../../utils/slowOperations.js'
 import { getClaudeCodeUserAgent } from '../../utils/userAgent.js'

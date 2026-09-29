@@ -32,9 +32,9 @@ import {
 import { logForDebugging } from '../debug.js'
 import { expandPath } from '../path.js'
 import { getPlatform, type Platform } from '../platform.js'
-import { settingsChangeDetector } from '../settings/changeDetector.js'
-import { SETTING_SOURCES, type SettingSource } from '../settings/constants.js'
-import { getManagedSettingsDropInDir } from '../settings/managedPath.js'
+import { settingsChangeDetector } from '../../server/utils/settings/changeDetector.js'
+import { SETTING_SOURCES, type SettingSource } from '../../server/utils/settings/constants.js'
+import { getManagedSettingsDropInDir } from '../../server/utils/settings/managedPath.js'
 import {
   getInitialSettings,
   getSettings_DEPRECATED,
@@ -42,8 +42,8 @@ import {
   getSettingsForSource,
   getSettingsRootPathForSource,
   updateSettingsForSource,
-} from '../settings/settings.js'
-import type { SettingsJson } from '../settings/types.js'
+} from '../../server/utils/settings/settings.js'
+import type { SettingsJson } from '../../server/utils/settings/types.js'
 
 // ============================================================================
 // Settings Converter

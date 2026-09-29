@@ -24,7 +24,7 @@ import type { Notification } from './context/notifications.js'
 import type {
   MCPServerConnection,
   ServerResource,
-} from './services/mcp/types.js'
+} from './server/services/mcp/types.js'
 import type {
   AgentDefinition,
   AgentDefinitionsResult,

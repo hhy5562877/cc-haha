@@ -41,8 +41,8 @@ import {
   getInitialSettings,
   getSettingsForSource,
   updateSettingsForSource,
-} from '../../../utils/settings/settings.js'
-import type { SettingsJson } from '../../../utils/settings/types.js'
+} from '../settings/settings.js'
+import type { SettingsJson } from '../settings/types.js'
 import {
   jsonParse,
   jsonStringify,

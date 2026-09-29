@@ -43,11 +43,11 @@ import {
   resolveBuiltInAgentOverrides,
   type ResolvedBuiltInAgentOverride,
 } from '../../tools/AgentTool/builtInAgentOverrides.js'
-import { isRestrictedToPluginOnly } from '../../utils/settings/pluginOnlyPolicy.js'
+import { isRestrictedToPluginOnly } from '../utils/settings/pluginOnlyPolicy.js'
 import {
   SETTING_SOURCES,
   type SettingSource,
-} from '../../utils/settings/constants.js'
+} from '../utils/settings/constants.js'
 import { parseEffortValue } from '../../utils/effort.js'
 import { reloadSessionComponents } from '../services/sessionComponentReloadService.js'
 import { getAllBaseTools } from '../../tools.js'

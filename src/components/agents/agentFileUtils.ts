@@ -1,8 +1,8 @@
 import { constants as fsConstants } from 'fs'
 import { lstat, mkdir, open, readFile, realpath, unlink } from 'fs/promises'
 import { isAbsolute, join, relative, resolve, sep } from 'path'
-import type { SettingSource } from 'src/utils/settings/constants.js'
-import { getManagedFilePath } from 'src/utils/settings/managedPath.js'
+import type { SettingSource } from '../../server/utils/settings/constants.js'
+import { getManagedFilePath } from '../../server/utils/settings/managedPath.js'
 import { stringify as stringifyYaml } from 'yaml'
 import type { AgentMemoryScope } from '../../tools/AgentTool/agentMemory.js'
 import {

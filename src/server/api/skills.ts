@@ -20,7 +20,7 @@ import {
 import { clearInstalledPluginsCache } from '../utils/plugins/installedPluginsManager.js'
 import { clearPluginCache, loadAllPlugins, loadAllPluginsCacheOnly } from '../utils/plugins/pluginLoader.js'
 import { getSkillDirCommands } from '../../skills/loadSkillsDir.js'
-import { resetSettingsCache } from '../../utils/settings/settingsCache.js'
+import { resetSettingsCache } from '../utils/settings/settingsCache.js'
 import type { LoadedPlugin } from '../../types/plugin.js'
 import { ApiError, errorResponse } from '../middleware/errorHandler.js'
 import { readMarketMeta } from '../services/market/marketService.js'

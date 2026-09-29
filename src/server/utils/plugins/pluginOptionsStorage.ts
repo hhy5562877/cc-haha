@@ -20,7 +20,7 @@ import { getSecureStorage } from '../../../utils/secureStorage/index.js'
 import {
   getSettings_DEPRECATED,
   updateSettingsForSource,
-} from '../../../utils/settings/settings.js'
+} from '../settings/settings.js'
 import {
   type UserConfigSchema,
   type UserConfigValues,

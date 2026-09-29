@@ -1,4 +1,4 @@
-import { getAllowedSettingSources } from '../../bootstrap/state.js'
+import { getAllowedSettingSources } from '../../../bootstrap/state.js'
 
 /**
  * All possible sources where settings can come from
@@ -200,3 +200,6 @@ export const SOURCES = [
  */
 export const CLAUDE_CODE_SETTINGS_SCHEMA_URL =
   'https://json.schemastore.org/claude-code-settings.json'
+
+// 兼容再导出：搬迁期间部分模块仍从此处解析 MDM 常量（mdm 子目录真身）。
+export * from './mdm/mdmConstants.js'

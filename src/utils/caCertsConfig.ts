@@ -15,7 +15,7 @@
 
 import { getGlobalConfig } from './config.js'
 import { logForDebugging } from './debug.js'
-import { getSettingsForSource } from './settings/settings.js'
+import { getSettingsForSource } from '../server/utils/settings/settings.js'
 
 /**
  * Apply NODE_EXTRA_CA_CERTS from settings.json to process.env early in init,

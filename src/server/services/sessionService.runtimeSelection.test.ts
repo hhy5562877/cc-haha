@@ -4,7 +4,7 @@ import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import { SessionService } from './sessionService.js'
 import { registerSideChat, closeSideChatsForParent } from './sideChatRegistry.js'
-import { resetSettingsCache } from '../../utils/settings/settingsCache.js'
+import { resetSettingsCache } from '../utils/settings/settingsCache.js'
 import { sanitizePath } from '../../utils/sessionStoragePortable.js'
 
 const sessionId = 'aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee'

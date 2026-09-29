@@ -19,7 +19,7 @@ import { loadKnownMarketplacesConfig, refreshMarketplace, removeMarketplaceSourc
 import { updatePluginsForMarketplaces } from '../../server/utils/plugins/pluginAutoupdate.js';
 import { loadAllPlugins } from '../../server/utils/plugins/pluginLoader.js';
 import { isMarketplaceAutoUpdate } from '../../server/utils/plugins/schemas.js';
-import { getSettingsForSource, updateSettingsForSource } from '../../utils/settings/settings.js';
+import { getSettingsForSource, updateSettingsForSource } from '../../server/utils/settings/settings.js';
 import { plural } from '../../utils/stringUtils.js';
 import type { ViewState } from './types.js';
 type Props = {

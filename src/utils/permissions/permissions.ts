@@ -20,8 +20,8 @@ import { SandboxManager } from '../sandbox/sandbox-adapter.js'
 import {
   getSettingSourceDisplayNameLowercase,
   SETTING_SOURCES,
-} from '../settings/constants.js'
-import { getAutoModeConfig } from '../settings/settings.js'
+} from '../../server/utils/settings/constants.js'
+import { getAutoModeConfig } from '../../server/utils/settings/settings.js'
 import { plural } from '../stringUtils.js'
 import { permissionModeTitle } from './PermissionMode.js'
 import type {

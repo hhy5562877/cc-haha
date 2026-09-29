@@ -1,5 +1,5 @@
-import { getSettings_DEPRECATED } from '../../utils/settings/settings.js'
-import type { SettingsJson } from '../../utils/settings/types.js'
+import { getSettings_DEPRECATED } from '../../server/utils/settings/settings.js'
+import type { SettingsJson } from '../../server/utils/settings/types.js'
 import type { Input, Output, SearchResult } from './WebSearchTool.js'
 
 export type WebSearchMode =

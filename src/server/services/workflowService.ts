@@ -15,25 +15,25 @@ import * as fs from 'fs/promises'
 import * as path from 'path'
 import { getClaudeConfigHomeDir } from '../../utils/envUtils.js'
 import { getClaudeTempDir } from '../utils/pathAndTemp.js'
-import { loadWorkflows } from '../../../src/server/utils/workflows/discovery.js'
-import { areWorkflowsEnabled } from '../../../src/server/utils/workflows/enabled.js'
-import { WORKFLOW_MAX_PROGRESS_ROWS } from '../../../src/server/utils/workflows/constants.js'
+import { loadWorkflows } from '../utils/workflows/discovery.js'
+import { areWorkflowsEnabled } from '../utils/workflows/enabled.js'
+import { WORKFLOW_MAX_PROGRESS_ROWS } from '../utils/workflows/constants.js'
 import {
   parseWorkflowScript,
   renameWorkflowScript,
   usesBannedNondeterminism,
-} from '../../../src/server/utils/workflows/meta.js'
+} from '../utils/workflows/meta.js'
 import {
   resolveProjectWorkflowsDir,
   saveWorkflowScript,
-} from '../../../src/server/utils/workflows/save.js'
-import { compileWorkflowScript } from '../../../src/server/utils/workflows/compile.js'
+} from '../utils/workflows/save.js'
+import { compileWorkflowScript } from '../utils/workflows/compile.js'
 import type {
   WorkflowAgentEvent,
   WorkflowDefinition,
   WorkflowPhaseMeta,
   WorkflowProgressEvent,
-} from '../../../src/server/utils/workflows/types.js'
+} from '../utils/workflows/types.js'
 import { readWorkflowTranscriptProjection } from './workflowTranscriptProjection.js'
 import { ApiError } from '../middleware/errorHandler.js'
 import {

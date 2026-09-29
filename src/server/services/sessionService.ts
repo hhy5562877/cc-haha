@@ -62,7 +62,7 @@ import {
   listAllDalSessions,
   readDalSessionHeader,
 } from '../dal/sessionStore.js'
-import { getSettings_DEPRECATED } from '../../utils/settings/settings.js'
+import { getSettings_DEPRECATED } from '../utils/settings/settings.js'
 import {
   extractGoalCreationTitle,
   extractTranscriptUserTitle,

@@ -22,9 +22,9 @@ import { ripGrep } from './ripgrep.js'
 import {
   isSettingSourceEnabled,
   type SettingSource,
-} from './settings/constants.js'
-import { getManagedFilePath } from './settings/managedPath.js'
-import { isRestrictedToPluginOnly } from './settings/pluginOnlyPolicy.js'
+} from '../server/utils/settings/constants.js'
+import { getManagedFilePath } from '../server/utils/settings/managedPath.js'
+import { isRestrictedToPluginOnly } from '../server/utils/settings/pluginOnlyPolicy.js'
 
 // Claude configuration directory names
 export const CLAUDE_CONFIG_DIRECTORIES = [

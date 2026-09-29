@@ -41,7 +41,7 @@ import { loadAllPlugins } from '../../server/utils/plugins/pluginLoader.js';
 import { loadPluginOptions, type PluginOptionSchema, savePluginOptions } from '../../server/utils/plugins/pluginOptionsStorage.js';
 import { isPluginBlockedByPolicy } from '../../server/utils/plugins/pluginPolicy.js';
 import { getPluginEditableScopes } from '../../server/utils/plugins/pluginStartupCheck.js';
-import { getSettings_DEPRECATED, getSettingsForSource, updateSettingsForSource } from '../../utils/settings/settings.js';
+import { getSettings_DEPRECATED, getSettingsForSource, updateSettingsForSource } from '../../server/utils/settings/settings.js';
 import { jsonParse } from '../../utils/slowOperations.js';
 import { plural } from '../../utils/stringUtils.js';
 import { formatErrorMessage, getErrorGuidance } from './PluginErrors.js';

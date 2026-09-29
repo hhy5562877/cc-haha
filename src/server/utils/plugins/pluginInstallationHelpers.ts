@@ -20,7 +20,7 @@ import { logError } from '../../../utils/log.js'
 import {
   getSettingsForSource,
   updateSettingsForSource,
-} from '../../../utils/settings/settings.js'
+} from '../settings/settings.js'
 import { buildPluginTelemetryFields } from '../../../utils/telemetry/pluginTelemetry.js'
 import { clearAllCaches } from './cacheUtils.js'
 import {

@@ -9,7 +9,7 @@ import {
   drainTraceCaptureForTests,
   traceCaptureService,
 } from '../services/traceCaptureService.js'
-import { resetSettingsCache } from '../../utils/settings/settingsCache.js'
+import { resetSettingsCache } from '../utils/settings/settingsCache.js'
 
 let tmpDir: string
 let originalConfigDir: string | undefined

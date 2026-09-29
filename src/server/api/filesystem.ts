@@ -11,7 +11,7 @@ import { getGlobalConfig } from '../../utils/config.js'
 import { execFileNoThrowWithCwd } from '../../utils/execFileNoThrow.js'
 import { findGitRoot, gitExe } from '../../utils/git.js'
 import { ripGrep } from '../../utils/ripgrep.js'
-import { getInitialSettings } from '../../utils/settings/settings.js'
+import { getInitialSettings } from '../utils/settings/settings.js'
 import {
   canonicalizeFilesystemAccessPath,
   isWithinRegisteredFilesystemRoot,

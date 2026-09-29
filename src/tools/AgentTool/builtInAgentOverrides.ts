@@ -2,12 +2,12 @@ import { EFFORT_LEVELS, type EffortValue, parseEffortValue } from '../../utils/e
 import {
   getEnabledSettingSources,
   type SettingSource,
-} from '../../utils/settings/constants.js'
+} from '../../server/utils/settings/constants.js'
 import {
   isRestrictedToPluginOnly,
   isSourceAdminTrusted,
-} from '../../utils/settings/pluginOnlyPolicy.js'
-import { getSettingsForSource } from '../../utils/settings/settings.js'
+} from '../../server/utils/settings/pluginOnlyPolicy.js'
+import { getSettingsForSource } from '../../server/utils/settings/settings.js'
 import type { AgentDefinition } from './loadAgentsDir.js'
 
 /**

@@ -27,7 +27,7 @@ import {
 import { logError } from '../utils/log.js'
 import { expandPath } from '../utils/path.js'
 import { ripGrep } from '../utils/ripgrep.js'
-import { getInitialSettings } from '../utils/settings/settings.js'
+import { getInitialSettings } from '../server/utils/settings/settings.js'
 import { createSignal } from '../utils/signal.js'
 
 // Lazily constructed singleton

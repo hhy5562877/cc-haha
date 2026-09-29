@@ -19,12 +19,12 @@
  */
 
 import { join } from 'path'
-import { logForDebugging } from '../../debug.js'
-import { logForDiagnosticsNoPII } from '../../diagLogs.js'
-import { readFileSync } from '../../fileRead.js'
-import { getFsImplementation } from '../../fsOperations.js'
-import { safeParseJSON } from '../../json.js'
-import { profileCheckpoint } from '../../startupProfiler.js'
+import { logForDebugging } from '../../../../utils/debug.js'
+import { logForDiagnosticsNoPII } from '../../../../utils/diagLogs.js'
+import { readFileSync } from '../../../../utils/fileRead.js'
+import { getFsImplementation } from '../../../../utils/fsOperations.js'
+import { safeParseJSON } from '../../../../utils/json.js'
+import { profileCheckpoint } from '../../../../utils/startupProfiler.js'
 import {
   getManagedFilePath,
   getManagedSettingsDropInDir,
@@ -39,7 +39,7 @@ import {
   WINDOWS_REGISTRY_KEY_PATH_HKCU,
   WINDOWS_REGISTRY_KEY_PATH_HKLM,
   WINDOWS_REGISTRY_VALUE_NAME,
-} from './constants.js'
+} from '../constants.js'
 import {
   fireRawRead,
   getMdmRawReadPromise,

@@ -11,7 +11,7 @@ import { getMaxVersion, getMaxVersionMessage } from '../utils/autoUpdater.js';
 import { isAutoUpdaterDisabled } from '../utils/config.js';
 import { installLatest } from '../utils/nativeInstaller/index.js';
 import { gt } from '../utils/semver.js';
-import { getInitialSettings } from '../utils/settings/settings.js';
+import { getInitialSettings } from '../server/utils/settings/settings.js';
 
 /**
  * Categorize error messages for analytics

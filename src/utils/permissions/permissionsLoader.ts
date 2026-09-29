@@ -6,13 +6,13 @@ import {
   type EditableSettingSource,
   getEnabledSettingSources,
   type SettingSource,
-} from '../settings/constants.js'
+} from '../../server/utils/settings/constants.js'
 import {
   getSettingsFilePathForSource,
   getSettingsForSource,
   updateSettingsForSource,
-} from '../settings/settings.js'
-import type { SettingsJson } from '../settings/types.js'
+} from '../../server/utils/settings/settings.js'
+import type { SettingsJson } from '../../server/utils/settings/types.js'
 import type {
   PermissionBehavior,
   PermissionRule,

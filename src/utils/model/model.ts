@@ -23,7 +23,7 @@ import {
 import { isEnvTruthy } from '../envUtils.js'
 import { getModelStrings, resolveOverriddenModel } from './modelStrings.js'
 import { formatModelPricing, getOpus46CostTier } from '../modelCost.js'
-import { getSettings_DEPRECATED } from '../settings/settings.js'
+import { getSettings_DEPRECATED } from '../../server/utils/settings/settings.js'
 import type { PermissionMode } from '../permissions/PermissionMode.js'
 import {
   getAPIProvider,

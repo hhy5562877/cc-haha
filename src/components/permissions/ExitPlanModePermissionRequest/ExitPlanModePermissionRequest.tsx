@@ -34,7 +34,7 @@ import { getPewterLedgerVariant, isPlanModeInterviewPhaseEnabled } from '../../.
 import { getPlan, getPlanFilePath } from '../../../utils/plans.js';
 import { editFileInEditor, editPromptInEditor } from '../../../utils/promptEditor.js';
 import { getCurrentSessionTitle, getTranscriptPath, saveAgentName, saveCustomTitle } from '../../../utils/sessionStorage.js';
-import { getSettings_DEPRECATED } from '../../../utils/settings/settings.js';
+import { getSettings_DEPRECATED } from '../../../server/utils/settings/settings.js';
 import { tokenCountWithEstimation } from '../../../utils/tokens.js';
 import { type OptionWithDescription, Select } from '../../CustomSelect/index.js';
 import { Markdown } from '../../Markdown.js';

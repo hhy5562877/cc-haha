@@ -20,7 +20,7 @@ import {
 } from '../../tasks/LocalWorkflowTask/LocalWorkflowTask.js'
 import type { LocalJSXCommandOnDone } from '../../types/command.js'
 import type { DeepImmutable } from '../../types/utils.js'
-import { saveWorkflowScript } from '../../../src/server/utils/workflows/save.js'
+import { saveWorkflowScript } from '../../server/utils/workflows/save.js'
 
 /**
  * `/workflows` — list this session's dynamic workflow runs and open one.

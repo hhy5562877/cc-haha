@@ -12,11 +12,11 @@ import { logError } from './log.js'
 import { cleanupOldVersions } from './nativeInstaller/index.js'
 import { cleanupOldPastes } from './pasteStore.js'
 import { getProjectsDir } from './sessionStorage.js'
-import { getSettingsWithAllErrors } from './settings/allErrors.js'
+import { getSettingsWithAllErrors } from '../server/utils/settings/allErrors.js'
 import {
   getSettings_DEPRECATED,
   rawSettingsContainsKey,
-} from './settings/settings.js'
+} from '../server/utils/settings/settings.js'
 import { TOOL_RESULTS_SUBDIR } from './toolResultStorage.js'
 import { cleanupStaleAgentWorktrees } from './worktree.js'
 

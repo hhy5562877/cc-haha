@@ -6,7 +6,7 @@ import { getAutoModeEnabledState } from '../utils/permissions/permissionSetup.js
 import {
   getSettingsForSource,
   updateSettingsForSource,
-} from '../utils/settings/settings.js'
+} from '../server/utils/settings/settings.js'
 
 /**
  * One-shot migration: clear skipAutoPermissionPrompt for users who accepted

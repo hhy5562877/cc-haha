@@ -32,7 +32,7 @@ import {
   getInitialSettings,
   getSettingsForSource,
   updateSettingsForSource,
-} from './settings/settings.js'
+} from '../server/utils/settings/settings.js'
 import { createSignal } from './signal.js'
 
 export function isFastModeEnabled(): boolean {

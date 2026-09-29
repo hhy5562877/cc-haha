@@ -22,20 +22,20 @@ import { emitTaskProgress } from '../../utils/task/sdkProgress.js'
 import {
   WORKFLOW_PANEL_EMIT_INTERVAL_MS,
   WORKFLOW_PROGRESS_BATCH_MS,
-} from '../../../src/server/utils/workflows/constants.js'
+} from '../../server/utils/workflows/constants.js'
 import { createWorkflowSharedCounters } from '../../utils/workflows/harness.js'
-import { createRunJournal } from '../../../src/server/utils/workflows/journal.js'
+import { createRunJournal } from '../../server/utils/workflows/journal.js'
 import {
   getWorkflowTranscriptDir,
   getWorkflowScriptPath,
-} from '../../../src/server/utils/workflows/paths.js'
+} from '../../server/utils/workflows/paths.js'
 import { executeWorkflowScript } from '../../utils/workflows/runtime.js'
 import { createNestedWorkflowRunner } from './runNestedWorkflow.js'
 import {
   isDurableWorkflowEvent,
   type WorkflowMeta,
   type WorkflowProgressEvent,
-} from '../../../src/server/utils/workflows/types.js'
+} from '../../server/utils/workflows/types.js'
 
 export type LaunchWorkflowParams = {
   taskId: string

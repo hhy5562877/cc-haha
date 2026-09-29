@@ -1,4 +1,4 @@
-import { getInitialSettings } from '../settings/settings.js'
+import { getInitialSettings } from '../../server/utils/settings/settings.js'
 import {
   getShellToolAvailability,
   resolveAvailableShellTool,

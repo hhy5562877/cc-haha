@@ -32,7 +32,7 @@ import { ProviderService } from '../services/providerService.js'
 import * as sideChatRegistry from '../services/sideChatRegistry.js'
 import { activeBackgroundTaskIds } from '../ws/agentTaskState.js'
 import * as teleportApi from '../../utils/teleport/api.js'
-import { resetSettingsCache, setSessionSettingsCache } from '../../utils/settings/settingsCache.js'
+import { resetSettingsCache, setSessionSettingsCache } from '../utils/settings/settingsCache.js'
 
 function makeClientSocket(sessionId: string, clientKind: 'full' | 'pet' = 'full') {
   const sent: string[] = []

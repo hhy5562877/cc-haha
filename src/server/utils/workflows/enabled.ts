@@ -4,7 +4,7 @@ import { isEnvTruthy } from '../../../utils/envUtils.js'
 import {
   getSettings_DEPRECATED,
   getSettingsForSource,
-} from '../../../utils/settings/settings.js'
+} from '../settings/settings.js'
 
 export const WORKFLOW_SIZE_GUIDELINES = [
   'unrestricted',

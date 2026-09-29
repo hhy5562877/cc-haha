@@ -5,8 +5,8 @@ import type { OutputStyle } from '../utils/config.js'
 import { getCwd } from '../utils/cwd.js'
 import { logForDebugging } from '../utils/debug.js'
 import { loadPluginOutputStyles } from '../server/utils/plugins/loadPluginOutputStyles.js'
-import type { SettingSource } from '../utils/settings/constants.js'
-import { getSettings_DEPRECATED } from '../utils/settings/settings.js'
+import type { SettingSource } from '../server/utils/settings/constants.js'
+import { getSettings_DEPRECATED } from '../server/utils/settings/settings.js'
 
 export type OutputStyleConfig = {
   name: string

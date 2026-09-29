@@ -17,7 +17,7 @@ import { logError } from '../../utils/log.js'
 import {
   getInitialSettings,
   updateSettingsForSource,
-} from '../../utils/settings/settings.js'
+} from '../../server/utils/settings/settings.js'
 import { jsonStringify } from '../../utils/slowOperations.js'
 import { CONFIG_TOOL_NAME } from './constants.js'
 import { DESCRIPTION, generatePrompt } from './prompt.js'

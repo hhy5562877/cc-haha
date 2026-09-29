@@ -40,8 +40,8 @@ import {
 import {
   getSettingsForSource,
   updateSettingsForSource,
-} from '../../utils/settings/settings.js'
-import { resetSettingsCache } from '../../utils/settings/settingsCache.js'
+} from '../utils/settings/settings.js'
+import { resetSettingsCache } from '../utils/settings/settingsCache.js'
 import { clearAllOutputStylesCache } from '../../constants/outputStyles.js'
 import { clearOutputStyleCaches } from '../../outputStyles/loadOutputStylesDir.js'
 import * as terminalShellEnvironment from '../../utils/terminalShellEnvironment.js'

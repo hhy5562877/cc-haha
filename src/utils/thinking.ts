@@ -5,7 +5,7 @@ import { getFeatureValue_CACHED_MAY_BE_STALE } from '../services/analytics/growt
 import { getCanonicalName } from './model/model.js'
 import { get3PModelCapabilityOverride } from './model/modelSupportOverrides.js'
 import { getAPIProvider, isFirstPartyAnthropicBaseUrl } from './model/providers.js'
-import { getSettingsWithErrors } from './settings/settings.js'
+import { getSettingsWithErrors } from '../server/utils/settings/settings.js'
 import { isEnvTruthy } from './envUtils.js'
 
 export type ThinkingConfig =

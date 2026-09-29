@@ -1,6 +1,6 @@
 // biome-ignore-all assist/source/organizeImports: ANT-ONLY import markers must not be reordered
 import { isUltrathinkEnabled } from './thinking.js'
-import { getInitialSettings } from './settings/settings.js'
+import { getInitialSettings } from '../server/utils/settings/settings.js'
 import { isClaudeAISubscriber, isProSubscriber, isMaxSubscriber, isTeamSubscriber } from './auth.js'
 import { getFeatureValue_CACHED_MAY_BE_STALE } from 'src/services/analytics/growthbook.js'
 import {
@@ -15,8 +15,8 @@ import type { EffortLevel as RuntimeEffortLevel } from 'src/entrypoints/sdk/runt
 import {
   getOpenAIModelCatalogEntry,
   isOpenAIResponsesModel,
-} from 'src/server/services/openaiAuth/models.js'
-import { GROK_MODEL_CATALOG, getGrokRuntimeModelCatalog } from 'src/server/services/grokAuth/models.js'
+} from '../server/services/openaiAuth/models.js'
+import { GROK_MODEL_CATALOG, getGrokRuntimeModelCatalog } from '../server/services/grokAuth/models.js'
 
 export type EffortLevel = RuntimeEffortLevel | 'xhigh'
 

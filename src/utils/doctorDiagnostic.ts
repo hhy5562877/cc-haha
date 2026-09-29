@@ -33,8 +33,8 @@ import {
 import { getPlatform } from './platform.js'
 import { getRipgrepStatus } from './ripgrep.js'
 import { SandboxManager } from './sandbox/sandbox-adapter.js'
-import { getManagedFilePath } from './settings/managedPath.js'
-import { CUSTOMIZATION_SURFACES } from './settings/types.js'
+import { getManagedFilePath } from '../server/utils/settings/managedPath.js'
+import { CUSTOMIZATION_SURFACES } from '../server/utils/settings/types.js'
 import {
   findClaudeAlias,
   findValidClaudeAlias,

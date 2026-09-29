@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react'
 import { Box, Link, Text } from '../ink.js'
 import { useKeybinding } from '../keybindings/useKeybinding.js'
-import { getSettings_DEPRECATED } from '../utils/settings/settings.js'
+import { getSettings_DEPRECATED } from '../server/utils/settings/settings.js'
 import { ConsoleOAuthFlow } from './ConsoleOAuthFlow.js'
 import { Select } from './CustomSelect/select.js'
 import { OpenAILoginFlow } from './OpenAILoginFlow.js'

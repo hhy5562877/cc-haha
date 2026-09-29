@@ -6,7 +6,7 @@ import {
   HahaGrokOAuthService,
   getHahaGrokOAuthFilePath,
 } from '../services/hahaGrokOAuthService.js'
-import { resetSettingsCache } from '../../utils/settings/settingsCache.js'
+import { resetSettingsCache } from '../utils/settings/settingsCache.js'
 
 let tempDir: string
 let previousConfigDir: string | undefined

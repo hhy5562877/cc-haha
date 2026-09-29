@@ -52,7 +52,7 @@ import { getPlatform } from './platform.js'
 import {
   getInitialSettings,
   getRelativeSettingsFilePathForSource,
-} from './settings/settings.js'
+} from '../server/utils/settings/settings.js'
 import { sleep } from './sleep.js'
 import { isInITerm2 } from './swarm/backends/detection.js'
 

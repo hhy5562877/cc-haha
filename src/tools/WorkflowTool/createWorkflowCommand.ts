@@ -1,8 +1,8 @@
 import type { ContentBlockParam } from '@anthropic-ai/sdk/resources/index.mjs'
 import type { Command } from '../../types/command.js'
-import { loadWorkflows } from '../../../src/server/utils/workflows/discovery.js'
-import { areWorkflowsEnabled } from '../../../src/server/utils/workflows/enabled.js'
-import type { WorkflowDefinition } from '../../../src/server/utils/workflows/types.js'
+import { loadWorkflows } from '../../server/utils/workflows/discovery.js'
+import { areWorkflowsEnabled } from '../../server/utils/workflows/enabled.js'
+import type { WorkflowDefinition } from '../../server/utils/workflows/types.js'
 import { WORKFLOW_TOOL_NAME } from './constants.js'
 
 /**

@@ -14,7 +14,7 @@ import { getEffectiveChannelAllowlist } from '../../server/services/mcp/channelN
 import { getMcpConfigsByScope } from '../../server/services/mcp/config.js';
 import { getClaudeAIOAuthTokens, getSubscriptionType } from '../../utils/auth.js';
 import { loadInstalledPluginsV2 } from '../../server/utils/plugins/installedPluginsManager.js';
-import { getSettingsForSource } from '../../utils/settings/settings.js';
+import { getSettingsForSource } from '../../server/utils/settings/settings.js';
 export function ChannelsNotice() {
   const $ = _c(32);
   const [t0] = useState(_temp);

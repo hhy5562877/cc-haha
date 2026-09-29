@@ -4,7 +4,7 @@ import { redownloadUserSettings } from '../../services/settingsSync/index.js'
 import type { LocalCommandCall } from '../../types/command.js'
 import { isEnvTruthy } from '../../utils/envUtils.js'
 import { refreshActivePlugins } from '../../server/utils/plugins/refresh.js'
-import { settingsChangeDetector } from '../../utils/settings/changeDetector.js'
+import { settingsChangeDetector } from '../../server/utils/settings/changeDetector.js'
 import { plural } from '../../utils/stringUtils.js'
 
 export const call: LocalCommandCall = async (_args, context) => {

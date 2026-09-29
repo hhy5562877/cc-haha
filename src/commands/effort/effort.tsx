@@ -5,7 +5,7 @@ import { type AnalyticsMetadata_I_VERIFIED_THIS_IS_NOT_CODE_OR_FILEPATHS, logEve
 import { useAppState, useSetAppState } from '../../state/AppState.js';
 import type { LocalJSXCommandOnDone } from '../../types/command.js';
 import { type EffortValue, getDisplayedEffortLevel, getEffortEnvOverride, getEffortValueDescription, isEffortLevel, toPersistableEffort } from '../../utils/effort.js';
-import { updateSettingsForSource } from '../../utils/settings/settings.js';
+import { updateSettingsForSource } from '../../server/utils/settings/settings.js';
 import { canEnableUltracode, describeUltracodeRefusal, ULTRACODE_EFFORT_ARG, ULTRACODE_EFFORT_LEVEL, ULTRACODE_MENU_DESCRIPTION } from '../../utils/workflows/ultracode.js';
 const COMMON_HELP_ARGS = ['help', '-h', '--help'];
 type EffortCommandResult = {

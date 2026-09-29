@@ -13,15 +13,15 @@ import type {
 } from '../../Tool.js'
 import { getCwd } from '../cwd.js'
 import { isEnvTruthy } from '../envUtils.js'
-import type { SettingSource } from '../settings/constants.js'
-import { SETTING_SOURCES } from '../settings/constants.js'
+import type { SettingSource } from '../../server/utils/settings/constants.js'
+import { SETTING_SOURCES } from '../../server/utils/settings/constants.js'
 import {
   getAutoModeConfig,
   getSettings_DEPRECATED,
   getSettingsFilePathForSource,
   getUseAutoModeDuringPlan,
   hasAutoModeOptIn,
-} from '../settings/settings.js'
+} from '../../server/utils/settings/settings.js'
 import {
   type PermissionMode,
   permissionModeFromString,

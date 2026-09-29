@@ -28,14 +28,14 @@ import { getPluginSkills } from '../utils/plugins/loadPluginCommands.js'
 import { clearPluginCacheExclusions } from '../utils/plugins/orphanedPluginFilter.js'
 import { parseFrontmatter } from '../../utils/frontmatterParser.js'
 import { extractDescriptionFromMarkdown } from '../../utils/markdownConfigLoader.js'
-import { resetSettingsCache } from '../../utils/settings/settingsCache.js'
+import { resetSettingsCache } from '../utils/settings/settingsCache.js'
 import type {
   PluginInstallationEntry,
   PluginScope,
 } from '../utils/plugins/schemas.js'
 import { ApiError } from '../middleware/errorHandler.js'
 import { walkPluginMarkdown } from '../utils/plugins/walkPluginMarkdown.js'
-import type { HookCommand, HooksSettings } from '../../utils/settings/types.js'
+import type { HookCommand, HooksSettings } from '../utils/settings/types.js'
 
 export type ApiPluginCapabilitySet = {
   commands: string[]

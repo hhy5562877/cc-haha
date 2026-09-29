@@ -8,7 +8,7 @@ import { getAPIProvider } from '../utils/model/providers.js'
 import {
   getSettingsForSource,
   updateSettingsForSource,
-} from '../utils/settings/settings.js'
+} from '../server/utils/settings/settings.js'
 
 /**
  * Migrate first-party users off explicit Opus 4.0/4.1 model strings.

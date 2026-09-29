@@ -1,5 +1,5 @@
-import { getSettingsForSource } from './settings/settings.js'
-import type { SettingsJson } from './settings/types.js'
+import { getSettingsForSource } from '../server/utils/settings/settings.js'
+import type { SettingsJson } from '../server/utils/settings/types.js'
 
 export const INSTRUCTION_FILE_MODES = [
   'claude-md',

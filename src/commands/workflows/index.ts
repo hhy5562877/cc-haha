@@ -1,5 +1,5 @@
 import type { Command } from '../../commands.js'
-import { areWorkflowsEnabled } from '../../../src/server/utils/workflows/enabled.js'
+import { areWorkflowsEnabled } from '../../server/utils/workflows/enabled.js'
 
 const workflows = {
   type: 'local-jsx',

@@ -2,12 +2,12 @@ import vm from 'vm'
 import type { CanUseToolFn } from '../../hooks/useCanUseTool.js'
 import type { ToolUseContext } from '../../Tool.js'
 import { logForDebugging } from '../debug.js'
-import { compileWorkflowScript, installDeterminismGuards } from '../../../src/server/utils/workflows/compile.js'
+import { compileWorkflowScript, installDeterminismGuards } from '../../server/utils/workflows/compile.js'
 import {
   WORKFLOW_MAX_COLLECTED_LOGS,
   WORKFLOW_SYNC_TIMEOUT_MS,
-} from '../../../src/server/utils/workflows/constants.js'
-import { describeThrown } from '../../../src/server/utils/workflows/errors.js'
+} from '../../server/utils/workflows/constants.js'
+import { describeThrown } from '../../server/utils/workflows/errors.js'
 import {
   createWorkflowHarness,
   createWorkflowSharedCounters,
@@ -15,14 +15,14 @@ import {
   type WorkflowHarnessParams,
   type WorkflowSharedCounters,
 } from './harness.js'
-import type { WorkflowJournal, WorkflowJournalSnapshot } from '../../../src/server/utils/workflows/journal.js'
-import { parseWorkflowScript } from '../../../src/server/utils/workflows/meta.js'
+import type { WorkflowJournal, WorkflowJournalSnapshot } from '../../server/utils/workflows/journal.js'
+import { parseWorkflowScript } from '../../server/utils/workflows/meta.js'
 import type {
   WorkflowMeta,
   WorkflowProgressEvent,
   WorkflowRunOutcome,
   WorkflowTokenBudget,
-} from '../../../src/server/utils/workflows/types.js'
+} from '../../server/utils/workflows/types.js'
 
 export type WorkflowExecutionParams = {
   vmScript: vm.Script

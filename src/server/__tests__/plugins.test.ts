@@ -7,7 +7,7 @@ import { isEnabledPluginSettingValue } from '../utils/plugins/dependencyResolver
 import { clearInstalledPluginsCache } from '../utils/plugins/installedPluginsManager.js'
 import { clearPluginCache, loadAllPluginsCacheOnly } from '../utils/plugins/pluginLoader.js'
 import { refreshActivePlugins } from '../utils/plugins/refresh.js'
-import { resetSettingsCache } from '../../utils/settings/settingsCache.js'
+import { resetSettingsCache } from '../utils/settings/settingsCache.js'
 import { handlePluginsApi } from '../api/plugins.js'
 import { conversationService } from '../services/conversationService.js'
 import { __resetWebSocketHandlerStateForTests, getSlashCommands } from '../ws/handler.js'

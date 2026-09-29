@@ -66,7 +66,7 @@ import {
 } from './messages.js'
 import { getRuntimeMainLoopModel } from './model/model.js'
 import { isFirstPartyAnthropicBaseUrl } from './model/providers.js'
-import type { SettingSource } from './settings/constants.js'
+import type { SettingSource } from '../server/utils/settings/constants.js'
 import { jsonStringify } from './slowOperations.js'
 import { buildEffectiveSystemPrompt } from './systemPrompt.js'
 import type { Theme } from './theme.js'
