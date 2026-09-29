@@ -13,7 +13,7 @@ import { recoverBoundedSessionHistory, type SessionHistoryRecovery } from './ses
 
 import { streamSessionMetadata } from './sessionMetadataReader.js'
 import { HISTORY_SEMANTIC_RECORD_BYTES, HISTORY_PAGE_BYTES, displayPreview, readBoundedHistoryPage, streamBoundedHistory, withHistoryReadBudget, type HistoryPageInfo } from './boundedSessionHistory.js'
-import { constants, createReadStream, createWriteStream, type Stats } from 'node:fs'
+import { constants, createReadStream, createWriteStream, existsSync as fsExistsSync, type Stats } from 'node:fs'
 import { createHash } from 'node:crypto'
 import * as fs from 'node:fs/promises'
 import * as path from 'node:path'
@@ -58,6 +58,8 @@ import { getClaudeConfigHomeDir } from '../../utils/envUtils.js'
 import {
   countDalSessionMessages,
   findDalSessionFileGlobal,
+  getDalAgentDir,
+  listAllDalSessions,
   readDalSessionHeader,
 } from '../dal/sessionStore.js'
 import { getSettings_DEPRECATED } from '../../utils/settings/settings.js'
@@ -3479,6 +3481,63 @@ export class SessionService {
 
   /** List all sessions, optionally filtered by physical project path. */
   async listSessions(options?: {
+    project?: string
+    limit?: number
+    offset?: number
+  }): Promise<{ sessions: SessionListItem[]; total: number }> {
+    const base = await this.listSessionsClaude(options)
+    return this.mergeDalSessions(base, options)
+  }
+
+  /**
+   * dal 会话并入列表：桌面新建会话落在 ~/.dal/agent/sessions（claude 扫描看不见），
+   * 这里按 header.cwd 过滤后与既有结果合并、统一排序并重新分页。
+   * project 参数为 encodeURIComponent 后的项目路径（与 claude 侧语义一致）。
+   */
+  private mergeDalSessions(
+    base: { sessions: SessionListItem[]; total: number },
+    options?: { project?: string; limit?: number; offset?: number },
+  ): { sessions: SessionListItem[]; total: number } {
+    const limit = options?.limit ?? 20
+    const offset = options?.offset ?? 0
+    let dalItems: SessionListItem[]
+    try {
+      const projectFilter = options?.project
+        ? decodeURIComponent(options.project)
+        : undefined
+      dalItems = listAllDalSessions(1000, 0).sessions
+        .filter((session) => {
+          if (!projectFilter) return true
+          return session.cwd === projectFilter
+            || this.sanitizePath(session.cwd) === projectFilter
+        })
+        .map((session) => ({
+          id: session.id,
+          title: session.title ?? '(无标题会话)',
+          createdAt: session.createdAt,
+          modifiedAt: session.modifiedAt,
+          messageCount: session.messageCount,
+          projectPath: session.cwd,
+          projectRoot: null,
+          workDir: session.cwd || null,
+          workDirExists: Boolean(session.cwd) && fsExistsSync(session.cwd),
+          workspaceState: 'available' as const,
+        }))
+    } catch {
+      dalItems = []
+    }
+    if (dalItems.length === 0) return base
+
+    const dalIds = new Set(dalItems.map((item) => item.id))
+    const merged = [...base.sessions.filter((item) => !dalIds.has(item.id)), ...dalItems]
+      .sort((a, b) => (a.modifiedAt < b.modifiedAt ? 1 : -1))
+    return {
+      sessions: merged.slice(offset, offset + limit),
+      total: base.total + dalItems.length,
+    }
+  }
+
+  private async listSessionsClaude(options?: {
     project?: string
     limit?: number
     offset?: number

@@ -205,6 +205,27 @@ function firstUserText(entries: DalSessionEntry[]): string | null {
 /** 列出某 cwd 下的 dal 会话（按修改时间倒序）。 */
 export function listDalSessions(cwd: string, limit = 20, offset = 0): { sessions: DalSessionSummary[]; total: number } {
   const dir = getDalSessionDir(cwd)
+  return listDalSessionsFromDir(dir, limit, offset)
+}
+
+/** 扫描全部项目目录列出所有 dal 会话（cwd 以 header 为权威来源）。 */
+export function listAllDalSessions(limit = 1000, offset = 0): { sessions: DalSessionSummary[]; total: number } {
+  const sessionsRoot = path.join(getDalAgentDir(), 'sessions')
+  let projectDirs: string[] = []
+  try {
+    projectDirs = fs.readdirSync(sessionsRoot)
+  } catch {
+    return { sessions: [], total: 0 }
+  }
+  const all: DalSessionSummary[] = []
+  for (const projectDir of projectDirs) {
+    all.push(...listDalSessionsFromDir(path.join(sessionsRoot, projectDir), Number.MAX_SAFE_INTEGER, 0).sessions)
+  }
+  all.sort((a, b) => (a.modifiedAt < b.modifiedAt ? 1 : -1))
+  return { sessions: all.slice(offset, offset + limit), total: all.length }
+}
+
+function listDalSessionsFromDir(dir: string, limit: number, offset: number): { sessions: DalSessionSummary[]; total: number } {
   let files: string[]
   try {
     files = fs.readdirSync(dir)
