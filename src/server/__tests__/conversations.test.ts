@@ -2399,6 +2399,7 @@ describe('WebSocket Chat Integration', () => {
     })
 
     const types = messages.map((m) => m.type)
+    if (process.env.E2E_DEBUG) console.log('MSGS:', JSON.stringify(messages.filter((m: any) => m.type === 'error' || m.type === 'system_notification')).slice(0, 2000))
     expect(types).toContain('connected')
     expect(types).toContain('status')
     // Mock SDK flow produces text streaming, thinking, and completion events.
@@ -4231,10 +4232,11 @@ describe('WebSocket Chat Integration', () => {
         () => startCalls.length === 1 && conversationService.hasSession(sessionId),
         `prewarmed custom runtime for ${sessionId}`,
       )
+      // DAL 迁移后图像 provider 接线（CC_HAHA_IMAGE_PROVIDER_KIND）已随
+      // 引擎图像管线移除，startSession 选项不再携带 imageProviderKind。
       expect(startCalls[0]).toEqual({
         providerId: customProvider.id,
         model: undefined,
-        imageProviderKind: 'openai_images',
       })
 
       const completion = new Promise<void>((resolve, reject) => {
@@ -4281,10 +4283,10 @@ describe('WebSocket Chat Integration', () => {
       await completion
 
       expect(startCalls).toHaveLength(2)
+      // DAL 迁移后不再携带 imageProviderKind（图像 provider 接线已移除）。
       expect(startCalls[1]).toEqual({
         providerId: 'openai-official',
         model: 'gpt-5.6-sol',
-        imageProviderKind: 'openai_oauth',
       })
       expect(sendCalls).toEqual([{
         content: 'generate only after OpenAI runtime validation',

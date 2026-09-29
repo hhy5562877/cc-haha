@@ -612,8 +612,11 @@ export class ConversationService {
     // legacy 可执行解析：显式 CLAUDE_CLI_PATH（测试注入 mock）优先；
     // 无注入时退回开发期 bun 直跑引擎入口（引擎已删，仅测试注入路径可用）。
     const cliPath = process.env.DAL_CLI_PATH?.trim() || process.env.CLAUDE_CLI_PATH?.trim()
+    // Windows 下不能直接执行 .ts/.tsx 脚本：以 bun（process.execPath）为宿主启动。
     const launcher = cliPath
-      ? [cliPath]
+      ? cliPath.match(/\.(ts|tsx|mjs|cjs|js)$/)
+        ? [process.execPath, cliPath]
+        : [cliPath]
       : [
           process.execPath,
           '--preload',

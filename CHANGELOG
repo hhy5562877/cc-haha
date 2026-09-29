@@ -1,5 +1,7 @@
 # CHANGELOG
 
+- [2026-10-01 05:20] FIX/TEST: legacy 测试 lane 修复完整生效——conversations.test.ts 124 用例 **123 pass / 1 fail**（自 58/66 失败大幅收敛）；根因修复：脚本型 CLAUDE_CLI_PATH 在 Windows 下加 bun 宿主前缀；两处 imageProviderKind 期望按 DAL 迁移后现实更新（图像 provider 接线已移除）；剩余 1 失败为顺序型状态泄漏（单跑通过、全跑复现，既有顺序敏感问题），归入新会话测试工程 (Files: src/server/services/conversationService.ts, src/server/__tests__/conversations.test.ts)
+
 - [2026-10-01 07:30] TEST: 批次 19 结构级验证 PASS——模块解析错误 0（全模块图含 secureStorage 链加载成功）、server 启动 + dal rpc 链路运行至 message_complete；真实模型调用因系统代理 TUN 级 TLS 拦截暂不可用（外部环境，待代理关闭后补真实响应验证） (验证: scripts/e2e-dal-chat.ts)
 
 - [2026-10-01 06:00] REFACTOR: 解耦批次 19 完成——utils/secureStorage 整目录（7 文件 663 行）迁入 src/server/utils/secureStorage/，全仓消费方（mcp/auth、mcp/client、utils/auth、components/messages 等 20+ 处）重指；E2E 因系统代理 TUN 级 TLS 拦截暂 FAIL（外部环境，模块解析零错误） (Files: src/server/utils/secureStorage/*, src/utils/auth.ts, src/components/messages/* 等)
