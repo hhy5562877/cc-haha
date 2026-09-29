@@ -1,20 +1,19 @@
 # 引擎解耦量化报告
 
-> 自动生成：bun scripts/engine-decoupling-report.ts（词法模块图，3728 文件）
+> 自动生成：bun scripts/engine-decoupling-report.ts（词法模块图，3732 文件）
 
 ## 总量
 
-- src/server 文件数：417
-- server → 引擎 **直接依赖边**：427（涉及 184 个引擎文件）
-- 引擎传递闭包（直接+间接可达）：**2019 个文件**
-- 其中疑似类型/模型定义类直接依赖：37
+- src/server 文件数：436
+- server → 引擎 **直接依赖边**：428（涉及 174 个引擎文件）
+- 引擎传递闭包（直接+间接可达）：**2004 个文件**
+- 其中疑似类型/模型定义类直接依赖：35
 
 ## 直接依赖按引擎目录分布
 
 | 目录 | 被引用文件数 |
 |---|---|
 | src/utils/plugins | 15 |
-| src/utils/workflows | 9 |
 | src/services/connectors | 8 |
 | src/services/openaiAuth | 7 |
 | src/tools/AgentTool | 6 |
@@ -33,8 +32,6 @@
 | src/state/AppStateStore.ts | 1 |
 | src/utils/git.ts | 1 |
 | src/utils/terminalShellEnvironment.ts | 1 |
-| src/utils/withResolvers.ts | 1 |
-| src/constants/messages.ts | 1 |
 | src/utils/sessionCollaborationEnvelope.ts | 1 |
 | src/utils/stats.ts | 1 |
 | src/utils/sessionStoragePortable.ts | 1 |
@@ -61,6 +58,7 @@
 | src/Tool.ts | 1 |
 | src/utils/task | 1 |
 | src/tasks/LocalWorkflowTask | 1 |
+| src/utils/workflows | 1 |
 | src/utils/slashCommandParsing.ts | 1 |
 | src/utils/envUtils.ts | 1 |
 | src/utils/statsCache.ts | 1 |
@@ -129,7 +127,7 @@
 |---|---|
 | src/ink.ts | 390 |
 | src/utils/debug.ts | 325 |
-| src/utils/envUtils.ts | 226 |
+| src/utils/envUtils.ts | 227 |
 | src/utils/errors.ts | 224 |
 | src/Tool.ts | 213 |
 | src/bootstrap/state.ts | 211 |
