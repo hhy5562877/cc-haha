@@ -596,6 +596,10 @@ export class ConversationService {
     const side = getSideChat(sessionId)
     const effort = options?.effort && DAL_THINKING_LEVELS.has(options.effort) ? options.effort : undefined
     const teamTools = options?.teamWorker?.tools
+    // 模型/provider 不从桌面 options 直传：旧 providerId 是桌面侧 UUID、
+    // 旧 model 是 claude 形 id，dal 侧会因 Unknown provider 直接退出。
+    // dal 的模型以 ~/.dal/agent/settings.json 的 defaultProvider/defaultModel
+    // 为唯一事实源，运行时切换经 RPC set_model（后续 dal 化模型选择器接入）。
 
     return this.resolveDalCliArgs([
       '--mode', 'rpc',
@@ -603,10 +607,6 @@ export class ConversationService {
         ? // 侧聊为一次性临时会话：fork 自母会话路径，不落盘。
           ['--session', side.resumePath, '--no-session']
         : ['--session-id', sessionId]),
-      ...(options?.model?.trim() ? ['--model', options.model.trim()] : []),
-      ...(options?.providerId && options.providerId !== 'dalcode-gateway'
-        ? ['--provider', options.providerId]
-        : []),
       ...(effort ? ['--thinking', effort] : []),
       ...(teamTools && !teamTools.includes('*') ? ['--tools', teamTools.join(',')] : []),
     ])

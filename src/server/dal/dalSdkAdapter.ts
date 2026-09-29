@@ -165,10 +165,11 @@ export class DalSdkAdapter {
   // 生命周期
   // ==========================================================================
 
-  /** 启动 stdout/stderr 读取与初始化握手。必须在 spawn 后立即调用。 */
+  /** 启动 stdout 读取与初始化握手。必须在 spawn 后立即调用。 */
   start(): void {
     void this.readStdout()
-    void this.readStderr()
+    // 注意：stderr 由 conversationService.readProcessOutputStream 统一采集
+    // （ReadableStream 只允许单读者），适配器不得重复读取。
     // 尽快取一次状态用于 init 帧；失败不阻塞（init 有兜底定时器）。
     void this.refreshStateThenEmitInit()
     setTimeout(() => {
@@ -346,22 +347,6 @@ export class DalSdkAdapter {
     }
   }
 
-  private async readStderr(): Promise<void> {
-    const stream = this.proc.stderr as ReadableStream<Uint8Array> | null
-    if (!stream) return
-    const reader = stream.getReader()
-    const decoder = new TextDecoder()
-    try {
-      for (;;) {
-        const { done, value } = await reader.read()
-        if (done) break
-        const text = decoder.decode(value, { stream: true }).trim()
-        if (text) console.error(`[DalAdapter:${this.sessionId}:stderr] ${text}`)
-      }
-    } catch {
-      // 忽略 stderr 读取错误。
-    }
-  }
 
   private handleStdoutLine(line: string): void {
     let frame: Record<string, unknown>

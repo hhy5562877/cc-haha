@@ -859,22 +859,22 @@ describe('ConversationService', () => {
       'sess-1',
       'ws://127.0.0.1:3456/sdk/sess-1?token=t',
       false,
-      { model: 'deepseek-v4-pro', effort: 'high', providerId: 'dalcode-gateway' },
+      { model: 'claude-opus-5-5', effort: 'high', providerId: 'some-desktop-uuid' },
     )
     expect(args).toContain('--mode')
     expect(args).toContain('rpc')
     expect(args).toContain('--session-id')
     expect(args).toContain('sess-1')
-    expect(args).toContain('--model')
-    expect(args).toContain('deepseek-v4-pro')
     // effort 仅在命中 dal 思考等级枚举时映射为 --thinking。
     expect(args).toContain('--thinking')
     expect(args).toContain('high')
-    // 网关 provider 是 dal 默认出口，不重复传 --provider。
+    // 桌面旧 providerId/model 不直传 dal（避免 Unknown provider 退出），
+    // 模型以 dal settings 为唯一事实源。
     expect(args).not.toContain('--provider')
+    expect(args).not.toContain('--model')
   })
 
-  it('should keep non-gateway providers explicit in dal args', () => {
+  it('should keep unrecognized effort levels out of dal args', () => {
     const svc = new ConversationService()
     const args = (svc as any).buildSessionCliArgs(
       'sess-2',
@@ -882,8 +882,6 @@ describe('ConversationService', () => {
       true,
       { providerId: 'custom-provider', effort: 'ultra' },
     )
-    expect(args).toContain('--provider')
-    expect(args).toContain('custom-provider')
     // 未命中枚举的 effort 不进入 --thinking。
     expect(args).not.toContain('--thinking')
   })

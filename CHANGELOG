@@ -1,5 +1,8 @@
 # CHANGELOG
 
+- [2026-09-30 02:30] FIX/TEST: 修复 E2E 揭示的三个缺陷——适配器与 conversationService 双读 stderr 导致 ReadableStream 锁死（stderr 统一交由 readProcessOutputStream 采集）；桌面旧 providerId/model 误传 dal --provider/--model 致 Unknown provider 退出（模型以 dal settings 为唯一事实源）；新增 scripts/e2e-dal-chat.ts 无头端到端冒烟（建会话→WS 对话→流式→message_complete）实测 PASS (Files: src/server/dal/dalSdkAdapter.ts, src/server/services/conversationService.ts, src/server/__tests__/conversations.test.ts, scripts/e2e-dal-chat.ts)
+- [2026-09-30 02:00] FEAT: 品牌文案迁移 Claude→DAL——i18n 五语言全部替换、productName 'DAL Code Haha'、appId com.dal-code-haha.desktop (Files: desktop/src/i18n/locales/*.ts, desktop/package.json)
+
 - [2026-09-30 01:40] FEAT: 权限审批桥/模型网关登录/配置路径迁移（t3/t5/t6 批次）——新增 src/server/dal/bridge（三个审批 HTTP 端点+guard 模式管理+会话态清理）并挂载 /api/dal-bridge；新增 dalAuthService（Keycloak OIDC device flow）与 /api/dal-auth、桌面端 DalGatewayLogin/dalAuthStore；模型目录切换 dal 网关发现并删除 Claude OAuth 链路（haha-oauth 及相关组件）；envUtils 配置根迁至 ~/.dal 体系、Electron 7 服务状态目录迁至 ~/.dal/desktop、settingsService 对接 dal settings (Files: src/server/dal/bridge/*, src/server/api/dal-auth.ts, src/server/services/dalAuthService.ts, src/server/services/dalModelCatalog.ts, desktop/src/api/dalAuth.ts, desktop/src/stores/dalAuthStore.ts, desktop/src/components/settings/DalGatewayLogin.tsx, desktop/electron/services/dalDataDirs.ts 等)
 
 - [2026-09-30 01:10] FEAT: dal-sidecar 编译打包链路——build-sidecars 新增从 DAL-code-cli dist/bun/cli.js 编译 dal-sidecar-{triple}（DAL_CLI_REPO 解析），并新增 stageDalExtensionRuntime 将扩展运行时以兄弟 node_modules 布局分发（dal-guard 等内置扩展经运行时 require.resolve 发现，bun 编译产物不内联该解析）；spawn 环境注入 NODE_PATH 完成扩展加载，二进制 rpc 全扩展冒烟通过 (Files: desktop/scripts/build-sidecars.ts, src/server/services/conversationService.ts, src/server/services/cronScheduler.ts)
