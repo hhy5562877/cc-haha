@@ -1,5 +1,7 @@
 # CHANGELOG
 
+- [2026-10-01 03:30] REFACTOR: 解耦批次 16 完成——services/connectors 整目录（13 文件 1385 行）迁入 src/server/services/connectors/（前序批次已内化其 plugins/mcp 依赖，仅剩 envUtils 支撑引用按深度修正），13 处消费方重指；E2E PASS (Files: src/server/services/connectors/*, src/server/api/connectors.ts, src/server/services/capabilityMentionService.ts 等)
+
 - [2026-10-01 02:20] REFACTOR: 解耦批次 15 完成——utils/settings 子系统整目录迁入 src/server/utils/settings/（含 mdm 子目录），全仓引用方重指（./与../混合层级、根式、settings.js×18 等最大簇）；mdm 常量分离为 mdmConstants 并以根 constants 再导出兼容；E2E PASS (Files: src/server/utils/settings/*, src/utils/* 消费方)
 
 - [2026-10-01 01:30] REFACTOR: 解耦批次 14 完成——plugins 组对 permissions 的最后两条 expandTilde 引用改用 server 本地 pathAndTemp，server→utils/permissions 直接消费边全断 (Files: src/server/utils/plugins/{pluginDirectories,zipCache}.ts)

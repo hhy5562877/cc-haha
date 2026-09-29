@@ -1,6 +1,6 @@
 import { randomUUID } from 'node:crypto'
 import { basename, join } from 'node:path'
-import type { ConnectorAction, ConnectorActionOptions, ConnectorAdapter, ConnectorDefinition, ConnectorDto, ConnectorInstallation } from '../../services/connectors/types.js'
+import type { ConnectorAction, ConnectorActionOptions, ConnectorAdapter, ConnectorDefinition, ConnectorDto, ConnectorInstallation } from './connectors/types.js'
 import { ConnectorsPersistence, type ConnectorRecord } from './connectorsPersistence.js'
 
 export class ConnectorServiceError extends Error {
@@ -275,7 +275,7 @@ export class ConnectorService {
 let defaultService: Promise<ConnectorService> | undefined
 export function getConnectorService(): Promise<ConnectorService> {
   return defaultService ??= Promise.all([
-    import('../../services/connectors/catalog.js'), import('../../services/connectors/cliAdapter.js'), import('../../services/connectors/pluginBridge.js'), import('../../utils/envUtils.js'), import('../../services/connectors/remoteCatalog.js'), import('../../services/connectors/remoteAdapter.js'), import('../../services/connectors/skillCatalog.js'), import('../../services/connectors/skillAdapter.js'),
+    import('./connectors/catalog.js'), import('./connectors/cliAdapter.js'), import('./connectors/pluginBridge.js'), import('../../utils/envUtils.js'), import('./connectors/remoteCatalog.js'), import('./connectors/remoteAdapter.js'), import('./connectors/skillCatalog.js'), import('./connectors/skillAdapter.js'),
   ]).then(([catalog, adapter, bridge, { getClaudeConfigHomeDir }, remoteCatalog, remoteAdapter, skillCatalog, skillAdapter]) => new ConnectorService({ definitions: catalog.ALL_CONNECTORS, createAdapter: (definition, root) => {
     const bundle = skillCatalog.getSkillRecipe(definition.id, definition.version)
     if (bundle) return skillAdapter.createSkillBundleAdapter(definition, root, bundle)

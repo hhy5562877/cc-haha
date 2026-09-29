@@ -3,7 +3,7 @@ import { mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'nod
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import { ConnectorService, type ConnectorServiceDependencies } from './connectorService.js'
-import type { ConnectorAdapter } from '../../services/connectors/types.js'
+import type { ConnectorAdapter } from './connectors/types.js'
 
 const definition = { id: 'feishu' as const, pluginId: 'feishu@test', packageName: 'fake', version: '1.0.0', homepage: 'https://example.test', credentialMode: 'shared' as const, platforms: [`${process.platform}-${process.arch}`] }
 async function settled(service: ConnectorService) {

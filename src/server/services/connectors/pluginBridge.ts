@@ -1,7 +1,7 @@
 import { mkdir, readFile, rename, rm, writeFile } from 'node:fs/promises'
 import { dirname, join, resolve } from 'node:path'
 import { randomUUID } from 'node:crypto'
-import { getClaudeConfigHomeDir } from '../../utils/envUtils.js'
+import { getClaudeConfigHomeDir } from '../../../utils/envUtils.js'
 import { getSettingsForSource, updateSettingsForSource } from '../../server/utils/settings/settings.js'
 import { clearAllCaches } from '../../server/utils/plugins/cacheUtils.js'
 import { cacheAndRegisterPlugin } from '../../server/utils/plugins/pluginInstallationHelpers.js'

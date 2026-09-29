@@ -1,7 +1,7 @@
 import { expect, test } from 'bun:test'
 import { createConnectorsApi } from './connectors.js'
 import { ConnectorServiceError } from '../services/connectorService.js'
-import type { ConnectorDto } from '../../services/connectors/types.js'
+import type { ConnectorDto } from '../services/connectors/types.js'
 
 const connector = { id: 'feishu', installed: false } as ConnectorDto
 let mutations = 0

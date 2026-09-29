@@ -1,4 +1,4 @@
-import type { ConnectorAction, ConnectorActionOptions } from '../../services/connectors/types.js'
+import type { ConnectorAction, ConnectorActionOptions } from '../services/connectors/types.js'
 import { ApiError, errorResponse } from '../middleware/errorHandler.js'
 import { getConnectorService, ConnectorServiceError, type ConnectorService } from '../services/connectorService.js'
 

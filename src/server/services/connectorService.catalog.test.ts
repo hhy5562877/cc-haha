@@ -2,7 +2,7 @@ import { expect, test } from 'bun:test'
 import { mkdtempSync, rmSync } from 'node:fs'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
-import { ALL_CONNECTORS } from '../../services/connectors/catalog.js'
+import { ALL_CONNECTORS } from './connectors/catalog.js'
 import { ConnectorService } from './connectorService.js'
 
 // Exercise every catalog definition through the production state machine.

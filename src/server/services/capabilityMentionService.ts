@@ -59,7 +59,7 @@ export function buildCapabilityMentions(snapshot: CapabilityMentionSnapshot): Ca
 export async function listCapabilityMentions(cwd: string): Promise<CapabilityMentionResponse> {
   const [local, plugins, { loadInstalledPluginsForProject }, { loadPluginMcpServers }, { ALL_CONNECTORS }, { resetSettingsCache }, { clearInstalledPluginsCache }] = await Promise.all([
     import('../../skills/loadSkillsDir.js'), import('../utils/plugins/loadPluginCommands.js'),
-    import('../utils/plugins/pluginLoader.js'), import('../utils/plugins/mcpPluginIntegration.js'), import('../../services/connectors/catalog.js'),
+    import('../utils/plugins/pluginLoader.js'), import('../utils/plugins/mcpPluginIntegration.js'), import('./connectors/catalog.js'),
     import('../utils/settings/settingsCache.js'), import('../utils/plugins/installedPluginsManager.js'),
   ])
   // Reuse the runtime's installed-skill loaders, without importing built-in
