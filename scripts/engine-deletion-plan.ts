@@ -11,6 +11,34 @@ const repoRoot = path.resolve(import.meta.dir, '..')
 const files = listGraphSourceFiles(repoRoot, GRAPH_SOURCE_ROOTS)
 const graph = buildModuleGraph(repoRoot, files)
 
+// 词汇图不解析根式 'src/...' 说明符（module-graph 只处理相对与 @/ 别名），
+// 但代码中真实存在（如 bootstrap/state.ts → 'src/utils/crypto.js'）。
+// 这里补建合成边，避免可达性误判导致支撑文件被反复误删。
+const fileSet = new Set(files)
+const rootSpecifierPattern = /(?:\bfrom\s*|\bimport\s*|\brequire\s*)\(?\s*['"](src\/[^'"]+)['"]/g
+for (const file of files) {
+  let source: string
+  try {
+    source = await Bun.file(path.join(repoRoot, file)).text()
+  } catch {
+    continue
+  }
+  for (const match of source.matchAll(rootSpecifierPattern)) {
+    const specifier = match[1]!
+    const bases = [specifier, specifier.replace(/\.(js|mjs|cjs)$/, '')]
+    for (const base of bases) {
+      for (const ext of ['', '.ts', '.tsx', '.js', '.jsx', '.mjs', '.cjs', '.json']) {
+        const candidate = normalizeGraphPath(`${base}${ext}`)
+        if (fileSet.has(candidate)) {
+          if (!graph.imports.has(file)) graph.imports.set(file, new Set())
+          graph.imports.get(file)!.add(candidate)
+          break
+        }
+      }
+    }
+  }
+}
+
 // 存活入口：server、sidecar 分发入口、desktop 全部、adapters 全部、scripts 全部、preload
 const roots = files.filter((file) => {
   if (file.startsWith('desktop/')) return true
