@@ -11,7 +11,7 @@
  */
 
 import { teamPlanActionSchema, teamPlanPatchRequestSchema, teamPlanService } from '../services/teamPlanService.js'
-import { TeamPlanError } from '../../utils/swarm/teamPlanStore.js'
+import { TeamPlanError } from '../utils/teamPlanError.js'
 import { teamService } from '../services/teamService.js'
 import { ApiError, errorResponse } from '../middleware/errorHandler.js'
 
