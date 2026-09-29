@@ -1,34 +1,35 @@
 # 引擎解耦量化报告
 
-> 自动生成：bun scripts/engine-decoupling-report.ts（词法模块图，3736 文件）
+> 自动生成：bun scripts/engine-decoupling-report.ts（词法模块图，3737 文件）
 
 ## 总量
 
-- src/server 文件数：485
-- server → 引擎 **直接依赖边**：523（涉及 196 个引擎文件）
-- 引擎传递闭包（直接+间接可达）：**1959 个文件**
-- 其中疑似类型/模型定义类直接依赖：26
+- src/server 文件数：543
+- server → 引擎 **直接依赖边**：672（涉及 207 个引擎文件）
+- 引擎传递闭包（直接+间接可达）：**1902 个文件**
+- 其中疑似类型/模型定义类直接依赖：37
 
 ## 直接依赖按引擎目录分布
 
 | 目录 | 被引用文件数 |
 |---|---|
-| src/utils/plugins | 15 |
 | src/services/connectors | 8 |
-| src/utils/settings | 7 |
-| src/tools/AgentTool | 6 |
+| src/tools/AgentTool | 7 |
+| src/utils/permissions | 6 |
 | src/utils/computerUse | 5 |
 | src/utils/model | 4 |
 | src/utils/secureStorage | 4 |
 | src/utils/swarm | 4 |
 | src/services/oauth | 4 |
 | src/vendor/computer-use-mcp | 3 |
-| src/utils/permissions | 3 |
+| src/tools/FileEditTool | 3 |
 | src/services/analytics | 3 |
 | src/utils/claudeInChrome | 3 |
 | src/services/api | 2 |
-| src/tools/FileEditTool | 2 |
 | src/tools/MCPTool | 2 |
+| src/utils/git | 2 |
+| src/services/lsp | 2 |
+| src/utils/dxt | 2 |
 | src/state/AppStateStore.ts | 1 |
 | src/utils/git.ts | 1 |
 | src/utils/terminalShellEnvironment.ts | 1 |
@@ -147,9 +148,31 @@
 | src/utils/contextBudget.ts | 1 |
 | src/services/tokenEstimation.ts | 1 |
 | src/utils/sessionMessageInbox.ts | 1 |
-| src/utils/git | 1 |
 | src/shared/teamPlan.ts | 1 |
 | src/utils/sessionTitle.ts | 1 |
+| src/tools/SkillTool | 1 |
+| src/utils/attachments.ts | 1 |
+| src/utils/which.ts | 1 |
+| src/utils/claudeCodeHints.ts | 1 |
+| src/memdir/paths.ts | 1 |
+| src/tools/FileReadTool | 1 |
+| src/tools/FileWriteTool | 1 |
+| src/utils/argumentSubstitution.ts | 1 |
+| src/utils/promptShellExecution.ts | 1 |
+| src/utils/stringUtils.ts | 1 |
+| src/utils/systemDirectories.ts | 1 |
+| src/utils/format.ts | 1 |
+| src/utils/telemetry | 1 |
+| src/utils/file.ts | 1 |
+| src/schemas/hooks.ts | 1 |
+| src/utils/yaml.ts | 1 |
+| src/utils/hooks | 1 |
+| src/utils/signal.ts | 1 |
+| src/utils/diagLogs.ts | 1 |
+| src/utils/fileRead.ts | 1 |
+| src/utils/startupProfiler.ts | 1 |
+| src/services/remoteManagedSettings | 1 |
+| src/entrypoints/sandboxTypes.ts | 1 |
 
 ## 解耦枢纽（闭包内扇入 Top 25——先解耦它们可级联释放最多文件）
 
@@ -168,7 +191,6 @@
 | src/services/analytics/index.ts | 147 |
 | src/utils/config.ts | 134 |
 | src/utils/messages.ts | 117 |
-| src/utils/settings/settings.ts | 116 |
 | src/state/AppState.tsx | 109 |
 | src/services/analytics/growthbook.ts | 100 |
 | src/utils/cwd.ts | 97 |
@@ -180,6 +202,7 @@
 | src/types/command.ts | 79 |
 | src/utils/stringUtils.ts | 73 |
 | src/utils/model/model.ts | 68 |
+| src/tools/AgentTool/loadAgentsDir.ts | 62 |
 
 ## 分批解耦建议
 
