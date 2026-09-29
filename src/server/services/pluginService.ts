@@ -1,6 +1,6 @@
 import { basename, join, sep } from 'node:path'
 import { getBuiltinPluginDefinition } from '../../plugins/builtinPlugins.js'
-import type { McpServerConfig } from '../../services/mcp/types.js'
+import type { McpServerConfig } from './mcp/types.js'
 import {
   disablePluginOp,
   enablePluginOp,

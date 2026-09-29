@@ -2,13 +2,13 @@ import { dirname } from 'path'
 import {
   clearMcpClientConfig,
   clearServerTokensFromLocalStorage,
-} from '../../services/mcp/auth.js'
+} from '../services/mcp/auth.js'
 import {
   clearServerCache,
   connectToServer,
   getServerCacheKey,
   reconnectMcpServerImpl,
-} from '../../services/mcp/client.js'
+} from '../services/mcp/client.js'
 import {
   addMcpConfig,
   findProjectMcpConfigPath,
@@ -20,7 +20,7 @@ import {
   registerCwdProjectIfDeclaresMcpServers,
   removeMcpConfig,
   setMcpServerEnabled,
-} from '../../services/mcp/config.js'
+} from '../services/mcp/config.js'
 import { inspectMcpHostCommand } from '../services/mcpHostPreflight.js'
 import type {
   ConfigScope,
@@ -29,8 +29,8 @@ import type {
   McpServerConfig,
   McpStdioServerConfig,
   ScopedMcpServerConfig,
-} from '../../services/mcp/types.js'
-import { describeMcpConfigFilePath, ensureConfigScope } from '../../services/mcp/utils.js'
+} from '../services/mcp/types.js'
+import { describeMcpConfigFilePath, ensureConfigScope } from '../services/mcp/utils.js'
 import { enableConfigs, getGlobalConfig, getProjectPathForConfig } from '../../utils/config.js'
 import { getCwd, runWithCwdOverride } from '../../utils/cwd.js'
 import { normalizePathForConfigKey } from '../../utils/path.js'

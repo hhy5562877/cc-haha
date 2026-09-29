@@ -19,8 +19,8 @@
  * bridge approval surface.
  */
 
-import { jsonStringify } from '../../utils/slowOperations.js'
-import { getFeatureValue_CACHED_MAY_BE_STALE } from '../analytics/growthbook.js'
+import { jsonStringify } from '../../../utils/slowOperations.js'
+import { getFeatureValue_CACHED_MAY_BE_STALE } from '../../../services/analytics/growthbook.js'
 
 /**
  * GrowthBook runtime gate — separate from the channels gate (tengu_harbor)

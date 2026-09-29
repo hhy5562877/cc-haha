@@ -257,7 +257,7 @@ import {
   pinCacheEdits,
 } from "../compact/microCompact.js";
 import { getInitializationStatus } from "../lsp/manager.js";
-import { isToolFromMcpServer } from "../mcp/utils.js";
+import { isToolFromMcpServer } from "../../server/services/mcp/utils.js";
 import { withStreamingVCR, withVCR } from "../vcr.js";
 import { requestAzureOpenAI } from "./azureOpenAI.js";
 import { CLIENT_REQUEST_ID_HEADER, getAnthropicClient } from "./client.js";

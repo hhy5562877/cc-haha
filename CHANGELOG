@@ -1,5 +1,7 @@
 # CHANGELOG
 
+- [2026-09-30 17:40] REFACTOR: 解耦批次 8 完成——services/mcp 整目录（8751 行 16 文件）迁入 src/server/services/mcp/，迁移件父级深度统一（../../→../../../、单父→../../../services/、动态 import、require 形式、根式 src/services/mcp→src/server/services/mcp 共 8 类形态），全仓 ~110 处消费方重指（api/mcp、pluginService、capabilityMentionService、analytics、tools、api/claude 等）；E2E PASS (Files: src/server/services/mcp/*, src/server/api/mcp.ts, src/services/* 等 120+ 文件)
+
 - [2026-09-30 16:50] REFACTOR: 解耦批次 7——model 工具切片提取为 src/server/utils/model.ts（上下文窗口常量/ENV 键/normalizeModelStringForAPI/isFirstPartyAnthropicBaseUrl/getModelContextWindowFromEnvValue 及其内部辅助，原样自 modelContextWindows/model/providers 转写），ccSwitchImport/grokOfficial/openaiOfficial/proxy-handler/sessionService/providerRuntimeEnv 六消费方重指；getCanonicalName 深链（modelStrings 子系统）留守并记录 (Files: src/server/utils/model.ts, src/server/services/*, src/server/proxy/handler.ts)
 
 - [2026-09-30 15:50] REFACTOR: 解耦批次 6（部分）——preauthorizedConfig/pipInstall 复制入 src/server/utils/computerUse/（vendor/envUtils 引用重指），computer-use 两消费边切断；cuHelperBridge(230行 darwin 桥, 链 648 行) 记录为遗留边归入计算机使用子系统移植；组内 schema 推断类型噪声为预存基线（对照验证） (Files: src/server/utils/computerUse/*, src/server/api/computer-use.ts)

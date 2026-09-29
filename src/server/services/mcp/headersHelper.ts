@@ -1,11 +1,11 @@
-import { getIsNonInteractiveSession } from '../../bootstrap/state.js'
-import { checkHasTrustDialogAccepted } from '../../utils/config.js'
-import { logAntError } from '../../utils/debug.js'
-import { errorMessage } from '../../utils/errors.js'
-import { execFileNoThrowWithCwd } from '../../utils/execFileNoThrow.js'
-import { logError, logMCPDebug, logMCPError } from '../../utils/log.js'
-import { jsonParse } from '../../utils/slowOperations.js'
-import { logEvent } from '../analytics/index.js'
+import { getIsNonInteractiveSession } from '../../../bootstrap/state.js'
+import { checkHasTrustDialogAccepted } from '../../../utils/config.js'
+import { logAntError } from '../../../utils/debug.js'
+import { errorMessage } from '../../../utils/errors.js'
+import { execFileNoThrowWithCwd } from '../../../utils/execFileNoThrow.js'
+import { logError, logMCPDebug, logMCPError } from '../../../utils/log.js'
+import { jsonParse } from '../../../utils/slowOperations.js'
+import { logEvent } from '../../../services/analytics/index.js'
 import type {
   McpHTTPServerConfig,
   McpSSEServerConfig,

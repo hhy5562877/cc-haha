@@ -1,8 +1,8 @@
 import { c as _c } from "react/compiler-runtime";
 import React, { useMemo } from 'react';
-import { getMcpConfigsByScope } from 'src/services/mcp/config.js';
-import type { ConfigScope } from 'src/services/mcp/types.js';
-import { describeMcpConfigFilePath, getScopeLabel } from 'src/services/mcp/utils.js';
+import { getMcpConfigsByScope } from 'src/server/services/mcp/config.js';
+import type { ConfigScope } from 'src/server/services/mcp/types.js';
+import { describeMcpConfigFilePath, getScopeLabel } from 'src/server/services/mcp/utils.js';
 import type { ValidationError } from 'src/utils/settings/validation.js';
 import { Box, Link, Text } from '../../ink.js';
 function McpConfigErrorSection(t0) {

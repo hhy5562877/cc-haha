@@ -1,6 +1,6 @@
-import { connectToServer, fetchToolsForClient, clearServerCache } from '../mcp/client.js'
-import { performMCPOAuthFlow, clearServerTokensFromLocalStorage, clearMcpClientConfig } from '../mcp/auth.js'
-import type { McpHTTPServerConfig, McpSSEServerConfig, ScopedMcpServerConfig } from '../mcp/types.js'
+import { connectToServer, fetchToolsForClient, clearServerCache } from '../../server/services/mcp/client.js'
+import { performMCPOAuthFlow, clearServerTokensFromLocalStorage, clearMcpClientConfig } from '../../server/services/mcp/auth.js'
+import type { McpHTTPServerConfig, McpSSEServerConfig, ScopedMcpServerConfig } from '../../server/services/mcp/types.js'
 import { savePluginOptions, loadPluginOptions, deletePluginOptions, type PluginOptionSchema, type PluginOptionValues } from '../../utils/plugins/pluginOptionsStorage.js'
 import { resolvePluginMcpEnvironment } from '../../utils/plugins/mcpPluginIntegration.js'
 

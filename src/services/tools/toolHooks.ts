@@ -30,7 +30,7 @@ import {
 } from '../../utils/permissions/PermissionResult.js'
 import { checkRuleBasedPermissions } from '../../utils/permissions/permissions.js'
 import { formatError } from '../../utils/toolErrors.js'
-import { isMcpTool } from '../mcp/utils.js'
+import { isMcpTool } from '../../server/services/mcp/utils.js'
 import type { McpServerType, MessageUpdateLazy } from './toolExecution.js'
 
 const autoModeStateModule = feature('TRANSCRIPT_CLASSIFIER')

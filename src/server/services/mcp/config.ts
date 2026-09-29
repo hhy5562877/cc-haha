@@ -3,44 +3,44 @@ import mapValues from 'lodash-es/mapValues.js'
 import memoize from 'lodash-es/memoize.js'
 import { dirname, join, parse } from 'path'
 import { getPlatform } from 'src/utils/platform.js'
-import type { PluginError } from '../../types/plugin.js'
-import { getPluginErrorMessage } from '../../types/plugin.js'
-import { isClaudeInChromeMCPServer } from '../../utils/claudeInChrome/common.js'
+import type { PluginError } from '../../../types/plugin.js'
+import { getPluginErrorMessage } from '../../../types/plugin.js'
+import { isClaudeInChromeMCPServer } from '../../../utils/claudeInChrome/common.js'
 import {
   getCurrentProjectConfig,
   getGlobalConfig,
   getProjectPathForConfig,
   saveCurrentProjectConfig,
   saveGlobalConfig,
-} from '../../utils/config.js'
-import { getCwd } from '../../utils/cwd.js'
-import { getGlobalClaudeFile } from '../../utils/env.js'
-import { logForDebugging } from '../../utils/debug.js'
-import { getErrnoCode } from '../../utils/errors.js'
-import { getFsImplementation } from '../../utils/fsOperations.js'
-import { safeParseJSON, safeParseJSONWithoutCache } from '../../utils/json.js'
-import { logError } from '../../utils/log.js'
-import { getPluginMcpServers } from '../../utils/plugins/mcpPluginIntegration.js'
-import { loadAllPluginsCacheOnly } from '../../utils/plugins/pluginLoader.js'
-import { isSettingSourceEnabled } from '../../utils/settings/constants.js'
-import { getManagedFilePath } from '../../utils/settings/managedPath.js'
-import { isRestrictedToPluginOnly } from '../../utils/settings/pluginOnlyPolicy.js'
+} from '../../../utils/config.js'
+import { getCwd } from '../../../utils/cwd.js'
+import { getGlobalClaudeFile } from '../../../utils/env.js'
+import { logForDebugging } from '../../../utils/debug.js'
+import { getErrnoCode } from '../../../utils/errors.js'
+import { getFsImplementation } from '../../../utils/fsOperations.js'
+import { safeParseJSON, safeParseJSONWithoutCache } from '../../../utils/json.js'
+import { logError } from '../../../utils/log.js'
+import { getPluginMcpServers } from '../../../utils/plugins/mcpPluginIntegration.js'
+import { loadAllPluginsCacheOnly } from '../../../utils/plugins/pluginLoader.js'
+import { isSettingSourceEnabled } from '../../../utils/settings/constants.js'
+import { getManagedFilePath } from '../../../utils/settings/managedPath.js'
+import { isRestrictedToPluginOnly } from '../../../utils/settings/pluginOnlyPolicy.js'
 import {
   getInitialSettings,
   getSettingsForSource,
-} from '../../utils/settings/settings.js'
+} from '../../../utils/settings/settings.js'
 import {
   isMcpServerCommandEntry,
   isMcpServerNameEntry,
   isMcpServerUrlEntry,
   type SettingsJson,
-} from '../../utils/settings/types.js'
-import type { ValidationError } from '../../utils/settings/validation.js'
-import { jsonStringify } from '../../utils/slowOperations.js'
+} from '../../../utils/settings/types.js'
+import type { ValidationError } from '../../../utils/settings/validation.js'
+import { jsonStringify } from '../../../utils/slowOperations.js'
 import {
   type AnalyticsMetadata_I_VERIFIED_THIS_IS_NOT_CODE_OR_FILEPATHS,
   logEvent,
-} from '../analytics/index.js'
+} from '../../../services/analytics/index.js'
 import { fetchClaudeAIMcpConfigsIfEligible } from './claudeai.js'
 import { expandEnvVarsInString } from './envExpansion.js'
 import {
@@ -653,7 +653,7 @@ export async function addMcpConfig(
   }
 
   const { isComputerUseMCPServer } = await import(
-    '../../utils/computerUse/common.js'
+    '../../../utils/computerUse/common.js'
   )
   if (isComputerUseMCPServer(name)) {
     throw new Error(`Cannot add MCP server "${name}": this name is reserved.`)
@@ -1666,7 +1666,7 @@ export function areMcpConfigsAllowedWithEnterpriseMcpConfig(
  */
 /* eslint-disable @typescript-eslint/no-require-imports */
 const DEFAULT_DISABLED_BUILTIN = (
-  require('../../utils/computerUse/common.js') as typeof import('../../utils/computerUse/common.js')
+  require('../../../utils/computerUse/common.js') as typeof import('../../../utils/computerUse/common.js')
 ).COMPUTER_USE_MCP_SERVER_NAME
 /* eslint-enable @typescript-eslint/no-require-imports */
 

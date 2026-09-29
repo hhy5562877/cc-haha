@@ -1,8 +1,8 @@
 import { c as _c } from "react/compiler-runtime";
 import React from 'react';
 import { Text } from '../../ink.js';
-import { extractMcpToolDisplayName, getMcpDisplayName } from '../../services/mcp/mcpStringUtils.js';
-import { filterToolsByServer } from '../../services/mcp/utils.js';
+import { extractMcpToolDisplayName, getMcpDisplayName } from '../../server/services/mcp/mcpStringUtils.js';
+import { filterToolsByServer } from '../../server/services/mcp/utils.js';
 import { useAppState } from '../../state/AppState.js';
 import type { Tool } from '../../Tool.js';
 import { plural } from '../../utils/stringUtils.js';

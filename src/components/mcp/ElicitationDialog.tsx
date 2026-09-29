@@ -8,7 +8,7 @@ import { useTerminalSize } from '../../hooks/useTerminalSize.js';
 // eslint-disable-next-line custom-rules/prefer-use-keybindings -- raw text input for elicitation form
 import { Box, Text, useInput } from '../../ink.js';
 import { useKeybinding } from '../../keybindings/useKeybinding.js';
-import type { ElicitationRequestEvent } from '../../services/mcp/elicitationHandler.js';
+import type { ElicitationRequestEvent } from '../../server/services/mcp/elicitationHandler.js';
 import { openBrowser } from '../../utils/browser.js';
 import { getEnumLabel, getEnumValues, getMultiSelectLabel, getMultiSelectValues, isDateTimeSchema, isEnumSchema, isMultiSelectEnumSchema, validateElicitationInput, validateElicitationInputAsync } from '../../utils/mcp/elicitationValidation.js';
 import { plural } from '../../utils/stringUtils.js';
