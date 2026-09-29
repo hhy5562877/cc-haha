@@ -1,5 +1,7 @@
 # CHANGELOG
 
+- [2026-09-30 07:00] REFACTOR: 引擎解耦批次 1——withResolvers/constants-messages 两个零依赖文件复制进 src/server/{utils,constants}/ 并重指全部 server 导入（含测试 fixture）；闭包复测释放 5 个新不可达死文件并删除；E2E 保持 PASS、新增文件 typecheck 干净 (Files: src/server/utils/withResolvers.ts, src/server/constants/messages.ts, conversationService/sessionService/handler 导入重指)
+
 - [2026-09-30 06:00] DOCS: 引擎解耦量化报告——新增 scripts/engine-decoupling-report.ts，量化 server→引擎依赖全景：直接依赖仅 184 文件/427 边（拉动 2019 传递闭包），按 ~30 个功能入口组聚合（plugins/workflows/connectors/openaiAuth/grokAuth/mcp 等）；含扇入 Top25 枢纽清单与分批解耦判定线，将「彻底删除引擎」从模糊阻塞转化为可执行分批计划 (Files: scripts/engine-decoupling-report.ts, docs/dal-integration/engine-decoupling-report.md)
 
 - [2026-09-30 05:10] FIX/TEST: legacy lane 修复两处——buildLegacySessionCliArgs 补回可执行前缀（旧逻辑经 resolveCliArgs 前置 launcher，漏加导致 spawn 首参为 --print）；sessionService.getConfigDir 在 legacy lane 用 CLAUDE_CONFIG_DIR 原义解析（config 迁移致 transcript 查找断链）。conversations.test.ts 维持 58 pass/66 fail：剩余失败属 provider 断言变更与已删引擎回退路径，归 mock-dal-cli 重写范畴 (Files: src/server/services/conversationService.ts, src/server/services/sessionService.ts)

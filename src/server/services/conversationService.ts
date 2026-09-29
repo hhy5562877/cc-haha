@@ -50,7 +50,7 @@ import {
   PLAN_REJECTION_WITH_REASON_PREFIX,
   REJECT_MESSAGE,
   REJECT_MESSAGE_WITH_REASON_PREFIX,
-} from '../../constants/messages.js'
+} from '../constants/messages.js'
 import { getClaudeConfigHomeDir } from '../../utils/envUtils.js'
 import { findCanonicalGitRoot } from '../../utils/git.js'
 import { sanitizePath } from '../../utils/path.js'

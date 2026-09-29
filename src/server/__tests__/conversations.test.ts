@@ -10,7 +10,7 @@ import * as fs from 'fs/promises'
 import { readFileSync } from 'node:fs'
 import * as path from 'path'
 import * as os from 'os'
-import { withResolvers } from '../../utils/withResolvers.js'
+import { withResolvers } from '../utils/withResolvers.js'
 import { execFileSync } from 'node:child_process'
 import { fileURLToPath } from 'node:url'
 import {
@@ -27,7 +27,7 @@ import {
   PLAN_REJECTION_WITH_REASON_PREFIX,
   REJECT_MESSAGE,
   REJECT_MESSAGE_WITH_REASON_PREFIX,
-} from '../../constants/messages.js'
+} from '../constants/messages.js'
 import { SessionService, sessionService } from '../services/sessionService.js'
 import { createRepositoryBranch } from '../services/repositoryLaunchService.js'
 import { ProviderService } from '../services/providerService.js'

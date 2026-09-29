@@ -25,7 +25,7 @@ import type {
   TurnTiming,
 } from './events.js'
 import { RUNTIME_CONFIG_APPLIED_EVENT } from './events.js'
-import { PLAN_EXECUTION_CONTINUE_MESSAGE } from '../../constants/messages.js'
+import { PLAN_EXECUTION_CONTINUE_MESSAGE } from '../constants/messages.js'
 import * as os from 'node:os'
 import {
   ConversationStartupError,
