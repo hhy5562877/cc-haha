@@ -8,7 +8,7 @@
  */
 
 import * as fs from 'fs/promises'
-import { existsSync, readFileSync, realpathSync, statSync } from 'node:fs'
+import { existsSync, readdirSync, readFileSync, realpathSync, statSync } from 'node:fs'
 import * as path from 'path'
 import * as os from 'os'
 import * as crypto from 'crypto'
@@ -16,19 +16,10 @@ import { CronService, type CronTask } from './cronService.js'
 import { SessionService } from './sessionService.js'
 import { sendTaskNotification } from './notificationService.js'
 import { ProviderService } from './providerService.js'
-import { SettingsService } from './settingsService.js'
 import { isProviderManagedEnvVar } from '../../utils/managedEnvConstants.js'
-import {
-  buildClaudeCliArgs,
-  resolveClaudeCliLauncher,
-} from '../../utils/desktopBundledCli.js'
+import { dalAuthService } from './dalAuthService.js'
 import { getProcessEnvWithTerminalShellEnvironment } from '../../utils/terminalShellEnvironment.js'
-import { attributionHeaderEnvForModel } from './attributionHeaderPolicy.js'
 import { diagnosticsService } from './diagnosticsService.js'
-import {
-  buildNetworkEnvironment,
-  loadNetworkSettings,
-} from './networkSettings.js'
 import { resolveLocalIndexMode } from './localIndex/config.js'
 import {
   captureScheduledRunReadModelTarget,
@@ -100,6 +91,20 @@ export function extractAssistantText(raw: string): string {
     }
 
     const type = parsed?.type
+
+    // dal --mode json：message_end.message 为权威最终消息（assistant 角色）。
+    if (type === 'message_end' && parsed?.message?.role === 'assistant') {
+      const content = parsed.message.content
+      if (Array.isArray(content)) {
+        for (const block of content) {
+          if (block.type === 'text' && block.text?.trim()) {
+            parts.push(block.text.trim())
+          }
+        }
+      } else if (typeof parsed.message.content === 'string' && parsed.message.content.trim()) {
+        parts.push(parsed.message.content.trim())
+      }
+    }
 
     if (type === 'assistant') {
       const content = parsed?.message?.content
@@ -433,7 +438,7 @@ function trimRuns(data: RunsFile): void {
 const DEFAULT_TASK_TIMEOUT_MS = 10 * 60 * 1000 // 10 minutes
 
 export function resolveCronTaskTimeoutMs(
-  env: { CC_HAHA_TASK_TIMEOUT_MS?: string } = process.env,
+  env: { CC_HAHA_TASK_TIMEOUT_MS?: string } = process.env as { CC_HAHA_TASK_TIMEOUT_MS?: string },
 ): number {
   const raw = env.CC_HAHA_TASK_TIMEOUT_MS?.trim()
   if (!raw) return DEFAULT_TASK_TIMEOUT_MS
@@ -502,27 +507,39 @@ export function buildCronCliArgs(
   baseArgs: string[],
   options: CronCliResolutionOptions = {},
 ): string[] {
-  const launcher = resolveClaudeCliLauncher({
-    cliPath: options.cliPath ?? process.env.CLAUDE_CLI_PATH,
-    execPath: options.execPath ?? process.execPath,
-  })
+  // dal 解析（与 conversationService.resolveDalCliArgs 同序）：
+  // 显式覆盖 → 打包 dal-sidecar → 开发仓 cli.ts（注意不能是 rpc-entry，
+  // 它会强制 --mode rpc）→ PATH 兜底。
+  const override = options.cliPath
+    ?? (process.env.DAL_CLI_PATH?.trim() || process.env.CLAUDE_CLI_PATH?.trim())
+  if (override) return [override, ...baseArgs]
 
-  if (launcher) {
-    return buildClaudeCliArgs(
-      launcher,
-      baseArgs,
-      options.appRoot ?? process.env.CLAUDE_APP_ROOT,
-    )
-  }
+  const bundled = resolveBundledDalSidecarForCron(options.appRoot ?? process.env.CLAUDE_APP_ROOT)
+  if (bundled) return [bundled, ...baseArgs]
 
-  const projectRoot = resolveCronProjectRoot(options)
-  return [
-    'bun',
-    '--preload',
-    path.join(projectRoot, 'preload.ts'),
-    path.join(projectRoot, 'src', 'entrypoints', 'cli.tsx'),
-    ...baseArgs,
+  const repoRoot = process.env.DAL_CLI_REPO?.trim()
+    || path.resolve(options.moduleDir ?? import.meta.dir, '../../../../DAL-code-cli')
+  const cliEntry = path.join(repoRoot, 'packages', 'coding-agent', 'src', 'cli.ts')
+  if (existsSync(cliEntry)) return [process.execPath, cliEntry, ...baseArgs]
+
+  return ['dal', ...baseArgs]
+}
+
+function resolveBundledDalSidecarForCron(appRoot?: string): string | null {
+  const candidates = [
+    ...(appRoot ? [path.join(appRoot, 'binaries')] : []),
+    path.resolve(import.meta.dir, '../../../desktop/src-tauri/binaries'),
   ]
+  for (const dir of candidates) {
+    try {
+      if (!existsSync(dir)) continue
+      const match = readdirSync(dir).find((name) => name.startsWith('dal-sidecar'))
+      if (match) return path.join(dir, match)
+    } catch {
+      // 目录不可读则继续。
+    }
+  }
+  return null
 }
 
 export class CronScheduler {
@@ -690,25 +707,18 @@ export class CronScheduler {
     // Persist the "running" state
     await appendRun(run, runLogTarget)
 
-    const inputPayload = JSON.stringify({
-      type: 'user',
-      message: {
-        role: 'user',
-        content: [{ type: 'text', text: task.prompt }],
-      },
-      parent_tool_use_id: null,
-      session_id: sessionId || '',
-    }) + '\n'
-
+    // dal 单次执行：--mode json 输出事件流（首行 session header + message_end
+    // 携带权威助手消息），非 TTY 自动进入 print 模式；prompt 经 `--` 以
+    // 位置参数传入，避免任何 shell 引号问题。自动运行不落盘（--no-session），
+    // 手动「立即运行」才带 --session-id 落盘供会话列表回看。
     const cliArgs = buildCronCliArgs([
-      '--print',
-      '--verbose',
-      '--input-format',
-      'stream-json',
-      '--output-format',
-      'stream-json',
-      ...(sessionId ? ['--session-id', sessionId] : []),
+      '--mode', 'json',
+      ...(sessionId
+        ? ['--session-id', sessionId, ...(task.name?.trim() ? ['--name', task.name.trim()] : [])]
+        : ['--no-session']),
       ...this.getRuntimeArgs(task),
+      '--',
+      task.prompt,
     ])
 
     const childEnv = await this.buildTaskChildEnv(workDir, task)
@@ -720,9 +730,8 @@ export class CronScheduler {
 
     this.runningTasks.set(task.id, { proc, startedAt: Date.now(), runId })
 
-    // Write prompt to stdin then close it
+    // prompt 已作为位置参数传入，直接关闭 stdin（print 模式不消费管道输入）。
     try {
-      proc.stdin.write(inputPayload)
       proc.stdin.end()
     } catch {
       // If writing fails, the process may have already exited
@@ -859,9 +868,6 @@ export class CronScheduler {
     const model = task.model?.trim()
     return [
       ...(model ? ['--model', model] : []),
-      '--dangerously-skip-permissions',
-      '--permission-mode',
-      'bypassPermissions',
     ]
   }
 
@@ -870,56 +876,29 @@ export class CronScheduler {
     task: CronTask,
   ): Promise<Record<string, string | undefined>> {
     const cleanEnv = await getProcessEnvWithTerminalShellEnvironment()
-    delete cleanEnv.CLAUDE_CODE_OAUTH_TOKEN
-    delete cleanEnv.CC_HAHA_AGENT_TEAMS_ENABLED
-
-    if (this.shouldStripInheritedProviderEnv(task.providerId)) {
-      for (const key of Object.keys(cleanEnv)) {
-        if (isProviderManagedEnvVar(key)) {
-          delete cleanEnv[key]
-        }
+    // dal 不消费 Claude/Anthropic/CC_HAHA 族变量，统一剥离；
+    // 定时任务无人值守，guard 以 yolo 运行（等价原 bypassPermissions 语义）。
+    for (const key of Object.keys(cleanEnv)) {
+      if (
+        key.startsWith('CLAUDE_')
+        || key.startsWith('ANTHROPIC_')
+        || key.startsWith('CC_HAHA_')
+      ) {
+        delete cleanEnv[key]
       }
     }
+    cleanEnv.DAL_GUARD_MODE = 'yolo'
+    cleanEnv.CALLER_DIR = workDir
+    cleanEnv.PWD = workDir
 
-    const explicitProviderEnv =
-      typeof task.providerId === 'string'
-        ? await this.providerService.getProviderRuntimeEnv(task.providerId)
-        : null
-    if (explicitProviderEnv && task.model?.trim()) {
-      explicitProviderEnv.ANTHROPIC_MODEL = task.model.trim()
+    try {
+      const gatewayEnv = await dalAuthService.getSpawnEnv()
+      if (gatewayEnv) Object.assign(cleanEnv, gatewayEnv)
+    } catch {
+      // 未登录时 dal 侧会自行报错，任务以 failed 收尾。
     }
-    const attributionHeaderEnv = attributionHeaderEnvForModel(
-      task.model?.trim() ||
-        explicitProviderEnv?.ANTHROPIC_MODEL ||
-        cleanEnv.ANTHROPIC_MODEL,
-    )
-    const networkEnv = buildNetworkEnvironment(
-      await loadNetworkSettings(),
-      cleanEnv,
-    )
-    const agentTeamsEnabled = await new SettingsService().getAgentTeamsEnabled()
 
-    return {
-      ...cleanEnv,
-      CLAUDE_CODE_ENABLE_TASKS: '1',
-      CC_HAHA_AGENT_TEAMS_ENABLED: agentTeamsEnabled ? '1' : '0',
-      CLAUDE_CODE_ENTRYPOINT: 'sdk-cli',
-      CALLER_DIR: workDir,
-      PWD: workDir,
-      CC_HAHA_SKIP_DOTENV: '1',
-      ...(explicitProviderEnv
-        ? {
-            CLAUDE_CODE_PROVIDER_MANAGED_BY_HOST: '1',
-            CLAUDE_CODE_ENTRYPOINT: 'sdk-cli',
-          }
-        : {}),
-      ...(explicitProviderEnv ?? {}),
-      ...(this.shouldMarkManagedOAuth(task.providerId)
-        ? await this.buildOfficialOAuthEnv()
-        : {}),
-      ...networkEnv,
-      ...attributionHeaderEnv,
-    }
+    return cleanEnv
   }
 
   private getConfigDir(): string {
