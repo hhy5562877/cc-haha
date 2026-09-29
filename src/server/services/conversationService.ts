@@ -40,10 +40,9 @@ import {
   shouldCreateWorktreeForSessionLaunch,
   type PreparedSessionWorkspace,
 } from './repositoryLaunchService.js'
-import {
-  buildClaudeCliArgs,
-  resolveClaudeCliLauncher,
-} from '../../utils/desktopBundledCli.js'
+import { DalSdkAdapter, DAL_THINKING_LEVELS } from '../dal/dalSdkAdapter.js'
+import { buildDalBridgeEnv, cleanupDalBridgeSession } from '../dal/bridge/index.js'
+import { dalAuthService } from './dalAuthService.js'
 import {
   ASK_USER_QUESTION_CLARIFY_MESSAGE,
   ASK_USER_QUESTION_CLARIFY_WITH_QUESTIONS_PREFIX,
@@ -151,6 +150,44 @@ export function buildConversationCliSpawnOptions(
     stderr: 'pipe',
     windowsHide: true,
   } as const
+}
+
+/** bun build --compile 的平台 triple 命名（与 desktop/scripts/build-sidecars.ts 对齐）。 */
+function platformTriple(): string {
+  switch (process.platform) {
+    case 'win32':
+      return 'x86_64-pc-windows-msvc'
+    case 'darwin':
+      return process.arch === 'arm64' ? 'aarch64-apple-darwin' : 'x86_64-apple-darwin'
+    default:
+      return process.arch === 'arm64' ? 'aarch64-unknown-linux-gnu' : 'x86_64-unknown-linux-gnu'
+  }
+}
+
+/**
+ * 查找打包进桌面端的 dal-sidecar 二进制。
+ * 查找顺序：CLAUDE_APP_ROOT/binaries（打包态）→ 仓库 desktop/src-tauri/binaries（开发态）。
+ * 命中平台 triple 优先，否则取目录内任意 dal-sidecar-*。
+ */
+function resolveBundledDalSidecar(): string | null {
+  const candidates = [
+    ...(process.env.CLAUDE_APP_ROOT ? [path.join(process.env.CLAUDE_APP_ROOT, 'binaries')] : []),
+    path.resolve(import.meta.dir, '../../../desktop/src-tauri/binaries'),
+  ]
+  const triple = platformTriple()
+  for (const dir of candidates) {
+    try {
+      if (!fs.existsSync(dir)) continue
+      const entries = fs.readdirSync(dir).filter((name) => name.startsWith('dal-sidecar'))
+      if (entries.length === 0) continue
+      const match = entries.find((name) => name.includes(triple)) ?? entries[0]
+      const full = path.join(dir, match)
+      if (fs.existsSync(full)) return full
+    } catch {
+      // 目录不可读时继续下一个候选。
+    }
+  }
+  return null
 }
 
 type AttachmentRef = {
@@ -532,53 +569,29 @@ export class ConversationService {
     options?: SessionStartOptions,
     repository?: PreparedSessionWorkspace['repository'],
   ): string[] {
-    const side = getSideChat(sessionId)
-    const dangerousMode = process.env.CLAUDE_DANGEROUS_MODE === '1'
-    const worktreeArgs =
-      !shouldResume && repository?.worktree
-        ? [
-            '--worktree',
-            repository.worktreeSlug || repository.worktreeBranch || repository.branch,
-            '--worktree-base-ref',
-            repository.baseRef,
-          ]
-        : []
+    // DAL CLI 语义：--session-id 已存在则续接、不存在则以该 id 新建，
+    // 因此 shouldResume / worktree 分支不再需要独立参数
+    // （worktree 由 launchWorkDir 的 cwd 承载，见 startSession）。
+    void sdkUrl
+    void shouldResume
+    void repository
 
-    return this.resolveCliArgs([
-      '--print',
-      '--verbose',
-      '--sdk-url',
-      sdkUrl,
-      '--enable-auth-status',
-      '--input-format',
-      'stream-json',
-      '--output-format',
-      'stream-json',
-      // Desktop chat depends on partial assistant deltas; without this the
-      // server only sees the completed assistant message at turn end.
-      '--include-partial-messages',
-      ...(side ? ['--resume', side.resumePath, '--resume-session-at', side.resumeAt, '--fork-session', '--session-id', side.cliSessionId, '--no-session-persistence', '--append-system-prompt', SIDE_CHAT_BOUNDARY] : shouldResume ? ['--resume', sessionId] : ['--session-id', sessionId]),
-      ...(options?.teamWorker ? [
-        '--agent-id', `${options.teamWorker.name}@${options.teamWorker.teamName}`,
-        '--agent-name', options.teamWorker.name,
-        '--team-name', options.teamWorker.teamName,
-        '--parent-session-id', options.teamWorker.parentSessionId,
-        '--agents', JSON.stringify({ [options.teamWorker.name]: { ...options.teamWorker.agentDefinition, description: 'Approved team member', prompt: options.teamWorker.systemPrompt, model: options?.model, tools: options.teamWorker.tools } }),
-        '--agent', options.teamWorker.name,
-        ...(Array.isArray(options.teamWorker.agentDefinition?.disallowedTools) && options.teamWorker.agentDefinition.disallowedTools.length
-          ? ['--disallowedTools', options.teamWorker.agentDefinition.disallowedTools.join(',')]
-          : []),
-        ...(typeof options.teamWorker.agentDefinition?.maxTurns === 'number'
-          ? ['--max-turns', String(options.teamWorker.agentDefinition.maxTurns)]
-          : []),
-        ...(options.teamWorker.tools && !options.teamWorker.tools.includes('*')
-          ? ['--tools', [...new Set([...options.teamWorker.tools, 'SendMessage', 'TaskCreate', 'TaskGet', 'TaskList', 'TaskUpdate'])].join(',')]
-          : []),
-      ] : []),
-      ...worktreeArgs,
-      '--replay-user-messages',
-      ...this.getRuntimeArgs(options),
-      ...this.getPermissionArgs(options?.permissionMode, dangerousMode),
+    const side = getSideChat(sessionId)
+    const effort = options?.effort && DAL_THINKING_LEVELS.has(options.effort) ? options.effort : undefined
+    const teamTools = options?.teamWorker?.tools
+
+    return this.resolveDalCliArgs([
+      '--mode', 'rpc',
+      ...(side
+        ? // 侧聊为一次性临时会话：fork 自母会话路径，不落盘。
+          ['--session', side.resumePath, '--no-session']
+        : ['--session-id', sessionId]),
+      ...(options?.model?.trim() ? ['--model', options.model.trim()] : []),
+      ...(options?.providerId && options.providerId !== 'dalcode-gateway'
+        ? ['--provider', options.providerId]
+        : []),
+      ...(effort ? ['--thinking', effort] : []),
+      ...(teamTools && !teamTools.includes('*') ? ['--tools', teamTools.join(',')] : []),
     ])
   }
 
@@ -679,47 +692,15 @@ export class ConversationService {
       `[ConversationService] Starting CLI for ${sessionId}, cwd: ${launchWorkDir} (process.cwd()=${process.cwd()}, CALLER_DIR will be pinned to workDir)`,
     )
 
-    // IMPORTANT (Bug#5): 必须覆盖子进程继承的 CALLER_DIR / PWD。
-    // preload.ts 顶层读 process.env.CALLER_DIR 并调用 process.chdir(CALLER_DIR)。
-    // 在 bundled 桌面端里，server sidecar 被 Tauri 从 cwd=/ 启动，claude-sidecar.ts
-    // 在 server/cli 模式入口把 CALLER_DIR 默认设成 process.cwd()（即 '/'），
-    // 随后这个 env 被完整继承到 Bun.spawn 的 CLI 子进程；即使这里显式传了
-    // cwd: workDir，CLI 子进程里 preload.ts 还是会 chdir('/')，结果把
-    // STATE.cwd / "Primary working directory" 打回根目录，IM 会话里 AI 感知的
-    // 工作目录就变成 `/`。把 CALLER_DIR / PWD 显式覆盖成 workDir，preload.ts
-    // chdir 后落到正确目录。
-    //
-    const networkSettings = await loadNetworkSettings()
-    const networkRuntimeMetadata = {
-      firstTokenTimeoutDerived: false,
-      streamMaxDurationDerived: false,
-    }
-    const providerCapture: { fingerprint?: string } = {}
+    // IMPORTANT (Bug#5): CALLER_DIR / PWD 必须显式覆盖为 workDir，
+    // 由 buildChildEnv 统一处理（dal 子进程同样依赖正确的工作目录语义）。
     const childEnv = await this.buildChildEnv(
+      sessionId,
       launchWorkDir,
       sdkUrl,
       options,
-      networkSettings,
-      networkRuntimeMetadata,
-      providerCapture,
     )
-    if (options?.teamWorker) {
-      delete childEnv.CLAUDE_CODE_SUBAGENT_MODEL
-      delete childEnv.CLAUDE_CODE_EFFORT_LEVEL
-      delete childEnv.CLAUDE_CODE_RESUME_INTERRUPTED_TURN
-      childEnv.CC_HAHA_TEAM_WORKER = '1'
-      childEnv.CC_HAHA_TEAM_WORKER_PRESET_TYPE = typeof options.teamWorker.agentDefinition?.agentType === 'string' ? options.teamWorker.agentDefinition.agentType : options.teamWorker.name
-      childEnv.CC_HAHA_TEAM_WORKER_PRESET_SOURCE = typeof options.teamWorker.agentDefinition?.source === 'string' ? options.teamWorker.agentDefinition.source : 'flagSettings'
-      childEnv.CC_HAHA_TEAM_WORKER_OMIT_CLAUDE_MD = options.teamWorker.agentDefinition?.omitClaudeMd === true ? '1' : '0'
-      childEnv.CC_HAHA_TRANSCRIPT_ENTRYPOINT = 'claude-desktop-team-worker'
-    }
-    if (side) {
-      delete childEnv.CLAUDE_CODE_RESUME_INTERRUPTED_TURN
-      delete childEnv.CC_HAHA_TRACE_API_CALLS
-      delete childEnv.CLAUDE_CODE_DIAGNOSTICS_FILE
-    }
     if (side?.closed) throw new ConversationStartupError('This temporary side chat has expired. Open a new side chat.', 'SESSION_DELETED')
-    const usesOfficialOAuth = this.shouldMarkManagedOAuth(options?.providerId)
 
     let proc: ReturnType<typeof Bun.spawn>
     try {
@@ -758,10 +739,10 @@ export class ConversationService {
       workDir: launchWorkDir,
       permissionMode: options?.permissionMode || 'default',
       providerId: options?.providerId,
-      providerConfigFingerprint: providerCapture.fingerprint,
-      networkRoutingFingerprint: networkRoutingFingerprint(networkSettings, childEnv),
-      networkDerivedFirstTokenTimeout: networkRuntimeMetadata.firstTokenTimeoutDerived,
-      networkDerivedStreamMaxDuration: networkRuntimeMetadata.streamMaxDurationDerived,
+      providerConfigFingerprint: undefined,
+      networkRoutingFingerprint: undefined,
+      networkDerivedFirstTokenTimeout: false,
+      networkDerivedStreamMaxDuration: false,
       sdkToken: this.getSdkTokenFromUrl(sdkUrl),
       sdkSocket: null,
       seenSdkMessageUuids: new Set<string>(),
@@ -776,20 +757,40 @@ export class ConversationService {
       sdkMessages: [],
       sdkMessageBytes: 0,
       initMessage: null,
-      usesOfficialOAuth,
-      officialOAuthToken: childEnv.CLAUDE_CODE_OAUTH_TOKEN ?? null,
+      usesOfficialOAuth: false,
+      officialOAuthToken: null,
       pendingPermissionRequests: new Map(),
       autoResolvedRequestIds: new Set(),
       pendingControlRequests: new Map(),
     }
     this.sessions.set(sessionId, session)
 
-    session.outputDrain = Promise.all([
-      this.readProcessOutputStream(sessionId, proc.stdout, 'stdout'),
-      this.readProcessOutputStream(sessionId, proc.stderr, 'stderr'),
-    ]).then(() => undefined)
+    // dal 适配器在进程内扮演「CLI 一侧」：dal stdout 事件翻译为 SDK 帧回灌
+    // handleSdkPayload；sendSdkMessage 的出站帧经假 socket 翻译为 dal RPC 命令。
+    // 原命令的 stdout 是纯协议通道（takeOverStdout），不再走 readProcessOutputStream。
+    const dalAdapter = new DalSdkAdapter({
+      sessionId,
+      proc: proc as SessionProcess['proc'],
+      workDir: launchWorkDir,
+      onSdkMessage: (rawFrame) => {
+        if (this.sessions.get(sessionId) === session) {
+          this.handleSdkPayload(sessionId, rawFrame)
+        }
+      },
+    })
+    this.attachSdkConnection(sessionId, {
+      send: (data: string) => dalAdapter.handleServerPayload(data),
+    })
+    dalAdapter.start()
+
+    session.outputDrain = this.readProcessOutputStream(
+      sessionId,
+      proc.stderr as ReadableStream<Uint8Array>,
+      'stderr',
+    )
 
     proc.exited.then((code) => {
+      dalAdapter.dispose(code)
       void this.handleProcessExit(sessionId, proc, code)
     })
 
@@ -1825,6 +1826,12 @@ export class ConversationService {
     proc: SessionProcess['proc'],
     code: number,
   ): Promise<void> {
+    // dal 审批桥/guard 的会话内状态（token、allowlist、模式）随进程退出释放。
+    try {
+      cleanupDalBridgeSession(sessionId)
+    } catch {
+      // 清理失败不影响退出流程。
+    }
     console.log(
       `[ConversationService] CLI process for ${sessionId} exited with code ${code}`,
     )
@@ -1871,288 +1878,45 @@ export class ConversationService {
     }
   }
 
-  private getPermissionArgs(
-    mode: string | undefined,
-    dangerousMode: boolean,
-  ): string[] {
-    if (dangerousMode) {
-      return ['--dangerously-skip-permissions']
-    }
-
-    const resolvedMode = mode || 'default'
-    if (resolvedMode === 'bypassPermissions') {
-      return ['--dangerously-skip-permissions']
-    }
-
-    const args = [
-      '--allow-dangerously-skip-permissions',
-      '--permission-mode',
-      resolvedMode,
-    ]
-    return args
-  }
-
-  private getRuntimeArgs(options: SessionStartOptions | undefined): string[] {
-    const args: string[] = []
-
-    if (options?.model) {
-      args.push('--model', options.model)
-    }
-
-    if (options?.effort && !isOpenAIOfficialProviderId(options.providerId)) {
-      args.push('--effort', options.effort)
-    }
-
-    if (options?.thinking && !isOpenAIOfficialProviderId(options.providerId)) {
-      args.push('--thinking', options.thinking)
-    }
-
-    return args
-  }
-
+  /**
+   * dal 子进程环境：
+   * - 剥离 CLAUDE_/ANTHROPIC_/CC_HAHA_ 全族（dal 不消费，且避免干扰）；
+   * - 注入网关凭据 DALCODE_GATEWAY_URL/TOKEN（dalAuthService，未登录返回 null）；
+   * - 注入审批桥 DALCODE_BRIDGE_URL/TOKEN 与 DAL_GUARD_MODE（bridge 模块契约）。
+   */
   private async buildChildEnv(
+    sessionId: string,
     workDir: string,
     sdkUrl?: string,
     options?: SessionStartOptions,
-    networkSettingsOverride?: NetworkSettings,
-    networkRuntimeMetadata?: {
-      firstTokenTimeoutDerived: boolean
-      streamMaxDurationDerived: boolean
-    },
-    providerCapture?: { fingerprint?: string },
   ): Promise<Record<string, string>> {
-    // Provider isolation: when Desktop has its own provider config/index,
-    // strip inherited provider env vars so the child CLI reads fresh values
-    // from ~/.claude/cc-haha/settings.json instead of stale process.env.
-    //
-    // If the user never configured a Desktop provider and only launched the
-    // app/server with ANTHROPIC_* env vars, keep those env vars so Windows
-    // dev-mode and env-only setups can still authenticate successfully.
-    const PROVIDER_ENV_KEYS = [
-      'ANTHROPIC_API_KEY',
-      'ANTHROPIC_BASE_URL',
-      'ANTHROPIC_AUTH_TOKEN',
-      'ENABLE_TOOL_SEARCH',
-      'ANTHROPIC_MODEL',
-      'ANTHROPIC_DEFAULT_FABLE_MODEL',
-      'ANTHROPIC_DEFAULT_FABLE_MODEL_DESCRIPTION',
-      'ANTHROPIC_DEFAULT_FABLE_MODEL_NAME',
-      'ANTHROPIC_DEFAULT_FABLE_MODEL_SUPPORTED_CAPABILITIES',
-      'ANTHROPIC_DEFAULT_HAIKU_MODEL',
-      'ANTHROPIC_DEFAULT_HAIKU_MODEL_SUPPORTED_CAPABILITIES',
-      'ANTHROPIC_DEFAULT_SONNET_MODEL',
-      'ANTHROPIC_DEFAULT_SONNET_MODEL_SUPPORTED_CAPABILITIES',
-      'ANTHROPIC_DEFAULT_OPUS_MODEL',
-      'ANTHROPIC_DEFAULT_OPUS_MODEL_SUPPORTED_CAPABILITIES',
-      'CC_HAHA_SEND_DISABLED_THINKING',
-      'CLAUDE_CODE_DISABLE_EXPERIMENTAL_BETAS',
-      'CLAUDE_CODE_AUTO_COMPACT_WINDOW',
-      'CLAUDE_CODE_ATTRIBUTION_HEADER',
-      'CLAUDE_CODE_MODEL_CONTEXT_WINDOWS',
-      OPENAI_OAUTH_PROVIDER_ENV_KEY,
-      OPENAI_CODEX_OAUTH_FILE_ENV_KEY,
-      OPENAI_CODEX_REASONING_EFFORT_ENV_KEY,
-      GROK_OAUTH_PROVIDER_ENV_KEY,
-      GROK_OAUTH_FILE_ENV_KEY,
-      IMAGE_GENERATION_PROVIDER_KIND_ENV_KEY,
-      IMAGE_GENERATION_PROVIDER_ID_ENV_KEY,
-      IMAGE_GENERATION_BASE_URL_ENV_KEY,
-      IMAGE_GENERATION_API_KEY_ENV_KEY,
-      IMAGE_GENERATION_MODEL_ENV_KEY,
-    ] as const
-
     const cleanEnv = await getProcessEnvWithTerminalShellEnvironment()
-    if (networkRuntimeMetadata) {
-      networkRuntimeMetadata.firstTokenTimeoutDerived =
-        !cleanEnv.CLAUDE_STREAM_FIRST_TOKEN_TIMEOUT_MS
-      networkRuntimeMetadata.streamMaxDurationDerived =
-        !cleanEnv.CLAUDE_STREAM_MAX_DURATION_MS
-    }
-    delete cleanEnv.CC_HAHA_SESSION_COLLABORATION_TOKEN
-    delete cleanEnv.CC_HAHA_SESSION_ID
-    delete cleanEnv.CLAUDE_CODE_OAUTH_TOKEN
-    if (options?.resumeInterruptedTurn === false) {
-      delete cleanEnv.CLAUDE_CODE_RESUME_INTERRUPTED_TURN
-    }
-    delete cleanEnv.CC_HAHA_TRACE_PROVIDER_ID
-    delete cleanEnv.CC_HAHA_TRACE_PROVIDER_NAME
-    delete cleanEnv.CC_HAHA_TRACE_PROVIDER_FORMAT
-    if (this.shouldStripInheritedProviderEnv(options?.providerId)) {
-      for (const key of PROVIDER_ENV_KEYS) {
+    for (const key of Object.keys(cleanEnv)) {
+      if (
+        key.startsWith('CLAUDE_')
+        || key.startsWith('ANTHROPIC_')
+        || key.startsWith('CC_HAHA_')
+      ) {
         delete cleanEnv[key]
       }
     }
+    cleanEnv.CALLER_DIR = workDir
+    cleanEnv.PWD = workDir
 
-    let desktopServerUrl: string | undefined
-    if (sdkUrl) {
-      try {
-        const parsed = new URL(sdkUrl)
-        desktopServerUrl = `http://${parsed.host}`
-      } catch {
-        desktopServerUrl = undefined
-      }
-    }
-
-    const explicitProvider =
-      typeof options?.providerId === 'string'
-        ? await this.providerService.getProvider(options.providerId)
-        : null
-    if (explicitProvider && providerCapture) {
-      providerCapture.fingerprint = JSON.stringify(explicitProvider)
-    }
-    const explicitProviderEnv = explicitProvider
-      ? await this.providerService.getProviderRuntimeEnv(explicitProvider.id)
-      : null
-    const networkEnv = buildNetworkEnvironment(
-      networkSettingsOverride ?? await loadNetworkSettings(),
-      cleanEnv,
-    )
-    // The overall-duration cap has to scale with the user's "请求超时" or raising
-    // that setting can never extend a long response — the cap is a wall-clock
-    // budget that no chunk resets, so a slow local model that legitimately
-    // thinks past it is killed mid-stream (#1307). The floor keeps the existing
-    // 600s protection from being TIGHTENED when the user configures a short
-    // first-byte budget (a lower cap would kill legitimate long responses even
-    // earlier); the per-turn hot update below mirrors this for live turns.
-    const streamMaxDurationMs = resolveStreamMaxDurationMs(networkEnv.API_TIMEOUT_MS)
-    const traceCaptureEnabled = (await readTraceCaptureSettings()).enabled
-    const agentTeamsEnabled = await new SettingsService().getAgentTeamsEnabled()
-    if (explicitProviderEnv && options?.model?.trim()) {
-      explicitProviderEnv.ANTHROPIC_MODEL = options.model.trim()
-    }
-    const attributionHeaderEnv = attributionHeaderEnvForModel(
-      options?.model?.trim() ||
-        explicitProviderEnv?.ANTHROPIC_MODEL ||
-        cleanEnv.ANTHROPIC_MODEL,
-    )
-
-    let cliDiagnosticsPath: string | undefined
     try {
-      await diagnosticsService.prepareCliDiagnosticsStorage()
-      cliDiagnosticsPath = diagnosticsService.getCliDiagnosticsPath()
-    } catch {
-      // Diagnostics must never block session startup or point the child at an
-      // unsafe path when private storage could not be prepared.
+      const gatewayEnv = await dalAuthService.getSpawnEnv()
+      if (gatewayEnv) Object.assign(cleanEnv, gatewayEnv)
+      else console.warn(`[ConversationService] DAL gateway env unavailable (not logged in?) for session ${sessionId}`)
+    } catch (error) {
+      console.warn(
+        `[ConversationService] Failed to build DAL gateway env: ${
+          error instanceof Error ? error.message : String(error)
+        }`,
+      )
     }
 
-    return {
-      ...cleanEnv,
-      CLAUDE_CODE_ENABLE_TASKS: '1',
-      // Resolve the same preference shown in General before launching the CLI.
-      CC_HAHA_AGENT_TEAMS_ENABLED: agentTeamsEnabled ? '1' : '0',
-      CC_HAHA_TEAM_REVIEW_REQUIRED: sdkUrl ? '1' : cleanEnv.CC_HAHA_TEAM_REVIEW_REQUIRED || '0',
-      CC_HAHA_TEAM_LEADER_RUNTIME: JSON.stringify({ providerId: options?.providerId ?? 'claude-official', modelId: options?.model || explicitProviderEnv?.ANTHROPIC_MODEL || cleanEnv.ANTHROPIC_MODEL || 'default', ...(options?.effort ? { effortLevel: options.effort } : {}) }),
-      CLAUDE_CODE_ENABLE_SDK_FILE_CHECKPOINTING: '1',
-      // Desktop must fail stuck provider streams instead of leaving the UI running forever.
-      CLAUDE_ENABLE_STREAM_WATCHDOG: cleanEnv.CLAUDE_ENABLE_STREAM_WATCHDOG || '1',
-      // Third-party providers can stay silent for minutes mid-stream (thinking
-      // phases emit no SSE bytes, and many gateways never send pings), so the
-      // CLI's 90s idle default kills healthy streams (#766). 240s still frees
-      // a truly dead connection without shooting slow ones.
-      CLAUDE_STREAM_IDLE_TIMEOUT_MS: cleanEnv.CLAUDE_STREAM_IDLE_TIMEOUT_MS || '240000',
-      // Overall wall-clock cap for one streaming response, NOT reset by chunks.
-      // The 240s idle timer above is reset by every SSE event, so an upstream
-      // that trickles content deltas (e.g. a huge tool_use input_json_delta)
-      // just under 240s apart keeps it alive forever and the request hangs with
-      // no completion (#766: "卡住" with slowly growing tokens). This independent
-      // cap frees such a stream after a fixed duration regardless of trickle.
-      // It tracks the user's "请求超时" (never below MIN_STREAM_MAX_DURATION_MS)
-      // so that raising the timeout also extends legitimately long responses,
-      // and a provider preset's own CLAUDE_STREAM_MAX_DURATION_MS still wins
-      // via the explicitProviderEnv spread below (#1307).
-      CLAUDE_STREAM_MAX_DURATION_MS:
-        cleanEnv.CLAUDE_STREAM_MAX_DURATION_MS || String(streamMaxDurationMs),
-      // Abort a local tool call when its JSON arguments stop making progress.
-      // Healthy input_json_delta events reset this budget; the independent full
-      // response cap above still bounds a stream that trickles forever.
-      CLAUDE_STREAM_TOOL_INPUT_MAX_DURATION_MS:
-        cleanEnv.CLAUDE_STREAM_TOOL_INPUT_MAX_DURATION_MS || '120000',
-      // Time-to-first-token budget: how long to wait for the FIRST streamed
-      // chunk after response headers arrive. The idle timer above is the wrong
-      // knob for slow prefill — it kills healthy local/3P models that take
-      // minutes to emit their first token (#826). Tie this to the user's
-      // request-timeout setting (API_TIMEOUT_MS, from networkEnv) so raising
-      // "请求超时" actually extends how long we wait for the first token. The
-      // CLI switches to the shorter idle budget once tokens start flowing.
-      CLAUDE_STREAM_FIRST_TOKEN_TIMEOUT_MS:
-        cleanEnv.CLAUDE_STREAM_FIRST_TOKEN_TIMEOUT_MS || networkEnv.API_TIMEOUT_MS,
-      // When a stream does get aborted, retry as streaming instead of falling
-      // back to non-streaming: a non-streaming request must wait for the FULL
-      // generation before the first response byte, so slow providers can never
-      // finish inside API_TIMEOUT_MS — the fallback loops 5-minute aborts
-      // forever while the UI shows "running" (#766). It can also double-run
-      // tools (upstream inc-4258).
-      CLAUDE_CODE_DISABLE_NONSTREAMING_FALLBACK: cleanEnv.CLAUDE_CODE_DISABLE_NONSTREAMING_FALLBACK || '1',
-      ...(cliDiagnosticsPath ? { CLAUDE_CODE_DIAGNOSTICS_FILE: cliDiagnosticsPath } : {}),
-      CLAUDE_COWORK_MEMORY_PATH_OVERRIDE: this.resolveDesktopAutoMemoryPath(workDir),
-      CALLER_DIR: workDir,
-      PWD: workDir,
-      ...(sdkUrl
-        ? {
-            // Runtime config changes restart the SDK child as soon as its result
-            // arrives. Flush the completed turn first so the replacement can
-            // reliably choose --resume and load the context (#1033).
-            CLAUDE_CODE_EAGER_FLUSH: cleanEnv.CLAUDE_CODE_EAGER_FLUSH || '1',
-            // The CLI may keep processing internally after an SDK `result`
-            // (for example, a completed background Agent can enqueue one last
-            // model follow-up). Desktop cleanup must use the CLI's authoritative
-            // running/idle boundary or a disconnected renderer can kill that
-            // follow-up after the fixed idle grace period.
-            CLAUDE_CODE_EMIT_SESSION_STATE_EVENTS: '1',
-            CC_HAHA_COMPUTER_USE_HOST_BUNDLE_ID: 'com.claude-code-haha.desktop',
-          }
-        : {}),
-      ...(sdkUrl && traceCaptureEnabled
-        ? { CC_HAHA_TRACE_API_CALLS: '1' }
-        : {}),
-      ...(sdkUrl && traceCaptureEnabled && explicitProvider
-        ? {
-            CC_HAHA_TRACE_PROVIDER_ID: explicitProvider.id,
-            CC_HAHA_TRACE_PROVIDER_NAME: explicitProvider.name,
-            CC_HAHA_TRACE_PROVIDER_FORMAT: explicitProvider.apiFormat ?? 'anthropic',
-          }
-        : {}),
-      ...(desktopServerUrl
-        ? {
-            CC_HAHA_DESKTOP_SERVER_URL: desktopServerUrl,
-            CC_HAHA_SESSION_COLLABORATION_TOKEN: new URL(sdkUrl!).searchParams.get('token') ?? '',
-            CC_HAHA_SESSION_ID: new URL(sdkUrl!).pathname.split('/').pop() ?? '',
-          }
-        : {}),
-      ...(sdkUrl
-        ? {
-            CC_HAHA_DESKTOP_AWAIT_MCP: '1',
-            CC_HAHA_DESKTOP_AWAIT_MCP_TIMEOUT_MS: '5000',
-          }
-        : {}),
-      // Tell the CLI entrypoint to skip project .env loading. Provider env
-      // should come from Desktop-managed config or inherited launch env, not
-      // be reintroduced from the repo's .env file.
-      CC_HAHA_SKIP_DOTENV: '1',
-      // Keep the SDK runtime identity for auth and client behavior, but stamp
-      // desktop-owned transcripts with an entrypoint visible to Claude /resume.
-      CC_HAHA_TRANSCRIPT_ENTRYPOINT: 'claude-desktop',
-      ...(explicitProviderEnv
-        ? { CLAUDE_CODE_PROVIDER_MANAGED_BY_HOST: '1' }
-        : {}),
-      // "官方" 模式 (cc-haha/settings.json 没 provider env) 下,把 CLI 标记为
-      // managed-OAuth,让它忽略外部 ANTHROPIC_API_KEY / ANTHROPIC_AUTH_TOKEN
-      // 残留、只走用户 /login 的 OAuth token。自定义 provider 模式绝不能设,
-      // 否则 CLI 会忽略 provider 的 AUTH_TOKEN、错误地走 OAuth 打到第三方
-      // endpoint。详见 src/utils/auth.ts isManagedOAuthContext()。
-      ...(explicitProviderEnv ?? {}),
-      ...(
-        isOpenAIOfficialProviderId(options?.providerId) &&
-        isOpenAIReasoningEffort(options?.effort)
-          ? { [OPENAI_CODEX_REASONING_EFFORT_ENV_KEY]: options.effort }
-          : {}
-      ),
-      ...networkEnv,
-      ...(this.shouldMarkManagedOAuth(options?.providerId)
-        ? await this.buildOfficialOAuthEnv()
-        : {}),
-      ...attributionHeaderEnv,
-    }
+    Object.assign(cleanEnv, buildDalBridgeEnv(sessionId, sdkUrl, options?.permissionMode))
+    return cleanEnv
   }
 
   private resolveDesktopAutoMemoryPath(workDir: string): string {
@@ -2364,26 +2128,28 @@ export class ConversationService {
     }
   }
 
-  private resolveCliArgs(baseArgs: string[]): string[] {
-    const launcher = resolveClaudeCliLauncher({
-      cliPath: process.env.CLAUDE_CLI_PATH,
-      execPath: process.execPath,
-    })
+  /**
+   * 解析 dal 可执行并拼装最终命令行：
+   * 1. DAL_CLI_PATH 环境变量显式覆盖（二进制或脚本均可）；
+   * 2. 打包产物 dal-sidecar-{triple}（desktop/src-tauri/binaries，打包后随 appRoot 的 binaries/）；
+   * 3. 开发模式：bun 直跑 D:\Code\DAL-code-cli 的 rpc-entry.ts（DAL_CLI_REPO 可覆盖仓库路径）；
+   * 4. 兜底：PATH 中的 `dal`。
+   */
+  private resolveDalCliArgs(baseArgs: string[]): string[] {
+    // DAL_CLI_PATH 为正式覆盖；CLAUDE_CLI_PATH 作为迁移期别名保留
+    // （测试与旧脚本仍以它注入可执行路径）。
+    const override = process.env.DAL_CLI_PATH?.trim() || process.env.CLAUDE_CLI_PATH?.trim()
+    if (override) return [override, ...baseArgs]
 
-    if (!launcher) {
-      if (process.platform === 'win32') {
-        return [
-          process.execPath,
-          '--preload',
-          path.resolve(import.meta.dir, '../../../preload.ts'),
-          path.resolve(import.meta.dir, '../../entrypoints/cli.tsx'),
-          ...baseArgs,
-        ]
-      }
-      return [path.resolve(import.meta.dir, '../../../bin/claude-haha'), ...baseArgs]
-    }
+    const bundled = resolveBundledDalSidecar()
+    if (bundled) return [bundled, ...baseArgs]
 
-    return buildClaudeCliArgs(launcher, baseArgs, process.env.CLAUDE_APP_ROOT)
+    const repoRoot = process.env.DAL_CLI_REPO?.trim()
+      || path.resolve(import.meta.dir, '../../../../DAL-code-cli')
+    const rpcEntry = path.join(repoRoot, 'packages', 'coding-agent', 'src', 'rpc-entry.ts')
+    if (fs.existsSync(rpcEntry)) return [process.execPath, rpcEntry, ...baseArgs]
+
+    return ['dal', ...baseArgs]
   }
 
   private clearStaleLock(sessionId: string): boolean {

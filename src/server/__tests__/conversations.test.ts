@@ -853,52 +853,39 @@ describe('ConversationService', () => {
     await expect(change).rejects.toThrow('model unavailable')
   })
 
-  it('should not inject a desktop-specific ask override in default permission mode', () => {
+  it('should build dal rpc args with session id and runtime overrides', () => {
     const svc = new ConversationService()
-    expect((svc as any).getPermissionArgs('default', false)).toEqual([
-      '--allow-dangerously-skip-permissions',
-      '--permission-mode',
-      'default',
-    ])
+    const args = (svc as any).buildSessionCliArgs(
+      'sess-1',
+      'ws://127.0.0.1:3456/sdk/sess-1?token=t',
+      false,
+      { model: 'deepseek-v4-pro', effort: 'high', providerId: 'dalcode-gateway' },
+    )
+    expect(args).toContain('--mode')
+    expect(args).toContain('rpc')
+    expect(args).toContain('--session-id')
+    expect(args).toContain('sess-1')
+    expect(args).toContain('--model')
+    expect(args).toContain('deepseek-v4-pro')
+    // effort 仅在命中 dal 思考等级枚举时映射为 --thinking。
+    expect(args).toContain('--thinking')
+    expect(args).toContain('high')
+    // 网关 provider 是 dal 默认出口，不重复传 --provider。
+    expect(args).not.toContain('--provider')
   })
 
-  it('should keep an initially requested bypass session explicitly dangerous', () => {
+  it('should keep non-gateway providers explicit in dal args', () => {
     const svc = new ConversationService()
-    expect((svc as any).getPermissionArgs('bypassPermissions', false)).toEqual([
-      '--dangerously-skip-permissions',
-    ])
-    expect((svc as any).getPermissionArgs('default', true)).toEqual([
-      '--dangerously-skip-permissions',
-    ])
-  })
-
-  it('should pass disabled thinking to the CLI runtime args', () => {
-    const svc = new ConversationService()
-    expect((svc as any).getRuntimeArgs({
-      model: 'deepseek-v4-pro',
-      effort: 'medium',
-      thinking: 'disabled',
-    })).toEqual([
-      '--model',
-      'deepseek-v4-pro',
-      '--effort',
-      'medium',
-      '--thinking',
-      'disabled',
-    ])
-  })
-
-  it('should keep OpenAI-native reasoning controls out of Claude CLI args', () => {
-    const svc = new ConversationService()
-    expect((svc as any).getRuntimeArgs({
-      providerId: 'openai-official',
-      model: 'gpt-5.6-sol',
-      effort: 'xhigh',
-      thinking: 'disabled',
-    })).toEqual([
-      '--model',
-      'gpt-5.6-sol',
-    ])
+    const args = (svc as any).buildSessionCliArgs(
+      'sess-2',
+      'ws://127.0.0.1:3456/sdk/sess-2?token=t',
+      true,
+      { providerId: 'custom-provider', effort: 'ultra' },
+    )
+    expect(args).toContain('--provider')
+    expect(args).toContain('custom-provider')
+    // 未命中枚举的 effort 不进入 --thinking。
+    expect(args).not.toContain('--thinking')
   })
 
   it('should send thinking token controls to active CLI sessions', () => {

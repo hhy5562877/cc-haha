@@ -1,0 +1,5 @@
+# CHANGELOG
+
+- [2026-09-29 20:05] FEAT: 聊天主链路切换到 dal-code-cli——新增进程内 SDK 适配器（spawn dal --mode rpc、JSONL 分帧、dal 事件→stream-json 翻译、服务端帧→RPC 命令映射），conversationService 改造 buildSessionCliArgs/resolveDalCliArgs/buildChildEnv/startSession 装配段，权限注入改走 dal-bridge 环境变量契约，DAL_CLI_PATH/CLAUDE_CLI_PATH 双变量解析，会话测试更新为 dal 参数断言 (Files: src/server/dal/dalSdkAdapter.ts, src/server/services/conversationService.ts, src/server/__tests__/conversations.test.ts)
+
+- [2026-09-29 12:30] CHORE: 补装 bun-types@1.3.14 devDependency（根 tsconfig "types":["bun-types"] 必需，原仓库未安装该类型库导致全仓 typecheck 无法运行） (Files: package.json, bun.lock)
