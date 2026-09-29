@@ -1,5 +1,7 @@
 # CHANGELOG
 
+- [2026-09-30 06:00] DOCS: 引擎解耦量化报告——新增 scripts/engine-decoupling-report.ts，量化 server→引擎依赖全景：直接依赖仅 184 文件/427 边（拉动 2019 传递闭包），按 ~30 个功能入口组聚合（plugins/workflows/connectors/openaiAuth/grokAuth/mcp 等）；含扇入 Top25 枢纽清单与分批解耦判定线，将「彻底删除引擎」从模糊阻塞转化为可执行分批计划 (Files: scripts/engine-decoupling-report.ts, docs/dal-integration/engine-decoupling-report.md)
+
 - [2026-09-30 05:10] FIX/TEST: legacy lane 修复两处——buildLegacySessionCliArgs 补回可执行前缀（旧逻辑经 resolveCliArgs 前置 launcher，漏加导致 spawn 首参为 --print）；sessionService.getConfigDir 在 legacy lane 用 CLAUDE_CONFIG_DIR 原义解析（config 迁移致 transcript 查找断链）。conversations.test.ts 维持 58 pass/66 fail：剩余失败属 provider 断言变更与已删引擎回退路径，归 mock-dal-cli 重写范畴 (Files: src/server/services/conversationService.ts, src/server/services/sessionService.ts)
 
 - [2026-09-30 03:40] REFACTOR: 引擎死代码删除第一波——新增 scripts/engine-deletion-plan.ts 可达性闭包分析（存活入口=桌面壳+server 骨架+adapters+scripts），删除 src/ 不可达引擎文件 431 个；12 处根式/相对导入误伤经启动失败循环恢复；删除后 E2E 回归 PASS、src/server 类型错误 411→411 零回归、全仓 src 错误 2574→1243 显著改善 (Files: scripts/engine-deletion-plan.ts, src/** 431 files deleted)
