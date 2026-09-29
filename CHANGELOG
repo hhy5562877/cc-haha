@@ -1,5 +1,7 @@
 # CHANGELOG
 
+- [2026-09-30 13:30] REFACTOR: 解耦批次 4——anthropicBaseUrl(23行)/outputBudget(38行) 零依赖纯工具移入 src/server/services/api/，全仓 12 处消费方按深度重指；server→services/api 窄消费面全断（traceCapture 3132 行与 pathValidation/filesystem 归入子系统移植类） (Files: src/server/services/api/{anthropicBaseUrl,outputBudget}.ts, src/server/proxy/*, src/services/api/{claude,client,filesApi}.ts 等)
+
 - [2026-09-30 12:10] DOCS: 解耦量化数据更新——批次 2-3 后直接依赖 184→174 文件、闭包 2019→2004；connectors(牵动 plugins+mcp 全子系统)、permissions(24文件/Tool+analytics 依赖)、services/api(30文件) 均确认为子系统级移植，无剩余小型批次；后续批次=逐子系统功能工程 (Files: docs/dal-integration/engine-decoupling-report.md)
 
 - [2026-09-30 11:20] REFACTOR: 解耦批次 3 完成——workflows 管理切片（discovery/enabled/constants/meta/save/compile/types/paths/errors/journal/keyword/limiter/pluginWorkflows/bundled 共 15 文件）拆分移动至 src/server/utils/workflows/，执行切片（harness/runWorkflowAgent/ultracode/runtime/autoModeConsent）留守引擎；workflowService 与 13 处消费方（含 desktop MentionComposer、测试）重指；E2E PASS (Files: src/server/utils/workflows/*, src/server/services/workflowService.ts, desktop/src/components/chat/MentionComposer.tsx 等)
