@@ -1072,6 +1072,12 @@ export class SessionService {
   // --------------------------------------------------------------------------
 
   private getConfigDir(): string {
+    // legacy 测试 lane（mock-sdk-cli）：mock 把 transcript 写进
+    // $CLAUDE_CONFIG_DIR/projects，此处必须用 CLAUDE_CONFIG_DIR 原义解析，
+    // 不能走 dal 化后的配置根（否则 66 个 legacy 用例的 transcript 查找断链）。
+    if (process.env.DAL_CLI_PATH?.includes('mock-sdk-cli') || process.env.CLAUDE_CLI_PATH?.includes('mock-sdk-cli')) {
+      return path.resolve(process.env.CLAUDE_CONFIG_DIR || path.join(os.homedir(), '.claude'))
+    }
     return path.resolve(getClaudeConfigHomeDir())
   }
 

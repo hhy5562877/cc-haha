@@ -609,7 +609,20 @@ export class ConversationService {
           ]
         : []
 
+    // legacy 可执行解析：显式 CLAUDE_CLI_PATH（测试注入 mock）优先；
+    // 无注入时退回开发期 bun 直跑引擎入口（引擎已删，仅测试注入路径可用）。
+    const cliPath = process.env.DAL_CLI_PATH?.trim() || process.env.CLAUDE_CLI_PATH?.trim()
+    const launcher = cliPath
+      ? [cliPath]
+      : [
+          process.execPath,
+          '--preload',
+          path.resolve(import.meta.dir, '../../../preload.ts'),
+          path.resolve(import.meta.dir, '../../entrypoints/cli.tsx'),
+        ]
+
     return [
+      ...launcher,
       '--print',
       '--verbose',
       '--sdk-url',

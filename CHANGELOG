@@ -1,5 +1,7 @@
 # CHANGELOG
 
+- [2026-09-30 05:10] FIX/TEST: legacy lane 修复两处——buildLegacySessionCliArgs 补回可执行前缀（旧逻辑经 resolveCliArgs 前置 launcher，漏加导致 spawn 首参为 --print）；sessionService.getConfigDir 在 legacy lane 用 CLAUDE_CONFIG_DIR 原义解析（config 迁移致 transcript 查找断链）。conversations.test.ts 维持 58 pass/66 fail：剩余失败属 provider 断言变更与已删引擎回退路径，归 mock-dal-cli 重写范畴 (Files: src/server/services/conversationService.ts, src/server/services/sessionService.ts)
+
 - [2026-09-30 03:40] REFACTOR: 引擎死代码删除第一波——新增 scripts/engine-deletion-plan.ts 可达性闭包分析（存活入口=桌面壳+server 骨架+adapters+scripts），删除 src/ 不可达引擎文件 431 个；12 处根式/相对导入误伤经启动失败循环恢复；删除后 E2E 回归 PASS、src/server 类型错误 411→411 零回归、全仓 src 错误 2574→1243 显著改善 (Files: scripts/engine-deletion-plan.ts, src/** 431 files deleted)
 
 - [2026-09-30 02:30] FIX/TEST: 修复 E2E 揭示的三个缺陷——适配器与 conversationService 双读 stderr 导致 ReadableStream 锁死（stderr 统一交由 readProcessOutputStream 采集）；桌面旧 providerId/model 误传 dal --provider/--model 致 Unknown provider 退出（模型以 dal settings 为唯一事实源）；新增 scripts/e2e-dal-chat.ts 无头端到端冒烟（建会话→WS 对话→流式→message_complete）实测 PASS (Files: src/server/dal/dalSdkAdapter.ts, src/server/services/conversationService.ts, src/server/__tests__/conversations.test.ts, scripts/e2e-dal-chat.ts)
