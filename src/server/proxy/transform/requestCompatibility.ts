@@ -1,5 +1,5 @@
 import type { RequestCompatibility } from '../../types/provider.js'
-import type { OutputBudgetSource } from '../../../services/api/outputBudget.js'
+import type { OutputBudgetSource } from '../../services/api/outputBudget.js'
 import type { AnthropicRequest } from './types.js'
 
 export type RequestCompatibilityOptions = {

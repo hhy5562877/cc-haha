@@ -1,4 +1,4 @@
-import { normalizeAnthropicBaseUrl } from '../../services/api/anthropicBaseUrl.js'
+import { normalizeAnthropicBaseUrl } from './api/anthropicBaseUrl.js'
 import { getOauthConfig, OAUTH_BETA_HEADER } from '../../constants/oauth.js'
 import { OPENAI_CODEX_API_ENDPOINT } from '../../services/openaiAuth/client.js'
 import { resolveOpenAICodexModel } from '../../services/openaiAuth/models.js'

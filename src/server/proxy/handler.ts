@@ -11,7 +11,7 @@
 
 import { getOpenAIPolicyError } from '../../services/openaiAuth/policyError.js'
 import { buildOpenaiEndpoint } from './openaiEndpoint.js'
-import { normalizeAnthropicBaseUrl } from '../../services/api/anthropicBaseUrl.js'
+import { normalizeAnthropicBaseUrl } from '../services/api/anthropicBaseUrl.js'
 import { createGunzip, createInflate } from 'node:zlib'
 
 import { ProviderService } from '../services/providerService.js'
@@ -21,7 +21,7 @@ import { anthropicToOpenaiChat } from './transform/anthropicToOpenaiChat.js'
 import { anthropicToOpenaiResponses } from './transform/anthropicToOpenaiResponses.js'
 import { RequestCompatibilityError, resolveRequestCompatibility, type RequestCompatibilityOptions } from './transform/requestCompatibility.js'
 import { ProtocolTraceObserver, observeProtocolStream, type ProtocolTraceTransport } from './protocolTrace.js'
-import { OUTPUT_BUDGET_SOURCE_HEADER } from '../../services/api/outputBudget.js'
+import { OUTPUT_BUDGET_SOURCE_HEADER } from '../services/api/outputBudget.js'
 import { hoistToolResultMediaForCompatibility, shouldHoistNestedToolResultMedia } from './transform/anthropicMediaHoist.js'
 import { openaiChatToAnthropic } from './transform/openaiChatToAnthropic.js'
 import { openaiResponsesToAnthropic } from './transform/openaiResponsesToAnthropic.js'

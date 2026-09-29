@@ -4,7 +4,7 @@ import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import { ProviderService } from '../services/providerService.js'
 import { handleProxyRequest } from './handler.js'
-import { OUTPUT_BUDGET_SOURCE_HEADER } from '../../services/api/outputBudget.js'
+import { OUTPUT_BUDGET_SOURCE_HEADER } from '../services/api/outputBudget.js'
 import { resetSettingsCache } from '../../utils/settings/settingsCache.js'
 
 describe('saved provider request compatibility reaches the upstream wire', () => {

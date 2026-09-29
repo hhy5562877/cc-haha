@@ -21,7 +21,7 @@ import {
   type AnalyticsMetadata_I_VERIFIED_THIS_IS_NOT_CODE_OR_FILEPATHS,
   logEvent,
 } from '../analytics/index.js'
-import { normalizeAnthropicBaseUrl } from './anthropicBaseUrl.js'
+import { normalizeAnthropicBaseUrl } from '../../server/services/api/anthropicBaseUrl.js'
 
 // Files API is currently in beta. oauth-2025-04-20 enables Bearer OAuth
 // on public-api routes (auth.py: "oauth_auth" not in beta_versions → 404).

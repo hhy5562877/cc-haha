@@ -7,7 +7,7 @@
  */
 
 import { ProviderService } from './providerService.js'
-import { normalizeAnthropicBaseUrl } from '../../services/api/anthropicBaseUrl.js'
+import { normalizeAnthropicBaseUrl } from './api/anthropicBaseUrl.js'
 import {
   getPresetAuthStrategy,
   providerNeedsProxy,

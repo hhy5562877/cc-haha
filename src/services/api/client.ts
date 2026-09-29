@@ -1,6 +1,6 @@
 import type { OpenAICodexTurnState } from '../openaiAuth/turnState.js'
 import Anthropic, { type ClientOptions } from '@anthropic-ai/sdk'
-import { normalizeAnthropicBaseUrl } from './anthropicBaseUrl.js'
+import { normalizeAnthropicBaseUrl } from '../../server/services/api/anthropicBaseUrl.js'
 import { randomUUID } from 'crypto'
 import type { GoogleAuth } from 'google-auth-library'
 import {

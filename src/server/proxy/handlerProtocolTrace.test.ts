@@ -5,7 +5,7 @@ import { join } from 'node:path'
 import { ProviderService } from '../services/providerService.js'
 import { traceCaptureService, type RecordTraceCallInput } from '../services/traceCaptureService.js'
 import { resetSettingsCache } from '../../utils/settings/settingsCache.js'
-import { OUTPUT_BUDGET_SOURCE_HEADER } from '../../services/api/outputBudget.js'
+import { OUTPUT_BUDGET_SOURCE_HEADER } from '../services/api/outputBudget.js'
 import { handleProxyRequest } from './handler.js'
 
 describe('proxy protocol trace summaries', () => {
