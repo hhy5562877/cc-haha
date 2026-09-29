@@ -248,6 +248,13 @@ function inputPreview(input: Record<string, unknown>): string {
 export function createSessionSpawner(deps: SessionSpawnerDeps): SessionSpawner {
   return {
     spawn(opts: SessionSpawnOpts, dir: string): SessionHandle {
+      // dal 后端降级：remote bridge 依赖 Claude 专属的远程会话 ingress
+      //（--sdk-url / Session-Ingress / CCR v2），DAL-code-cli 目前没有等价
+      // 服务端。显式快速失败（调用方 try/catch 会话级兜底），避免伪装兼容
+      // 产生排障噪音；待 DAL 引擎侧提供等价服务后在此接入 rpc 桥。
+      throw new Error(
+        'Remote bridge sessions are not supported with the DAL backend: no dal-equivalent session ingress is available.',
+      )
       // Debug file resolution:
       // 1. If deps.debugFile is provided, use it with session ID suffix for uniqueness
       // 2. If verbose or ant build, auto-generate a temp file path

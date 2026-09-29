@@ -1,5 +1,7 @@
 # CHANGELOG
 
+- [2026-09-30 00:20] CHORE: remote bridge 显式降级——dal 无等价远程会话 ingress（Session-Ingress/CCR 为 Claude 专属基础设施），spawn 快速失败并给出明确错误，待 DAL 引擎侧提供等价服务后接入 (Files: src/bridge/sessionRunner.ts)
+
 - [2026-09-29 23:30] FEAT: cron 定时任务执行器切换 dal 单次执行——buildCronCliArgs 四级 dal 解析、--mode json 事件流提取、任务环境剥离 Claude 族并注入网关凭据与 DAL_GUARD_MODE=yolo (Files: src/server/services/cronScheduler.ts)
 
 - [2026-09-29 22:15] FEAT: 会话列表并入 dal 会话——listSessions 拆分出 claude 基线分支后经 mergeDalSessions 合并 ~/.dal/agent/sessions 全部会话（cwd 以 header 为准、统一倒序与分页），sessionStore 新增 listAllDalSessions 跨项目扫描 (Files: src/server/services/sessionService.ts, src/server/dal/sessionStore.ts)
