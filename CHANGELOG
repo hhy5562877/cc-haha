@@ -1,5 +1,7 @@
 # CHANGELOG
 
+- [2026-09-30 09:40] REFACTOR: 解耦批次 2 完整达成——teams-plan 存储整体移植为自包含 src/server/utils/teamPlanStore.ts（203 行原版+内联 teamHelpers/tasks 最小切片：sanitizeName/getTeamDir/readTeamFileAsync/生命周期锁 via utils/lockfile），api/teams、teamPlanRuntime、teamPlanService、teamWatcher 四消费方全部重指，server→swarm 直接依赖边全断；E2E PASS、触碰面 typecheck 干净 (Files: src/server/utils/teamPlanStore.ts, src/server/api/teams.ts, src/server/services/{teamPlanRuntime,teamPlanService,teamWatcher}.ts)
+
 - [2026-09-30 08:30] REFACTOR: 解耦批次 2（部分）——server 唯一消费的 TeamPlanError 从 swarm store 提取为 src/server/utils/teamPlanError.ts，切断 api/teams → swarm 直接边；级联探测确认 teamPlanStore→tasks.ts(1517行)→bootstrap/state 的移植与 item 3 teams 适配为同一工作流，store 全量移植归入该工作流 (Files: src/server/utils/teamPlanError.ts, src/server/api/teams.ts)
 
 - [2026-09-30 07:00] REFACTOR: 引擎解耦批次 1——withResolvers/constants-messages 两个零依赖文件复制进 src/server/{utils,constants}/ 并重指全部 server 导入（含测试 fixture）；闭包复测释放 5 个新不可达死文件并删除；E2E 保持 PASS、新增文件 typecheck 干净 (Files: src/server/utils/withResolvers.ts, src/server/constants/messages.ts, conversationService/sessionService/handler 导入重指)

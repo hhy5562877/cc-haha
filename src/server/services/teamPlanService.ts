@@ -1,6 +1,6 @@
 import { z } from 'zod/v4'
 import { teamPlanRuntimeSchema, type TeamPlanAction, type TeamPlanIdentity, type TeamPlanRecord } from '../../shared/teamPlan.js'
-import { approveTeamPlan, findTeamPlanForSession, mutateTeamPlan, readTeamPlan, replaceTeamPlan, TeamPlanError } from '../../utils/swarm/teamPlanStore.js'
+import { approveTeamPlan, findTeamPlanForSession, mutateTeamPlan, readTeamPlan, replaceTeamPlan, TeamPlanError } from '../utils/teamPlanStore.js'
 
 const identitySchema = z.object({
   sessionId: z.string().min(1), planId: z.string().min(1), incarnationId: z.string().min(1), expectedRevision: z.number().int().positive(),

@@ -8,7 +8,7 @@ import { normalizeExplicitClaudeOfficialModelId } from './claudeOfficialRuntime.
 import { getModelReasoningCapabilityOverride, isModelReasoningEffort, normalizeModelReasoningEffort } from '../../shared/modelReasoning.js'
 import { getPresetDefaultEnv, getPresetReasoningProviderKind } from './providerRuntimeEnv.js'
 import { validateTeamPlanPresetSource } from '../../utils/swarm/teamPlanPresetSource.js'
-import { readTeamPlan, findTeamPlanForSession, mutateTeamPlan } from '../../utils/swarm/teamPlanStore.js'
+import { readTeamPlan, findTeamPlanForSession, mutateTeamPlan } from '../utils/teamPlanStore.js'
 import { readTeamFile, writeTeamFileAsync } from '../../utils/swarm/teamHelpers.js'
 import { createTask, listTasks, updateTask, withTaskListLifecycleLock, getCanonicalTeamTaskListId } from '../../utils/tasks.js'
 import { readUnreadMessages, markMessagesAsReadByPredicate, writeToMailbox, createIdleNotification } from '../../utils/teammateMailbox.js'
