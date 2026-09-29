@@ -12,8 +12,8 @@ import {
   createTraceBodySnapshot,
   shouldCaptureApiTrace,
   traceCaptureService,
-} from './traceCapture.js'
-import type { TraceBodySnapshot, TraceProviderInfo, TraceResponseCapture } from './traceCapture.js'
+} from '../../server/services/api/traceCapture.js'
+import type { TraceBodySnapshot, TraceProviderInfo, TraceResponseCapture } from '../../server/services/api/traceCapture.js'
 
 const TRACE_SESSION_HEADER = 'x-claude-code-session-id'
 

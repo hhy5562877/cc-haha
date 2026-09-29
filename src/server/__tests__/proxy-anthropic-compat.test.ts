@@ -5,7 +5,7 @@ import * as path from 'path'
 import { handleProxyRequest } from '../proxy/handler.js'
 import { ProviderService } from '../services/providerService.js'
 import { resetSettingsCache } from '../../utils/settings/settingsCache.js'
-import { clearTraceCaptureStateForTests, drainTraceCaptureForTests, type TraceCallRecord } from '../../services/api/traceCapture.js'
+import { clearTraceCaptureStateForTests, drainTraceCaptureForTests, type TraceCallRecord } from '../services/api/traceCapture.ts'
 
 let tmpDir: string
 let originalConfigDir: string | undefined

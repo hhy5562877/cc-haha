@@ -1,5 +1,7 @@
 # CHANGELOG
 
+- [2026-09-30 21:30] REFACTOR: 解耦批次 11 完成——traceCapture(3132 行)迁入 src/server/services/api/traceCapture.ts，消费方（traceCaptureService、query.ts、dumpPrompts、proxy-anthropic-compat 测试）重指；E2E PASS (Files: src/server/services/api/traceCapture.ts, src/server/services/traceCaptureService.ts, src/query.ts, src/services/api/dumpPrompts.ts)
+
 - [2026-09-30 20:00] REFACTOR: 解耦批次 10 完成——services/grokAuth 整目录（7 文件 891 行）迁入 src/server/services/grokAuth/，全仓消费方（api/models、grokOfficialProvider、hahaGrokOAuthService、ws/handler、ImageGenTool、utils/effort、services/api/client）重指；迁移件 server/proxy 与 utils/proxy 引用按新深度修正；E2E PASS (Files: src/server/services/grokAuth/*, src/services/api/client.ts, src/utils/effort.ts 等)
 
 - [2026-09-30 18:50] REFACTOR: 解耦批次 9 完成——services/openaiAuth 整目录（12 文件）迁入 src/server/services/openaiAuth/，全仓消费方重指（含 cli/auth、OpenAILoginFlow、query.ts、services/api/claude 双引号与动态行内形态）；迁移件相对导入经语义归一器修复（按原目录语义解析意图+污染深度剥离）；E2E PASS (Files: src/server/services/openaiAuth/*, src/query.ts, src/services/api/claude.ts 等)

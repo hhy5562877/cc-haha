@@ -3,20 +3,20 @@ import { existsSync, readFileSync, statSync } from 'fs'
 import { promises as fs } from 'fs'
 import type { Stats } from 'fs'
 import { dirname, join } from 'path'
-import { getClaudeConfigHomeDir, isEnvDefinedFalsy, isEnvTruthy } from '../../utils/envUtils.js'
+import { getClaudeConfigHomeDir, isEnvDefinedFalsy, isEnvTruthy } from '../../../utils/envUtils.js'
 import {
   openTraceIndexDatabase,
   type TraceIndexDatabase,
-} from '../../server/services/localIndex/traceDatabase.js'
+} from '../../../server/services/localIndex/traceDatabase.js'
 import {
   createTraceIndex,
   type TraceCallLocator,
   type TraceEventLocator,
   type TraceIndex,
   type TraceSessionOverview,
-} from '../../server/services/localIndex/traceIndex.js'
-import { resolveLocalIndexMode } from '../../server/services/localIndex/config.js'
-import type { LocalIndexMode } from '../../server/services/localIndex/types.js'
+} from '../../../server/services/localIndex/traceIndex.js'
+import { resolveLocalIndexMode } from '../../../server/services/localIndex/config.js'
+import type { LocalIndexMode } from '../../../server/services/localIndex/types.js'
 import {
   captureSourceFingerprint,
   deserializeSourceFingerprint,
@@ -24,7 +24,7 @@ import {
   serializeSourceFingerprint,
   type LocalIndexIoMetrics,
   type SourceFingerprint,
-} from '../../server/services/localIndex/sourceFingerprint.js'
+} from '../../../server/services/localIndex/sourceFingerprint.js'
 
 const TRACE_PREVIEW_CHARS = 240_000
 export const TRACE_STREAM_CAPTURE_BYTES = 1024 * 1024

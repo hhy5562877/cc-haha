@@ -19,7 +19,7 @@ export {
   traceCaptureService,
   trimTraceCallPreviews,
   updateTraceCaptureSettings,
-} from '../../services/api/traceCapture.js'
+} from './api/traceCapture.js'
 export type {
   RecordTraceCallInput,
   RecordTraceEventInput,
@@ -43,4 +43,4 @@ export type {
   TraceSessionListItem,
   TraceSessionRevision,
   TraceSessionSummary,
-} from '../../services/api/traceCapture.js'
+} from './api/traceCapture.js'
