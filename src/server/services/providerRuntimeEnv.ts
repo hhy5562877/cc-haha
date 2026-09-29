@@ -9,7 +9,7 @@ import {
   resolveModelApiFormat,
   type ModelApiFormatRule,
 } from '../../shared/modelApiFormats.js'
-import { MODEL_CONTEXT_WINDOWS_ENV_KEY } from '../../utils/model/modelContextWindows.js'
+import { MODEL_CONTEXT_WINDOWS_ENV_KEY } from '../utils/model.js'
 import { PROVIDER_MAX_OUTPUT_TOKENS_ENV_KEY } from '../../utils/managedEnvConstants.js'
 import {
   IMAGE_GENERATION_API_KEY_ENV_KEY,

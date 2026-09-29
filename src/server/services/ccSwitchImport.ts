@@ -31,7 +31,7 @@ import {
   MODEL_CONTEXT_WINDOWS_ENV_KEY,
   MODEL_CONTEXT_WINDOW_MAX,
   MODEL_CONTEXT_WINDOW_MIN,
-} from '../../utils/model/modelContextWindows.js'
+} from '../utils/model.js'
 import { PROVIDER_PRESETS } from '../config/providerPresets.js'
 import type {
   ApiFormat,

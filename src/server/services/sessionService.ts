@@ -33,14 +33,14 @@ import {
 import {
   MODEL_CONTEXT_WINDOWS_ENV_KEY,
   getModelContextWindowFromEnvValue,
-} from '../../utils/model/modelContextWindows.js'
+} from '../utils/model.js'
 import {
   calculateContextBudget,
   getProviderUsageTrust,
   hasMediaInput,
 } from '../../utils/contextBudget.js'
 import { getCanonicalName } from '../../utils/model/model.js'
-import { isFirstPartyAnthropicBaseUrl } from '../../utils/model/providers.js'
+import { isFirstPartyAnthropicBaseUrl } from '../utils/model.js'
 import {
   resolveSessionWorkspaceLaunch,
   type CreateSessionRepositoryOptions,

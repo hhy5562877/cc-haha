@@ -7,7 +7,7 @@ import {
   OPENAI_DEFAULT_SONNET_MODEL,
   getOpenAICodexContextWindowForModel,
 } from '../../services/openaiAuth/models.js'
-import { MODEL_CONTEXT_WINDOWS_ENV_KEY } from '../../utils/model/modelContextWindows.js'
+import { MODEL_CONTEXT_WINDOWS_ENV_KEY } from '../utils/model.js'
 import {
   IMAGE_GENERATION_MODEL_ENV_KEY,
   IMAGE_GENERATION_PROVIDER_ID_ENV_KEY,

@@ -34,7 +34,7 @@ import {
   loadNetworkSettings,
   type NetworkSettings,
 } from '../services/networkSettings.js'
-import { normalizeModelStringForAPI } from '../../utils/model/model.js'
+import { normalizeModelStringForAPI } from '../utils/model.js'
 import {
   createTraceCallId,
   createTraceBodySnapshot,
