@@ -16,7 +16,7 @@ import { diagnosticsService } from '../services/diagnosticsService.js'
 import { normalizeIconSize, readAppIconPng } from '../services/macAppIcon.js'
 import { listInstalledMacApps } from './macInstalledApps.js'
 import { detectPythonRuntime, isPythonVersionAtLeast } from './computer-use-python.js'
-import { buildPipInstallAttempts } from '../../utils/computerUse/pipInstall.js'
+import { buildPipInstallAttempts } from '../utils/computerUse/pipInstall.js'
 import {
   DEFAULT_DESKTOP_GRANT_FLAGS,
   getComputerUseConfigPath,
@@ -24,7 +24,7 @@ import {
   loadStoredComputerUseConfigResult,
   normalizePythonPath,
   saveStoredComputerUseConfig,
-} from '../../utils/computerUse/preauthorizedConfig.js'
+} from '../utils/computerUse/preauthorizedConfig.js'
 import {
   callCuHelper,
   isMacosComputerUseRuntimeSupported,
