@@ -1,4 +1,4 @@
-import type { PluginScope } from '../../utils/plugins/schemas.js'
+import type { PluginScope } from '../utils/plugins/schemas.js'
 import { statSync } from 'node:fs'
 import { isAbsolute, resolve } from 'node:path'
 import { ApiError, errorResponse } from '../middleware/errorHandler.js'

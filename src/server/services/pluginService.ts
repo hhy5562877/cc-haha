@@ -11,30 +11,30 @@ import {
 import { getAgentDefinitionsWithOverrides } from '../../tools/AgentTool/loadAgentsDir.js'
 import type { LoadedPlugin, PluginError } from '../../types/plugin.js'
 import { getPluginErrorMessage } from '../../types/plugin.js'
-import { clearAllCaches } from '../../utils/plugins/cacheUtils.js'
+import { clearAllCaches } from '../utils/plugins/cacheUtils.js'
 import {
   getMarketplaceSourceDisplay,
-} from '../../utils/plugins/marketplaceHelpers.js'
-import { loadInstalledPluginsV2 } from '../../utils/plugins/installedPluginsManager.js'
+} from '../utils/plugins/marketplaceHelpers.js'
+import { loadInstalledPluginsV2 } from '../utils/plugins/installedPluginsManager.js'
 import {
   loadKnownMarketplacesConfig,
-} from '../../utils/plugins/marketplaceManager.js'
-import { loadPluginLspServers } from '../../utils/plugins/lspPluginIntegration.js'
-import { loadPluginMcpServers } from '../../utils/plugins/mcpPluginIntegration.js'
-import { parsePluginIdentifier } from '../../utils/plugins/pluginIdentifier.js'
-import { loadAllPluginsCacheOnly } from '../../utils/plugins/pluginLoader.js'
-import { loadPluginHooks } from '../../utils/plugins/loadPluginHooks.js'
-import { getPluginSkills } from '../../utils/plugins/loadPluginCommands.js'
-import { clearPluginCacheExclusions } from '../../utils/plugins/orphanedPluginFilter.js'
+} from '../utils/plugins/marketplaceManager.js'
+import { loadPluginLspServers } from '../utils/plugins/lspPluginIntegration.js'
+import { loadPluginMcpServers } from '../utils/plugins/mcpPluginIntegration.js'
+import { parsePluginIdentifier } from '../utils/plugins/pluginIdentifier.js'
+import { loadAllPluginsCacheOnly } from '../utils/plugins/pluginLoader.js'
+import { loadPluginHooks } from '../utils/plugins/loadPluginHooks.js'
+import { getPluginSkills } from '../utils/plugins/loadPluginCommands.js'
+import { clearPluginCacheExclusions } from '../utils/plugins/orphanedPluginFilter.js'
 import { parseFrontmatter } from '../../utils/frontmatterParser.js'
 import { extractDescriptionFromMarkdown } from '../../utils/markdownConfigLoader.js'
 import { resetSettingsCache } from '../../utils/settings/settingsCache.js'
 import type {
   PluginInstallationEntry,
   PluginScope,
-} from '../../utils/plugins/schemas.js'
+} from '../utils/plugins/schemas.js'
 import { ApiError } from '../middleware/errorHandler.js'
-import { walkPluginMarkdown } from '../../utils/plugins/walkPluginMarkdown.js'
+import { walkPluginMarkdown } from '../utils/plugins/walkPluginMarkdown.js'
 import type { HookCommand, HooksSettings } from '../../utils/settings/types.js'
 
 export type ApiPluginCapabilitySet = {

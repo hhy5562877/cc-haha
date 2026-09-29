@@ -9,9 +9,9 @@ import TextInput from '../../components/TextInput.js';
 import { Box, Text } from '../../ink.js';
 import { toError } from '../../utils/errors.js';
 import { logError } from '../../utils/log.js';
-import { clearAllCaches } from '../../utils/plugins/cacheUtils.js';
-import { addMarketplaceSource, saveMarketplaceToSettings } from '../../utils/plugins/marketplaceManager.js';
-import { parseMarketplaceInput } from '../../utils/plugins/parseMarketplaceInput.js';
+import { clearAllCaches } from '../../server/utils/plugins/cacheUtils.js';
+import { addMarketplaceSource, saveMarketplaceToSettings } from '../../server/utils/plugins/marketplaceManager.js';
+import { parseMarketplaceInput } from '../../server/utils/plugins/parseMarketplaceInput.js';
 import type { ViewState } from './types.js';
 type Props = {
   inputValue: string;

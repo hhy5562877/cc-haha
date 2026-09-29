@@ -5,8 +5,8 @@ import * as path from 'node:path'
 import { getCwdState, setCwdState } from '../../bootstrap/state.js'
 import { enableConfigs } from '../../utils/config.js'
 import { invalidateComputerUseSkillGate } from '../../utils/computerUse/skillGate.js'
-import { clearInstalledPluginsCache } from '../../utils/plugins/installedPluginsManager.js'
-import { clearPluginCache } from '../../utils/plugins/pluginLoader.js'
+import { clearInstalledPluginsCache } from '../utils/plugins/installedPluginsManager.js'
+import { clearPluginCache } from '../utils/plugins/pluginLoader.js'
 import { resetSettingsCache } from '../../utils/settings/settingsCache.js'
 import { handlePluginsApi } from '../api/plugins.js'
 import { handleComputerUseApi } from '../api/computer-use.js'
@@ -106,7 +106,7 @@ describe('Skills API', () => {
     await fs.mkdir(pluginsDir, { recursive: true })
     await fs.writeFile(path.join(pluginRoot, '.claude-plugin', 'plugin.json'), JSON.stringify({ name: 'draw', version: '1.0.0', description: 'Drawing' }))
     await writeSkill(path.join(pluginRoot, 'skills'), 'render', '---\ndescription: Draw a diagram.\n---\nDraw only on request.')
-    await fs.writeFile(path.join(market, '.claude-plugin', 'marketplace.json'), JSON.stringify({ name: 'test-market', owner: { name: 'Fixture' }, plugins: [{ name: 'draw', source: './plugins/draw', version: '1.0.0' }] }))
+    await fs.writeFile(path.join(market, '.claude-plugin', 'marketplace.json'), JSON.stringify({ name: 'test-market', owner: { name: 'Fixture' }, plugins: [{ name: 'draw', source: '../../server/utils/plugins/draw', version: '1.0.0' }] }))
     await fs.writeFile(path.join(pluginsDir, 'known_marketplaces.json'), JSON.stringify({ 'test-market': { source: { source: 'directory', path: market }, installLocation: market, lastUpdated: new Date(0).toISOString() } }))
     const installed = (scope: 'user' | 'project') => ({ version: 2, plugins: { 'draw@test-market': [{ scope, ...(scope === 'project' ? { projectPath: projectA } : {}), installPath: pluginRoot, version: '1.0.0', installedAt: new Date(0).toISOString(), lastUpdated: new Date(0).toISOString() }] } })
     await fs.writeFile(path.join(pluginsDir, 'installed_plugins.json'), JSON.stringify(installed('user')))
@@ -333,7 +333,7 @@ describe('Skills API', () => {
         plugins: [
           {
             name: 'draw',
-            source: './plugins/draw',
+            source: '../../server/utils/plugins/draw',
             version: '1.0.0',
           },
         ],
@@ -436,7 +436,7 @@ describe('Skills API', () => {
         plugins: [
           {
             name: 'draw',
-            source: './plugins/draw',
+            source: '../../server/utils/plugins/draw',
             version: '1.0.0',
           },
         ],

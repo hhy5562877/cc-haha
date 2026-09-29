@@ -31,7 +31,7 @@ import { getRuleByContentsForTool } from 'src/utils/permissions/permissions.js'
 import {
   isOfficialMarketplaceName,
   parsePluginIdentifier,
-} from 'src/utils/plugins/pluginIdentifier.js'
+} from '../../server/utils/plugins/pluginIdentifier.js'
 import { buildPluginCommandTelemetryFields } from 'src/utils/telemetry/pluginTelemetry.js'
 import { z } from 'zod/v4'
 import {

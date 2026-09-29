@@ -10,10 +10,10 @@
 import * as React from 'react';
 import type { LoadedPlugin } from '../../types/plugin.js';
 import { errorMessage } from '../../utils/errors.js';
-import { loadMcpServerUserConfig, saveMcpServerUserConfig } from '../../utils/plugins/mcpbHandler.js';
-import { getUnconfiguredChannels, type UnconfiguredChannel } from '../../utils/plugins/mcpPluginIntegration.js';
-import { loadAllPlugins } from '../../utils/plugins/pluginLoader.js';
-import { getUnconfiguredOptions, loadPluginOptions, type PluginOptionSchema, type PluginOptionValues, savePluginOptions } from '../../utils/plugins/pluginOptionsStorage.js';
+import { loadMcpServerUserConfig, saveMcpServerUserConfig } from '../../server/utils/plugins/mcpbHandler.js';
+import { getUnconfiguredChannels, type UnconfiguredChannel } from '../../server/utils/plugins/mcpPluginIntegration.js';
+import { loadAllPlugins } from '../../server/utils/plugins/pluginLoader.js';
+import { getUnconfiguredOptions, loadPluginOptions, type PluginOptionSchema, type PluginOptionValues, savePluginOptions } from '../../server/utils/plugins/pluginOptionsStorage.js';
 import { PluginOptionsDialog } from './PluginOptionsDialog.js';
 
 /**

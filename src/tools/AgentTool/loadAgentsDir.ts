@@ -36,7 +36,7 @@ import {
 import {
   clearPluginAgentCache,
   loadPluginAgents,
-} from '../../utils/plugins/loadPluginAgents.js'
+} from '../../server/utils/plugins/loadPluginAgents.js'
 import { HooksSchema, type HooksSettings } from '../../utils/settings/types.js'
 import { jsonStringify } from '../../utils/slowOperations.js'
 import { FILE_EDIT_TOOL_NAME } from '../FileEditTool/constants.js'

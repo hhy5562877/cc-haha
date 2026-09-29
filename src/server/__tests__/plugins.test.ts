@@ -3,10 +3,10 @@ import * as fs from 'node:fs/promises'
 import * as os from 'node:os'
 import * as path from 'node:path'
 import type { AppState } from '../../state/AppStateStore.js'
-import { isEnabledPluginSettingValue } from '../../utils/plugins/dependencyResolver.js'
-import { clearInstalledPluginsCache } from '../../utils/plugins/installedPluginsManager.js'
-import { clearPluginCache, loadAllPluginsCacheOnly } from '../../utils/plugins/pluginLoader.js'
-import { refreshActivePlugins } from '../../utils/plugins/refresh.js'
+import { isEnabledPluginSettingValue } from '../utils/plugins/dependencyResolver.js'
+import { clearInstalledPluginsCache } from '../utils/plugins/installedPluginsManager.js'
+import { clearPluginCache, loadAllPluginsCacheOnly } from '../utils/plugins/pluginLoader.js'
+import { refreshActivePlugins } from '../utils/plugins/refresh.js'
 import { resetSettingsCache } from '../../utils/settings/settingsCache.js'
 import { handlePluginsApi } from '../api/plugins.js'
 import { conversationService } from '../services/conversationService.js'
@@ -109,7 +109,7 @@ describe('Plugins API', () => {
         plugins: [
           {
             name: 'demo',
-            source: './plugins/demo',
+            source: '../../server/utils/plugins/demo',
             version: '1.0.0',
           },
         ],
@@ -433,7 +433,7 @@ describe('Plugins API', () => {
         plugins: [
           {
             name: 'draw',
-            source: './plugins/draw',
+            source: '../../server/utils/plugins/draw',
             version: '1.0.0',
           },
         ],

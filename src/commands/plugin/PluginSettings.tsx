@@ -12,10 +12,10 @@ import { useKeybinding, useKeybindings } from '../../keybindings/useKeybinding.j
 import { useAppState, useSetAppState } from '../../state/AppState.js';
 import type { PluginError } from '../../types/plugin.js';
 import { errorMessage } from '../../utils/errors.js';
-import { clearAllCaches } from '../../utils/plugins/cacheUtils.js';
-import { loadMarketplacesWithGracefulDegradation } from '../../utils/plugins/marketplaceHelpers.js';
-import { loadKnownMarketplacesConfig, removeMarketplaceSource } from '../../utils/plugins/marketplaceManager.js';
-import { getPluginEditableScopes } from '../../utils/plugins/pluginStartupCheck.js';
+import { clearAllCaches } from '../../server/utils/plugins/cacheUtils.js';
+import { loadMarketplacesWithGracefulDegradation } from '../../server/utils/plugins/marketplaceHelpers.js';
+import { loadKnownMarketplacesConfig, removeMarketplaceSource } from '../../server/utils/plugins/marketplaceManager.js';
+import { getPluginEditableScopes } from '../../server/utils/plugins/pluginStartupCheck.js';
 import type { EditableSettingSource } from '../../utils/settings/constants.js';
 import { getSettingsForSource, updateSettingsForSource } from '../../utils/settings/settings.js';
 import { AddMarketplace } from './AddMarketplace.js';

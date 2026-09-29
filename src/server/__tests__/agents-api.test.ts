@@ -7,7 +7,7 @@ import { handleAgentsApi } from '../api/agents.js'
 import { clearAgentDefinitionsCache } from '../../tools/AgentTool/loadAgentsDir.js'
 import { resetSettingsCache } from '../../utils/settings/settingsCache.js'
 import { findGitRoot } from '../../utils/git.js'
-import { refreshActivePlugins } from '../../utils/plugins/refresh.js'
+import { refreshActivePlugins } from '../utils/plugins/refresh.js'
 import { AgentService } from '../services/agentService.js'
 import { conversationService } from '../services/conversationService.js'
 import {

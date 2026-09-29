@@ -19,8 +19,8 @@ import { parseJSONL } from '../../utils/json.js'
 import { formatSessionCollaborationPrompt } from '../../utils/sessionCollaborationEnvelope.js'
 import { createSessionBranch } from '../../utils/sessionBranching.js'
 import { sanitizePath } from '../../utils/sessionStoragePortable.js'
-import { clearInstalledPluginsCache } from '../../utils/plugins/installedPluginsManager.js'
-import { clearPluginCache } from '../../utils/plugins/pluginLoader.js'
+import { clearInstalledPluginsCache } from '../utils/plugins/installedPluginsManager.js'
+import { clearPluginCache } from '../utils/plugins/pluginLoader.js'
 import { resetSettingsCache } from '../../utils/settings/settingsCache.js'
 import { updateSessionSlashCommands } from '../ws/handler.js'
 import { reduceTranscript } from '../services/localIndex/transcriptReducer.js'
@@ -5294,7 +5294,7 @@ describe('Sessions API', () => {
         plugins: [
           {
             name: 'superpowers',
-            source: './plugins/superpowers',
+            source: '../../server/utils/plugins/superpowers',
             version: '5.0.7',
           },
         ],

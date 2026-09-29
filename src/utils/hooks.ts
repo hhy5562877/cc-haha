@@ -27,8 +27,8 @@ import { buildPowerShellArgs } from './shell/powershellProvider.js'
 import {
   loadPluginOptions,
   substituteUserConfigVariables,
-} from './plugins/pluginOptionsStorage.js'
-import { getPluginDataDir } from './plugins/pluginDirectories.js'
+} from '../server/utils/plugins/pluginOptionsStorage.js'
+import { getPluginDataDir } from '../server/utils/plugins/pluginDirectories.js'
 import {
   getSessionId,
   getProjectRoot,
@@ -59,7 +59,7 @@ import {
   type AnalyticsMetadata_I_VERIFIED_THIS_IS_NOT_CODE_OR_FILEPATHS,
 } from 'src/services/analytics/index.js'
 import { logOTelEvent } from './telemetry/events.js'
-import { ALLOWED_OFFICIAL_MARKETPLACE_NAMES } from './plugins/schemas.js'
+import { ALLOWED_OFFICIAL_MARKETPLACE_NAMES } from '../server/utils/plugins/schemas.js'
 import {
   startHookSpan,
   endHookSpan,

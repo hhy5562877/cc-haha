@@ -25,7 +25,7 @@ import {
   getSubscriptionType,
 } from '../../../utils/auth.js'
 import { lazySchema } from '../../../utils/lazySchema.js'
-import { parsePluginIdentifier } from '../../../utils/plugins/pluginIdentifier.js'
+import { parsePluginIdentifier } from '../../utils/plugins/pluginIdentifier.js'
 import { getSettingsForSource } from '../../../utils/settings/settings.js'
 import { escapeXmlAttr } from '../../../utils/xml.js'
 import {

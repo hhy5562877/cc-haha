@@ -17,12 +17,12 @@ import { execFileNoThrow } from '../../utils/execFileNoThrow.js';
 import { pathExists } from '../../utils/file.js';
 import { logError } from '../../utils/log.js';
 import { getPlatform } from '../../utils/platform.js';
-import { clearAllCaches } from '../../utils/plugins/cacheUtils.js';
-import { isPluginInstalled } from '../../utils/plugins/installedPluginsManager.js';
-import { addMarketplaceSource, clearMarketplacesCache, loadKnownMarketplacesConfig, refreshMarketplace } from '../../utils/plugins/marketplaceManager.js';
-import { OFFICIAL_MARKETPLACE_NAME } from '../../utils/plugins/officialMarketplace.js';
-import { loadAllPlugins } from '../../utils/plugins/pluginLoader.js';
-import { installSelectedPlugins } from '../../utils/plugins/pluginStartupCheck.js';
+import { clearAllCaches } from '../../server/utils/plugins/cacheUtils.js';
+import { isPluginInstalled } from '../../server/utils/plugins/installedPluginsManager.js';
+import { addMarketplaceSource, clearMarketplacesCache, loadKnownMarketplacesConfig, refreshMarketplace } from '../../server/utils/plugins/marketplaceManager.js';
+import { OFFICIAL_MARKETPLACE_NAME } from '../../server/utils/plugins/officialMarketplace.js';
+import { loadAllPlugins } from '../../server/utils/plugins/pluginLoader.js';
+import { installSelectedPlugins } from '../../server/utils/plugins/pluginStartupCheck.js';
 
 // Marketplace and plugin identifiers - varies by user type
 const INTERNAL_MARKETPLACE_NAME = 'claude-code-marketplace';

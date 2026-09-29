@@ -21,32 +21,32 @@ import { logError } from '../../utils/log.js'
 import {
   clearAllCaches,
   markPluginVersionOrphaned,
-} from '../../utils/plugins/cacheUtils.js'
+} from '../../server/utils/plugins/cacheUtils.js'
 import {
   findReverseDependents,
   formatReverseDependentsSuffix,
   isEnabledPluginSettingValue,
-} from '../../utils/plugins/dependencyResolver.js'
+} from '../../server/utils/plugins/dependencyResolver.js'
 import {
   loadInstalledPluginsFromDisk,
   loadInstalledPluginsV2,
   removePluginInstallation,
   updateInstallationPathOnDisk,
-} from '../../utils/plugins/installedPluginsManager.js'
+} from '../../server/utils/plugins/installedPluginsManager.js'
 import {
   getMarketplace,
   getPluginById,
   loadKnownMarketplacesConfig,
-} from '../../utils/plugins/marketplaceManager.js'
-import { deletePluginDataDir } from '../../utils/plugins/pluginDirectories.js'
+} from '../../server/utils/plugins/marketplaceManager.js'
+import { deletePluginDataDir } from '../../server/utils/plugins/pluginDirectories.js'
 import {
   parsePluginIdentifier,
   scopeToSettingSource,
-} from '../../utils/plugins/pluginIdentifier.js'
+} from '../../server/utils/plugins/pluginIdentifier.js'
 import {
   formatResolutionError,
   installResolvedPlugin,
-} from '../../utils/plugins/pluginInstallationHelpers.js'
+} from '../../server/utils/plugins/pluginInstallationHelpers.js'
 import {
   cachePlugin,
   copyPluginToVersionedCache,
@@ -54,15 +54,15 @@ import {
   getVersionedZipCachePath,
   loadAllPlugins,
   loadPluginManifest,
-} from '../../utils/plugins/pluginLoader.js'
-import { deletePluginOptions } from '../../utils/plugins/pluginOptionsStorage.js'
-import { isPluginBlockedByPolicy } from '../../utils/plugins/pluginPolicy.js'
-import { getPluginEditableScopes } from '../../utils/plugins/pluginStartupCheck.js'
-import { calculatePluginVersion } from '../../utils/plugins/pluginVersioning.js'
+} from '../../server/utils/plugins/pluginLoader.js'
+import { deletePluginOptions } from '../../server/utils/plugins/pluginOptionsStorage.js'
+import { isPluginBlockedByPolicy } from '../../server/utils/plugins/pluginPolicy.js'
+import { getPluginEditableScopes } from '../../server/utils/plugins/pluginStartupCheck.js'
+import { calculatePluginVersion } from '../../server/utils/plugins/pluginVersioning.js'
 import type {
   PluginMarketplaceEntry,
   PluginScope,
-} from '../../utils/plugins/schemas.js'
+} from '../../server/utils/plugins/schemas.js'
 import {
   getSettingsForSource,
   updateSettingsForSource,
