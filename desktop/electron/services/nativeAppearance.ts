@@ -33,6 +33,7 @@
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs'
 import path from 'node:path'
 import type { App, BrowserWindow } from 'electron'
+import { desktopStateDir } from './dalDataDirs.js'
 
 export const APPEARANCE_STATE_FILE = 'appearance-state.json'
 
@@ -59,16 +60,13 @@ type StoredAppearance = AppliedAppearance
 
 const HEX_COLOR = /^#[0-9a-fA-F]{6}$/
 
-// Matches windows.ts / petWindow.ts, the other two writers into ~/.claude: on a
-// read-only or full disk this is written on every theme change, and an
-// undeduplicated error would repeat forever.
+// Matches windows.ts / petWindow.ts, the other two writers into the desktop
+// state dir: on a read-only or full disk this is written on every theme
+// change, and an undeduplicated error would repeat forever.
 const failedAppearanceWritePaths = new Set<string>()
 
 export function appearanceStatePath(app: App, env: NodeJS.ProcessEnv = process.env): string {
-  return path.join(
-    env.CLAUDE_CONFIG_DIR || path.join(app.getPath('home'), '.claude'),
-    APPEARANCE_STATE_FILE,
-  )
+  return path.join(desktopStateDir(app, env), APPEARANCE_STATE_FILE)
 }
 
 export function isAppliedAppearance(value: unknown): value is AppliedAppearance {

@@ -192,18 +192,27 @@ export async function reserveServerPort(
   return await reserveLocalPort(bindHost)
 }
 
+/** 数据根目录：DAL_CONFIG_DIR 优先，旧 CLAUDE_CONFIG_DIR 兼容，默认 ~/.dal。 */
 export function claudeConfigDir(
   env: NodeJS.ProcessEnv = process.env,
   homeDir = os.homedir(),
 ): string {
-  return env.CLAUDE_CONFIG_DIR || path.join(homeDir, '.claude')
+  return env.DAL_CONFIG_DIR || env.CLAUDE_CONFIG_DIR || path.join(homeDir, '.dal')
+}
+
+/** 桌面自有状态目录：<数据根>/desktop。 */
+export function desktopStateDir(
+  env: NodeJS.ProcessEnv = process.env,
+  homeDir = os.homedir(),
+): string {
+  return path.join(claudeConfigDir(env, homeDir), 'desktop')
 }
 
 export function electronHostDiagnosticsFile(
   env: NodeJS.ProcessEnv = process.env,
   homeDir = os.homedir(),
 ): string {
-  return path.join(claudeConfigDir(env, homeDir), 'cc-haha', 'diagnostics', 'electron-host.log')
+  return path.join(desktopStateDir(env, homeDir), 'cc-haha', 'diagnostics', 'electron-host.log')
 }
 
 /** Parse h5Access.fixedPort out of cc-haha/settings.json contents. */
@@ -224,7 +233,7 @@ export function parseH5FixedPort(contents: string): number | null {
 
 export function readH5FixedPort(env: NodeJS.ProcessEnv = process.env): number | null {
   try {
-    const settingsPath = path.join(claudeConfigDir(env), 'cc-haha', 'settings.json')
+    const settingsPath = path.join(desktopStateDir(env), 'cc-haha', 'settings.json')
     return parseH5FixedPort(readFileSync(settingsPath, 'utf-8'))
   } catch {
     return null
@@ -233,7 +242,7 @@ export function readH5FixedPort(env: NodeJS.ProcessEnv = process.env): number | 
 
 export function readLastServerPort(env: NodeJS.ProcessEnv = process.env): number | null {
   try {
-    const statePath = path.join(claudeConfigDir(env), SERVER_STATE_FILE)
+    const statePath = path.join(desktopStateDir(env), SERVER_STATE_FILE)
     const state: unknown = JSON.parse(readFileSync(statePath, 'utf-8'))
     if (!state || typeof state !== 'object') return null
     const port = (state as Record<string, unknown>).lastPort
@@ -246,7 +255,7 @@ export function readLastServerPort(env: NodeJS.ProcessEnv = process.env): number
 
 export function writeLastServerPort(port: number, env: NodeJS.ProcessEnv = process.env): void {
   try {
-    const dir = claudeConfigDir(env)
+    const dir = desktopStateDir(env)
     mkdirSync(dir, { recursive: true })
     writeFileSync(path.join(dir, SERVER_STATE_FILE), `${JSON.stringify({ lastPort: port }, null, 2)}\n`, 'utf-8')
   } catch (error) {
@@ -631,11 +640,11 @@ export function buildSidecarEnv(baseEnv: NodeJS.ProcessEnv, h5DistDir: string): 
     CLAUDE_H5_AUTO_PUBLIC_URL: '1',
     CLAUDE_H5_DIST_DIR: h5DistDir,
   }
-  const configDir = baseEnv.CLAUDE_CONFIG_DIR
+  const configDir = baseEnv.DAL_CONFIG_DIR || baseEnv.CLAUDE_CONFIG_DIR
   if (configDir) {
     const cacheDir = path.join(configDir, 'Cache')
     mkdirSync(cacheDir, { recursive: true })
-    env.CLAUDE_CONFIG_DIR = configDir
+    env.DAL_CONFIG_DIR = configDir
     env.XDG_CACHE_HOME = cacheDir
   }
   return env

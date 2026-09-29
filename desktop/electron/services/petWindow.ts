@@ -148,11 +148,12 @@ export function petWindowStatePath(
   homeDir: string = os.homedir(),
 ): string {
   const normalizedHome = path.resolve(homeDir)
-  const configuredRoot = env.CLAUDE_CONFIG_DIR?.trim()
-  const configRoot = configuredRoot
+  const configuredRoot = env.DAL_CONFIG_DIR?.trim() || env.CLAUDE_CONFIG_DIR?.trim()
+  // 宠物窗口状态属于桌面自有状态，存 <数据根>/desktop/cc-haha/。
+  const dataRoot = configuredRoot
     ? path.resolve(resolveHomePath(configuredRoot, normalizedHome))
-    : path.join(normalizedHome, '.claude')
-  return path.join(configRoot, 'cc-haha', PET_WINDOW_STATE_FILE)
+    : path.join(normalizedHome, '.dal')
+  return path.join(dataRoot, 'desktop', 'cc-haha', PET_WINDOW_STATE_FILE)
 }
 
 export function readPetWindowPosition(

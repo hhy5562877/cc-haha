@@ -19,7 +19,8 @@ import { handlePluginsApi } from './api/plugins.js'
 import { handleSkillsApi } from './api/skills.js'
 import { handleMarketApi } from './api/market.js'
 import { handleComputerUseApi } from './api/computer-use.js'
-import { handleHahaOAuthApi } from './api/haha-oauth.js'
+import { handleDalAuthApi } from './api/dal-auth.js'
+import { handleDalBridgeRoute } from './dal/bridge/index.js'
 import { handleHahaOpenAIOAuthApi } from './api/haha-openai-oauth.js'
 import { handleHahaGrokOAuthApi } from './api/haha-grok-oauth.js'
 import { handleMcpApi } from './api/mcp.js'
@@ -154,8 +155,14 @@ async function routeApiRequest(req: Request, url: URL): Promise<Response> {
     case 'providers':
       return handleProvidersApi(req, url, segments)
 
-    case 'haha-oauth':
-      return handleHahaOAuthApi(req, url, segments)
+    case 'dal-auth':
+      return handleDalAuthApi(req, url, segments)
+
+    case 'internal':
+    case 'dal-bridge':
+      // dal-bridge 审批桥：dal 进程的审批 POST（/api/internal/pi-bridge/*，
+      // x-dal-bridge-token 鉴权）与渲染端回包端点（/api/dal-bridge/respond）。
+      return handleDalBridgeRoute(req, segments)
 
     case 'haha-openai-oauth':
       return handleHahaOpenAIOAuthApi(req, url, segments)

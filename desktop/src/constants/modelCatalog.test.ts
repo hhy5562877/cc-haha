@@ -1,20 +1,30 @@
 import { describe, expect, it } from 'vitest'
-import { OFFICIAL_DEFAULT_MODEL_ID, OFFICIAL_MODELS } from './modelCatalog'
+import {
+  DAL_DEFAULT_THINKING_LEVEL,
+  DAL_GATEWAY_MODELS,
+  DAL_GATEWAY_PROVIDER_ID,
+  DAL_THINKING_LEVELS,
+  isDalThinkingLevel,
+} from './modelCatalog'
 
-describe('Claude official model catalog', () => {
-  it('offers Opus 5.5 with its launch effort and context for OAuth selection', () => {
-    expect(OFFICIAL_DEFAULT_MODEL_ID).toBe('claude-opus-5-5')
-    expect(OFFICIAL_MODELS.find(model => model.id === 'claude-opus-5-5')).toMatchObject({
-      name: 'Opus 5.5',
-      context: '1m',
-      defaultReasoningEffort: 'medium',
-      supportedReasoningEfforts: ['low', 'medium', 'high', 'xhigh', 'max'],
-    })
+describe('DAL model catalog constants', () => {
+  it('registers the dalcode-gateway provider id used by dal --provider', () => {
+    expect(DAL_GATEWAY_PROVIDER_ID).toBe('dalcode-gateway')
   })
 
-  it('keeps older explicit model selections available', () => {
-    expect(OFFICIAL_MODELS.map(model => model.id)).toEqual(expect.arrayContaining([
-      'claude-opus-5', 'claude-opus-4-8', 'claude-fable-5-1', 'claude-sonnet-5',
-    ]))
+  it('covers the full pi-agent-core ThinkingLevel range with the dal default', () => {
+    expect(DAL_THINKING_LEVELS).toEqual(['off', 'minimal', 'low', 'medium', 'high', 'xhigh', 'max'])
+    expect(DAL_DEFAULT_THINKING_LEVEL).toBe('medium')
+  })
+
+  it('ships no seed models — the gateway is the only source of truth', () => {
+    expect(DAL_GATEWAY_MODELS).toEqual([])
+  })
+
+  it('validates thinking levels', () => {
+    expect(isDalThinkingLevel('off')).toBe(true)
+    expect(isDalThinkingLevel('max')).toBe(true)
+    expect(isDalThinkingLevel('ultra')).toBe(false)
+    expect(isDalThinkingLevel(42)).toBe(false)
   })
 })

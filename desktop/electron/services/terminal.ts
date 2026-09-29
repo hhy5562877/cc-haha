@@ -6,6 +6,7 @@ import os from 'node:os'
 import path from 'node:path'
 import process from 'node:process'
 import { ELECTRON_EVENT_CHANNELS } from '../ipc/channels'
+import { dalAgentDir, dalDataDir, desktopStateDir } from './dalDataDirs.js'
 
 const TERMINAL_CONFIG_FILE = 'terminal-config.json'
 const MIN_TERMINAL_COLS = 20
@@ -152,24 +153,17 @@ function sendTerminalEvent(
 const preparedNodePtyDirs = new Set<string>()
 
 export function terminalConfigPath(app: TerminalAppLike | undefined, env: NodeJS.ProcessEnv = process.env): string | null {
-  const portableDir = env.CLAUDE_CONFIG_DIR?.trim()
-  if (portableDir) {
-    return path.join(portableDir, TERMINAL_CONFIG_FILE)
-  }
-  if (!app) return null
-  return path.join(app.getPath('home'), '.claude', TERMINAL_CONFIG_FILE)
+  // 终端配置属于桌面自有状态，存 <数据根>/desktop/。
+  if (!app && !env.DAL_CONFIG_DIR && !env.CLAUDE_CONFIG_DIR) return null
+  return path.join(desktopStateDir(app, env), TERMINAL_CONFIG_FILE)
 }
 
+/** dal 引擎配置目录（settings.json 所在，对应 dal 的 getAgentDir()）。 */
 export function claudeConfigDir(
   env: NodeJS.ProcessEnv = process.env,
   platform: NodeJS.Platform = process.platform,
 ): string | null {
-  const portableDir = env.CLAUDE_CONFIG_DIR?.trim()
-  if (portableDir) return portableDir
-  const home = platform === 'win32'
-    ? env.USERPROFILE || os.homedir()
-    : env.HOME || os.homedir()
-  return home ? path.join(home, '.claude') : null
+  return dalAgentDir(undefined, env, platform)
 }
 
 export function desktopTerminalSettingsPath(
@@ -328,7 +322,7 @@ function loadTerminalConfig(app: TerminalAppLike | undefined, env: NodeJS.Proces
   const configPath = terminalConfigPath(app, env)
   if (!configPath) return {}
   const candidates = [configPath]
-  if (app && !env.CLAUDE_CONFIG_DIR) {
+  if (app && !env.DAL_CONFIG_DIR && !env.CLAUDE_CONFIG_DIR) {
     candidates.push(path.join(app.getPath('userData'), TERMINAL_CONFIG_FILE))
   }
   for (const candidate of candidates) {
@@ -361,6 +355,7 @@ export function resolveTerminalCwd(
 ): string {
   const trimmed = cwd?.trim()
   const resolved = trimmed
+    || env.DAL_CONFIG_DIR
     || env.CLAUDE_CONFIG_DIR
     || env.HOME
     || env.USERPROFILE

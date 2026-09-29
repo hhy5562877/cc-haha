@@ -1,58 +1,43 @@
 import type { ModelInfo } from '../types/settings'
 
-export const OFFICIAL_DEFAULT_MODEL_ID = 'claude-opus-5-5'
+/**
+ * DAL 模型目录常量。
+ *
+ * DAL 网关是模型事实的唯一权威源（DAL-code-cli dal-gateway/deepailab 两个
+ * provider 扩展均明确"无种子目录"）：目录由 server 端 /api/models 运行时
+ * 从网关拉取（getDalModelCatalog，15 分钟新鲜度），未登录返回空列表。
+ * 这里不再硬编码任何模型 —— 一个过期的种子比空列表更糟，用户会选中
+ * 必然 404 的模型。
+ *
+ * 思考等级对齐 pi-agent-core ThinkingLevel，经 WS set_runtime_config →
+ * RPC set_thinking_level 生效。
+ */
 
-export const OFFICIAL_MODELS: ModelInfo[] = [
-  {
-    id: 'claude-fable-5-1',
-    name: 'Fable 5.1',
-    description: 'Highest capability for long-running tasks',
-    context: '1m',
-    defaultReasoningEffort: 'high',
-    supportedReasoningEfforts: ['low', 'medium', 'high', 'xhigh', 'max'],
-  },
-  {
-    id: 'claude-fable-5',
-    name: 'Fable 5',
-    description: 'Highest capability for long-running tasks',
-    context: '1m',
-  },
-  {
-    id: 'claude-opus-5-5',
-    name: 'Opus 5.5',
-    description: 'Best for complex agentic coding and enterprise work',
-    context: '1m',
-    defaultReasoningEffort: 'medium',
-    supportedReasoningEfforts: ['low', 'medium', 'high', 'xhigh', 'max'],
-  },
-  {
-    id: 'claude-opus-5',
-    name: 'Opus 5',
-    description: 'Best for complex agentic coding and enterprise work',
-    context: '1m',
-    defaultReasoningEffort: 'high',
-    supportedReasoningEfforts: ['low', 'medium', 'high', 'xhigh', 'max'],
-  },
-  {
-    id: 'claude-opus-4-8',
-    name: 'Opus 4.8',
-    description: 'Best for complex agentic coding and enterprise work',
-    context: '1m',
-    defaultReasoningEffort: 'high',
-    supportedReasoningEfforts: ['low', 'medium', 'high', 'xhigh', 'max'],
-  },
-  {
-    id: 'claude-sonnet-5',
-    name: 'Sonnet 5',
-    description: 'Best combination of speed and intelligence',
-    context: '1m',
-    defaultReasoningEffort: 'high',
-    supportedReasoningEfforts: ['low', 'medium', 'high', 'xhigh', 'max'],
-  },
-  {
-    id: 'claude-haiku-4-5',
-    name: 'Haiku 4.5',
-    description: 'Fastest with near-frontier intelligence',
-    context: '200k',
-  },
-]
+/** DAL 网关 provider id（与 dal --provider / dal-gateway 扩展一致）。 */
+export const DAL_GATEWAY_PROVIDER_ID = 'dalcode-gateway'
+export const DAL_GATEWAY_PROVIDER_NAME = 'DAL Gateway'
+
+export const DAL_THINKING_LEVELS = [
+  'off',
+  'minimal',
+  'low',
+  'medium',
+  'high',
+  'xhigh',
+  'max',
+] as const
+
+export type DalThinkingLevel = (typeof DAL_THINKING_LEVELS)[number]
+
+/** DAL CLI 的默认思考等级（--thinking 缺省值）。 */
+export const DAL_DEFAULT_THINKING_LEVEL: DalThinkingLevel = 'medium'
+
+/**
+ * 运行时发现的目录占位：/api/models 未返回前为空。UI 展示"选择模型"，
+ * 不再回落到任何本地种子。
+ */
+export const DAL_GATEWAY_MODELS: ModelInfo[] = []
+
+export function isDalThinkingLevel(value: unknown): value is DalThinkingLevel {
+  return typeof value === 'string' && (DAL_THINKING_LEVELS as readonly string[]).includes(value)
+}

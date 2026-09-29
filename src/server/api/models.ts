@@ -35,80 +35,35 @@ import {
   isGrokOfficialProviderId,
 } from '../services/grokOfficialProvider.js'
 import { hahaGrokOAuthService } from '../services/hahaGrokOAuthService.js'
-import { resolveClaudeOfficialRuntimeModel } from '../services/claudeOfficialRuntime.js'
+import {
+  getDalModelCatalog,
+  getLastGoodDalCatalog,
+  DAL_THINKING_LEVELS,
+  type DalModelCatalogEntry,
+} from '../services/dalModelCatalog.js'
 import {
   getPresetDefaultEnv,
   getPresetReasoningProviderKind,
 } from '../services/providerRuntimeEnv.js'
 import {
   getModelReasoningCapabilityOverride,
-  MODEL_REASONING_EFFORTS,
   resolveModelReasoningProfile,
   type ModelReasoningApiFormat,
   type ModelReasoningProviderKind,
 } from '../../shared/modelReasoning.js'
 
-// ─── Fallback models (used when no provider is configured) ────────────────────
+// ─── Fallback models ──────────────────────────────────────────────────────────
+// 目录的唯一事实源是 DAL 网关（见 dalModelCatalog.ts）：登录后由
+// getStandaloneModelList 动态拉取，未登录返回空列表。这里不再保留任何
+// 硬编码模型 —— 一个过期的种子比空列表更糟（用户会选到必然 404 的模型）。
 
-const DEFAULT_MODELS = [
-  {
-    id: 'claude-fable-5-1',
-    name: 'Fable 5.1',
-    description: 'Highest capability for long-running tasks',
-    context: '1m',
-    defaultReasoningEffort: 'high',
-    supportedReasoningEfforts: ['low', 'medium', 'high', 'xhigh', 'max'],
-  },
-  {
-    id: 'claude-fable-5',
-    name: 'Fable 5',
-    description: 'Highest capability for long-running tasks',
-    context: '1m',
-  },
-  {
-    id: 'claude-opus-5-5',
-    name: 'Opus 5.5',
-    description: 'Best for complex agentic coding and enterprise work',
-    context: '1m',
-    defaultReasoningEffort: 'medium',
-    supportedReasoningEfforts: ['low', 'medium', 'high', 'xhigh', 'max'],
-  },
-  {
-    id: 'claude-opus-5',
-    name: 'Opus 5',
-    description: 'Best for complex agentic coding and enterprise work',
-    context: '1m',
-    defaultReasoningEffort: 'high',
-    supportedReasoningEfforts: ['low', 'medium', 'high', 'xhigh', 'max'],
-  },
-  {
-    id: 'claude-opus-4-8',
-    name: 'Opus 4.8',
-    description: 'Best for complex agentic coding and enterprise work',
-    context: '1m',
-    defaultReasoningEffort: 'high',
-    supportedReasoningEfforts: ['low', 'medium', 'high', 'xhigh', 'max'],
-  },
-  {
-    id: 'claude-sonnet-5',
-    name: 'Sonnet 5',
-    description: 'Best combination of speed and intelligence',
-    context: '1m',
-    defaultReasoningEffort: 'high',
-    supportedReasoningEfforts: ['low', 'medium', 'high', 'xhigh', 'max'],
-  },
-  {
-    id: 'claude-haiku-4-5',
-    name: 'Haiku 4.5',
-    description: 'Fastest with near-frontier intelligence',
-    context: '200k',
-  },
-] as const
+// 思考等级走 DAL 全集（off..max，pi-agent-core ThinkingLevel），经
+// set_thinking_level/RPC 生效；原 Claude effort 体系（low..max）仅存于
+// src/shared/modelReasoning.ts 供 provider 兼容层使用。
+const EFFORT_LEVELS = DAL_THINKING_LEVELS
 
-const EFFORT_LEVELS = MODEL_REASONING_EFFORTS
-
-const DEFAULT_MODEL = 'claude-opus-5'
-const DEFAULT_EFFORT = 'max'
+const DEFAULT_MODEL = ''
+const DEFAULT_EFFORT = 'medium'
 
 const settingsService = new SettingsService()
 const providerService = new ProviderService()
@@ -256,15 +211,36 @@ async function getOpenAIAuthModels(): Promise<ApiModelInfo[]> {
   return buildOpenAIModelList(await getOpenAICodexModelCatalog())
 }
 
-async function getStandaloneModelList(): Promise<ApiModelInfo[]> {
-  const settings = await settingsService.getUserSettings()
-  const settingsEnv = settings.env && typeof settings.env === 'object' && !Array.isArray(settings.env)
-    ? settings.env as Record<string, unknown>
-    : {}
-  const models = [...getConfiguredAnthropicModels(settingsEnv)]
+function buildDalModelList(catalog: DalModelCatalogEntry[]): ApiModelInfo[] {
+  return catalog.map((model) => ({
+    id: model.id,
+    name: model.name,
+    description: model.description,
+    context: model.context,
+    ...(model.supportedThinkingLevels.length > 0
+      ? { supportedReasoningEfforts: [...model.supportedThinkingLevels] }
+      : {}),
+    ...(model.defaultThinkingLevel ? { defaultReasoningEffort: model.defaultThinkingLevel } : {}),
+  }))
+}
 
-  if (models.length === 0) {
-    models.push(...DEFAULT_MODELS)
+/**
+ * 无 provider 激活时的模型列表：DAL 网关目录是唯一来源（登录后非空），
+ * OpenAI Codex Auth 目录作为补充。Anthropic env 配置的模型已随 Claude
+ * 引擎移除而废弃。
+ */
+async function getStandaloneModelList(): Promise<ApiModelInfo[]> {
+  const models: ApiModelInfo[] = []
+
+  try {
+    for (const model of buildDalModelList(await getDalModelCatalog())) {
+      addUniqueModel(models, model)
+    }
+  } catch {
+    // 网关不可达时保留空列表 + 上次好目录兜底。
+    for (const model of buildDalModelList(await Promise.resolve(getLastGoodDalCatalog()))) {
+      addUniqueModel(models, model)
+    }
   }
 
   for (const model of await getOpenAIAuthModels()) {
@@ -350,9 +326,6 @@ async function handleModelsList(): Promise<Response> {
       provider: { id: activeProvider.id, name: activeProvider.name },
     })
   }
-  if (await resolveClaudeOfficialRuntimeModel()) {
-    return Response.json({ models: DEFAULT_MODELS, provider: null })
-  }
   return Response.json({ models: await getStandaloneModelList(), provider: null })
 }
 
@@ -373,11 +346,6 @@ async function handleCurrentModel(req: Request): Promise<Response> {
     const settingsEnvModel = typeof env.ANTHROPIC_MODEL === 'string'
       ? env.ANTHROPIC_MODEL.trim()
       : ''
-    const claudeOfficialModel = activeId === null
-      ? await resolveClaudeOfficialRuntimeModel(
-          explicitModel || runtimeEnvModel || settingsEnvModel,
-        )
-      : null
 
     let currentModelId: string
     let currentModelName: string
@@ -400,11 +368,9 @@ async function handleCurrentModel(req: Request): Promise<Response> {
         currentModelId = explicitModel || providerEnvModel || activeProvider.models.main
         currentModelName = currentModelId
       }
-    } else if (claudeOfficialModel) {
-      currentModelId = claudeOfficialModel
-      currentModelName = claudeOfficialModel
     } else {
-      // No provider — use settings model with context tier
+      // No provider — use settings model with context tier. DAL 目录未登录时
+      // 为空，此处显式模型缺失即返回空 id，由 UI 展示"选择模型"。
       currentModelId = explicitModel || runtimeEnvModel || settingsEnvModel || DEFAULT_MODEL
       currentModelName = currentModelId
     }
@@ -423,9 +389,7 @@ async function handleCurrentModel(req: Request): Promise<Response> {
               getPresetDefaultEnv(activeProvider.presetId),
               getPresetReasoningProviderKind(activeProvider.presetId),
             )
-          : claudeOfficialModel
-            ? [...DEFAULT_MODELS]
-            : await getStandaloneModelList()
+          : await getStandaloneModelList()
 
     const modelEntry = availableModels.find((m) => m.id === lookupId)
       || availableModels.find((m) => m.id === currentModelId)

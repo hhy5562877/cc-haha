@@ -251,11 +251,12 @@ export function resolveCustomPetsRoot(options: CustomPetsRootOptions = {}): stri
 
   const env = options.env ?? process.env
   const homeDir = path.resolve(options.homeDir ?? os.homedir())
-  const configuredRoot = env.CLAUDE_CONFIG_DIR?.trim()
-  const claudeConfigDir = configuredRoot
+  const configuredRoot = env.DAL_CONFIG_DIR?.trim() || env.CLAUDE_CONFIG_DIR?.trim()
+  // 自定义宠物目录属于桌面自有状态，存 <数据根>/desktop/cc-haha/pets。
+  const dataRoot = configuredRoot
     ? path.resolve(resolveHomePath(configuredRoot, homeDir))
-    : path.join(homeDir, '.claude')
-  return path.join(claudeConfigDir, 'cc-haha', 'pets')
+    : path.join(homeDir, '.dal')
+  return path.join(dataRoot, 'desktop', 'cc-haha', 'pets')
 }
 
 export async function ensureCustomPetsRoot(options: CustomPetsRootOptions = {}): Promise<string> {

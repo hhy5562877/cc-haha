@@ -5,7 +5,7 @@ import {
   BUNDLED_PROVIDER_PRESETS,
   getBundledPresetReasoningProviderKind,
 } from '../../config/providerPresets'
-import { OFFICIAL_MODELS } from '../../constants/modelCatalog'
+import { DAL_GATEWAY_PROVIDER_ID } from '../../constants/modelCatalog'
 import {
   OPENAI_OFFICIAL_MODELS,
   OPENAI_OFFICIAL_PROVIDER_ID,
@@ -27,7 +27,7 @@ import {
   resolveDefaultRuntimeSelection,
   resolveProviderSlotModelId,
 } from '../../lib/runtimeSelection'
-import { useHahaOAuthStore } from '../../stores/hahaOAuthStore'
+import { useDalAuthStore } from '../../stores/dalAuthStore'
 import { useHahaOpenAIOAuthStore } from '../../stores/hahaOpenAIOAuthStore'
 import { useHahaGrokOAuthStore } from '../../stores/hahaGrokOAuthStore'
 import {
@@ -125,18 +125,6 @@ function officialChoices(
   }
 }
 
-function mergeOfficialModels(availableModels: ModelInfo[]): ModelInfo[] {
-  const merged = [...OFFICIAL_MODELS]
-  const knownIds = new Set(merged.map(model => model.id))
-  for (const model of availableModels) {
-    if (!knownIds.has(model.id)) {
-      knownIds.add(model.id)
-      merged.push(model)
-    }
-  }
-  return merged
-}
-
 function buildProviderModels(
   provider: SavedProvider,
   labels: Record<ModelSlot, string>,
@@ -183,17 +171,17 @@ function buildProviderChoices(
   providers: SavedProvider[],
   activeId: string | null,
   availableModels: ModelInfo[],
-  officialName: string,
+  dalGatewayName: string,
   openAIOfficialName: string,
   grokOfficialName: string,
   labels: Record<ModelSlot, string>,
-  claudeOfficialLoggedIn: boolean,
+  dalGatewayLoggedIn: boolean,
   openAIOfficialLoggedIn: boolean,
   grokOfficialLoggedIn: boolean,
 ): ProviderChoice[] {
-  const claudeOfficialModels = activeId === null && availableModels.length > 0
-    ? mergeOfficialModels(availableModels)
-    : OFFICIAL_MODELS
+  // DAL 网关目录由 server 按激活状态下发（无 saved provider 激活时
+  // availableModels 即 DAL 目录）。未登录时网关目录为空，不展示分组。
+  const dalGatewayModels = availableModels
   const openAIOfficialModels = activeId === OPENAI_OFFICIAL_PROVIDER_ID && availableModels.length > 0
     ? availableModels
     : OPENAI_OFFICIAL_MODELS
@@ -203,8 +191,13 @@ function buildProviderChoices(
 
   const choices: ProviderChoice[] = []
 
-  if (claudeOfficialLoggedIn) {
-    choices.push(officialChoices(null, claudeOfficialModels, activeId === null, officialName))
+  if (dalGatewayLoggedIn && dalGatewayModels.length > 0) {
+    choices.push(officialChoices(
+      DAL_GATEWAY_PROVIDER_ID,
+      dalGatewayModels,
+      activeId === DAL_GATEWAY_PROVIDER_ID || activeId === null,
+      dalGatewayName,
+    ))
   }
   if (openAIOfficialLoggedIn) {
     choices.push(officialChoices(
@@ -270,8 +263,8 @@ export const ModelSelector = forwardRef<ModelSelectorHandle, Props>(function Mod
     isLoading: providersLoading,
     fetchProviders,
   } = useProviderStore()
-  const claudeOAuthStatus = useHahaOAuthStore((s) => s.status)
-  const fetchClaudeOAuthStatus = useHahaOAuthStore((s) => s.fetchStatus)
+  const dalAuthStatus = useDalAuthStore((s) => s.status)
+  const fetchDalAuthStatus = useDalAuthStore((s) => s.fetchStatus)
   const openAIOAuthStatus = useHahaOpenAIOAuthStore((s) => s.status)
   const fetchOpenAIOAuthStatus = useHahaOpenAIOAuthStore((s) => s.fetchStatus)
   const grokOAuthStatus = useHahaGrokOAuthStore((s) => s.status)
@@ -289,7 +282,11 @@ export const ModelSelector = forwardRef<ModelSelectorHandle, Props>(function Mod
   const requestedProvidersRef = useRef(false)
   const requestedOAuthStatusRef = useRef(false)
 
+  // DAL 思考等级全集（off..max）：off/minimal 仅在模型目录下发了对应
+  // supportedReasoningEfforts 时出现在选项里。
   const EFFORT_OPTIONS: { value: ReasoningEffortLevel; label: string }[] = [
+    { value: 'off', label: t('settings.general.effort.off') },
+    { value: 'minimal', label: t('settings.general.effort.minimal') },
     { value: 'low', label: t('settings.general.effort.low') },
     { value: 'medium', label: t('settings.general.effort.medium') },
     { value: 'high', label: t('settings.general.effort.high') },
@@ -297,6 +294,8 @@ export const ModelSelector = forwardRef<ModelSelectorHandle, Props>(function Mod
     { value: 'max', label: t('settings.general.effort.max') },
   ]
   const effortLabels: Record<ReasoningEffortLevel, string> = {
+    off: t('settings.general.effort.off'),
+    minimal: t('settings.general.effort.minimal'),
     low: t('settings.general.effort.low'),
     medium: t('settings.general.effort.medium'),
     high: t('settings.general.effort.high'),
@@ -324,10 +323,10 @@ export const ModelSelector = forwardRef<ModelSelectorHandle, Props>(function Mod
   useEffect(() => {
     if (!isRuntimeScoped || !open || requestedOAuthStatusRef.current) return
     requestedOAuthStatusRef.current = true
-    void fetchClaudeOAuthStatus()
+    void fetchDalAuthStatus()
     void fetchOpenAIOAuthStatus()
     void fetchGrokOAuthStatus()
-  }, [fetchClaudeOAuthStatus, fetchGrokOAuthStatus, fetchOpenAIOAuthStatus, isRuntimeScoped, open])
+  }, [fetchDalAuthStatus, fetchGrokOAuthStatus, fetchOpenAIOAuthStatus, isRuntimeScoped, open])
 
   const closeSelector = useCallback(() => setOpen(false), [])
 
@@ -409,15 +408,15 @@ export const ModelSelector = forwardRef<ModelSelectorHandle, Props>(function Mod
       providers,
       activeId,
       availableModels,
-      t('settings.providers.officialName'),
+      t('settings.providers.dalGatewayName'),
       t('settings.providers.openaiOfficialName'),
       t('settings.providers.grokOfficialName'),
       roleLabels,
-      claudeOAuthStatus?.loggedIn === true,
+      dalAuthStatus?.loggedIn === true,
       openAIOAuthStatus?.loggedIn === true,
       grokOAuthStatus?.loggedIn === true,
     ),
-    [activeId, availableModels, providers, roleLabels, t, claudeOAuthStatus, grokOAuthStatus, openAIOAuthStatus],
+    [activeId, availableModels, providers, roleLabels, t, dalAuthStatus, grokOAuthStatus, openAIOAuthStatus],
   )
   const normalizedSearchQuery = searchQuery.trim().toLocaleLowerCase()
   const selectableModels = isControlled && models ? models : availableModels

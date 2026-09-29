@@ -1,11 +1,17 @@
 /**
- * Settings Service — 读写用户级和项目级设置文件
+ * Settings Service — 读写用户级和项目级设置文件（DAL 体系）
  *
  * 设置文件为 JSON 格式：
- *   - 用户级: ~/.claude/settings.json
- *   - 项目级: {projectRoot}/.claude/settings.json
+ *   - 用户级: ~/.dal/agent/settings.json（dal 全局设置，DAL_CODING_AGENT_DIR 可覆盖）
+ *   - 项目级: {projectRoot}/.dal/settings.json（dal 项目设置，需项目信任）
  *
- * 合并策略：Object.assign({}, userSettings, projectSettings)
+ * 键映射（其余键原样透传，dal SettingsManager 会保留未知键）：
+ *   桌面 model  <-> dal defaultModel
+ *   桌面 effort <-> dal defaultThinkingLevel
+ *
+ * 生效时机：dal sidecar 进程在会话启动时读取 settings.json；写入后对
+ * 已运行会话不即时生效（新会话/重启 sidecar 后生效）。桌面 UI 经本服务
+ * 读写文件，立即反映最新值。
  */
 
 import * as fs from 'fs/promises'
@@ -17,9 +23,14 @@ import { normalizeJsonObject, readRecoverableJsonFile } from './recoverableJsonF
 import { ensurePersistentStorageUpgraded } from './persistentStorageMigrations.js'
 import { resetSettingsCache } from '../../utils/settings/settingsCache.js'
 import { addFileGlobRuleToGitignore } from '../../utils/git/gitignore.js'
-import { isEnvTruthy } from '../../utils/envUtils.js'
+import { getCcHahaDir, getClaudeConfigHomeDir, isEnvTruthy } from '../../utils/envUtils.js'
 import { getProcessEnvWithTerminalShellEnvironment } from '../../utils/terminalShellEnvironment.js'
 import type { ModelMapping } from '../types/provider.js'
+
+/** 迁移期旧 Claude 配置根（仅读，用于一次性搬迁）。 */
+function legacyClaudeConfigDir(): string {
+  return path.join(os.homedir(), '.claude')
+}
 
 export const VALID_PERMISSION_MODES = [
   'default',
@@ -44,32 +55,101 @@ export class SettingsService {
     this.projectRoot = projectRoot
   }
 
-  /** 配置目录，支持通过环境变量覆盖（便于测试） */
+  /** dal 引擎配置目录（~/.dal/agent，DAL_CODING_AGENT_DIR 可覆盖） */
   private getConfigDir(): string {
-    return process.env.CLAUDE_CONFIG_DIR || path.join(os.homedir(), '.claude')
+    return getClaudeConfigHomeDir()
   }
 
-  /** 用户级设置文件路径 */
+  /** 用户级设置文件路径（dal 全局设置） */
   private getUserSettingsPath(): string {
     return path.join(this.getConfigDir(), 'settings.json')
   }
 
-  /** 项目级设置文件路径 */
+  /** 项目级设置文件路径（dal 项目设置） */
   private getProjectSettingsPath(projectRoot?: string): string {
     const root = projectRoot || this.projectRoot
     if (!root) {
       throw ApiError.badRequest('Project root is required for project settings')
     }
-    return path.join(root, '.claude', 'settings.json')
+    return path.join(root, '.dal', 'settings.json')
   }
 
-  /** 项目本地设置文件路径（不建议提交到仓库） */
+  /**
+   * 项目本地设置文件路径。dal 体系只有全局+项目两层，local 层并入项目层
+   * （同文件浅合并，互不覆盖其他键）。
+   */
   private getLocalSettingsPath(projectRoot?: string): string {
-    const root = projectRoot || this.projectRoot
-    if (!root) {
-      throw ApiError.badRequest('Project root is required for local settings')
+    return this.getProjectSettingsPath(projectRoot)
+  }
+
+  // ---------------------------------------------------------------------------
+  // 键映射与旧数据迁移
+  // ---------------------------------------------------------------------------
+
+  /**
+   * 桌面 API 键 → dal settings 键。只有两组语义映射，其余键原样透传
+   * （dal SettingsManager 按需读取已知键，未知键在保存时保留）。
+   */
+  private static toDalSettings(settings: Record<string, unknown>): Record<string, unknown> {
+    const { model, effort, ...rest } = settings
+    if (model !== undefined) rest.defaultModel = model
+    if (effort !== undefined) rest.defaultThinkingLevel = effort
+    return rest
+  }
+
+  /** dal settings 键 → 桌面 API 键；旧 model/effort 键作为迁移期 fallback。 */
+  private static fromDalSettings(settings: Record<string, unknown>): Record<string, unknown> {
+    const { defaultModel, defaultThinkingLevel, model, effort, ...rest } = settings
+    if (defaultModel !== undefined || model !== undefined) {
+      rest.model = defaultModel ?? model
     }
-    return path.join(root, '.claude', 'settings.local.json')
+    if (defaultThinkingLevel !== undefined || effort !== undefined) {
+      rest.effort = defaultThinkingLevel ?? effort
+    }
+    return rest
+  }
+
+  /**
+   * 一次性迁移：旧 ~/.claude/settings.json → ~/.dal/agent/settings.json，
+   * 同时完成 model→defaultModel、effort→defaultThinkingLevel 键转换。
+   * 新文件已存在（或旧文件不存在）时不做任何事。
+   */
+  private async ensureUserSettingsMigrated(): Promise<void> {
+    if (this.userSettingsMigration) return this.userSettingsMigration
+    this.userSettingsMigration = (async () => {
+      const targetPath = this.getUserSettingsPath()
+      try {
+        await fs.access(targetPath)
+        return
+      } catch {
+        // 目标不存在，继续迁移
+      }
+      const legacyPath = path.join(legacyClaudeConfigDir(), 'settings.json')
+      let legacy: string
+      try {
+        legacy = await fs.readFile(legacyPath, 'utf-8')
+      } catch {
+        return
+      }
+      try {
+        const parsed = JSON.parse(legacy.replace(/^\uFEFF/, ''))
+        if (!parsed || typeof parsed !== 'object' || Array.isArray(parsed)) return
+        await fs.mkdir(path.dirname(targetPath), { recursive: true })
+        await fs.writeFile(
+          targetPath,
+          JSON.stringify(SettingsService.toDalSettings(normalizeJsonObject(parsed)), null, 2) + '\n',
+          'utf-8',
+        )
+      } catch {
+        // 旧文件损坏时不阻塞新体系的读取
+      }
+    })()
+    return this.userSettingsMigration
+  }
+
+  /** 供测试重置一次性迁移状态。 */
+  resetUserSettingsMigrationForTests(): void {
+    this.userSettingsMigration = null
   }
 
   // ---------------------------------------------------------------------------

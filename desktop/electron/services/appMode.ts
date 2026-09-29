@@ -15,8 +15,17 @@ type PersistedAppModeConfig = {
   portable_dir?: string | null
 }
 
-export function systemClaudeConfigDir(app: AppModeAppLike): string {
-  return path.join(app.getPath('home'), '.claude')
+/** 系统默认数据根：~/.dal（桌面状态与 dal 引擎配置的公共父目录）。 */
+export function systemDalDataDir(app: AppModeAppLike): string {
+  return path.join(app.getPath('home'), '.dal')
+}
+
+/** 兼容旧名（迁移期）：系统数据根。 */
+export const systemClaudeConfigDir = systemDalDataDir
+
+/** 当前生效的外部数据目录：DAL_CONFIG_DIR 优先，旧 CLAUDE_CONFIG_DIR 兼容读取。 */
+function externalDataDir(env: NodeJS.ProcessEnv): string | undefined {
+  return env.DAL_CONFIG_DIR || env.CLAUDE_CONFIG_DIR || undefined
 }
 
 function readAppModeConfig(configDir: string): PersistedAppModeConfig | null {
@@ -90,7 +99,7 @@ function normalizedCustomDir(app: AppModeAppLike, value: string | null | undefin
 }
 
 function externallyControlled(env: NodeJS.ProcessEnv): boolean {
-  return Boolean(env.CLAUDE_CONFIG_DIR && env.CC_HAHA_APP_PORTABLE_DIR !== '1')
+  return Boolean(externalDataDir(env) && env.CC_HAHA_APP_PORTABLE_DIR !== '1')
 }
 
 // The app-managed portable selection is process-local derived state; the
@@ -100,6 +109,7 @@ function externallyControlled(env: NodeJS.ProcessEnv): boolean {
 // that may no longer match the persisted mode (#1160).
 export function clearAppManagedPortableEnv(env: NodeJS.ProcessEnv = process.env): void {
   if (env.CC_HAHA_APP_PORTABLE_DIR !== '1') return
+  delete env.DAL_CONFIG_DIR
   delete env.CLAUDE_CONFIG_DIR
   delete env.CC_HAHA_APP_PORTABLE_DIR
   delete env.WEBVIEW2_USER_DATA_FOLDER
@@ -109,7 +119,7 @@ export function determineStartupPortableDir(
   app: AppModeAppLike,
   env: NodeJS.ProcessEnv = process.env,
 ): string | null {
-  if (env.CLAUDE_CONFIG_DIR) return null
+  if (externalDataDir(env)) return null
 
   const config = readAppModeConfig(app.getPath('userData'))
   if (config?.mode !== 'portable' || !config.portable_dir || !path.isAbsolute(config.portable_dir)) return null
@@ -128,8 +138,9 @@ export function applyStartupPortableMode(
   // app.relaunch() inherits process.env. Discard the previous app-managed
   // selection so the persisted two-mode record remains authoritative.
   clearAppManagedPortableEnv(env)
-  if (env.CLAUDE_CONFIG_DIR) {
-    env.CLAUDE_CONFIG_DIR = normalizedCustomDir(app, env.CLAUDE_CONFIG_DIR)
+  const configured = externalDataDir(env)
+  if (configured) {
+    env.DAL_CONFIG_DIR = normalizedCustomDir(app, configured)
     return null
   }
   const customDir = determineStartupPortableDir(app, env)
@@ -137,7 +148,7 @@ export function applyStartupPortableMode(
 
   const webViewDataDir = path.join(customDir, 'EBWebView')
   fs.mkdirSync(webViewDataDir, { recursive: true })
-  env.CLAUDE_CONFIG_DIR = customDir
+  env.DAL_CONFIG_DIR = customDir
   env.CC_HAHA_APP_PORTABLE_DIR = '1'
   env.WEBVIEW2_USER_DATA_FOLDER = webViewDataDir
   return customDir
@@ -147,8 +158,8 @@ export function getAppMode(
   app: AppModeAppLike,
   env: NodeJS.ProcessEnv = process.env,
 ): AppModeConfig {
-  const envConfigDir = env.CLAUDE_CONFIG_DIR
-    ? normalizedCustomDir(app, env.CLAUDE_CONFIG_DIR)
+  const envConfigDir = externalDataDir(env)
+    ? normalizedCustomDir(app, externalDataDir(env)!)
     : null
   const persistedCustomDir = envConfigDir ? null : determineStartupPortableDir(app, env)
   const customDir = envConfigDir || persistedCustomDir
@@ -166,7 +177,7 @@ export function getAppMode(
   return {
     mode: 'default',
     portableDir: null,
-    activeConfigDir: systemClaudeConfigDir(app),
+    activeConfigDir: systemDalDataDir(app),
     configDirSource: 'system',
   }
 }
@@ -177,7 +188,7 @@ export function setAppMode(
   env: NodeJS.ProcessEnv = process.env,
 ): void {
   if (externallyControlled(env)) {
-    throw new Error('CLAUDE_CONFIG_DIR is controlled by the launch environment')
+    throw new Error('DAL_CONFIG_DIR is controlled by the launch environment')
   }
 
   if (input.mode === 'default') {

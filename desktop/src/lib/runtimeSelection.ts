@@ -1,4 +1,4 @@
-import { OFFICIAL_DEFAULT_MODEL_ID } from '../constants/modelCatalog'
+import { DAL_GATEWAY_PROVIDER_ID } from '../constants/modelCatalog'
 import {
   OPENAI_OFFICIAL_DEFAULT_MODEL_ID,
   OPENAI_OFFICIAL_MODELS,
@@ -75,7 +75,9 @@ export function resolveActiveProviderRuntimeSelection(
         ? OPENAI_OFFICIAL_DEFAULT_MODEL_ID
         : inferredProviderId === GROK_OFFICIAL_PROVIDER_ID
           ? GROK_OFFICIAL_DEFAULT_MODEL_ID
-          : OFFICIAL_DEFAULT_MODEL_ID
+          // DAL 网关目录运行时发现，无本地种子：缺省留空，由 UI 展示
+          // "选择模型"（空 id 不会被下发给 dal）。
+          : ''
     ),
   }
 }
@@ -92,8 +94,9 @@ export function resolveDefaultRuntimeSelection(
     providers,
     currentModelId,
   ) ?? {
-    providerId: null,
-    modelId: currentModelId || OFFICIAL_DEFAULT_MODEL_ID,
+    // 无任何 provider 时的缺省目标：DAL 网关（登录后目录可用）。
+    providerId: DAL_GATEWAY_PROVIDER_ID,
+    modelId: currentModelId || '',
   }
 }
 
@@ -110,6 +113,7 @@ export function reconcileRuntimeSelection(
 ): RuntimeSelection {
   const provider = context.providers.find((entry) => entry.id === selection.providerId)
   const isOfficial = selection.providerId === null ||
+    selection.providerId === DAL_GATEWAY_PROVIDER_ID ||
     selection.providerId === OPENAI_OFFICIAL_PROVIDER_ID ||
     selection.providerId === GROK_OFFICIAL_PROVIDER_ID
   if (!provider && !isOfficial && context.hasLoadedProviders) {

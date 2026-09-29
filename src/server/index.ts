@@ -16,7 +16,6 @@ import { teamWatcher } from './services/teamWatcher.js'
 import { cronScheduler } from './services/cronScheduler.js'
 import { handleProxyRequest } from './proxy/handler.js'
 import { ProviderService } from './services/providerService.js'
-import { handleHahaOAuthCallback } from './api/haha-oauth.js'
 import { handleHahaOpenAIOAuthCallback } from './api/haha-openai-oauth.js'
 import { handlePreviewFs } from './api/previewFs.js'
 import { handleLocalFile } from './api/localFile.js'
@@ -485,10 +484,6 @@ export function startServer(port = PORT, host = HOST) {
           })
           if (upgraded) return undefined
           return new Response('WebSocket upgrade failed', { status: 400 })
-        }
-
-        if (url.pathname === '/callback') {
-          return handleHahaOAuthCallback(url)
         }
 
         if (

@@ -2,7 +2,12 @@
 
 export type PermissionMode = 'default' | 'acceptEdits' | 'auto' | 'plan' | 'bypassPermissions' | 'dontAsk'
 
-export type EffortLevel = 'low' | 'medium' | 'high' | 'xhigh' | 'max'
+/**
+ * 思考等级对齐 pi-agent-core ThinkingLevel（DAL 全集 off..max）。
+ * `off`/`minimal` 仅由 DAL 模型目录下发，原 Claude effort 体系只产生
+ * low..max，union 取并集保持向后兼容。
+ */
+export type EffortLevel = 'off' | 'minimal' | 'low' | 'medium' | 'high' | 'xhigh' | 'max'
 export type ReasoningEffortLevel = EffortLevel
 /**
  * The six 「纸 · 墨 · 印」 palettes, in the order the appearance picker shows
