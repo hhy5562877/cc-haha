@@ -13,7 +13,7 @@ import { parseZipModes, unzipFile } from '../../../utils/dxt/zip.js'
 import { errorMessage, getErrnoCode, isENOENT, toError } from '../../../utils/errors.js'
 import { getFsImplementation } from '../../../utils/fsOperations.js'
 import { logError } from '../../../utils/log.js'
-import { getSecureStorage } from '../../../utils/secureStorage/index.js'
+import { getSecureStorage } from '../secureStorage/index.js'
 import {
   getSettings_DEPRECATED,
   updateSettingsForSource,

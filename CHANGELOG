@@ -1,5 +1,9 @@
 # CHANGELOG
 
+- [2026-10-01 06:00] REFACTOR: 解耦批次 19 完成——utils/secureStorage 整目录（7 文件 663 行）迁入 src/server/utils/secureStorage/，全仓消费方（mcp/auth、mcp/client、utils/auth、components/messages 等 20+ 处）重指；E2E 因系统代理 TUN 级 TLS 拦截暂 FAIL（外部环境，模块解析零错误） (Files: src/server/utils/secureStorage/*, src/utils/auth.ts, src/components/messages/* 等)
+
+- [2026-10-01 04:30] REFACTOR: 解耦批次 18 完成——teamShutdownPrompt/teamPlanPresetSource 纯文件提取入 src/server/utils/swarm/（shared/teamPlan 引用深度修正），sessionService/ws/handler/teamPlanRuntime 四消费方重指；本轮 E2E 因外部 TLS 干扰（npmjs 与 deepailab 双双 ERR_TLS_CERT_ALTNAME_INVALID，系统级 DNS/代理问题）暂未通过，非代码缺陷 (Files: src/server/utils/swarm/*, src/server/services/{sessionService,teamPlanRuntime}.ts, src/server/ws/handler.ts)
+
 - [2026-10-01 03:20] REFACTOR: 解耦批次 17 完成——utils/permissions 子系统（24 文件 ~5000 行）整目录迁入 src/server/utils/permissions/（语义归一器单步重算），全仓 196 处消费方精算重指（含 src/utils 混合层级 122 处、根文件、services 兄弟）；E2E PASS (Files: src/server/utils/permissions/*, src/utils/* 消费方)
 
 - [2026-10-01 03:30] REFACTOR: 解耦批次 16 完成——services/connectors 整目录（13 文件 1385 行）迁入 src/server/services/connectors/（前序批次已内化其 plugins/mcp 依赖，仅剩 envUtils 支撑引用按深度修正），13 处消费方重指；E2E PASS (Files: src/server/services/connectors/*, src/server/api/connectors.ts, src/server/services/capabilityMentionService.ts 等)

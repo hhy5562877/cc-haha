@@ -1,13 +1,13 @@
 import { chmodSync } from 'fs'
 import { join } from 'path'
-import { getClaudeConfigHomeDir } from '../envUtils.js'
-import { getErrnoCode } from '../errors.js'
-import { getFsImplementation } from '../fsOperations.js'
+import { getClaudeConfigHomeDir } from '../../../utils/envUtils.js'
+import { getErrnoCode } from '../../../utils/errors.js'
+import { getFsImplementation } from '../../../utils/fsOperations.js'
 import {
   jsonParse,
   jsonStringify,
   writeFileSync_DEPRECATED,
-} from '../slowOperations.js'
+} from '../../../utils/slowOperations.js'
 import type { SecureStorage, SecureStorageData } from './types.js'
 
 function getStoragePath(): { storageDir: string; storagePath: string } {

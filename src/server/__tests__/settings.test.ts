@@ -20,11 +20,11 @@ import {
 import {
   clearOpenAIOAuthTokenCache,
 } from '../services/openaiAuth/storage.js'
-import { plainTextStorage } from '../../utils/secureStorage/plainTextStorage.js'
+import { plainTextStorage } from '../utils/secureStorage/plainTextStorage.js'
 import {
   clearKeychainCache,
   primeKeychainCacheFromPrefetch,
-} from '../../utils/secureStorage/macOsKeychainHelpers.js'
+} from '../utils/secureStorage/macOsKeychainHelpers.js'
 import type { OpenAIOAuthTokens } from '../services/openaiAuth/types.js'
 import {
   getMaxOpus46_1MOption,

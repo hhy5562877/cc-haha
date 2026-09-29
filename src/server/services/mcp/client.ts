@@ -124,7 +124,7 @@ import { UnauthorizedError } from '@modelcontextprotocol/sdk/client/auth.js'
 import type { AssistantMessage } from 'src/types/message.js'
 /* eslint-enable @typescript-eslint/no-require-imports */
 import { classifyMcpToolForCollapse } from '../../../tools/MCPTool/classifyForCollapse.js'
-import { clearKeychainCache } from '../../../utils/secureStorage/macOsKeychainHelpers.js'
+import { clearKeychainCache } from '../../utils/secureStorage/macOsKeychainHelpers.js'
 import { sleep } from '../../../utils/sleep.js'
 import {
   ClaudeAuthProvider,
