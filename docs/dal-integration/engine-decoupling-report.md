@@ -1,13 +1,13 @@
 # 引擎解耦量化报告
 
-> 自动生成：bun scripts/engine-decoupling-report.ts（词法模块图，3732 文件）
+> 自动生成：bun scripts/engine-decoupling-report.ts（词法模块图，3736 文件）
 
 ## 总量
 
-- src/server 文件数：436
-- server → 引擎 **直接依赖边**：428（涉及 174 个引擎文件）
-- 引擎传递闭包（直接+间接可达）：**2004 个文件**
-- 其中疑似类型/模型定义类直接依赖：35
+- src/server 文件数：485
+- server → 引擎 **直接依赖边**：523（涉及 196 个引擎文件）
+- 引擎传递闭包（直接+间接可达）：**1959 个文件**
+- 其中疑似类型/模型定义类直接依赖：26
 
 ## 直接依赖按引擎目录分布
 
@@ -15,20 +15,20 @@
 |---|---|
 | src/utils/plugins | 15 |
 | src/services/connectors | 8 |
-| src/services/openaiAuth | 7 |
+| src/utils/settings | 7 |
 | src/tools/AgentTool | 6 |
-| src/services/grokAuth | 6 |
-| src/utils/settings | 5 |
-| src/services/mcp | 5 |
-| src/utils/model | 5 |
-| src/services/api | 4 |
-| src/utils/computerUse | 4 |
+| src/utils/computerUse | 5 |
+| src/utils/model | 4 |
+| src/utils/secureStorage | 4 |
 | src/utils/swarm | 4 |
-| src/utils/permissions | 4 |
 | src/services/oauth | 4 |
-| src/vendor/computer-use-mcp | 2 |
-| src/utils/secureStorage | 2 |
+| src/vendor/computer-use-mcp | 3 |
+| src/utils/permissions | 3 |
+| src/services/analytics | 3 |
+| src/utils/claudeInChrome | 3 |
+| src/services/api | 2 |
 | src/tools/FileEditTool | 2 |
+| src/tools/MCPTool | 2 |
 | src/state/AppStateStore.ts | 1 |
 | src/utils/git.ts | 1 |
 | src/utils/terminalShellEnvironment.ts | 1 |
@@ -98,12 +98,44 @@
 | src/utils/shellConfig.ts | 1 |
 | src/utils/xdg.ts | 1 |
 | src/services/teamMemorySync | 1 |
+| src/services/modelCatalogCache.ts | 1 |
 | src/utils/commandMetadata.ts | 1 |
 | src/utils/sessionTitleText.ts | 1 |
 | src/utils/messages.ts | 1 |
 | src/utils/shotStats.ts | 1 |
 | src/utils/usageAccounting.ts | 1 |
+| src/utils/browser.ts | 1 |
+| src/utils/platform.ts | 1 |
+| src/utils/sleep.ts | 1 |
+| src/utils/lazySchema.ts | 1 |
+| src/constants/xml.ts | 1 |
+| src/utils/xml.ts | 1 |
+| src/constants/product.ts | 1 |
+| src/tools/ListMcpResourcesTool | 1 |
+| src/tools/McpAuthTool | 1 |
+| src/tools/ReadMcpResourceTool | 1 |
+| src/utils/abortController.ts | 1 |
+| src/utils/array.ts | 1 |
+| src/utils/cleanupRegistry.ts | 1 |
+| src/utils/codeIndexing.ts | 1 |
+| src/utils/http.ts | 1 |
+| src/utils/ide.ts | 1 |
+| src/utils/mcpOutputStorage.ts | 1 |
+| src/utils/mcpValidation.ts | 1 |
+| src/utils/mcpWebSocketTransport.ts | 1 |
+| src/utils/memoize.ts | 1 |
+| src/utils/mtls.ts | 1 |
+| src/utils/sanitization.ts | 1 |
+| src/utils/sessionIngressAuth.ts | 1 |
 | src/utils/mcpStdioEnvironment.ts | 1 |
+| src/utils/toolResultStorage.ts | 1 |
+| src/skills/mcpSkills.ts | 1 |
+| src/utils/fsOperations.ts | 1 |
+| src/utils/hooks.ts | 1 |
+| src/services/skillSearch | 1 |
+| src/context/notifications.tsx | 1 |
+| src/utils/messageQueueManager.ts | 1 |
+| src/components/mcp | 1 |
 | src/utils/providerManagedEnvCompat.ts | 1 |
 | src/plugins/builtinPlugins.ts | 1 |
 | src/services/plugins | 1 |
@@ -118,8 +150,6 @@
 | src/utils/git | 1 |
 | src/shared/teamPlan.ts | 1 |
 | src/utils/sessionTitle.ts | 1 |
-| src/utils/lazySchema.ts | 1 |
-| src/constants/xml.ts | 1 |
 
 ## 解耦枢纽（闭包内扇入 Top 25——先解耦它们可级联释放最多文件）
 
@@ -127,7 +157,7 @@
 |---|---|
 | src/ink.ts | 390 |
 | src/utils/debug.ts | 325 |
-| src/utils/envUtils.ts | 227 |
+| src/utils/envUtils.ts | 228 |
 | src/utils/errors.ts | 224 |
 | src/Tool.ts | 213 |
 | src/bootstrap/state.ts | 211 |
@@ -149,7 +179,7 @@
 | src/utils/auth.ts | 82 |
 | src/types/command.ts | 79 |
 | src/utils/stringUtils.ts | 73 |
-| src/utils/model/model.ts | 71 |
+| src/utils/model/model.ts | 68 |
 
 ## 分批解耦建议
 
