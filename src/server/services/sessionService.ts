@@ -55,6 +55,11 @@ import {
 import { ProviderService } from './providerService.js'
 import { shouldHideCommandMetadataContent } from '../../utils/commandMetadata.js'
 import { getClaudeConfigHomeDir } from '../../utils/envUtils.js'
+import {
+  countDalSessionMessages,
+  findDalSessionFileGlobal,
+  readDalSessionHeader,
+} from '../dal/sessionStore.js'
 import { getSettings_DEPRECATED } from '../../utils/settings/settings.js'
 import {
   extractGoalCreationTitle,
@@ -4633,7 +4638,23 @@ export class SessionService {
     }
     const memory = this.memoryLaunchInfo.get(this.memorySessionKey(sessionId))
     const found = await this.findSessionFile(sessionId)
-    if (!found) return memory ? { ...memory, transcriptMessageCount: 0 } : null
+    if (!found) {
+      // dal 会话兜底：桌面 sessionId 即 dal 的 --session-id（uuid），
+      // 命中 ~/.dal/agent/sessions 下按 uuid 后缀命名的会话文件即视为可续接。
+      const dalFile = findDalSessionFileGlobal(sessionId)
+      if (dalFile) {
+        const header = readDalSessionHeader(dalFile)
+        const workDir = header?.cwd && typeof header.cwd === 'string' ? header.cwd : ''
+        return {
+          filePath: dalFile,
+          projectDir: this.sanitizePath(workDir || path.dirname(dalFile)),
+          workDir,
+          transcriptMessageCount: countDalSessionMessages(dalFile),
+          customTitle: header?.name ?? null,
+        }
+      }
+      return memory ? { ...memory, transcriptMessageCount: 0 } : null
+    }
 
     const projection = await this.getMetadataProjection(found.filePath, found.projectDir)
     const projected = projection.launchInfo
