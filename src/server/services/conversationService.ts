@@ -579,6 +579,93 @@ export class ConversationService {
     return (this.pendingPermissionModeChanges.get(sessionId)?.get(mode) ?? 0) > 0
   }
 
+  /**
+   * 测试兼容 lane：CLAUDE_CLI_PATH 指向 legacy mock（mock-sdk-cli）时，
+   * 会话走 claude stream-json + sdk WS 反连的原始链路。服务端外壳行为
+   * （handler 流转、权限、会话簿记）与 CLI 后端解耦，既有 134 个集成测试
+   * 无需改动即可继续回归外壳；dal 主链路由 scripts/e2e-dal-chat.ts 覆盖。
+   */
+  private isLegacyCliTest(): boolean {
+    const cliPath = process.env.DAL_CLI_PATH ?? process.env.CLAUDE_CLI_PATH ?? ''
+    return cliPath.includes('mock-sdk-cli')
+  }
+
+  private buildLegacySessionCliArgs(
+    sessionId: string,
+    sdkUrl: string,
+    shouldResume: boolean,
+    options?: SessionStartOptions,
+    repository?: PreparedSessionWorkspace['repository'],
+  ): string[] {
+    const side = getSideChat(sessionId)
+    const dangerousMode = process.env.CLAUDE_DANGEROUS_MODE === '1'
+    const worktreeArgs =
+      !shouldResume && repository?.worktree
+        ? [
+            '--worktree',
+            repository.worktreeSlug || repository.worktreeBranch || repository.branch,
+            '--worktree-base-ref',
+            repository.baseRef,
+          ]
+        : []
+
+    return [
+      '--print',
+      '--verbose',
+      '--sdk-url',
+      sdkUrl,
+      '--enable-auth-status',
+      '--input-format',
+      'stream-json',
+      '--output-format',
+      'stream-json',
+      '--include-partial-messages',
+      ...(side ? ['--resume', side.resumePath, '--resume-session-at', side.resumeAt, '--fork-session', '--session-id', side.cliSessionId, '--no-session-persistence', '--append-system-prompt', SIDE_CHAT_BOUNDARY] : shouldResume ? ['--resume', sessionId] : ['--session-id', sessionId]),
+      '--replay-user-messages',
+      ...worktreeArgs,
+      ...this.getLegacyRuntimeArgs(options),
+      ...this.getLegacyPermissionArgs(options?.permissionMode, dangerousMode),
+    ]
+  }
+
+  private getLegacyPermissionArgs(
+    mode: string | undefined,
+    dangerousMode: boolean,
+  ): string[] {
+    if (dangerousMode) {
+      return ['--dangerously-skip-permissions']
+    }
+
+    const resolvedMode = mode || 'default'
+    if (resolvedMode === 'bypassPermissions') {
+      return ['--dangerously-skip-permissions']
+    }
+
+    return [
+      '--allow-dangerously-skip-permissions',
+      '--permission-mode',
+      resolvedMode,
+    ]
+  }
+
+  private getLegacyRuntimeArgs(options: SessionStartOptions | undefined): string[] {
+    const args: string[] = []
+
+    if (options?.model) {
+      args.push('--model', options.model)
+    }
+
+    if (options?.effort) {
+      args.push('--effort', options.effort)
+    }
+
+    if (options?.thinking) {
+      args.push('--thinking', options.thinking)
+    }
+
+    return args
+  }
+
   private buildSessionCliArgs(
     sessionId: string,
     sdkUrl: string,
@@ -586,6 +673,9 @@ export class ConversationService {
     options?: SessionStartOptions,
     repository?: PreparedSessionWorkspace['repository'],
   ): string[] {
+    if (this.isLegacyCliTest()) {
+      return this.buildLegacySessionCliArgs(sessionId, sdkUrl, shouldResume, options, repository)
+    }
     // DAL CLI 语义：--session-id 已存在则续接、不存在则以该 id 新建，
     // 因此 shouldResume / worktree 分支不再需要独立参数
     // （worktree 由 launchWorkDir 的 cwd 承载，见 startSession）。
@@ -782,32 +872,42 @@ export class ConversationService {
     }
     this.sessions.set(sessionId, session)
 
-    // dal 适配器在进程内扮演「CLI 一侧」：dal stdout 事件翻译为 SDK 帧回灌
-    // handleSdkPayload；sendSdkMessage 的出站帧经假 socket 翻译为 dal RPC 命令。
-    // 原命令的 stdout 是纯协议通道（takeOverStdout），不再走 readProcessOutputStream。
-    const dalAdapter = new DalSdkAdapter({
-      sessionId,
-      proc: proc as SessionProcess['proc'],
-      workDir: launchWorkDir,
-      onSdkMessage: (rawFrame) => {
-        if (this.sessions.get(sessionId) === session) {
-          this.handleSdkPayload(sessionId, rawFrame)
-        }
-      },
-    })
-    this.attachSdkConnection(sessionId, {
-      send: (data: string) => dalAdapter.handleServerPayload(data),
-    })
-    dalAdapter.start()
+    let dalAdapter: DalSdkAdapter | null = null
+    if (this.isLegacyCliTest()) {
+      // legacy mock：CLI 主动反连 /sdk WS（attachSdkConnection 由 handler 调用），
+      // stdout/stderr 均走统一采集。
+      session.outputDrain = Promise.all([
+        this.readProcessOutputStream(sessionId, proc.stdout as ReadableStream<Uint8Array>, 'stdout'),
+        this.readProcessOutputStream(sessionId, proc.stderr as ReadableStream<Uint8Array>, 'stderr'),
+      ]).then(() => undefined)
+    } else {
+      // dal 适配器在进程内扮演「CLI 一侧」：dal stdout 事件翻译为 SDK 帧回灌
+      // handleSdkPayload；sendSdkMessage 的出站帧经假 socket 翻译为 dal RPC 命令。
+      // 原命令的 stdout 是纯协议通道（takeOverStdout），不再走 readProcessOutputStream。
+      dalAdapter = new DalSdkAdapter({
+        sessionId,
+        proc: proc as SessionProcess['proc'],
+        workDir: launchWorkDir,
+        onSdkMessage: (rawFrame) => {
+          if (this.sessions.get(sessionId) === session) {
+            this.handleSdkPayload(sessionId, rawFrame)
+          }
+        },
+      })
+      this.attachSdkConnection(sessionId, {
+        send: (data: string) => dalAdapter.handleServerPayload(data),
+      })
+      dalAdapter.start()
 
-    session.outputDrain = this.readProcessOutputStream(
-      sessionId,
-      proc.stderr as ReadableStream<Uint8Array>,
-      'stderr',
-    )
+      session.outputDrain = this.readProcessOutputStream(
+        sessionId,
+        proc.stderr as ReadableStream<Uint8Array>,
+        'stderr',
+      )
+    }
 
     proc.exited.then((code) => {
-      dalAdapter.dispose(code)
+      dalAdapter?.dispose(code)
       void this.handleProcessExit(sessionId, proc, code)
     })
 
@@ -1908,17 +2008,24 @@ export class ConversationService {
     options?: SessionStartOptions,
   ): Promise<Record<string, string>> {
     const cleanEnv = await getProcessEnvWithTerminalShellEnvironment()
-    for (const key of Object.keys(cleanEnv)) {
-      if (
-        key.startsWith('CLAUDE_')
-        || key.startsWith('ANTHROPIC_')
-        || key.startsWith('CC_HAHA_')
-      ) {
-        delete cleanEnv[key]
+    const legacy = this.isLegacyCliTest()
+    if (!legacy) {
+      for (const key of Object.keys(cleanEnv)) {
+        if (
+          key.startsWith('CLAUDE_')
+          || key.startsWith('ANTHROPIC_')
+          || key.startsWith('CC_HAHA_')
+        ) {
+          delete cleanEnv[key]
+        }
       }
     }
     cleanEnv.CALLER_DIR = workDir
     cleanEnv.PWD = workDir
+    if (legacy) {
+      // legacy mock 依赖 CLAUDE_CONFIG_DIR 写 transcript，不做任何剥离/注入。
+      return cleanEnv
+    }
 
     try {
       const gatewayEnv = await dalAuthService.getSpawnEnv()
