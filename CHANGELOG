@@ -1,5 +1,7 @@
 # CHANGELOG
 
+- [2026-09-30 23:59] REFACTOR: 解耦批次 13 完成——plugins 组（19212 行 20+ 文件，最大子系统）整目录迁入 src/server/utils/plugins/，语义归一器单步重算搬迁件相对导入，全仓消费方多形态重指（相对前缀/单父兄弟/点斜/根式 src/utils 路径，./plugins 未迁移组精确保留），E2E PASS (Files: src/server/utils/plugins/*, src/commands.ts, src/main.tsx, src/server/services/capabilityMentionService.ts 等)
+
 - [2026-09-30 22:40] REFACTOR: 解耦批次 12 完成——getCanonicalName 以窄化近似入 src/server/utils/model.ts（剥 [1m]/provider 前缀/anthropic. + 小写，成本表键匹配语义正确——dal 网关模型本不在引擎成本表）；sessionService/providerService 重指，server→utils/model 直接消费边全断（model 子系统余量随引擎休眠） (Files: src/server/utils/model.ts, src/server/services/sessionService.ts, src/server/services/providerService.ts)
 
 - [2026-09-30 21:30] REFACTOR: 解耦批次 11 完成——traceCapture(3132 行)迁入 src/server/services/api/traceCapture.ts，消费方（traceCaptureService、query.ts、dumpPrompts、proxy-anthropic-compat 测试）重指；E2E PASS (Files: src/server/services/api/traceCapture.ts, src/server/services/traceCaptureService.ts, src/query.ts, src/services/api/dumpPrompts.ts)
