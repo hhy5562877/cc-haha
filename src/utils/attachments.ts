@@ -204,8 +204,8 @@ import { hasUltrathinkKeyword, isUltrathinkEnabled } from './thinking.js'
 import {
   getWorkflowSizeGuideline,
   isWorkflowKeywordTriggerEnabled,
-} from './workflows/enabled.js'
-import { hasWorkflowKeyword } from './workflows/keyword.js'
+} from '../server/utils/workflows/enabled.js'
+import { hasWorkflowKeyword } from '../server/utils/workflows/keyword.js'
 import {
   tokenCountFromLastAPIResponse,
   tokenCountWithEstimation,

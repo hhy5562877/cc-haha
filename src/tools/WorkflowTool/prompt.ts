@@ -2,8 +2,8 @@ import {
   WORKFLOW_MAX_AGENTS,
   WORKFLOW_MAX_FANOUT,
   getWorkflowConcurrency,
-} from '../../utils/workflows/constants.js'
-import { describeWorkflowSizeGuideline } from '../../utils/workflows/enabled.js'
+} from '../../../src/server/utils/workflows/constants.js'
+import { describeWorkflowSizeGuideline } from '../../../src/server/utils/workflows/enabled.js'
 
 /**
  * The Workflow tool description.

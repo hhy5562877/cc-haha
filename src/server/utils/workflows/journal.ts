@@ -1,6 +1,6 @@
 import { appendFile, mkdir, readFile } from 'fs/promises'
 import { dirname } from 'path'
-import { logForDebugging } from '../debug.js'
+import { logForDebugging } from '../../../utils/debug.js'
 import { getWorkflowJournalPath } from './paths.js'
 
 /**

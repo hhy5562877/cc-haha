@@ -1,4 +1,4 @@
-import { describeWorkflowSizeGuideline } from './workflows/enabled.js'
+import { describeWorkflowSizeGuideline } from '../server/utils/workflows/enabled.js'
 import {
   ULTRACODE_ENTER_REMINDER,
   ULTRACODE_EXIT_REMINDER,

@@ -36,8 +36,8 @@ import {
   WORKFLOW_SUBAGENT_TYPE,
   workflowStructuredOutputNote,
   workflowStructuredSubagentPrompt,
-} from './constants.js'
-import type { WorkflowAgentOptions } from './types.js'
+} from '../../../src/server/utils/workflows/constants.js'
+import type { WorkflowAgentOptions } from '../../../src/server/utils/workflows/types.js'
 
 /**
  * The agent definition every workflow subagent runs under.

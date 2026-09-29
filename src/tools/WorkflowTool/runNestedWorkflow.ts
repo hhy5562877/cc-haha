@@ -1,9 +1,9 @@
 import { readFile } from 'fs/promises'
 import type { CanUseToolFn } from '../../hooks/useCanUseTool.js'
 import type { ToolUseContext } from '../../Tool.js'
-import { findWorkflowByName } from '../../utils/workflows/discovery.js'
+import { findWorkflowByName } from '../../../src/server/utils/workflows/discovery.js'
 import type { WorkflowSharedCounters } from '../../utils/workflows/harness.js'
-import type { WorkflowJournal } from '../../utils/workflows/journal.js'
+import type { WorkflowJournal } from '../../../src/server/utils/workflows/journal.js'
 import {
   executeWorkflowScript,
   prepareWorkflowScript,
@@ -11,7 +11,7 @@ import {
 import type {
   WorkflowProgressEvent,
   WorkflowTokenBudget,
-} from '../../utils/workflows/types.js'
+} from '../../../src/server/utils/workflows/types.js'
 
 export type NestedWorkflowDeps = {
   toolUseContext: ToolUseContext

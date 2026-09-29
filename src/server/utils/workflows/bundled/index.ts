@@ -1,5 +1,5 @@
 import { parseWorkflowScript } from '../meta.js'
-import type { WorkflowDefinition } from '../types.js'
+import type { WorkflowDefinition } from '../../../types.js'
 import { DEEP_RESEARCH_SCRIPT } from './deepResearch.js'
 
 const BUNDLED_SCRIPTS = [DEEP_RESEARCH_SCRIPT]

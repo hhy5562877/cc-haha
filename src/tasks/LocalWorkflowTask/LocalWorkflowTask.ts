@@ -20,14 +20,14 @@ import {
   writeTaskOutput,
 } from '../../utils/task/diskOutput.js'
 import { PANEL_GRACE_MS, updateTaskState } from '../../utils/task/framework.js'
-import { WORKFLOW_MAX_PROGRESS_ROWS } from '../../utils/workflows/constants.js'
-import { getWorkflowTranscriptDir } from '../../utils/workflows/paths.js'
+import { WORKFLOW_MAX_PROGRESS_ROWS } from '../../../src/server/utils/workflows/constants.js'
+import { getWorkflowTranscriptDir } from '../../../src/server/utils/workflows/paths.js'
 import { asAgentId } from '../../types/ids.js'
 import {
   isDurableWorkflowEvent,
   type WorkflowPhaseMeta,
   type WorkflowProgressEvent,
-} from '../../utils/workflows/types.js'
+} from '../../../src/server/utils/workflows/types.js'
 
 export type LocalWorkflowTaskState = TaskStateBase & {
   type: 'local_workflow'

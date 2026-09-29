@@ -6,14 +6,14 @@ import { lazySchema } from '../../utils/lazySchema.js'
 import { getRuleByContentsForTool } from '../../utils/permissions/permissions.js'
 import { hasAcceptedWorkflowsInAutoMode } from '../../utils/workflows/autoModeConsent.js'
 import { jsonStringify } from '../../utils/slowOperations.js'
-import { findWorkflowByName, loadWorkflows } from '../../utils/workflows/discovery.js'
+import { findWorkflowByName, loadWorkflows } from '../../../src/server/utils/workflows/discovery.js'
 import {
   areWorkflowsEnabled,
   describeWorkflowsDisabled,
   getWorkflowsDisabledReason,
-} from '../../utils/workflows/enabled.js'
-import { WORKFLOW_SCRIPT_MAX_BYTES } from '../../utils/workflows/constants.js'
-import { createWorkflowRunId } from '../../utils/workflows/paths.js'
+} from '../../../src/server/utils/workflows/enabled.js'
+import { WORKFLOW_SCRIPT_MAX_BYTES } from '../../../src/server/utils/workflows/constants.js'
+import { createWorkflowRunId } from '../../../src/server/utils/workflows/paths.js'
 import { prepareWorkflowScript } from '../../utils/workflows/runtime.js'
 import { launchWorkflow } from './launchWorkflow.js'
 import { WORKFLOW_TOOL_NAME } from './constants.js'

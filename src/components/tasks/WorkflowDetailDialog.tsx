@@ -5,11 +5,11 @@ import type { KeyboardEvent } from '../../ink/events/keyboard-event.js'
 import { Box, Text } from '../../ink.js'
 import type { LocalWorkflowTaskState } from '../../tasks/LocalWorkflowTask/LocalWorkflowTask.js'
 import type { DeepImmutable } from '../../types/utils.js'
-import { getLargeWorkflowWarning } from '../../utils/workflows/enabled.js'
+import { getLargeWorkflowWarning } from '../../../src/server/utils/workflows/enabled.js'
 import type {
   WorkflowAgentEvent,
   WorkflowProgressEvent,
-} from '../../utils/workflows/types.js'
+} from '../../../src/server/utils/workflows/types.js'
 import { Byline } from '../design-system/Byline.js'
 import { KeyboardShortcutHint } from '../design-system/KeyboardShortcutHint.js'
 import { getTaskStatusColor, getTaskStatusIcon } from './taskStatusUtils.js'

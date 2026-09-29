@@ -8,7 +8,7 @@
  */
 
 import { modelSupportsXHighEffort } from '../effort.js'
-import { areWorkflowsEnabled } from './enabled.js'
+import { areWorkflowsEnabled } from '../../../src/server/utils/workflows/enabled.js'
 
 export const ULTRACODE_EFFORT_ARG = 'ultracode'
 

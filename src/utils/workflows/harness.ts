@@ -2,7 +2,7 @@ import type { CanUseToolFn } from '../../hooks/useCanUseTool.js'
 import type { ToolUseContext } from '../../Tool.js'
 import { logForDebugging } from '../debug.js'
 import { agentWorktreeUnavailableReason } from '../worktree.js'
-import { describeThrown, thrownName } from './errors.js'
+import { describeThrown, thrownName } from '../../../src/server/utils/workflows/errors.js'
 import {
   WORKFLOW_AGENT_CAP_MESSAGE,
   WORKFLOW_AGENT_STALL_MS,
@@ -11,13 +11,13 @@ import {
   WORKFLOW_MAX_FANOUT,
   WORKFLOW_PREVIEW_MAX_CHARS,
   getWorkflowConcurrency,
-} from './constants.js'
+} from '../../../src/server/utils/workflows/constants.js'
 import {
   WorkflowJournal,
   workflowCacheKey,
   type WorkflowJournalSnapshot,
-} from './journal.js'
-import { createLimiter, type Limiter } from './limiter.js'
+} from '../../../src/server/utils/workflows/journal.js'
+import { createLimiter, type Limiter } from '../../../src/server/utils/workflows/limiter.js'
 import {
   createWorkflowAgentController,
   runWorkflowAgent,
@@ -28,7 +28,7 @@ import type {
   WorkflowAgentEvent,
   WorkflowAgentOptions,
   WorkflowProgressEvent,
-} from './types.js'
+} from '../../../src/server/utils/workflows/types.js'
 
 /** Thrown when a script's loop keeps calling `agent()` past the hard cap. */
 export class WorkflowAgentCapError extends Error {

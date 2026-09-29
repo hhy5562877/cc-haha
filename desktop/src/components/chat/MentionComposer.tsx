@@ -22,7 +22,7 @@ import { Decoration, DecorationSet, EditorView } from 'prosemirror-view'
 import { keymap } from 'prosemirror-keymap'
 import { history, redo, undo } from 'prosemirror-history'
 import { baseKeymap, splitBlock } from 'prosemirror-commands'
-import { findKeywordRanges } from '../../../../src/utils/workflows/keyword'
+import { findKeywordRanges } from '../../../../src/server/utils/workflows/keyword'
 import {
   buildComposerDoc,
   composerSchema,
