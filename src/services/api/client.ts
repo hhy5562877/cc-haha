@@ -35,7 +35,7 @@ import {
   buildGrokFetch,
   GROK_OAUTH_DUMMY_KEY,
   shouldUseGrokAuth,
-} from '../grokAuth/fetch.js'
+} from '../../server/services/grokAuth/fetch.js'
 import { isDebugToStdErr, logForDebugging } from '../../utils/debug.js'
 import {
   getAWSRegion,

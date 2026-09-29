@@ -1,5 +1,5 @@
 import { randomBytes } from 'crypto'
-import { generateCodeChallenge } from '../oauth/crypto.js'
+import { generateCodeChallenge } from '../../../services/oauth/crypto.js'
 import type {
   GrokJwtClaims,
   GrokOAuthTokenResponse,
@@ -137,7 +137,7 @@ export async function resolveGrokProxyFetchOptions(
 async function getGrokProxyFetchOptions(
   proxyUrl: string | null,
 ): Promise<RequestInit> {
-  const { getProxyFetchOptions } = await import('../../utils/proxy.js')
+  const { getProxyFetchOptions } = await import('../../../utils/proxy.js')
   return getProxyFetchOptions({ proxyUrl })
 }
 

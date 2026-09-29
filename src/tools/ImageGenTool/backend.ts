@@ -14,7 +14,7 @@ import { OPENAI_DEFAULT_MAIN_MODEL } from '../../server/services/openaiAuth/mode
 import {
   ensureFreshGrokTokens,
   forceRefreshGrokTokens,
-} from '../../services/grokAuth/refresh.js'
+} from '../../server/services/grokAuth/refresh.js'
 import type {
   ImageGenerationProviderKind,
   ImageGenerationRuntimeConfig,

@@ -13,8 +13,8 @@ import {
   refreshGrokTokens,
   withRefreshedGrokAccessToken,
   type GrokTokenFetchOptions,
-} from '../../services/grokAuth/client.js'
-import type { GrokOAuthTokenResponse } from '../../services/grokAuth/types.js'
+} from './grokAuth/client.js'
+import type { GrokOAuthTokenResponse } from './grokAuth/types.js'
 import { logTokenRefreshFailure } from './oauthRefreshLog.js'
 import {
   getNetworkProxyUrl,

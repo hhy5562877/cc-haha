@@ -49,8 +49,8 @@ import {
   getOpenAIModelCatalogEntry,
   isOpenAIReasoningEffort,
 } from '../services/openaiAuth/models.js'
-import { GROK_DEFAULT_MAIN_MODEL } from '../../services/grokAuth/models.js'
-import { getGrokModelCatalog } from '../../services/grokAuth/modelCatalog.js'
+import { GROK_DEFAULT_MAIN_MODEL } from '../services/grokAuth/models.js'
+import { getGrokModelCatalog } from '../services/grokAuth/modelCatalog.js'
 import { hahaGrokOAuthService } from '../services/hahaGrokOAuthService.js'
 import { resolveClaudeOfficialRuntimeModel } from '../services/claudeOfficialRuntime.js'
 import {

@@ -2,7 +2,7 @@ import {
   buildGrokIdentityHeaders,
   GROK_CLI_BASE_URL,
 } from './fetch.js'
-import { createModelCatalogCache } from '../modelCatalogCache.js'
+import { createModelCatalogCache } from '../../../services/modelCatalogCache.js'
 import { ensureFreshGrokTokens } from './refresh.js'
 import {
   GROK_MODEL_CATALOG,

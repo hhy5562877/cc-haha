@@ -16,7 +16,7 @@ import {
   getOpenAIModelCatalogEntry,
   isOpenAIResponsesModel,
 } from 'src/server/services/openaiAuth/models.js'
-import { GROK_MODEL_CATALOG, getGrokRuntimeModelCatalog } from 'src/services/grokAuth/models.js'
+import { GROK_MODEL_CATALOG, getGrokRuntimeModelCatalog } from 'src/server/services/grokAuth/models.js'
 
 export type EffortLevel = RuntimeEffortLevel | 'xhigh'
 

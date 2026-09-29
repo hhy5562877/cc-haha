@@ -2,7 +2,7 @@ import { afterEach, describe, expect, test } from 'bun:test'
 import {
   clearGrokModelCatalogCache,
   fetchGrokModelCatalog,
-} from '../../services/grokAuth/modelCatalog.js'
+} from './grokAuth/modelCatalog.js'
 import { MODEL_CONTEXT_WINDOWS_ENV_KEY } from '../../utils/model/modelContextWindows.js'
 import { buildGrokOfficialRuntimeEnv } from './grokOfficialProvider.js'
 

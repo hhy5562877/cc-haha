@@ -24,11 +24,11 @@ import {
   OPENAI_OFFICIAL_PROVIDER_NAME,
   isOpenAIOfficialProviderId,
 } from '../services/openaiOfficialProvider.js'
-import { getGrokModelCatalog } from '../../services/grokAuth/modelCatalog.js'
+import { getGrokModelCatalog } from '../services/grokAuth/modelCatalog.js'
 import {
   GROK_DEFAULT_MAIN_MODEL,
   type GrokModelCatalogEntry,
-} from '../../services/grokAuth/models.js'
+} from '../services/grokAuth/models.js'
 import {
   GROK_OFFICIAL_PROVIDER_ID,
   GROK_OFFICIAL_PROVIDER_NAME,
