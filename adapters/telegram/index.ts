@@ -46,7 +46,7 @@ import { createTelegramRuntimeCommandController, registerAuthorizedTelegramComma
 
 const config = loadConfig()
 if (!config.telegram.botToken) {
-  console.error('[Telegram] Missing TELEGRAM_BOT_TOKEN. Set env or ~/.claude/adapters.json')
+  console.error('[Telegram] Missing TELEGRAM_BOT_TOKEN. Set env or ~/.dal/adapters.json')
   process.exit(1)
 }
 

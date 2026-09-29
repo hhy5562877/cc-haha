@@ -52,7 +52,7 @@ const CODE_LENGTH = 6
 const CODE_TTL_MS = 60 * 60 * 1000 // 60 minutes
 
 function getConfigPath(): string {
-  const configDir = process.env.CLAUDE_CONFIG_DIR || path.join(os.homedir(), '.claude')
+  const configDir = process.env.DAL_CONFIG_DIR || path.join(os.homedir(), '.dal')
   return path.join(configDir, 'adapters.json')
 }
 
