@@ -1,7 +1,7 @@
 import { getSideChat, isSideChatId, sideChatSummary } from './sideChatRegistry.js'
 import { splitSessionReferenceContext } from './sessionReferenceContext.js'
 import { parseSessionCollaborationEnvelope } from '../../utils/sessionCollaborationEnvelope.js'
-import { isShutdownTeamPrompt } from '../../utils/swarm/teamShutdownPrompt.js'
+import { isShutdownTeamPrompt } from '../utils/swarm/teamShutdownPrompt.js'
 import { readHistoryContexts } from './sessionHistoryContext.js'
 import { recoverBoundedSessionHistory, type SessionHistoryRecovery } from './sessionHistoryRecovery.js'
 /**
