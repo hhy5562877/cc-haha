@@ -2,19 +2,48 @@ import memoize from 'lodash-es/memoize.js'
 import { homedir } from 'os'
 import { join } from 'path'
 
-// Memoized: 150+ callers, many on hot paths. Keyed off CLAUDE_CONFIG_DIR so
-// tests that change the env var get a fresh value without explicit cache.clear.
+/**
+ * DAL 数据根目录（默认 ~/.dal）。
+ *
+ * 桌面自有状态（窗口/外观/终端/pet 等）与 DAL 引擎配置的公共父目录。
+ * 可通过 DAL_CONFIG_DIR 覆盖（桌面便携模式也用该变量指定数据根）。
+ */
+export const getConfigHomeDir = memoize(
+  (): string => {
+    return (process.env.DAL_CONFIG_DIR ?? join(homedir(), '.dal')).normalize(
+      'NFC',
+    )
+  },
+  () => process.env.DAL_CONFIG_DIR ?? '',
+)
+
+/**
+ * DAL 引擎配置目录（对应 dal CLI 的 getAgentDir()，默认 ~/.dal/agent）。
+ *
+ * 保留历史函数名：150+ 调用点经此函数派生 settings.json、history 等引擎侧
+ * 路径，改名会牵动全仓。内部实现已切换到 dal 体系：
+ *   优先级 DAL_CODING_AGENT_DIR > CLAUDE_CONFIG_DIR（旧环境兼容，构建期清理）>
+ *   <数据根>/agent。
+ */
 export const getClaudeConfigHomeDir = memoize(
   (): string => {
     return (
-      process.env.CLAUDE_CONFIG_DIR ?? join(homedir(), '.claude')
+      process.env.DAL_CODING_AGENT_DIR ??
+      process.env.CLAUDE_CONFIG_DIR ??
+      join(getConfigHomeDir(), 'agent')
     ).normalize('NFC')
   },
-  () => process.env.CLAUDE_CONFIG_DIR,
+  () =>
+    `${process.env.DAL_CODING_AGENT_DIR ?? ''}|${process.env.CLAUDE_CONFIG_DIR ?? ''}`,
 )
 
+/** 桌面自有状态目录（窗口状态、外观、终端配置、pet 等），独立于引擎配置。 */
+export function getDesktopStateDir(): string {
+  return join(getConfigHomeDir(), 'desktop')
+}
+
 export function getCcHahaDir(): string {
-  return join(getClaudeConfigHomeDir(), 'cc-haha')
+  return join(getDesktopStateDir(), 'cc-haha')
 }
 
 export function getTeamsDir(): string {
