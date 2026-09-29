@@ -14,9 +14,9 @@ import { getDestructiveCommandWarning } from '../../../tools/BashTool/destructiv
 import { parseSedEditCommand } from '../../../tools/BashTool/sedEditParser.js';
 import { shouldUseSandbox } from '../../../tools/BashTool/shouldUseSandbox.js';
 import { getCompoundCommandPrefixesStatic } from '../../../utils/bash/prefix.js';
-import { createPromptRuleContent, generateGenericDescription, getBashPromptAllowDescriptions, isClassifierPermissionsEnabled } from '../../../utils/permissions/bashClassifier.js';
-import { extractRules } from '../../../utils/permissions/PermissionUpdate.js';
-import type { PermissionUpdate } from '../../../utils/permissions/PermissionUpdateSchema.js';
+import { createPromptRuleContent, generateGenericDescription, getBashPromptAllowDescriptions, isClassifierPermissionsEnabled } from '../../../server/utils/permissions/bashClassifier.js';
+import { extractRules } from '../../../server/utils/permissions/PermissionUpdate.js';
+import type { PermissionUpdate } from '../../../server/utils/permissions/PermissionUpdateSchema.js';
 import { SandboxManager } from '../../../utils/sandbox/sandbox-adapter.js';
 import { Select } from '../../CustomSelect/select.js';
 import { ShimmerChar } from '../../Spinner/ShimmerChar.js';

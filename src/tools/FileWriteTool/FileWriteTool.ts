@@ -37,9 +37,9 @@ import { expandPath } from '../../utils/path.js'
 import {
   checkWritePermissionForTool,
   matchingRuleForInput,
-} from '../../utils/permissions/filesystem.js'
-import type { PermissionDecision } from '../../utils/permissions/PermissionResult.js'
-import { matchWildcardPattern } from '../../utils/permissions/shellRuleMatching.js'
+} from '../../server/utils/permissions/filesystem.js'
+import type { PermissionDecision } from '../../server/utils/permissions/PermissionResult.js'
+import { matchWildcardPattern } from '../../server/utils/permissions/shellRuleMatching.js'
 import { FILE_UNEXPECTEDLY_MODIFIED_ERROR } from '../FileEditTool/constants.js'
 import { gitDiffSchema, hunkSchema } from '../FileEditTool/types.js'
 import { FILE_WRITE_TOOL_NAME, getWriteToolDescription } from './prompt.js'

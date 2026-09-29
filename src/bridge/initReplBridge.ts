@@ -41,7 +41,7 @@ import {
   getMessagesAfterCompactBoundary,
   isSyntheticMessage,
 } from '../utils/messages.js'
-import type { PermissionMode } from '../utils/permissions/PermissionMode.js'
+import type { PermissionMode } from '../server/utils/permissions/PermissionMode.js'
 import { getCurrentSessionTitle } from '../utils/sessionStorage.js'
 import {
   extractConversationText,

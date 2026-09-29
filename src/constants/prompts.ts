@@ -42,7 +42,7 @@ import { areExplorePlanAgentsEnabled } from 'src/tools/AgentTool/builtInAgents.j
 import {
   isScratchpadEnabled,
   getScratchpadDir,
-} from '../utils/permissions/filesystem.js'
+} from '../server/utils/permissions/filesystem.js'
 import { isEnvTruthy } from '../utils/envUtils.js'
 import { isReplModeEnabled } from '../tools/REPLTool/constants.js'
 import { feature } from 'bun:bundle'

@@ -26,7 +26,7 @@ import { truncate } from '../../utils/format.js';
 import { getFsImplementation } from '../../utils/fsOperations.js';
 import { lazySchema } from '../../utils/lazySchema.js';
 import { expandPath } from '../../utils/path.js';
-import type { PermissionResult } from '../../utils/permissions/PermissionResult.js';
+import type { PermissionResult } from '../../server/utils/permissions/PermissionResult.js';
 import { maybeRecordPluginHint } from '../../server/utils/plugins/hintRecommendation.js';
 import { exec } from '../../utils/Shell.js';
 import type { ExecResult } from '../../utils/ShellCommand.js';

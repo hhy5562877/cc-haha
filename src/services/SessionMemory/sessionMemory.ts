@@ -35,7 +35,7 @@ import {
 import {
   getSessionMemoryDir,
   getSessionMemoryPath,
-} from '../../utils/permissions/filesystem.js'
+} from '../../server/utils/permissions/filesystem.js'
 import { sequential } from '../../utils/sequential.js'
 import { asSystemPrompt } from '../../utils/systemPromptType.js'
 import { getTokenUsage, tokenCountWithEstimation } from '../../utils/tokens.js'

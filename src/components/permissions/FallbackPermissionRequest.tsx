@@ -4,7 +4,7 @@ import { getOriginalCwd } from '../../bootstrap/state.js';
 import { Box, Text, useTheme } from '../../ink.js';
 import { sanitizeToolNameForAnalytics } from '../../services/analytics/metadata.js';
 import { env } from '../../utils/env.js';
-import { shouldShowAlwaysAllowOptions } from '../../utils/permissions/permissionsLoader.js';
+import { shouldShowAlwaysAllowOptions } from '../../server/utils/permissions/permissionsLoader.js';
 import { truncateToLines } from '../../utils/stringUtils.js';
 import { logUnaryEvent } from '../../utils/unaryLogging.js';
 import { type UnaryEvent, usePermissionRequestLogging } from './hooks.js';

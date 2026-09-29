@@ -74,7 +74,7 @@ import {
 } from './hooks.js'
 import type { MemoryType } from './memory/types.js'
 import { expandPath } from './path.js'
-import { pathInWorkingPath } from './permissions/filesystem.js'
+import { pathInWorkingPath } from '../server/utils/permissions/filesystem.js'
 import { isSettingSourceEnabled } from '../server/utils/settings/constants.js'
 import { getInitialSettings } from '../server/utils/settings/settings.js'
 import { getInstructionFilesMode, type InstructionFilesMode } from './instructionFiles.js'

@@ -7,7 +7,7 @@ import { sanitizeToolNameForAnalytics } from '../../../services/analytics/metada
 import { SKILL_TOOL_NAME } from '../../../tools/SkillTool/constants.js';
 import { SkillTool } from '../../../tools/SkillTool/SkillTool.js';
 import { env } from '../../../utils/env.js';
-import { shouldShowAlwaysAllowOptions } from '../../../utils/permissions/permissionsLoader.js';
+import { shouldShowAlwaysAllowOptions } from '../../../server/utils/permissions/permissionsLoader.js';
 import { logUnaryEvent } from '../../../utils/unaryLogging.js';
 import { type UnaryEvent, usePermissionRequestLogging } from '../hooks.js';
 import { PermissionDialog } from '../PermissionDialog.js';

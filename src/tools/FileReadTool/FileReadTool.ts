@@ -68,9 +68,9 @@ import {
 import {
   checkReadPermissionForTool,
   matchingRuleForInput,
-} from '../../utils/permissions/filesystem.js'
-import type { PermissionDecision } from '../../utils/permissions/PermissionResult.js'
-import { matchWildcardPattern } from '../../utils/permissions/shellRuleMatching.js'
+} from '../../server/utils/permissions/filesystem.js'
+import type { PermissionDecision } from '../../server/utils/permissions/PermissionResult.js'
+import { matchWildcardPattern } from '../../server/utils/permissions/shellRuleMatching.js'
 import { readFileInRange } from '../../utils/readFileInRange.js'
 import { semanticNumber } from '../../utils/semanticNumber.js'
 import { jsonStringify } from '../../utils/slowOperations.js'

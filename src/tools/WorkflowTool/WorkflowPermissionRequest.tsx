@@ -14,7 +14,7 @@ import {
 } from '../../components/permissions/hooks.js'
 import { Box, Text } from '../../ink.js'
 import { sanitizeToolNameForAnalytics } from '../../services/analytics/metadata.js'
-import { shouldShowAlwaysAllowOptions } from '../../utils/permissions/permissionsLoader.js'
+import { shouldShowAlwaysAllowOptions } from '../../server/utils/permissions/permissionsLoader.js'
 import { recordWorkflowAutoModeConsent } from '../../utils/workflows/autoModeConsent.js'
 import { parseWorkflowScript } from '../../server/utils/workflows/meta.js'
 import type { WorkflowMeta } from '../../server/utils/workflows/types.js'

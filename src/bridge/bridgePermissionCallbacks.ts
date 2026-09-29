@@ -1,4 +1,4 @@
-import type { PermissionUpdate } from '../utils/permissions/PermissionUpdateSchema.js'
+import type { PermissionUpdate } from '../server/utils/permissions/PermissionUpdateSchema.js'
 
 type BridgePermissionResponse = {
   behavior: 'allow' | 'deny'

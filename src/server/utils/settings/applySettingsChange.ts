@@ -8,9 +8,9 @@ import {
   reconcileAutoModePermissionsAfterSettingsChange,
   removeDangerousPermissions,
   transitionPlanAutoMode,
-} from '../../../utils/permissions/permissionSetup.js'
-import { syncPermissionRulesFromDisk } from '../../../utils/permissions/permissions.js'
-import { loadAllPermissionRulesFromDisk } from '../../../utils/permissions/permissionsLoader.js'
+} from '../permissions/permissionSetup.js'
+import { syncPermissionRulesFromDisk } from '../permissions/permissions.js'
+import { loadAllPermissionRulesFromDisk } from '../permissions/permissionsLoader.js'
 import type { SettingSource } from './constants.js'
 import { getInitialSettings } from './settings.js'
 

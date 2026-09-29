@@ -4,7 +4,7 @@ import { isEnvTruthy } from './envUtils.js'
 import {
   getFileReadIgnorePatterns,
   normalizePatternsToPath,
-} from './permissions/filesystem.js'
+} from '../server/utils/permissions/filesystem.js'
 import { getPlatform } from './platform.js'
 import { getGlobExclusionsForPluginCache } from '../server/utils/plugins/orphanedPluginFilter.js'
 import { ripGrep } from './ripgrep.js'

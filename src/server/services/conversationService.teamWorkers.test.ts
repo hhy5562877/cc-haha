@@ -47,11 +47,11 @@ test('worker deny flags remove tools and enforce permissions even with no allowl
   const args = service.buildSessionCliArgs('child', 'ws://127.0.0.1/sdk/child?token=fake', false, { teamWorker: { ...worker, tools: undefined, agentDefinition: { disallowedTools: ['Edit'], maxTurns: 2 } } }) as string[]
   expect(args).not.toContain('--tools')
   expect(args[args.indexOf('--max-turns') + 1]).toBe('2')
-  const { parseToolListFromCLI } = await import('../../utils/permissions/permissionSetup.js')
+  const { parseToolListFromCLI } = await import('../utils/permissions/permissionSetup.js')
   const { getEmptyToolPermissionContext } = await import('../../Tool.js')
   const { getTools } = await import('../../tools.js')
   const { FileEditTool } = await import('../../tools/FileEditTool/FileEditTool.js')
-  const { checkRuleBasedPermissions } = await import('../../utils/permissions/permissions.js')
+  const { checkRuleBasedPermissions } = await import('../utils/permissions/permissions.js')
   const permission = getEmptyToolPermissionContext()
   permission.alwaysDenyRules = { cliArg: parseToolListFromCLI([args[args.indexOf('--disallowedTools') + 1]!]) }
   expect(getTools(permission).map(tool => tool.name)).not.toContain('Edit')

@@ -171,7 +171,7 @@ import { formatFileSize } from './format.js'
 import { validateImagesForAPI } from './imageValidation.js'
 import { safeParseJSON } from './json.js'
 import { logError, logMCPDebug } from './log.js'
-import { normalizeLegacyToolName } from './permissions/permissionRuleParser.js'
+import { normalizeLegacyToolName } from '../server/utils/permissions/permissionRuleParser.js'
 import {
   normalizeModelStringForAPI,
   parseUserSpecifiedModel,

@@ -80,7 +80,7 @@ import {
 import type {
   PermissionDecisionReason,
   PermissionResult,
-} from '../../utils/permissions/PermissionResult.js'
+} from '../../server/utils/permissions/PermissionResult.js'
 import {
   startSessionActivity,
   stopSessionActivity,

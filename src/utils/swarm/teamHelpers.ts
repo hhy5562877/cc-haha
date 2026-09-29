@@ -11,7 +11,7 @@ import { execFileNoThrowWithCwd } from '../execFileNoThrow.js'
 import { gitExe } from '../git.js'
 import { lazySchema } from '../lazySchema.js'
 import * as lockfile from '../lockfile.js'
-import type { PermissionMode } from '../permissions/PermissionMode.js'
+import type { PermissionMode } from '../../server/utils/permissions/PermissionMode.js'
 import { jsonParse, jsonStringify } from '../slowOperations.js'
 import { sleep } from '../sleep.js'
 import {

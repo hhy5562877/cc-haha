@@ -26,10 +26,10 @@ import { enqueuePendingNotification } from '../../../utils/messageQueueManager.j
 import { createUserMessage } from '../../../utils/messages.js';
 import { getMainLoopModel, getRuntimeMainLoopModel } from '../../../utils/model/model.js';
 import { isFirstPartyAnthropicBaseUrl } from '../../../utils/model/providers.js';
-import { createPromptRuleContent, isClassifierPermissionsEnabled, PROMPT_PREFIX } from '../../../utils/permissions/bashClassifier.js';
-import { type PermissionMode, toExternalPermissionMode } from '../../../utils/permissions/PermissionMode.js';
-import type { PermissionUpdate } from '../../../utils/permissions/PermissionUpdateSchema.js';
-import { isAutoModeGateEnabled, restoreDangerousPermissions, stripDangerousPermissionsForAutoMode } from '../../../utils/permissions/permissionSetup.js';
+import { createPromptRuleContent, isClassifierPermissionsEnabled, PROMPT_PREFIX } from '../../../server/utils/permissions/bashClassifier.js';
+import { type PermissionMode, toExternalPermissionMode } from '../../../server/utils/permissions/PermissionMode.js';
+import type { PermissionUpdate } from '../../../server/utils/permissions/PermissionUpdateSchema.js';
+import { isAutoModeGateEnabled, restoreDangerousPermissions, stripDangerousPermissionsForAutoMode } from '../../../server/utils/permissions/permissionSetup.js';
 import { getPewterLedgerVariant, isPlanModeInterviewPhaseEnabled } from '../../../utils/planModeV2.js';
 import { getPlan, getPlanFilePath } from '../../../utils/plans.js';
 import { editFileInEditor, editPromptInEditor } from '../../../utils/promptEditor.js';
@@ -43,7 +43,7 @@ import type { PermissionRequestProps } from '../PermissionRequest.js';
 import { PermissionRuleExplanation } from '../PermissionRuleExplanation.js';
 
 /* eslint-disable @typescript-eslint/no-require-imports */
-const autoModeStateModule = feature('TRANSCRIPT_CLASSIFIER') ? require('../../../utils/permissions/autoModeState.js') as typeof import('../../../utils/permissions/autoModeState.js') : null;
+const autoModeStateModule = feature('TRANSCRIPT_CLASSIFIER') ? require('../../../server/utils/permissions/autoModeState.js') as typeof import('../../../server/utils/permissions/autoModeState.js') : null;
 import type { Base64ImageSource, ImageBlockParam } from '@anthropic-ai/sdk/resources/messages.mjs';
 /* eslint-enable @typescript-eslint/no-require-imports */
 import type { PastedContent } from '../../../utils/config.js';

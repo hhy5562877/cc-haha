@@ -11,7 +11,7 @@ import { applyConfigEnvironmentVariables } from '../utils/managedEnv.js'
 import {
   permissionModeFromString,
   toExternalPermissionMode,
-} from '../utils/permissions/PermissionMode.js'
+} from '../server/utils/permissions/PermissionMode.js'
 import {
   notifyPermissionModeChanged,
   notifySessionMetadataChanged,

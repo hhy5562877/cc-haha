@@ -24,8 +24,8 @@ import { createAssistantMessage } from '../utils/messages.js'
 import {
   permissionModeFromString,
   toExternalPermissionMode,
-} from '../utils/permissions/PermissionMode.js'
-import { applyPermissionUpdate } from '../utils/permissions/PermissionUpdate.js'
+} from '../server/utils/permissions/PermissionMode.js'
+import { applyPermissionUpdate } from '../server/utils/permissions/PermissionUpdate.js'
 import { jsonStringify } from '../utils/slowOperations.js'
 import { isInsideTmux } from '../utils/swarm/backends/detection.js'
 import {

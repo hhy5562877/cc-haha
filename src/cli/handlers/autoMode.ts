@@ -12,7 +12,7 @@ import {
   type AutoModeRules,
   buildDefaultExternalSystemPrompt,
   getDefaultExternalAutoModeRules,
-} from '../../utils/permissions/yoloClassifier.js'
+} from '../../server/utils/permissions/yoloClassifier.js'
 import { getAutoModeConfig } from '../../server/utils/settings/settings.js'
 import { sideQuery } from '../../utils/sideQuery.js'
 import { jsonStringify } from '../../utils/slowOperations.js'

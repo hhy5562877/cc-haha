@@ -51,7 +51,7 @@ import {
 import {
   getFileReadIgnorePatterns,
   normalizePatternsToPath,
-} from './permissions/filesystem.js'
+} from '../server/utils/permissions/filesystem.js'
 import {
   getPlan,
   getPlanFilePath,

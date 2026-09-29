@@ -30,13 +30,13 @@ import {
   SUBAGENT_REJECT_MESSAGE_WITH_REASON_PREFIX,
   withMemoryCorrectionHint,
 } from '../../utils/messages.js'
-import type { PermissionDecision } from '../../utils/permissions/PermissionResult.js'
+import type { PermissionDecision } from '../../server/utils/permissions/PermissionResult.js'
 import {
   applyPermissionUpdates,
   persistPermissionUpdates,
   supportsPersistence,
-} from '../../utils/permissions/PermissionUpdate.js'
-import type { PermissionUpdate } from '../../utils/permissions/PermissionUpdateSchema.js'
+} from '../../server/utils/permissions/PermissionUpdate.js'
+import type { PermissionUpdate } from '../../server/utils/permissions/PermissionUpdateSchema.js'
 import {
   logPermissionDecision,
   type PermissionDecisionArgs,

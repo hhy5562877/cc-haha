@@ -10,7 +10,7 @@ import { getCwd } from '../utils/cwd.js';
 import { openFileInExternalEditor } from '../utils/editor.js';
 import { truncatePathMiddle, truncateToWidth } from '../utils/format.js';
 import { highlightMatch } from '../utils/highlightMatch.js';
-import { relativePath } from '../utils/permissions/filesystem.js';
+import { relativePath } from '../server/utils/permissions/filesystem.js';
 import { readFileInRange } from '../utils/readFileInRange.js';
 import { ripGrepStream } from '../utils/ripgrep.js';
 import { FuzzyPicker } from './design-system/FuzzyPicker.js';

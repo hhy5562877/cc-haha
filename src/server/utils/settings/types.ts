@@ -6,7 +6,7 @@ import { lazySchema } from '../../../utils/lazySchema.js'
 import {
   EXTERNAL_PERMISSION_MODES,
   PERMISSION_MODES,
-} from '../../../utils/permissions/PermissionMode.js'
+} from '../permissions/PermissionMode.js'
 import { MarketplaceSourceSchema } from '../plugins/schemas.js'
 import { CLAUDE_CODE_SETTINGS_SCHEMA_URL } from './constants.js'
 import { PermissionRuleSchema } from './permissionValidation.js'

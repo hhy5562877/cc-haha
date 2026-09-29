@@ -6,22 +6,22 @@ import {
   handlePlanModeTransition,
   setHasExitedPlanMode,
   setNeedsAutoModeExitAttachment,
-} from '../../bootstrap/state.js'
+} from '../../../bootstrap/state.js'
 import type {
   ToolPermissionContext,
   ToolPermissionRulesBySource,
-} from '../../Tool.js'
-import { getCwd } from '../cwd.js'
-import { isEnvTruthy } from '../envUtils.js'
-import type { SettingSource } from '../../server/utils/settings/constants.js'
-import { SETTING_SOURCES } from '../../server/utils/settings/constants.js'
+} from '../../../Tool.js'
+import { getCwd } from '../../../utils/cwd.js'
+import { isEnvTruthy } from '../../../utils/envUtils.js'
+import type { SettingSource } from '../settings/constants.js'
+import { SETTING_SOURCES } from '../settings/constants.js'
 import {
   getAutoModeConfig,
   getSettings_DEPRECATED,
   getSettingsFilePathForSource,
   getUseAutoModeDuringPlan,
   hasAutoModeOptIn,
-} from '../../server/utils/settings/settings.js'
+} from '../settings/settings.js'
 import {
   type PermissionMode,
   permissionModeFromString,
@@ -44,22 +44,22 @@ import {
 import {
   addDirHelpMessage,
   validateDirectoryForWorkspace,
-} from '../../commands/add-dir/validation.js'
+} from '../../../commands/add-dir/validation.js'
 import {
   type AnalyticsMetadata_I_VERIFIED_THIS_IS_NOT_CODE_OR_FILEPATHS,
   logEvent,
-} from '../../services/analytics/index.js'
-import { AGENT_TOOL_NAME } from '../../tools/AgentTool/constants.js'
-import { BASH_TOOL_NAME } from '../../tools/BashTool/toolName.js'
+} from '../../../services/analytics/index.js'
+import { AGENT_TOOL_NAME } from '../../../tools/AgentTool/constants.js'
+import { BASH_TOOL_NAME } from '../../../tools/BashTool/toolName.js'
 /* eslint-enable @typescript-eslint/no-require-imports */
-import { POWERSHELL_TOOL_NAME } from '../../tools/PowerShellTool/toolName.js'
-import { getToolsForDefaultPreset, parseToolPreset } from '../../tools.js'
+import { POWERSHELL_TOOL_NAME } from '../../../tools/PowerShellTool/toolName.js'
+import { getToolsForDefaultPreset, parseToolPreset } from '../../../tools.js'
 import {
   getFsImplementation,
   safeResolvePath,
-} from '../../utils/fsOperations.js'
-import { logForDebugging } from '../debug.js'
-import { gracefulShutdown } from '../gracefulShutdown.js'
+} from '../../../utils/fsOperations.js'
+import { logForDebugging } from '../../../utils/debug.js'
+import { gracefulShutdown } from '../../../utils/gracefulShutdown.js'
 import {
   CROSS_PLATFORM_CODE_EXEC,
   DANGEROUS_BASH_PATTERNS,

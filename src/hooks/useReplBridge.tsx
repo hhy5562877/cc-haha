@@ -22,7 +22,7 @@ import { errorMessage } from '../utils/errors.js';
 import { enqueue } from '../utils/messageQueueManager.js';
 import { buildSystemInitMessage } from '../utils/messages/systemInit.js';
 import { createBridgeStatusMessage, createSystemMessage } from '../utils/messages.js';
-import { getAutoModeUnavailableNotification, getAutoModeUnavailableReason, isAutoModeGateEnabled, isBypassPermissionsModeDisabled, transitionPermissionMode } from '../utils/permissions/permissionSetup.js';
+import { getAutoModeUnavailableNotification, getAutoModeUnavailableReason, isAutoModeGateEnabled, isBypassPermissionsModeDisabled, transitionPermissionMode } from '../server/utils/permissions/permissionSetup.js';
 import { getLeaderToolUseConfirmQueue } from '../utils/swarm/leaderPermissionBridge.js';
 
 /** How long after a failure before replBridgeEnabled is auto-cleared (stops retries). */

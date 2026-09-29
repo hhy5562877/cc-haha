@@ -14,9 +14,9 @@ import {
   checkReadPermissionForTool,
   getFileReadIgnorePatterns,
   normalizePatternsToPath,
-} from '../../utils/permissions/filesystem.js'
-import type { PermissionDecision } from '../../utils/permissions/PermissionResult.js'
-import { matchWildcardPattern } from '../../utils/permissions/shellRuleMatching.js'
+} from '../../server/utils/permissions/filesystem.js'
+import type { PermissionDecision } from '../../server/utils/permissions/PermissionResult.js'
+import { matchWildcardPattern } from '../../server/utils/permissions/shellRuleMatching.js'
 import { getGlobExclusionsForPluginCache } from '../../server/utils/plugins/orphanedPluginFilter.js'
 import { ripGrep } from '../../utils/ripgrep.js'
 import { semanticBoolean } from '../../utils/semanticBoolean.js'

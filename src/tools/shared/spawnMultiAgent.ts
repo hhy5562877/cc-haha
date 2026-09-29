@@ -26,7 +26,7 @@ import { logForDebugging } from '../../utils/debug.js'
 import type { EffortValue } from '../../utils/effort.js'
 import { errorMessage } from '../../utils/errors.js'
 import { execFileNoThrow } from '../../utils/execFileNoThrow.js'
-import type { PermissionMode } from '../../utils/permissions/PermissionMode.js'
+import type { PermissionMode } from '../../server/utils/permissions/PermissionMode.js'
 import { isTmuxAvailable } from '../../utils/swarm/backends/detection.js'
 import {
   detectAndGetBackend,

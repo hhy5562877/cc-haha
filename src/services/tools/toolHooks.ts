@@ -27,14 +27,14 @@ import {
   getRuleBehaviorDescription,
   type PermissionDecisionReason,
   type PermissionResult,
-} from '../../utils/permissions/PermissionResult.js'
-import { checkRuleBasedPermissions } from '../../utils/permissions/permissions.js'
+} from '../../server/utils/permissions/PermissionResult.js'
+import { checkRuleBasedPermissions } from '../../server/utils/permissions/permissions.js'
 import { formatError } from '../../utils/toolErrors.js'
 import { isMcpTool } from '../../server/services/mcp/utils.js'
 import type { McpServerType, MessageUpdateLazy } from './toolExecution.js'
 
 const autoModeStateModule = feature('TRANSCRIPT_CLASSIFIER')
-  ? (require('../../utils/permissions/autoModeState.js') as typeof import('../../utils/permissions/autoModeState.js'))
+  ? (require('../../server/utils/permissions/autoModeState.js') as typeof import('../../server/utils/permissions/autoModeState.js'))
   : null
 
 export type PostToolUseHooksResult<Output> =

@@ -141,7 +141,7 @@ const getWorkflowTool = () =>
     .WorkflowTool as typeof import('./tools/WorkflowTool/WorkflowTool.js').WorkflowTool
 /* eslint-enable @typescript-eslint/no-require-imports */
 import type { ToolPermissionContext } from './Tool.js'
-import { getDenyRuleForTool } from './utils/permissions/permissions.js'
+import { getDenyRuleForTool } from './server/utils/permissions/permissions.js'
 import { hasEmbeddedSearchTools } from './utils/embeddedTools.js'
 import { isEnvTruthy } from './utils/envUtils.js'
 import {

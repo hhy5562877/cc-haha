@@ -120,10 +120,10 @@ const getCoordinatorUserContext: (mcpClients: ReadonlyArray<{
 /* eslint-enable custom-rules/no-process-env-top-level, @typescript-eslint/no-require-imports */
 import useCanUseTool from '../hooks/useCanUseTool.js';
 import type { ToolPermissionContext, Tool } from '../Tool.js';
-import { applyPermissionUpdate, applyPermissionUpdates, persistPermissionUpdate } from '../utils/permissions/PermissionUpdate.js';
+import { applyPermissionUpdate, applyPermissionUpdates, persistPermissionUpdate } from '../server/utils/permissions/PermissionUpdate.js';
 import { buildPermissionUpdates } from '../components/permissions/ExitPlanModePermissionRequest/ExitPlanModePermissionRequest.js';
-import { stripDangerousPermissionsForAutoMode } from '../utils/permissions/permissionSetup.js';
-import { getScratchpadDir, isScratchpadEnabled } from '../utils/permissions/filesystem.js';
+import { stripDangerousPermissionsForAutoMode } from '../server/utils/permissions/permissionSetup.js';
+import { getScratchpadDir, isScratchpadEnabled } from '../server/utils/permissions/filesystem.js';
 import { WEB_FETCH_TOOL_NAME } from '../tools/WebFetchTool/prompt.js';
 import { SLEEP_TOOL_NAME } from '../tools/SleepTool/prompt.js';
 import { clearSpeculativeChecks } from '../tools/BashTool/bashPermissions.js';
@@ -236,7 +236,7 @@ import { useOfficialMarketplaceNotification } from 'src/hooks/useOfficialMarketp
 import { usePromptsFromClaudeInChrome } from 'src/hooks/usePromptsFromClaudeInChrome.js';
 import { getTipToShowOnSpinner, recordShownTip } from 'src/services/tips/tipScheduler.js';
 import type { Theme } from 'src/utils/theme.js';
-import { checkAndDisableBypassPermissionsIfNeeded, checkAndDisableAutoModeIfNeeded, useKickOffCheckAndDisableBypassPermissionsIfNeeded, useKickOffCheckAndDisableAutoModeIfNeeded } from 'src/utils/permissions/bypassPermissionsKillswitch.js';
+import { checkAndDisableBypassPermissionsIfNeeded, checkAndDisableAutoModeIfNeeded, useKickOffCheckAndDisableBypassPermissionsIfNeeded, useKickOffCheckAndDisableAutoModeIfNeeded } from 'src/server/utils/permissions/bypassPermissionsKillswitch.js';
 import { SandboxManager } from 'src/utils/sandbox/sandbox-adapter.js';
 import { SANDBOX_NETWORK_ACCESS_TOOL_NAME } from 'src/cli/structuredIO.js';
 import { useFileHistorySnapshotInit } from 'src/hooks/useFileHistorySnapshotInit.js';

@@ -24,7 +24,7 @@ import {
   updateWorkflowProgressBatch,
 } from '../../tasks/LocalWorkflowTask/LocalWorkflowTask.js'
 import { resetSettingsCache } from '../utils/settings/settingsCache.js'
-import { getClaudeTempDir } from '../../utils/permissions/filesystem.js'
+import { getClaudeTempDir } from '../utils/permissions/filesystem.js'
 import { createWorkflowHarness } from '../../utils/workflows/harness.js'
 import { WorkflowJournal } from '../utils/workflows/journal.js'
 import type { WorkflowProgressEvent } from '../utils/workflows/types.js'

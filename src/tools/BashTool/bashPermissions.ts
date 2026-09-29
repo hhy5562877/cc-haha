@@ -32,29 +32,29 @@ import { AbortError } from '../../utils/errors.js'
 import type {
   ClassifierBehavior,
   ClassifierResult,
-} from '../../utils/permissions/bashClassifier.js'
+} from '../../server/utils/permissions/bashClassifier.js'
 import {
   classifyBashCommand,
   getBashPromptAllowDescriptions,
   getBashPromptAskDescriptions,
   getBashPromptDenyDescriptions,
   isClassifierPermissionsEnabled,
-} from '../../utils/permissions/bashClassifier.js'
+} from '../../server/utils/permissions/bashClassifier.js'
 import type {
   PermissionDecisionReason,
   PermissionResult,
-} from '../../utils/permissions/PermissionResult.js'
+} from '../../server/utils/permissions/PermissionResult.js'
 import type {
   PermissionRule,
   PermissionRuleValue,
-} from '../../utils/permissions/PermissionRule.js'
-import { extractRules } from '../../utils/permissions/PermissionUpdate.js'
-import type { PermissionUpdate } from '../../utils/permissions/PermissionUpdateSchema.js'
-import { permissionRuleValueToString } from '../../utils/permissions/permissionRuleParser.js'
+} from '../../server/utils/permissions/PermissionRule.js'
+import { extractRules } from '../../server/utils/permissions/PermissionUpdate.js'
+import type { PermissionUpdate } from '../../server/utils/permissions/PermissionUpdateSchema.js'
+import { permissionRuleValueToString } from '../../server/utils/permissions/permissionRuleParser.js'
 import {
   createPermissionRequestMessage,
   getRuleByContentsForTool,
-} from '../../utils/permissions/permissions.js'
+} from '../../server/utils/permissions/permissions.js'
 import {
   parsePermissionRule,
   type ShellPermissionRule,
@@ -62,7 +62,7 @@ import {
   permissionRuleExtractPrefix as sharedPermissionRuleExtractPrefix,
   suggestionForExactCommand as sharedSuggestionForExactCommand,
   suggestionForPrefix as sharedSuggestionForPrefix,
-} from '../../utils/permissions/shellRuleMatching.js'
+} from '../../server/utils/permissions/shellRuleMatching.js'
 import { getPlatform } from '../../utils/platform.js'
 import { SandboxManager } from '../../utils/sandbox/sandbox-adapter.js'
 import { jsonStringify } from '../../utils/slowOperations.js'

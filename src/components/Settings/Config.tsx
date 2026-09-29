@@ -11,8 +11,8 @@ import { type GlobalConfig, saveGlobalConfig, getCurrentProjectConfig, type Outp
 import { normalizeApiKeyForConfig } from '../../utils/authPortable.js';
 import { getGlobalConfig, getAutoUpdaterDisabledReason, formatAutoUpdaterDisabledReason, getRemoteControlAtStartup } from '../../utils/config.js';
 import chalk from 'chalk';
-import { permissionModeTitle, permissionModeFromString, toExternalPermissionMode, isExternalPermissionMode, EXTERNAL_PERMISSION_MODES, PERMISSION_MODES, type ExternalPermissionMode, type PermissionMode } from '../../utils/permissions/PermissionMode.js';
-import { getAutoModeEnabledState, hasAutoModeOptInAnySource, transitionPlanAutoMode } from '../../utils/permissions/permissionSetup.js';
+import { permissionModeTitle, permissionModeFromString, toExternalPermissionMode, isExternalPermissionMode, EXTERNAL_PERMISSION_MODES, PERMISSION_MODES, type ExternalPermissionMode, type PermissionMode } from '../../server/utils/permissions/PermissionMode.js';
+import { getAutoModeEnabledState, hasAutoModeOptInAnySource, transitionPlanAutoMode } from '../../server/utils/permissions/permissionSetup.js';
 import { logError } from '../../utils/log.js';
 import { logEvent, type AnalyticsMetadata_I_VERIFIED_THIS_IS_NOT_CODE_OR_FILEPATHS } from 'src/services/analytics/index.js';
 import { isBridgeEnabled } from '../../bridge/bridgeEnabled.js';

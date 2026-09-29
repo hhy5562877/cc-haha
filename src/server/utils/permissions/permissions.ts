@@ -1,28 +1,28 @@
 import { feature } from 'bun:bundle'
 import { APIUserAbortError } from '@anthropic-ai/sdk'
-import type { CanUseToolFn } from '../../hooks/useCanUseTool.js'
+import type { CanUseToolFn } from '../../../hooks/useCanUseTool.js'
 import {
   getToolNameForPermissionCheck,
   mcpInfoFromString,
-} from '../../server/services/mcp/mcpStringUtils.js'
-import type { Tool, ToolPermissionContext, ToolUseContext } from '../../Tool.js'
-import { AGENT_TOOL_NAME } from '../../tools/AgentTool/constants.js'
-import { shouldUseSandbox } from '../../tools/BashTool/shouldUseSandbox.js'
-import { BASH_TOOL_NAME } from '../../tools/BashTool/toolName.js'
-import { POWERSHELL_TOOL_NAME } from '../../tools/PowerShellTool/toolName.js'
-import { REPL_TOOL_NAME } from '../../tools/REPLTool/constants.js'
-import type { AssistantMessage } from '../../types/message.js'
-import { extractOutputRedirections } from '../bash/commands.js'
-import { logForDebugging } from '../debug.js'
-import { AbortError, toError } from '../errors.js'
-import { logError } from '../log.js'
-import { SandboxManager } from '../sandbox/sandbox-adapter.js'
+} from '../../services/mcp/mcpStringUtils.js'
+import type { Tool, ToolPermissionContext, ToolUseContext } from '../../../Tool.js'
+import { AGENT_TOOL_NAME } from '../../../tools/AgentTool/constants.js'
+import { shouldUseSandbox } from '../../../tools/BashTool/shouldUseSandbox.js'
+import { BASH_TOOL_NAME } from '../../../tools/BashTool/toolName.js'
+import { POWERSHELL_TOOL_NAME } from '../../../tools/PowerShellTool/toolName.js'
+import { REPL_TOOL_NAME } from '../../../tools/REPLTool/constants.js'
+import type { AssistantMessage } from '../../../types/message.js'
+import { extractOutputRedirections } from '../../../utils/bash/commands.js'
+import { logForDebugging } from '../../../utils/debug.js'
+import { AbortError, toError } from '../../../utils/errors.js'
+import { logError } from '../../../utils/log.js'
+import { SandboxManager } from '../../../utils/sandbox/sandbox-adapter.js'
 import {
   getSettingSourceDisplayNameLowercase,
   SETTING_SOURCES,
-} from '../../server/utils/settings/constants.js'
-import { getAutoModeConfig } from '../../server/utils/settings/settings.js'
-import { plural } from '../stringUtils.js'
+} from '../settings/constants.js'
+import { getAutoModeConfig } from '../settings/settings.js'
+import { plural } from '../../../utils/stringUtils.js'
 import { permissionModeTitle } from './PermissionMode.js'
 import type {
   PermissionAskDecision,
@@ -70,27 +70,27 @@ import {
   getTotalCacheReadInputTokens,
   getTotalInputTokens,
   getTotalOutputTokens,
-} from '../../bootstrap/state.js'
+} from '../../../bootstrap/state.js'
 import {
   type AnalyticsMetadata_I_VERIFIED_THIS_IS_NOT_CODE_OR_FILEPATHS,
   logEvent,
-} from '../../services/analytics/index.js'
-import { sanitizeToolNameForAnalytics } from '../../services/analytics/metadata.js'
+} from '../../../services/analytics/index.js'
+import { sanitizeToolNameForAnalytics } from '../../../services/analytics/metadata.js'
 import {
   clearClassifierChecking,
   setClassifierChecking,
-} from '../classifierApprovals.js'
-import { isInProtectedNamespace } from '../envUtils.js'
-import { executePermissionRequestHooks } from '../hooks.js'
+} from '../../../utils/classifierApprovals.js'
+import { isInProtectedNamespace } from '../../../utils/envUtils.js'
+import { executePermissionRequestHooks } from '../../../utils/hooks.js'
 import {
   AUTO_REJECT_MESSAGE,
   buildClassifierUnavailableMessage,
   buildYoloRejectionMessage,
   DONT_ASK_REJECT_MESSAGE,
-} from '../messages.js'
-import { calculateCostFromTokens } from '../modelCost.js'
+} from '../../../utils/messages.js'
+import { calculateCostFromTokens } from '../../../utils/modelCost.js'
 /* eslint-enable @typescript-eslint/no-require-imports */
-import { jsonStringify } from '../slowOperations.js'
+import { jsonStringify } from '../../../utils/slowOperations.js'
 import {
   createDenialTrackingState,
   DENIAL_LIMITS,

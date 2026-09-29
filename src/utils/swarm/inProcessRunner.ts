@@ -80,9 +80,9 @@ import type { ModelAlias } from '../model/aliases.js'
 import {
   applyPermissionUpdates,
   persistPermissionUpdates,
-} from '../permissions/PermissionUpdate.js'
-import type { PermissionUpdate } from '../permissions/PermissionUpdateSchema.js'
-import { hasPermissionsToUseTool } from '../permissions/permissions.js'
+} from '../../server/utils/permissions/PermissionUpdate.js'
+import type { PermissionUpdate } from '../../server/utils/permissions/PermissionUpdateSchema.js'
+import { hasPermissionsToUseTool } from '../../server/utils/permissions/permissions.js'
 import { emitTaskTerminatedSdk } from '../sdkEventQueue.js'
 import { sleep } from '../sleep.js'
 import { jsonStringify } from '../slowOperations.js'

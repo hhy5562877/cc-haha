@@ -94,7 +94,7 @@ const skillSearchModules = feature('EXPERIMENTAL_SKILL_SEARCH')
     }
   : null
 const autoModeStateModule = feature('TRANSCRIPT_CLASSIFIER')
-  ? (require('./permissions/autoModeState.js') as typeof import('./permissions/autoModeState.js'))
+  ? (require('../server/utils/permissions/autoModeState.js') as typeof import('../server/utils/permissions/autoModeState.js'))
   : null
 /* eslint-enable @typescript-eslint/no-require-imports */
 import {
@@ -119,13 +119,13 @@ import {
   formatAgentLine,
   shouldInjectAgentListInMessages,
 } from '../tools/AgentTool/prompt.js'
-import { filterDeniedAgents } from './permissions/permissions.js'
+import { filterDeniedAgents } from '../server/utils/permissions/permissions.js'
 import { getSubscriptionType } from './auth.js'
 import { mcpInfoFromString } from '../server/services/mcp/mcpStringUtils.js'
 import {
   matchingRuleForInput,
   pathInAllowedWorkingPath,
-} from './permissions/filesystem.js'
+} from '../server/utils/permissions/filesystem.js'
 import {
   generateTaskAttachments,
   applyTaskOffsetsAndEvictions,

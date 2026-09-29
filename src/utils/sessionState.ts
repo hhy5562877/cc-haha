@@ -24,7 +24,7 @@ export type RequiresActionDetails = {
 }
 
 import { isEnvTruthy } from './envUtils.js'
-import type { PermissionMode } from './permissions/PermissionMode.js'
+import type { PermissionMode } from '../server/utils/permissions/PermissionMode.js'
 import { enqueueSdkEvent } from './sdkEventQueue.js'
 
 // CCR external_metadata keys — push in onChangeAppState, restore in

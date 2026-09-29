@@ -26,11 +26,11 @@ import { logError } from './log.js'
 import {
   permissionUpdateSchema,
   type PermissionUpdate,
-} from './permissions/PermissionUpdateSchema.js'
+} from '../server/utils/permissions/PermissionUpdateSchema.js'
 import {
   permissionBehaviorSchema,
   permissionRuleValueSchema,
-} from './permissions/PermissionRule.js'
+} from '../server/utils/permissions/PermissionRule.js'
 import { jsonParse, jsonStringify } from './slowOperations.js'
 import {
   isPaneBackend,

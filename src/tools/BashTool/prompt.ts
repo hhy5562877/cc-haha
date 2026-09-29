@@ -3,7 +3,7 @@ import { prependBullets } from '../../constants/prompts.js'
 import { hasEmbeddedSearchTools } from '../../utils/embeddedTools.js'
 import { isEnvTruthy } from '../../utils/envUtils.js'
 import { shouldIncludeGitInstructions } from '../../utils/gitSettings.js'
-import { getClaudeTempDir } from '../../utils/permissions/filesystem.js'
+import { getClaudeTempDir } from '../../server/utils/permissions/filesystem.js'
 import { SandboxManager } from '../../utils/sandbox/sandbox-adapter.js'
 import { jsonStringify } from '../../utils/slowOperations.js'
 import {

@@ -129,10 +129,10 @@ import {
   normalizeLegacyToolName,
   getLegacyToolNames,
   permissionRuleValueFromString,
-} from './permissions/permissionRuleParser.js'
+} from '../server/utils/permissions/permissionRuleParser.js'
 import { logError } from './log.js'
 import { createCombinedAbortSignal } from './combinedAbortSignal.js'
-import type { PermissionResult } from './permissions/PermissionResult.js'
+import type { PermissionResult } from '../server/utils/permissions/PermissionResult.js'
 import { registerPendingAsyncHook } from './hooks/AsyncHookRegistry.js'
 import { enqueuePendingNotification } from './messageQueueManager.js'
 import {

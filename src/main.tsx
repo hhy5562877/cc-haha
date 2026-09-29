@@ -53,7 +53,7 @@ import { checkHasTrustDialogAccepted, getGlobalConfig, getRemoteControlAtStartup
 import { seedEarlyInput, stopCapturingEarlyInput } from './utils/earlyInput.js';
 import { getInitialEffortSetting, parseEffortValue } from './utils/effort.js';
 import { initialRuntimeEffort } from './utils/swarm/teamWorkerRuntime.js';
-import { ULTRACODE_EFFORT_ARG, ULTRACODE_EFFORT_LEVEL } from './utils/workflows/ultracode.js';
+import { ULTRACODE_EFFORT_ARG, ULTRACODE_EFFORT_LEVEL } from './server/utils/workflows/ultracode.js';
 import { getInitialFastModeSetting, isFastModeEnabled, prefetchFastModeStatus, resolveFastModeStatusFromCache } from './utils/fastMode.js';
 import { applyConfigEnvironmentVariables } from './utils/managedEnv.js';
 import { createSystemMessage, createUserMessage } from './utils/messages.js';
@@ -120,8 +120,8 @@ import { logError } from './utils/log.js';
 import { getModelDeprecationWarning } from './utils/model/deprecation.js';
 import { getDefaultMainLoopModel, getUserSpecifiedModelSetting, normalizeModelStringForAPI, parseUserSpecifiedModel } from './utils/model/model.js';
 import { ensureModelStringsInitialized } from './utils/model/modelStrings.js';
-import { PERMISSION_MODES } from './utils/permissions/PermissionMode.js';
-import { checkAndDisableBypassPermissions, getAutoModeEnabledStateIfCached, initializeToolPermissionContext, initialPermissionModeFromCLI, isDefaultPermissionModeAuto, parseToolListFromCLI, removeDangerousPermissions, stripDangerousPermissionsForAutoMode, verifyAutoModeGateAccess } from './utils/permissions/permissionSetup.js';
+import { PERMISSION_MODES } from './server/utils/permissions/PermissionMode.js';
+import { checkAndDisableBypassPermissions, getAutoModeEnabledStateIfCached, initializeToolPermissionContext, initialPermissionModeFromCLI, isDefaultPermissionModeAuto, parseToolListFromCLI, removeDangerousPermissions, stripDangerousPermissionsForAutoMode, verifyAutoModeGateAccess } from './server/utils/permissions/permissionSetup.js';
 import { cleanupOrphanedPluginVersionsInBackground } from './server/utils/plugins/cacheUtils.js';
 import { initializeVersionedPlugins } from './server/utils/plugins/installedPluginsManager.js';
 import { getManagedPluginNames } from './server/utils/plugins/managedPlugins.js';
@@ -171,7 +171,7 @@ import { plural } from 'src/utils/stringUtils.js';
 import { type ChannelEntry, getInitialMainLoopModel, getIsNonInteractiveSession, getSdkBetas, getSessionId, getUserMsgOptIn, setAllowedChannels, setAllowedSettingSources, setChromeFlagOverride, setClientType, setCwdState, setDirectConnectServerUrl, setFlagSettingsPath, setInitialMainLoopModel, setInlinePlugins, setIsInteractive, setKairosActive, setOriginalCwd, setProjectRoot, setQuestionPreviewFormat, setSdkBetas, setSessionBypassPermissionsMode, setSessionPersistenceDisabled, setSessionSource, setUserMsgOptIn, switchSession } from './bootstrap/state.js';
 
 /* eslint-disable @typescript-eslint/no-require-imports */
-const autoModeStateModule = feature('TRANSCRIPT_CLASSIFIER') ? require('./utils/permissions/autoModeState.js') as typeof import('./utils/permissions/autoModeState.js') : null;
+const autoModeStateModule = feature('TRANSCRIPT_CLASSIFIER') ? require('./server/utils/permissions/autoModeState.js') as typeof import('./server/utils/permissions/autoModeState.js') : null;
 
 // TeleportRepoMismatchDialog, TeleportResumeWrapper dynamically imported at call sites
 import { migrateAutoUpdatesToSettings } from './migrations/migrateAutoUpdatesToSettings.js';

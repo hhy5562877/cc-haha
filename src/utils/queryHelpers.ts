@@ -37,7 +37,7 @@ import { expandPath } from './path.js'
 import type {
   inputSchema as permissionToolInputSchema,
   outputSchema as permissionToolOutputSchema,
-} from './permissions/PermissionPromptToolResultSchema.js'
+} from '../server/utils/permissions/PermissionPromptToolResultSchema.js'
 import type { ProcessUserInputContext } from './processUserInput/processUserInput.js'
 import { recordTranscript } from './sessionStorage.js'
 

@@ -47,12 +47,12 @@ import {
   extractTextContent,
   getLastAssistantMessage,
 } from '../../utils/messages.js'
-import type { PermissionMode } from '../../utils/permissions/PermissionMode.js'
-import { permissionRuleValueFromString } from '../../utils/permissions/permissionRuleParser.js'
+import type { PermissionMode } from '../../server/utils/permissions/PermissionMode.js'
+import { permissionRuleValueFromString } from '../../server/utils/permissions/permissionRuleParser.js'
 import {
   buildTranscriptForClassifier,
   classifyYoloAction,
-} from '../../utils/permissions/yoloClassifier.js'
+} from '../../server/utils/permissions/yoloClassifier.js'
 import { emitTaskProgress as emitTaskProgressEvent } from '../../utils/task/sdkProgress.js'
 import { emitAgentToolActivity, type AgentToolActivity } from '../../utils/sdkEventQueue.js'
 import { SYNTHETIC_OUTPUT_TOOL_NAME } from '../SyntheticOutputTool/SyntheticOutputTool.js'

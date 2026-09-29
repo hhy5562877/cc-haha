@@ -107,7 +107,7 @@ import { getAPIContextManagement } from "../compact/apiMicrocompact.js";
 
 /* eslint-disable @typescript-eslint/no-require-imports */
 const autoModeStateModule = feature("TRANSCRIPT_CLASSIFIER")
-  ? (require("../../utils/permissions/autoModeState.js") as typeof import("../../utils/permissions/autoModeState.js"))
+  ? (require("../../server/utils/permissions/autoModeState.js") as typeof import("../../server/utils/permissions/autoModeState.js"))
   : null;
 
 import type { ClientOptions } from "@anthropic-ai/sdk";

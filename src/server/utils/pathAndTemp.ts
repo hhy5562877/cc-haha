@@ -1,7 +1,7 @@
 /**
  * server 侧路径/临时目录小工具 —— 解耦批次 5 提取。
  *
- * 原实现位于引擎支撑层（src/utils/permissions/{pathValidation,filesystem}.ts），
+ * 原实现位于引擎支撑层（src/server/utils/permissions/{pathValidation,filesystem}.ts），
  * server 仅消费其中的 expandTilde 与 getClaudeTempDir 两个函数；此处以 node
  * 内建能力内联等价实现，切断 server → permissions 子系统的直接依赖边
  * （permissions 余量 2400+ 行含 Tool/bootstrap/analytics 深依赖，随引擎休眠）。

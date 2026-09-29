@@ -7,7 +7,7 @@ import type {
   PermissionDenyDecision,
   PermissionMetadata,
   PermissionResult,
-} from '../../types/permissions.js'
+} from '../../../types/permissions.js'
 
 // Re-export for backwards compatibility
 export type {

@@ -32,7 +32,7 @@ import {
 import {
   PERMISSION_MODES,
   type PermissionMode,
-} from '../../utils/permissions/PermissionMode.js'
+} from '../../server/utils/permissions/PermissionMode.js'
 import {
   clearPluginAgentCache,
   loadPluginAgents,
