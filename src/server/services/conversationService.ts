@@ -170,10 +170,7 @@ function platformTriple(): string {
  * 命中平台 triple 优先，否则取目录内任意 dal-sidecar-*。
  */
 function resolveBundledDalSidecar(): string | null {
-  const candidates = [
-    ...(process.env.CLAUDE_APP_ROOT ? [path.join(process.env.CLAUDE_APP_ROOT, 'binaries')] : []),
-    path.resolve(import.meta.dir, '../../../desktop/src-tauri/binaries'),
-  ]
+  const candidates = dalBinaryDirs()
   const triple = platformTriple()
   for (const dir of candidates) {
     try {
@@ -188,6 +185,26 @@ function resolveBundledDalSidecar(): string | null {
     }
   }
   return null
+}
+
+function dalBinaryDirs(): string[] {
+  return [
+    ...(process.env.CLAUDE_APP_ROOT ? [path.join(process.env.CLAUDE_APP_ROOT, 'binaries')] : []),
+    path.resolve(import.meta.dir, '../../../desktop/src-tauri/binaries'),
+  ]
+}
+
+/**
+ * dal 内置扩展运行时（build-sidecars 的 stageDalExtensionRuntime 产物）：
+ * 二进制旁的 node_modules，经 NODE_PATH 供运行时 require.resolve 发现
+ * dal-guard/dal-bridge 等扩展包。
+ */
+function dalExtensionNodeModulesEnv(): Record<string, string> {
+  const bundled = resolveBundledDalSidecar()
+  if (!bundled) return {}
+  const nodeModules = path.join(path.dirname(bundled), 'node_modules')
+  if (!fs.existsSync(nodeModules)) return {}
+  return { NODE_PATH: nodeModules }
 }
 
 type AttachmentRef = {
@@ -1916,6 +1933,7 @@ export class ConversationService {
     }
 
     Object.assign(cleanEnv, buildDalBridgeEnv(sessionId, sdkUrl, options?.permissionMode))
+    Object.assign(cleanEnv, dalExtensionNodeModulesEnv())
     return cleanEnv
   }
 

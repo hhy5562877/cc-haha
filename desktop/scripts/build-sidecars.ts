@@ -64,6 +64,83 @@ await compileExecutable({
 
 console.log(`[build-sidecars] Built desktop sidecar for ${targetTriple} (${bunTarget})`)
 
+// dal 引擎 sidecar：从 DAL-code-cli 的官方构建产物 dist/bun/cli.js 编译
+// （必须用 dist 产物而非 src/cli.ts：@dalcode/* 内置扩展（dal-guard 等安全
+// 审批门）依赖 dist 构建的内联解析，直接编 src 会丢扩展加载能力）。
+// 产物 dal-sidecar-{triple} 输出同一 binaries 目录，
+// conversationService.resolveDalCliArgs / buildCronCliArgs 按同名约定解析。
+// 源仓库路径经 DAL_CLI_REPO 覆盖，默认取同级 ../DAL-code-cli。
+const dalCliRepo = process.env.DAL_CLI_REPO?.trim()
+  || path.resolve(repoRoot, '..', 'DAL-code-cli')
+const dalCliEntry = path.join(dalCliRepo, 'packages', 'coding-agent', 'dist', 'bun', 'cli.js')
+if (await Bun.file(dalCliEntry).exists()) {
+  await compileExecutable({
+    entrypoint: dalCliEntry,
+    outfileBase: path.join(binariesDir, `dal-sidecar-${targetTriple}`),
+    productName: 'DAL Code Sidecar',
+    bunTarget,
+  })
+  console.log(`[build-sidecars] Built dal sidecar from ${dalCliRepo}`)
+  await stageDalExtensionRuntime(dalCliRepo)
+} else {
+  console.warn(
+    `[build-sidecars] DAL CLI dist not found at ${dalCliEntry} (run its build first, or set DAL_CLI_REPO), skipping dal-sidecar`,
+  )
+}
+
+/**
+ * dal 内置扩展（dal-guard/cc-safety-net/dal-bridge 等 15 个包）经运行时
+ * `require.resolve('<pkg>/package.json')` 从磁盘发现——bun 编译二进制不会内联
+ * 这条解析。把 DAL-code-cli 的 node_modules 以兄弟布局复制到二进制旁
+ * （<binaries>/node_modules），桌面端 spawn 时注入 NODE_PATH 指向该目录即完成
+ * 扩展运行时。已知体积 ~550MB，后续可按需裁剪（@biomejs/文档/sourcemap）。
+ */
+async function stageDalExtensionRuntime(dalCliRepo: string) {
+  const sourceNodeModules = path.join(dalCliRepo, 'node_modules')
+  const targetNodeModules = path.join(binariesDir, 'node_modules')
+  if (!(await Bun.file(path.join(sourceNodeModules, '.package-lock.json')).exists()
+    || await Bun.file(path.join(sourceNodeModules, 'echarts', 'package.json')).exists())) {
+    console.warn(`[build-sidecars] ${sourceNodeModules} 不存在或未安装，跳过 dal 扩展运行时`)
+    return
+  }
+  console.log('[build-sidecars] staging dal extension runtime (node_modules) ...')
+  const proc = Bun.spawn(
+    [process.execPath, '-e', BUN_COPY_SCRIPT],
+    {
+      stdout: 'inherit',
+      stderr: 'inherit',
+      cwd: targetNodeModules,
+      env: {
+        ...process.env,
+        DAL_SRC_NODE_MODULES: sourceNodeModules,
+        DAL_DST_NODE_MODULES: targetNodeModules,
+      },
+    },
+  )
+  const exitCode = await proc.exited
+  if (exitCode !== 0) {
+    throw new Error(`[build-sidecars] staging dal extension runtime failed (exit ${exitCode})`)
+  }
+}
+
+const BUN_COPY_SCRIPT = `
+const { cpSync, rmSync, existsSync } = require('node:fs');
+const src = process.env.DAL_SRC_NODE_MODULES;
+const dst = process.env.DAL_DST_NODE_MODULES;
+rmSync(dst, { recursive: true, force: true });
+// 裁剪确定与运行时无关的大目录，控制分发体积。
+const EXCLUDED = new Set(['.bin', '.cache', '@biomejs', '@types', 'typescript']);
+cpSync(src, dst, { recursive: true, verbatimSymlinks: true,
+  filter: (srcPath) => {
+    const rel = srcPath.slice(src.length + 1);
+    const top = rel.split(/[\\\\/]/)[0];
+    return !EXCLUDED.has(top);
+  },
+});
+if (!existsSync(dst)) throw new Error('copy failed');
+console.log('[dal-extension-runtime] staged to ' + dst);
+`
+
 // macOS-only: build + bundle the native `cu-helper` Computer Use binary.
 // On Windows/Linux this is skipped entirely so the Python helper path is
 // preserved (helperBridge.ts routes non-darwin → python). We do NOT ad-hoc
@@ -235,7 +312,9 @@ async function compileExecutable({
       'react-devtools-core',
     ],
     compile: {
-      target: bunTarget,
+      // mapTargetTripleToBun 的返回值恒为 bun-types 的 CompileTarget 字面量，
+      // 这里的窄化由调用约定保证，宽化签名仅为脚本内类型简洁。
+      target: bunTarget as never,
       outfile: outfileBase,
       autoloadTsconfig: true,
       autoloadPackageJson: true,

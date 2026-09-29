@@ -890,6 +890,14 @@ export class CronScheduler {
     cleanEnv.DAL_GUARD_MODE = 'yolo'
     cleanEnv.CALLER_DIR = workDir
     cleanEnv.PWD = workDir
+    // dal 扩展运行时（二进制旁 node_modules），不存在则保持原值。
+    try {
+      const bundledDir = path.dirname(String(resolveBundledDalSidecarForCron(process.env.CLAUDE_APP_ROOT) ?? ''))
+      const nodeModules = bundledDir ? path.join(bundledDir, 'node_modules') : ''
+      if (nodeModules && existsSync(nodeModules)) cleanEnv.NODE_PATH = nodeModules
+    } catch {
+      // 解析失败不影响任务启动。
+    }
 
     try {
       const gatewayEnv = await dalAuthService.getSpawnEnv()
