@@ -1,5 +1,7 @@
 # CHANGELOG
 
+- [2026-10-01 01:30] REFACTOR: 解耦批次 14 完成——plugins 组对 permissions 的最后两条 expandTilde 引用改用 server 本地 pathAndTemp，server→utils/permissions 直接消费边全断 (Files: src/server/utils/plugins/{pluginDirectories,zipCache}.ts)
+
 - [2026-10-01 00:40] FIX: 补迁 performStartupChecks.tsx（.tsx 扩展名遗漏于批次 13 移动清单）并修正 REPL 导入；E2E PASS (Files: src/server/utils/plugins/performStartupChecks.tsx, src/screens/REPL.tsx)
 
 - [2026-09-30 23:59] REFACTOR: 解耦批次 13 完成——plugins 组（19212 行 20+ 文件，最大子系统）整目录迁入 src/server/utils/plugins/，语义归一器单步重算搬迁件相对导入，全仓消费方多形态重指（相对前缀/单父兄弟/点斜/根式 src/utils 路径，./plugins 未迁移组精确保留），E2E PASS (Files: src/server/utils/plugins/*, src/commands.ts, src/main.tsx, src/server/services/capabilityMentionService.ts 等)

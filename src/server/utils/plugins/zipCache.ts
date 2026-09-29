@@ -46,7 +46,7 @@ import { logForDebugging } from '../../../utils/debug.js'
 import { parseZipModes, unzipFile } from '../../../utils/dxt/zip.js'
 import { isEnvTruthy } from '../../../utils/envUtils.js'
 import { getFsImplementation } from '../../../utils/fsOperations.js'
-import { expandTilde } from '../../../utils/permissions/pathValidation.js'
+import { expandTilde } from '../pathAndTemp.js'
 import type { MarketplaceSource } from './schemas.js'
 
 /**

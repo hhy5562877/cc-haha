@@ -17,7 +17,7 @@ import { logForDebugging } from '../../../utils/debug.js'
 import { getClaudeConfigHomeDir, isEnvTruthy } from '../../../utils/envUtils.js'
 import { errorMessage, isFsInaccessible } from '../../../utils/errors.js'
 import { formatFileSize } from '../../../utils/format.js'
-import { expandTilde } from '../../../utils/permissions/pathValidation.js'
+import { expandTilde } from '../pathAndTemp.js'
 
 const PLUGINS_DIR = 'plugins'
 const COWORK_PLUGINS_DIR = 'cowork_plugins'
