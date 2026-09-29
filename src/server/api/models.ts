@@ -13,12 +13,12 @@ import { ProviderService } from '../services/providerService.js'
 import { attributionHeaderEnvForModel } from '../services/attributionHeaderPolicy.js'
 import { ApiError, errorResponse } from '../middleware/errorHandler.js'
 import { hasOpenAIAuthLogin } from '../../utils/auth.js'
-import { getOpenAICodexModelCatalog } from '../../services/openaiAuth/modelCatalog.js'
+import { getOpenAICodexModelCatalog } from '../services/openaiAuth/modelCatalog.js'
 import { getDesktopOpenAICodexModelCatalog } from '../services/openaiModelCatalog.js'
 import {
   OPENAI_DEFAULT_MAIN_MODEL,
   type OpenAIModelCatalogEntry,
-} from '../../services/openaiAuth/models.js'
+} from '../services/openaiAuth/models.js'
 import {
   OPENAI_OFFICIAL_PROVIDER_ID,
   OPENAI_OFFICIAL_PROVIDER_NAME,

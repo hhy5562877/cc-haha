@@ -1,5 +1,7 @@
 # CHANGELOG
 
+- [2026-09-30 18:50] REFACTOR: 解耦批次 9 完成——services/openaiAuth 整目录（12 文件）迁入 src/server/services/openaiAuth/，全仓消费方重指（含 cli/auth、OpenAILoginFlow、query.ts、services/api/claude 双引号与动态行内形态）；迁移件相对导入经语义归一器修复（按原目录语义解析意图+污染深度剥离）；E2E PASS (Files: src/server/services/openaiAuth/*, src/query.ts, src/services/api/claude.ts 等)
+
 - [2026-09-30 17:40] REFACTOR: 解耦批次 8 完成——services/mcp 整目录（8751 行 16 文件）迁入 src/server/services/mcp/，迁移件父级深度统一（../../→../../../、单父→../../../services/、动态 import、require 形式、根式 src/services/mcp→src/server/services/mcp 共 8 类形态），全仓 ~110 处消费方重指（api/mcp、pluginService、capabilityMentionService、analytics、tools、api/claude 等）；E2E PASS (Files: src/server/services/mcp/*, src/server/api/mcp.ts, src/services/* 等 120+ 文件)
 
 - [2026-09-30 16:50] REFACTOR: 解耦批次 7——model 工具切片提取为 src/server/utils/model.ts（上下文窗口常量/ENV 键/normalizeModelStringForAPI/isFirstPartyAnthropicBaseUrl/getModelContextWindowFromEnvValue 及其内部辅助，原样自 modelContextWindows/model/providers 转写），ccSwitchImport/grokOfficial/openaiOfficial/proxy-handler/sessionService/providerRuntimeEnv 六消费方重指；getCanonicalName 深链（modelStrings 子系统）留守并记录 (Files: src/server/utils/model.ts, src/server/services/*, src/server/proxy/handler.ts)

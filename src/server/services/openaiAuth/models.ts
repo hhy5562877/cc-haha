@@ -1,4 +1,4 @@
-import { isOpenAIReasoningModel } from '../../shared/modelReasoning.js'
+import { isOpenAIReasoningModel } from '../../../shared/modelReasoning.js'
 
 export const OPENAI_DEFAULT_MAIN_MODEL = 'gpt-6-sol'
 export const OPENAI_DEFAULT_SONNET_MODEL = 'gpt-6-sol'

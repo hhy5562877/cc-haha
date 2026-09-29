@@ -16,16 +16,16 @@ import { hahaOAuthService } from '../services/hahaOAuthService.js'
 import { hahaOpenAIOAuthService } from '../services/hahaOpenAIOAuthService.js'
 import {
   clearOpenAICodexModelCatalogCache,
-} from '../../services/openaiAuth/modelCatalog.js'
+} from '../services/openaiAuth/modelCatalog.js'
 import {
   clearOpenAIOAuthTokenCache,
-} from '../../services/openaiAuth/storage.js'
+} from '../services/openaiAuth/storage.js'
 import { plainTextStorage } from '../../utils/secureStorage/plainTextStorage.js'
 import {
   clearKeychainCache,
   primeKeychainCacheFromPrefetch,
 } from '../../utils/secureStorage/macOsKeychainHelpers.js'
-import type { OpenAIOAuthTokens } from '../../services/openaiAuth/types.js'
+import type { OpenAIOAuthTokens } from '../services/openaiAuth/types.js'
 import {
   getMaxOpus46_1MOption,
   getMaxSonnet46_1MOption,

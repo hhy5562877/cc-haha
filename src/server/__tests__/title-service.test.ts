@@ -2,7 +2,7 @@ import { afterEach, beforeEach, describe, expect, test } from 'bun:test'
 import * as fs from 'fs/promises'
 import * as os from 'os'
 import * as path from 'path'
-import { OPENAI_CODEX_API_ENDPOINT } from '../../services/openaiAuth/client.js'
+import { OPENAI_CODEX_API_ENDPOINT } from '../services/openaiAuth/client.js'
 import { ProviderService } from '../services/providerService.js'
 import {
   deriveTitle,

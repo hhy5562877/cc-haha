@@ -4,7 +4,7 @@ import {
   OPENAI_CODEX_ORIGINATOR,
   OPENAI_CODEX_TOKEN_USER_AGENT,
 } from './client.js'
-import { createModelCatalogCache } from '../modelCatalogCache.js'
+import { createModelCatalogCache } from '../../../services/modelCatalogCache.js'
 import { ensureFreshOpenAITokens } from './index.js'
 import { getOpenAIOAuthTokens } from './storage.js'
 import {

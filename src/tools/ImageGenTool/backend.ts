@@ -8,9 +8,9 @@ import {
   OPENAI_CODEX_API_ENDPOINT,
   OPENAI_CODEX_ORIGINATOR,
   OPENAI_CODEX_TOKEN_USER_AGENT,
-} from '../../services/openaiAuth/client.js'
-import { ensureFreshOpenAITokens } from '../../services/openaiAuth/index.js'
-import { OPENAI_DEFAULT_MAIN_MODEL } from '../../services/openaiAuth/models.js'
+} from '../../server/services/openaiAuth/client.js'
+import { ensureFreshOpenAITokens } from '../../server/services/openaiAuth/index.js'
+import { OPENAI_DEFAULT_MAIN_MODEL } from '../../server/services/openaiAuth/models.js'
 import {
   ensureFreshGrokTokens,
   forceRefreshGrokTokens,

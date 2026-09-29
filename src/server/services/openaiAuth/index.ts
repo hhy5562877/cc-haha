@@ -1,5 +1,5 @@
-import { openBrowser } from '../../utils/browser.js'
-import { AuthCodeListener } from '../oauth/auth-code-listener.js'
+import { openBrowser } from '../../../utils/browser.js'
+import { AuthCodeListener } from '../../../services/oauth/auth-code-listener.js'
 import {
   buildOpenAIAuthorizeUrl,
   exchangeOpenAICodeForTokens,

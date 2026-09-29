@@ -1,4 +1,4 @@
-import { getOpenAICodexModelCatalog } from '../../services/openaiAuth/modelCatalog.js'
+import { getOpenAICodexModelCatalog } from './openaiAuth/modelCatalog.js'
 import { hahaOpenAIOAuthService } from './hahaOpenAIOAuthService.js'
 
 /** Desktop discovery must use the same account as its official provider runtime. */

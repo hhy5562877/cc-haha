@@ -35,7 +35,7 @@ import { type ModelAlias, isModelAlias } from './aliases.js'
 import {
   getOpenAIModelDisplayName,
   resolveOpenAICodexModel,
-} from '../../services/openaiAuth/models.js'
+} from '../../server/services/openaiAuth/models.js'
 import { capitalize } from '../stringUtils.js'
 
 export type ModelShortName = string

@@ -24,7 +24,7 @@ import {
 import {
   OPENAI_CODEX_REASONING_EFFORT_ENV_KEY,
   isOpenAIReasoningEffort,
-} from '../../services/openaiAuth/models.js'
+} from './openaiAuth/models.js'
 import {
   IMAGE_GENERATION_API_KEY_ENV_KEY,
   IMAGE_GENERATION_BASE_URL_ENV_KEY,

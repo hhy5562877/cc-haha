@@ -15,7 +15,7 @@ import type { EffortLevel as RuntimeEffortLevel } from 'src/entrypoints/sdk/runt
 import {
   getOpenAIModelCatalogEntry,
   isOpenAIResponsesModel,
-} from 'src/services/openaiAuth/models.js'
+} from 'src/server/services/openaiAuth/models.js'
 import { GROK_MODEL_CATALOG, getGrokRuntimeModelCatalog } from 'src/services/grokAuth/models.js'
 
 export type EffortLevel = RuntimeEffortLevel | 'xhigh'

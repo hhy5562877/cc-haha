@@ -20,9 +20,9 @@ import {
 import { getOauthProfileFromOauthToken } from '../../services/oauth/getOauthProfile.js'
 import { OAuthService } from '../../services/oauth/index.js'
 import type { OAuthTokens } from '../../services/oauth/types.js'
-import { OpenAIOAuthService } from '../../services/openaiAuth/index.js'
-import { getOpenAIOAuthTokens } from '../../services/openaiAuth/storage.js'
-import type { OpenAIOAuthTokens } from '../../services/openaiAuth/types.js'
+import { OpenAIOAuthService } from '../../server/services/openaiAuth/index.js'
+import { getOpenAIOAuthTokens } from '../../server/services/openaiAuth/storage.js'
+import type { OpenAIOAuthTokens } from '../../server/services/openaiAuth/types.js'
 import {
   clearStoredClaudeAIOAuthTokens,
   clearOAuthTokenCache,

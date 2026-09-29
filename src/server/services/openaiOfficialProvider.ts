@@ -1,4 +1,4 @@
-import { OPENAI_CODEX_API_ENDPOINT } from '../../services/openaiAuth/client.js'
+import { OPENAI_CODEX_API_ENDPOINT } from './openaiAuth/client.js'
 import {
   OPENAI_CODEX_MODEL_CATALOG,
   OPENAI_DEFAULT_HAIKU_MODEL,
@@ -6,7 +6,7 @@ import {
   OPENAI_DEFAULT_OPUS_MODEL,
   OPENAI_DEFAULT_SONNET_MODEL,
   getOpenAICodexContextWindowForModel,
-} from '../../services/openaiAuth/models.js'
+} from './openaiAuth/models.js'
 import { MODEL_CONTEXT_WINDOWS_ENV_KEY } from '../utils/model.js'
 import {
   IMAGE_GENERATION_MODEL_ENV_KEY,

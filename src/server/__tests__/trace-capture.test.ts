@@ -22,8 +22,8 @@ import {
 } from '../services/traceCaptureService.js'
 import { sessionService } from '../services/sessionService.js'
 import { createDumpPromptsFetch } from '../../services/api/dumpPrompts.js'
-import { buildOpenAICodexFetch } from '../../services/openaiAuth/fetch.js'
-import { clearOpenAIOAuthTokenCache } from '../../services/openaiAuth/storage.js'
+import { buildOpenAICodexFetch } from '../services/openaiAuth/fetch.js'
+import { clearOpenAIOAuthTokenCache } from '../services/openaiAuth/storage.js'
 import { getTraceIndexDatabasePath } from '../services/localIndex/traceDatabase.js'
 
 let tmpDir: string

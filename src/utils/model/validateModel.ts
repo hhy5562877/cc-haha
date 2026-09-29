@@ -11,7 +11,7 @@ import {
   AuthenticationError,
 } from '@anthropic-ai/sdk'
 import { getModelStrings } from './modelStrings.js'
-import { isOpenAIResponsesModel } from '../../services/openaiAuth/models.js'
+import { isOpenAIResponsesModel } from '../../server/services/openaiAuth/models.js'
 
 // Cache valid models to avoid repeated API calls
 const validModelCache = new Map<string, boolean>()

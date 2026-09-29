@@ -1,5 +1,5 @@
 ﻿import { getConfiguredProviderOutputBudget, getOutputBudgetHeaders, markOutputBudgetSource } from '../../server/services/api/outputBudget.js'
-import { OpenAICodexTurnState } from '../openaiAuth/turnState.js';
+import { OpenAICodexTurnState } from '../../server/services/openaiAuth/turnState.js';
 import type {
   BetaContentBlock,
   BetaContentBlockParam,
@@ -186,11 +186,11 @@ import { returnValue } from "src/utils/generators.js";
 import { headlessProfilerCheckpoint } from "src/utils/headlessProfiler.js";
 import { isMcpInstructionsDeltaEnabled } from "src/utils/mcpInstructionsDelta.js";
 import { calculateUSDCost } from "src/utils/modelCost.js";
-import { isOpenAIResponsesModel } from "src/services/openaiAuth/models.js";
+import { isOpenAIResponsesModel } from "src/server/services/openaiAuth/models.js";
 import {
   canRetryOpenAICodexStreamWithBufferedContent,
   resolveOpenAICodexFirstTokenTimeoutMs,
-} from "src/services/openaiAuth/streamPolicy.js";
+} from "src/server/services/openaiAuth/streamPolicy.js";
 import { endQueryProfile, queryCheckpoint } from "src/utils/queryProfiler.js";
 import {
   modelSupportsAdaptiveThinking,
@@ -226,7 +226,7 @@ import {
   startSessionActivity,
   stopSessionActivity,
 } from "../../utils/sessionActivity.js";
-import { isOpenAIPolicyError } from "../openaiAuth/policyError.js"
+import { isOpenAIPolicyError } from "../../server/services/openaiAuth/policyError.js"
 import { shouldTriggerNonStreamingFallbackForEmptyStream } from "./streamFallback.js";
 import { StreamAssistantCommitBuffer } from "./streamAssistantCommitBuffer.js";
 import {

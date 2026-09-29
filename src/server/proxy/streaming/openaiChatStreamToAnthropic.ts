@@ -20,7 +20,7 @@
  *   - delta.reasoning          (GLM-5, Cerebras, Groq — mapped to reasoning_content)
  */
 
-import { getOpenAIPolicyError } from '../../../services/openaiAuth/policyError.js'
+import { getOpenAIPolicyError } from '../../services/openaiAuth/policyError.js'
 import type { OpenAIChatStreamChunk } from '../transform/types.js'
 import { stringifyOpenAIToolArguments } from '../transform/toolArguments.js'
 import { getChatResponseError, parseCompleteChatToolArguments } from '../transform/openaiChatToAnthropic.js'

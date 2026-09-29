@@ -1,6 +1,6 @@
 import { isPendingSessionMessage } from './utils/sessionMessageInbox.js'
 // biome-ignore-all assist/source/organizeImports: ANT-ONLY import markers must not be reordered
-import { OpenAICodexTurnState } from './services/openaiAuth/turnState.js'
+import { OpenAICodexTurnState } from './server/services/openaiAuth/turnState.js'
 import type {
   ToolResultBlockParam,
   ToolUseBlock,

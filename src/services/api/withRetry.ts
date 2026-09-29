@@ -51,7 +51,7 @@ import {
   REPEATED_529_ERROR_MESSAGE,
 } from './errors.js'
 import { extractConnectionErrorDetails } from './errorUtils.js'
-import { isOpenAIPolicyError } from '../openaiAuth/policyError.js'
+import { isOpenAIPolicyError } from '../../server/services/openaiAuth/policyError.js'
 
 const abortError = () => new APIUserAbortError()
 

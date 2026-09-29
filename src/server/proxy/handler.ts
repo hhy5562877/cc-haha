@@ -9,7 +9,7 @@
  * Original work by Jason Young, MIT License
  */
 
-import { getOpenAIPolicyError } from '../../services/openaiAuth/policyError.js'
+import { getOpenAIPolicyError } from '../services/openaiAuth/policyError.js'
 import { buildOpenaiEndpoint } from './openaiEndpoint.js'
 import { normalizeAnthropicBaseUrl } from '../services/api/anthropicBaseUrl.js'
 import { createGunzip, createInflate } from 'node:zlib'

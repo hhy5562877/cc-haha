@@ -1,4 +1,4 @@
-import type { OpenAICodexTurnState } from '../openaiAuth/turnState.js'
+import type { OpenAICodexTurnState } from '../../server/services/openaiAuth/turnState.js'
 import Anthropic, { type ClientOptions } from '@anthropic-ai/sdk'
 import { normalizeAnthropicBaseUrl } from '../../server/services/api/anthropicBaseUrl.js'
 import { randomUUID } from 'crypto'
@@ -29,8 +29,8 @@ import {
   buildOpenAICodexFetch,
   OPENAI_OAUTH_DUMMY_KEY,
   shouldUseOpenAICodexAuth,
-} from '../openaiAuth/fetch.js'
-import { isOpenAIResponsesModel } from '../openaiAuth/models.js'
+} from '../../server/services/openaiAuth/fetch.js'
+import { isOpenAIResponsesModel } from '../../server/services/openaiAuth/models.js'
 import {
   buildGrokFetch,
   GROK_OAUTH_DUMMY_KEY,
