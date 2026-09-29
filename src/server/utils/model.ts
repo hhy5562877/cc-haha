@@ -111,3 +111,20 @@ export function getModelContextWindowFromEnvValue(
     return undefined
   }
 }
+
+/**
+ * server 侧规范化模型名（原 getCanonicalName 的窄化近似）：
+ * 剥离 [1m]/[2m] 标记、provider 前缀与 Bedrock ARN，转小写。
+ * 引擎完整实现依赖 modelStrings 状态子系统（settings/bedrock 链），
+ * server 侧仅用于成本表键匹配——dal 网关模型本就不在表内，
+ * 返回未知键即语义正确（hasUnknownModelCost）。
+ */
+export function getCanonicalName(fullModelName: string): string {
+  let name = fullModelName.replace(/\[(1|2)m\]/gi, '')
+  // 剥离 provider 前缀（provider/id 形态）
+  const slash = name.lastIndexOf('/')
+  if (slash !== -1) name = name.slice(slash + 1)
+  // 剥离 Bedrock ARN 形态（foundation-model/... 已被上一条覆盖； anthropic. 前缀）
+  name = name.replace(/^anthropic\./, '')
+  return name.toLowerCase()
+}

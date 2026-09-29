@@ -63,7 +63,7 @@ import {
   loadNetworkSettings,
   type NetworkSettings,
 } from './networkSettings.js'
-import { normalizeModelStringForAPI } from '../../utils/model/model.js'
+import { normalizeModelStringForAPI } from '../utils/model.js'
 import type {
   SavedProvider,
   ProvidersIndex,

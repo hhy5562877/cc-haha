@@ -39,7 +39,7 @@ import {
   getProviderUsageTrust,
   hasMediaInput,
 } from '../../utils/contextBudget.js'
-import { getCanonicalName } from '../../utils/model/model.js'
+import { getCanonicalName } from '../utils/model.js'
 import { isFirstPartyAnthropicBaseUrl } from '../utils/model.js'
 import {
   resolveSessionWorkspaceLaunch,
