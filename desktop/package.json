@@ -11,8 +11,8 @@
   "type": "module",
   "main": "electron-dist/main.cjs",
   "build": {
-    "appId": "com.claude-code-haha.desktop",
-    "productName": "Claude Code Haha",
+    "appId": "com.dal-code-haha.desktop",
+    "productName": "DAL Code Haha",
     "asar": true,
     "asarUnpack": [
       "dist/**",
