@@ -5,7 +5,7 @@ import { Ansi, Box, Text } from '../../ink.js';
 import type { Attachment } from 'src/utils/attachments.js';
 import type { NullRenderingAttachmentType } from './nullRenderingAttachments.js';
 import { useAppState } from '../../state/AppState.js';
-import { getDisplayPath } from 'src/utils/file.js';
+import { getDisplayPath } from 'src/server/utils/file.js';
 import { formatFileSize } from 'src/utils/format.js';
 import { MessageResponse } from '../MessageResponse.js';
 import { basename, sep } from 'path';

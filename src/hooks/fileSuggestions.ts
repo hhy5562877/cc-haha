@@ -4,7 +4,7 @@ import * as path from 'path'
 import {
   CLAUDE_CONFIG_DIRECTORIES,
   loadMarkdownFilesForSubdir,
-} from 'src/utils/markdownConfigLoader.js'
+} from 'src/server/utils/markdownConfigLoader.js'
 import type { SuggestionItem } from '../components/PromptInput/PromptInputFooterSuggestions.js'
 import {
   CHUNK_MS,
@@ -26,7 +26,7 @@ import {
 } from '../utils/hooks.js'
 import { logError } from '../server/utils/log.js'
 import { expandPath } from '../server/utils/path.js'
-import { ripGrep } from '../utils/ripgrep.js'
+import { ripGrep } from '../server/utils/ripgrep.js'
 import { getInitialSettings } from '../server/utils/settings/settings.js'
 import { createSignal } from '../utils/signal.js'
 

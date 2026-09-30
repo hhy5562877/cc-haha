@@ -11,10 +11,10 @@ import {
   hasEmbeddedSearchTools,
 } from '../embeddedTools.js'
 import { getClaudeConfigHomeDir } from '../../server/utils/envUtils.js'
-import { pathExists } from '../file.js'
+import { pathExists } from '../../server/utils/file.js'
 import { getFsImplementation } from '../../server/utils/fsOperations.js'
 import { logError } from '../../server/utils/log.js'
-import { ripgrepCommand } from '../ripgrep.js'
+import { ripgrepCommand } from '../../server/utils/ripgrep.js'
 import { subprocessEnv } from '../subprocessEnv.js'
 import { quote } from './shellQuote.js'
 

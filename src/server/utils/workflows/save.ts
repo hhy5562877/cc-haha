@@ -1,7 +1,7 @@
 import { lstat, mkdir, writeFile } from 'fs/promises'
 import { join } from 'path'
 import { getOriginalCwd } from '../../bootstrap/state.js'
-import { getProjectDirsUpToHome } from '../../../utils/markdownConfigLoader.js'
+import { getProjectDirsUpToHome } from '../markdownConfigLoader.js'
 import { findGitRoot } from '../git.js'
 import { parseWorkflowScript } from './meta.js'
 import { getUserWorkflowsDir } from './paths.js'

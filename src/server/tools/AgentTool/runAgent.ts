@@ -42,7 +42,7 @@ import type {
 } from '../../types/message.js'
 import { createAttachmentMessage } from '../../../utils/attachments.js'
 import { AbortError } from '../../utils/errors.js'
-import { getDisplayPath } from '../../../utils/file.js'
+import { getDisplayPath } from '../../utils/file.js'
 import {
   cloneFileStateCache,
   createFileStateCacheWithSizeLimit,

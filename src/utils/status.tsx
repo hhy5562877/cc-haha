@@ -7,7 +7,7 @@ import { getAccountInformation, isClaudeAISubscriber } from './auth.js';
 import { getLargeMemoryFiles, getMemoryFiles, MAX_MEMORY_CHARACTER_COUNT } from './claudemd.js';
 import { getDoctorDiagnostic } from './doctorDiagnostic.js';
 import { getAWSRegion, getDefaultVertexRegion, isEnvTruthy } from '../server/utils/envUtils.js';
-import { getDisplayPath } from './file.js';
+import { getDisplayPath } from '../server/utils/file.js';
 import { formatNumber } from './format.js';
 import { getIdeClientName, type IDEExtensionInstallationStatus, isJetBrainsIde, toIDEDisplayName } from './ide.js';
 import { getClaudeAiUserDefaultModelDescription, modelDisplayString } from '../server/utils/model/model.js';

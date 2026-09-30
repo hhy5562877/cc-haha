@@ -28,7 +28,7 @@ import { getGlobalConfig } from './config.js'
 import { logForDebugging } from '../server/utils/debug.js'
 import { getClaudeConfigHomeDir, isEnvTruthy } from '../server/utils/envUtils.js'
 import { getErrnoCode, isENOENT } from '../server/utils/errors.js'
-import { pathExists } from './file.js'
+import { pathExists } from '../server/utils/file.js'
 import { logError } from '../server/utils/log.js'
 import { recordFileHistorySnapshot } from './sessionStorage.js'
 

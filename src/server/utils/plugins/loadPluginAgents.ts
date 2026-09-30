@@ -23,7 +23,7 @@ import { getFsImplementation, isDuplicatePath } from '../fsOperations.js'
 import {
   parseAgentToolsFromFrontmatter,
   parseSlashCommandToolsFromFrontmatter,
-} from '../../../utils/markdownConfigLoader.js'
+} from '../markdownConfigLoader.js'
 import { loadAllPluginsCacheOnly } from './pluginLoader.js'
 import {
   loadPluginOptions,

@@ -6,7 +6,7 @@ import { isENOENT } from '../../server/utils/errors.js'
 import {
   FILE_NOT_FOUND_CWD_NOTE,
   suggestPathUnderCwd,
-} from '../../utils/file.js'
+} from '../../server/utils/file.js'
 import { getFsImplementation } from '../../server/utils/fsOperations.js'
 import { lazySchema } from '../../server/utils/lazySchema.js'
 import { expandPath, toRelativePath } from '../../server/utils/path.js'
@@ -18,7 +18,7 @@ import {
 import type { PermissionDecision } from '../../server/utils/permissions/PermissionResult.js'
 import { matchWildcardPattern } from '../../server/utils/permissions/shellRuleMatching.js'
 import { getGlobExclusionsForPluginCache } from '../../server/utils/plugins/orphanedPluginFilter.js'
-import { ripGrep } from '../../utils/ripgrep.js'
+import { ripGrep } from '../../server/utils/ripgrep.js'
 import { semanticBoolean } from '../../utils/semanticBoolean.js'
 import { semanticNumber } from '../../utils/semanticNumber.js'
 import { plural } from '../../server/utils/stringUtils.js'

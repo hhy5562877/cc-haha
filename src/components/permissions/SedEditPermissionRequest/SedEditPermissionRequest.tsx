@@ -4,7 +4,7 @@ import React, { Suspense, use, useMemo } from 'react';
 import { FileEditToolDiff } from 'src/components/FileEditToolDiff.js';
 import { getCwd } from 'src/server/utils/cwd.ts';
 import { isENOENT } from 'src/server/utils/errors.ts';
-import { detectEncodingForResolvedPath } from 'src/utils/fileRead.js';
+import { detectEncodingForResolvedPath } from 'src/server/utils/fileRead.js';
 import { getFsImplementation } from 'src/server/utils/fsOperations.ts';
 import { Text } from '../../../ink.js';
 import { BashTool } from '../../../tools/BashTool/BashTool.js';

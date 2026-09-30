@@ -13,7 +13,7 @@ import * as os from 'os'
 import { createInterface } from 'readline'
 import { StringDecoder } from 'string_decoder'
 import { ApiError } from '../middleware/errorHandler.js'
-import { ripgrepCommand } from '../../utils/ripgrep.js'
+import { ripgrepCommand } from '../utils/ripgrep.js'
 import {
   sessionService,
   type IndexedSessionSearchMetadata,

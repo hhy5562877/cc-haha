@@ -5,7 +5,7 @@ import { getSessionId } from '../server/bootstrap/state.js'
 import { getCwd } from '../server/utils/cwd.js'
 import { logForDebugging } from '../server/utils/debug.js'
 import { execFileNoThrow } from '../server/utils/execFileNoThrow.js'
-import { pathExists } from './file.js'
+import { pathExists } from '../server/utils/file.js'
 import { gte as semverGte } from './semver.js'
 
 const MIN_DESKTOP_VERSION = '1.1.2396'

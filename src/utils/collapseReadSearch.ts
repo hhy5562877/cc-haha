@@ -21,7 +21,7 @@ import type {
   StopHookInfo,
   SystemStopHookSummaryMessage,
 } from '../server/types/message.js'
-import { getDisplayPath } from './file.js'
+import { getDisplayPath } from '../server/utils/file.js'
 import { isFullscreenEnvEnabled } from './fullscreen.js'
 import {
   isAutoManagedMemoryFile,

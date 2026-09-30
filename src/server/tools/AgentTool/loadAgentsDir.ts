@@ -28,7 +28,7 @@ import {
   parseAgentToolsFromFrontmatter,
   parseRawToolListFromFrontmatter,
   parseSlashCommandToolsFromFrontmatter,
-} from '../../../utils/markdownConfigLoader.js'
+} from '../../utils/markdownConfigLoader.js'
 import {
   PERMISSION_MODES,
   type PermissionMode,

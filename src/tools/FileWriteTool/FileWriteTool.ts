@@ -19,13 +19,13 @@ import { logForDebugging } from '../../server/utils/debug.js'
 import { countLinesChanged, getPatchForDisplay } from '../../utils/diff.js'
 import { isEnvTruthy } from '../../server/utils/envUtils.js'
 import { isENOENT } from '../../server/utils/errors.js'
-import { getFileModificationTime, writeTextContent } from '../../utils/file.js'
+import { getFileModificationTime, writeTextContent } from '../../server/utils/file.js'
 import {
   fileHistoryEnabled,
   fileHistoryTrackEdit,
 } from '../../utils/fileHistory.js'
 import { logFileOperation } from '../../utils/fileOperationAnalytics.js'
-import { readFileSyncWithMetadata } from '../../utils/fileRead.js'
+import { readFileSyncWithMetadata } from '../../server/utils/fileRead.js'
 import { getFsImplementation } from '../../server/utils/fsOperations.js'
 import {
   fetchSingleFileGitDiff,

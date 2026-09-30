@@ -4,7 +4,7 @@ import { dirname, join, relative, sep } from 'path'
 import { getCwd } from '../server/utils/cwd.js'
 import { getCachedRepository } from '../server/utils/detectRepository.js'
 import { execFileNoThrow, execFileNoThrowWithCwd } from '../server/utils/execFileNoThrow.js'
-import { isFileWithinReadSizeLimit } from './file.js'
+import { isFileWithinReadSizeLimit } from '../server/utils/file.js'
 import {
   findGitRoot,
   getDefaultBranch,

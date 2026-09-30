@@ -58,7 +58,7 @@ import { logForDebugging } from '../server/utils/debug.js'
 import { logForDiagnosticsNoPII } from '../server/utils/diagLogs.js'
 import { getClaudeConfigHomeDir, isEnvTruthy } from '../server/utils/envUtils.js'
 import { getErrnoCode } from '../server/utils/errors.js'
-import { normalizePathForComparison } from './file.js'
+import { normalizePathForComparison } from '../server/utils/file.js'
 import { cacheKeys, type FileStateCache } from './fileStateCache.js'
 import {
   parseFrontmatter,

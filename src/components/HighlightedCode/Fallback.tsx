@@ -4,7 +4,7 @@ import React, { Suspense, use, useMemo } from 'react';
 import { Ansi, Text } from '../../ink.js';
 import { getCliHighlightPromise } from '../../utils/cliHighlight.js';
 import { logForDebugging } from '../../server/utils/debug.js';
-import { convertLeadingTabsToSpaces } from '../../utils/file.js';
+import { convertLeadingTabsToSpaces } from '../../server/utils/file.js';
 import { hashPair } from '../../server/utils/hash.js';
 type Props = {
   code: string;

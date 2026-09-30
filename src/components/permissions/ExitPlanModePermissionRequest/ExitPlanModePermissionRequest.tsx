@@ -19,7 +19,7 @@ import { isAgentSwarmsEnabled } from '../../../utils/agentSwarmsEnabled.js';
 import { calculateCurrentContextTokenTotal, getContextWindowForModel } from '../../../utils/context.js';
 import { calculateContextPercentagesFromTokens, getProviderUsageTrust, hasMediaInput } from '../../../utils/contextBudget.js';
 import { getExternalEditor } from '../../../utils/editor.js';
-import { getDisplayPath } from '../../../utils/file.js';
+import { getDisplayPath } from '../../../server/utils/file.js';
 import { toIDEDisplayName } from '../../../utils/ide.js';
 import { logError } from '../../../server/utils/log.js';
 import { enqueuePendingNotification } from '../../../utils/messageQueueManager.js';

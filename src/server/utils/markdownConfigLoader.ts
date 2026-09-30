@@ -8,23 +8,23 @@ import { dirname, join, resolve, sep } from 'path'
 import {
   type AnalyticsMetadata_I_VERIFIED_THIS_IS_NOT_CODE_OR_FILEPATHS,
   logEvent,
-} from '../server/services/analytics/index.js'
-import { getProjectRoot } from '../server/bootstrap/state.js'
-import { logForDebugging } from '../server/utils/debug.js'
-import { getClaudeConfigHomeDir, isEnvTruthy } from '../server/utils/envUtils.js'
-import { isFsInaccessible } from '../server/utils/errors.js'
+} from '../services/analytics/index.js'
+import { getProjectRoot } from '../bootstrap/state.js'
+import { logForDebugging } from './debug.js'
+import { getClaudeConfigHomeDir, isEnvTruthy } from './envUtils.js'
+import { isFsInaccessible } from './errors.js'
 import { normalizePathForComparison } from './file.js'
-import type { FrontmatterData } from '../server/utils/frontmatterParser.js'
-import { parseFrontmatter } from '../server/utils/frontmatterParser.js'
-import { findCanonicalGitRoot, findGitRoot } from '../server/utils/git.js'
-import { parseToolListFromCLI } from '../server/utils/permissions/permissionSetup.js'
+import type { FrontmatterData } from './frontmatterParser.js'
+import { parseFrontmatter } from './frontmatterParser.js'
+import { findCanonicalGitRoot, findGitRoot } from './git.js'
+import { parseToolListFromCLI } from './permissions/permissionSetup.js'
 import { ripGrep } from './ripgrep.js'
 import {
   isSettingSourceEnabled,
   type SettingSource,
-} from '../server/utils/settings/constants.js'
-import { getManagedFilePath } from '../server/utils/settings/managedPath.js'
-import { isRestrictedToPluginOnly } from '../server/utils/settings/pluginOnlyPolicy.js'
+} from './settings/constants.js'
+import { getManagedFilePath } from './settings/managedPath.js'
+import { isRestrictedToPluginOnly } from './settings/pluginOnlyPolicy.js'
 
 // Claude configuration directory names
 export const CLAUDE_CONFIG_DIRECTORIES = [

@@ -20,7 +20,7 @@ import { extractClaudeCodeHints } from '../../utils/claudeCodeHints.js';
 import { detectCodeIndexingFromCommand } from '../../utils/codeIndexing.js';
 import { isEnvTruthy } from '../../server/utils/envUtils.js';
 import { isENOENT, ShellError } from '../../server/utils/errors.js';
-import { detectFileEncoding, detectLineEndings, getFileModificationTime, writeTextContent } from '../../utils/file.js';
+import { detectFileEncoding, detectLineEndings, getFileModificationTime, writeTextContent } from '../../server/utils/file.js';
 import { fileHistoryEnabled, fileHistoryTrackEdit } from '../../utils/fileHistory.js';
 import { truncate } from '../../utils/format.js';
 import { getFsImplementation } from '../../server/utils/fsOperations.js';

@@ -127,7 +127,7 @@ import { initializeVersionedPlugins } from './server/utils/plugins/installedPlug
 import { getManagedPluginNames } from './server/utils/plugins/managedPlugins.js';
 import { getGlobExclusionsForPluginCache } from './server/utils/plugins/orphanedPluginFilter.js';
 import { getPluginSeedDirs } from './server/utils/plugins/pluginDirectories.js';
-import { countFilesRoundedRg } from './utils/ripgrep.js';
+import { countFilesRoundedRg } from './server/utils/ripgrep.js';
 import { processSessionStartHooks, processSetupHooks } from './utils/sessionStart.js';
 import { cacheSessionTitle, getSessionIdFromLog, loadTranscriptFromFile, saveAgentSetting, saveMode, searchSessionsByCustomTitle, sessionIdExists } from './utils/sessionStorage.js';
 import { ensureMdmSettingsLoaded } from './server/utils/settings/mdm/settings.js';

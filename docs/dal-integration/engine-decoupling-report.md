@@ -1,12 +1,12 @@
 # 引擎解耦量化报告
 
-> 自动生成：bun scripts/engine-decoupling-report.ts（词法模块图，3745 文件）
+> 自动生成：bun scripts/engine-decoupling-report.ts（词法模块图，3747 文件）
 
 ## 总量
 
-- src/server 文件数：709
-- server → 引擎 **直接依赖边**：505（涉及 233 个引擎文件）
-- 引擎传递闭包（直接+间接可达）：**1745 个文件**
+- src/server 文件数：714
+- server → 引擎 **直接依赖边**：487（涉及 229 个引擎文件）
+- 引擎传递闭包（直接+间接可达）：**1740 个文件**
 - 其中疑似类型/模型定义类直接依赖：30
 
 ## 直接依赖按引擎目录分布
@@ -49,7 +49,6 @@
 | src/utils/statsCache.ts | 1 |
 | src/utils/effort.ts | 1 |
 | src/tools.ts | 1 |
-| src/utils/ripgrep.ts | 1 |
 | src/memdir/memoryTypes.ts | 1 |
 | src/utils/auth.ts | 1 |
 | src/skills/skillRoots.ts | 1 |
@@ -117,7 +116,6 @@
 | src/components/mcp | 1 |
 | src/utils/providerManagedEnvCompat.ts | 1 |
 | src/plugins/builtinPlugins.ts | 1 |
-| src/utils/markdownConfigLoader.ts | 1 |
 | src/utils/worktree.ts | 1 |
 | src/utils/context.ts | 1 |
 | src/utils/contextBudget.ts | 1 |
@@ -152,7 +150,6 @@
 | src/components/ToolUseLoader.tsx | 1 |
 | src/ink.ts | 1 |
 | src/utils/collapseReadSearch.ts | 1 |
-| src/utils/file.ts | 1 |
 | src/utils/format.ts | 1 |
 | src/utils/theme.ts | 1 |
 | src/memdir/memdir.ts | 1 |
@@ -209,7 +206,6 @@
 | src/tools/REPLTool | 1 |
 | src/utils/bash | 1 |
 | src/utils/classifierApprovals.ts | 1 |
-| src/utils/fileRead.ts | 1 |
 | src/tools/SkillTool | 1 |
 | src/utils/claudeCodeHints.ts | 1 |
 | src/utils/argumentSubstitution.ts | 1 |
@@ -239,7 +235,6 @@
 | src/components/design-system/KeyboardShortcutHint.tsx | 55 |
 | src/components/design-system/Byline.tsx | 55 |
 | src/components/design-system/Dialog.tsx | 55 |
-| src/utils/file.ts | 53 |
 | src/utils/array.ts | 51 |
 | src/components/CustomSelect/select.tsx | 51 |
 | src/components/MessageResponse.tsx | 50 |
@@ -248,6 +243,7 @@
 | src/ink/events/keyboard-event.ts | 38 |
 | src/utils/sleep.ts | 35 |
 | src/constants/figures.ts | 33 |
+| src/utils/teammate.ts | 32 |
 
 ## 分批解耦建议
 

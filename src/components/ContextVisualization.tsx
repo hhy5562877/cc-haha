@@ -4,7 +4,7 @@ import * as React from 'react';
 import { Box, Text } from '../ink.js';
 import type { ContextData } from '../utils/analyzeContext.js';
 import { generateContextSuggestions } from '../utils/contextSuggestions.js';
-import { getDisplayPath } from '../utils/file.js';
+import { getDisplayPath } from '../server/utils/file.js';
 import { formatTokens } from '../utils/format.js';
 import { getSourceDisplayName, type SettingSource } from '../server/utils/settings/constants.js';
 import { plural } from '../server/utils/stringUtils.js';

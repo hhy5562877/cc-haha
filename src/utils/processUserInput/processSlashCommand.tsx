@@ -23,7 +23,7 @@ import { createAttachmentMessage, getAttachmentMessages } from '../attachments.j
 import { logForDebugging } from '../../server/utils/debug.js';
 import { isEnvTruthy } from '../../server/utils/envUtils.js';
 import { AbortError, MalformedCommandError } from '../../server/utils/errors.js';
-import { getDisplayPath } from '../file.js';
+import { getDisplayPath } from '../../server/utils/file.js';
 import { extractResultText, prepareForkedCommandContext } from '../forkedAgent.js';
 import { getFsImplementation } from '../../server/utils/fsOperations.js';
 import { isFullscreenEnvEnabled } from '../fullscreen.js';

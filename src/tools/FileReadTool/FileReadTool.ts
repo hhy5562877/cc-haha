@@ -36,7 +36,7 @@ import {
   findSimilarFile,
   getFileModificationTimeAsync,
   suggestPathUnderCwd,
-} from '../../utils/file.js'
+} from '../../server/utils/file.js'
 import { logFileOperation } from '../../utils/fileOperationAnalytics.js'
 import { formatFileSize } from '../../utils/format.js'
 import { getFsImplementation } from '../../server/utils/fsOperations.js'

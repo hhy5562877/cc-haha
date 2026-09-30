@@ -5,7 +5,7 @@
  */
 import { basename } from 'path'
 import { spawn, type ChildProcessWithoutNullStreams } from 'child_process'
-import { pathExists } from './file.js'
+import { pathExists } from '../server/utils/file.js'
 import { wrapSpawn } from './ShellCommand.js'
 import { TaskOutput } from './task/TaskOutput.js'
 import { getCwd } from '../server/utils/cwd.js'

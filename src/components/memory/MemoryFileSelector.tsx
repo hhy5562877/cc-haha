@@ -18,7 +18,7 @@ import { getAgentMemoryDir } from '../../server/tools/AgentTool/agentMemory.js';
 import { openPath } from '../../utils/browser.js';
 import { getMemoryFiles, type MemoryFileInfo } from '../../utils/claudemd.js';
 import { getClaudeConfigHomeDir } from '../../server/utils/envUtils.js';
-import { getDisplayPath } from '../../utils/file.js';
+import { getDisplayPath } from '../../server/utils/file.js';
 import { formatRelativeTimeAgo } from '../../utils/format.js';
 import { projectIsInGitRepo } from '../../utils/memory/versions.js';
 import { updateSettingsForSource } from '../../server/utils/settings/settings.js';

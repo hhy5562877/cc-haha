@@ -5,7 +5,7 @@ import { useMemo } from 'react';
 import { type Command, type CommandBase, type CommandResultDisplay, getCommandName, type PromptCommand } from '../../commands.js';
 import { Box, Text } from '../../ink.js';
 import { estimateSkillFrontmatterTokens, getSkillsPath } from '../../skills/loadSkillsDir.js';
-import { getDisplayPath } from '../../utils/file.js';
+import { getDisplayPath } from '../../server/utils/file.js';
 import { formatTokens } from '../../utils/format.js';
 import { getSettingSourceName, type SettingSource } from '../../server/utils/settings/constants.js';
 import { plural } from '../../server/utils/stringUtils.js';

@@ -111,7 +111,7 @@ import { isAbortError } from '../server/utils/errors.js'
 import {
   getFileModificationTimeAsync,
   isFileWithinReadSizeLimit,
-} from './file.js'
+} from '../server/utils/file.js'
 import type { AgentDefinition } from '../server/tools/AgentTool/loadAgentsDir.js'
 import { filterAgentsByMcpRequirements } from '../server/tools/AgentTool/loadAgentsDir.js'
 import { AGENT_TOOL_NAME } from '../server/tools/AgentTool/constants.js'

@@ -2,7 +2,7 @@ import { randomUUID } from 'crypto'
 import { basename } from 'path'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { logEvent } from '../server/services/analytics/index.js'
-import { readFileSync } from 'src/utils/fileRead.js'
+import { readFileSync } from 'src/server/utils/fileRead.js'
 import { expandPath } from 'src/server/utils/path.ts'
 import type { PermissionOption } from '../components/permissions/FilePermissionDialog/permissionOptions.js'
 import type {

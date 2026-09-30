@@ -6,7 +6,7 @@ import {
   detectCurrentRepository,
   parseGitHubRepository,
 } from '../server/utils/detectRepository.js'
-import { pathExists } from './file.js'
+import { pathExists } from '../server/utils/file.js'
 import { getRemoteUrlForDir } from '../server/utils/git/gitFilesystem.js'
 import { findGitRoot } from '../server/utils/git.js'
 

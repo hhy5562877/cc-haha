@@ -24,7 +24,7 @@ import {
   getFileModificationTime,
   suggestPathUnderCwd,
   writeTextContent,
-} from '../../utils/file.js'
+} from '../../server/utils/file.js'
 import {
   fileHistoryEnabled,
   fileHistoryTrackEdit,
@@ -33,7 +33,7 @@ import { logFileOperation } from '../../utils/fileOperationAnalytics.js'
 import {
   type LineEndingType,
   readFileSyncWithMetadata,
-} from '../../utils/fileRead.js'
+} from '../../server/utils/fileRead.js'
 import { formatFileSize } from '../../utils/format.js'
 import { getFsImplementation } from '../../server/utils/fsOperations.js'
 import {

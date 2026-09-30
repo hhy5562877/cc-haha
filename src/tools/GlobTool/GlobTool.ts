@@ -6,7 +6,7 @@ import { isENOENT } from '../../server/utils/errors.js'
 import {
   FILE_NOT_FOUND_CWD_NOTE,
   suggestPathUnderCwd,
-} from '../../utils/file.js'
+} from '../../server/utils/file.js'
 import { getFsImplementation } from '../../server/utils/fsOperations.js'
 import { glob } from '../../utils/glob.js'
 import { lazySchema } from '../../server/utils/lazySchema.js'

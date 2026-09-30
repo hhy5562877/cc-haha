@@ -52,7 +52,7 @@ import {
   loadMarkdownFilesForSubdir,
   type MarkdownFile,
   parseSlashCommandToolsFromFrontmatter,
-} from '../utils/markdownConfigLoader.js'
+} from '../server/utils/markdownConfigLoader.js'
 import {
   getAddDirSkillRoots,
   getNestedSkillDirCandidates,
