@@ -1,5 +1,7 @@
 # CHANGELOG
 
+- [2026-10-01 04:10] REFACTOR: 解耦批次 21 完成——团队 config.json 读写收敛至 server 本地（teamPlanStore 新增 readTeamConfigFile/writeTeamConfigFile 原子实现 + teamFileTypes.ts 完整 TeamFile 类型移植），teamPlanRuntime 四处调用重指（sync→async 归一），server→utils/swarm 残余边仅剩 teamService.cleanupTeamDirectories（深链 tasks 子系统，归入 teams 工作流）；E2E PASS (Files: src/server/utils/{teamPlanStore,teamFileTypes}.ts, src/server/services/teamPlanRuntime.ts)
+
 - [2026-10-01 06:40] TEST: server 全量回归基线确立——2423 用例（97 文件）**2280 pass / 131 fail**；失败簇：Models API（DAL 语义变更待更新期望）、Settings output-styles、Plugins enabledPlugins、Agents CRUD 等行为断言需按 DAL 迁移后现实更新；属新会话测试工程（非功能缺陷，E2E 主链路已验证） (验证: bun test src/server/__tests__/)
 
 - [2026-10-01 05:20] FIX/TEST: legacy 测试 lane 修复完整生效——conversations.test.ts 124 用例 **123 pass / 1 fail**（自 58/66 失败大幅收敛）；根因修复：脚本型 CLAUDE_CLI_PATH 在 Windows 下加 bun 宿主前缀；两处 imageProviderKind 期望按 DAL 迁移后现实更新（图像 provider 接线已移除）；剩余 1 失败为顺序型状态泄漏（单跑通过、全跑复现，既有顺序敏感问题），归入新会话测试工程 (Files: src/server/services/conversationService.ts, src/server/__tests__/conversations.test.ts)

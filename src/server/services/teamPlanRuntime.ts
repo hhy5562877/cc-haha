@@ -9,7 +9,7 @@ import { getModelReasoningCapabilityOverride, isModelReasoningEffort, normalizeM
 import { getPresetDefaultEnv, getPresetReasoningProviderKind } from './providerRuntimeEnv.js'
 import { validateTeamPlanPresetSource } from '../utils/swarm/teamPlanPresetSource.js'
 import { readTeamPlan, findTeamPlanForSession, mutateTeamPlan } from '../utils/teamPlanStore.js'
-import { readTeamFile, writeTeamFileAsync } from '../../utils/swarm/teamHelpers.js'
+import { readTeamConfigFile as readTeamFile, writeTeamConfigFile as writeTeamFileAsync } from '../utils/teamPlanStore.js'
 import { createTask, listTasks, updateTask, withTaskListLifecycleLock, getCanonicalTeamTaskListId } from '../../utils/tasks.js'
 import { readUnreadMessages, markMessagesAsReadByPredicate, writeToMailbox, createIdleNotification } from '../../utils/teammateMailbox.js'
 
@@ -20,7 +20,7 @@ const essentialTools = ['SendMessage', 'TaskCreate', 'TaskGet', 'TaskList', 'Tas
 /** Validation is local: checking a proposal never invokes a model or discovers credentials. */
 export async function validateTeamPlanRuntime(plan: TeamPlanRecord): Promise<TeamPlanRecord> {
   if (!(await stat(plan.workDir)).isDirectory()) throw new Error('Team working directory is unavailable')
-  const team = plan.teamName ? readTeamFile(plan.teamName) : null
+  const team = plan.teamName ? await readTeamFile(plan.teamName) : null
   if (plan.teamName && (!team || team.leadSessionId !== plan.sessionId || createHash('sha256').update(JSON.stringify([team.name, team.leadSessionId || '', team.createdAt])).digest('hex') !== plan.incarnationId)) throw new Error('Team generation no longer exists')
   const members: TeamPlanMember[] = []
   for (const member of plan.members) {
@@ -114,7 +114,7 @@ export async function stopTeamPlanRuntime(planId: string): Promise<void> {
   await Promise.allSettled(launch.children.map(id => conversationService.stopSessionAndWait(id)))
   const plan = launch.plan
   await withTaskListLifecycleLock(getCanonicalTeamTaskListId(plan.teamName), async () => {
-    const team = readTeamFile(plan.teamName)
+    const team = await readTeamFile(plan.teamName)
     if (!team || createHash('sha256').update(JSON.stringify([team.name, team.leadSessionId || '', team.createdAt])).digest('hex') !== plan.incarnationId) return
     team.members = team.members.flatMap(member => {
       if (!member.sessionId || !launch.children.includes(member.sessionId)) return [member]
@@ -148,7 +148,7 @@ export async function launchTeamPlanRuntime(plan: TeamPlanRecord): Promise<{ mem
   let executionStarted = false
   try {
     await withTaskListLifecycleLock(getCanonicalTeamTaskListId(plan.teamName), async () => {
-      const team = readTeamFile(plan.teamName)
+      const team = await readTeamFile(plan.teamName)
       if (!team || team.leadSessionId !== plan.sessionId || createHash('sha256').update(JSON.stringify([team.name, team.leadSessionId || '', team.createdAt])).digest('hex') !== plan.incarnationId) throw new Error('Team generation no longer exists')
       team.reviewRequired = true
       createdAt = team.createdAt
@@ -185,7 +185,7 @@ export async function launchTeamPlanRuntime(plan: TeamPlanRecord): Promise<{ mem
       // All processes are ready by the time the first release is reached.
       if (member === members[0]) {
         await withTaskListLifecycleLock(getCanonicalTeamTaskListId(plan.teamName), async () => {
-          const team = readTeamFile(plan.teamName)
+          const team = await readTeamFile(plan.teamName)
           if (!team || team.createdAt !== createdAt) throw new Error('Team generation changed during launch')
           for (const entry of members) {
             if (team.members.some(old => old.name === entry.name)) throw new Error(`Member already exists: ${entry.name}`)
@@ -201,7 +201,7 @@ export async function launchTeamPlanRuntime(plan: TeamPlanRecord): Promise<{ mem
       conversationService.onOutput(id, message => {
         if (message?.type !== 'result') return
         void withTaskListLifecycleLock(getCanonicalTeamTaskListId(plan.teamName), async () => {
-          const team = readTeamFile(plan.teamName)
+          const team = await readTeamFile(plan.teamName)
           if (!team || team.createdAt !== createdAt) return
           const entry = team.members.find(entry => entry.sessionId === id)
           if (entry) { entry.isActive = false; if (!conversationService.hasSession(id)) entry.terminated = true; await writeTeamFileAsync(plan.teamName, team) }
@@ -230,7 +230,7 @@ export async function launchTeamPlanRuntime(plan: TeamPlanRecord): Promise<{ mem
       if (polling || launch.stopped) return
       polling = true
       void (async () => {
-        const currentTeam = readTeamFile(plan.teamName)
+        const currentTeam = await readTeamFile(plan.teamName)
         if (!conversationService.hasSession(plan.sessionId) || !currentTeam || currentTeam.createdAt !== createdAt) { await stopTeamPlanRuntime(plan.planId); return }
         for (const member of members) {
           const id = memberIds[member.id]!
@@ -238,7 +238,7 @@ export async function launchTeamPlanRuntime(plan: TeamPlanRecord): Promise<{ mem
           const messages = await readUnreadMessages(member.name, plan.teamName)
           if (!messages.length) continue
           await withTaskListLifecycleLock(getCanonicalTeamTaskListId(plan.teamName), async () => {
-            const team = readTeamFile(plan.teamName)
+            const team = await readTeamFile(plan.teamName)
             if (!team || team.createdAt !== createdAt) throw new Error('Team generation has ended')
             const entry = team.members.find(entry => entry.sessionId === id)
             if (entry) { entry.isActive = true; await writeTeamFileAsync(plan.teamName, team) }

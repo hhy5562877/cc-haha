@@ -13,6 +13,8 @@ import { mkdir, readFile, readdir, rename, unlink, writeFile } from 'node:fs/pro
 import { dirname, join } from 'node:path'
 import { AsyncLocalStorage } from 'node:async_hooks'
 import { lock } from '../../utils/lockfile.js'
+import type { TeamFile as TeamConfigFile } from './teamFileTypes.js'
+export type { TeamConfigFile }
 import { isValidTeamMemberName, teamPlanRecordSchema, type TeamPlanIdentity, type TeamPlanMember, type TeamPlanPatch, type TeamPlanRecord, type TeamPlanRuntime } from '../../shared/teamPlan.js'
 import { getClaudeConfigHomeDir, getTeamsDir } from '../../utils/envUtils.js'
 
@@ -31,11 +33,7 @@ function getTeamDir(teamName: string): string {
 }
 
 /** server 侧只需读 lead 归属字段；宽松结构避免拖入引擎 TeamFile 全型。 */
-interface TeamConfigFile {
-  name: string
-  createdAt: number
-  leadSessionId?: string
-}
+// TeamConfigFile 已统一引用 teamFileTypes.js 的完整 TeamFile 类型
 
 async function readTeamFileAsync(teamName: string): Promise<TeamConfigFile | null> {
   try {
@@ -277,4 +275,40 @@ export async function approveTeamPlan(teamName: string, identity: TeamPlanIdenti
     await writePlan(next)
     return { plan: next, committed: true }
   })
+}
+
+
+// ─── 团队 config.json 读写导出（原 teamHelpers 窄切片，批次 21）────────
+// teamPlanRuntime 需要 config.json（TeamFile）级的读写；此处基于本模块
+// 已有的 getTeamDir 与 lockfile 基础设施提供最小实现。
+
+export type TeamConfigFile = import('./teamFileTypes.js').TeamFile
+
+function teamConfigPath(teamName: string): string {
+  return join(getTeamDir(teamName), 'config.json')
+}
+
+/** 读取团队 config.json（宽松结构；不存在或损坏返回 null）。 */
+export async function readTeamConfigFile(teamName: string): Promise<TeamConfigFile | null> {
+  try {
+    const content = await readFile(teamConfigPath(teamName), 'utf8')
+    const parsed = JSON.parse(content) as TeamConfigFile
+    if (!parsed || typeof parsed.name !== 'string') return null
+    return parsed
+  } catch {
+    return null
+  }
+}
+
+/** 原子写入团队 config.json（temp+rename，写前确保目录存在）。 */
+export async function writeTeamConfigFile(teamName: string, config: TeamConfigFile): Promise<void> {
+  const target = teamConfigPath(teamName)
+  await mkdir(dirname(target), { recursive: true })
+  const temp = `${target}.${randomUUID()}.tmp`
+  try {
+    await writeFile(temp, JSON.stringify(config, null, 2))
+    await rename(temp, target)
+  } finally {
+    await unlink(temp).catch(() => {})
+  }
 }
