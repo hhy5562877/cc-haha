@@ -2,13 +2,13 @@ import { mkdir, readFile, rename, rm, writeFile } from 'node:fs/promises'
 import { dirname, join, resolve } from 'node:path'
 import { randomUUID } from 'node:crypto'
 import { getClaudeConfigHomeDir } from '../../../utils/envUtils.js'
-import { getSettingsForSource, updateSettingsForSource } from '../../server/utils/settings/settings.js'
-import { clearAllCaches } from '../../server/utils/plugins/cacheUtils.js'
-import { cacheAndRegisterPlugin } from '../../server/utils/plugins/pluginInstallationHelpers.js'
-import { loadAllPluginsCacheOnly } from '../../server/utils/plugins/pluginLoader.js'
-import { addMarketplaceSource, clearMarketplacesCache, loadKnownMarketplacesConfig } from '../../server/utils/plugins/marketplaceManager.js'
-import { isPluginBlockedByPolicy } from '../../server/utils/plugins/pluginPolicy.js'
-import { uninstallPluginOp } from '../../server/utils/plugins/pluginOperations.js'
+import { getSettingsForSource, updateSettingsForSource } from '../../utils/settings/settings.js'
+import { clearAllCaches } from '../../utils/plugins/cacheUtils.js'
+import { cacheAndRegisterPlugin } from '../../utils/plugins/pluginInstallationHelpers.js'
+import { loadAllPluginsCacheOnly } from '../../utils/plugins/pluginLoader.js'
+import { addMarketplaceSource, clearMarketplacesCache, loadKnownMarketplacesConfig } from '../../utils/plugins/marketplaceManager.js'
+import { isPluginBlockedByPolicy } from '../../utils/plugins/pluginPolicy.js'
+import { uninstallPluginOp } from '../../../services/plugins/pluginOperations.js'
 import { getRemoteRecipe } from './remoteCatalog.js'
 import { buildRemotePlugin } from './remoteConnector.js'
 import { getSkillRecipe } from './skillCatalog.js'
@@ -259,8 +259,8 @@ export async function reloadConnectorSessions(sessionId?: string, requiredConnec
   const name = requiredConnector ? pluginName(requiredConnector) : undefined
   const requiredPlugin = requiredConnector ? { pluginId: requiredConnector.pluginId, skillName: `${name}:${name}` } : undefined
   const requiredMcpServer = requiredConnector?.transport === 'mcp' ? `plugin:${name}:service` : undefined
-  const { conversationService } = await import('../../server/services/conversationService.js')
-  const { reloadSessionComponents } = await import('../../server/services/sessionComponentReloadService.js')
+  const { conversationService } = await import('../conversationService.js')
+  const { reloadSessionComponents } = await import('../sessionComponentReloadService.js')
   const sessions = new Set(conversationService.getActiveSessions())
   if (sessionId && conversationService.hasSession(sessionId)) sessions.add(sessionId)
   const results = await Promise.all([...sessions].map(id => reloadSessionComponents(id, requiredMcpServer, requiredPlugin)))
