@@ -948,7 +948,9 @@ describe('Workflows API', () => {
     expect(response.status).toBe(404)
   })
 
-  it('refuses to write through a symlinked target', async () => {
+  // Windows 创建文件符号链接需要管理员/开发者模式（EPERM），与 previewFs 的
+  // symlink 守卫一致，统一跳过。
+  it.skipIf(process.platform === 'win32')('refuses to write through a symlinked target', async () => {
     const workflowsDir = path.join(tmpHome, 'claude', 'workflows')
     await fs.mkdir(workflowsDir, { recursive: true })
     const outside = path.join(tmpHome, 'outside.js')

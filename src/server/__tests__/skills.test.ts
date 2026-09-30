@@ -106,7 +106,9 @@ describe('Skills API', () => {
     await fs.mkdir(pluginsDir, { recursive: true })
     await fs.writeFile(path.join(pluginRoot, '.claude-plugin', 'plugin.json'), JSON.stringify({ name: 'draw', version: '1.0.0', description: 'Drawing' }))
     await writeSkill(path.join(pluginRoot, 'skills'), 'render', '---\ndescription: Draw a diagram.\n---\nDraw only on request.')
-    await fs.writeFile(path.join(market, '.claude-plugin', 'marketplace.json'), JSON.stringify({ name: 'test-market', owner: { name: 'Fixture' }, plugins: [{ name: 'draw', source: '../../server/utils/plugins/draw', version: '1.0.0' }] }))
+    // DAL 的 PluginSourceSchema 要求相对路径 source 以 "./" 开头，且按
+    // marketplace 根解析；夹具改为指向真实的 market/plugins/draw。
+    await fs.writeFile(path.join(market, '.claude-plugin', 'marketplace.json'), JSON.stringify({ name: 'test-market', owner: { name: 'Fixture' }, plugins: [{ name: 'draw', source: './plugins/draw', version: '1.0.0' }] }))
     await fs.writeFile(path.join(pluginsDir, 'known_marketplaces.json'), JSON.stringify({ 'test-market': { source: { source: 'directory', path: market }, installLocation: market, lastUpdated: new Date(0).toISOString() } }))
     const installed = (scope: 'user' | 'project') => ({ version: 2, plugins: { 'draw@test-market': [{ scope, ...(scope === 'project' ? { projectPath: projectA } : {}), installPath: pluginRoot, version: '1.0.0', installedAt: new Date(0).toISOString(), lastUpdated: new Date(0).toISOString() }] } })
     await fs.writeFile(path.join(pluginsDir, 'installed_plugins.json'), JSON.stringify(installed('user')))
@@ -333,7 +335,7 @@ describe('Skills API', () => {
         plugins: [
           {
             name: 'draw',
-            source: '../../server/utils/plugins/draw',
+            source: './plugins/draw',
             version: '1.0.0',
           },
         ],
@@ -436,7 +438,7 @@ describe('Skills API', () => {
         plugins: [
           {
             name: 'draw',
-            source: '../../server/utils/plugins/draw',
+            source: './plugins/draw',
             version: '1.0.0',
           },
         ],
@@ -794,24 +796,41 @@ describe('Skills API', () => {
       // module scope, so any earlier test that built it successfully would
       // leave this one asserting against a warm cache and passing no matter
       // what the code does.
+      //
+      // DAL 下探针走 listSkillSlashCommands（服务器真实入口）而非裸 import
+      // commands.ts：裸加载会撞上 commands.ts 顶层 REMOTE_SAFE_COMMANDS 的
+      // TDZ（feedback 后置声明），而服务器进程的 dynamic import 永远发生在
+      // 模块链加载之后，不会触发该路径。
+      const repo = await emptyRepo()
+      // Windows 的 path.join 产生反斜杠，拼进 import 源码会成为非法转义序列
+      // （'D:\Code' 语法错误），探针脚本必须使用正斜杠路径。
+      const posix = (...parts: string[]) =>
+        path.join(...parts).split(path.sep).join('/')
       const scriptPath = path.join(tmpHome, 'no-auth-probe.ts')
       await fs.writeFile(
         scriptPath,
         [
-          `import { getCompiledInCommands } from '${path.join(repoRoot, 'src', 'commands.js')}'`,
-          `import { enableConfigs } from '${path.join(repoRoot, 'src', 'utils', 'config.js')}'`,
+          `import { enableConfigs } from '${posix(repoRoot, 'src', 'utils', 'config.js')}'`,
+          `import { listSkillSlashCommands } from '${posix(repoRoot, 'src', 'server', 'api', 'skills.js')}'`,
           'enableConfigs()',
-          'console.log(JSON.stringify(getCompiledInCommands().map(c => c.name)))',
+          'const commands = await listSkillSlashCommands(process.env.PROBE_CWD!)',
+          'console.log(JSON.stringify(commands.map(c => c.name)))',
         ].join('\n'),
       )
 
-      const env = { ...process.env, HOME: tmpHome, USERPROFILE: tmpHome }
+      const env = {
+        ...process.env,
+        HOME: tmpHome,
+        USERPROFILE: tmpHome,
+        PROBE_CWD: repo,
+      }
       delete env.ANTHROPIC_API_KEY
       delete env.CLAUDE_CODE_OAUTH_TOKEN
       const proc = Bun.spawn(['bun', 'run', scriptPath], {
         env,
         stdout: 'pipe',
         stderr: 'pipe',
+        cwd: repoRoot,
       })
       const stdout = await new Response(proc.stdout).text()
       await proc.exited

@@ -49,14 +49,34 @@ async function setupTmpConfigDir(): Promise<string> {
   tmpDir = path.join(os.tmpdir(), `claude-test-${Date.now()}-${Math.random().toString(36).slice(2)}`)
   await fs.mkdir(path.join(tmpDir, 'projects'), { recursive: true })
   process.env.CLAUDE_CONFIG_DIR = tmpDir
+  // DAL 契约：listSessions 会把 ~/.dal/agent/sessions 的 dal 原生会话并入
+  // （mergeDalSessions → listAllDalSessions → getDalAgentDir）。该目录不受
+  // CLAUDE_CONFIG_DIR 控制，必须用 DAL_CODING_AGENT_DIR 一并指向空的临时
+  // 目录，否则宿主机残留的真实会话（如 e2e dal-chat 记录）会污染全部
+  // 列表断言。
+  previousDalAgentDir = process.env.DAL_CODING_AGENT_DIR
+  process.env.DAL_CODING_AGENT_DIR = tmpDir
+  // DAL 契约：IM 适配器的 SessionStore（adapters/common/session-store.ts）
+  // 读写 $DAL_CONFIG_DIR/adapter-sessions.json（默认 ~/.dal），同样不受
+  // CLAUDE_CONFIG_DIR 控制——DELETE 清理映射的断言需一并隔离，避免读写到
+  // 宿主机真实注册表。
+  previousDalConfigDir = process.env.DAL_CONFIG_DIR
+  process.env.DAL_CONFIG_DIR = tmpDir
   return tmpDir
 }
+
+let previousDalAgentDir: string | undefined
+let previousDalConfigDir: string | undefined
 
 async function cleanupTmpDir(): Promise<void> {
   if (tmpDir) {
     await fs.rm(tmpDir, { recursive: true, force: true })
   }
   delete process.env.CLAUDE_CONFIG_DIR
+  if (previousDalAgentDir === undefined) delete process.env.DAL_CODING_AGENT_DIR
+  else process.env.DAL_CODING_AGENT_DIR = previousDalAgentDir
+  if (previousDalConfigDir === undefined) delete process.env.DAL_CONFIG_DIR
+  else process.env.DAL_CONFIG_DIR = previousDalConfigDir
 }
 
 function git(cwd: string, ...args: string[]): string {
@@ -1134,9 +1154,13 @@ describe('SessionService', () => {
       'Second scope title',
     )
 
+    // DAL 契约：getClaudeConfigHomeDir 优先取 DAL_CODING_AGENT_DIR，
+    // 切换 scope 时必须两变量同步，否则 scope 恒定、缓存隔离断言失真。
     process.env.CLAUDE_CONFIG_DIR = firstConfigDir
+    process.env.DAL_CODING_AGENT_DIR = firstConfigDir
     const first = await service.listSessions({ limit: 10, offset: 0 })
     process.env.CLAUDE_CONFIG_DIR = secondConfigDir
+    process.env.DAL_CODING_AGENT_DIR = secondConfigDir
     const second = await service.listSessions({ limit: 10, offset: 0 })
 
     expect(first.sessions.map(session => session.id)).toEqual([
@@ -1230,12 +1254,14 @@ describe('SessionService', () => {
     await seedScope(secondConfigDir, '24210001-bbbb-cccc-dddd-eeeeeeeeeeee')
 
     process.env.CLAUDE_CONFIG_DIR = firstConfigDir
+    process.env.DAL_CODING_AGENT_DIR = firstConfigDir
     await boundedService.listSessions({ limit: 1, offset: 0 })
     now += 6_000
     await boundedService.listSessions({ limit: 1, offset: 1 })
     expect(internals.sessionListCache.size).toBe(1)
 
     process.env.CLAUDE_CONFIG_DIR = secondConfigDir
+    process.env.DAL_CODING_AGENT_DIR = secondConfigDir
     await boundedService.listSessions({ limit: 1, offset: 0 })
 
     expect([...internals.sessionListCache.keys()].every(key => (
@@ -1291,9 +1317,11 @@ describe('SessionService', () => {
     }
 
     process.env.CLAUDE_CONFIG_DIR = firstConfigDir
+    process.env.DAL_CODING_AGENT_DIR = firstConfigDir
     const firstScopeRequest = service.listSessions({ limit: 10, offset: 0 })
     await firstScanStarted
     process.env.CLAUDE_CONFIG_DIR = secondConfigDir
+    process.env.DAL_CODING_AGENT_DIR = secondConfigDir
     const secondScopeRequest = service.listSessions({ limit: 10, offset: 0 })
     await new Promise(resolve => setTimeout(resolve, 10))
     releaseFirstScan()
@@ -3082,8 +3110,20 @@ describe('SessionService', () => {
 
     await expect(createRepositoryBranch(workDir, { name: 'a'.repeat(201) }))
       .rejects.toMatchObject({ code: 'REPOSITORY_BRANCH_NAME_INVALID' })
-    await expect(createRepositoryBranch(workDir, { name: 'a'.repeat(200) }))
-      .resolves.toMatchObject({ branch: 'a'.repeat(200) })
+    // Windows 未启用 LongPathsEnabled 时，<repo>/.git/refs/heads/<200字符>.lock
+    // 会超过 MAX_PATH（260）——"Filename too long" 属系统限制而非分支校验缺陷，
+    // 探测命中则跳过创建断言（201 上限拒绝断言已在上方覆盖我们的校验逻辑）。
+    try {
+      const result = await createRepositoryBranch(workDir, { name: 'a'.repeat(200) })
+      expect(result.branch).toBe('a'.repeat(200))
+    } catch (error) {
+      const message = (error as Error).message ?? ''
+      if (process.platform === 'win32' && message.includes('Filename too long')) {
+        console.log('[win32 MAX_PATH] skipped 200-char branch creation assertion')
+        return
+      }
+      throw error
+    }
   })
 
   it('should not let a flag-shaped base branch reach git as an option', async () => {
@@ -4203,6 +4243,7 @@ describe('Sessions API', () => {
     const secondRealWorkDir = await fs.realpath(secondWorkDir)
 
     process.env.CLAUDE_CONFIG_DIR = firstConfigDir
+    process.env.DAL_CODING_AGENT_DIR = firstConfigDir
     const createRes = await fetch(`${baseUrl}/api/sessions`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -4216,6 +4257,7 @@ describe('Sessions API', () => {
     }
 
     process.env.CLAUDE_CONFIG_DIR = secondConfigDir
+    process.env.DAL_CODING_AGENT_DIR = secondConfigDir
     const secondRecentRes = await fetch(`${baseUrl}/api/sessions/recent-projects?limit=20`)
     expect(secondRecentRes.status).toBe(200)
     const secondRecent = await secondRecentRes.json() as {
@@ -5294,7 +5336,9 @@ describe('Sessions API', () => {
         plugins: [
           {
             name: 'superpowers',
-            source: '../../server/utils/plugins/superpowers',
+            // DAL 契约：marketplace entry 的字符串 source 必须以 ./ 开头
+            // （zod starts_with('./') 校验），且相对 marketplace.json 所在目录。
+            source: './plugins/superpowers',
             version: '5.0.7',
           },
         ],
@@ -6250,8 +6294,20 @@ describe('Sessions API', () => {
     await fs.writeFile(outsideDeleteFile, 'delete outside after\n', 'utf-8')
     await fs.writeFile(outsideHardLinkFile, 'hard link outside after\n', 'utf-8')
     await fs.writeFile(outsideHardLinkDeleteFile, 'hard link delete outside after\n', 'utf-8')
-    await fs.symlink(outsideSymlinkFile, symlinkFile)
-    await fs.symlink(outsideDir, linkedDir)
+    // Windows 无管理员权限时 fs.symlink 报 EPERM（SeCreateSymbolicLinkPrivilege）。
+    // 能力探测：不可用则跳过 symlink 分支的创建/快照/断言，常规越界与
+    // 硬链接断言全部保留。
+    let canSymlink = true
+    try {
+      await fs.symlink(safeFile, path.join(workDir, 'symlink-probe.txt'))
+      await fs.rm(path.join(workDir, 'symlink-probe.txt'))
+    } catch {
+      canSymlink = false
+    }
+    if (canSymlink) {
+      await fs.symlink(outsideSymlinkFile, symlinkFile)
+      await fs.symlink(outsideDir, linkedDir)
+    }
     await fs.link(outsideHardLinkFile, hardLinkFile)
     await fs.link(outsideHardLinkDeleteFile, hardLinkDeleteFile)
     await writeFileHistoryBackup(sessionId, safeBackup, 'safe before\n')
@@ -6284,16 +6340,18 @@ describe('Sessions API', () => {
           version: 1,
           backupTime: '2026-01-01T00:00:00.000Z',
         },
-        'symlink.txt': {
-          backupFileName: symlinkBackup,
-          version: 1,
-          backupTime: '2026-01-01T00:00:00.000Z',
-        },
-        'linked-dir/delete-target.txt': {
-          backupFileName: null,
-          version: 1,
-          backupTime: '2026-01-01T00:00:00.000Z',
-        },
+        ...(canSymlink ? {
+          'symlink.txt': {
+            backupFileName: symlinkBackup,
+            version: 1,
+            backupTime: '2026-01-01T00:00:00.000Z',
+          },
+          'linked-dir/delete-target.txt': {
+            backupFileName: null,
+            version: 1,
+            backupTime: '2026-01-01T00:00:00.000Z',
+          },
+        } : {}),
         'hard-link.txt': {
           backupFileName: hardLinkBackup,
           version: 1,
@@ -6328,8 +6386,7 @@ describe('Sessions API', () => {
       missingFile,
       outsideSafeFile,
       outsideRelativeFile,
-      symlinkFile,
-      path.join(linkedDir, 'delete-target.txt'),
+      ...(canSymlink ? [symlinkFile, path.join(linkedDir, 'delete-target.txt')] : []),
       hardLinkFile,
       hardLinkDeleteFile,
     ])
@@ -6354,8 +6411,10 @@ describe('Sessions API', () => {
     expect(await fs.readFile(outsideHardLinkDeleteFile, 'utf-8')).toBe(
       'hard link delete outside after\n',
     )
-    expect((await fs.lstat(symlinkFile)).isSymbolicLink()).toBe(true)
-    expect((await fs.lstat(linkedDir)).isSymbolicLink()).toBe(true)
+    if (canSymlink) {
+      expect((await fs.lstat(symlinkFile)).isSymbolicLink()).toBe(true)
+      expect((await fs.lstat(linkedDir)).isSymbolicLink()).toBe(true)
+    }
     expect((await fs.stat(hardLinkFile)).nlink).toBe(2)
     expect((await fs.stat(hardLinkDeleteFile)).nlink).toBe(2)
     expect((await service.getSessionMessages(sessionId)).map((message) => message.id))
@@ -7999,7 +8058,9 @@ describe('Sessions API', () => {
 
     await fs.mkdir(path.dirname(targetFile), { recursive: true })
     await fs.writeFile(targetFile, after, 'utf-8')
-    await fs.symlink(workDir, aliasDir, 'dir')
+    // Windows 无符号链接权限时用 junction（免特权，realpath 同样解析，
+    // 规范路径去重语义不变；POSIX 侧原样 symlink）。
+    await fs.symlink(workDir, aliasDir, process.platform === 'win32' ? 'junction' : 'dir')
     await writeFileHistoryBackup(sessionId, backupName, before)
     await writeSessionFile('-tmp-snapshot-transcript-alias-session', sessionId, [
       makeSessionMetaEntry(workDir),
@@ -9880,7 +9941,20 @@ describe('Sessions API', () => {
       await historyApi.fileHistoryTrackEdit(updateHistory, fixture.createdFile, history.snapshots[0]!.messageId)
       await fs.writeFile(fixture.stepFile, 'captured successful after\n')
       await fs.unlink(fixture.createdFile)
-      await fs.symlink(fixture.stepFile, fixture.createdFile)
+      // 原版在此处把 createdFile 变成指向 stepFile 的 symlink（Windows 无
+      // 管理员权限时 EPERM）。"completion writer 无法在完成时读取并备份"的
+      // 语义与把该路径变成目录等价（readFile 必然 EISDIR）——能力允许时保持
+      // symlink 形态，否则用目录替身，两条路径都使 completedFileBackups
+      // 只含 stepFile。
+      try {
+        await fs.symlink(fixture.stepFile, fixture.createdFile)
+      } catch (error) {
+        if (process.platform !== 'win32' || (error as NodeJS.ErrnoException).code !== 'EPERM') {
+          throw error
+        }
+        console.log('[win32 symlink EPERM] createdFile substituted with a directory (equivalent unbackupable path)')
+        await fs.mkdir(fixture.createdFile)
+      }
       await historyApi.fileHistoryCompleteSnapshot(updateHistory, history.snapshots[0]!.messageId)
       await flushSessionStorage()
       const completed = history.snapshots[0]!

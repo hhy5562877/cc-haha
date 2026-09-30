@@ -24,6 +24,7 @@ import { resetSettingsCache } from '../utils/settings/settingsCache.js'
 import type { LoadedPlugin } from '../../types/plugin.js'
 import { ApiError, errorResponse } from '../middleware/errorHandler.js'
 import { readMarketMeta } from '../services/market/marketService.js'
+import { getCompiledInSlashCommandSummaries } from '../utils/compiledSlashCommands.js'
 
 // ─── Types ───────────────────────────────────────────────────────────────────
 
@@ -430,30 +431,16 @@ export async function collectUserSkillNames(): Promise<Set<string>> {
  * Built-ins and bundled skills, shaped like the slash-command list.
  *
  * These exist only inside the binary, so no amount of directory scanning finds
- * them. Loaded on first use rather than at module scope: pulling in the command
- * graph costs a few hundred milliseconds, and a server that never serves a
- * slash-command request should not pay it.
+ * them. Narrow-extracted to src/server/utils/compiledSlashCommands.ts: the
+ * original dynamic import of the engine command graph (commands.js /
+ * commands/headless.js) pulled the entire built-in command table — and with it
+ * the MCP/React UI world — into the server closure. The local implementation
+ * reproduces the same filtered output (captured baseline) with live gates for
+ * the three bundled skills that have isEnabled predicates.
  */
 async function collectCompiledInSlashCommands(): Promise<SkillSlashCommand[]> {
   try {
-    const [{ getCompiledInCommands }, { supportsHeadlessSlashCommand }] =
-      await Promise.all([
-        import('../../commands.js'),
-        import('../../commands/headless.js'),
-      ])
-    return getCompiledInCommands()
-      .filter(
-        command =>
-          command.userInvocable !== false &&
-          // The session this list stands in for runs the CLI headlessly, so a
-          // command it could not execute must not be offered.
-          supportsHeadlessSlashCommand(command),
-      )
-      .map(command => ({
-        name: command.name,
-        description: command.description || '',
-        ...(command.argumentHint ? { argumentHint: command.argumentHint } : {}),
-      }))
+    return getCompiledInSlashCommandSummaries() as SkillSlashCommand[]
   } catch (error) {
     // A fallback that throws would blank the whole slash menu, so degrade to
     // disk-only skills — the behaviour this function was added to improve on.

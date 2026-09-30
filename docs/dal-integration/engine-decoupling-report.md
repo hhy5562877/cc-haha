@@ -1,12 +1,12 @@
 # 引擎解耦量化报告
 
-> 自动生成：bun scripts/engine-decoupling-report.ts（词法模块图，3745 文件）
+> 自动生成：bun scripts/engine-decoupling-report.ts（词法模块图，3746 文件）
 
 ## 总量
 
-- src/server 文件数：835
-- server → 引擎 **直接依赖边**：296（涉及 121 个引擎文件）
-- 引擎传递闭包（直接+间接可达）：**1617 个文件**
+- src/server 文件数：837
+- server → 引擎 **直接依赖边**：296（涉及 122 个引擎文件）
+- 引擎传递闭包（直接+间接可达）：**1616 个文件**
 - 其中疑似类型/模型定义类直接依赖：20
 
 ## 直接依赖按引擎目录分布
@@ -40,11 +40,9 @@
 | src/utils/workflows | 1 |
 | src/utils/statsCache.ts | 1 |
 | src/utils/effort.ts | 1 |
-| src/tools.ts | 1 |
 | src/utils/auth.ts | 1 |
 | src/skills/loadSkillsDir.ts | 1 |
 | src/types/plugin.ts | 1 |
-| src/commands/headless.ts | 1 |
 | src/entrypoints/agentSdkTypes.ts | 1 |
 | src/entrypoints/sdk | 1 |
 | src/remote/RemoteSessionManager.ts | 1 |
@@ -85,6 +83,7 @@
 | src/services/AgentSummary | 1 |
 | src/tasks/LocalAgentTask | 1 |
 | src/tasks/RemoteAgentTask | 1 |
+| src/tools.ts | 1 |
 | src/utils/forkedAgent.ts | 1 |
 | src/utils/systemPrompt.ts | 1 |
 | src/utils/teleport.tsx | 1 |
@@ -113,6 +112,8 @@
 | src/utils/processUserInput | 1 |
 | src/tasks/MonitorMcpTask | 1 |
 | src/utils/diff.ts | 1 |
+| src/tools/WebSearchTool | 1 |
+| src/utils/worktreeModeEnabled.ts | 1 |
 | src/utils/sideQuery.ts | 1 |
 | src/tools/ToolSearchTool | 1 |
 | src/utils/plans.ts | 1 |
@@ -131,14 +132,14 @@
 |---|---|
 | src/ink.ts | 390 |
 | src/Tool.ts | 212 |
-| src/commands.ts | 170 |
+| src/commands.ts | 169 |
 | src/utils/config.ts | 134 |
 | src/utils/messages.ts | 117 |
 | src/state/AppState.tsx | 109 |
 | src/utils/format.ts | 95 |
 | src/keybindings/useKeybinding.ts | 91 |
 | src/utils/auth.ts | 82 |
-| src/types/command.ts | 79 |
+| src/types/command.ts | 78 |
 | src/utils/sessionStorage.ts | 59 |
 | src/hooks/useTerminalSize.ts | 59 |
 | src/components/design-system/KeyboardShortcutHint.tsx | 55 |
@@ -153,7 +154,7 @@
 | src/utils/hooks.ts | 30 |
 | src/components/permissions/PermissionRequest.tsx | 30 |
 | src/types/plugin.ts | 29 |
-| src/components/CustomSelect/index.ts | 28 |
+| src/utils/tasks.ts | 28 |
 
 ## 分批解耦建议
 

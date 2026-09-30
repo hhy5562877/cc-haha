@@ -50,8 +50,7 @@ import {
 } from '../utils/settings/constants.js'
 import { parseEffortValue } from '../../utils/effort.js'
 import { reloadSessionComponents } from '../services/sessionComponentReloadService.js'
-import { getAllBaseTools } from '../../tools.js'
-import { filterToolsForAgent } from '../tools/AgentTool/agentToolUtils.js'
+import { getAvailableCustomAgentToolNames } from '../utils/agentToolNames.js'
 
 const agentService = new AgentService()
 const settingsService = new SettingsService()
@@ -103,7 +102,7 @@ async function handleAgents(
     const resolvedAgents = resolveAgentOverrides(allAgents, activeAgents)
 
     return Response.json({
-      availableTools: getAvailableCustomAgentTools(),
+      availableTools: getAvailableCustomAgentToolNames(),
       activeAgents: await Promise.all(
         activeAgents.map(agent => serializeAgentForRequest(agent, true, cwd)),
       ),
@@ -214,20 +213,9 @@ async function handleAgents(
   )
 }
 
-function getAvailableCustomAgentTools(): string[] {
-  const enabledTools = getAllBaseTools().filter(tool => {
-    try {
-      return tool.isEnabled()
-    } catch {
-      return false
-    }
-  })
-  return filterToolsForAgent({
-    tools: enabledTools,
-    isBuiltIn: false,
-    isAsync: true,
-  }).map(tool => tool.name).sort((a, b) => a.localeCompare(b))
-}
+// availableTools 名单已在 src/server/utils/agentToolNames.ts 内以轻量门控
+// 收敛实现（原实现经 getAllBaseTools → filterToolsForAgent 会把引擎 UI 世界
+// 拉入 server 闭包），输出与改造前基线逐项一致。
 
 // ─── Tasks API ─────────────────────────────────────────────────────────────
 //
