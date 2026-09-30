@@ -12,8 +12,8 @@ import {
   rewriteWindowsNullRedirect,
   shouldAddStdinRedirect,
 } from '../bash/shellQuoting.js'
-import { logForDebugging } from '../debug.js'
-import { getPlatform } from '../platform.js'
+import { logForDebugging } from '../../server/utils/debug.js'
+import { getPlatform } from '../../server/utils/platform.js'
 import { getSessionEnvironmentScript } from '../sessionEnvironment.js'
 import { getSessionEnvVars } from '../sessionEnvVars.js'
 import {
@@ -21,7 +21,7 @@ import {
   getClaudeTmuxEnv,
   hasTmuxToolBeenUsed,
 } from '../tmuxSocket.js'
-import { windowsPathToPosixPath } from '../windowsPaths.js'
+import { windowsPathToPosixPath } from '../../server/utils/windowsPaths.js'
 import { resolveClaudeCliLauncher } from '../desktopBundledCli.js'
 import { getWslInteropEnvironmentOverrides } from './wslInterop.js'
 import type { ShellProvider } from './shellProvider.js'

@@ -37,13 +37,13 @@ import {
   validateForceLoginOrg,
 } from '../../utils/auth.js'
 import { saveGlobalConfig } from '../../utils/config.js'
-import { logForDebugging } from '../../utils/debug.js'
-import { isRunningOnHomespace } from '../../utils/envUtils.js'
-import { errorMessage } from '../../utils/errors.js'
-import { logError } from '../../utils/log.js'
+import { logForDebugging } from '../../server/utils/debug.js'
+import { isRunningOnHomespace } from '../../server/utils/envUtils.js'
+import { errorMessage } from '../../server/utils/errors.js'
+import { logError } from '../../server/utils/log.js'
 import { getAPIProvider } from '../../server/utils/model/providers.js'
 import { getInitialSettings } from '../../server/utils/settings/settings.js'
-import { jsonStringify } from '../../utils/slowOperations.js'
+import { jsonStringify } from '../../server/utils/slowOperations.js'
 import {
   buildAccountProperties,
   buildAPIProviderProperties,

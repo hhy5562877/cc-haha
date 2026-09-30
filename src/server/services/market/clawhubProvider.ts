@@ -9,7 +9,7 @@
  *  - GET /api/v1/skills/{slug}/file?path=             → raw file text
  */
 
-import { parseFrontmatter } from '../../../utils/frontmatterParser.js'
+import { parseFrontmatter } from '../../utils/frontmatterParser.js'
 import {
   getProviderBase,
   providerFetch,

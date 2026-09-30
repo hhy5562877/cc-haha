@@ -13,7 +13,7 @@ import { useSessionRuntimeStore } from '@/stores/sessionRuntimeStore'
 import { useProviderStore } from '@/stores/providerStore'
 import type { RuntimeSelection } from '@/types/runtime'
 import { CLAUDE_OFFICIAL_PROVIDER_ID } from '@/constants/openaiOfficialProvider'
-import { isValidTeamMemberName, type TeamPlanRuntime, type TeamPlanMember } from '../../../../src/shared/teamPlan'
+import { isValidTeamMemberName, type TeamPlanRuntime, type TeamPlanMember } from '../../../../src/server/shared/teamPlan.js'
 
 function selection(runtime: TeamPlanRuntime): RuntimeSelection {
   return {

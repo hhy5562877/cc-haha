@@ -1,4 +1,4 @@
-import { resetSdkInitState } from '../../bootstrap/state.js'
+import { resetSdkInitState } from '../../server/bootstrap/state.js'
 import { isRestrictedToPluginOnly } from '../../server/utils/settings/pluginOnlyPolicy.js'
 // Import as module object so spyOn works in tests (direct imports bypass spies)
 import * as settingsModule from '../../server/utils/settings/settings.js'

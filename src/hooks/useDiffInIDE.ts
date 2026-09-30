@@ -3,7 +3,7 @@ import { basename } from 'path'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { logEvent } from '../server/services/analytics/index.js'
 import { readFileSync } from 'src/utils/fileRead.js'
-import { expandPath } from 'src/utils/path.js'
+import { expandPath } from 'src/server/utils/path.ts'
 import type { PermissionOption } from '../components/permissions/FilePermissionDialog/permissionOptions.js'
 import type {
   MCPServerConnection,
@@ -18,7 +18,7 @@ import {
 } from '../server/tools/FileEditTool/utils.js'
 import { getGlobalConfig } from '../utils/config.js'
 import { getPatchFromContents } from '../utils/diff.js'
-import { isENOENT } from '../utils/errors.js'
+import { isENOENT } from '../server/utils/errors.js'
 import {
   callIdeRpc,
   getConnectedIdeClient,
@@ -26,8 +26,8 @@ import {
   hasAccessToIDEExtensionDiffFeature,
 } from '../utils/ide.js'
 import { WindowsToWSLConverter } from '../utils/idePathConversion.js'
-import { logError } from '../utils/log.js'
-import { getPlatform } from '../utils/platform.js'
+import { logError } from '../server/utils/log.js'
+import { getPlatform } from '../server/utils/platform.js'
 
 type Props = {
   onChange(

@@ -6,7 +6,7 @@ import {
   type AnalyticsMetadata_I_VERIFIED_THIS_IS_NOT_CODE_OR_FILEPATHS,
   logEvent,
 } from './server/services/analytics/index.js'
-import { getCwd } from 'src/utils/cwd.js'
+import { getCwd } from 'src/server/utils/cwd.ts'
 import { checkForReleaseNotes } from 'src/utils/releaseNotes.js'
 import { setCwd } from 'src/utils/Shell.js'
 import { initSinks } from 'src/utils/sinks.js'
@@ -17,20 +17,20 @@ import {
   setOriginalCwd,
   setProjectRoot,
   switchSession,
-} from './bootstrap/state.js'
+} from './server/bootstrap/state.js'
 import { getCommands } from './commands.js'
 import { initSessionMemory } from './services/SessionMemory/sessionMemory.js'
-import { asSessionId } from './types/ids.js'
+import { asSessionId } from './server/types/ids.js'
 import { isAgentSwarmsEnabled } from './utils/agentSwarmsEnabled.js'
 import { checkAndRestoreTerminalBackup } from './utils/appleTerminalBackup.js'
 import { prefetchApiKeyFromApiKeyHelperIfSafe } from './utils/auth.js'
 import { clearMemoryFileCaches } from './utils/claudemd.js'
 import { getCurrentProjectConfig, getGlobalConfig } from './utils/config.js'
 import { logForDiagnosticsNoPII } from './utils/diagLogs.js'
-import { env } from './utils/env.js'
+import { env } from './server/utils/env.js'
 import { envDynamic } from './utils/envDynamic.js'
-import { isBareMode, isEnvTruthy } from './utils/envUtils.js'
-import { errorMessage } from './utils/errors.js'
+import { isBareMode, isEnvTruthy } from './server/utils/envUtils.js'
+import { errorMessage } from './server/utils/errors.js'
 import { findCanonicalGitRoot, findGitRoot, getIsGit } from './utils/git.js'
 import { initializeFileChangedWatcher } from './utils/hooks/fileChangedWatcher.js'
 import {
@@ -39,7 +39,7 @@ import {
 } from './utils/hooks/hooksConfigSnapshot.js'
 import { hasWorktreeCreateHook } from './utils/hooks.js'
 import { checkAndRestoreITerm2Backup } from './utils/iTermBackup.js'
-import { logError } from './utils/log.js'
+import { logError } from './server/utils/log.js'
 import { getRecentActivity } from './utils/logoV2Utils.js'
 import { lockCurrentVersion } from './utils/nativeInstaller/index.js'
 import type { PermissionMode } from './utils/permissions/PermissionMode.js'

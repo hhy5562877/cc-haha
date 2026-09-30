@@ -134,7 +134,7 @@ async function main(): Promise<void> {
     } = await import('../bridge/bridgeMain.js');
     const {
       exitWithError
-    } = await import('../utils/process.js');
+    } = await import('../server/utils/process.js');
 
     // Auth check must come before the GrowthBook gate check — without auth,
     // GrowthBook has no user context and would return a stale/default false.
@@ -274,7 +274,7 @@ async function main(): Promise<void> {
       if (result.error) {
         const {
           exitWithError
-        } = await import('../utils/process.js');
+        } = await import('../server/utils/process.js');
         exitWithError(result.error);
       }
     }

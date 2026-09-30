@@ -1,6 +1,6 @@
 import { feature } from 'bun:bundle'
 import { join } from 'path'
-import { getFsImplementation } from '../utils/fsOperations.js'
+import { getFsImplementation } from '../server/utils/fsOperations.js'
 import { getAutoMemPath, isAutoMemoryEnabled } from './paths.js'
 
 /* eslint-disable @typescript-eslint/no-require-imports */
@@ -8,7 +8,7 @@ const teamMemPaths = feature('TEAMMEM')
   ? (require('./teamMemPaths.js') as typeof import('./teamMemPaths.js'))
   : null
 
-import { getKairosActive, getOriginalCwd } from '../bootstrap/state.js'
+import { getKairosActive, getOriginalCwd } from '../server/bootstrap/state.js'
 import { getFeatureValue_CACHED_MAY_BE_STALE } from '../server/services/analytics/growthbook.js'
 /* eslint-enable @typescript-eslint/no-require-imports */
 import {
@@ -17,9 +17,9 @@ import {
 } from '../server/services/analytics/index.js'
 import { GREP_TOOL_NAME } from '../tools/GrepTool/prompt.js'
 import { isReplModeEnabled } from '../tools/REPLTool/constants.js'
-import { logForDebugging } from '../utils/debug.js'
+import { logForDebugging } from '../server/utils/debug.js'
 import { hasEmbeddedSearchTools } from '../utils/embeddedTools.js'
-import { isEnvTruthy } from '../utils/envUtils.js'
+import { isEnvTruthy } from '../server/utils/envUtils.js'
 import { formatFileSize } from '../utils/format.js'
 import { getProjectDir } from '../utils/sessionStorage.js'
 import { getInitialSettings } from '../server/utils/settings/settings.js'

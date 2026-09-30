@@ -5,7 +5,7 @@ import type {
   OpenAIOAuthTokenResponse,
   OpenAIOAuthTokens,
 } from './types.js'
-import { getProxyFetchOptions } from '../../../utils/proxy.js'
+import { getProxyFetchOptions } from '../../utils/proxy.js'
 
 export const OPENAI_AUTH_ISSUER = 'https://auth.openai.com'
 export const OPENAI_CODEX_CLIENT_ID = 'app_EMoamEEZ73f0CkXaXp7hrann'

@@ -14,7 +14,7 @@
  */
 
 import sample from 'lodash-es/sample.js'
-import { getSessionId } from '../../bootstrap/state.js'
+import { getSessionId } from '../../server/bootstrap/state.js'
 import { getSpinnerVerbs } from '../../constants/spinnerVerbs.js'
 import { TURN_COMPLETION_VERBS } from '../../constants/turnCompletionVerbs.js'
 import type { AppState } from '../../state/AppState.js'
@@ -25,8 +25,8 @@ import type {
 } from '../../tasks/InProcessTeammateTask/types.js'
 import { createAbortController } from '../abortController.js'
 import { formatAgentId } from '../agentId.js'
-import { registerCleanup } from '../cleanupRegistry.js'
-import { logForDebugging } from '../debug.js'
+import { registerCleanup } from '../../server/utils/cleanupRegistry.js'
+import { logForDebugging } from '../../server/utils/debug.js'
 import { emitTaskTerminatedSdk } from '../sdkEventQueue.js'
 import { evictTaskOutput } from '../task/diskOutput.js'
 import {

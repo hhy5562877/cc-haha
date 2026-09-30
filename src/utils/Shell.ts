@@ -9,13 +9,13 @@ import {
   getOriginalCwd,
   getSessionId,
   setCwdState,
-} from '../bootstrap/state.js'
+} from '../server/bootstrap/state.js'
 import { generateTaskId } from '../Task.js'
-import { pwd } from './cwd.js'
-import { logForDebugging } from './debug.js'
-import { errorMessage, isENOENT } from './errors.js'
-import { getFsImplementation } from './fsOperations.js'
-import { logError } from './log.js'
+import { pwd } from '../server/utils/cwd.js'
+import { logForDebugging } from '../server/utils/debug.js'
+import { errorMessage, isENOENT } from '../server/utils/errors.js'
+import { getFsImplementation } from '../server/utils/fsOperations.js'
+import { logError } from '../server/utils/log.js'
 import {
   createAbortedCommand,
   createFailedCommand,
@@ -24,14 +24,14 @@ import {
 } from './ShellCommand.js'
 import { getTaskOutputDir } from './task/diskOutput.js'
 import { TaskOutput } from './task/TaskOutput.js'
-import { which } from './which.js'
+import { which } from '../server/utils/which.js'
 
 export type { ExecResult } from './ShellCommand.js'
 
 import { accessSync } from 'fs'
 import { onCwdChangedForHooks } from './hooks/fileChangedWatcher.js'
 import { getClaudeTempDirName } from '../server/utils/permissions/filesystem.js'
-import { getPlatform } from './platform.js'
+import { getPlatform } from '../server/utils/platform.js'
 import { SandboxManager } from './sandbox/sandbox-adapter.js'
 import { invalidateSessionEnvCache } from './sessionEnvironment.js'
 import { createBashShellProvider } from './shell/bashProvider.js'
@@ -39,7 +39,7 @@ import { getCachedPowerShellPath } from './shell/powershellDetection.js'
 import { createPowerShellProvider } from './shell/powershellProvider.js'
 import type { ShellProvider, ShellType } from './shell/shellProvider.js'
 import { subprocessEnv } from './subprocessEnv.js'
-import { posixPathToWindowsPath } from './windowsPaths.js'
+import { posixPathToWindowsPath } from '../server/utils/windowsPaths.js'
 
 const DEFAULT_TIMEOUT = 30 * 60 * 1000 // 30 minutes
 

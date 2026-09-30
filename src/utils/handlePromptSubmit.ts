@@ -11,7 +11,7 @@ import type { IDESelection } from '../hooks/useIdeSelection.js'
 import type { AppState } from '../state/AppState.js'
 import type { SetToolJSXFn } from '../Tool.js'
 import type { LocalJSXCommandOnDone } from '../types/command.js'
-import type { Message } from '../types/message.js'
+import type { Message } from '../server/types/message.js'
 import {
   isValidImagePaste,
   type PromptInputMode,
@@ -19,7 +19,7 @@ import {
 } from '../types/textInputTypes.js'
 import { createAbortController } from './abortController.js'
 import type { PastedContent } from './config.js'
-import { logForDebugging } from './debug.js'
+import { logForDebugging } from '../server/utils/debug.js'
 import type { EffortValue } from './effort.js'
 import type { FileHistoryState } from './fileHistory.js'
 import { fileHistoryEnabled, fileHistoryMakeSnapshot } from './fileHistory.js'

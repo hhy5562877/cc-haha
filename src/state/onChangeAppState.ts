@@ -1,12 +1,12 @@
-import { setMainLoopModelOverride } from '../bootstrap/state.js'
+import { setMainLoopModelOverride } from '../server/bootstrap/state.js'
 import {
   clearApiKeyHelperCache,
   clearAwsCredentialsCache,
   clearGcpCredentialsCache,
 } from '../utils/auth.js'
 import { getGlobalConfig, saveGlobalConfig } from '../utils/config.js'
-import { toError } from '../utils/errors.js'
-import { logError } from '../utils/log.js'
+import { toError } from '../server/utils/errors.js'
+import { logError } from '../server/utils/log.js'
 import { applyConfigEnvironmentVariables } from '../utils/managedEnv.js'
 import {
   permissionModeFromString,

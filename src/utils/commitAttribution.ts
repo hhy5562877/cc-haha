@@ -1,19 +1,19 @@
 import { createHash, randomUUID, type UUID } from 'crypto'
 import { stat } from 'fs/promises'
 import { isAbsolute, join, relative, sep } from 'path'
-import { getOriginalCwd, getSessionId } from '../bootstrap/state.js'
+import { getOriginalCwd, getSessionId } from '../server/bootstrap/state.js'
 import type {
   AttributionSnapshotMessage,
   FileAttributionState,
-} from '../types/logs.js'
-import { getCwd } from './cwd.js'
-import { logForDebugging } from './debug.js'
+} from '../server/types/logs.js'
+import { getCwd } from '../server/utils/cwd.js'
+import { logForDebugging } from '../server/utils/debug.js'
 import { execFileNoThrowWithCwd } from './execFileNoThrow.js'
-import { getFsImplementation } from './fsOperations.js'
+import { getFsImplementation } from '../server/utils/fsOperations.js'
 import { isGeneratedFile } from './generatedFiles.js'
 import { getRemoteUrlForDir, resolveGitDir } from './git/gitFilesystem.js'
 import { findGitRoot, gitExe } from './git.js'
-import { logError } from './log.js'
+import { logError } from '../server/utils/log.js'
 import { getCanonicalName, type ModelName } from '../server/utils/model/model.js'
 import { sequential } from './sequential.js'
 

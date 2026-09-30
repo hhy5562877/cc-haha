@@ -1,7 +1,7 @@
 import type { TaskStateBase } from '../../Task.js'
 import type { AgentToolResult } from '../../server/tools/AgentTool/agentToolUtils.js'
 import type { AgentDefinition } from '../../server/tools/AgentTool/loadAgentsDir.js'
-import type { Message } from '../../types/message.js'
+import type { Message } from '../../server/types/message.js'
 import type { PermissionMode } from '../../server/utils/permissions/PermissionMode.js'
 import type { AgentProgress } from '../LocalAgentTask/LocalAgentTask.js'
 

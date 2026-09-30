@@ -4,7 +4,7 @@ import type vm from 'vm'
 import {
   getCurrentTurnTokenBudget,
   getTurnOutputTokens,
-} from '../../bootstrap/state.js'
+} from '../../server/bootstrap/state.js'
 import type { CanUseToolFn } from '../../hooks/useCanUseTool.js'
 import type { SetAppState } from '../../Task.js'
 import type { ToolUseContext } from '../../Tool.js'
@@ -16,7 +16,7 @@ import {
   updateWorkflowProgressBatch,
   type LocalWorkflowTaskState,
 } from '../../tasks/LocalWorkflowTask/LocalWorkflowTask.js'
-import { logForDebugging } from '../../utils/debug.js'
+import { logForDebugging } from '../../server/utils/debug.js'
 import { registerTask, updateTaskState } from '../../utils/task/framework.js'
 import { emitTaskProgress } from '../../utils/task/sdkProgress.js'
 import {

@@ -5,9 +5,9 @@ import React, { Suspense, use, useCallback, useEffect, useMemo, useState } from 
 import { KeybindingWarnings } from 'src/components/KeybindingWarnings.js';
 import { McpParsingWarnings } from 'src/components/mcp/McpParsingWarnings.js';
 import { getModelMaxOutputTokens } from 'src/utils/context.js';
-import { getClaudeConfigHomeDir } from 'src/utils/envUtils.js';
+import { getClaudeConfigHomeDir } from 'src/server/utils/envUtils.ts';
 import type { SettingSource } from '../server/utils/settings/constants.js';
-import { getOriginalCwd } from '../bootstrap/state.js';
+import { getOriginalCwd } from '../server/bootstrap/state.js';
 import type { CommandResultDisplay } from '../commands.js';
 import { Pane } from '../components/design-system/Pane.js';
 import { PressEnterToContinue } from '../components/PressEnterToContinue.js';

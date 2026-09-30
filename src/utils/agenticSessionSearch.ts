@@ -1,11 +1,11 @@
-import type { LogOption, SerializedMessage } from '../types/logs.js'
+import type { LogOption, SerializedMessage } from '../server/types/logs.js'
 import { count } from './array.js'
-import { logForDebugging } from './debug.js'
-import { getLogDisplayTitle, logError } from './log.js'
+import { logForDebugging } from '../server/utils/debug.js'
+import { getLogDisplayTitle, logError } from '../server/utils/log.js'
 import { getSmallFastModel } from '../server/utils/model/model.js'
 import { isLiteLog, loadFullLog } from './sessionStorage.js'
 import { sideQuery } from './sideQuery.js'
-import { jsonParse } from './slowOperations.js'
+import { jsonParse } from '../server/utils/slowOperations.js'
 
 // Limits for transcript extraction
 const MAX_TRANSCRIPT_CHARS = 2000 // Max chars of transcript per session

@@ -1,7 +1,7 @@
 import { createHash } from 'node:crypto'
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs'
 import { join } from 'node:path'
-import type { TeamPlanRecord } from '../../../src/shared/teamPlan'
+import type { TeamPlanRecord } from '../../../src/server/shared/teamPlan'
 
 export const TEAM_SMOKE_PROVIDER = 'desktop-ui-economy-provider'
 export const TEAM_SMOKE_MODEL = 'desktop-ui-economy-model'

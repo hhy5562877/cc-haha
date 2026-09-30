@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import type { CommandResultDisplay } from 'src/commands.js';
 import { logEvent } from '../server/services/analytics/index.js';
-import { logForDebugging } from 'src/utils/debug.js';
+import { logForDebugging } from 'src/server/utils/debug.ts';
 import { Box, Text } from '../ink.js';
 import { execFileNoThrow } from '../utils/execFileNoThrow.js';
 import { getPlansDirectory } from '../utils/plans.js';

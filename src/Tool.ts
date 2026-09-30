@@ -37,14 +37,14 @@ import type {
   SystemLocalCommandMessage,
   SystemMessage,
   UserMessage,
-} from './types/message.js'
+} from './server/types/message.js'
 // Import permission types from centralized location to break import cycles
 // Import PermissionResult from centralized location to break import cycles
 import type {
   AdditionalWorkingDirectory,
   PermissionMode,
   PermissionResult,
-} from './types/permissions.js'
+} from './server/types/permissions.js'
 // Import tool progress types from centralized location to break import cycles
 import type {
   AgentToolProgress,
@@ -81,7 +81,7 @@ import type {
   PromptRequest,
   PromptResponse,
 } from './types/hooks.js'
-import type { AgentId } from './types/ids.js'
+import type { AgentId } from './server/types/ids.js'
 import type { DeepImmutable } from './types/utils.js'
 import type { AttributionState } from './utils/commitAttribution.js'
 import type { FileHistoryState } from './utils/fileHistory.js'
@@ -114,7 +114,7 @@ export type SetToolJSXFn = (
 ) => void
 
 // Import tool permission types from centralized location to break import cycles
-import type { ToolPermissionRulesBySource } from './types/permissions.js'
+import type { ToolPermissionRulesBySource } from './server/types/permissions.js'
 
 // Re-export for backwards compatibility
 export type { ToolPermissionRulesBySource }

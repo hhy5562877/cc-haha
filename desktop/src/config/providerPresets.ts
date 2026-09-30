@@ -1,6 +1,6 @@
 import providerPresetsJson from '../../../src/server/config/providerPresets.json'
 import type { ProviderPreset } from '../types/providerPreset'
-import type { ModelReasoningProviderKind } from '../../../src/shared/modelReasoning'
+import type { ModelReasoningProviderKind } from '../../../src/server/shared/modelReasoning.js'
 
 // Presets ship with the desktop bundle. Provider creation must remain available
 // even when the local HTTP control plane is temporarily unavailable.

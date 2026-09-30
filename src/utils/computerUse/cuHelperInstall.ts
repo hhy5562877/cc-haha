@@ -15,8 +15,8 @@ import {
 } from 'node:fs'
 import os from 'node:os'
 import path from 'node:path'
-import { logForDebugging } from '../debug.js'
-import { getClaudeConfigHomeDir } from '../envUtils.js'
+import { logForDebugging } from '../../server/utils/debug.js'
+import { getClaudeConfigHomeDir } from '../../server/utils/envUtils.js'
 import { resolveCuHelperAppBundle } from './cuHelperBridge.js'
 
 /**

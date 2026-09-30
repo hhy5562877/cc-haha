@@ -1,15 +1,15 @@
 import { z } from 'zod/v4'
 import type { ValidationResult } from '../../Tool.js'
 import { buildTool, type ToolDef } from '../../Tool.js'
-import { getCwd } from '../../utils/cwd.js'
-import { isENOENT } from '../../utils/errors.js'
+import { getCwd } from '../../server/utils/cwd.js'
+import { isENOENT } from '../../server/utils/errors.js'
 import {
   FILE_NOT_FOUND_CWD_NOTE,
   suggestPathUnderCwd,
 } from '../../utils/file.js'
-import { getFsImplementation } from '../../utils/fsOperations.js'
-import { lazySchema } from '../../utils/lazySchema.js'
-import { expandPath, toRelativePath } from '../../utils/path.js'
+import { getFsImplementation } from '../../server/utils/fsOperations.js'
+import { lazySchema } from '../../server/utils/lazySchema.js'
+import { expandPath, toRelativePath } from '../../server/utils/path.js'
 import {
   checkReadPermissionForTool,
   getFileReadIgnorePatterns,
@@ -21,7 +21,7 @@ import { getGlobExclusionsForPluginCache } from '../../server/utils/plugins/orph
 import { ripGrep } from '../../utils/ripgrep.js'
 import { semanticBoolean } from '../../utils/semanticBoolean.js'
 import { semanticNumber } from '../../utils/semanticNumber.js'
-import { plural } from '../../utils/stringUtils.js'
+import { plural } from '../../server/utils/stringUtils.js'
 import { GREP_TOOL_NAME, getDescription } from './prompt.js'
 import {
   getToolUseSummary,

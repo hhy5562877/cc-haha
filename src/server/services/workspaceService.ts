@@ -7,7 +7,7 @@ import { promisify } from 'node:util'
 import { diffLines } from 'diff'
 import type { MessageEntry } from './sessionService.js'
 import type { FileHistorySnapshot } from '../../utils/fileHistory.js'
-import { getClaudeConfigHomeDir } from '../../utils/envUtils.js'
+import { getClaudeConfigHomeDir } from '../utils/envUtils.js'
 import { isWithinRegisteredFilesystemRoot } from './filesystemAccessRoots.js'
 import { collectErroredToolUseIds } from './transcriptToolResults.js'
 import {

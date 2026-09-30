@@ -1,6 +1,6 @@
 import { toJSONSchema } from 'zod/v4'
 import { SettingsSchema } from '../../server/utils/settings/types.js'
-import { jsonStringify } from '../../utils/slowOperations.js'
+import { jsonStringify } from '../../server/utils/slowOperations.js'
 import { registerBundledSkill } from '../bundledSkills.js'
 
 /**

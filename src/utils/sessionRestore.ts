@@ -8,7 +8,7 @@ import {
   setMainThreadAgentType,
   setOriginalCwd,
   switchSession,
-} from '../bootstrap/state.js'
+} from '../server/bootstrap/state.js'
 import { clearSystemPromptSections } from '../constants/systemPromptSections.js'
 import { restoreCostStateForSession } from '../cost-tracker.js'
 import type { AppState } from '../state/AppState.js'
@@ -20,14 +20,14 @@ import {
   getAgentDefinitionsWithOverrides,
 } from '../server/tools/AgentTool/loadAgentsDir.js'
 import { TODO_WRITE_TOOL_NAME } from '../tools/TodoWriteTool/constants.js'
-import { asSessionId } from '../types/ids.js'
+import { asSessionId } from '../server/types/ids.js'
 import type {
   AttributionSnapshotMessage,
   ContextCollapseCommitEntry,
   ContextCollapseSnapshotEntry,
   PersistedWorktreeSession,
-} from '../types/logs.js'
-import type { Message } from '../types/message.js'
+} from '../server/types/logs.js'
+import type { Message } from '../server/types/message.js'
 import { renameRecordingForSession } from './asciicast.js'
 import { clearMemoryFileCaches } from './claudemd.js'
 import {
@@ -36,8 +36,8 @@ import {
   restoreAttributionStateFromSnapshots,
 } from './commitAttribution.js'
 import { updateSessionName } from './concurrentSessions.js'
-import { getCwd } from './cwd.js'
-import { logForDebugging } from './debug.js'
+import { getCwd } from '../server/utils/cwd.js'
+import { logForDebugging } from '../server/utils/debug.js'
 import type { EffortValue } from './effort.js'
 import type { FileHistorySnapshot } from './fileHistory.js'
 import { fileHistoryRestoreStateFromLog } from './fileHistory.js'

@@ -1,6 +1,6 @@
 import type { ApiFormat, ProviderAuthStrategy } from './provider'
-import type { ModelReasoningProviderKind } from '../../../src/shared/modelReasoning'
-import type { ModelApiFormatRule } from '../../../src/shared/modelApiFormats'
+import type { ModelReasoningProviderKind } from '../../../src/server/shared/modelReasoning.js'
+import type { ModelApiFormatRule } from '../../../src/server/shared/modelApiFormats.js'
 
 export type ModelMapping = {
   main: string

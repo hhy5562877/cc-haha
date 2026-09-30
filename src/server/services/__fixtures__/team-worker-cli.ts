@@ -1,6 +1,6 @@
 import { mkdir, appendFile } from 'node:fs/promises'
 import { join } from 'node:path'
-import { sanitizePath } from '../../../utils/sessionStoragePortable.js'
+import { sanitizePath } from '../../utils/sessionStoragePortable.js'
 // Deterministic worker protocol fixture. Never contacts anything except loopback.
 const args = process.argv.slice(2)
 const arg = (name: string) => args[args.indexOf(name) + 1]

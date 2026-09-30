@@ -1,7 +1,7 @@
 import { create } from 'zustand'
 import { ApiError } from '@/api/client'
 import { teamPlansApi, type TeamPlanAction, type TeamPlanEdits } from '@/api/teamPlans'
-import type { TeamPlanRecord } from '../../../src/shared/teamPlan'
+import type { TeamPlanRecord } from '../../../src/server/shared/teamPlan.js'
 
 export type TeamPlanDraft = TeamPlanEdits & { planId: string; revision: number; dirty: boolean; baseline: TeamPlanEdits }
 export type TeamPlanEntry = {

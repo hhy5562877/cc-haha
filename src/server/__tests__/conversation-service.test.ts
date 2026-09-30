@@ -9,7 +9,7 @@ import {
 } from '../services/conversationService.js'
 import { ProviderService } from '../services/providerService.js'
 import { updateTraceCaptureSettings } from '../services/traceCaptureService.js'
-import { resetTerminalShellEnvironmentCacheForTests } from '../../utils/terminalShellEnvironment.js'
+import { resetTerminalShellEnvironmentCacheForTests } from '../utils/terminalShellEnvironment.js'
 import { createSandboxedTestEnvironment } from '../../../scripts/pr/test-environment.js'
 
 describe('ConversationService', () => {

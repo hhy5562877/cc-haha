@@ -2,11 +2,11 @@ import { feature } from 'bun:bundle'
 import { open } from 'fs/promises'
 import { basename, join, sep } from 'path'
 import type { ModelUsage } from 'src/entrypoints/agentSdkTypes.js'
-import type { Entry, TranscriptMessage } from '../types/logs.js'
-import { logForDebugging } from './debug.js'
-import { errorMessage, isENOENT } from './errors.js'
-import { getFsImplementation } from './fsOperations.js'
-import { readJSONLFile } from './json.js'
+import type { Entry, TranscriptMessage } from '../server/types/logs.js'
+import { logForDebugging } from '../server/utils/debug.js'
+import { errorMessage, isENOENT } from '../server/utils/errors.js'
+import { getFsImplementation } from '../server/utils/fsOperations.js'
+import { readJSONLFile } from '../server/utils/json.js'
 import { SYNTHETIC_MODEL } from './messages.js'
 import { getProjectsDir, isTranscriptMessage } from './sessionStorage.js'
 import { extractShotCountFromAssistantContent } from './shotStats.js'
@@ -17,7 +17,7 @@ import {
   resolveModelCosts,
   usageRecordKey,
 } from './usageAccounting.js'
-import { jsonParse } from './slowOperations.js'
+import { jsonParse } from '../server/utils/slowOperations.js'
 import {
   getTodayDateString,
   getYesterdayDateString,

@@ -4,7 +4,7 @@ import {
   mergeTerminalShellEnvironment,
   resetTerminalShellEnvironmentCacheForTests,
   toStringEnv,
-} from './terminalShellEnvironment.js'
+} from '../server/utils/terminalShellEnvironment.js'
 
 export async function getMcpStdioEnvironment(
   configEnv?: Record<string, string>,

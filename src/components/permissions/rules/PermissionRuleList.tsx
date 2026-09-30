@@ -18,7 +18,7 @@ import type { PermissionBehavior, PermissionRule, PermissionRuleValue } from '..
 import { permissionRuleValueToString } from '../../../server/utils/permissions/permissionRuleParser.js';
 import { deletePermissionRule, getAllowRules, getAskRules, getDenyRules, permissionRuleSourceDisplayString } from '../../../server/utils/permissions/permissions.js';
 import type { UnreachableRule } from '../../../server/utils/permissions/shadowedRuleDetection.js';
-import { jsonStringify } from '../../../utils/slowOperations.js';
+import { jsonStringify } from '../../../server/utils/slowOperations.js';
 import { Pane } from '../../design-system/Pane.js';
 import { Tab, Tabs, useTabHeaderFocus, useTabsWidth } from '../../design-system/Tabs.js';
 import { SearchBox } from '../../SearchBox.js';

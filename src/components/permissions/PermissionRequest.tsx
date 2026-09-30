@@ -17,7 +17,7 @@ import { NotebookEditTool } from '../../tools/NotebookEditTool/NotebookEditTool.
 import { PowerShellTool } from '../../tools/PowerShellTool/PowerShellTool.js';
 import { SkillTool } from '../../tools/SkillTool/SkillTool.js';
 import { WebFetchTool } from '../../tools/WebFetchTool/WebFetchTool.js';
-import type { AssistantMessage } from '../../types/message.js';
+import type { AssistantMessage } from '../../server/types/message.js';
 import type { PermissionDecision } from '../../server/utils/permissions/PermissionResult.js';
 import { AskUserQuestionPermissionRequest } from './AskUserQuestionPermissionRequest/AskUserQuestionPermissionRequest.js';
 import { BashPermissionRequest } from './BashPermissionRequest/BashPermissionRequest.js';

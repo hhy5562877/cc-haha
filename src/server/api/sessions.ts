@@ -64,7 +64,7 @@ import { isValidPermissionMode } from '../services/settingsService.js'
 import { handleWorkspaceSearchRoute } from './workspaceSearch.js'
 import { handleWorkspaceWatchRoute } from './workspaceWatch.js'
 import { localIndexCoordinator } from '../services/localIndex/coordinator.js'
-import { getClaudeConfigHomeDir } from '../../utils/envUtils.js'
+import { getClaudeConfigHomeDir } from '../utils/envUtils.js'
 import { isPetAccessAuthorized } from '../localAccessAuth.js'
 import { PET_SESSION_LIMIT } from '../petAccessPolicy.js'
 

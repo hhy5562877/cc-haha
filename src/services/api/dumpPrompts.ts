@@ -3,9 +3,9 @@ import { getRequestBodyAudit } from './requestBodyAudit.js'
 import { createHash } from 'crypto'
 import { promises as fs } from 'fs'
 import { dirname, join } from 'path'
-import { getSessionId } from 'src/bootstrap/state.js'
-import { getClaudeConfigHomeDir } from '../../utils/envUtils.js'
-import { jsonParse, jsonStringify } from '../../utils/slowOperations.js'
+import { getSessionId } from 'src/server/bootstrap/state.ts'
+import { getClaudeConfigHomeDir } from '../../server/utils/envUtils.js'
+import { jsonParse, jsonStringify } from '../../server/utils/slowOperations.js'
 import {
   captureResponseTraceSnapshot,
   createTraceCallId,

@@ -33,7 +33,7 @@ import { getDesktopHost } from '../../lib/desktopHost'
 import { getDesktopNotificationPermission, notifyDesktop, getDesktopNotificationPlatform, openDesktopNotificationSettings, requestDesktopNotificationPermission, type DesktopNotificationPermission } from '../../lib/desktopNotifications'
 import { SETTINGS_CHECKBOX_INPUT_CLASS, SettingsCheckboxMark, isValidHttpProxyUrl } from '../settings/shared'
 import { isTouchH5Document } from '../../lib/touchH5'
-import { MODEL_REASONING_EFFORTS } from '../../../../src/shared/modelReasoning'
+import { MODEL_REASONING_EFFORTS } from '../../../../src/server/shared/modelReasoning.js'
 import { AUTO_QUESTION_TIMEOUT_OPTIONS } from '../../../../src/shared/autoQuestionSettings'
 import { ChatAppearanceSettings } from './ChatAppearanceSettings'
 

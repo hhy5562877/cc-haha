@@ -1,13 +1,13 @@
 import { feature } from 'bun:bundle'
 import { z } from 'zod/v4'
-import { getKairosActive, getUserMsgOptIn } from '../../bootstrap/state.js'
+import { getKairosActive, getUserMsgOptIn } from '../../server/bootstrap/state.js'
 import { getFeatureValue_CACHED_WITH_REFRESH } from '../../server/services/analytics/growthbook.js'
 import { logEvent } from '../../server/services/analytics/index.js'
 import type { ValidationResult } from '../../Tool.js'
 import { buildTool, type ToolDef } from '../../Tool.js'
-import { isEnvTruthy } from '../../utils/envUtils.js'
-import { lazySchema } from '../../utils/lazySchema.js'
-import { plural } from '../../utils/stringUtils.js'
+import { isEnvTruthy } from '../../server/utils/envUtils.js'
+import { lazySchema } from '../../server/utils/lazySchema.js'
+import { plural } from '../../server/utils/stringUtils.js'
 import { resolveAttachments, validateAttachmentPaths } from './attachments.js'
 import {
   BRIEF_TOOL_NAME,

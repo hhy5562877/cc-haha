@@ -25,7 +25,7 @@ import {
 } from 'src/server/tools/FileEditTool/utils.js'
 import { FileWriteTool } from 'src/tools/FileWriteTool/FileWriteTool.js'
 import { getTools } from 'src/tools.js'
-import type { AgentId } from 'src/types/ids.js'
+import type { AgentId } from 'src/server/types/ids.ts'
 import type { z } from 'zod/v4'
 import { CLI_SYSPROMPT_PREFIXES } from '../constants/system.js'
 import { roughTokenCountEstimation } from '../services/tokenEstimation.js'
@@ -34,15 +34,15 @@ import { AGENT_TOOL_NAME } from '../server/tools/AgentTool/constants.js'
 import type { AgentDefinition } from '../server/tools/AgentTool/loadAgentsDir.js'
 import { EXIT_PLAN_MODE_V2_TOOL_NAME } from '../tools/ExitPlanModeTool/constants.js'
 import { TASK_OUTPUT_TOOL_NAME } from '../tools/TaskOutputTool/constants.js'
-import type { Message } from '../types/message.js'
+import type { Message } from '../server/types/message.js'
 import { isAgentSwarmsEnabled } from './agentSwarmsEnabled.js'
 import {
   modelSupportsStructuredOutputs,
   shouldUseGlobalCacheScope,
 } from './betas.js'
-import { getCwd } from './cwd.js'
-import { logForDebugging } from './debug.js'
-import { isEnvTruthy } from './envUtils.js'
+import { getCwd } from '../server/utils/cwd.js'
+import { logForDebugging } from '../server/utils/debug.js'
+import { isEnvTruthy } from '../server/utils/envUtils.js'
 import { createUserMessage } from './messages.js'
 import {
   getAPIProvider,
@@ -57,12 +57,12 @@ import {
   getPlanFilePath,
   persistFileSnapshotIfRemote,
 } from './plans.js'
-import { getPlatform } from './platform.js'
+import { getPlatform } from '../server/utils/platform.js'
 import { countFilesRoundedRg } from './ripgrep.js'
-import { jsonStringify } from './slowOperations.js'
+import { jsonStringify } from '../server/utils/slowOperations.js'
 import type { SystemPrompt } from './systemPromptType.js'
 import { getToolSchemaCache } from './toolSchemaCache.js'
-import { windowsPathToPosixPath } from './windowsPaths.js'
+import { windowsPathToPosixPath } from '../server/utils/windowsPaths.js'
 import { zodToJsonSchema } from './zodToJsonSchema.js'
 
 // Extended BetaTool type with strict mode and defer_loading support

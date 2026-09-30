@@ -6,7 +6,7 @@ import { useProviderStore } from '@/stores/providerStore'
 import { useHahaOAuthStore } from '@/stores/hahaOAuthStore'
 import { useHahaOpenAIOAuthStore } from '@/stores/hahaOpenAIOAuthStore'
 import { useHahaGrokOAuthStore } from '@/stores/hahaGrokOAuthStore'
-import type { TeamPlanRecord } from '../../../src/shared/teamPlan'
+import type { TeamPlanRecord } from '../../../src/server/shared/teamPlan.js'
 import type { SavedProvider } from '@/types/provider'
 
 export const TEAM_PLAN_GALLERY_SESSION = 'gallery-team-plan'

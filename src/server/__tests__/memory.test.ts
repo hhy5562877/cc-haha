@@ -3,7 +3,7 @@ import * as fs from 'node:fs/promises'
 import * as os from 'node:os'
 import * as path from 'node:path'
 import { handleMemoryApi } from '../api/memory.js'
-import { sanitizePath } from '../../utils/path.js'
+import { sanitizePath } from '../utils/path.js'
 
 let tmpDir: string
 let originalConfigDir: string | undefined

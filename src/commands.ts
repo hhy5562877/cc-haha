@@ -149,9 +149,9 @@ import sandboxToggle from './commands/sandbox-toggle/index.js'
 import chrome from './commands/chrome/index.js'
 import stickers from './commands/stickers/index.js'
 import advisor from './commands/advisor.js'
-import { logError } from './utils/log.js'
-import { toError } from './utils/errors.js'
-import { logForDebugging } from './utils/debug.js'
+import { logError } from './server/utils/log.js'
+import { toError } from './server/utils/errors.js'
+import { logForDebugging } from './server/utils/debug.js'
 import {
   getSkillDirCommands,
   clearSkillCaches,

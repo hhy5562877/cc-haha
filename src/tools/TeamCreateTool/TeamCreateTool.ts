@@ -1,18 +1,18 @@
 import { z } from 'zod/v4'
-import { getSessionId } from '../../bootstrap/state.js'
+import { getSessionId } from '../../server/bootstrap/state.js'
 import { logEvent } from '../../server/services/analytics/index.js'
 import type { AnalyticsMetadata_I_VERIFIED_THIS_IS_NOT_CODE_OR_FILEPATHS } from '../../server/services/analytics/metadata.js'
 import type { Tool } from '../../Tool.js'
 import { buildTool, type ToolDef } from '../../Tool.js'
 import { formatAgentId } from '../../utils/agentId.js'
 import { isAgentSwarmsEnabled } from '../../utils/agentSwarmsEnabled.js'
-import { getCwd } from '../../utils/cwd.js'
-import { lazySchema } from '../../utils/lazySchema.js'
+import { getCwd } from '../../server/utils/cwd.js'
+import { lazySchema } from '../../server/utils/lazySchema.js'
 import {
   getDefaultMainLoopModel,
   parseUserSpecifiedModel,
 } from '../../server/utils/model/model.js'
-import { jsonStringify } from '../../utils/slowOperations.js'
+import { jsonStringify } from '../../server/utils/slowOperations.js'
 import { getResolvedTeammateMode } from '../../utils/swarm/backends/registry.js'
 import { TEAM_LEAD_NAME } from '../../utils/swarm/constants.js'
 import type { TeamFile } from '../../utils/swarm/teamHelpers.js'

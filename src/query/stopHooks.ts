@@ -1,6 +1,6 @@
 import { feature } from 'bun:bundle'
 import { getShortcutDisplay } from '../keybindings/shortcutFormat.js'
-import { getSessionId } from '../bootstrap/state.js'
+import { getSessionId } from '../server/bootstrap/state.js'
 import { isExtractModeActive } from '../memdir/paths.js'
 import {
   type AnalyticsMetadata_I_VERIFIED_THIS_IS_NOT_CODE_OR_FILEPATHS,
@@ -21,10 +21,10 @@ import type {
   StreamEvent,
   TombstoneMessage,
   ToolUseSummaryMessage,
-} from '../types/message.js'
+} from '../server/types/message.js'
 import { createAttachmentMessage } from '../utils/attachments.js'
-import { logForDebugging } from '../utils/debug.js'
-import { errorMessage } from '../utils/errors.js'
+import { logForDebugging } from '../server/utils/debug.js'
+import { errorMessage } from '../server/utils/errors.js'
 import type { REPLHookContext } from '../utils/hooks/postSamplingHooks.js'
 import {
   executeStopHooks,
@@ -58,7 +58,7 @@ const jobClassifierModule = feature('TEMPLATES')
 import type { QuerySource } from '../constants/querySource.js'
 import { executeAutoDream } from '../services/autoDream/autoDream.js'
 import { executePromptSuggestion } from '../services/PromptSuggestion/promptSuggestion.js'
-import { isBareMode, isEnvDefinedFalsy } from '../utils/envUtils.js'
+import { isBareMode, isEnvDefinedFalsy } from '../server/utils/envUtils.js'
 import {
   createCacheSafeParams,
   saveCacheSafeParams,

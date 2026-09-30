@@ -1,4 +1,4 @@
-import { isEnvTruthy } from '../../utils/envUtils.js'
+import { isEnvTruthy } from '../../server/utils/envUtils.js'
 import { getMaxOutputLength } from '../../utils/shell/outputLimits.js'
 import {
   getPowerShellEdition,

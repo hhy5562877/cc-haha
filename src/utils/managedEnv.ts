@@ -6,16 +6,16 @@ import {
   mergeActiveProviderManagedEnv,
 } from '../server/services/providerRuntimeEnv.js'
 import { ensureStandaloneProviderProxy } from '../server/proxy/standaloneProviderProxy.js'
-import { clearCACertsCache } from './caCerts.js'
+import { clearCACertsCache } from '../server/utils/caCerts.js'
 import { getGlobalConfig } from './config.js'
-import { getClaudeConfigHomeDir, isEnvTruthy } from './envUtils.js'
+import { getClaudeConfigHomeDir, isEnvTruthy } from '../server/utils/envUtils.js'
 import {
   isProviderManagedEnvVar,
   SAFE_ENV_VARS,
 } from './managedEnvConstants.js'
 import { normalizeLegacyDeepSeekManagedEnv } from './providerManagedEnvCompat.js'
-import { clearMTLSCache } from './mtls.js'
-import { clearProxyCache, configureGlobalAgents } from './proxy.js'
+import { clearMTLSCache } from '../server/utils/mtls.js'
+import { clearProxyCache, configureGlobalAgents } from '../server/utils/proxy.js'
 import { isSettingSourceEnabled } from '../server/utils/settings/constants.js'
 import {
   getSettings_DEPRECATED,

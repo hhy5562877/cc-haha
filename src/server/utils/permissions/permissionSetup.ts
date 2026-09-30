@@ -6,13 +6,13 @@ import {
   handlePlanModeTransition,
   setHasExitedPlanMode,
   setNeedsAutoModeExitAttachment,
-} from '../../../bootstrap/state.js'
+} from '../../bootstrap/state.js'
 import type {
   ToolPermissionContext,
   ToolPermissionRulesBySource,
 } from '../../../Tool.js'
-import { getCwd } from '../../../utils/cwd.js'
-import { isEnvTruthy } from '../../../utils/envUtils.js'
+import { getCwd } from '../cwd.js'
+import { isEnvTruthy } from '../envUtils.js'
 import type { SettingSource } from '../settings/constants.js'
 import { SETTING_SOURCES } from '../settings/constants.js'
 import {
@@ -57,8 +57,8 @@ import { getToolsForDefaultPreset, parseToolPreset } from '../../../tools.js'
 import {
   getFsImplementation,
   safeResolvePath,
-} from '../../../utils/fsOperations.js'
-import { logForDebugging } from '../../../utils/debug.js'
+} from '../fsOperations.js'
+import { logForDebugging } from '../debug.js'
 import { gracefulShutdown } from '../../../utils/gracefulShutdown.js'
 import {
   CROSS_PLATFORM_CODE_EXEC,

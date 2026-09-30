@@ -1,4 +1,4 @@
-import { logForDebugging } from '../debug.js'
+import { logForDebugging } from '../../server/utils/debug.js'
 import { callPythonHelper } from './pythonBridge.js'
 import { isCuHelperAvailable } from './cuHelperBridge.js'
 import {

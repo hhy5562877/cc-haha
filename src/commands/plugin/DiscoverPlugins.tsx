@@ -13,8 +13,8 @@ import { useKeybinding, useKeybindings } from '../../keybindings/useKeybinding.j
 import type { LoadedPlugin } from '../../types/plugin.js';
 import { count } from '../../utils/array.js';
 import { openBrowser } from '../../utils/browser.js';
-import { logForDebugging } from '../../utils/debug.js';
-import { errorMessage } from '../../utils/errors.js';
+import { logForDebugging } from '../../server/utils/debug.js';
+import { errorMessage } from '../../server/utils/errors.js';
 import { clearAllCaches } from '../../server/utils/plugins/cacheUtils.js';
 import { formatInstallCount, getInstallCounts } from '../../server/utils/plugins/installCounts.js';
 import { isPluginGloballyInstalled } from '../../server/utils/plugins/installedPluginsManager.js';
@@ -23,7 +23,7 @@ import { loadKnownMarketplacesConfig } from '../../server/utils/plugins/marketpl
 import { OFFICIAL_MARKETPLACE_NAME } from '../../server/utils/plugins/officialMarketplace.js';
 import { installPluginFromMarketplace } from '../../server/utils/plugins/pluginInstallationHelpers.js';
 import { isPluginBlockedByPolicy } from '../../server/utils/plugins/pluginPolicy.js';
-import { plural } from '../../utils/stringUtils.js';
+import { plural } from '../../server/utils/stringUtils.js';
 import { truncateToWidth } from '../../utils/truncate.js';
 import { findPluginOptionsTarget, PluginOptionsFlow } from './PluginOptionsFlow.js';
 import { PluginTrustWarning } from './PluginTrustWarning.js';

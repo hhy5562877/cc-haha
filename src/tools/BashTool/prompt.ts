@@ -1,11 +1,11 @@
 import { feature } from 'bun:bundle'
 import { prependBullets } from '../../constants/prompts.js'
 import { hasEmbeddedSearchTools } from '../../utils/embeddedTools.js'
-import { isEnvTruthy } from '../../utils/envUtils.js'
+import { isEnvTruthy } from '../../server/utils/envUtils.js'
 import { shouldIncludeGitInstructions } from '../../utils/gitSettings.js'
 import { getClaudeTempDir } from '../../server/utils/permissions/filesystem.js'
 import { SandboxManager } from '../../utils/sandbox/sandbox-adapter.js'
-import { jsonStringify } from '../../utils/slowOperations.js'
+import { jsonStringify } from '../../server/utils/slowOperations.js'
 import {
   getDefaultBashTimeoutMs,
   getMaxBashTimeoutMs,

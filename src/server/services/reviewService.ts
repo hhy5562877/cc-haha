@@ -20,7 +20,7 @@ import { createHash } from 'node:crypto'
 import * as os from 'node:os'
 import * as path from 'node:path'
 import { promisify } from 'node:util'
-import { getCcHahaDir } from '../../utils/envUtils.js'
+import { getCcHahaDir } from '../utils/envUtils.js'
 import { parseStatus, type WorkspaceFileStatus } from './workspaceService.js'
 import {
   isSameOrInsidePathForPlatform,

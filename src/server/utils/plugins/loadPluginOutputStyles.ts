@@ -2,12 +2,12 @@ import memoize from 'lodash-es/memoize.js'
 import { basename } from 'path'
 import type { OutputStyleConfig } from '../../../constants/outputStyles.js'
 import { getPluginErrorMessage } from '../../../types/plugin.js'
-import { logForDebugging } from '../../../utils/debug.js'
+import { logForDebugging } from '../debug.js'
 import {
   coerceDescriptionToString,
   parseFrontmatter,
-} from '../../../utils/frontmatterParser.js'
-import { getFsImplementation, isDuplicatePath } from '../../../utils/fsOperations.js'
+} from '../frontmatterParser.js'
+import { getFsImplementation, isDuplicatePath } from '../fsOperations.js'
 import { extractDescriptionFromMarkdown } from '../../../utils/markdownConfigLoader.js'
 import { loadAllPluginsCacheOnly } from './pluginLoader.js'
 import { walkPluginMarkdown } from './walkPluginMarkdown.js'

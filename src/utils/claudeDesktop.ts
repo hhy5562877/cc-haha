@@ -5,10 +5,10 @@ import {
   type McpServerConfig,
   McpStdioServerConfigSchema,
 } from '../server/services/mcp/types.js'
-import { getErrnoCode } from './errors.js'
-import { safeParseJSON } from './json.js'
-import { logError } from './log.js'
-import { getPlatform, SUPPORTED_PLATFORMS } from './platform.js'
+import { getErrnoCode } from '../server/utils/errors.js'
+import { safeParseJSON } from '../server/utils/json.js'
+import { logError } from '../server/utils/log.js'
+import { getPlatform, SUPPORTED_PLATFORMS } from '../server/utils/platform.js'
 
 export async function getClaudeDesktopConfigPath(): Promise<string> {
   const platform = getPlatform()

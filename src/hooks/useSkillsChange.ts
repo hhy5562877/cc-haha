@@ -6,7 +6,7 @@ import {
   getCommands,
 } from '../commands.js'
 import { onGrowthBookRefresh } from '../server/services/analytics/growthbook.js'
-import { logError } from '../utils/log.js'
+import { logError } from '../server/utils/log.js'
 import { skillChangeDetector } from '../utils/skills/skillChangeDetector.js'
 
 /**

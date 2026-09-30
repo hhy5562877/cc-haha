@@ -5,7 +5,7 @@
  */
 import { createHash } from 'crypto'
 import { CLAUDE_CODE_COMPAT_VERSION } from '../constants/claudeCodeCompatibility.js'
-import type { AssistantMessage, UserMessage } from '../types/message.js'
+import type { AssistantMessage, UserMessage } from '../server/types/message.js'
 
 /**
  * Hardcoded salt from backend validation.

@@ -13,10 +13,10 @@ import {
   unlink,
 } from 'fs/promises'
 import { join } from 'path'
-import { getSessionId } from '../../bootstrap/state.js'
-import { getErrnoCode } from '../errors.js'
-import { readFileRange, tailFile } from '../fsOperations.js'
-import { logError } from '../log.js'
+import { getSessionId } from '../../server/bootstrap/state.js'
+import { getErrnoCode } from '../../server/utils/errors.js'
+import { readFileRange, tailFile } from '../../server/utils/fsOperations.js'
+import { logError } from '../../server/utils/log.js'
 import { getProjectTempDir } from '../../server/utils/permissions/filesystem.js'
 
 // SECURITY: O_NOFOLLOW prevents following symlinks when opening task output files.

@@ -5,7 +5,7 @@
 import type { ToolResultBlockParam } from '@anthropic-ai/sdk/resources/index.mjs'
 import { mkdir, writeFile } from 'fs/promises'
 import { join } from 'path'
-import { getOriginalCwd, getSessionId } from '../bootstrap/state.js'
+import { getOriginalCwd, getSessionId } from '../server/bootstrap/state.js'
 import {
   BYTES_PER_TOKEN,
   DEFAULT_MAX_RESULT_SIZE_CHARS,
@@ -15,13 +15,13 @@ import {
 import { getFeatureValue_CACHED_MAY_BE_STALE } from '../server/services/analytics/growthbook.js'
 import { logEvent } from '../server/services/analytics/index.js'
 import { sanitizeToolNameForAnalytics } from '../server/services/analytics/metadata.js'
-import type { Message } from '../types/message.js'
-import { logForDebugging } from './debug.js'
-import { getErrnoCode, toError } from './errors.js'
+import type { Message } from '../server/types/message.js'
+import { logForDebugging } from '../server/utils/debug.js'
+import { getErrnoCode, toError } from '../server/utils/errors.js'
 import { formatFileSize } from './format.js'
-import { logError } from './log.js'
+import { logError } from '../server/utils/log.js'
 import { getProjectDir } from './sessionStorage.js'
-import { jsonStringify } from './slowOperations.js'
+import { jsonStringify } from '../server/utils/slowOperations.js'
 
 // Subdirectory name for tool results within a session
 export const TOOL_RESULTS_SUBDIR = 'tool-results'

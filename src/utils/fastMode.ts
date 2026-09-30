@@ -1,11 +1,11 @@
 import axios from 'axios'
-import { getOauthConfig, OAUTH_BETA_HEADER } from 'src/constants/oauth.js'
+import { getOauthConfig, OAUTH_BETA_HEADER } from 'src/server/constants/oauth.ts'
 import { getFeatureValue_CACHED_MAY_BE_STALE } from '../server/services/analytics/growthbook.js'
 import {
   getIsNonInteractiveSession,
   getKairosActive,
   preferThirdPartyAuthentication,
-} from '../bootstrap/state.js'
+} from '../server/bootstrap/state.js'
 import {
   type AnalyticsMetadata_I_VERIFIED_THIS_IS_NOT_CODE_OR_FILEPATHS,
   logEvent,
@@ -16,10 +16,10 @@ import {
   handleOAuth401Error,
   hasProfileScope,
 } from './auth.js'
-import { isInBundledMode } from './bundledMode.js'
+import { isInBundledMode } from '../server/utils/bundledMode.js'
 import { getGlobalConfig, saveGlobalConfig } from './config.js'
-import { logForDebugging } from './debug.js'
-import { isEnvTruthy } from './envUtils.js'
+import { logForDebugging } from '../server/utils/debug.js'
+import { isEnvTruthy } from '../server/utils/envUtils.js'
 import {
   getDefaultMainLoopModelSetting,
   isOpus1mMergeEnabled,
@@ -27,7 +27,7 @@ import {
   parseUserSpecifiedModel,
 } from '../server/utils/model/model.js'
 import { getAPIProvider } from '../server/utils/model/providers.js'
-import { isEssentialTrafficOnly } from './privacyLevel.js'
+import { isEssentialTrafficOnly } from '../server/utils/privacyLevel.js'
 import {
   getInitialSettings,
   getSettingsForSource,

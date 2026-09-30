@@ -12,10 +12,10 @@ import {
   isCustomAgent,
   isPluginAgent,
 } from '../../server/tools/AgentTool/loadAgentsDir.js'
-import { getCwd } from '../../utils/cwd.js'
+import { getCwd } from '../../server/utils/cwd.js'
 import type { EffortValue } from '../../utils/effort.js'
-import { getClaudeConfigHomeDir } from '../../utils/envUtils.js'
-import { getErrnoCode } from '../../utils/errors.js'
+import { getClaudeConfigHomeDir } from '../../server/utils/envUtils.js'
+import { getErrnoCode } from '../../server/utils/errors.js'
 import { AGENT_PATHS } from './types.js'
 
 export type AdditionalAgentFrontmatter = Record<string, unknown>

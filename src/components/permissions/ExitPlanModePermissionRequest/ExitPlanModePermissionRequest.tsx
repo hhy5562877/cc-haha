@@ -5,7 +5,7 @@ import React, { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useSta
 import { useNotifications } from 'src/context/notifications.js';
 import { type AnalyticsMetadata_I_VERIFIED_THIS_IS_NOT_CODE_OR_FILEPATHS, logEvent } from '../../../server/services/analytics/index.js';
 import { useAppState, useAppStateStore, useSetAppState } from 'src/state/AppState.js';
-import { getSdkBetas, getSessionId, isSessionPersistenceDisabled, setHasExitedPlanMode, setNeedsAutoModeExitAttachment, setNeedsPlanModeExitAttachment } from '../../../bootstrap/state.js';
+import { getSdkBetas, getSessionId, isSessionPersistenceDisabled, setHasExitedPlanMode, setNeedsAutoModeExitAttachment, setNeedsPlanModeExitAttachment } from '../../../server/bootstrap/state.js';
 import { generateSessionName } from '../../../commands/rename/generateSessionName.js';
 import { launchUltraplan } from '../../../commands/ultraplan.js';
 import type { KeyboardEvent } from '../../../ink/events/keyboard-event.js';
@@ -21,7 +21,7 @@ import { calculateContextPercentagesFromTokens, getProviderUsageTrust, hasMediaI
 import { getExternalEditor } from '../../../utils/editor.js';
 import { getDisplayPath } from '../../../utils/file.js';
 import { toIDEDisplayName } from '../../../utils/ide.js';
-import { logError } from '../../../utils/log.js';
+import { logError } from '../../../server/utils/log.js';
 import { enqueuePendingNotification } from '../../../utils/messageQueueManager.js';
 import { createUserMessage } from '../../../utils/messages.js';
 import { getMainLoopModel, getRuntimeMainLoopModel } from '../../../server/utils/model/model.js';

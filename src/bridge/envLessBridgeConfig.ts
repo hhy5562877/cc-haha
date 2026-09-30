@@ -1,6 +1,6 @@
 import { z } from 'zod/v4'
 import { getFeatureValue_DEPRECATED } from '../server/services/analytics/growthbook.js'
-import { lazySchema } from '../utils/lazySchema.js'
+import { lazySchema } from '../server/utils/lazySchema.js'
 import { lt } from '../utils/semver.js'
 import { isEnvLessBridgeEnabled } from './bridgeEnabled.js'
 

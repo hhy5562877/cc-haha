@@ -16,17 +16,17 @@ import type { HookCallbackMatcher } from 'src/types/hooks.js'
 // (rule only checks ./ and / prefixes); explicit disable documents intent.
 // eslint-disable-next-line custom-rules/bootstrap-isolation
 import { randomUUID } from 'src/utils/crypto.js'
-import type { ModelSetting } from '../server/utils/model/model.js'
-import type { ModelStrings } from '../server/utils/model/modelStrings.js'
-import type { SettingSource } from '../server/utils/settings/constants.js'
-import { resetSettingsCache } from '../server/utils/settings/settingsCache.js'
-import type { PluginHookMatcher } from '../server/utils/settings/types.js'
+import type { ModelSetting } from '../utils/model/model.js'
+import type { ModelStrings } from '../utils/model/modelStrings.js'
+import type { SettingSource } from '../utils/settings/constants.js'
+import { resetSettingsCache } from '../utils/settings/settingsCache.js'
+import type { PluginHookMatcher } from '../utils/settings/types.js'
 import { createSignal } from 'src/utils/signal.js'
 
 // Union type for registered hooks - can be SDK callbacks or native plugin hooks
 type RegisteredHookMatcher = HookCallbackMatcher | PluginHookMatcher
 
-import type { SessionId } from 'src/types/ids.js'
+import type { SessionId } from 'src/server/types/ids.js'
 
 // DO NOT ADD MORE STATE HERE - BE JUDICIOUS WITH GLOBAL STATE
 

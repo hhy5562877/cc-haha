@@ -7,9 +7,9 @@ import { getRelativeMemoryPath } from '../../components/memory/MemoryUpdateNotif
 import { Box, Link, Text } from '../../ink.js';
 import type { LocalJSXCommandCall } from '../../types/command.js';
 import { clearMemoryFileCaches, getMemoryFiles } from '../../utils/claudemd.js';
-import { getClaudeConfigHomeDir } from '../../utils/envUtils.js';
-import { getErrnoCode } from '../../utils/errors.js';
-import { logError } from '../../utils/log.js';
+import { getClaudeConfigHomeDir } from '../../server/utils/envUtils.js';
+import { getErrnoCode } from '../../server/utils/errors.js';
+import { logError } from '../../server/utils/log.js';
 import { editFileInEditor } from '../../utils/promptEditor.js';
 function MemoryCommand({
   onDone

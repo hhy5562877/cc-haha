@@ -11,17 +11,17 @@
 
 import { basename, join } from 'path'
 import { getFeatureValue_CACHED_MAY_BE_STALE } from '../../server/services/analytics/growthbook.js'
-import { logForDebugging } from '../debug.js'
-import { isEnvDefinedFalsy, isEnvTruthy } from '../envUtils.js'
-import { isENOENT, toError } from '../errors.js'
-import { getFsImplementation } from '../fsOperations.js'
+import { logForDebugging } from '../../server/utils/debug.js'
+import { isEnvDefinedFalsy, isEnvTruthy } from '../../server/utils/envUtils.js'
+import { isENOENT, toError } from '../../server/utils/errors.js'
+import { getFsImplementation } from '../../server/utils/fsOperations.js'
 import { getProcessCommand } from '../genericProcessUtils.js'
-import { logError } from '../log.js'
+import { logError } from '../../server/utils/log.js'
 import {
   jsonParse,
   jsonStringify,
   writeFileSync_DEPRECATED,
-} from '../slowOperations.js'
+} from '../../server/utils/slowOperations.js'
 
 /**
  * Check if PID-based version locking is enabled.

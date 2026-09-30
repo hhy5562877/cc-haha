@@ -4,14 +4,14 @@ import type { ToolPermissionContext } from '../../../Tool.js'
 import type {
   AdditionalWorkingDirectory,
   WorkingDirectorySource,
-} from '../../../types/permissions.js'
-import { logForDebugging } from '../../../utils/debug.js'
+} from '../../types/permissions.js'
+import { logForDebugging } from '../debug.js'
 import type { EditableSettingSource } from '../settings/constants.js'
 import {
   getSettingsForSource,
   updateSettingsForSource,
 } from '../settings/settings.js'
-import { jsonStringify } from '../../../utils/slowOperations.js'
+import { jsonStringify } from '../slowOperations.js'
 import { toPosixPath } from './filesystem.js'
 import type { PermissionRuleValue } from './PermissionRule.js'
 import type {

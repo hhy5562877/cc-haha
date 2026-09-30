@@ -13,14 +13,14 @@ import { createRecentActivityFeed, createWhatsNewFeed, createProjectOnboardingFe
 import { getGlobalConfig, saveGlobalConfig } from 'src/utils/config.js';
 import { resolveThemeSetting } from 'src/utils/systemTheme.js';
 import { getInitialSettings } from '../../server/utils/settings/settings.js';
-import { isDebugMode, isDebugToStdErr, getDebugLogPath } from 'src/utils/debug.js';
+import { isDebugMode, isDebugToStdErr, getDebugLogPath } from 'src/server/utils/debug.ts';
 import { useEffect, useState } from 'react';
 import { getSteps, shouldShowProjectOnboarding, incrementProjectOnboardingSeenCount } from '../../projectOnboardingState.js';
 import { CondensedLogo } from './CondensedLogo.js';
 import { OffscreenFreeze } from '../OffscreenFreeze.js';
 import { checkForReleaseNotesSync } from '../../utils/releaseNotes.js';
 import { getDumpPromptsPath } from 'src/services/api/dumpPrompts.js';
-import { isEnvTruthy } from 'src/utils/envUtils.js';
+import { isEnvTruthy } from 'src/server/utils/envUtils.ts';
 import { getStartupPerfLogPath, isDetailedProfilingEnabled } from 'src/utils/startupProfiler.js';
 import { EmergencyTip } from './EmergencyTip.js';
 import { VoiceModeNotice } from './VoiceModeNotice.js';
@@ -38,7 +38,7 @@ const ChannelsNoticeModule = feature('KAIROS') || feature('KAIROS_CHANNELS') ? r
 import { SandboxManager } from 'src/utils/sandbox/sandbox-adapter.js';
 import { useShowGuestPassesUpsell, incrementGuestPassesSeenCount } from './GuestPassesUpsell.js';
 import { useShowOverageCreditUpsell, incrementOverageCreditUpsellSeenCount, createOverageCreditFeed } from './OverageCreditUpsell.js';
-import { plural } from '../../utils/stringUtils.js';
+import { plural } from '../../server/utils/stringUtils.js';
 import { useAppState } from '../../state/AppState.js';
 import { getEffortSuffix } from '../../utils/effort.js';
 import { useMainLoopModel } from '../../hooks/useMainLoopModel.js';

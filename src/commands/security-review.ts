@@ -1,4 +1,4 @@
-import { parseFrontmatter } from '../utils/frontmatterParser.js'
+import { parseFrontmatter } from '../server/utils/frontmatterParser.js'
 import { parseSlashCommandToolsFromFrontmatter } from '../utils/markdownConfigLoader.js'
 import { executeShellCommandsInPrompt } from '../utils/promptShellExecution.js'
 import type { ToolUseContext } from '../Tool.js'

@@ -9,7 +9,7 @@ import {
   getLastClassifierRequests,
   getSessionId,
   setLastClassifierRequests,
-} from '../../../bootstrap/state.js'
+} from '../../bootstrap/state.js'
 import { getFeatureValue_CACHED_MAY_BE_STALE } from '../../services/analytics/growthbook.js'
 import { logEvent } from '../../services/analytics/index.js'
 import type { AnalyticsMetadata_I_VERIFIED_THIS_IS_NOT_CODE_OR_FILEPATHS } from '../../services/analytics/metadata.js'
@@ -17,21 +17,21 @@ import { getCacheControl } from '../../../services/api/claude.js'
 import { parsePromptTooLongTokenCounts } from '../../../services/api/errors.js'
 import { getDefaultMaxRetries } from '../../../services/api/withRetry.js'
 import type { Tool, ToolPermissionContext, Tools } from '../../../Tool.js'
-import type { Message } from '../../../types/message.js'
+import type { Message } from '../../types/message.js'
 import type {
   ClassifierUsage,
   YoloClassifierResult,
-} from '../../../types/permissions.js'
-import { isDebugMode, logForDebugging } from '../../../utils/debug.js'
-import { isEnvDefinedFalsy, isEnvTruthy } from '../../../utils/envUtils.js'
-import { errorMessage } from '../../../utils/errors.js'
-import { lazySchema } from '../../../utils/lazySchema.js'
+} from '../../types/permissions.js'
+import { isDebugMode, logForDebugging } from '../debug.js'
+import { isEnvDefinedFalsy, isEnvTruthy } from '../envUtils.js'
+import { errorMessage } from '../errors.js'
+import { lazySchema } from '../lazySchema.js'
 import { extractTextContent } from '../../../utils/messages.js'
 import { resolveAntModel } from '../../utils/model.js'
 import { getMainLoopModel } from '../../utils/model.js'
 import { getAutoModeConfig } from '../settings/settings.js'
 import { dalSideQuery } from '../dalSideQuery.js'
-import { jsonStringify } from '../../../utils/slowOperations.js'
+import { jsonStringify } from '../slowOperations.js'
 import { tokenCountWithEstimation } from '../../../utils/tokens.js'
 import {
   getBashPromptAllowDescriptions,

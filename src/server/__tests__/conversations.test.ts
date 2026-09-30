@@ -33,7 +33,7 @@ import { createRepositoryBranch } from '../services/repositoryLaunchService.js'
 import { ProviderService } from '../services/providerService.js'
 import { SettingsService } from '../services/settingsService.js'
 import { hahaOAuthService } from '../services/hahaOAuthService.js'
-import { resetTerminalShellEnvironmentCacheForTests } from '../../utils/terminalShellEnvironment.js'
+import { resetTerminalShellEnvironmentCacheForTests } from '../utils/terminalShellEnvironment.js'
 import * as openAIModelCatalog from '../services/openaiAuth/modelCatalog.js'
 
 async function rmWithRetry(targetPath: string): Promise<void> {

@@ -12,7 +12,7 @@ import { useKeybinding, useKeybindings } from '../../keybindings/useKeybinding.j
 import type { LoadedPlugin } from '../../types/plugin.js';
 import { count } from '../../utils/array.js';
 import { shouldSkipPluginAutoupdate } from '../../utils/config.js';
-import { errorMessage } from '../../utils/errors.js';
+import { errorMessage } from '../../server/utils/errors.js';
 import { clearAllCaches } from '../../server/utils/plugins/cacheUtils.js';
 import { createPluginId, formatMarketplaceLoadingErrors, getMarketplaceSourceDisplay, loadMarketplacesWithGracefulDegradation } from '../../server/utils/plugins/marketplaceHelpers.js';
 import { loadKnownMarketplacesConfig, refreshMarketplace, removeMarketplaceSource, setMarketplaceAutoUpdate } from '../../server/utils/plugins/marketplaceManager.js';
@@ -20,7 +20,7 @@ import { updatePluginsForMarketplaces } from '../../server/utils/plugins/pluginA
 import { loadAllPlugins } from '../../server/utils/plugins/pluginLoader.js';
 import { isMarketplaceAutoUpdate } from '../../server/utils/plugins/schemas.js';
 import { getSettingsForSource, updateSettingsForSource } from '../../server/utils/settings/settings.js';
-import { plural } from '../../utils/stringUtils.js';
+import { plural } from '../../server/utils/stringUtils.js';
 import type { ViewState } from './types.js';
 type Props = {
   setViewState: (state: ViewState) => void;

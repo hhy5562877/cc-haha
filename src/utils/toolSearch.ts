@@ -24,7 +24,7 @@ import {
   isDeferredTool,
   TOOL_SEARCH_TOOL_NAME,
 } from '../tools/ToolSearchTool/prompt.js'
-import type { Message } from '../types/message.js'
+import type { Message } from '../server/types/message.js'
 import {
   countToolDefinitionTokens,
   TOOL_TOKEN_COUNT_OVERHEAD,
@@ -32,13 +32,13 @@ import {
 import { count } from './array.js'
 import { getMergedBetas } from './betas.js'
 import { getContextWindowForModel } from './context.js'
-import { logForDebugging } from './debug.js'
-import { isEnvDefinedFalsy, isEnvTruthy } from './envUtils.js'
+import { logForDebugging } from '../server/utils/debug.js'
+import { isEnvDefinedFalsy, isEnvTruthy } from '../server/utils/envUtils.js'
 import {
   getAPIProvider,
   isFirstPartyAnthropicBaseUrl,
 } from '../server/utils/model/providers.js'
-import { jsonStringify } from './slowOperations.js'
+import { jsonStringify } from '../server/utils/slowOperations.js'
 import { zodToJsonSchema } from './zodToJsonSchema.js'
 
 /**

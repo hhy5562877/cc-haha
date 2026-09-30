@@ -13,13 +13,13 @@
 import type { TaskContext } from '../../Task.js'
 import { updateAgentSummary } from '../../tasks/LocalAgentTask/LocalAgentTask.js'
 import { filterIncompleteToolCalls } from '../../server/tools/AgentTool/runAgent.js'
-import type { AgentId } from '../../types/ids.js'
-import { logForDebugging } from '../../utils/debug.js'
+import type { AgentId } from '../../server/types/ids.js'
+import { logForDebugging } from '../../server/utils/debug.js'
 import {
   type CacheSafeParams,
   runForkedAgent,
 } from '../../utils/forkedAgent.js'
-import { logError } from '../../utils/log.js'
+import { logError } from '../../server/utils/log.js'
 import { createUserMessage } from '../../utils/messages.js'
 import { getAgentTranscript } from '../../utils/sessionStorage.js'
 

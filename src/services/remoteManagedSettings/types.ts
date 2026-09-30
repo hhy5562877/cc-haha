@@ -1,5 +1,5 @@
 import { z } from 'zod/v4'
-import { lazySchema } from '../../utils/lazySchema.js'
+import { lazySchema } from '../../server/utils/lazySchema.js'
 import type { SettingsJson } from '../../server/utils/settings/types.js'
 
 /**

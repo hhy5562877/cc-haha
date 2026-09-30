@@ -1,6 +1,6 @@
 import { feature } from 'bun:bundle'
 import { randomUUID } from 'crypto'
-import { getSdkBetas, getSessionId } from 'src/bootstrap/state.js'
+import { getSdkBetas, getSessionId } from 'src/server/bootstrap/state.ts'
 import { DEFAULT_OUTPUT_STYLE_NAME } from 'src/constants/outputStyles.js'
 import type {
   ApiKeySource,
@@ -12,7 +12,7 @@ import {
   LEGACY_AGENT_TOOL_NAME,
 } from 'src/server/tools/AgentTool/constants.js'
 import { getAnthropicApiKeyWithSource } from '../auth.js'
-import { getCwd } from '../cwd.js'
+import { getCwd } from '../../server/utils/cwd.js'
 import { getFastModeState } from '../fastMode.js'
 import { getSettings_DEPRECATED } from '../../server/utils/settings/settings.js'
 

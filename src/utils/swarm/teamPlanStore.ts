@@ -1,8 +1,8 @@
 import { createHash, randomUUID } from 'node:crypto'
 import { mkdir, readFile, readdir, rename, writeFile, unlink } from 'node:fs/promises'
 import { join } from 'node:path'
-import { isValidTeamMemberName, teamPlanRecordSchema, type TeamPlanIdentity, type TeamPlanMember, type TeamPlanPatch, type TeamPlanRecord, type TeamPlanRuntime } from '../../shared/teamPlan.js'
-import { getTeamsDir } from '../envUtils.js'
+import { isValidTeamMemberName, teamPlanRecordSchema, type TeamPlanIdentity, type TeamPlanMember, type TeamPlanPatch, type TeamPlanRecord, type TeamPlanRuntime } from '../../server/shared/teamPlan.js'
+import { getTeamsDir } from '../../server/utils/envUtils.js'
 import { getCanonicalTeamTaskListId, withTaskListLifecycleLock } from '../tasks.js'
 import { getTeamDir, readTeamFileAsync } from './teamHelpers.js'
 

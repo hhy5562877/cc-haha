@@ -1,9 +1,9 @@
 import { feature } from 'bun:bundle'
 import type { UUID } from 'crypto'
 import { relative } from 'path'
-import { getCwd } from 'src/utils/cwd.js'
-import { addInvokedSkill } from '../bootstrap/state.js'
-import { asSessionId } from '../types/ids.js'
+import { getCwd } from 'src/server/utils/cwd.ts'
+import { addInvokedSkill } from '../server/bootstrap/state.js'
+import { asSessionId } from '../server/types/ids.js'
 import type {
   AttributionSnapshotMessage,
   ContextCollapseCommitEntry,
@@ -11,20 +11,20 @@ import type {
   LogOption,
   PersistedWorktreeSession,
   SerializedMessage,
-} from '../types/logs.js'
+} from '../server/types/logs.js'
 import type {
   Message,
   NormalizedMessage,
   NormalizedUserMessage,
-} from '../types/message.js'
-import { PERMISSION_MODES } from '../types/permissions.js'
+} from '../server/types/message.js'
+import { PERMISSION_MODES } from '../server/types/permissions.js'
 import { suppressNextSkillListing } from './attachments.js'
-import { logForDebugging } from './debug.js'
+import { logForDebugging } from '../server/utils/debug.js'
 import {
   copyFileHistoryForResume,
   type FileHistorySnapshot,
 } from './fileHistory.js'
-import { logError } from './log.js'
+import { logError } from '../server/utils/log.js'
 import {
   createAssistantMessage,
   createUserMessage,

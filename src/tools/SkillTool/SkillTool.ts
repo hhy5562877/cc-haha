@@ -2,7 +2,7 @@ import { feature } from 'bun:bundle'
 import type { ToolResultBlockParam } from '@anthropic-ai/sdk/resources/index.mjs'
 import uniqBy from 'lodash-es/uniqBy.js'
 import { dirname } from 'path'
-import { getProjectRoot } from 'src/bootstrap/state.js'
+import { getProjectRoot } from 'src/server/bootstrap/state.ts'
 import {
   builtInCommandNames,
   findCommand,
@@ -24,8 +24,8 @@ import type {
   Message,
   SystemMessage,
   UserMessage,
-} from 'src/types/message.js'
-import { logForDebugging } from 'src/utils/debug.js'
+} from 'src/server/types/message.ts'
+import { logForDebugging } from 'src/server/utils/debug.ts'
 import type { PermissionDecision } from 'src/server/utils/permissions/PermissionResult.js'
 import { getRuleByContentsForTool } from 'src/server/utils/permissions/permissions.js'
 import {
@@ -38,8 +38,8 @@ import {
   addInvokedSkill,
   clearInvokedSkillsForAgent,
   getSessionId,
-} from '../../bootstrap/state.js'
-import { COMMAND_MESSAGE_TAG } from '../../constants/xml.js'
+} from '../../server/bootstrap/state.js'
+import { COMMAND_MESSAGE_TAG } from '../../server/constants/xml.js'
 import type { CanUseToolFn } from '../../hooks/useCanUseTool.js'
 import {
   type AnalyticsMetadata_I_VERIFIED_THIS_IS_NOT_CODE_OR_FILEPATHS,
@@ -47,13 +47,13 @@ import {
   logEvent,
 } from '../../server/services/analytics/index.js'
 import { getAgentContext } from '../../utils/agentContext.js'
-import { errorMessage } from '../../utils/errors.js'
+import { errorMessage } from '../../server/utils/errors.js'
 import {
   extractResultText,
   prepareForkedCommandContext,
 } from '../../utils/forkedAgent.js'
-import { parseFrontmatter } from '../../utils/frontmatterParser.js'
-import { lazySchema } from '../../utils/lazySchema.js'
+import { parseFrontmatter } from '../../server/utils/frontmatterParser.js'
+import { lazySchema } from '../../server/utils/lazySchema.js'
 import { createUserMessage, normalizeMessages } from '../../utils/messages.js'
 import type { ModelAlias } from '../../server/utils/model/aliases.js'
 import { resolveSkillModelOverride } from '../../server/utils/model/model.js'

@@ -9,7 +9,7 @@ import { getSideChat, isSideChatId } from '../services/sideChatRegistry.js'
 
 import type { ServerWebSocket } from 'bun'
 import { sessionMessageUuid } from '../../utils/sessionMessageInbox.js'
-import { parseSessionCollaborationEnvelope } from '../../utils/sessionCollaborationEnvelope.js'
+import { parseSessionCollaborationEnvelope } from '../utils/sessionCollaborationEnvelope.js'
 import { isShutdownTeamPrompt } from '../utils/swarm/teamShutdownPrompt.js'
 import { admitSessionUserTurn, emitSessionTurnEvent } from '../services/sessionTurnEvents.js'
 import { ApiError } from '../middleware/errorHandler.js'
@@ -58,7 +58,7 @@ import {
   isModelReasoningEffort,
   normalizeModelReasoningEffort,
   resolveModelReasoningProfile,
-} from '../../shared/modelReasoning.js'
+} from '../shared/modelReasoning.js'
 import { diagnosticsService } from '../services/diagnosticsService.js'
 import {
   buildConversationTitleInput,

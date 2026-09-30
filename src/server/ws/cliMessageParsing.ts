@@ -15,7 +15,7 @@ import {
   COMMAND_NAME_TAG,
   LOCAL_COMMAND_STDERR_TAG,
   LOCAL_COMMAND_STDOUT_TAG,
-} from '../../constants/xml.js'
+} from '../constants/xml.js'
 import {
   getCommandMetadataDisplayText,
   shouldHideCommandMetadataContent,

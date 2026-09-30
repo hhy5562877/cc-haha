@@ -4,7 +4,7 @@ import { useMemo } from 'react';
 import { useTerminalSize } from '../../hooks/useTerminalSize.js';
 import { Ansi, Text } from '../../ink.js';
 import { createHyperlink } from '../../utils/hyperlink.js';
-import { jsonParse, jsonStringify } from '../../utils/slowOperations.js';
+import { jsonParse, jsonStringify } from '../../server/utils/slowOperations.js';
 import { renderTruncatedContent } from '../../utils/terminal.js';
 import { splitTextByUrls } from '../../utils/urlBoundary.js';
 import { MessageResponse } from '../MessageResponse.js';

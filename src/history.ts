@@ -6,13 +6,13 @@ import {
   writeFile,
 } from 'fs/promises'
 import { join } from 'path'
-import { getProjectRoot, getSessionId } from './bootstrap/state.js'
-import { registerCleanup } from './utils/cleanupRegistry.js'
+import { getProjectRoot, getSessionId } from './server/bootstrap/state.js'
+import { registerCleanup } from './server/utils/cleanupRegistry.js'
 import type { HistoryEntry, PastedContent } from './utils/config.js'
-import { logForDebugging } from './utils/debug.js'
-import { getClaudeConfigHomeDir, isEnvTruthy } from './utils/envUtils.js'
-import { getErrnoCode } from './utils/errors.js'
-import { readLinesReverse } from './utils/fsOperations.js'
+import { logForDebugging } from './server/utils/debug.js'
+import { getClaudeConfigHomeDir, isEnvTruthy } from './server/utils/envUtils.js'
+import { getErrnoCode } from './server/utils/errors.js'
+import { readLinesReverse } from './server/utils/fsOperations.js'
 import { lock } from './utils/lockfile.js'
 import {
   hashPastedText,
@@ -20,7 +20,7 @@ import {
   storePastedText,
 } from './utils/pasteStore.js'
 import { sleep } from './utils/sleep.js'
-import { jsonParse, jsonStringify } from './utils/slowOperations.js'
+import { jsonParse, jsonStringify } from './server/utils/slowOperations.js'
 
 const MAX_HISTORY_ITEMS = 100
 const MAX_PASTED_CONTENT_LENGTH = 1024

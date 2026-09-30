@@ -9,7 +9,7 @@ import {
   getOriginalCwd,
   getSessionId,
   regenerateSessionId,
-} from '../../bootstrap/state.js'
+} from '../../server/bootstrap/state.js'
 import {
   type AnalyticsMetadata_I_VERIFIED_THIS_IS_NOT_CODE_OR_FILEPATHS,
   logEvent,
@@ -21,15 +21,15 @@ import {
   type LocalAgentTaskState,
 } from '../../tasks/LocalAgentTask/LocalAgentTask.js'
 import { isLocalShellTask } from '../../tasks/LocalShellTask/guards.js'
-import { asAgentId } from '../../types/ids.js'
-import type { Message } from '../../types/message.js'
+import { asAgentId } from '../../server/types/ids.js'
+import type { Message } from '../../server/types/message.js'
 import { createEmptyAttributionState } from '../../utils/commitAttribution.js'
 import type { FileStateCache } from '../../utils/fileStateCache.js'
 import {
   executeSessionEndHooks,
   getSessionEndHookTimeoutMs,
 } from '../../utils/hooks.js'
-import { logError } from '../../utils/log.js'
+import { logError } from '../../server/utils/log.js'
 import { clearAllPlanSlugs } from '../../utils/plans.js'
 import { setCwd } from '../../utils/Shell.js'
 import { processSessionStartHooks } from '../../utils/sessionStart.js'

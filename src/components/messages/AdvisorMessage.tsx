@@ -4,7 +4,7 @@ import React from 'react';
 import { Box, Text } from '../../ink.js';
 import type { AdvisorBlock } from '../../utils/advisor.js';
 import { renderModelName } from '../../server/utils/model/model.js';
-import { jsonStringify } from '../../utils/slowOperations.js';
+import { jsonStringify } from '../../server/utils/slowOperations.js';
 import { CtrlOToExpand } from '../CtrlOToExpand.js';
 import { MessageResponse } from '../MessageResponse.js';
 import { ToolUseLoader } from '../ToolUseLoader.js';

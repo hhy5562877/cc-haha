@@ -7,7 +7,7 @@ import {
   logEvent,
 } from '../../server/services/analytics/index.js'
 import type { ToolPermissionContext, ToolUseContext } from '../../Tool.js'
-import type { PendingClassifierCheck } from '../../types/permissions.js'
+import type { PendingClassifierCheck } from '../../server/types/permissions.js'
 import { count } from '../../utils/array.js'
 import {
   checkSemantics,
@@ -25,10 +25,10 @@ import {
 } from '../../utils/bash/commands.js'
 import { parseCommandRaw } from '../../utils/bash/parser.js'
 import { tryParseShellCommand } from '../../utils/bash/shellQuote.js'
-import { getCwd } from '../../utils/cwd.js'
-import { logForDebugging } from '../../utils/debug.js'
-import { isEnvTruthy } from '../../utils/envUtils.js'
-import { AbortError } from '../../utils/errors.js'
+import { getCwd } from '../../server/utils/cwd.js'
+import { logForDebugging } from '../../server/utils/debug.js'
+import { isEnvTruthy } from '../../server/utils/envUtils.js'
+import { AbortError } from '../../server/utils/errors.js'
 import type {
   ClassifierBehavior,
   ClassifierResult,
@@ -63,10 +63,10 @@ import {
   suggestionForExactCommand as sharedSuggestionForExactCommand,
   suggestionForPrefix as sharedSuggestionForPrefix,
 } from '../../server/utils/permissions/shellRuleMatching.js'
-import { getPlatform } from '../../utils/platform.js'
+import { getPlatform } from '../../server/utils/platform.js'
 import { SandboxManager } from '../../utils/sandbox/sandbox-adapter.js'
-import { jsonStringify } from '../../utils/slowOperations.js'
-import { windowsPathToPosixPath } from '../../utils/windowsPaths.js'
+import { jsonStringify } from '../../server/utils/slowOperations.js'
+import { windowsPathToPosixPath } from '../../server/utils/windowsPaths.js'
 import { BashTool } from './BashTool.js'
 import { checkCommandOperatorPermissions } from './bashCommandHelpers.js'
 import {

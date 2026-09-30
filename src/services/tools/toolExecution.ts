@@ -22,7 +22,7 @@ import {
   addToToolDuration,
   getCodeEditToolDecisionCounter,
   getStatsStore,
-} from '../../bootstrap/state.js'
+} from '../../server/bootstrap/state.js'
 import {
   buildCodeEditToolAttributes,
   isCodeEditingTool,
@@ -56,19 +56,19 @@ import type {
   Message,
   ProgressMessage,
   StopHookInfo,
-} from '../../types/message.js'
+} from '../../server/types/message.js'
 import { count } from '../../utils/array.js'
 import { createAttachmentMessage } from '../../utils/attachments.js'
-import { logForDebugging } from '../../utils/debug.js'
+import { logForDebugging } from '../../server/utils/debug.js'
 import {
   AbortError,
   errorMessage,
   getErrnoCode,
   ShellError,
   TelemetrySafeError_I_VERIFIED_THIS_IS_NOT_CODE_OR_FILEPATHS,
-} from '../../utils/errors.js'
+} from '../../server/utils/errors.js'
 import { executePermissionDeniedHooks } from '../../utils/hooks.js'
-import { logError } from '../../utils/log.js'
+import { logError } from '../../server/utils/log.js'
 import {
   CANCEL_MESSAGE,
   createProgressMessage,
@@ -85,7 +85,7 @@ import {
   startSessionActivity,
   stopSessionActivity,
 } from '../../utils/sessionActivity.js'
-import { jsonStringify } from '../../utils/slowOperations.js'
+import { jsonStringify } from '../../server/utils/slowOperations.js'
 import { isUnparsedToolInput } from '../../utils/unparsedToolInput.js'
 import { Stream } from '../../utils/stream.js'
 import { logOTelEvent } from '../../utils/telemetry/events.js'

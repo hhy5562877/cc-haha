@@ -11,7 +11,7 @@ import { Box, Text } from '../../ink.js';
 import { useKeybinding, useKeybindings } from '../../keybindings/useKeybinding.js';
 import { useAppState, useSetAppState } from '../../state/AppState.js';
 import type { PluginError } from '../../types/plugin.js';
-import { errorMessage } from '../../utils/errors.js';
+import { errorMessage } from '../../server/utils/errors.js';
 import { clearAllCaches } from '../../server/utils/plugins/cacheUtils.js';
 import { loadMarketplacesWithGracefulDegradation } from '../../server/utils/plugins/marketplaceHelpers.js';
 import { loadKnownMarketplacesConfig, removeMarketplaceSource } from '../../server/utils/plugins/marketplaceManager.js';

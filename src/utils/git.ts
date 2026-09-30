@@ -4,11 +4,11 @@ import { open, readFile, realpath, stat } from 'fs/promises'
 import memoize from 'lodash-es/memoize.js'
 import { basename, dirname, join, resolve, sep } from 'path'
 import { hasBinaryExtension, isBinaryContent } from '../constants/files.js'
-import { getCwd } from './cwd.js'
-import { logForDebugging } from './debug.js'
+import { getCwd } from '../server/utils/cwd.js'
+import { logForDebugging } from '../server/utils/debug.js'
 import { logForDiagnosticsNoPII } from './diagLogs.js'
 import { execFileNoThrow } from './execFileNoThrow.js'
-import { getFsImplementation } from './fsOperations.js'
+import { getFsImplementation } from '../server/utils/fsOperations.js'
 import {
   getCachedBranch,
   getCachedDefaultBranch,
@@ -18,9 +18,9 @@ import {
   isShallowClone as isShallowCloneFs,
   resolveGitDir,
 } from './git/gitFilesystem.js'
-import { logError } from './log.js'
-import { memoizeWithLRU } from './memoize.js'
-import { whichSync } from './which.js'
+import { logError } from '../server/utils/log.js'
+import { memoizeWithLRU } from '../server/utils/memoize.js'
+import { whichSync } from '../server/utils/which.js'
 
 const GIT_ROOT_NOT_FOUND = Symbol('git-root-not-found')
 

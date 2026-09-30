@@ -7,7 +7,7 @@ import {
   calculateContextPercentagesFromTokens,
   type ProviderUsageTrust,
 } from './contextBudget.js'
-import { isEnvTruthy } from './envUtils.js'
+import { isEnvTruthy } from '../server/utils/envUtils.js'
 import { getCanonicalName } from '../server/utils/model/model.js'
 import { getModelCapability } from '../server/utils/model/modelCapabilities.js'
 import {

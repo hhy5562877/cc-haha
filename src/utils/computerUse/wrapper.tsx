@@ -17,9 +17,9 @@
 
 import { AsyncLocalStorage } from 'node:async_hooks';
 import { bindSessionContext, type ComputerUseSessionContext, type CuCallToolResult, type ScreenshotDims } from '../../vendor/computer-use-mcp/index.js';
-import { getSessionId } from '../../bootstrap/state.js';
+import { getSessionId } from '../../server/bootstrap/state.js';
 import type { Tool, ToolUseContext } from '../../Tool.js';
-import { logForDebugging } from '../debug.js';
+import { logForDebugging } from '../../server/utils/debug.js';
 import { checkComputerUseLock, tryAcquireComputerUseLock, releaseComputerUseLock } from './computerUseLock.js';
 import { registerEscHotkey } from './escHotkey.js';
 import { getChicagoCoordinateMode } from './gates.js';

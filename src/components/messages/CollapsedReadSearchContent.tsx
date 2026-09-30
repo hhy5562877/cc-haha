@@ -6,7 +6,7 @@ import { useMinDisplayTime } from '../../hooks/useMinDisplayTime.js';
 import { Ansi, Box, Text, useTheme } from '../../ink.js';
 import { findToolByName, type Tools } from '../../Tool.js';
 import { getReplPrimitiveTools } from '../../tools/REPLTool/primitiveTools.js';
-import type { CollapsedReadSearchGroup, NormalizedAssistantMessage } from '../../types/message.js';
+import type { CollapsedReadSearchGroup, NormalizedAssistantMessage } from '../../server/types/message.js';
 import { uniq } from '../../utils/array.js';
 import { getToolUseIdsFromCollapsedGroup } from '../../utils/collapseReadSearch.js';
 import { getDisplayPath } from '../../utils/file.js';

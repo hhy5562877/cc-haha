@@ -1,8 +1,8 @@
 import { feature } from 'bun:bundle'
 import type { ContentBlockParam } from '@anthropic-ai/sdk/resources/messages.mjs'
 import { randomUUID } from 'crypto'
-import { logForDebugging } from 'src/utils/debug.js'
-import { getAllowedChannels } from '../../../bootstrap/state.js'
+import { logForDebugging } from 'src/server/utils/debug.ts'
+import { getAllowedChannels } from '../../../server/bootstrap/state.js'
 import type { BridgePermissionCallbacks } from '../../../bridge/bridgePermissionCallbacks.js'
 import { getTerminalFocused } from '../../../ink/terminal-focus-state.js'
 import {
@@ -24,7 +24,7 @@ import {
   setClassifierChecking,
   setYoloClassifierApproval,
 } from '../../../utils/classifierApprovals.js'
-import { errorMessage } from '../../../utils/errors.js'
+import { errorMessage } from '../../../server/utils/errors.js'
 import type { PermissionDecision } from '../../../server/utils/permissions/PermissionResult.js'
 import type { PermissionUpdate } from '../../../server/utils/permissions/PermissionUpdateSchema.js'
 import { hasPermissionsToUseTool } from '../../../server/utils/permissions/permissions.js'

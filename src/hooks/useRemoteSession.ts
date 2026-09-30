@@ -19,9 +19,9 @@ import { useSetAppState } from '../state/AppState.js'
 import type { AppState } from '../state/AppStateStore.js'
 import type { Tool } from '../Tool.js'
 import { findToolByName } from '../Tool.js'
-import type { Message as MessageType } from '../types/message.js'
-import type { PermissionAskDecision } from '../types/permissions.js'
-import { logForDebugging } from '../utils/debug.js'
+import type { Message as MessageType } from '../server/types/message.js'
+import type { PermissionAskDecision } from '../server/types/permissions.js'
+import { logForDebugging } from '../server/utils/debug.js'
 import { truncateToWidth } from '../utils/format.js'
 import {
   createSystemMessage,

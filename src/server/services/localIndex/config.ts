@@ -1,5 +1,5 @@
 import { join } from 'node:path'
-import { getCcHahaDir } from '../../../utils/envUtils.js'
+import { getCcHahaDir } from '../../utils/envUtils.js'
 import type { LocalIndexMode } from './types.js'
 
 export const LOCAL_INDEX_INVALID_MODE = 'LOCAL_INDEX_INVALID_MODE' as const

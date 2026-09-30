@@ -1,17 +1,17 @@
 import { feature } from 'bun:bundle'
 import type { BetaToolUseBlock } from '@anthropic-ai/sdk/resources/beta/messages/messages.mjs'
 import { randomUUID } from 'crypto'
-import { getIsNonInteractiveSession } from '../../../bootstrap/state.js'
+import { getIsNonInteractiveSession } from '../../bootstrap/state.js'
 import {
   FORK_BOILERPLATE_TAG,
   FORK_DIRECTIVE_PREFIX,
-} from '../../../constants/xml.js'
+} from '../../constants/xml.js'
 import { isCoordinatorMode } from '../../../coordinator/coordinatorMode.js'
 import type {
   AssistantMessage,
   Message as MessageType,
-} from '../../../types/message.js'
-import { logForDebugging } from '../../../utils/debug.js'
+} from '../../types/message.js'
+import { logForDebugging } from '../../utils/debug.js'
 import { createUserMessage } from '../../../utils/messages.js'
 import type { BuiltInAgentDefinition } from './loadAgentsDir.js'
 

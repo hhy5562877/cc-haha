@@ -18,7 +18,7 @@ import {
   updateYankLength,
   yankPop,
 } from '../utils/Cursor.js'
-import { env } from '../utils/env.js'
+import { env } from '../server/utils/env.js'
 import { isFullscreenEnvEnabled } from '../utils/fullscreen.js'
 import type { ImageDimensions } from '../utils/imageResizer.js'
 import { isModifierPressed, prewarmModifiers } from '../utils/modifiers.js'

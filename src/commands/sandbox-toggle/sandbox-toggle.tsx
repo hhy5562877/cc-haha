@@ -1,9 +1,9 @@
 import { relative } from 'path';
 import React from 'react';
-import { getCwdState } from '../../bootstrap/state.js';
+import { getCwdState } from '../../server/bootstrap/state.js';
 import { SandboxSettings } from '../../components/sandbox/SandboxSettings.js';
 import { color } from '../../ink.js';
-import { getPlatform } from '../../utils/platform.js';
+import { getPlatform } from '../../server/utils/platform.js';
 import { addToExcludedCommands, SandboxManager } from '../../utils/sandbox/sandbox-adapter.js';
 import { getSettings_DEPRECATED, getSettingsFilePathForSource } from '../../server/utils/settings/settings.js';
 import type { ThemeName } from '../../utils/theme.js';

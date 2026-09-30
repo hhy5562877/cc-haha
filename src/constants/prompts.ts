@@ -1,9 +1,9 @@
 // biome-ignore-all assist/source/organizeImports: ANT-ONLY import markers must not be reordered
 import { type as osType, version as osVersion, release as osRelease } from 'os'
-import { env } from '../utils/env.js'
+import { env } from '../server/utils/env.js'
 import { getIsGit } from '../utils/git.js'
-import { getCwd } from '../utils/cwd.js'
-import { getIsNonInteractiveSession } from '../bootstrap/state.js'
+import { getCwd } from '../server/utils/cwd.js'
+import { getIsNonInteractiveSession } from '../server/bootstrap/state.js'
 import { getCurrentWorktreeSession } from '../utils/worktree.js'
 import { getSessionStartDate } from './common.js'
 import { getInitialSettings } from '../server/utils/settings/settings.js'
@@ -43,7 +43,7 @@ import {
   isScratchpadEnabled,
   getScratchpadDir,
 } from '../server/utils/permissions/filesystem.js'
-import { isEnvTruthy } from '../utils/envUtils.js'
+import { isEnvTruthy } from '../server/utils/envUtils.js'
 import { isReplModeEnabled } from '../tools/REPLTool/constants.js'
 import { feature } from 'bun:bundle'
 import { getFeatureValue_CACHED_MAY_BE_STALE } from '../server/services/analytics/growthbook.js'
@@ -55,8 +55,8 @@ import {
   resolveSystemPromptSections,
 } from './systemPromptSections.js'
 import { SLEEP_TOOL_NAME } from '../tools/SleepTool/prompt.js'
-import { TICK_TAG } from './xml.js'
-import { logForDebugging } from '../utils/debug.js'
+import { TICK_TAG } from '../server/constants/xml.js'
+import { logForDebugging } from '../server/utils/debug.js'
 import { loadMemoryPrompt } from '../memdir/memdir.js'
 import { isUndercover } from '../utils/undercover.js'
 import { isMcpInstructionsDeltaEnabled } from '../utils/mcpInstructionsDelta.js'

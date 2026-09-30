@@ -1,25 +1,25 @@
 import type { LoadedPlugin } from '../../../types/plugin.js'
 import memoize from 'lodash-es/memoize.js'
 import { basename, dirname, join } from 'path'
-import { getInlinePlugins, getSessionId } from '../../../bootstrap/state.js'
+import { getInlinePlugins, getSessionId } from '../../bootstrap/state.js'
 import type { Command } from '../../../types/command.js'
 import { getPluginErrorMessage } from '../../../types/plugin.js'
 import {
   parseArgumentNames,
   substituteArguments,
 } from '../../../utils/argumentSubstitution.js'
-import { logForDebugging } from '../../../utils/debug.js'
+import { logForDebugging } from '../debug.js'
 import { EFFORT_LEVELS, parseEffortValue } from '../../../utils/effort.js'
-import { isBareMode } from '../../../utils/envUtils.js'
-import { isENOENT } from '../../../utils/errors.js'
+import { isBareMode } from '../envUtils.js'
+import { isENOENT } from '../errors.js'
 import {
   coerceDescriptionToString,
   type FrontmatterData,
   parseBooleanFrontmatter,
   parseFrontmatter,
   parseShellFrontmatter,
-} from '../../../utils/frontmatterParser.js'
-import { getFsImplementation, isDuplicatePath } from '../../../utils/fsOperations.js'
+} from '../frontmatterParser.js'
+import { getFsImplementation, isDuplicatePath } from '../fsOperations.js'
 import {
   extractDescriptionFromMarkdown,
   parseSlashCommandToolsFromFrontmatter,

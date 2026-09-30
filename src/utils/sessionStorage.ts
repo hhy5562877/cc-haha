@@ -28,9 +28,9 @@ import {
   getSessionProjectDir,
   isSessionPersistenceDisabled,
   switchSession,
-} from '../bootstrap/state.js'
+} from '../server/bootstrap/state.js'
 import { builtInCommandNames } from '../commands.js'
-import { COMMAND_NAME_TAG, TICK_TAG } from '../constants/xml.js'
+import { COMMAND_NAME_TAG, TICK_TAG } from '../server/constants/xml.js'
 import { getFeatureValue_CACHED_MAY_BE_STALE } from '../server/services/analytics/growthbook.js'
 import * as sessionIngress from '../services/api/sessionIngress.js'
 import { REPL_TOOL_NAME } from '../tools/REPLTool/constants.js'
@@ -39,8 +39,8 @@ import {
   asAgentId,
   asSessionId,
   type SessionId,
-} from '../types/ids.js'
-import type { AttributionSnapshotMessage } from '../types/logs.js'
+} from '../server/types/ids.js'
+import type { AttributionSnapshotMessage } from '../server/types/logs.js'
 import {
   type ContentReplacementEntry,
   type ContextCollapseCommitEntry,
@@ -52,7 +52,7 @@ import {
   type SerializedMessage,
   sortLogs,
   type TranscriptMessage,
-} from '../types/logs.js'
+} from '../server/types/logs.js'
 import type {
   AssistantMessage,
   AttachmentMessage,
@@ -60,27 +60,27 @@ import type {
   SystemCompactBoundaryMessage,
   SystemMessage,
   UserMessage,
-} from '../types/message.js'
-import type { QueueOperationMessage } from '../types/messageQueueTypes.js'
+} from '../server/types/message.js'
+import type { QueueOperationMessage } from '../server/types/messageQueueTypes.js'
 import { uniq } from './array.js'
-import { registerCleanup } from './cleanupRegistry.js'
+import { registerCleanup } from '../server/utils/cleanupRegistry.js'
 import { updateSessionName } from './concurrentSessions.js'
-import { getCwd } from './cwd.js'
-import { logForDebugging } from './debug.js'
+import { getCwd } from '../server/utils/cwd.js'
+import { logForDebugging } from '../server/utils/debug.js'
 import { logForDiagnosticsNoPII } from './diagLogs.js'
-import { getClaudeConfigHomeDir, isEnvTruthy } from './envUtils.js'
-import { isFsInaccessible } from './errors.js'
+import { getClaudeConfigHomeDir, isEnvTruthy } from '../server/utils/envUtils.js'
+import { isFsInaccessible } from '../server/utils/errors.js'
 import type { FileHistorySnapshot } from './fileHistory.js'
 import { formatFileSize } from './format.js'
-import { getFsImplementation } from './fsOperations.js'
+import { getFsImplementation } from '../server/utils/fsOperations.js'
 import { getWorktreePaths } from './getWorktreePaths.js'
 import { getBranch } from './git.js'
 import { gracefulShutdownSync, isShuttingDown } from './gracefulShutdown.js'
-import { parseJSONL } from './json.js'
-import { logError } from './log.js'
+import { parseJSONL } from '../server/utils/json.js'
+import { logError } from '../server/utils/log.js'
 import { extractTag, isCompactBoundaryMessage } from './messages.js'
 import type { ModelAlias } from '../server/utils/model/aliases.js'
-import { sanitizePath } from './path.js'
+import { sanitizePath } from '../server/utils/path.js'
 import {
   extractJsonStringField,
   extractLastJsonStringField,
@@ -88,9 +88,9 @@ import {
   readHeadAndTail,
   readTranscriptForLoad,
   SKIP_PRECOMPACT_THRESHOLD,
-} from './sessionStoragePortable.js'
+} from '../server/utils/sessionStoragePortable.js'
 import { getSettings_DEPRECATED } from '../server/utils/settings/settings.js'
-import { jsonParse, jsonStringify } from './slowOperations.js'
+import { jsonParse, jsonStringify } from '../server/utils/slowOperations.js'
 import type { ContentReplacementRecord } from './toolResultStorage.js'
 import { validateUuid } from './uuid.js'
 

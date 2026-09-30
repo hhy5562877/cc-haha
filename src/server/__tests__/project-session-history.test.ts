@@ -6,7 +6,7 @@ import { handleSessionsApi } from '../api/sessions.js'
 import { SessionService } from '../services/sessionService.js'
 import type { IndexedSessionRow, LocalIndexGateway } from '../services/localIndex/sessionIndex.js'
 import type { LocalIndexMode, LocalIndexStatus } from '../services/localIndex/types.js'
-import { sanitizePath } from '../../utils/sessionStoragePortable.js'
+import { sanitizePath } from '../utils/sessionStoragePortable.js'
 
 let configDir: string
 let projectRoot: string

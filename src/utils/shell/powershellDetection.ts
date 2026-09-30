@@ -1,9 +1,9 @@
 import { execFile } from 'child_process'
 import { realpath, stat } from 'fs/promises'
 import { win32 as pathWin32 } from 'path'
-import { getPlatform } from '../platform.js'
-import type { Platform } from '../platform.js'
-import { which } from '../which.js'
+import { getPlatform } from '../../server/utils/platform.js'
+import type { Platform } from '../../server/utils/platform.js'
+import { which } from '../../server/utils/which.js'
 
 export const POWERSHELL_PATH_OVERRIDE_ENV = 'CLAUDE_CODE_POWERSHELL_PATH'
 const WINDOWS_DEFAULT_PWSH_PATH = 'C:\\Program Files\\PowerShell\\7\\pwsh.exe'

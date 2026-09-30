@@ -5,9 +5,9 @@ import {
   logEvent,
 } from '../../server/services/analytics/index.js'
 import { queryHaiku } from '../../services/api/claude.js'
-import { AbortError } from '../../utils/errors.js'
+import { AbortError } from '../../server/utils/errors.js'
 import { getWebFetchUserAgent } from '../../utils/http.js'
-import { logError } from '../../utils/log.js'
+import { logError } from '../../server/utils/log.js'
 import {
   isBinaryContentType,
   persistBinaryContent,

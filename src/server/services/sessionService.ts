@@ -1,6 +1,6 @@
 import { getSideChat, isSideChatId, sideChatSummary } from './sideChatRegistry.js'
 import { splitSessionReferenceContext } from './sessionReferenceContext.js'
-import { parseSessionCollaborationEnvelope } from '../../utils/sessionCollaborationEnvelope.js'
+import { parseSessionCollaborationEnvelope } from '../utils/sessionCollaborationEnvelope.js'
 import { isShutdownTeamPrompt } from '../utils/swarm/teamShutdownPrompt.js'
 import { readHistoryContexts } from './sessionHistoryContext.js'
 import { recoverBoundedSessionHistory, type SessionHistoryRecovery } from './sessionHistoryRecovery.js'
@@ -20,7 +20,7 @@ import * as path from 'node:path'
 import * as os from 'node:os'
 import { createInterface } from 'node:readline'
 import { ApiError } from '../middleware/errorHandler.js'
-import { sanitizePath as sanitizePortablePath } from '../../utils/sessionStoragePortable.js'
+import { sanitizePath as sanitizePortablePath } from '../utils/sessionStoragePortable.js'
 import { migrateFileHistorySnapshot, type FileHistorySnapshot } from '../../utils/fileHistory.js'
 import { findCanonicalGitRoot } from '../../utils/git.js'
 import { calculateUSDCost, MODEL_COSTS } from '../../utils/modelCost.js'
@@ -54,7 +54,7 @@ import {
 } from '../../services/tokenEstimation.js'
 import { ProviderService } from './providerService.js'
 import { shouldHideCommandMetadataContent } from '../../utils/commandMetadata.js'
-import { getClaudeConfigHomeDir } from '../../utils/envUtils.js'
+import { getClaudeConfigHomeDir } from '../utils/envUtils.js'
 import {
   countDalSessionMessages,
   findDalSessionFileGlobal,

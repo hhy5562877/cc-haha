@@ -7,7 +7,7 @@ import { c as _c } from "react/compiler-runtime";
 
 import * as React from 'react';
 import { useState } from 'react';
-import { type ChannelEntry, getAllowedChannels, getHasDevChannels } from '../../bootstrap/state.js';
+import { type ChannelEntry, getAllowedChannels, getHasDevChannels } from '../../server/bootstrap/state.js';
 import { Box, Text } from '../../ink.js';
 import { isChannelsEnabled } from '../../server/services/mcp/channelAllowlist.js';
 import { getEffectiveChannelAllowlist } from '../../server/services/mcp/channelNotification.js';

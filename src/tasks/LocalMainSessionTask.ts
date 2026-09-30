@@ -18,7 +18,7 @@ import {
   TASK_ID_TAG,
   TASK_NOTIFICATION_TAG,
   TOOL_USE_ID_TAG,
-} from '../constants/xml.js'
+} from '../server/constants/xml.js'
 import { type QueryParams, query } from '../query.js'
 import { roughTokenCountEstimation } from '../services/tokenEstimation.js'
 import type { SetAppState } from '../Task.js'
@@ -27,16 +27,16 @@ import type {
   AgentDefinition,
   CustomAgentDefinition,
 } from '../server/tools/AgentTool/loadAgentsDir.js'
-import { asAgentId } from '../types/ids.js'
-import type { Message } from '../types/message.js'
+import { asAgentId } from '../server/types/ids.js'
+import type { Message } from '../server/types/message.js'
 import { createAbortController } from '../utils/abortController.js'
 import {
   runWithAgentContext,
   type SubagentContext,
 } from '../utils/agentContext.js'
-import { registerCleanup } from '../utils/cleanupRegistry.js'
-import { logForDebugging } from '../utils/debug.js'
-import { logError } from '../utils/log.js'
+import { registerCleanup } from '../server/utils/cleanupRegistry.js'
+import { logForDebugging } from '../server/utils/debug.js'
+import { logError } from '../server/utils/log.js'
 import { enqueuePendingNotification } from '../utils/messageQueueManager.js'
 import { emitTaskTerminatedSdk } from '../utils/sdkEventQueue.js'
 import {

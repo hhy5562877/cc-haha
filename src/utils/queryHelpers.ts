@@ -3,7 +3,7 @@ import last from 'lodash-es/last.js'
 import {
   getSessionId,
   isSessionPersistenceDisabled,
-} from 'src/bootstrap/state.js'
+} from 'src/server/bootstrap/state.ts'
 import type { SDKMessage } from 'src/entrypoints/agentSdkTypes.js'
 import type { CanUseToolFn } from '../hooks/useCanUseTool.js'
 import { runTools } from '../services/tools/toolOrchestration.js'
@@ -16,11 +16,11 @@ import {
   FILE_UNCHANGED_STUB,
 } from '../tools/FileReadTool/prompt.js'
 import { FILE_WRITE_TOOL_NAME } from '../tools/FileWriteTool/prompt.js'
-import type { Message } from '../types/message.js'
+import type { Message } from '../server/types/message.js'
 import type { OrphanedPermission } from '../types/textInputTypes.js'
-import { logForDebugging } from './debug.js'
-import { isEnvTruthy } from './envUtils.js'
-import { isFsInaccessible } from './errors.js'
+import { logForDebugging } from '../server/utils/debug.js'
+import { isEnvTruthy } from '../server/utils/envUtils.js'
+import { isFsInaccessible } from '../server/utils/errors.js'
 import { getFileModificationTime, stripLineNumberPrefix } from './file.js'
 import { readFileSyncWithMetadata } from './fileRead.js'
 import {
@@ -33,7 +33,7 @@ import {
   isNotEmptyMessage,
   normalizeMessages,
 } from './messages.js'
-import { expandPath } from './path.js'
+import { expandPath } from '../server/utils/path.js'
 import type {
   inputSchema as permissionToolInputSchema,
   outputSchema as permissionToolOutputSchema,

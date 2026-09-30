@@ -3,7 +3,7 @@ import { existsSync, readFileSync, statSync } from 'fs'
 import { promises as fs } from 'fs'
 import type { Stats } from 'fs'
 import { dirname, join } from 'path'
-import { getClaudeConfigHomeDir, isEnvDefinedFalsy, isEnvTruthy } from '../../../utils/envUtils.js'
+import { getClaudeConfigHomeDir, isEnvDefinedFalsy, isEnvTruthy } from '../../utils/envUtils.js'
 import {
   openTraceIndexDatabase,
   type TraceIndexDatabase,

@@ -19,7 +19,7 @@
  * bridge approval surface.
  */
 
-import { jsonStringify } from '../../../utils/slowOperations.js'
+import { jsonStringify } from '../../utils/slowOperations.js'
 import { getFeatureValue_CACHED_MAY_BE_STALE } from '../analytics/growthbook.js'
 
 /**

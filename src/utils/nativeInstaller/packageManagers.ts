@@ -4,9 +4,9 @@
 
 import { readFile } from 'fs/promises'
 import memoize from 'lodash-es/memoize.js'
-import { logForDebugging } from '../debug.js'
+import { logForDebugging } from '../../server/utils/debug.js'
 import { execFileNoThrow } from '../execFileNoThrow.js'
-import { getPlatform } from '../platform.js'
+import { getPlatform } from '../../server/utils/platform.js'
 
 export type PackageManager =
   | 'homebrew'

@@ -1,6 +1,6 @@
 import type { CanUseToolFn } from '../../hooks/useCanUseTool.js'
 import type { ToolUseContext } from '../../Tool.js'
-import { logForDebugging } from '../debug.js'
+import { logForDebugging } from '../../server/utils/debug.js'
 import { agentWorktreeUnavailableReason } from '../worktree.js'
 import { describeThrown, thrownName } from '../../server/utils/workflows/errors.js'
 import {

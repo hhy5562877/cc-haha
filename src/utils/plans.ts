@@ -2,23 +2,23 @@ import { randomUUID } from 'crypto'
 import { copyFile, writeFile } from 'fs/promises'
 import memoize from 'lodash-es/memoize.js'
 import { join, resolve, sep } from 'path'
-import type { AgentId, SessionId } from 'src/types/ids.js'
-import type { LogOption } from 'src/types/logs.js'
+import type { AgentId, SessionId } from 'src/server/types/ids.ts'
+import type { LogOption } from 'src/server/types/logs.ts'
 import type {
   AssistantMessage,
   AttachmentMessage,
   SystemFileSnapshotMessage,
   UserMessage,
-} from 'src/types/message.js'
-import { getPlanSlugCache, getSessionId } from '../bootstrap/state.js'
+} from 'src/server/types/message.ts'
+import { getPlanSlugCache, getSessionId } from '../server/bootstrap/state.js'
 import { EXIT_PLAN_MODE_V2_TOOL_NAME } from '../tools/ExitPlanModeTool/constants.js'
-import { getCwd } from './cwd.js'
-import { logForDebugging } from './debug.js'
-import { getClaudeConfigHomeDir } from './envUtils.js'
-import { isENOENT } from './errors.js'
+import { getCwd } from '../server/utils/cwd.js'
+import { logForDebugging } from '../server/utils/debug.js'
+import { getClaudeConfigHomeDir } from '../server/utils/envUtils.js'
+import { isENOENT } from '../server/utils/errors.js'
 import { getEnvironmentKind } from './filePersistence/outputsScanner.js'
-import { getFsImplementation } from './fsOperations.js'
-import { logError } from './log.js'
+import { getFsImplementation } from '../server/utils/fsOperations.js'
+import { logError } from '../server/utils/log.js'
 import { getInitialSettings } from '../server/utils/settings/settings.js'
 import { generateWordSlug } from './words.js'
 

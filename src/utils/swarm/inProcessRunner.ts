@@ -12,7 +12,7 @@
 import { feature } from 'bun:bundle'
 import type { ContentBlockParam } from '@anthropic-ai/sdk/resources/messages.mjs'
 import { getSystemPrompt } from '../../constants/prompts.js'
-import { TEAMMATE_MESSAGE_TAG } from '../../constants/xml.js'
+import { TEAMMATE_MESSAGE_TAG } from '../../server/constants/xml.js'
 import type { CanUseToolFn } from '../../hooks/useCanUseTool.js'
 import {
   processMailboxPermissionResponse,
@@ -58,8 +58,8 @@ import { TASK_LIST_TOOL_NAME } from '../../tools/TaskListTool/constants.js'
 import { TASK_UPDATE_TOOL_NAME } from '../../tools/TaskUpdateTool/constants.js'
 import { TEAM_CREATE_TOOL_NAME } from '../../tools/TeamCreateTool/constants.js'
 import { TEAM_DELETE_TOOL_NAME } from '../../tools/TeamDeleteTool/constants.js'
-import type { Message } from '../../types/message.js'
-import type { PermissionDecision } from '../../types/permissions.js'
+import type { Message } from '../../server/types/message.js'
+import type { PermissionDecision } from '../../server/types/permissions.js'
 import {
   createAssistantAPIErrorMessage,
   createUserMessage,
@@ -70,7 +70,7 @@ import { tokenCountWithEstimation } from '../../utils/tokens.js'
 import { createAbortController } from '../abortController.js'
 import { type AgentContext, runWithAgentContext } from '../agentContext.js'
 import { count } from '../array.js'
-import { logForDebugging } from '../debug.js'
+import { logForDebugging } from '../../server/utils/debug.js'
 import { cloneFileStateCache } from '../fileStateCache.js'
 import {
   SUBAGENT_REJECT_MESSAGE,
@@ -85,7 +85,7 @@ import type { PermissionUpdate } from '../../server/utils/permissions/Permission
 import { hasPermissionsToUseTool } from '../../server/utils/permissions/permissions.js'
 import { emitTaskTerminatedSdk } from '../sdkEventQueue.js'
 import { sleep } from '../sleep.js'
-import { jsonStringify } from '../slowOperations.js'
+import { jsonStringify } from '../../server/utils/slowOperations.js'
 import { asSystemPrompt } from '../systemPromptType.js'
 import {
   claimTask,

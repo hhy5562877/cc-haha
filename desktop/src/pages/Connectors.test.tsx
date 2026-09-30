@@ -1,7 +1,7 @@
 import { act, cleanup, fireEvent, render, screen } from '@testing-library/react'
 import '@testing-library/jest-dom'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
-import { ALL_CONNECTORS } from '../../../src/services/connectors/catalog'
+import { ALL_CONNECTORS } from '../../../src/server/services/connectors/catalog.js'
 import { Connectors } from './Connectors'
 import { useConnectorStore } from '@/stores/connectorStore'
 import { en } from '@/i18n/locales/en'

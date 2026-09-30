@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { useEffect, useRef, useState } from 'react';
 import { logEvent } from '../server/services/analytics/index.js';
-import { logForDebugging } from 'src/utils/debug.js';
-import { logError } from 'src/utils/log.js';
+import { logForDebugging } from 'src/server/utils/debug.ts';
+import { logError } from 'src/server/utils/log.ts';
 import { useInterval } from 'usehooks-ts';
 import { useUpdateNotification } from '../hooks/useUpdateNotification.js';
 import { Box, Text } from '../ink.js';

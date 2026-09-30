@@ -11,18 +11,18 @@ import { mkdir, readFile, writeFile } from 'fs/promises'
 import { join } from 'path'
 import { randomUUID } from 'node:crypto'
 import { z } from 'zod/v4'
-import { TEAMMATE_MESSAGE_TAG } from '../constants/xml.js'
+import { TEAMMATE_MESSAGE_TAG } from '../server/constants/xml.js'
 import { PermissionModeSchema } from '../entrypoints/sdk/coreSchemas.js'
 import { SEND_MESSAGE_TOOL_NAME } from '../tools/SendMessageTool/constants.js'
-import type { Message } from '../types/message.js'
+import type { Message } from '../server/types/message.js'
 import { generateRequestId } from './agentId.js'
 import { count } from './array.js'
-import { logForDebugging } from './debug.js'
-import { getTeamsDir } from './envUtils.js'
-import { getErrnoCode } from './errors.js'
-import { lazySchema } from './lazySchema.js'
+import { logForDebugging } from '../server/utils/debug.js'
+import { getTeamsDir } from '../server/utils/envUtils.js'
+import { getErrnoCode } from '../server/utils/errors.js'
+import { lazySchema } from '../server/utils/lazySchema.js'
 import * as lockfile from './lockfile.js'
-import { logError } from './log.js'
+import { logError } from '../server/utils/log.js'
 import {
   permissionUpdateSchema,
   type PermissionUpdate,
@@ -31,7 +31,7 @@ import {
   permissionBehaviorSchema,
   permissionRuleValueSchema,
 } from '../server/utils/permissions/PermissionRule.js'
-import { jsonParse, jsonStringify } from './slowOperations.js'
+import { jsonParse, jsonStringify } from '../server/utils/slowOperations.js'
 import {
   isPaneBackend,
   type BackendType,

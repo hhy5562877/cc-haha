@@ -4,7 +4,7 @@ import type { BetaToolUnion } from '@anthropic-ai/sdk/resources/beta/messages.js
 import {
   getLastApiCompletionTimestamp,
   setLastApiCompletionTimestamp,
-} from '../bootstrap/state.js'
+} from '../server/bootstrap/state.js'
 import {
   STRUCTURED_OUTPUTS_BETA_HEADER,
   THINKING_BINDING_CONTROLS_BETA_HEADER,

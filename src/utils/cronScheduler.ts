@@ -12,7 +12,7 @@ import {
   getSessionCronTasks,
   removeSessionCronTasks,
   setScheduledTasksEnabled,
-} from '../bootstrap/state.js'
+} from '../server/bootstrap/state.js'
 import {
   type AnalyticsMetadata_I_VERIFIED_THIS_IS_NOT_CODE_OR_FILEPATHS,
   logEvent,
@@ -35,7 +35,7 @@ import {
   releaseSchedulerLock,
   tryAcquireSchedulerLock,
 } from './cronTasksLock.js'
-import { logForDebugging } from './debug.js'
+import { logForDebugging } from '../server/utils/debug.js'
 
 const CHECK_INTERVAL_MS = 1000
 const FILE_STABILITY_MS = 300

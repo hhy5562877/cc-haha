@@ -15,7 +15,7 @@
 
 import { feature } from 'bun:bundle'
 import { hostname } from 'os'
-import { getOriginalCwd, getSessionId } from '../bootstrap/state.js'
+import { getOriginalCwd, getSessionId } from '../server/bootstrap/state.js'
 import type { SDKMessage } from '../entrypoints/agentSdkTypes.js'
 import type { SDKControlResponse } from '../entrypoints/sdk/controlTypes.js'
 import { getFeatureValue_CACHED_WITH_REFRESH } from '../server/services/analytics/growthbook.js'
@@ -24,16 +24,16 @@ import {
   isPolicyAllowed,
   waitForPolicyLimitsToLoad,
 } from '../services/policyLimits/index.js'
-import type { Message } from '../types/message.js'
+import type { Message } from '../server/types/message.js'
 import {
   checkAndRefreshOAuthTokenIfNeeded,
   getClaudeAIOAuthTokens,
   handleOAuth401Error,
 } from '../utils/auth.js'
 import { getGlobalConfig, saveGlobalConfig } from '../utils/config.js'
-import { logForDebugging } from '../utils/debug.js'
-import { stripDisplayTagsAllowEmpty } from '../utils/displayTags.js'
-import { errorMessage } from '../utils/errors.js'
+import { logForDebugging } from '../server/utils/debug.js'
+import { stripDisplayTagsAllowEmpty } from '../server/utils/displayTags.js'
+import { errorMessage } from '../server/utils/errors.js'
 import { getBranch, getRemoteUrl } from '../utils/git.js'
 import { toSDKMessages } from '../utils/messages/mappers.js'
 import {

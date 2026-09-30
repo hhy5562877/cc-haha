@@ -1,5 +1,5 @@
 import { feature } from 'bun:bundle'
-import { getInvokedSkillsForAgent } from '../../bootstrap/state.js'
+import { getInvokedSkillsForAgent } from '../../server/bootstrap/state.js'
 import { getFeatureValue_CACHED_MAY_BE_STALE } from '../../server/services/analytics/growthbook.js'
 import {
   type AnalyticsMetadata_I_VERIFIED_THIS_IS_NOT_CODE_OR_FILEPATHS,
@@ -8,19 +8,19 @@ import {
 } from '../../server/services/analytics/index.js'
 import { queryModelWithoutStreaming } from '../../services/api/claude.js'
 import { getEmptyToolPermissionContext } from '../../Tool.js'
-import type { Message } from '../../types/message.js'
+import type { Message } from '../../server/types/message.js'
 import { createAbortController } from '../abortController.js'
 import { count } from '../array.js'
-import { getCwd } from '../cwd.js'
-import { toError } from '../errors.js'
-import { logError } from '../log.js'
+import { getCwd } from '../../server/utils/cwd.js'
+import { toError } from '../../server/utils/errors.js'
+import { logError } from '../../server/utils/log.js'
 import {
   createUserMessage,
   extractTag,
   extractTextContent,
 } from '../messages.js'
 import { getSmallFastModel } from '../../server/utils/model/model.js'
-import { jsonParse } from '../slowOperations.js'
+import { jsonParse } from '../../server/utils/slowOperations.js'
 import { asSystemPrompt } from '../systemPromptType.js'
 import {
   type ApiQueryHookConfig,

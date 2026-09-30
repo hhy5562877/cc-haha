@@ -1,11 +1,11 @@
 import { basename, dirname, isAbsolute, join, sep } from 'path'
 import type { ToolPermissionContext } from '../Tool.js'
-import { isEnvTruthy } from './envUtils.js'
+import { isEnvTruthy } from '../server/utils/envUtils.js'
 import {
   getFileReadIgnorePatterns,
   normalizePatternsToPath,
 } from '../server/utils/permissions/filesystem.js'
-import { getPlatform } from './platform.js'
+import { getPlatform } from '../server/utils/platform.js'
 import { getGlobExclusionsForPluginCache } from '../server/utils/plugins/orphanedPluginFilter.js'
 import { ripGrep } from './ripgrep.js'
 

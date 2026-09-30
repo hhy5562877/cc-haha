@@ -24,12 +24,12 @@
  */
 
 import { posix } from 'path'
-import { registerCleanup } from './cleanupRegistry.js'
-import { logForDebugging } from './debug.js'
-import { toError } from './errors.js'
+import { registerCleanup } from '../server/utils/cleanupRegistry.js'
+import { logForDebugging } from '../server/utils/debug.js'
+import { toError } from '../server/utils/errors.js'
 import { execFileNoThrow } from './execFileNoThrow.js'
-import { logError } from './log.js'
-import { getPlatform } from './platform.js'
+import { logError } from '../server/utils/log.js'
+import { getPlatform } from '../server/utils/platform.js'
 
 // Constants for tmux socket management
 const TMUX_COMMAND = 'tmux'

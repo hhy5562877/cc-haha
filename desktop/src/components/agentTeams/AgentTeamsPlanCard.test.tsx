@@ -8,7 +8,7 @@ import { useSettingsStore } from '@/stores/settingsStore'
 import { useSessionRuntimeStore } from '@/stores/sessionRuntimeStore'
 import { useProviderStore } from '@/stores/providerStore'
 import { AgentTeamsPlanCard } from './AgentTeamsPlanCard'
-import type { TeamPlanRecord } from '../../../../src/shared/teamPlan'
+import type { TeamPlanRecord } from '../../../../src/server/shared/teamPlan.js'
 
 vi.mock('@/api/teamPlans', () => ({ teamPlansApi: { get: vi.fn(), save: vi.fn(), act: vi.fn() } }))
 vi.mock('@/components/controls/ModelSelector', () => ({

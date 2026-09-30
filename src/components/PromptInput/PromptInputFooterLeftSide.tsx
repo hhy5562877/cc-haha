@@ -24,7 +24,7 @@ import { isAgentSwarmsEnabled } from '../../utils/agentSwarmsEnabled.js';
 import { TeamStatus } from '../teams/TeamStatus.js';
 import { isInProcessEnabled } from '../../utils/swarm/backends/registry.js';
 import { useAppState, useAppStateStore } from 'src/state/AppState.js';
-import { getIsRemoteMode } from '../../bootstrap/state.js';
+import { getIsRemoteMode } from '../../server/bootstrap/state.js';
 import HistorySearchInput from './HistorySearchInput.js';
 import { usePrStatus } from '../../hooks/usePrStatus.js';
 import { KeyboardShortcutHint } from '../design-system/KeyboardShortcutHint.js';
@@ -39,7 +39,7 @@ import { isFullscreenEnvEnabled } from '../../utils/fullscreen.js';
 import { isXtermJs } from '../../ink/terminal.js';
 import { useHasSelection, useSelection } from '../../ink/hooks/use-selection.js';
 import { getGlobalConfig, saveGlobalConfig } from '../../utils/config.js';
-import { getPlatform } from '../../utils/platform.js';
+import { getPlatform } from '../../server/utils/platform.js';
 import { PrBadge } from '../PrBadge.js';
 
 // Dead code elimination: conditional import for proactive mode

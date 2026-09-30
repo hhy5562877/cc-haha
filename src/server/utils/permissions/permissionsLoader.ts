@@ -1,7 +1,7 @@
 import { readFileSync } from '../../../utils/fileRead.js'
-import { getFsImplementation, safeResolvePath } from '../../../utils/fsOperations.js'
-import { safeParseJSON } from '../../../utils/json.js'
-import { logError } from '../../../utils/log.js'
+import { getFsImplementation, safeResolvePath } from '../fsOperations.js'
+import { safeParseJSON } from '../json.js'
+import { logError } from '../log.js'
 import {
   type EditableSettingSource,
   getEnabledSettingSources,

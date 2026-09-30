@@ -137,7 +137,7 @@ export async function resolveGrokProxyFetchOptions(
 async function getGrokProxyFetchOptions(
   proxyUrl: string | null,
 ): Promise<RequestInit> {
-  const { getProxyFetchOptions } = await import('../../../utils/proxy.js')
+  const { getProxyFetchOptions } = await import('../../utils/proxy.js')
   return getProxyFetchOptions({ proxyUrl })
 }
 

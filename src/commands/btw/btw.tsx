@@ -16,7 +16,7 @@ import { Box, Text } from '../../ink.js';
 import type { LocalJSXCommandOnDone } from '../../types/command.js';
 import { createAbortController } from '../../utils/abortController.js';
 import { saveGlobalConfig } from '../../utils/config.js';
-import { errorMessage } from '../../utils/errors.js';
+import { errorMessage } from '../../server/utils/errors.js';
 import { type CacheSafeParams, getLastCacheSafeParams } from '../../utils/forkedAgent.js';
 import type { ProcessUserInputContext } from '../../utils/processUserInput/processUserInput.js';
 import { prepareSideQuestionContext, runSideQuestion } from '../../utils/sideQuestion.js';

@@ -51,7 +51,7 @@ import type {
   SystemAPIErrorMessage,
   SystemStreamingFallbackMessage,
   UserMessage,
-} from "../../types/message.js";
+} from "../../server/types/message.js";
 import {
   type CacheScope,
   logAPIPrefix,
@@ -71,10 +71,10 @@ import {
   getSonnet1mExpTreatmentEnabled,
 } from "../../utils/context.js";
 import { resolveAppliedEffort } from "../../utils/effort.js";
-import { isEnvTruthy } from "../../utils/envUtils.js";
-import { errorMessage } from "../../utils/errors.js";
+import { isEnvTruthy } from "../../server/utils/envUtils.js";
+import { errorMessage } from "../../server/utils/errors.js";
 import { computeFingerprintFromMessages } from "../../utils/fingerprint.js";
-import { captureAPIRequest, logError } from "../../utils/log.js";
+import { captureAPIRequest, logError } from "../../server/utils/log.js";
 import {
   createSystemStreamingFallbackMessage,
   createUserMessage,
@@ -91,7 +91,7 @@ import {
   getSmallFastModel,
   isNonCustomOpusModel,
 } from '../../server/utils/model/model.js';
-import { disableKeepAlive } from "../../utils/proxy.js";
+import { disableKeepAlive } from "../../server/utils/proxy.js";
 import {
   asSystemPrompt,
   type SystemPrompt,
@@ -133,7 +133,7 @@ import {
   setPromptCache1hAllowlist,
   setPromptCache1hEligible,
   setThinkingClearLatched,
-} from "src/bootstrap/state.js";
+} from "src/server/bootstrap/state.ts";
 import {
   AFK_MODE_BETA_HEADER,
   THINKING_BINDING_CONTROLS_BETA_HEADER,
@@ -150,7 +150,7 @@ import type { QuerySource } from "src/constants/querySource.js";
 import type { Notification } from "src/context/notifications.js";
 import { addToTotalSessionCost } from "src/cost-tracker.js";
 import { getFeatureValue_CACHED_MAY_BE_STALE } from '../../server/services/analytics/growthbook.js';
-import type { AgentId } from "src/types/ids.js";
+import type { AgentId } from "src/server/types/ids.ts";
 import {
   ADVISOR_TOOL_INSTRUCTIONS,
   getExperimentAdvisorModels,
@@ -169,7 +169,7 @@ import {
 import { CLAUDE_IN_CHROME_MCP_SERVER_NAME } from "src/utils/claudeInChrome/common.js";
 import { CHROME_TOOL_SEARCH_INSTRUCTIONS } from "src/utils/claudeInChrome/prompt.js";
 import { getMaxThinkingTokensForModel } from "src/utils/context.js";
-import { logForDebugging } from "src/utils/debug.js";
+import { logForDebugging } from "src/server/utils/debug.ts";
 import { logForDiagnosticsNoPII } from "src/utils/diagLogs.js";
 import {
   type EffortLevel,
@@ -216,7 +216,7 @@ import {
 import { count } from "../../utils/array.js";
 import { insertBlockAfterToolResults } from "../../utils/contentArray.js";
 import { validateBoundedIntEnvVar } from "../../utils/envValidation.js";
-import { safeParseJSON } from "../../utils/json.js";
+import { safeParseJSON } from "../../server/utils/json.js";
 import { getInferenceProfileBackingModel } from '../../server/utils/model/bedrock.js';
 import {
   normalizeModelStringForAPI,
@@ -239,7 +239,7 @@ import {
   createStreamWatchdogState,
 } from "./streamWatchdog.js";
 import { StreamDecodeSpan } from "./streamDecodeSpan.js";
-import { jsonStringify } from "../../utils/slowOperations.js";
+import { jsonStringify } from "../../server/utils/slowOperations.js";
 import {
   isBetaTracingEnabled,
   type LLMRequestNewContext,

@@ -17,16 +17,16 @@
  * - /plugin menu — sets needsRefresh, user runs /reload-plugins (PR 5b)
  */
 
-import { getOriginalCwd } from '../../../bootstrap/state.js'
+import { getOriginalCwd } from '../../bootstrap/state.js'
 import type { Command } from '../../../commands.js'
 import { reinitializeLspServerManager } from '../../../services/lsp/manager.js'
 import type { AppState } from '../../../state/AppState.js'
 import type { AgentDefinitionsResult } from '../../tools/AgentTool/loadAgentsDir.js'
 import { getAgentDefinitionsWithOverrides } from '../../tools/AgentTool/loadAgentsDir.js'
 import type { PluginError } from '../../../types/plugin.js'
-import { logForDebugging } from '../../../utils/debug.js'
-import { errorMessage } from '../../../utils/errors.js'
-import { logError } from '../../../utils/log.js'
+import { logForDebugging } from '../debug.js'
+import { errorMessage } from '../errors.js'
+import { logError } from '../log.js'
 import { resetSettingsCache } from '../settings/settingsCache.js'
 import { clearAllCaches } from './cacheUtils.js'
 import { getPluginCommands, getPluginSkills } from './loadPluginCommands.js'

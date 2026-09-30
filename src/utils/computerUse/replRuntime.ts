@@ -6,7 +6,7 @@ import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { wrapCommandWithSandboxMacOS } from '@anthropic-ai/sandbox-runtime/dist/sandbox/macos-sandbox-utils.js'
-import { isInBundledMode } from '../bundledMode.js'
+import { isInBundledMode } from '../../server/utils/bundledMode.js'
 import { REPL_BOOTSTRAP_SOURCE } from '../../vendor/computer-use-mcp/replApi.js'
 import {
   REPL_MAX_ACTIONS,

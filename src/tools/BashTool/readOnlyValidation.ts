@@ -1,14 +1,14 @@
 import type { z } from 'zod/v4'
-import { getOriginalCwd } from '../../bootstrap/state.js'
+import { getOriginalCwd } from '../../server/bootstrap/state.js'
 import {
   extractOutputRedirections,
   splitCommand_DEPRECATED,
 } from '../../utils/bash/commands.js'
 import { tryParseShellCommand } from '../../utils/bash/shellQuote.js'
-import { getCwd } from '../../utils/cwd.js'
+import { getCwd } from '../../server/utils/cwd.js'
 import { isCurrentDirectoryBareGitRepo } from '../../utils/git.js'
 import type { PermissionResult } from '../../server/utils/permissions/PermissionResult.js'
-import { getPlatform } from '../../utils/platform.js'
+import { getPlatform } from '../../server/utils/platform.js'
 import { SandboxManager } from '../../utils/sandbox/sandbox-adapter.js'
 import {
   containsVulnerableUncPath,

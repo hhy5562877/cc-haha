@@ -21,24 +21,24 @@ import {
   CLAUDE_AI_INFERENCE_SCOPE,
   getOauthConfig,
   OAUTH_BETA_HEADER,
-} from '../../constants/oauth.js'
+} from '../../server/constants/oauth.js'
 import {
   checkAndRefreshOAuthTokenIfNeeded,
   getAnthropicApiKeyWithSource,
   getClaudeAIOAuthTokens,
 } from '../../utils/auth.js'
-import { registerCleanup } from '../../utils/cleanupRegistry.js'
-import { logForDebugging } from '../../utils/debug.js'
-import { getClaudeConfigHomeDir } from '../../utils/envUtils.js'
-import { classifyAxiosError } from '../../utils/errors.js'
-import { safeParseJSON } from '../../utils/json.js'
+import { registerCleanup } from '../../server/utils/cleanupRegistry.js'
+import { logForDebugging } from '../../server/utils/debug.js'
+import { getClaudeConfigHomeDir } from '../../server/utils/envUtils.js'
+import { classifyAxiosError } from '../../server/utils/errors.js'
+import { safeParseJSON } from '../../server/utils/json.js'
 import {
   getAPIProvider,
   isFirstPartyAnthropicBaseUrl,
 } from '../../server/utils/model/providers.js'
-import { isEssentialTrafficOnly } from '../../utils/privacyLevel.js'
+import { isEssentialTrafficOnly } from '../../server/utils/privacyLevel.js'
 import { sleep } from '../../utils/sleep.js'
-import { jsonStringify } from '../../utils/slowOperations.js'
+import { jsonStringify } from '../../server/utils/slowOperations.js'
 import { getClaudeCodeUserAgent } from '../../utils/userAgent.js'
 import { getRetryDelay } from '../api/withRetry.js'
 import {

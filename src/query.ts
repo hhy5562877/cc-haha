@@ -39,13 +39,13 @@ import type {
   ToolUseSummaryMessage,
   UserMessage,
   TombstoneMessage,
-} from './types/message.js'
-import { logError } from './utils/log.js'
+} from './server/types/message.js'
+import { logError } from './server/utils/log.js'
 import {
   PROMPT_TOO_LONG_ERROR_MESSAGE,
   isPromptTooLongMessage,
 } from './services/api/errors.js'
-import { logAntError, logForDebugging } from './utils/debug.js'
+import { logAntError, logForDebugging } from './server/utils/debug.js'
 import {
   createUserMessage,
   createUserInterruptionMessage,
@@ -113,7 +113,7 @@ import {
   getCurrentTurnTokenBudget,
   getTurnOutputTokens,
   incrementBudgetContinuationCount,
-} from './bootstrap/state.js'
+} from './server/bootstrap/state.js'
 import { createBudgetTracker, checkTokenBudget } from './query/tokenBudget.js'
 import { count } from './utils/array.js'
 

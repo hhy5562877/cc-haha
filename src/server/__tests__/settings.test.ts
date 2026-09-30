@@ -44,7 +44,7 @@ import {
 import { resetSettingsCache } from '../utils/settings/settingsCache.js'
 import { clearAllOutputStylesCache } from '../../constants/outputStyles.js'
 import { clearOutputStyleCaches } from '../../outputStyles/loadOutputStylesDir.js'
-import * as terminalShellEnvironment from '../../utils/terminalShellEnvironment.js'
+import * as terminalShellEnvironment from '../utils/terminalShellEnvironment.js'
 
 // ─── Test helpers ─────────────────────────────────────────────────────────────
 

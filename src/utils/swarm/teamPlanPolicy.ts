@@ -1,4 +1,4 @@
-import type { TeamPlanRuntime } from '../../shared/teamPlan.js'
+import type { TeamPlanRuntime } from '../../server/shared/teamPlan.js'
 
 /** Desktop controls this at process launch, never through a model tool argument. */
 export function isTeamReviewRequired(): boolean {

@@ -16,10 +16,10 @@ import {
   readImageWithTokenBudget,
 } from '../tools/FileReadTool/FileReadTool.js'
 import { FileTooLargeError, readFileInRange } from './readFileInRange.js'
-import { expandPath } from './path.js'
-import { countCharInString } from './stringUtils.js'
+import { expandPath } from '../server/utils/path.js'
+import { countCharInString } from '../server/utils/stringUtils.js'
 import { count, uniq } from './array.js'
-import { getFsImplementation } from './fsOperations.js'
+import { getFsImplementation } from '../server/utils/fsOperations.js'
 import { readdir, stat } from 'fs/promises'
 import type { IDESelection } from '../hooks/useIdeSelection.js'
 import { TODO_WRITE_TOOL_NAME } from '../tools/TodoWriteTool/constants.js'
@@ -43,18 +43,18 @@ import {
   type MemoryFileInfo,
 } from './claudemd.js'
 import { dirname, parse, relative, resolve } from 'path'
-import { getCwd } from 'src/utils/cwd.js'
+import { getCwd } from 'src/server/utils/cwd.ts'
 import { getViewedTeammateTask } from '../state/selectors.js'
-import { logError } from './log.js'
-import { logAntError } from './debug.js'
-import { isENOENT, toError } from './errors.js'
+import { logError } from '../server/utils/log.js'
+import { logAntError } from '../server/utils/debug.js'
+import { isENOENT, toError } from '../server/utils/errors.js'
 import type { DiagnosticFile } from '../services/diagnosticTracking.js'
 import { diagnosticTracker } from '../services/diagnosticTracking.js'
 import type {
   AttachmentMessage,
   Message,
   MessageOrigin,
-} from 'src/types/message.js'
+} from 'src/server/types/message.ts'
 import {
   type QueuedCommand,
   getImagePasteIds,
@@ -75,7 +75,7 @@ import type { ReadResourceResult } from '@modelcontextprotocol/sdk/types.js'
 import { getSkillToolCommands, getMcpSkillCommands } from '../commands.js'
 import type { Command } from '../types/command.js'
 import uniqBy from 'lodash-es/uniqBy.js'
-import { getProjectRoot } from '../bootstrap/state.js'
+import { getProjectRoot } from '../server/bootstrap/state.js'
 import { formatCommandsWithinBudget } from '../tools/SkillTool/prompt.js'
 import { getContextWindowForModel } from './context.js'
 import type { DiscoverySignal } from '../services/skillSearch/signals.js'
@@ -107,7 +107,7 @@ import {
   createAbortController,
   createChildAbortController,
 } from './abortController.js'
-import { isAbortError } from './errors.js'
+import { isAbortError } from '../server/utils/errors.js'
 import {
   getFileModificationTimeAsync,
   isFileWithinReadSizeLimit,
@@ -150,7 +150,7 @@ import {
   getLastEmittedDate,
   setLastEmittedDate,
   getKairosActive,
-} from '../bootstrap/state.js'
+} from '../server/bootstrap/state.js'
 import type { QuerySource } from '../constants/querySource.js'
 import {
   getDeferredToolsDelta,
@@ -180,14 +180,14 @@ import {
   checkForLSPDiagnostics,
   clearAllLSPDiagnostics,
 } from '../services/lsp/LSPDiagnosticRegistry.js'
-import { logForDebugging } from './debug.js'
+import { logForDebugging } from '../server/utils/debug.js'
 import {
   extractTextContent,
   getUserMessageText,
   isThinkingMessage,
 } from './messages.js'
 import { isHumanTurn } from './messagePredicates.js'
-import { isEnvTruthy, getClaudeConfigHomeDir } from './envUtils.js'
+import { isEnvTruthy, getClaudeConfigHomeDir } from '../server/utils/envUtils.js'
 import { feature } from 'bun:bundle'
 /* eslint-disable @typescript-eslint/no-require-imports */
 const BRIEF_TOOL_NAME: string | null =
@@ -221,7 +221,7 @@ import {
   type HookBlockingError,
   type InstructionsMemoryType,
 } from './hooks.js'
-import { jsonStringify } from './slowOperations.js'
+import { jsonStringify } from '../server/utils/slowOperations.js'
 import { isPDFExtension } from './pdfUtils.js'
 import { getLocalISODate } from '../constants/common.js'
 import { getPDFPageCount } from './pdf.js'

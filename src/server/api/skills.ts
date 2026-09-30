@@ -8,8 +8,8 @@
 
 import * as path from 'path'
 import * as fs from 'fs/promises'
-import { parseFrontmatter } from '../../utils/frontmatterParser.js'
-import { getCwd } from '../../utils/cwd.js'
+import { parseFrontmatter } from '../utils/frontmatterParser.js'
+import { getCwd } from '../utils/cwd.js'
 import {
   getProjectSkillRoots,
   getUserSkillRoots,

@@ -2,7 +2,7 @@ import { describe, expect, test } from 'bun:test'
 import { BUSINESS_ERROR_CODES } from '../src/constants/businessErrors.js'
 import { getImageUnsupportedErrorMessage } from '../src/services/api/errors.js'
 import { roughTokenCountEstimationForAPIRequest } from '../src/services/tokenEstimation.js'
-import type { UserMessage } from '../src/types/message.js'
+import type { UserMessage } from '../src/server/types/message.js'
 import {
   createAssistantAPIErrorMessage,
   createUserMessage,

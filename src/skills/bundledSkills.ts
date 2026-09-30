@@ -4,7 +4,7 @@ import { mkdir, open } from 'fs/promises'
 import { dirname, isAbsolute, join, normalize, sep as pathSep } from 'path'
 import type { ToolUseContext } from '../Tool.js'
 import type { Command } from '../types/command.js'
-import { logForDebugging } from '../utils/debug.js'
+import { logForDebugging } from '../server/utils/debug.js'
 import { getBundledSkillsRoot } from '../server/utils/permissions/filesystem.js'
 import type { HooksSettings } from '../server/utils/settings/types.js'
 

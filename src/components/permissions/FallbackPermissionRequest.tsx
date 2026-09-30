@@ -1,11 +1,11 @@
 import { c as _c } from "react/compiler-runtime";
 import React, { useCallback, useMemo } from 'react';
-import { getOriginalCwd } from '../../bootstrap/state.js';
+import { getOriginalCwd } from '../../server/bootstrap/state.js';
 import { Box, Text, useTheme } from '../../ink.js';
 import { sanitizeToolNameForAnalytics } from '../../server/services/analytics/metadata.js';
-import { env } from '../../utils/env.js';
+import { env } from '../../server/utils/env.js';
 import { shouldShowAlwaysAllowOptions } from '../../server/utils/permissions/permissionsLoader.js';
-import { truncateToLines } from '../../utils/stringUtils.js';
+import { truncateToLines } from '../../server/utils/stringUtils.js';
 import { logUnaryEvent } from '../../utils/unaryLogging.js';
 import { type UnaryEvent, usePermissionRequestLogging } from './hooks.js';
 import { PermissionDialog } from './PermissionDialog.js';

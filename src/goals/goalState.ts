@@ -2,9 +2,9 @@ import {
   COMMAND_NAME_TAG,
   LOCAL_COMMAND_STDERR_TAG,
   LOCAL_COMMAND_STDOUT_TAG,
-} from '../constants/xml.js'
+} from '../server/constants/xml.js'
 import type { ToolUseContext } from '../Tool.js'
-import type { Message } from '../types/message.js'
+import type { Message } from '../server/types/message.js'
 import { shouldSkipHookDueToTrust } from '../utils/hooks.js'
 import {
   addSessionHook,

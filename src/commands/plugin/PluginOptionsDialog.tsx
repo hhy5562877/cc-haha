@@ -6,7 +6,7 @@ import { stringWidth } from '../../ink/stringWidth.js';
 // eslint-disable-next-line custom-rules/prefer-use-keybindings -- raw text input for config dialog
 import { Box, Text, useInput } from '../../ink.js';
 import { useKeybinding, useKeybindings } from '../../keybindings/useKeybinding.js';
-import { isEnvTruthy } from '../../utils/envUtils.js';
+import { isEnvTruthy } from '../../server/utils/envUtils.js';
 import type { PluginOptionSchema, PluginOptionValues } from '../../server/utils/plugins/pluginOptionsStorage.js';
 
 /**

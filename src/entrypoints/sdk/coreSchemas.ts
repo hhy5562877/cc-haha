@@ -9,7 +9,7 @@
 
 import { z } from 'zod/v4'
 import { HooksSchema } from '../../schemas/hooks.js'
-import { lazySchema } from '../../utils/lazySchema.js'
+import { lazySchema } from '../../server/utils/lazySchema.js'
 
 // ============================================================================
 // Usage & Model Types

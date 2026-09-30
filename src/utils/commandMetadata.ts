@@ -3,7 +3,7 @@ import {
   COMMAND_MESSAGE_TAG,
   COMMAND_NAME_TAG,
   LOCAL_COMMAND_CAVEAT_TAG,
-} from '../constants/xml.js'
+} from '../server/constants/xml.js'
 
 const COMMAND_METADATA_TAGS = new Set([
   COMMAND_NAME_TAG,

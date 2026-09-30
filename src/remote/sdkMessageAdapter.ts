@@ -13,8 +13,8 @@ import type {
   Message,
   StreamEvent,
   SystemMessage,
-} from '../types/message.js'
-import { logForDebugging } from '../utils/debug.js'
+} from '../server/types/message.js'
+import { logForDebugging } from '../server/utils/debug.js'
 import { fromSDKCompactMetadata } from '../utils/messages/mappers.js'
 import { createUserMessage } from '../utils/messages.js'
 

@@ -24,8 +24,8 @@ import type {
   ProgressMessage,
   SystemMessage,
   UserMessage,
-} from '../../types/message.js'
-import type { PermissionMode } from '../../types/permissions.js'
+} from '../../server/types/message.js'
+import type { PermissionMode } from '../../server/types/permissions.js'
 import {
   isValidImagePaste,
   type PromptInputMode,

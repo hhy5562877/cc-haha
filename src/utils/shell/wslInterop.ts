@@ -1,4 +1,4 @@
-import type { Platform } from '../platform.js'
+import type { Platform } from '../../server/utils/platform.js'
 
 const WSL_COMMAND_PATTERN = /(^|[\s;&|()<>'"])wsl(?:\.exe)?(?=$|[\s;&|()<>'"])/
 

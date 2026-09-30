@@ -9,7 +9,7 @@ import {
   getLastMainRequestId,
   getSessionId,
   isSessionPersistenceDisabled,
-} from '../bootstrap/state.js'
+} from '../server/bootstrap/state.js'
 import instances from '../ink/instances.js'
 import {
   DISABLE_KITTY_KEYBOARD,
@@ -36,14 +36,14 @@ import {
   logEvent,
 } from '../server/services/analytics/index.js'
 import type { AppState } from '../state/AppState.js'
-import { runCleanupFunctions } from './cleanupRegistry.js'
-import { logForDebugging } from './debug.js'
+import { runCleanupFunctions } from '../server/utils/cleanupRegistry.js'
+import { logForDebugging } from '../server/utils/debug.js'
 import { logForDiagnosticsNoPII } from './diagLogs.js'
-import { isEnvTruthy } from './envUtils.js'
+import { isEnvTruthy } from '../server/utils/envUtils.js'
 import {
   flushProcessOutput,
   getProcessOutputDrainTimeoutMs,
-} from './process.js'
+} from '../server/utils/process.js'
 import { getCurrentSessionTitle, sessionIdExists } from './sessionStorage.js'
 import { sleep } from './sleep.js'
 import { profileReport } from './startupProfiler.js'

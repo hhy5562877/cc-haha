@@ -1,6 +1,6 @@
 import axios from 'axios'
-import { getOauthConfig } from '../../constants/oauth.js'
-import { logForDebugging } from '../../utils/debug.js'
+import { getOauthConfig } from '../../server/constants/oauth.js'
+import { logForDebugging } from '../../server/utils/debug.js'
 import { getOAuthHeaders, prepareApiRequest } from '../../utils/teleport/api.js'
 import { fetchEnvironments } from '../../utils/teleport/environments.js'
 

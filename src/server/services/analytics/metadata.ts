@@ -8,7 +8,7 @@
 
 import { extname } from 'path'
 import memoize from 'lodash-es/memoize.js'
-import { env, getHostPlatformForAnalytics } from '../../../utils/env.js'
+import { env, getHostPlatformForAnalytics } from '../../utils/env.js'
 import { envDynamic } from '../../../utils/envDynamic.js'
 import { getModelBetas } from '../../../utils/betas.js'
 import { getMainLoopModel } from '../../utils/model/model.js'
@@ -18,8 +18,8 @@ import {
   getKairosActive,
   getClientType,
   getParentSessionId as getParentSessionIdFromState,
-} from '../../../bootstrap/state.js'
-import { isEnvTruthy } from '../../../utils/envUtils.js'
+} from '../../bootstrap/state.js'
+import { isEnvTruthy } from '../../utils/envUtils.js'
 import { isOfficialMcpUrl } from '../mcp/officialRegistry.js'
 import { isClaudeAISubscriber, getSubscriptionType } from '../../../utils/auth.js'
 import { getRepoRemoteHash } from '../../../utils/git.js'
@@ -27,12 +27,12 @@ import {
   getWslVersion,
   getLinuxDistroInfo,
   detectVcs,
-} from '../../../utils/platform.js'
+} from '../../utils/platform.js'
 import type { CoreUserData } from 'src/utils/user.js'
 import { getAgentContext } from '../../../utils/agentContext.js'
 import type { EnvironmentMetadata } from '../../../types/generated/events_mono/claude_code/v1/claude_code_internal_event.js'
 import type { PublicApiAuth } from '../../../types/generated/events_mono/common/v1/auth.js'
-import { jsonStringify } from '../../../utils/slowOperations.js'
+import { jsonStringify } from '../../utils/slowOperations.js'
 import {
   getAgentId,
   getParentSessionId as getTeammateParentSessionId,

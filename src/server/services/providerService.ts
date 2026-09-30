@@ -56,7 +56,7 @@ import {
   resolveProviderModelApiFormat,
   resolveProviderApiKey,
 } from './providerRuntimeEnv.js'
-import { resolveModelApiFormat, type ModelApiFormatRule } from '../../shared/modelApiFormats.js'
+import { resolveModelApiFormat, type ModelApiFormatRule } from '../shared/modelApiFormats.js'
 import { applyUpstreamHeaders, resolveUpstreamHeaders } from '../proxy/upstreamHeaders.js'
 import {
   getNetworkProxyFetchOptions,

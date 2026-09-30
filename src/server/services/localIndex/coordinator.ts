@@ -1,6 +1,6 @@
 import { lstat, readdir, stat } from 'node:fs/promises'
 import { basename, join, relative, resolve, sep } from 'node:path'
-import { getClaudeConfigHomeDir } from '../../../utils/envUtils.js'
+import { getClaudeConfigHomeDir } from '../../utils/envUtils.js'
 import {
   getLocalIndexDatabasePath,
   resolveLocalIndexMode,

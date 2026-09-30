@@ -4,8 +4,8 @@ import {
   getOriginalCwd,
   getSessionId,
   getSessionProjectDir,
-} from '../../../bootstrap/state.js'
-import { getClaudeConfigHomeDir } from '../../../utils/envUtils.js'
+} from '../../bootstrap/state.js'
+import { getClaudeConfigHomeDir } from '../envUtils.js'
 import { getProjectDir } from '../../../utils/sessionStorage.js'
 
 /** `~/.claude/workflows` — personal workflows, available in every project. */

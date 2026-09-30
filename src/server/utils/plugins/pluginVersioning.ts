@@ -11,7 +11,7 @@
  */
 
 import { createHash } from 'crypto'
-import { logForDebugging } from '../../../utils/debug.js'
+import { logForDebugging } from '../debug.js'
 import { getHeadForDir } from '../../../utils/git/gitFilesystem.js'
 import type { PluginManifest, PluginSource } from './schemas.js'
 

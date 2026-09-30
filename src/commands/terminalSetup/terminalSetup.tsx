@@ -13,13 +13,13 @@ import type { LocalJSXCommandContext, LocalJSXCommandOnDone } from '../../types/
 import { backupTerminalPreferences, checkAndRestoreTerminalBackup, getTerminalPlistPath, markTerminalSetupComplete } from '../../utils/appleTerminalBackup.js';
 import { setupShellCompletion } from '../../utils/completionCache.js';
 import { getGlobalConfig, saveGlobalConfig } from '../../utils/config.js';
-import { env } from '../../utils/env.js';
-import { isFsInaccessible } from '../../utils/errors.js';
+import { env } from '../../server/utils/env.js';
+import { isFsInaccessible } from '../../server/utils/errors.js';
 import { execFileNoThrow } from '../../utils/execFileNoThrow.js';
-import { addItemToJSONCArray, safeParseJSONC } from '../../utils/json.js';
-import { logError } from '../../utils/log.js';
-import { getPlatform } from '../../utils/platform.js';
-import { jsonParse, jsonStringify } from '../../utils/slowOperations.js';
+import { addItemToJSONCArray, safeParseJSONC } from '../../server/utils/json.js';
+import { logError } from '../../server/utils/log.js';
+import { getPlatform } from '../../server/utils/platform.js';
+import { jsonParse, jsonStringify } from '../../server/utils/slowOperations.js';
 const EOL = '\n';
 
 // Terminals that natively support CSI u / Kitty keyboard protocol

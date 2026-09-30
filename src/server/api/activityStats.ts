@@ -4,9 +4,9 @@ import {
   type ClaudeCodeStats,
   type StatsDateRange,
 } from '../../utils/stats.js'
-import { getClaudeConfigHomeDir } from '../../utils/envUtils.js'
+import { getClaudeConfigHomeDir } from '../utils/envUtils.js'
 import { loadStatsCache } from '../../utils/statsCache.js'
-import { logForDebugging } from '../../utils/debug.js'
+import { logForDebugging } from '../utils/debug.js'
 import { ApiError, errorResponse } from '../middleware/errorHandler.js'
 import { localIndexCoordinator } from '../services/localIndex/coordinator.js'
 import type { LocalIndexGateway } from '../services/localIndex/sessionIndex.js'

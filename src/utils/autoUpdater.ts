@@ -9,14 +9,14 @@ import {
   logEvent,
 } from '../server/services/analytics/index.js'
 import { type ReleaseChannel, saveGlobalConfig } from './config.js'
-import { logForDebugging } from './debug.js'
-import { env } from './env.js'
-import { getClaudeConfigHomeDir } from './envUtils.js'
-import { ClaudeError, getErrnoCode, isENOENT } from './errors.js'
+import { logForDebugging } from '../server/utils/debug.js'
+import { env } from '../server/utils/env.js'
+import { getClaudeConfigHomeDir } from '../server/utils/envUtils.js'
+import { ClaudeError, getErrnoCode, isENOENT } from '../server/utils/errors.js'
 import { execFileNoThrowWithCwd } from './execFileNoThrow.js'
-import { getFsImplementation } from './fsOperations.js'
+import { getFsImplementation } from '../server/utils/fsOperations.js'
 import { gracefulShutdownSync } from './gracefulShutdown.js'
-import { logError } from './log.js'
+import { logError } from '../server/utils/log.js'
 import { gte, lt } from './semver.js'
 import { getInitialSettings } from '../server/utils/settings/settings.js'
 import {
@@ -25,7 +25,7 @@ import {
   readFileLines,
   writeFileLines,
 } from './shellConfig.js'
-import { jsonParse } from './slowOperations.js'
+import { jsonParse } from '../server/utils/slowOperations.js'
 
 const GCS_BUCKET_URL =
   'https://storage.googleapis.com/claude-code-dist-86c565f3-f756-42ad-8dfa-d59b1c096819/claude-code-releases'

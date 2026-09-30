@@ -8,7 +8,7 @@
 
 import * as fs from 'fs/promises'
 import * as path from 'path'
-import { getClaudeConfigHomeDir } from '../../../utils/envUtils.js'
+import { getClaudeConfigHomeDir } from '../../utils/envUtils.js'
 import { marketCache, getSourceHealth, MARKET_TTL } from './cache.js'
 import { clawhubProvider } from './clawhubProvider.js'
 import { skillhubProvider } from './skillhubProvider.js'

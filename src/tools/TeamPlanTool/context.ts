@@ -1,7 +1,7 @@
 import { z } from 'zod/v4'
 import { snapshotTeamPlanPresetSource } from '../../utils/swarm/teamPlanPresetSource.js'
 import type { ToolUseContext } from '../../Tool.js'
-import type { TeamPlanMember, TeamPlanRecord, TeamPlanRuntime, TeamPlanTask } from '../../shared/teamPlan.js'
+import type { TeamPlanMember, TeamPlanRecord, TeamPlanRuntime, TeamPlanTask } from '../../server/shared/teamPlan.js'
 import { getTeamLeaderRuntime } from '../../utils/swarm/teamPlanPolicy.js'
 import { listTasks, getCanonicalTeamTaskListId } from '../../utils/tasks.js'
 import { resolveTeammateModel } from '../../utils/swarm/resolveTeammateModel.js'

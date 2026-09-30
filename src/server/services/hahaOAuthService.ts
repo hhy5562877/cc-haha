@@ -30,7 +30,7 @@ import type {
   OAuthTokenExchangeResponse,
   SubscriptionType,
 } from './oauth/types.js'
-import { getOauthConfig } from '../../constants/oauth.js'
+import { getOauthConfig } from '../constants/oauth.js'
 import {
   getNetworkProxyFetchOptions,
   getNetworkProxyUrl,

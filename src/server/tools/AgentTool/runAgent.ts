@@ -2,8 +2,8 @@ import { feature } from 'bun:bundle'
 import type { UUID } from 'crypto'
 import { randomUUID } from 'crypto'
 import uniqBy from 'lodash-es/uniqBy.js'
-import { logForDebugging } from 'src/utils/debug.js'
-import { getProjectRoot, getSessionId } from '../../../bootstrap/state.js'
+import { logForDebugging } from 'src/server/utils/debug.ts'
+import { getProjectRoot, getSessionId } from '../../bootstrap/state.js'
 import { getCommand, getSkillToolCommands, hasCommand } from '../../../commands.js'
 import {
   DEFAULT_AGENT_PROMPT,
@@ -28,7 +28,7 @@ import type {
 import type { Tool, Tools, ToolUseContext } from '../../../Tool.js'
 import { killShellTasksForAgent } from '../../../tasks/LocalShellTask/killShellTasks.js'
 import type { Command } from '../../../types/command.js'
-import type { AgentId } from '../../../types/ids.js'
+import type { AgentId } from '../../types/ids.js'
 import type {
   AssistantMessage,
   Message,
@@ -39,9 +39,9 @@ import type {
   TombstoneMessage,
   ToolUseSummaryMessage,
   UserMessage,
-} from '../../../types/message.js'
+} from '../../types/message.js'
 import { createAttachmentMessage } from '../../../utils/attachments.js'
-import { AbortError } from '../../../utils/errors.js'
+import { AbortError } from '../../utils/errors.js'
 import { getDisplayPath } from '../../../utils/file.js'
 import {
   cloneFileStateCache,

@@ -3,7 +3,7 @@ import chalk from 'chalk';
 import * as React from 'react';
 import type { CommandResultDisplay } from '../../commands.js';
 import { ModelPicker } from '../../components/ModelPicker.js';
-import { COMMON_HELP_ARGS, COMMON_INFO_ARGS } from '../../constants/xml.js';
+import { COMMON_HELP_ARGS, COMMON_INFO_ARGS } from '../../server/constants/xml.js';
 import { type AnalyticsMetadata_I_VERIFIED_THIS_IS_NOT_CODE_OR_FILEPATHS, logEvent } from '../../server/services/analytics/index.js';
 import { useAppState, useSetAppState } from '../../state/AppState.js';
 import type { LocalJSXCommandCall } from '../../types/command.js';

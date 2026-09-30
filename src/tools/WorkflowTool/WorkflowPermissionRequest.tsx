@@ -1,5 +1,5 @@
 import React, { useCallback, useMemo, useState } from 'react'
-import { getOriginalCwd } from '../../bootstrap/state.js'
+import { getOriginalCwd } from '../../server/bootstrap/state.js'
 import { PermissionDialog } from '../../components/permissions/PermissionDialog.js'
 import {
   PermissionPrompt,

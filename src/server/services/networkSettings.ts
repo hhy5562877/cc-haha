@@ -1,5 +1,5 @@
 import { SettingsService } from './settingsService.js'
-import { getProxyFetchOptions, getProxyUrl } from '../../utils/proxy.js'
+import { getProxyFetchOptions, getProxyUrl } from '../utils/proxy.js'
 
 export type NetworkProxyMode = 'direct' | 'system' | 'manual'
 

@@ -40,9 +40,9 @@ import mapValues from 'lodash-es/mapValues.js'
 import memoize from 'lodash-es/memoize.js'
 import zipObject from 'lodash-es/zipObject.js'
 import pMap from 'p-map'
-import { getOriginalCwd, getSessionId } from '../../../bootstrap/state.js'
+import { getOriginalCwd, getSessionId } from '../../bootstrap/state.js'
 import type { Command } from '../../../commands.js'
-import { getOauthConfig } from '../../../constants/oauth.js'
+import { getOauthConfig } from '../../constants/oauth.js'
 import { PRODUCT_URL } from '../../../constants/product.js'
 import type { AppState } from '../../../state/AppState.js'
 import {
@@ -61,18 +61,18 @@ import {
   getClaudeAIOAuthTokens,
   handleOAuth401Error,
 } from '../../../utils/auth.js'
-import { registerCleanup } from '../../../utils/cleanupRegistry.js'
+import { registerCleanup } from '../../utils/cleanupRegistry.js'
 import { detectCodeIndexingFromMcpServerName } from '../../../utils/codeIndexing.js'
-import { logForDebugging } from '../../../utils/debug.js'
-import { isEnvDefinedFalsy, isEnvTruthy } from '../../../utils/envUtils.js'
+import { logForDebugging } from '../../utils/debug.js'
+import { isEnvDefinedFalsy, isEnvTruthy } from '../../utils/envUtils.js'
 import {
   errorMessage,
   TelemetrySafeError_I_VERIFIED_THIS_IS_NOT_CODE_OR_FILEPATHS,
-} from '../../../utils/errors.js'
+} from '../../utils/errors.js'
 import { getMCPUserAgent } from '../../../utils/http.js'
 import { maybeNotifyIDEConnected } from '../../../utils/ide.js'
 import { maybeResizeAndDownsampleImageBuffer } from '../../../utils/imageResizer.js'
-import { logMCPDebug, logMCPError } from '../../../utils/log.js'
+import { logMCPDebug, logMCPError } from '../../utils/log.js'
 import {
   getBinaryBlobSavedMessage,
   getFormatDescription,
@@ -86,13 +86,13 @@ import {
   truncateMcpContentIfNeeded,
 } from '../../../utils/mcpValidation.js'
 import { WebSocketTransport } from '../../../utils/mcpWebSocketTransport.js'
-import { memoizeWithLRU } from '../../../utils/memoize.js'
-import { getWebSocketTLSOptions } from '../../../utils/mtls.js'
+import { memoizeWithLRU } from '../../utils/memoize.js'
+import { getWebSocketTLSOptions } from '../../utils/mtls.js'
 import {
   getProxyFetchOptions,
   getWebSocketProxyAgent,
   getWebSocketProxyUrl,
-} from '../../../utils/proxy.js'
+} from '../../utils/proxy.js'
 import { recursivelySanitizeUnicode } from '../../../utils/sanitization.js'
 import { getSessionIngressAuthToken } from '../../../utils/sessionIngressAuth.js'
 import { getMcpStdioEnvironment } from '../../../utils/mcpStdioEnvironment.js'
@@ -121,7 +121,7 @@ const fetchMcpSkillsForClient = feature('MCP_SKILLS')
   : null
 
 import { UnauthorizedError } from '@modelcontextprotocol/sdk/client/auth.js'
-import type { AssistantMessage } from 'src/types/message.js'
+import type { AssistantMessage } from 'src/server/types/message.ts'
 /* eslint-enable @typescript-eslint/no-require-imports */
 import { classifyMcpToolForCollapse } from '../../../tools/MCPTool/classifyForCollapse.js'
 import { clearKeychainCache } from '../../utils/secureStorage/macOsKeychainHelpers.js'
@@ -134,7 +134,7 @@ import {
 } from './auth.js'
 import { markClaudeAiMcpConnected } from './claudeai.js'
 import { getAllMcpConfigs, isMcpServerDisabled, isMcpServerDisabledForExecution } from './config.js'
-import { getCwd, runWithCwdOverride } from '../../../utils/cwd.js'
+import { getCwd, runWithCwdOverride } from '../../utils/cwd.js'
 import { getMcpServerHeaders } from './headersHelper.js'
 import { SdkControlClientTransport } from './SdkControlTransport.js'
 import type {
@@ -258,9 +258,9 @@ const isComputerUseMCPServer = (
 
 import { mkdir, readFile, unlink, writeFile } from 'fs/promises'
 import { dirname, join } from 'path'
-import { getClaudeConfigHomeDir } from '../../../utils/envUtils.js'
+import { getClaudeConfigHomeDir } from '../../utils/envUtils.js'
 /* eslint-enable @typescript-eslint/no-require-imports */
-import { jsonParse, jsonStringify } from '../../../utils/slowOperations.js'
+import { jsonParse, jsonStringify } from '../../utils/slowOperations.js'
 
 const MCP_AUTH_CACHE_TTL_MS = 15 * 60 * 1000 // 15 min
 

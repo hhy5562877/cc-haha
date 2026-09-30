@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { getOauthConfig } from 'src/constants/oauth.js'
+import { getOauthConfig } from 'src/server/constants/oauth.ts'
 import { getOrganizationUUID } from 'src/server/services/oauth/client.js'
 import { getFeatureValue_CACHED_MAY_BE_STALE } from '../../../server/services/analytics/growthbook.js'
 import {
@@ -7,10 +7,10 @@ import {
   getClaudeAIOAuthTokens,
   isClaudeAISubscriber,
 } from '../../auth.js'
-import { getCwd } from '../../cwd.js'
-import { logForDebugging } from '../../debug.js'
+import { getCwd } from '../../../server/utils/cwd.js'
+import { logForDebugging } from '../../../server/utils/debug.js'
 import { detectCurrentRepository } from '../../detectRepository.js'
-import { errorMessage } from '../../errors.js'
+import { errorMessage } from '../../../server/utils/errors.js'
 import { findGitRoot, getIsClean } from '../../git.js'
 import { getOAuthHeaders } from '../../teleport/api.js'
 import { fetchEnvironments } from '../../teleport/environments.js'

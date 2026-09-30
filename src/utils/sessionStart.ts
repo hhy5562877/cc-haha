@@ -1,13 +1,13 @@
-import { getMainThreadAgentType } from '../bootstrap/state.js'
-import type { HookResultMessage } from '../types/message.js'
+import { getMainThreadAgentType } from '../server/bootstrap/state.js'
+import type { HookResultMessage } from '../server/types/message.js'
 import { createAttachmentMessage } from './attachments.js'
-import { logForDebugging } from './debug.js'
+import { logForDebugging } from '../server/utils/debug.js'
 import { withDiagnosticsTiming } from './diagLogs.js'
-import { isBareMode } from './envUtils.js'
+import { isBareMode } from '../server/utils/envUtils.js'
 import { updateWatchPaths } from './hooks/fileChangedWatcher.js'
 import { shouldAllowManagedHooksOnly } from './hooks/hooksConfigSnapshot.js'
 import { executeSessionStartHooks, executeSetupHooks } from './hooks.js'
-import { logError } from './log.js'
+import { logError } from '../server/utils/log.js'
 import { loadPluginHooks } from '../server/utils/plugins/loadPluginHooks.js'
 
 type SessionStartHooksOptions = {

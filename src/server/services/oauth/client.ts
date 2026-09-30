@@ -9,7 +9,7 @@ import {
   CLAUDE_AI_INFERENCE_SCOPE,
   CLAUDE_AI_OAUTH_SCOPES,
   getOauthConfig,
-} from '../../../constants/oauth.js'
+} from '../../constants/oauth.js'
 import {
   checkAndRefreshOAuthTokenIfNeeded,
   getClaudeAIOAuthTokens,
@@ -19,8 +19,8 @@ import {
 } from '../../../utils/auth.js'
 import type { AccountInfo } from '../../../utils/config.js'
 import { getGlobalConfig, saveGlobalConfig } from '../../../utils/config.js'
-import { logForDebugging } from '../../../utils/debug.js'
-import { getAxiosProxyOptions } from '../../../utils/proxy.js'
+import { logForDebugging } from '../../utils/debug.js'
+import { getAxiosProxyOptions } from '../../utils/proxy.js'
 import { getOauthProfileFromOauthToken } from './getOauthProfile.js'
 import type {
   BillingType,

@@ -18,10 +18,10 @@ import {
   SYNTHETIC_OUTPUT_TOOL_NAME,
 } from '../../tools/SyntheticOutputTool/SyntheticOutputTool.js'
 import { assembleToolPool } from '../../tools.js'
-import type { Message } from '../../types/message.js'
+import type { Message } from '../../server/types/message.js'
 import { createAbortController } from '../abortController.js'
-import { runWithCwdOverride } from '../cwd.js'
-import { logForDebugging } from '../debug.js'
+import { runWithCwdOverride } from '../../server/utils/cwd.js'
+import { logForDebugging } from '../../server/utils/debug.js'
 import { createUserMessage, extractTextContent } from '../messages.js'
 import { createAgentId } from '../uuid.js'
 import type { AgentMetadata } from '../sessionStorage.js'

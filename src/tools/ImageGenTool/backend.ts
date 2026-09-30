@@ -3,7 +3,7 @@ import { constants as fsConstants } from 'fs'
 import { chmod, mkdir, open, realpath, stat } from 'fs/promises'
 import { basename, join, relative, resolve } from 'path'
 
-import { getSessionId } from '../../bootstrap/state.js'
+import { getSessionId } from '../../server/bootstrap/state.js'
 import {
   OPENAI_CODEX_API_ENDPOINT,
   OPENAI_CODEX_ORIGINATOR,
@@ -20,9 +20,9 @@ import type {
   ImageGenerationRuntimeConfig,
 } from '../../services/imageGeneration/config.js'
 import { createCombinedAbortSignal } from '../../utils/combinedAbortSignal.js'
-import { getCcHahaDir, getClaudeConfigHomeDir } from '../../utils/envUtils.js'
+import { getCcHahaDir, getClaudeConfigHomeDir } from '../../server/utils/envUtils.js'
 import { getImageStoreDir } from '../../utils/imageStore.js'
-import { getProxyFetchOptions } from '../../utils/proxy.js'
+import { getProxyFetchOptions } from '../../server/utils/proxy.js'
 import { isUserProvidedImage } from '../../utils/userProvidedImages.js'
 import { buildApiSmartImageBodies, isApiSmartImageConfig } from './apiSmart.js'
 import { downloadGeneratedImage } from './imageDownload.js'

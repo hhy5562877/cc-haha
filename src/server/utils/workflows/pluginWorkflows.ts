@@ -1,6 +1,6 @@
 import { stat } from 'fs/promises'
 import { dirname } from 'path'
-import { logForDebugging } from '../../../utils/debug.js'
+import { logForDebugging } from '../debug.js'
 import { loadAllPluginsCacheOnly } from '../plugins/pluginLoader.js'
 import { loadWorkflowsFromDir } from './discovery.js'
 import type { WorkflowDefinition } from './types.js'

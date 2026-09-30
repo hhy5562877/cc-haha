@@ -10,8 +10,8 @@
 import type { Dirent } from 'fs'
 import { readdir, stat } from 'fs/promises'
 import { basename, join } from 'path'
-import { getWorktreePathsPortable } from './getWorktreePathsPortable.js'
-import type { LiteSessionFile } from './sessionStoragePortable.js'
+import { getWorktreePathsPortable } from '../server/utils/getWorktreePathsPortable.js'
+import type { LiteSessionFile } from '../server/utils/sessionStoragePortable.js'
 import {
   canonicalizePath,
   extractFirstPromptFromHead,
@@ -23,7 +23,7 @@ import {
   readSessionLite,
   sanitizePath,
   validateUuid,
-} from './sessionStoragePortable.js'
+} from '../server/utils/sessionStoragePortable.js'
 
 /**
  * Session metadata returned by listSessions.

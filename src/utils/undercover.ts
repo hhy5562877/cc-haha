@@ -23,7 +23,7 @@
 
 import { getRepoClassCached } from './commitAttribution.js'
 import { getGlobalConfig } from './config.js'
-import { isEnvTruthy } from './envUtils.js'
+import { isEnvTruthy } from '../server/utils/envUtils.js'
 
 export function isUndercover(): boolean {
   if (process.env.USER_TYPE === 'ant') {

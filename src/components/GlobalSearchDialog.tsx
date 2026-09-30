@@ -6,7 +6,7 @@ import { useRegisterOverlay } from '../context/overlayContext.js';
 import { useTerminalSize } from '../hooks/useTerminalSize.js';
 import { Text } from '../ink.js';
 import { logEvent } from '../server/services/analytics/index.js';
-import { getCwd } from '../utils/cwd.js';
+import { getCwd } from '../server/utils/cwd.js';
 import { openFileInExternalEditor } from '../utils/editor.js';
 import { truncatePathMiddle, truncateToWidth } from '../utils/format.js';
 import { highlightMatch } from '../utils/highlightMatch.js';

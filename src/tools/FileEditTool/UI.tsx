@@ -11,13 +11,13 @@ import { FileEditToolUpdatedMessage } from '../../components/FileEditToolUpdated
 import { FilePathLink } from '../../components/FilePathLink.js';
 import { Text } from '../../ink.js';
 import type { Tools } from '../../Tool.js';
-import type { Message, ProgressMessage } from '../../types/message.js';
+import type { Message, ProgressMessage } from '../../server/types/message.js';
 import { adjustHunkLineNumbers, CONTEXT_LINES } from '../../utils/diff.js';
 import { FILE_NOT_FOUND_CWD_NOTE, getDisplayPath } from '../../utils/file.js';
-import { logError } from '../../utils/log.js';
+import { logError } from '../../server/utils/log.js';
 import { getPlansDirectory } from '../../utils/plans.js';
 import { readEditContext } from '../../utils/readEditContext.js';
-import { firstLineOf } from '../../utils/stringUtils.js';
+import { firstLineOf } from '../../server/utils/stringUtils.js';
 import type { ThemeName } from '../../utils/theme.js';
 import type { FileEditOutput } from '../../server/tools/FileEditTool/types.js';
 import { findActualString, getPatchForEdit, preserveQuoteStyle } from '../../server/tools/FileEditTool/utils.js';

@@ -20,7 +20,7 @@ import {
   getAllOutputStyles,
   type OutputStyleConfig,
 } from '../../constants/outputStyles.js'
-import { getCwd } from '../../utils/cwd.js'
+import { getCwd } from '../utils/cwd.js'
 import { cleanupOldSessionFiles } from '../../utils/cleanup.js'
 
 const settingsService = new SettingsService()

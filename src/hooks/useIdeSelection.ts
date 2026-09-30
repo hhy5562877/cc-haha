@@ -1,12 +1,12 @@
 import { useEffect, useRef } from 'react'
-import { logError } from 'src/utils/log.js'
+import { logError } from 'src/server/utils/log.ts'
 import { z } from 'zod/v4'
 import type {
   ConnectedMCPServer,
   MCPServerConnection,
 } from '../server/services/mcp/types.js'
 import { getConnectedIdeClient } from '../utils/ide.js'
-import { lazySchema } from '../utils/lazySchema.js'
+import { lazySchema } from '../server/utils/lazySchema.js'
 export type SelectionPoint = {
   line: number
   character: number

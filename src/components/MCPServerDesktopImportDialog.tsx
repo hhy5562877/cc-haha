@@ -1,11 +1,11 @@
 import { c as _c } from "react/compiler-runtime";
 import React, { useCallback, useEffect, useState } from 'react';
 import { gracefulShutdown } from 'src/utils/gracefulShutdown.js';
-import { writeToStdout } from 'src/utils/process.js';
+import { writeToStdout } from 'src/server/utils/process.ts';
 import { Box, color, Text, useTheme } from '../ink.js';
 import { addMcpConfig, getAllMcpConfigs } from '../server/services/mcp/config.js';
 import type { ConfigScope, McpServerConfig, ScopedMcpServerConfig } from '../server/services/mcp/types.js';
-import { plural } from '../utils/stringUtils.js';
+import { plural } from '../server/utils/stringUtils.js';
 import { ConfigurableShortcutHint } from './ConfigurableShortcutHint.js';
 import { SelectMulti } from './CustomSelect/SelectMulti.js';
 import { Byline } from './design-system/Byline.js';

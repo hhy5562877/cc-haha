@@ -1,6 +1,6 @@
 import { join } from 'node:path'
 import { Database } from 'bun:sqlite'
-import { getCcHahaDir, getClaudeConfigHomeDir } from '../../../utils/envUtils.js'
+import { getCcHahaDir, getClaudeConfigHomeDir } from '../../utils/envUtils.js'
 import {
   LOCAL_INDEX_BUSY_TIMEOUT_MS,
   prepareManagedDatabasePath,

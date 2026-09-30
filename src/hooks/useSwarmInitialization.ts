@@ -8,9 +8,9 @@
  */
 
 import { useEffect } from 'react'
-import { getSessionId } from '../bootstrap/state.js'
+import { getSessionId } from '../server/bootstrap/state.js'
 import type { AppState } from '../state/AppState.js'
-import type { Message } from '../types/message.js'
+import type { Message } from '../server/types/message.js'
 import { isAgentSwarmsEnabled } from '../utils/agentSwarmsEnabled.js'
 import { initializeTeammateContextFromSession } from '../utils/swarm/reconnection.js'
 import { readTeamFile } from '../utils/swarm/teamHelpers.js'

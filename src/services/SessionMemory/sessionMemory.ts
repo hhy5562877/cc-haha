@@ -6,7 +6,7 @@
 
 import { writeFile } from 'fs/promises'
 import memoize from 'lodash-es/memoize.js'
-import { getIsRemoteMode } from '../../bootstrap/state.js'
+import { getIsRemoteMode } from '../../server/bootstrap/state.js'
 import { getSystemPrompt } from '../../constants/prompts.js'
 import { getSystemContext, getUserContext } from '../../context.js'
 import type { CanUseToolFn } from '../../hooks/useCanUseTool.js'
@@ -16,14 +16,14 @@ import {
   FileReadTool,
   type Output as FileReadToolOutput,
 } from '../../tools/FileReadTool/FileReadTool.js'
-import type { Message } from '../../types/message.js'
+import type { Message } from '../../server/types/message.js'
 import { count } from '../../utils/array.js'
 import {
   createCacheSafeParams,
   createSubagentContext,
   runForkedAgent,
 } from '../../utils/forkedAgent.js'
-import { getFsImplementation } from '../../utils/fsOperations.js'
+import { getFsImplementation } from '../../server/utils/fsOperations.js'
 import {
   type REPLHookContext,
   registerPostSamplingHook,
@@ -67,7 +67,7 @@ import {
 // These functions return cached values from disk immediately without blocking
 // on GrowthBook initialization. Values may be stale but are updated in background.
 
-import { errorMessage, getErrnoCode } from '../../utils/errors.js'
+import { errorMessage, getErrnoCode } from '../../server/utils/errors.js'
 import {
   getDynamicConfig_CACHED_MAY_BE_STALE,
   getFeatureValue_CACHED_MAY_BE_STALE,

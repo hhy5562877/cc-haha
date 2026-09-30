@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { getSessionId } from '../../bootstrap/state.js'
+import { getSessionId } from '../../server/bootstrap/state.js'
 import type { LocalJSXCommandContext } from '../../commands.js'
 import type { LocalJSXCommandOnDone } from '../../types/command.js'
 import {

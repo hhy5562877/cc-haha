@@ -7,25 +7,25 @@ import { createConnection } from 'net'
 import * as os from 'os'
 import { basename, join, sep as pathSeparator, resolve } from 'path'
 import { logEvent } from '../server/services/analytics/index.js'
-import { getIsScrollDraining, getOriginalCwd } from '../bootstrap/state.js'
+import { getIsScrollDraining, getOriginalCwd } from '../server/bootstrap/state.js'
 import { callIdeRpc } from '../server/services/mcp/client.js'
 import type {
   ConnectedMCPServer,
   MCPServerConnection,
 } from '../server/services/mcp/types.js'
 import { getGlobalConfig, saveGlobalConfig } from './config.js'
-import { env } from './env.js'
-import { getClaudeConfigHomeDir, isEnvTruthy } from './envUtils.js'
+import { env } from '../server/utils/env.js'
+import { getClaudeConfigHomeDir, isEnvTruthy } from '../server/utils/envUtils.js'
 import {
   execFileNoThrow,
   execFileNoThrowWithCwd,
   execSyncWithDefaults_DEPRECATED,
 } from './execFileNoThrow.js'
-import { getFsImplementation } from './fsOperations.js'
+import { getFsImplementation } from '../server/utils/fsOperations.js'
 import { getAncestorPidsAsync } from './genericProcessUtils.js'
 import { isJetBrainsPluginInstalledCached } from './jetbrains.js'
-import { logError } from './log.js'
-import { getPlatform } from './platform.js'
+import { logError } from '../server/utils/log.js'
+import { getPlatform } from '../server/utils/platform.js'
 import { lt } from './semver.js'
 
 // Lazy: IdeOnboardingDialog.tsx pulls React/ink; only needed in interactive onboarding path
@@ -35,16 +35,16 @@ const ideOnboardingDialog =
     require('src/components/IdeOnboardingDialog.js')
 
 import { createAbortController } from './abortController.js'
-import { logForDebugging } from './debug.js'
+import { logForDebugging } from '../server/utils/debug.js'
 import { envDynamic } from './envDynamic.js'
-import { errorMessage, isFsInaccessible } from './errors.js'
+import { errorMessage, isFsInaccessible } from '../server/utils/errors.js'
 /* eslint-enable @typescript-eslint/no-require-imports */
 import {
   checkWSLDistroMatch,
   WindowsToWSLConverter,
 } from './idePathConversion.js'
 import { sleep } from './sleep.js'
-import { jsonParse } from './slowOperations.js'
+import { jsonParse } from '../server/utils/slowOperations.js'
 
 function isProcessRunning(pid: number): boolean {
   try {

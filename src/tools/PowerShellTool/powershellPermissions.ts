@@ -8,8 +8,8 @@ import type { ToolPermissionContext, ToolUseContext } from '../../Tool.js'
 import type {
   PermissionDecisionReason,
   PermissionResult,
-} from '../../types/permissions.js'
-import { getCwd } from '../../utils/cwd.js'
+} from '../../server/types/permissions.js'
+import { getCwd } from '../../server/utils/cwd.js'
 import { isCurrentDirectoryBareGitRepo } from '../../utils/git.js'
 import type { PermissionRule } from '../../server/utils/permissions/PermissionRule.js'
 import type { PermissionUpdate } from '../../server/utils/permissions/PermissionUpdateSchema.js'

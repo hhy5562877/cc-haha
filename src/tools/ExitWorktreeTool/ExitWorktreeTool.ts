@@ -4,7 +4,7 @@ import {
   getProjectRoot,
   setOriginalCwd,
   setProjectRoot,
-} from '../../bootstrap/state.js'
+} from '../../server/bootstrap/state.js'
 import { clearSystemPromptSections } from '../../constants/systemPromptSections.js'
 import { logEvent } from '../../server/services/analytics/index.js'
 import type { Tool } from '../../Tool.js'
@@ -13,7 +13,7 @@ import { count } from '../../utils/array.js'
 import { clearMemoryFileCaches } from '../../utils/claudemd.js'
 import { execFileNoThrow } from '../../utils/execFileNoThrow.js'
 import { updateHooksConfigSnapshot } from '../../utils/hooks/hooksConfigSnapshot.js'
-import { lazySchema } from '../../utils/lazySchema.js'
+import { lazySchema } from '../../server/utils/lazySchema.js'
 import { getPlansDirectory } from '../../utils/plans.js'
 import { setCwd } from '../../utils/Shell.js'
 import { saveWorktreeState } from '../../utils/sessionStorage.js'

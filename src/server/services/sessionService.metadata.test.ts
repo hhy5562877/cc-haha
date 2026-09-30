@@ -4,7 +4,7 @@ import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import { SessionService } from './sessionService.js'
 import { resetSettingsCache } from '../utils/settings/settingsCache.js'
-import { sanitizePath } from '../../utils/sessionStoragePortable.js'
+import { sanitizePath } from '../utils/sessionStoragePortable.js'
 import { HISTORY_SEMANTIC_RECORD_BYTES } from './boundedSessionHistory.js'
 
 const sessionId = 'aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee'

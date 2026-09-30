@@ -1,5 +1,5 @@
 import type { UUID } from 'crypto'
-import { getSessionId } from '../../bootstrap/state.js'
+import { getSessionId } from '../../server/bootstrap/state.js'
 import {
   getBridgeBaseUrlOverride,
   getBridgeTokenOverride,

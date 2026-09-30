@@ -1,7 +1,7 @@
 import type { ContentBlockParam } from '@anthropic-ai/sdk/resources/messages.js'
 import type { Command } from '../commands.js'
 import { AGENT_TOOL_NAME } from '../server/tools/AgentTool/constants.js'
-import { MalformedCommandError } from '../utils/errors.js'
+import { MalformedCommandError } from '../server/utils/errors.js'
 
 export type ParsedAgentCommandArgs = {
   agentType: string

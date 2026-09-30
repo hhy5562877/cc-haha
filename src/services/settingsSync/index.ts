@@ -14,12 +14,12 @@ import axios from 'axios'
 import { mkdir, readFile, stat, writeFile } from 'fs/promises'
 import pickBy from 'lodash-es/pickBy.js'
 import { dirname } from 'path'
-import { getIsInteractive } from '../../bootstrap/state.js'
+import { getIsInteractive } from '../../server/bootstrap/state.js'
 import {
   CLAUDE_AI_INFERENCE_SCOPE,
   getOauthConfig,
   OAUTH_BETA_HEADER,
-} from '../../constants/oauth.js'
+} from '../../server/constants/oauth.js'
 import {
   checkAndRefreshOAuthTokenIfNeeded,
   getClaudeAIOAuthTokens,
@@ -27,7 +27,7 @@ import {
 import { clearMemoryFileCaches } from '../../utils/claudemd.js'
 import { getMemoryPath } from '../../utils/config.js'
 import { logForDiagnosticsNoPII } from '../../utils/diagLogs.js'
-import { classifyAxiosError } from '../../utils/errors.js'
+import { classifyAxiosError } from '../../server/utils/errors.js'
 import { getRepoRemoteHash } from '../../utils/git.js'
 import {
   getAPIProvider,

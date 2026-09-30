@@ -8,9 +8,9 @@ import type {
   AssistantMessage,
   Message,
   UserMessage,
-} from '../types/message.js'
+} from '../server/types/message.js'
 import { normalizeMessagesForAPI } from './messages.js'
-import { jsonStringify } from './slowOperations.js'
+import { jsonStringify } from '../server/utils/slowOperations.js'
 
 type TokenStats = {
   toolRequests: Map<string, number>

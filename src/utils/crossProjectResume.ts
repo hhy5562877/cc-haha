@@ -1,6 +1,6 @@
 import { sep } from 'path'
-import { getOriginalCwd } from '../bootstrap/state.js'
-import type { LogOption } from '../types/logs.js'
+import { getOriginalCwd } from '../server/bootstrap/state.js'
+import type { LogOption } from '../server/types/logs.js'
 import { quote } from './bash/shellQuote.js'
 import { getSessionIdFromLog } from './sessionStorage.js'
 

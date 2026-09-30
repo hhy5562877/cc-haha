@@ -9,10 +9,10 @@ import type { QuerySource } from 'src/constants/querySource.js'
 import type {
   AssistantMessage,
   SystemAPIErrorMessage,
-} from 'src/types/message.js'
+} from 'src/server/types/message.ts'
 import { isAwsCredentialsProviderError } from 'src/utils/aws.js'
-import { logForDebugging } from 'src/utils/debug.js'
-import { logError } from 'src/utils/log.js'
+import { logForDebugging } from 'src/server/utils/debug.ts'
+import { logError } from 'src/server/utils/log.ts'
 import { createSystemAPIErrorMessage } from 'src/utils/messages.js'
 import { getAPIProviderForStatsig } from '../../server/utils/model/providers.js'
 import {
@@ -24,8 +24,8 @@ import {
   isClaudeAISubscriber,
   isEnterpriseSubscriber,
 } from '../../utils/auth.js'
-import { isEnvTruthy } from '../../utils/envUtils.js'
-import { errorMessage } from '../../utils/errors.js'
+import { isEnvTruthy } from '../../server/utils/envUtils.js'
+import { errorMessage } from '../../server/utils/errors.js'
 import {
   type CooldownReason,
   handleFastModeOverageRejection,
@@ -35,7 +35,7 @@ import {
   triggerFastModeCooldown,
 } from '../../utils/fastMode.js'
 import { isNonCustomOpusModel } from '../../server/utils/model/model.js'
-import { disableKeepAlive } from '../../utils/proxy.js'
+import { disableKeepAlive } from '../../server/utils/proxy.js'
 import { sleep } from '../../utils/sleep.js'
 import type { ThinkingConfig } from '../../utils/thinking.js'
 import {

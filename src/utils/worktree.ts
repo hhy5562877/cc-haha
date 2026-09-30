@@ -24,9 +24,9 @@ import {
   sep,
 } from 'path'
 import { saveCurrentProjectConfig } from './config.js'
-import { getCwd } from './cwd.js'
-import { logForDebugging } from './debug.js'
-import { errorMessage, getErrnoCode } from './errors.js'
+import { getCwd } from '../server/utils/cwd.js'
+import { logForDebugging } from '../server/utils/debug.js'
+import { errorMessage, getErrnoCode } from '../server/utils/errors.js'
 import { execFileNoThrow, execFileNoThrowWithCwd } from './execFileNoThrow.js'
 import { parseGitConfigValue } from './git/gitConfigParser.js'
 import {
@@ -47,8 +47,8 @@ import {
   executeWorktreeRemoveHook,
   hasWorktreeCreateHook,
 } from './hooks.js'
-import { containsPathTraversal } from './path.js'
-import { getPlatform } from './platform.js'
+import { containsPathTraversal } from '../server/utils/path.js'
+import { getPlatform } from '../server/utils/platform.js'
 import {
   getInitialSettings,
   getRelativeSettingsFilePathForSource,

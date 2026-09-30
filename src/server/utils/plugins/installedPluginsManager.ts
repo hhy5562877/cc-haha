@@ -14,15 +14,15 @@
  */
 
 import { dirname, join, resolve, sep } from 'path'
-import { logForDebugging } from '../../../utils/debug.js'
-import { errorMessage, isENOENT, toError } from '../../../utils/errors.js'
-import { getFsImplementation } from '../../../utils/fsOperations.js'
-import { logError } from '../../../utils/log.js'
+import { logForDebugging } from '../debug.js'
+import { errorMessage, isENOENT, toError } from '../errors.js'
+import { getFsImplementation } from '../fsOperations.js'
+import { logError } from '../log.js'
 import {
   jsonParse,
   jsonStringify,
   writeFileSync_DEPRECATED,
-} from '../../../utils/slowOperations.js'
+} from '../slowOperations.js'
 import { getPluginsDirectory } from './pluginDirectories.js'
 import {
   type InstalledPlugin,
@@ -40,8 +40,8 @@ type InstalledPluginsMapV2 = Record<string, PluginInstallationEntry[]>
 // Type for persistable scopes (excludes 'flag' which is session-only)
 export type PersistableScope = Exclude<PluginScope, never> // All scopes are persistable in the schema
 
-import { getOriginalCwd } from '../../../bootstrap/state.js'
-import { getCwd } from '../../../utils/cwd.js'
+import { getOriginalCwd } from '../../bootstrap/state.js'
+import { getCwd } from '../cwd.js'
 import { getHeadForDir } from '../../../utils/git/gitFilesystem.js'
 import type { EditableSettingSource } from '../settings/constants.js'
 import {

@@ -3,7 +3,7 @@ import { basename } from 'path';
 import { toString as qrToString } from 'qrcode';
 import * as React from 'react';
 import { useEffect, useState } from 'react';
-import { getOriginalCwd } from '../bootstrap/state.js';
+import { getOriginalCwd } from '../server/bootstrap/state.js';
 import { buildActiveFooterText, buildIdleFooterText, FAILED_FOOTER_TEXT, getBridgeStatus } from '../bridge/bridgeStatusUtil.js';
 import { BRIDGE_FAILED_INDICATOR, BRIDGE_READY_INDICATOR } from '../constants/figures.js';
 import { useRegisterOverlay } from '../context/overlayContext.js';

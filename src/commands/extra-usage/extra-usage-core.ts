@@ -9,7 +9,7 @@ import { getSubscriptionType } from '../../utils/auth.js'
 import { hasClaudeAiBillingAccess } from '../../utils/billing.js'
 import { openBrowser } from '../../utils/browser.js'
 import { getGlobalConfig, saveGlobalConfig } from '../../utils/config.js'
-import { logError } from '../../utils/log.js'
+import { logError } from '../../server/utils/log.js'
 
 type ExtraUsageResult =
   | { type: 'message'; value: string }

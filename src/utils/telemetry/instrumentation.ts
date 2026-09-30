@@ -38,24 +38,24 @@ import {
   setLoggerProvider,
   setMeterProvider,
   setTracerProvider,
-} from 'src/bootstrap/state.js'
+} from 'src/server/bootstrap/state.ts'
 import {
   getOtelHeadersFromHelper,
   getSubscriptionType,
   is1PApiCustomer,
   isClaudeAISubscriber,
 } from 'src/utils/auth.js'
-import { getPlatform, getWslVersion } from 'src/utils/platform.js'
+import { getPlatform, getWslVersion } from 'src/server/utils/platform.ts'
 
-import { getCACertificates } from '../caCerts.js'
-import { registerCleanup } from '../cleanupRegistry.js'
-import { getHasFormattedOutput, logForDebugging } from '../debug.js'
-import { isEnvTruthy } from '../envUtils.js'
-import { errorMessage } from '../errors.js'
-import { getMTLSConfig } from '../mtls.js'
-import { getProxyUrl, shouldBypassProxy } from '../proxy.js'
+import { getCACertificates } from '../../server/utils/caCerts.js'
+import { registerCleanup } from '../../server/utils/cleanupRegistry.js'
+import { getHasFormattedOutput, logForDebugging } from '../../server/utils/debug.js'
+import { isEnvTruthy } from '../../server/utils/envUtils.js'
+import { errorMessage } from '../../server/utils/errors.js'
+import { getMTLSConfig } from '../../server/utils/mtls.js'
+import { getProxyUrl, shouldBypassProxy } from '../../server/utils/proxy.js'
 import { getSettings_DEPRECATED } from '../../server/utils/settings/settings.js'
-import { jsonStringify } from '../slowOperations.js'
+import { jsonStringify } from '../../server/utils/slowOperations.js'
 import { profileCheckpoint } from '../startupProfiler.js'
 import { isBetaTracingEnabled } from './betaSessionTracing.js'
 import { BigQueryMetricsExporter } from './bigqueryExporter.js'

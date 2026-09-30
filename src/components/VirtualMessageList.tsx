@@ -7,13 +7,13 @@ import type { ScrollBoxHandle } from '../ink/components/ScrollBox.js';
 import type { DOMElement } from '../ink/dom.js';
 import type { MatchPosition } from '../ink/render-to-screen.js';
 import { Box } from '../ink.js';
-import type { RenderableMessage } from '../types/message.js';
+import type { RenderableMessage } from '../server/types/message.js';
 import { TextHoverColorContext } from './design-system/ThemedText.js';
 import { ScrollChromeContext } from './FullscreenLayout.js';
 
 // Rows of breathing room above the target when we scrollTo.
 const HEADROOM = 3;
-import { logForDebugging } from '../utils/debug.js';
+import { logForDebugging } from '../server/utils/debug.js';
 import { sleep } from '../utils/sleep.js';
 import { renderableSearchText } from '../utils/transcriptSearch.js';
 import { isNavigableMessage, type MessageActionsNav, type MessageActionsState, type NavigableMessage, stripSystemReminders, toolCallOf } from './messageActions.js';

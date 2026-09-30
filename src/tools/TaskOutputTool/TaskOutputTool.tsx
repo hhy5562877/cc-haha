@@ -13,13 +13,13 @@ import type { LocalAgentTaskState } from '../../tasks/LocalAgentTask/LocalAgentT
 import type { LocalShellTaskState } from '../../tasks/LocalShellTask/guards.js';
 import type { RemoteAgentTaskState } from '../../tasks/RemoteAgentTask/RemoteAgentTask.js';
 import type { TaskState } from '../../tasks/types.js';
-import { AbortError } from '../../utils/errors.js';
-import { lazySchema } from '../../utils/lazySchema.js';
+import { AbortError } from '../../server/utils/errors.js';
+import { lazySchema } from '../../server/utils/lazySchema.js';
 import { extractTextContent } from '../../utils/messages.js';
 import { semanticBoolean } from '../../utils/semanticBoolean.js';
 import { sleep } from '../../utils/sleep.js';
-import { jsonParse } from '../../utils/slowOperations.js';
-import { countCharInString } from '../../utils/stringUtils.js';
+import { jsonParse } from '../../server/utils/slowOperations.js';
+import { countCharInString } from '../../server/utils/stringUtils.js';
 import { getTaskOutput } from '../../utils/task/diskOutput.js';
 import { updateTaskState } from '../../utils/task/framework.js';
 import { formatTaskOutput } from '../../utils/task/outputFormatting.js';

@@ -3,7 +3,7 @@ import { buildTool, type ToolDef } from '../../Tool.js'
 import { cronToHuman } from '../../utils/cron.js'
 import { listAllCronTasks } from '../../utils/cronTasks.js'
 import { truncate } from '../../utils/format.js'
-import { lazySchema } from '../../utils/lazySchema.js'
+import { lazySchema } from '../../server/utils/lazySchema.js'
 import { getTeammateContext } from '../../utils/teammateContext.js'
 import {
   buildCronListPrompt,

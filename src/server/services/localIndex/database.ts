@@ -1,6 +1,6 @@
 import { statSync } from 'node:fs'
 import { Database } from 'bun:sqlite'
-import { getClaudeConfigHomeDir } from '../../../utils/envUtils.js'
+import { getClaudeConfigHomeDir } from '../../utils/envUtils.js'
 import { getLocalIndexDatabasePath } from './config.js'
 import {
   LOCAL_INDEX_BUSY_TIMEOUT_MS,

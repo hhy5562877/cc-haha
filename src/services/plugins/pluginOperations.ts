@@ -12,12 +12,12 @@
  * - Can throw errors for unexpected failures
  */
 import { dirname, join } from 'path'
-import { getOriginalCwd } from '../../bootstrap/state.js'
+import { getOriginalCwd } from '../../server/bootstrap/state.js'
 import { isBuiltinPluginId } from '../../plugins/builtinPlugins.js'
 import type { LoadedPlugin, PluginManifest } from '../../types/plugin.js'
-import { isENOENT, toError } from '../../utils/errors.js'
-import { getFsImplementation } from '../../utils/fsOperations.js'
-import { logError } from '../../utils/log.js'
+import { isENOENT, toError } from '../../server/utils/errors.js'
+import { getFsImplementation } from '../../server/utils/fsOperations.js'
+import { logError } from '../../server/utils/log.js'
 import {
   clearAllCaches,
   markPluginVersionOrphaned,
@@ -67,7 +67,7 @@ import {
   getSettingsForSource,
   updateSettingsForSource,
 } from '../../server/utils/settings/settings.js'
-import { plural } from '../../utils/stringUtils.js'
+import { plural } from '../../server/utils/stringUtils.js'
 
 /** Valid installable scopes (excludes 'managed' which can only be installed from managed-settings.json) */
 export const VALID_INSTALLABLE_SCOPES = ['user', 'project', 'local'] as const

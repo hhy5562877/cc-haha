@@ -23,7 +23,7 @@ import { openaiResponsesToAnthropic } from '../../../server/proxy/transform/open
 import { openaiResponsesStreamToAnthropic } from '../../../server/proxy/streaming/openaiResponsesStreamToAnthropic.js'
 import { openaiResponsesStreamToAnthropicResponse } from '../../../server/proxy/streaming/openaiResponsesStreamToAnthropicResponse.js'
 import type { AnthropicRequest } from '../../../server/proxy/transform/types.js'
-import { logForDebugging } from '../../../utils/debug.js'
+import { logForDebugging } from '../../utils/debug.js'
 import { OPENAI_CODEX_STREAM_MARKER_HEADER } from './streamPolicy.js'
 
 export const OPENAI_OAUTH_DUMMY_KEY = 'openai-oauth-dummy-key'

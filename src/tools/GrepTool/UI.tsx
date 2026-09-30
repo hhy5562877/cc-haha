@@ -7,7 +7,7 @@ import { MessageResponse } from '../../components/MessageResponse.js';
 import { TOOL_SUMMARY_MAX_LENGTH } from '../../constants/toolLimits.js';
 import { Box, Text } from '../../ink.js';
 import type { ToolProgressData } from '../../Tool.js';
-import type { ProgressMessage } from '../../types/message.js';
+import type { ProgressMessage } from '../../server/types/message.js';
 import { FILE_NOT_FOUND_CWD_NOTE, getDisplayPath } from '../../utils/file.js';
 import { truncate } from '../../utils/format.js';
 import { extractTag } from '../../utils/messages.js';

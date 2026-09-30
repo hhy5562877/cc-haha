@@ -7,20 +7,20 @@ import {
   getIsInteractive,
   getIsNonInteractiveSession,
   getSessionBypassPermissionsMode,
-} from '../../bootstrap/state.js'
+} from '../../server/bootstrap/state.js'
 import { getFeatureValue_CACHED_MAY_BE_STALE } from '../../server/services/analytics/growthbook.js'
 import type { ScopedMcpServerConfig } from '../../server/services/mcp/types.js'
-import { isInBundledMode } from '../bundledMode.js'
+import { isInBundledMode } from '../../server/utils/bundledMode.js'
 import { getGlobalConfig, saveGlobalConfig } from '../config.js'
-import { logForDebugging } from '../debug.js'
+import { logForDebugging } from '../../server/utils/debug.js'
 import {
   getClaudeConfigHomeDir,
   isEnvDefinedFalsy,
   isEnvTruthy,
-} from '../envUtils.js'
+} from '../../server/utils/envUtils.js'
 import { execFileNoThrowWithCwd } from '../execFileNoThrow.js'
-import { getPlatform } from '../platform.js'
-import { jsonStringify } from '../slowOperations.js'
+import { getPlatform } from '../../server/utils/platform.js'
+import { jsonStringify } from '../../server/utils/slowOperations.js'
 import {
   CLAUDE_IN_CHROME_MCP_SERVER_NAME,
   getAllBrowserDataPaths,

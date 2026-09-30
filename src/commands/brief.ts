@@ -1,6 +1,6 @@
 import { feature } from 'bun:bundle'
 import { z } from 'zod/v4'
-import { getKairosActive, setUserMsgOptIn } from '../bootstrap/state.js'
+import { getKairosActive, setUserMsgOptIn } from '../server/bootstrap/state.js'
 import { getFeatureValue_CACHED_MAY_BE_STALE } from '../server/services/analytics/growthbook.js'
 import {
   type AnalyticsMetadata_I_VERIFIED_THIS_IS_NOT_CODE_OR_FILEPATHS,
@@ -14,7 +14,7 @@ import type {
   LocalJSXCommandContext,
   LocalJSXCommandOnDone,
 } from '../types/command.js'
-import { lazySchema } from '../utils/lazySchema.js'
+import { lazySchema } from '../server/utils/lazySchema.js'
 
 // Zod guards against fat-fingered GB pushes (same pattern as pollConfig.ts /
 // cronScheduler.ts). A malformed config falls back to DEFAULT_BRIEF_CONFIG

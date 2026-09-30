@@ -8,9 +8,9 @@ import {
   getInlinePlugins,
   getMainLoopModelOverride,
   getSessionBypassPermissionsMode,
-} from '../../bootstrap/state.js'
+} from '../../server/bootstrap/state.js'
 import { quote } from '../bash/shellQuote.js'
-import { isInBundledMode } from '../bundledMode.js'
+import { isInBundledMode } from '../../server/utils/bundledMode.js'
 import type { PermissionMode } from '../../server/utils/permissions/PermissionMode.js'
 import { getTeammateModeFromSnapshot } from './backends/teammateModeSnapshot.js'
 import { TEAMMATE_COMMAND_ENV_VAR } from './constants.js'

@@ -26,7 +26,7 @@ import type { KeyboardEvent } from '../../ink/events/keyboard-event.js';
 import { Box, Text } from '../../ink.js';
 import { useKeybinding } from '../../keybindings/useKeybinding.js';
 import { count } from '../../utils/array.js';
-import { plural } from '../../utils/stringUtils.js';
+import { plural } from '../../server/utils/stringUtils.js';
 import { Divider } from '../design-system/Divider.js';
 type Props = {
   tools: Tools;

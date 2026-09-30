@@ -8,8 +8,8 @@ const sessionTranscriptModule = feature('KAIROS')
   : null
 
 import { APIUserAbortError } from '@anthropic-ai/sdk'
-import { markPostCompaction } from 'src/bootstrap/state.js'
-import { getInvokedSkillsForAgent } from '../../bootstrap/state.js'
+import { markPostCompaction } from 'src/server/bootstrap/state.ts'
+import { getInvokedSkillsForAgent } from '../../server/bootstrap/state.js'
 import type { QuerySource } from '../../constants/querySource.js'
 import type { CanUseToolFn } from '../../hooks/useCanUseTool.js'
 import type { Tool, ToolUseContext } from '../../Tool.js'
@@ -20,7 +20,7 @@ import {
   FILE_UNCHANGED_STUB,
 } from '../../tools/FileReadTool/prompt.js'
 import { ToolSearchTool } from '../../tools/ToolSearchTool/ToolSearchTool.js'
-import type { AgentId } from '../../types/ids.js'
+import type { AgentId } from '../../server/types/ids.js'
 import type {
   AssistantMessage,
   AttachmentMessage,
@@ -30,7 +30,7 @@ import type {
   SystemCompactBoundaryMessage,
   SystemMessage,
   UserMessage,
-} from '../../types/message.js'
+} from '../../server/types/message.js'
 import {
   createAttachmentMessage,
   generateFileAttachment,
@@ -44,8 +44,8 @@ import {
   analyzeContext,
   tokenStatsToStatsigMetrics,
 } from '../../utils/contextAnalysis.js'
-import { logForDebugging } from '../../utils/debug.js'
-import { hasExactErrorMessage } from '../../utils/errors.js'
+import { logForDebugging } from '../../server/utils/debug.js'
+import { hasExactErrorMessage } from '../../server/utils/errors.js'
 import { cacheToObject } from '../../utils/fileStateCache.js'
 import {
   type CacheSafeParams,
@@ -55,7 +55,7 @@ import {
   executePostCompactHooks,
   executePreCompactHooks,
 } from '../../utils/hooks.js'
-import { logError } from '../../utils/log.js'
+import { logError } from '../../server/utils/log.js'
 import { MEMORY_TYPE_VALUES } from '../../utils/memory/types.js'
 import {
   createCompactBoundaryMessage,
@@ -66,7 +66,7 @@ import {
   isCompactBoundaryMessage,
   normalizeMessagesForAPI,
 } from '../../utils/messages.js'
-import { expandPath } from '../../utils/path.js'
+import { expandPath } from '../../server/utils/path.js'
 import { getPlan, getPlanFilePath } from '../../utils/plans.js'
 import {
   isSessionActivityTrackingActive,
@@ -78,7 +78,7 @@ import {
   reAppendSessionMetadata,
 } from '../../utils/sessionStorage.js'
 import { sleep } from '../../utils/sleep.js'
-import { jsonStringify } from '../../utils/slowOperations.js'
+import { jsonStringify } from '../../server/utils/slowOperations.js'
 /* eslint-enable @typescript-eslint/no-require-imports */
 import { asSystemPrompt } from '../../utils/systemPromptType.js'
 import { getTaskOutputPath } from '../../utils/task/diskOutput.js'

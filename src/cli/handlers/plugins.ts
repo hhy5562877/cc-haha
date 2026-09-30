@@ -5,7 +5,7 @@
 /* eslint-disable custom-rules/no-process-exit -- CLI subcommand handlers intentionally exit */
 import figures from 'figures'
 import { basename, dirname } from 'path'
-import { setUseCoworkPlugins } from '../../bootstrap/state.js'
+import { setUseCoworkPlugins } from '../../server/bootstrap/state.js'
 import {
   type AnalyticsMetadata_I_VERIFIED_THIS_IS_NOT_CODE_OR_FILEPATHS,
   type AnalyticsMetadata_I_VERIFIED_THIS_IS_PII_TAGGED,
@@ -22,8 +22,8 @@ import {
   VALID_UPDATE_SCOPES,
 } from '../../services/plugins/pluginCliCommands.js'
 import { getPluginErrorMessage } from '../../types/plugin.js'
-import { errorMessage } from '../../utils/errors.js'
-import { logError } from '../../utils/log.js'
+import { errorMessage } from '../../server/utils/errors.js'
+import { logError } from '../../server/utils/log.js'
 import { clearAllCaches } from '../../server/utils/plugins/cacheUtils.js'
 import { getInstallCounts } from '../../server/utils/plugins/installCounts.js'
 import {
@@ -55,8 +55,8 @@ import {
   validateManifest,
   validatePluginContents,
 } from '../../server/utils/plugins/validatePlugin.js'
-import { jsonStringify } from '../../utils/slowOperations.js'
-import { plural } from '../../utils/stringUtils.js'
+import { jsonStringify } from '../../server/utils/slowOperations.js'
+import { plural } from '../../server/utils/stringUtils.js'
 import { cliError, cliOk } from '../exit.js'
 
 // Re-export for main.tsx to reference in option definitions

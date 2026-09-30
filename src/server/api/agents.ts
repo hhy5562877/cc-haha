@@ -36,7 +36,7 @@ import {
   getAgentDefinitionsWithOverrides,
   type AgentDefinition as SharedAgentDefinition,
 } from '../tools/AgentTool/loadAgentsDir.js'
-import { getCwd } from '../../utils/cwd.js'
+import { getCwd } from '../utils/cwd.js'
 import { AGENT_COLORS } from '../tools/AgentTool/agentColorManager.js'
 import { getBuiltInAgentsWithoutOverrides } from '../tools/AgentTool/builtInAgents.js'
 import {

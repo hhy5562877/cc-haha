@@ -50,7 +50,7 @@ import {
   resolveModelReasoningProfile,
   type ModelReasoningApiFormat,
   type ModelReasoningProviderKind,
-} from '../../shared/modelReasoning.js'
+} from '../shared/modelReasoning.js'
 
 // ─── Fallback models ──────────────────────────────────────────────────────────
 // 目录的唯一事实源是 DAL 网关（见 dalModelCatalog.ts）：登录后由

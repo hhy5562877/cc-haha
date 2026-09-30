@@ -23,7 +23,7 @@ export {
 } from './teammateContext.js'
 
 import type { AppState } from '../state/AppState.js'
-import { isEnvTruthy } from './envUtils.js'
+import { isEnvTruthy } from '../server/utils/envUtils.js'
 import { getTeammateContext } from './teammateContext.js'
 
 /**

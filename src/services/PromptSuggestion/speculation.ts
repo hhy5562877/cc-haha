@@ -2,7 +2,7 @@ import { randomUUID } from 'crypto'
 import { rm } from 'fs'
 import { appendFile, copyFile, mkdir } from 'fs/promises'
 import { dirname, isAbsolute, join, relative } from 'path'
-import { getCwdState } from '../../bootstrap/state.js'
+import { getCwdState } from '../../server/bootstrap/state.js'
 import type { CompletionBoundary } from '../../state/AppStateStore.js'
 import {
   type AppState,
@@ -12,13 +12,13 @@ import {
 } from '../../state/AppStateStore.js'
 import { commandHasAnyCd } from '../../tools/BashTool/bashPermissions.js'
 import { checkReadOnlyConstraints } from '../../tools/BashTool/readOnlyValidation.js'
-import type { SpeculationAcceptMessage } from '../../types/logs.js'
-import type { Message } from '../../types/message.js'
+import type { SpeculationAcceptMessage } from '../../server/types/logs.js'
+import type { Message } from '../../server/types/message.js'
 import { createChildAbortController } from '../../utils/abortController.js'
 import { count } from '../../utils/array.js'
 import { getGlobalConfig } from '../../utils/config.js'
-import { logForDebugging } from '../../utils/debug.js'
-import { errorMessage } from '../../utils/errors.js'
+import { logForDebugging } from '../../server/utils/debug.js'
+import { errorMessage } from '../../server/utils/errors.js'
 import {
   type FileStateCache,
   mergeFileStateCaches,
@@ -31,7 +31,7 @@ import {
 } from '../../utils/forkedAgent.js'
 import { formatDuration, formatNumber } from '../../utils/format.js'
 import type { REPLHookContext } from '../../utils/hooks/postSamplingHooks.js'
-import { logError } from '../../utils/log.js'
+import { logError } from '../../server/utils/log.js'
 import type { SetAppState } from '../../utils/messageQueueManager.js'
 import {
   createSystemMessage,
@@ -42,7 +42,7 @@ import {
 import { getClaudeTempDir } from '../../server/utils/permissions/filesystem.js'
 import { extractReadFilesFromMessages } from '../../utils/queryHelpers.js'
 import { getTranscriptPath } from '../../utils/sessionStorage.js'
-import { jsonStringify } from '../../utils/slowOperations.js'
+import { jsonStringify } from '../../server/utils/slowOperations.js'
 import {
   type AnalyticsMetadata_I_VERIFIED_THIS_IS_NOT_CODE_OR_FILEPATHS,
   logEvent,

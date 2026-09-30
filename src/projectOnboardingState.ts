@@ -4,9 +4,9 @@ import {
   getCurrentProjectConfig,
   saveCurrentProjectConfig,
 } from './utils/config.js'
-import { getCwd } from './utils/cwd.js'
+import { getCwd } from './server/utils/cwd.js'
 import { isDirEmpty } from './utils/file.js'
-import { getFsImplementation } from './utils/fsOperations.js'
+import { getFsImplementation } from './server/utils/fsOperations.js'
 
 export type Step = {
   key: string

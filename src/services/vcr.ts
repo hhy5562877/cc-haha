@@ -12,13 +12,13 @@ import type {
   StreamEvent,
   SystemAPIErrorMessage,
   UserMessage,
-} from '../types/message.js'
-import { getCwd } from '../utils/cwd.js'
-import { env } from '../utils/env.js'
-import { getClaudeConfigHomeDir, isEnvTruthy } from '../utils/envUtils.js'
-import { getErrnoCode } from '../utils/errors.js'
+} from '../server/types/message.js'
+import { getCwd } from '../server/utils/cwd.js'
+import { env } from '../server/utils/env.js'
+import { getClaudeConfigHomeDir, isEnvTruthy } from '../server/utils/envUtils.js'
+import { getErrnoCode } from '../server/utils/errors.js'
 import { normalizeMessagesForAPI } from '../utils/messages.js'
-import { jsonParse, jsonStringify } from '../utils/slowOperations.js'
+import { jsonParse, jsonStringify } from '../server/utils/slowOperations.js'
 
 function shouldUseVCR(): boolean {
   if (process.env.NODE_ENV === 'test') {

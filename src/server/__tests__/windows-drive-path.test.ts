@@ -8,7 +8,7 @@ import {
 } from '../services/windowsDrivePath.js'
 import { getRepositoryContext } from '../services/repositoryLaunchService.js'
 import { SessionService } from '../services/sessionService.js'
-import { sanitizePath } from '../../utils/sessionStoragePortable.js'
+import { sanitizePath } from '../utils/sessionStoragePortable.js'
 
 describe('Windows drive root path handling', () => {
   it('normalizes drive-relative root inputs to absolute drive roots on Windows', () => {

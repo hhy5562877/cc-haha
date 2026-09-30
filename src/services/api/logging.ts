@@ -12,16 +12,16 @@ import {
   getTeleportedSessionInfo,
   markFirstTeleportMessageLogged,
   setLastApiCompletionTimestamp,
-} from 'src/bootstrap/state.js'
+} from 'src/server/bootstrap/state.ts'
 import type { QueryChainTracking } from 'src/Tool.js'
 import { isConnectorTextBlock } from 'src/types/connectorText.js'
-import type { AssistantMessage } from 'src/types/message.js'
-import { logForDebugging } from 'src/utils/debug.js'
+import type { AssistantMessage } from 'src/server/types/message.ts'
+import { logForDebugging } from 'src/server/utils/debug.ts'
 import type { EffortLevel } from 'src/utils/effort.js'
-import { logError } from 'src/utils/log.js'
+import { logError } from 'src/server/utils/log.ts'
 import { getAPIProviderForStatsig } from '../../server/utils/model/providers.js'
 import type { PermissionMode } from 'src/server/utils/permissions/PermissionMode.js'
-import { jsonStringify } from 'src/utils/slowOperations.js'
+import { jsonStringify } from 'src/server/utils/slowOperations.ts'
 import { logOTelEvent } from 'src/utils/telemetry/events.js'
 import {
   endLLMRequestSpan,

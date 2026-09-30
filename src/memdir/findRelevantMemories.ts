@@ -1,9 +1,9 @@
 import { feature } from 'bun:bundle'
-import { logForDebugging } from '../utils/debug.js'
-import { errorMessage } from '../utils/errors.js'
+import { logForDebugging } from '../server/utils/debug.js'
+import { errorMessage } from '../server/utils/errors.js'
 import { getDefaultSonnetModel } from '../server/utils/model/model.js'
 import { sideQuery } from '../utils/sideQuery.js'
-import { jsonParse } from '../utils/slowOperations.js'
+import { jsonParse } from '../server/utils/slowOperations.js'
 import {
   formatMemoryManifest,
   type MemoryHeader,

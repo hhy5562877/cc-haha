@@ -28,10 +28,10 @@ import {
   getAdditionalDirectoriesForClaudeMd,
   getCwdState,
   getOriginalCwd,
-} from '../../bootstrap/state.js'
-import { logForDebugging } from '../debug.js'
-import { expandPath } from '../path.js'
-import { getPlatform, type Platform } from '../platform.js'
+} from '../../server/bootstrap/state.js'
+import { logForDebugging } from '../../server/utils/debug.js'
+import { expandPath } from '../../server/utils/path.js'
+import { getPlatform, type Platform } from '../../server/utils/platform.js'
 import { settingsChangeDetector } from '../../server/utils/settings/changeDetector.js'
 import { SETTING_SOURCES, type SettingSource } from '../../server/utils/settings/constants.js'
 import { getManagedSettingsDropInDir } from '../../server/utils/settings/managedPath.js'
@@ -53,7 +53,7 @@ import { BASH_TOOL_NAME } from 'src/tools/BashTool/toolName.js'
 import { FILE_EDIT_TOOL_NAME } from 'src/server/tools/FileEditTool/constants.js'
 import { FILE_READ_TOOL_NAME } from 'src/tools/FileReadTool/prompt.js'
 import { WEB_FETCH_TOOL_NAME } from 'src/tools/WebFetchTool/prompt.js'
-import { errorMessage } from '../errors.js'
+import { errorMessage } from '../../server/utils/errors.js'
 import { getClaudeTempDir } from '../../server/utils/permissions/filesystem.js'
 import type { PermissionRuleValue } from '../../server/utils/permissions/PermissionRule.js'
 import { ripgrepCommand } from '../ripgrep.js'

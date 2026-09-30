@@ -1,7 +1,7 @@
 import { createHash } from 'node:crypto'
 import { readFileSync, statSync } from 'node:fs'
 import { isAbsolute } from 'node:path'
-import type { TeamPlanAgentSnapshot } from '../../../shared/teamPlan.js'
+import type { TeamPlanAgentSnapshot } from '../../shared/teamPlan.js'
 
 const MAX_PRESET_BYTES = 2 * 1024 * 1024
 function sourceHash(path: string): string {

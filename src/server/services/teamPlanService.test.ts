@@ -5,7 +5,7 @@ import { join } from 'node:path'
 import { TeamPlanService } from './teamPlanService.js'
 import { approveTeamPlan, ensureTeamDraft, readTeamPlan, replaceTeamPlan, stageMember, submitTeamPlan } from '../../utils/swarm/teamPlanStore.js'
 import { writeTeamFileAsync } from '../../utils/swarm/teamHelpers.js'
-import type { TeamPlanRecord } from '../../shared/teamPlan.js'
+import type { TeamPlanRecord } from '../shared/teamPlan.js'
 const saved = { home: process.env.HOME, config: process.env.CLAUDE_CONFIG_DIR }
 let root: string
 beforeEach(async () => {

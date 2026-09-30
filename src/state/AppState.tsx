@@ -3,7 +3,7 @@ import { feature } from 'bun:bundle';
 import React, { useContext, useEffect, useEffectEvent, useState, useSyncExternalStore } from 'react';
 import { MailboxProvider } from '../context/mailbox.js';
 import { useSettingsChange } from '../hooks/useSettingsChange.js';
-import { logForDebugging } from '../utils/debug.js';
+import { logForDebugging } from '../server/utils/debug.js';
 import { createDisabledBypassPermissionsContext, isBypassPermissionsModeDisabled } from '../server/utils/permissions/permissionSetup.js';
 import { applySettingsChange } from '../server/utils/settings/applySettingsChange.js';
 import type { SettingSource } from '../server/utils/settings/constants.js';

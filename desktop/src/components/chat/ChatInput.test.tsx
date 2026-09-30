@@ -1,6 +1,6 @@
 import { getComposerViewForTesting } from './MentionComposer'
 import { useTeamPlanStore } from '@/stores/teamPlanStore'
-import type { TeamPlanRecord } from '../../../../src/shared/teamPlan'
+import type { TeamPlanRecord } from '../../../../src/server/shared/teamPlan.js'
 import { useSideChatStore } from '@/stores/sideChatStore'
 import { fireEvent, render, screen, waitFor, within } from '@testing-library/react'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'

@@ -1,7 +1,7 @@
 import vm from 'vm'
 import type { CanUseToolFn } from '../../hooks/useCanUseTool.js'
 import type { ToolUseContext } from '../../Tool.js'
-import { logForDebugging } from '../debug.js'
+import { logForDebugging } from '../../server/utils/debug.js'
 import { compileWorkflowScript, installDeterminismGuards } from '../../server/utils/workflows/compile.js'
 import {
   WORKFLOW_MAX_COLLECTED_LOGS,

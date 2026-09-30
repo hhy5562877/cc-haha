@@ -3,8 +3,8 @@ import { tmpdir } from 'os'
 import { join } from 'path'
 import { type AnsiToPngOptions, ansiToPng } from './ansiToPng.js'
 import { execFileNoThrowWithCwd } from './execFileNoThrow.js'
-import { logError } from './log.js'
-import { getPlatform } from './platform.js'
+import { logError } from '../server/utils/log.js'
+import { getPlatform } from '../server/utils/platform.js'
 
 /**
  * Copies an image (from ANSI text) to the system clipboard.

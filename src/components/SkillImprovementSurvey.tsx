@@ -3,7 +3,7 @@ import React, { useEffect, useRef } from 'react';
 import { BLACK_CIRCLE, BULLET_OPERATOR } from '../constants/figures.js';
 import { Box, Text } from '../ink.js';
 import type { SkillUpdate } from '../utils/hooks/skillImprovement.js';
-import { normalizeFullWidthDigits } from '../utils/stringUtils.js';
+import { normalizeFullWidthDigits } from '../server/utils/stringUtils.js';
 import { isValidResponseInput } from './FeedbackSurvey/FeedbackSurveyView.js';
 import type { FeedbackSurveyResponse } from './FeedbackSurvey/utils.js';
 type Props = {

@@ -5,8 +5,8 @@ import {
 } from '@modelcontextprotocol/sdk/types.js'
 import type WsWebSocket from 'ws'
 import { logForDiagnosticsNoPII } from './diagLogs.js'
-import { toError } from './errors.js'
-import { jsonParse, jsonStringify } from './slowOperations.js'
+import { toError } from '../server/utils/errors.js'
+import { jsonParse, jsonStringify } from '../server/utils/slowOperations.js'
 
 // WebSocket readyState constants (same for both native and ws)
 const WS_CONNECTING = 0

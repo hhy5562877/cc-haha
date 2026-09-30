@@ -1,4 +1,4 @@
-import type { Message } from '../types/message.js'
+import type { Message } from '../server/types/message.js'
 import { getCompanion } from './companion.js'
 import { getGlobalConfig } from '../utils/config.js'
 

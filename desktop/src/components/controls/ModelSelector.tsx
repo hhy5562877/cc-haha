@@ -45,7 +45,7 @@ import {
   isModelReasoningEffort,
   normalizeModelReasoningEffort,
   resolveModelReasoningProfile,
-} from '../../../../src/shared/modelReasoning'
+} from '../../../../src/server/shared/modelReasoning.js'
 
 type ProviderChoice = {
   providerId: string | null

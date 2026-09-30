@@ -3,7 +3,7 @@ import memoize from 'lodash-es/memoize.js'
 import {
   getAdditionalDirectoriesForClaudeMd,
   setCachedClaudeMdContent,
-} from './bootstrap/state.js'
+} from './server/bootstrap/state.js'
 import { getLocalISODate } from './constants/common.js'
 import {
   filterInjectedMemoryFiles,
@@ -11,11 +11,11 @@ import {
   getMemoryFiles,
 } from './utils/claudemd.js'
 import { logForDiagnosticsNoPII } from './utils/diagLogs.js'
-import { isBareMode, isEnvTruthy } from './utils/envUtils.js'
+import { isBareMode, isEnvTruthy } from './server/utils/envUtils.js'
 import { execFileNoThrow } from './utils/execFileNoThrow.js'
 import { getBranch, getDefaultBranch, getIsGit, gitExe } from './utils/git.js'
 import { shouldIncludeGitInstructions } from './utils/gitSettings.js'
-import { logError } from './utils/log.js'
+import { logError } from './server/utils/log.js'
 import { getInstructionFilesMode, type InstructionFilesMode } from './utils/instructionFiles.js'
 
 const MAX_STATUS_CHARS = 2000

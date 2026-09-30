@@ -1,8 +1,8 @@
 import chokidar, { type FSWatcher } from 'chokidar'
 import { isAbsolute, join } from 'path'
-import { registerCleanup } from '../cleanupRegistry.js'
-import { logForDebugging } from '../debug.js'
-import { errorMessage } from '../errors.js'
+import { registerCleanup } from '../../server/utils/cleanupRegistry.js'
+import { logForDebugging } from '../../server/utils/debug.js'
+import { errorMessage } from '../../server/utils/errors.js'
 import {
   executeCwdChangedHooks,
   executeFileChangedHooks,

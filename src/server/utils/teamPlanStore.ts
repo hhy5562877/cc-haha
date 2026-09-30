@@ -15,8 +15,8 @@ import { AsyncLocalStorage } from 'node:async_hooks'
 import { lock } from '../../utils/lockfile.js'
 import type { TeamFile as TeamConfigFile } from './teamFileTypes.js'
 export type { TeamConfigFile }
-import { isValidTeamMemberName, teamPlanRecordSchema, type TeamPlanIdentity, type TeamPlanMember, type TeamPlanPatch, type TeamPlanRecord, type TeamPlanRuntime } from '../../shared/teamPlan.js'
-import { getClaudeConfigHomeDir, getTeamsDir } from '../../utils/envUtils.js'
+import { isValidTeamMemberName, teamPlanRecordSchema, type TeamPlanIdentity, type TeamPlanMember, type TeamPlanPatch, type TeamPlanRecord, type TeamPlanRuntime } from '../shared/teamPlan.js'
+import { getClaudeConfigHomeDir, getTeamsDir } from './envUtils.js'
 
 export class TeamPlanError extends Error {
   constructor(message: string, public status = 409) { super(message) }

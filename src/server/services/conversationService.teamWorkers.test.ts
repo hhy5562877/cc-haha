@@ -4,7 +4,7 @@ import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import { ConversationService } from './conversationService.js'
 import { ProviderService } from './providerService.js'
-import { resetTerminalShellEnvironmentCacheForTests } from '../../utils/terminalShellEnvironment.js'
+import { resetTerminalShellEnvironmentCacheForTests } from '../utils/terminalShellEnvironment.js'
 
 let home: string
 let originalEnv: NodeJS.ProcessEnv

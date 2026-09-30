@@ -6,7 +6,7 @@ import type { ServerResource } from '../server/services/mcp/types.js'
 import { getAgentColor } from 'src/server/tools/AgentTool/agentColorManager.js'
 import type { AgentDefinition } from 'src/server/tools/AgentTool/loadAgentsDir.js'
 import { truncateToWidth } from 'src/utils/format.js'
-import { logError } from 'src/utils/log.js'
+import { logError } from 'src/server/utils/log.ts'
 import type { Theme } from 'src/utils/theme.js'
 
 type FileSuggestionSource = {

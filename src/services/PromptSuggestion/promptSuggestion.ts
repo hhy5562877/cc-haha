@@ -1,17 +1,17 @@
-import { getIsNonInteractiveSession } from '../../bootstrap/state.js'
+import { getIsNonInteractiveSession } from '../../server/bootstrap/state.js'
 import type { AppState } from '../../state/AppState.js'
-import type { Message } from '../../types/message.js'
+import type { Message } from '../../server/types/message.js'
 import { isAgentSwarmsEnabled } from '../../utils/agentSwarmsEnabled.js'
 import { count } from '../../utils/array.js'
-import { isEnvDefinedFalsy, isEnvTruthy } from '../../utils/envUtils.js'
-import { toError } from '../../utils/errors.js'
+import { isEnvDefinedFalsy, isEnvTruthy } from '../../server/utils/envUtils.js'
+import { toError } from '../../server/utils/errors.js'
 import {
   type CacheSafeParams,
   createCacheSafeParams,
   runForkedAgent,
 } from '../../utils/forkedAgent.js'
 import type { REPLHookContext } from '../../utils/hooks/postSamplingHooks.js'
-import { logError } from '../../utils/log.js'
+import { logError } from '../../server/utils/log.js'
 import {
   createUserMessage,
   getLastAssistantMessage,

@@ -7,7 +7,7 @@ import {
   setHasExitedPlanMode,
   setNeedsAutoModeExitAttachment,
   setNeedsPlanModeExitAttachment,
-} from '../../bootstrap/state.js'
+} from '../../server/bootstrap/state.js'
 import { logEvent } from '../../server/services/analytics/index.js'
 import type { AnalyticsMetadata_I_VERIFIED_THIS_IS_NOT_CODE_OR_FILEPATHS } from '../../server/services/analytics/metadata.js'
 import {
@@ -18,19 +18,19 @@ import {
 } from '../../Tool.js'
 import { formatAgentId, generateRequestId } from '../../utils/agentId.js'
 import { isAgentSwarmsEnabled } from '../../utils/agentSwarmsEnabled.js'
-import { logForDebugging } from '../../utils/debug.js'
+import { logForDebugging } from '../../server/utils/debug.js'
 import {
   findInProcessTeammateTaskId,
   setAwaitingPlanApproval,
 } from '../../utils/inProcessTeammateHelpers.js'
-import { lazySchema } from '../../utils/lazySchema.js'
-import { logError } from '../../utils/log.js'
+import { lazySchema } from '../../server/utils/lazySchema.js'
+import { logError } from '../../server/utils/log.js'
 import {
   getPlan,
   getPlanFilePath,
   persistFileSnapshotIfRemote,
 } from '../../utils/plans.js'
-import { jsonStringify } from '../../utils/slowOperations.js'
+import { jsonStringify } from '../../server/utils/slowOperations.js'
 import {
   getAgentName,
   getTeamName,

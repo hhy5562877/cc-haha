@@ -19,17 +19,17 @@ import {
   getIsNonInteractiveSession,
   getOriginalCwd,
   getSessionId,
-} from 'src/bootstrap/state.js'
+} from 'src/server/bootstrap/state.ts'
 import { logEvent } from '../server/services/analytics/index.js'
 import { notifyVscodeFileUpdated } from '../server/services/mcp/vscodeSdkMcp.js'
-import type { LogOption } from 'src/types/logs.js'
+import type { LogOption } from 'src/server/types/logs.ts'
 import { inspect } from 'util'
 import { getGlobalConfig } from './config.js'
-import { logForDebugging } from './debug.js'
-import { getClaudeConfigHomeDir, isEnvTruthy } from './envUtils.js'
-import { getErrnoCode, isENOENT } from './errors.js'
+import { logForDebugging } from '../server/utils/debug.js'
+import { getClaudeConfigHomeDir, isEnvTruthy } from '../server/utils/envUtils.js'
+import { getErrnoCode, isENOENT } from '../server/utils/errors.js'
 import { pathExists } from './file.js'
-import { logError } from './log.js'
+import { logError } from '../server/utils/log.js'
 import { recordFileHistorySnapshot } from './sessionStorage.js'
 
 type BackupFileName = string | null // The null value means the file does not exist in this version

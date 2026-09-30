@@ -15,7 +15,7 @@
 
 import { feature } from 'bun:bundle'
 import { basename } from 'path'
-import { getIsRemoteMode } from '../../bootstrap/state.js'
+import { getIsRemoteMode } from '../../server/bootstrap/state.js'
 import type { CanUseToolFn } from '../../hooks/useCanUseTool.js'
 import { ENTRYPOINT_NAME } from '../../memdir/memdir.js'
 import {
@@ -40,10 +40,10 @@ import type {
   Message,
   SystemLocalCommandMessage,
   SystemMessage,
-} from '../../types/message.js'
+} from '../../server/types/message.js'
 import { createAbortController } from '../../utils/abortController.js'
 import { count, uniq } from '../../utils/array.js'
-import { logForDebugging } from '../../utils/debug.js'
+import { logForDebugging } from '../../server/utils/debug.js'
 import {
   createCacheSafeParams,
   runForkedAgent,

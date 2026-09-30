@@ -5,12 +5,12 @@
 import { access, chmod, writeFile } from 'fs/promises'
 import { join } from 'path'
 import { type ReleaseChannel, saveGlobalConfig } from './config.js'
-import { getClaudeConfigHomeDir } from './envUtils.js'
-import { getErrnoCode } from './errors.js'
+import { getClaudeConfigHomeDir } from '../server/utils/envUtils.js'
+import { getErrnoCode } from '../server/utils/errors.js'
 import { execFileNoThrowWithCwd } from './execFileNoThrow.js'
-import { getFsImplementation } from './fsOperations.js'
-import { logError } from './log.js'
-import { jsonStringify } from './slowOperations.js'
+import { getFsImplementation } from '../server/utils/fsOperations.js'
+import { logError } from '../server/utils/log.js'
+import { jsonStringify } from '../server/utils/slowOperations.js'
 
 // Lazy getters: getClaudeConfigHomeDir() is memoized and reads process.env.
 // Evaluating at module scope would capture the value before entrypoints like

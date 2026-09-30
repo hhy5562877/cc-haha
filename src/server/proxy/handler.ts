@@ -28,7 +28,7 @@ import { openaiResponsesToAnthropic } from './transform/openaiResponsesToAnthrop
 import { openaiChatStreamToAnthropic } from './streaming/openaiChatStreamToAnthropic.js'
 import { openaiResponsesStreamToAnthropic } from './streaming/openaiResponsesStreamToAnthropic.js'
 import type { AnthropicRequest } from './transform/types.js'
-import { getProxyFetchOptions } from '../../utils/proxy.js'
+import { getProxyFetchOptions } from '../utils/proxy.js'
 import {
   getNetworkProxyFetchOptions,
   loadNetworkSettings,
@@ -43,8 +43,8 @@ import {
   type TraceBodySnapshot,
   type TraceProviderInfo,
 } from '../services/traceCaptureService.js'
-import { resolveModelReasoningProfile } from '../../shared/modelReasoning.js'
-import { resolveModelApiFormat } from '../../shared/modelApiFormats.js'
+import { resolveModelReasoningProfile } from '../shared/modelReasoning.js'
+import { resolveModelApiFormat } from '../shared/modelApiFormats.js'
 import { applyUpstreamHeaders, resolveUpstreamHeaders } from './upstreamHeaders.js'
 
 const providerService = new ProviderService()

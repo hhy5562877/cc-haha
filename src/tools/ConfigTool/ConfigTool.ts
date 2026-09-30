@@ -11,14 +11,14 @@ import {
   getRemoteControlAtStartup,
   saveGlobalConfig,
 } from '../../utils/config.js'
-import { errorMessage } from '../../utils/errors.js'
-import { lazySchema } from '../../utils/lazySchema.js'
-import { logError } from '../../utils/log.js'
+import { errorMessage } from '../../server/utils/errors.js'
+import { lazySchema } from '../../server/utils/lazySchema.js'
+import { logError } from '../../server/utils/log.js'
 import {
   getInitialSettings,
   updateSettingsForSource,
 } from '../../server/utils/settings/settings.js'
-import { jsonStringify } from '../../utils/slowOperations.js'
+import { jsonStringify } from '../../server/utils/slowOperations.js'
 import { CONFIG_TOOL_NAME } from './constants.js'
 import { DESCRIPTION, generatePrompt } from './prompt.js'
 import {

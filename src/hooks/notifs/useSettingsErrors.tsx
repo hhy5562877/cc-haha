@@ -1,7 +1,7 @@
 import { c as _c } from "react/compiler-runtime";
 import { useCallback, useEffect, useState } from 'react';
 import { useNotifications } from 'src/context/notifications.js';
-import { getIsRemoteMode } from '../../bootstrap/state.js';
+import { getIsRemoteMode } from '../../server/bootstrap/state.js';
 import { getSettingsWithAllErrors } from '../../server/utils/settings/allErrors.js';
 import type { ValidationError } from '../../server/utils/settings/validation.js';
 import { useSettingsChange } from '../useSettingsChange.js';

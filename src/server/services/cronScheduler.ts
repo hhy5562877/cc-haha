@@ -18,7 +18,7 @@ import { sendTaskNotification } from './notificationService.js'
 import { ProviderService } from './providerService.js'
 import { isProviderManagedEnvVar } from '../../utils/managedEnvConstants.js'
 import { dalAuthService } from './dalAuthService.js'
-import { getProcessEnvWithTerminalShellEnvironment } from '../../utils/terminalShellEnvironment.js'
+import { getProcessEnvWithTerminalShellEnvironment } from '../utils/terminalShellEnvironment.js'
 import { diagnosticsService } from './diagnosticsService.js'
 import { resolveLocalIndexMode } from './localIndex/config.js'
 import {

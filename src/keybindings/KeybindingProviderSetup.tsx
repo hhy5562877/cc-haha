@@ -15,8 +15,8 @@ import type { InputEvent } from '../ink/events/input-event.js';
 // eslint-disable-next-line custom-rules/prefer-use-keybindings
 import { type Key, useInput } from '../ink.js';
 import { count } from '../utils/array.js';
-import { logForDebugging } from '../utils/debug.js';
-import { plural } from '../utils/stringUtils.js';
+import { logForDebugging } from '../server/utils/debug.js';
+import { plural } from '../server/utils/stringUtils.js';
 import { KeybindingProvider } from './KeybindingContext.js';
 import { initializeKeybindingWatcher, type KeybindingsLoadResult, loadKeybindingsSyncWithWarnings, subscribeToKeybindingChanges } from './loadUserBindings.js';
 import { resolveKeyWithChordState } from './resolver.js';

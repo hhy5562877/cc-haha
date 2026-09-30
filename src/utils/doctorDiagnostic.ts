@@ -3,17 +3,17 @@ import { readFile, realpath } from 'fs/promises'
 import { homedir } from 'os'
 import { delimiter, join, posix, win32 } from 'path'
 import { checkGlobalInstallPermissions } from './autoUpdater.js'
-import { isInBundledMode } from './bundledMode.js'
+import { isInBundledMode } from '../server/utils/bundledMode.js'
 import {
   formatAutoUpdaterDisabledReason,
   getAutoUpdaterDisabledReason,
   getGlobalConfig,
   type InstallMethod,
 } from './config.js'
-import { getCwd } from './cwd.js'
-import { isEnvTruthy } from './envUtils.js'
+import { getCwd } from '../server/utils/cwd.js'
+import { isEnvTruthy } from '../server/utils/envUtils.js'
 import { execFileNoThrow } from './execFileNoThrow.js'
-import { getFsImplementation } from './fsOperations.js'
+import { getFsImplementation } from '../server/utils/fsOperations.js'
 import {
   getShellType,
   isRunningFromLocalInstallation,
@@ -30,7 +30,7 @@ import {
   detectWinget,
   getPackageManager,
 } from './nativeInstaller/packageManagers.js'
-import { getPlatform } from './platform.js'
+import { getPlatform } from '../server/utils/platform.js'
 import { getRipgrepStatus } from './ripgrep.js'
 import { SandboxManager } from './sandbox/sandbox-adapter.js'
 import { getManagedFilePath } from '../server/utils/settings/managedPath.js'
@@ -40,8 +40,8 @@ import {
   findValidClaudeAlias,
   getShellConfigPaths,
 } from './shellConfig.js'
-import { jsonParse } from './slowOperations.js'
-import { which } from './which.js'
+import { jsonParse } from '../server/utils/slowOperations.js'
+import { which } from '../server/utils/which.js'
 
 export type InstallationType =
   | 'npm-global'

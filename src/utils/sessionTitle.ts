@@ -13,13 +13,13 @@
  */
 
 import { z } from 'zod/v4'
-import { getIsNonInteractiveSession } from '../bootstrap/state.js'
+import { getIsNonInteractiveSession } from '../server/bootstrap/state.js'
 import { logEvent } from '../server/services/analytics/index.js'
 import { queryHaiku } from '../services/api/claude.js'
-import type { Message } from '../types/message.js'
-import { logForDebugging } from './debug.js'
-import { safeParseJSON } from './json.js'
-import { lazySchema } from './lazySchema.js'
+import type { Message } from '../server/types/message.js'
+import { logForDebugging } from '../server/utils/debug.js'
+import { safeParseJSON } from '../server/utils/json.js'
+import { lazySchema } from '../server/utils/lazySchema.js'
 import { extractTextContent } from './messages.js'
 import { cleanSessionTitleSource, hasSessionTitleMarkup } from './sessionTitleText.js'
 import { asSystemPrompt } from './systemPromptType.js'

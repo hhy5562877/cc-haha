@@ -1,8 +1,8 @@
 import { open, stat } from 'fs/promises'
 import { CLAUDE_CODE_GUIDE_AGENT_TYPE } from 'src/server/tools/AgentTool/built-in/claudeCodeGuideAgent.js'
 import { getSettingsFilePathForSource } from '../../server/utils/settings/settings.js'
-import { enableDebugLogging, getDebugLogPath } from '../../utils/debug.js'
-import { errorMessage, isENOENT } from '../../utils/errors.js'
+import { enableDebugLogging, getDebugLogPath } from '../../server/utils/debug.js'
+import { errorMessage, isENOENT } from '../../server/utils/errors.js'
 import { formatFileSize } from '../../utils/format.js'
 import { registerBundledSkill } from '../bundledSkills.js'
 

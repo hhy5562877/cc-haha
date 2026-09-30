@@ -6,7 +6,7 @@ import { getCanonicalName } from '../server/utils/model/model.js'
 import { get3PModelCapabilityOverride } from '../server/utils/model/modelSupportOverrides.js'
 import { getAPIProvider, isFirstPartyAnthropicBaseUrl } from '../server/utils/model/providers.js'
 import { getSettingsWithErrors } from '../server/utils/settings/settings.js'
-import { isEnvTruthy } from './envUtils.js'
+import { isEnvTruthy } from '../server/utils/envUtils.js'
 
 export type ThinkingConfig =
   | { type: 'adaptive' }

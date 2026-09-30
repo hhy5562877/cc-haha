@@ -15,10 +15,10 @@ import {
 } from '../services/repositoryLaunchService.js'
 import { conversationService } from '../services/conversationService.js'
 import { clearCommandsCache } from '../../commands.js'
-import { parseJSONL } from '../../utils/json.js'
-import { formatSessionCollaborationPrompt } from '../../utils/sessionCollaborationEnvelope.js'
+import { parseJSONL } from '../utils/json.js'
+import { formatSessionCollaborationPrompt } from '../utils/sessionCollaborationEnvelope.js'
 import { createSessionBranch } from '../../utils/sessionBranching.js'
-import { sanitizePath } from '../../utils/sessionStoragePortable.js'
+import { sanitizePath } from '../utils/sessionStoragePortable.js'
 import { clearInstalledPluginsCache } from '../utils/plugins/installedPluginsManager.js'
 import { clearPluginCache } from '../utils/plugins/pluginLoader.js'
 import { resetSettingsCache } from '../utils/settings/settingsCache.js'
@@ -9861,7 +9861,7 @@ describe('Sessions API', () => {
   })
 
   it('frozen review rejects incomplete history produced by the real completion writer', async () => {
-    const runtime = await import('../../bootstrap/state.js')
+    const runtime = await import('../bootstrap/state.js')
     const historyApi = await import('../../utils/fileHistory.js')
     const { flushSessionStorage } = await import('../../utils/sessionStorage.js')
     const fixture = await createThreeTurnCheckpointFixture(runtime.getSessionId())

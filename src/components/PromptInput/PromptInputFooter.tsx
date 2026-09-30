@@ -12,7 +12,7 @@ import { Box, Text } from '../../ink.js';
 import type { MCPServerConnection } from '../../server/services/mcp/types.js';
 import { useAppState } from '../../state/AppState.js';
 import type { ToolPermissionContext } from '../../Tool.js';
-import type { Message } from '../../types/message.js';
+import type { Message } from '../../server/types/message.js';
 import type { PromptInputMode, VimMode } from '../../types/textInputTypes.js';
 import type { AutoUpdaterResult } from '../../utils/autoUpdater.js';
 import { isFullscreenEnvEnabled } from '../../utils/fullscreen.js';

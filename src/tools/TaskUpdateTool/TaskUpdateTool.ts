@@ -8,7 +8,7 @@ import {
   executeTaskCompletedHooks,
   getTaskCompletedHookMessage,
 } from '../../utils/hooks.js'
-import { lazySchema } from '../../utils/lazySchema.js'
+import { lazySchema } from '../../server/utils/lazySchema.js'
 import {
   deleteTaskWithCommit,
   getTask,

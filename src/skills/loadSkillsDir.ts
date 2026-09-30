@@ -12,7 +12,7 @@ import {
 import {
   getAdditionalDirectoriesForClaudeMd,
   getSessionId,
-} from '../bootstrap/state.js'
+} from '../server/bootstrap/state.js'
 import {
   type AnalyticsMetadata_I_VERIFIED_THIS_IS_NOT_CODE_OR_FILEPATHS,
   logEvent,
@@ -23,7 +23,7 @@ import {
   parseArgumentNames,
   substituteArguments,
 } from '../utils/argumentSubstitution.js'
-import { logForDebugging } from '../utils/debug.js'
+import { logForDebugging } from '../server/utils/debug.js'
 import {
   EFFORT_LEVELS,
   type EffortValue,
@@ -33,8 +33,8 @@ import {
   getClaudeConfigHomeDir,
   isBareMode,
   isEnvTruthy,
-} from '../utils/envUtils.js'
-import { isENOENT, isFsInaccessible } from '../utils/errors.js'
+} from '../server/utils/envUtils.js'
+import { isENOENT, isFsInaccessible } from '../server/utils/errors.js'
 import {
   coerceDescriptionToString,
   type FrontmatterData,
@@ -43,10 +43,10 @@ import {
   parseFrontmatter,
   parseShellFrontmatter,
   splitPathInFrontmatter,
-} from '../utils/frontmatterParser.js'
-import { getFsImplementation } from '../utils/fsOperations.js'
+} from '../server/utils/frontmatterParser.js'
+import { getFsImplementation } from '../server/utils/fsOperations.js'
 import { isPathGitignored } from '../utils/git/gitignore.js'
-import { logError } from '../utils/log.js'
+import { logError } from '../server/utils/log.js'
 import {
   extractDescriptionFromMarkdown,
   loadMarkdownFilesForSubdir,

@@ -20,8 +20,8 @@
 import { homedir } from 'os'
 import { join, resolve } from 'path'
 import { statSync } from 'fs'
-import { getClaudeConfigHomeDir, isEnvTruthy } from '../utils/envUtils.js'
-import { isFsInaccessible } from '../utils/errors.js'
+import { getClaudeConfigHomeDir, isEnvTruthy } from '../server/utils/envUtils.js'
+import { isFsInaccessible } from '../server/utils/errors.js'
 import { walkProjectDirsUpToHome } from '../utils/markdownConfigLoader.js'
 // Import as module object so spyOn works in tests (direct imports bypass spies)
 import * as settingsModule from '../server/utils/settings/settings.js'

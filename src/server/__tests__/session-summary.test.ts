@@ -4,7 +4,7 @@ import * as os from 'node:os'
 import * as path from 'node:path'
 import { handleSessionsApi } from '../api/sessions.js'
 import { SessionService, sessionService } from '../services/sessionService.js'
-import { sanitizePath } from '../../utils/sessionStoragePortable.js'
+import { sanitizePath } from '../utils/sessionStoragePortable.js'
 
 const SESSION_ID = '12870000-bbbb-cccc-dddd-eeeeeeeeeeee'
 const MISSING_ID = '12879999-bbbb-cccc-dddd-eeeeeeeeeeee'

@@ -26,17 +26,17 @@ import { feature } from 'bun:bundle'
 import { mkdirSync, writeFileSync } from 'fs'
 import { mkdir, writeFile } from 'fs/promises'
 import { dirname, join } from 'path'
-import { getSessionId } from '../../bootstrap/state.js'
-import { registerCleanup } from '../cleanupRegistry.js'
-import { logForDebugging } from '../debug.js'
+import { getSessionId } from '../../server/bootstrap/state.js'
+import { registerCleanup } from '../../server/utils/cleanupRegistry.js'
+import { logForDebugging } from '../../server/utils/debug.js'
 import {
   getClaudeConfigHomeDir,
   isEnvDefinedFalsy,
   isEnvTruthy,
-} from '../envUtils.js'
-import { errorMessage } from '../errors.js'
-import { djb2Hash } from '../hash.js'
-import { jsonStringify } from '../slowOperations.js'
+} from '../../server/utils/envUtils.js'
+import { errorMessage } from '../../server/utils/errors.js'
+import { djb2Hash } from '../../server/utils/hash.js'
+import { jsonStringify } from '../../server/utils/slowOperations.js'
 import { getAgentId, getAgentName, getParentSessionId } from '../teammate.js'
 
 /**

@@ -19,12 +19,12 @@ import {
   getAPIProvider,
   isFirstPartyAnthropicBaseUrl,
 } from '../../server/utils/model/providers.js'
-import { getProxyFetchOptions } from 'src/utils/proxy.js'
+import { getProxyFetchOptions } from 'src/server/utils/proxy.ts'
 import {
   getIsNonInteractiveSession,
   getSessionId,
-} from '../../bootstrap/state.js'
-import { getOauthConfig } from '../../constants/oauth.js'
+} from '../../server/bootstrap/state.js'
+import { getOauthConfig } from '../../server/constants/oauth.js'
 import {
   buildOpenAICodexFetch,
   OPENAI_OAUTH_DUMMY_KEY,
@@ -36,12 +36,12 @@ import {
   GROK_OAUTH_DUMMY_KEY,
   shouldUseGrokAuth,
 } from '../../server/services/grokAuth/fetch.js'
-import { isDebugToStdErr, logForDebugging } from '../../utils/debug.js'
+import { isDebugToStdErr, logForDebugging } from '../../server/utils/debug.js'
 import {
   getAWSRegion,
   getVertexRegionForModel,
   isEnvTruthy,
-} from '../../utils/envUtils.js'
+} from '../../server/utils/envUtils.js'
 
 /**
  * Environment variables for different client types:

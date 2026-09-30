@@ -19,8 +19,8 @@ import {
   createUserMessage,
   createMemorySavedMessage,
 } from '../../utils/messages.js'
-import type { Message } from '../../types/message.js'
-import { logForDebugging } from '../../utils/debug.js'
+import type { Message } from '../../server/types/message.js'
+import { logForDebugging } from '../../server/utils/debug.js'
 import type { ToolUseContext } from '../../Tool.js'
 import { logEvent } from '../../server/services/analytics/index.js'
 import { getFeatureValue_CACHED_MAY_BE_STALE } from '../../server/services/analytics/growthbook.js'
@@ -32,7 +32,7 @@ import {
   getKairosActive,
   getIsRemoteMode,
   getSessionId,
-} from '../../bootstrap/state.js'
+} from '../../server/bootstrap/state.js'
 import { createAutoMemCanUseTool } from '../extractMemories/extractMemories.js'
 import { buildConsolidationPrompt } from './consolidationPrompt.js'
 import {

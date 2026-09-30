@@ -1,5 +1,5 @@
 import { getImageGenerationRuntimeConfig } from '../../services/imageGeneration/config.js'
-import { parseFrontmatter } from '../../utils/frontmatterParser.js'
+import { parseFrontmatter } from '../../server/utils/frontmatterParser.js'
 import { registerBundledSkill } from '../bundledSkills.js'
 import { IMAGEGEN_SKILL_MD } from './imagegenContent.js'
 

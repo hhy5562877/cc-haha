@@ -27,12 +27,12 @@
 
 import type { Span } from '@opentelemetry/api'
 import { createHash } from 'crypto'
-import { getIsNonInteractiveSession } from '../../bootstrap/state.js'
+import { getIsNonInteractiveSession } from '../../server/bootstrap/state.js'
 import { getFeatureValue_CACHED_MAY_BE_STALE } from '../../server/services/analytics/growthbook.js'
 import { sanitizeToolNameForAnalytics } from '../../server/services/analytics/metadata.js'
-import type { AssistantMessage, UserMessage } from '../../types/message.js'
-import { isEnvTruthy } from '../envUtils.js'
-import { jsonParse, jsonStringify } from '../slowOperations.js'
+import type { AssistantMessage, UserMessage } from '../../server/types/message.js'
+import { isEnvTruthy } from '../../server/utils/envUtils.js'
+import { jsonParse, jsonStringify } from '../../server/utils/slowOperations.js'
 import { logOTelEvent } from './events.js'
 
 // Message type for API calls (UserMessage or AssistantMessage)

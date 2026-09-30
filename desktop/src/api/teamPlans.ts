@@ -1,5 +1,5 @@
 import { api } from '@/api/client'
-import type { TeamPlanRecord, TeamPlanMember, TeamPlanTask } from '../../../src/shared/teamPlan'
+import type { TeamPlanRecord, TeamPlanMember, TeamPlanTask } from '../../../src/server/shared/teamPlan'
 
 export type TeamPlanAction = 'approve' | 'return' | 'cancel' | 'retry'
 export type TeamPlanEdits = { members: TeamPlanMember[]; tasks: TeamPlanTask[] }

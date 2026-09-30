@@ -9,13 +9,13 @@
 import { homedir } from 'os'
 import { isAbsolute, resolve } from 'path'
 import type { ToolPermissionContext } from '../../Tool.js'
-import type { PermissionRule } from '../../types/permissions.js'
-import { getCwd } from '../../utils/cwd.js'
+import type { PermissionRule } from '../../server/types/permissions.js'
+import { getCwd } from '../../server/utils/cwd.js'
 import {
   getFsImplementation,
   safeResolvePath,
-} from '../../utils/fsOperations.js'
-import { containsPathTraversal, getDirectoryForPath } from '../../utils/path.js'
+} from '../../server/utils/fsOperations.js'
+import { containsPathTraversal, getDirectoryForPath } from '../../server/utils/path.js'
 import {
   allWorkingDirectories,
   checkEditableInternalPath,
@@ -31,7 +31,7 @@ import {
   isDangerousRemovalPath,
   isPathInSandboxWriteAllowlist,
 } from '../../server/utils/permissions/pathValidation.js'
-import { getPlatform } from '../../utils/platform.js'
+import { getPlatform } from '../../server/utils/platform.js'
 import type {
   ParsedCommandElement,
   ParsedPowerShellCommand,

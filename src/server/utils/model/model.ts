@@ -5,7 +5,7 @@
  * literals with process.env.USER_TYPE === 'ant' for Bun to remove the codenames
  * during dead code elimination
  */
-import { getMainLoopModelOverride } from '../../../bootstrap/state.js'
+import { getMainLoopModelOverride } from '../../bootstrap/state.js'
 import {
   getSubscriptionType,
   is1PApiCustomer,
@@ -20,7 +20,7 @@ import {
   is1mContextDisabled,
   modelSupports1M,
 } from '../../../utils/context.js'
-import { isEnvTruthy } from '../../../utils/envUtils.js'
+import { isEnvTruthy } from '../envUtils.js'
 import { getModelStrings, resolveOverriddenModel } from './modelStrings.js'
 import { formatModelPricing, getOpus46CostTier } from '../../../utils/modelCost.js'
 import { getSettings_DEPRECATED } from '../settings/settings.js'
@@ -36,7 +36,7 @@ import {
   getOpenAIModelDisplayName,
   resolveOpenAICodexModel,
 } from '../../services/openaiAuth/models.js'
-import { capitalize } from '../../../utils/stringUtils.js'
+import { capitalize } from '../stringUtils.js'
 
 export type ModelShortName = string
 export type ModelName = string

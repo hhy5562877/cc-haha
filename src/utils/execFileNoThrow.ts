@@ -3,8 +3,8 @@
 // By using execa, Windows automatically gets shell escaping + BAT / CMD handling
 
 import { type ExecaError, execa } from 'execa'
-import { getCwd } from '../utils/cwd.js'
-import { logError } from './log.js'
+import { getCwd } from '../server/utils/cwd.js'
+import { logError } from '../server/utils/log.js'
 
 export { execSyncWithDefaults_DEPRECATED } from './execFileNoThrowPortable.js'
 

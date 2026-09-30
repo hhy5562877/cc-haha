@@ -5,14 +5,14 @@ import {
   getOriginalCwd,
   getSessionId,
   onSessionSwitch,
-} from '../bootstrap/state.js'
-import { registerCleanup } from './cleanupRegistry.js'
-import { logForDebugging } from './debug.js'
-import { getClaudeConfigHomeDir } from './envUtils.js'
-import { errorMessage, isFsInaccessible } from './errors.js'
+} from '../server/bootstrap/state.js'
+import { registerCleanup } from '../server/utils/cleanupRegistry.js'
+import { logForDebugging } from '../server/utils/debug.js'
+import { getClaudeConfigHomeDir } from '../server/utils/envUtils.js'
+import { errorMessage, isFsInaccessible } from '../server/utils/errors.js'
 import { isProcessRunning } from './genericProcessUtils.js'
-import { getPlatform } from './platform.js'
-import { jsonParse, jsonStringify } from './slowOperations.js'
+import { getPlatform } from '../server/utils/platform.js'
+import { jsonParse, jsonStringify } from '../server/utils/slowOperations.js'
 import { getAgentId } from './teammate.js'
 
 export type SessionKind = 'interactive' | 'bg' | 'daemon' | 'daemon-worker'

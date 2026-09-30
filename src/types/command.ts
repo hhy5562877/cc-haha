@@ -9,8 +9,8 @@ import type { IDEExtensionInstallationStatus, IdeType } from '../utils/ide.js'
 import type { SettingSource } from '../server/utils/settings/constants.js'
 import type { HooksSettings } from '../server/utils/settings/types.js'
 import type { ThemeName } from '../utils/theme.js'
-import type { LogOption } from './logs.js'
-import type { Message } from './message.js'
+import type { LogOption } from '../server/types/logs.js'
+import type { Message } from '../server/types/message.js'
 import type { PluginManifest } from './plugin.js'
 
 export type LocalCommandResult =

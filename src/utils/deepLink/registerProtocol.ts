@@ -21,12 +21,12 @@ import {
   type AnalyticsMetadata_I_VERIFIED_THIS_IS_NOT_CODE_OR_FILEPATHS,
   logEvent,
 } from '../../server/services/analytics/index.js'
-import { logForDebugging } from '../debug.js'
-import { getClaudeConfigHomeDir } from '../envUtils.js'
-import { getErrnoCode } from '../errors.js'
+import { logForDebugging } from '../../server/utils/debug.js'
+import { getClaudeConfigHomeDir } from '../../server/utils/envUtils.js'
+import { getErrnoCode } from '../../server/utils/errors.js'
 import { execFileNoThrow } from '../execFileNoThrow.js'
 import { getInitialSettings } from '../../server/utils/settings/settings.js'
-import { which } from '../which.js'
+import { which } from '../../server/utils/which.js'
 import { getUserBinDir, getXDGDataHome } from '../xdg.js'
 import { DEEP_LINK_PROTOCOL } from './parseDeepLink.js'
 

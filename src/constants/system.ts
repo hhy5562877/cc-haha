@@ -1,8 +1,8 @@
 // Critical system constants extracted to break circular dependencies
 
 import { getFeatureValue_CACHED_MAY_BE_STALE } from '../server/services/analytics/growthbook.js'
-import { logForDebugging } from '../utils/debug.js'
-import { isEnvDefinedFalsy } from '../utils/envUtils.js'
+import { logForDebugging } from '../server/utils/debug.js'
+import { isEnvDefinedFalsy } from '../server/utils/envUtils.js'
 import { getAPIProvider } from '../server/utils/model/providers.js'
 import { getWorkload } from '../utils/workloadContext.js'
 import { formatClaudeCodeBillingHeader } from './claudeCodeCompatibility.js'

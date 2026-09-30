@@ -1,7 +1,7 @@
 import { mkdir, appendFile, readFile, writeFile, readdir } from 'node:fs/promises'
 import { createHash } from 'node:crypto'
 import { dirname, join } from 'node:path'
-import { formatSessionCollaborationPrompt } from '../../../utils/sessionCollaborationEnvelope.js'
+import { formatSessionCollaborationPrompt } from '../../utils/sessionCollaborationEnvelope.js'
 
 const args = process.argv.slice(2)
 

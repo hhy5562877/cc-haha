@@ -14,10 +14,10 @@ import {
   type SharpFunction,
   type SharpInstance,
 } from '../tools/FileReadTool/imageProcessor.js'
-import { logForDebugging } from './debug.js'
-import { errorMessage } from './errors.js'
+import { logForDebugging } from '../server/utils/debug.js'
+import { errorMessage } from '../server/utils/errors.js'
 import { formatFileSize } from './format.js'
-import { logError } from './log.js'
+import { logError } from '../server/utils/log.js'
 
 type ImageMediaType = 'image/png' | 'image/jpeg' | 'image/gif' | 'image/webp'
 

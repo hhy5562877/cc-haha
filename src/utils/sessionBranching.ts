@@ -6,12 +6,12 @@ import type {
   PersistedWorktreeSession,
   SerializedMessage,
   TranscriptMessage,
-} from '../types/logs.js'
+} from '../server/types/logs.js'
 import type { ContentReplacementRecord } from './toolResultStorage.js'
-import { parseJSONL } from './json.js'
+import { parseJSONL } from '../server/utils/json.js'
 import { buildConversationChain, loadTranscriptFile } from './sessionStorage.js'
-import { jsonStringify } from './slowOperations.js'
-import { escapeRegExp } from './stringUtils.js'
+import { jsonStringify } from '../server/utils/slowOperations.js'
+import { escapeRegExp } from '../server/utils/stringUtils.js'
 
 type SessionMetaEntry = {
   type: 'session-meta'

@@ -46,7 +46,7 @@ import {
 } from 'fs/promises'
 import memoize from 'lodash-es/memoize.js'
 import { basename, dirname, join, relative, resolve, sep } from 'path'
-import { getInlinePlugins } from '../../../bootstrap/state.js'
+import { getInlinePlugins } from '../../bootstrap/state.js'
 import {
   BUILTIN_MARKETPLACE_NAME,
   getBuiltinPlugins,
@@ -58,21 +58,21 @@ import type {
   PluginLoadResult,
   PluginManifest,
 } from '../../../types/plugin.js'
-import { logForDebugging } from '../../../utils/debug.js'
-import { isEnvTruthy } from '../../../utils/envUtils.js'
+import { logForDebugging } from '../debug.js'
+import { isEnvTruthy } from '../envUtils.js'
 import {
   errorMessage,
   getErrnoPath,
   isENOENT,
   isFsInaccessible,
   toError,
-} from '../../../utils/errors.js'
+} from '../errors.js'
 import { execFileNoThrow, execFileNoThrowWithCwd } from '../../../utils/execFileNoThrow.js'
 import { pathExists } from '../../../utils/file.js'
-import { getFsImplementation } from '../../../utils/fsOperations.js'
+import { getFsImplementation } from '../fsOperations.js'
 import { gitExe } from '../../../utils/git.js'
-import { lazySchema } from '../../../utils/lazySchema.js'
-import { logError } from '../../../utils/log.js'
+import { lazySchema } from '../lazySchema.js'
+import { logError } from '../log.js'
 import { getSettings_DEPRECATED, getSettingsForSource } from '../settings/settings.js'
 import {
   clearPluginSettingsBase,
@@ -82,7 +82,7 @@ import {
 } from '../settings/settingsCache.js'
 import type { HooksSettings } from '../settings/types.js'
 import { SettingsSchema } from '../settings/types.js'
-import { jsonParse, jsonStringify } from '../../../utils/slowOperations.js'
+import { jsonParse, jsonStringify } from '../slowOperations.js'
 import { getAddDirEnabledPlugins } from './addDirPluginSettings.js'
 import {
   isEnabledPluginSettingValue,

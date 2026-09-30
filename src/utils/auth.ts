@@ -4,7 +4,7 @@ import { execa } from 'execa'
 import { mkdir, stat } from 'fs/promises'
 import memoize from 'lodash-es/memoize.js'
 import { join } from 'path'
-import { CLAUDE_AI_PROFILE_SCOPE } from 'src/constants/oauth.js'
+import { CLAUDE_AI_PROFILE_SCOPE } from 'src/server/constants/oauth.ts'
 import {
   type AnalyticsMetadata_I_VERIFIED_THIS_IS_NOT_CODE_OR_FILEPATHS,
   logEvent,
@@ -17,7 +17,7 @@ import {
 import {
   getIsNonInteractiveSession,
   preferThirdPartyAuthentication,
-} from '../bootstrap/state.js'
+} from '../server/bootstrap/state.js'
 import {
   getMockSubscriptionType,
   shouldUseMockSubscription,
@@ -51,18 +51,18 @@ import {
   getGlobalConfig,
   saveGlobalConfig,
 } from './config.js'
-import { logAntError, logForDebugging } from './debug.js'
+import { logAntError, logForDebugging } from '../server/utils/debug.js'
 import {
   getClaudeConfigHomeDir,
   isBareMode,
   isEnvTruthy,
   isRunningOnHomespace,
-} from './envUtils.js'
-import { errorMessage } from './errors.js'
+} from '../server/utils/envUtils.js'
+import { errorMessage } from '../server/utils/errors.js'
 import { execSyncWithDefaults_DEPRECATED } from './execFileNoThrow.js'
 import * as lockfile from './lockfile.js'
-import { logError } from './log.js'
-import { memoizeWithTTLAsync } from './memoize.js'
+import { logError } from '../server/utils/log.js'
+import { memoizeWithTTLAsync } from '../server/utils/memoize.js'
 import { getSecureStorage } from '../server/utils/secureStorage/index.js'
 import {
   clearLegacyApiKeyPrefetch,
@@ -78,7 +78,7 @@ import {
   getSettingsForSource,
 } from '../server/utils/settings/settings.js'
 import { sleep } from './sleep.js'
-import { jsonParse } from './slowOperations.js'
+import { jsonParse } from '../server/utils/slowOperations.js'
 import { clearToolSchemaCache } from './toolSchemaCache.js'
 
 /** Default TTL for API key helper cache in milliseconds (5 minutes) */

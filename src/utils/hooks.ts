@@ -8,7 +8,7 @@ import { spawn, type ChildProcessWithoutNullStreams } from 'child_process'
 import { pathExists } from './file.js'
 import { wrapSpawn } from './ShellCommand.js'
 import { TaskOutput } from './task/TaskOutput.js'
-import { getCwd } from './cwd.js'
+import { getCwd } from '../server/utils/cwd.js'
 import { randomUUID } from 'crypto'
 import { formatShellPrefixCommand } from './bash/shellPrefix.js'
 import {
@@ -16,11 +16,11 @@ import {
   invalidateSessionEnvCache,
 } from './sessionEnvironment.js'
 import { subprocessEnv } from './subprocessEnv.js'
-import { getPlatform } from './platform.js'
+import { getPlatform } from '../server/utils/platform.js'
 import {
   tryFindGitBashPath,
   windowsPathToPosixPath,
-} from './windowsPaths.js'
+} from '../server/utils/windowsPaths.js'
 import { getCachedPowerShellPath } from './shell/powershellDetection.js'
 import { DEFAULT_HOOK_SHELL } from './shell/shellProvider.js'
 import { buildPowerShellArgs } from './shell/powershellProvider.js'
@@ -38,7 +38,7 @@ import {
   addToTurnHookDuration,
   getOriginalCwd,
   getMainThreadAgentType,
-} from '../bootstrap/state.js'
+} from '../server/bootstrap/state.js'
 import { checkHasTrustDialogAccepted } from './config.js'
 import {
   getHooksConfigFromSnapshot,
@@ -49,7 +49,7 @@ import {
   getTranscriptPathForSession,
   getAgentTranscriptPath,
 } from './sessionStorage.js'
-import type { AgentId } from '../types/ids.js'
+import type { AgentId } from '../server/types/ids.js'
 import {
   getSettings_DEPRECATED,
   getSettingsForSource,
@@ -113,7 +113,7 @@ import type {
 import type { StatusLineCommandInput } from '../types/statusLine.js'
 import type { ElicitResult } from '@modelcontextprotocol/sdk/types.js'
 import type { FileSuggestionCommandInput } from '../types/fileSuggestion.js'
-import type { HookResultMessage } from 'src/types/message.js'
+import type { HookResultMessage } from 'src/server/types/message.ts'
 import chalk from 'chalk'
 import type {
   HookMatcher,
@@ -122,15 +122,15 @@ import type {
   SkillHookMatcher,
 } from '../server/utils/settings/types.js'
 import { getHookDisplayText } from './hooks/hooksSettings.js'
-import { logForDebugging } from './debug.js'
+import { logForDebugging } from '../server/utils/debug.js'
 import { logForDiagnosticsNoPII } from './diagLogs.js'
-import { firstLineOf } from './stringUtils.js'
+import { firstLineOf } from '../server/utils/stringUtils.js'
 import {
   normalizeLegacyToolName,
   getLegacyToolNames,
   permissionRuleValueFromString,
 } from '../server/utils/permissions/permissionRuleParser.js'
-import { logError } from './log.js'
+import { logError } from '../server/utils/log.js'
 import { createCombinedAbortSignal } from './combinedAbortSignal.js'
 import type { PermissionResult } from '../server/utils/permissions/PermissionResult.js'
 import { registerPendingAsyncHook } from './hooks/AsyncHookRegistry.js'
@@ -149,7 +149,7 @@ import { createAttachmentMessage } from './attachments.js'
 import { all } from './generators.js'
 import { findToolByName, type Tools, type ToolUseContext } from '../Tool.js'
 import { execPromptHook } from './hooks/execPromptHook.js'
-import type { Message, AssistantMessage } from '../types/message.js'
+import type { Message, AssistantMessage } from '../server/types/message.js'
 import { execAgentHook } from './hooks/execAgentHook.js'
 import { execHttpHook } from './hooks/execHttpHook.js'
 import type { ShellCommand } from './ShellCommand.js'
@@ -162,9 +162,9 @@ import {
   type FunctionHook,
 } from './hooks/sessionHooks.js'
 import type { AppState } from '../state/AppState.js'
-import { jsonStringify, jsonParse } from './slowOperations.js'
-import { isEnvTruthy } from './envUtils.js'
-import { errorMessage, getErrnoCode } from './errors.js'
+import { jsonStringify, jsonParse } from '../server/utils/slowOperations.js'
+import { isEnvTruthy } from '../server/utils/envUtils.js'
+import { errorMessage, getErrnoCode } from '../server/utils/errors.js'
 
 const TOOL_HOOK_EXECUTION_TIMEOUT_MS = 10 * 60 * 1000
 

@@ -3,7 +3,7 @@ import { microcompactMessages } from '../../services/compact/microCompact.js'
 import type { AppState } from '../../state/AppStateStore.js'
 import type { Tools, ToolUseContext } from '../../Tool.js'
 import type { AgentDefinitionsResult } from '../../server/tools/AgentTool/loadAgentsDir.js'
-import type { Message } from '../../types/message.js'
+import type { Message } from '../../server/types/message.js'
 import {
   analyzeContextUsage,
   type ContextData,
@@ -11,7 +11,7 @@ import {
 import { formatTokens } from '../../utils/format.js'
 import { getMessagesAfterCompactBoundary } from '../../utils/messages.js'
 import { getSourceDisplayName } from '../../server/utils/settings/constants.js'
-import { plural } from '../../utils/stringUtils.js'
+import { plural } from '../../server/utils/stringUtils.js'
 
 /**
  * Shared data-collection path for `/context` (slash command) and the SDK

@@ -44,7 +44,7 @@ import { logEvent } from '../server/services/analytics/index.js'
 import {
   getAdditionalDirectoriesForClaudeMd,
   getOriginalCwd,
-} from '../bootstrap/state.js'
+} from '../server/bootstrap/state.js'
 import { truncateEntrypointContent } from '../memdir/memdir.js'
 import { getAutoMemEntrypoint, isAutoMemoryEnabled } from '../memdir/paths.js'
 import { getFeatureValue_CACHED_MAY_BE_STALE } from '../server/services/analytics/growthbook.js'
@@ -54,17 +54,17 @@ import {
   getMemoryPath,
   getUserClaudeRulesDir,
 } from './config.js'
-import { logForDebugging } from './debug.js'
+import { logForDebugging } from '../server/utils/debug.js'
 import { logForDiagnosticsNoPII } from './diagLogs.js'
-import { getClaudeConfigHomeDir, isEnvTruthy } from './envUtils.js'
-import { getErrnoCode } from './errors.js'
+import { getClaudeConfigHomeDir, isEnvTruthy } from '../server/utils/envUtils.js'
+import { getErrnoCode } from '../server/utils/errors.js'
 import { normalizePathForComparison } from './file.js'
 import { cacheKeys, type FileStateCache } from './fileStateCache.js'
 import {
   parseFrontmatter,
   splitPathInFrontmatter,
-} from './frontmatterParser.js'
-import { getFsImplementation, safeResolvePath } from './fsOperations.js'
+} from '../server/utils/frontmatterParser.js'
+import { getFsImplementation, safeResolvePath } from '../server/utils/fsOperations.js'
 import { findCanonicalGitRoot, findGitRoot } from './git.js'
 import {
   executeInstructionsLoadedHooks,
@@ -73,7 +73,7 @@ import {
   type InstructionsMemoryType,
 } from './hooks.js'
 import type { MemoryType } from './memory/types.js'
-import { expandPath } from './path.js'
+import { expandPath } from '../server/utils/path.js'
 import { pathInWorkingPath } from '../server/utils/permissions/filesystem.js'
 import { isSettingSourceEnabled } from '../server/utils/settings/constants.js'
 import { getInitialSettings } from '../server/utils/settings/settings.js'

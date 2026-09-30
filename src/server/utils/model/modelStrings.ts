@@ -1,8 +1,8 @@
 import {
   getModelStrings as getModelStringsState,
   setModelStrings as setModelStringsState,
-} from 'src/bootstrap/state.js'
-import { logError } from '../../../utils/log.js'
+} from 'src/server/bootstrap/state.ts'
+import { logError } from '../log.js'
 import { sequential } from '../../../utils/sequential.js'
 import { getInitialSettings } from '../settings/settings.js'
 import { findFirstMatch, getBedrockInferenceProfiles } from './bedrock.js'

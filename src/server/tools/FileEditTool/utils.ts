@@ -1,13 +1,13 @@
 import { type StructuredPatchHunk, structuredPatch } from 'diff'
-import { logError } from 'src/utils/log.js'
-import { expandPath } from 'src/utils/path.js'
-import { countCharInString } from 'src/utils/stringUtils.js'
+import { logError } from 'src/server/utils/log.ts'
+import { expandPath } from 'src/server/utils/path.ts'
+import { countCharInString } from 'src/server/utils/stringUtils.ts'
 import {
   DIFF_TIMEOUT_MS,
   getPatchForDisplay,
   getPatchFromContents,
 } from '../../../utils/diff.js'
-import { errorMessage, isENOENT } from '../../../utils/errors.js'
+import { errorMessage, isENOENT } from '../../utils/errors.js'
 import {
   addLineNumbers,
   convertLeadingTabsToSpaces,

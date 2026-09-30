@@ -15,22 +15,22 @@
 import axios from 'axios'
 import { createHash } from 'crypto'
 import { open, unlink } from 'fs/promises'
-import { getOauthConfig, OAUTH_BETA_HEADER } from '../../constants/oauth.js'
+import { getOauthConfig, OAUTH_BETA_HEADER } from '../../server/constants/oauth.js'
 import {
   checkAndRefreshOAuthTokenIfNeeded,
   getAnthropicApiKeyWithSource,
   getClaudeAIOAuthTokens,
 } from '../../utils/auth.js'
-import { registerCleanup } from '../../utils/cleanupRegistry.js'
-import { logForDebugging } from '../../utils/debug.js'
-import { classifyAxiosError, getErrnoCode } from '../../utils/errors.js'
+import { registerCleanup } from '../../server/utils/cleanupRegistry.js'
+import { logForDebugging } from '../../server/utils/debug.js'
+import { classifyAxiosError, getErrnoCode } from '../../server/utils/errors.js'
 import { settingsChangeDetector } from '../../server/utils/settings/changeDetector.js'
 import {
   type SettingsJson,
   SettingsSchema,
 } from '../../server/utils/settings/types.js'
 import { sleep } from '../../utils/sleep.js'
-import { jsonStringify } from '../../utils/slowOperations.js'
+import { jsonStringify } from '../../server/utils/slowOperations.js'
 import { getClaudeCodeUserAgent } from '../../utils/userAgent.js'
 import { getRetryDelay } from '../api/withRetry.js'
 import {

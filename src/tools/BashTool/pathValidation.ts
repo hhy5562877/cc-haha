@@ -8,7 +8,7 @@ import {
   splitCommand_DEPRECATED,
 } from '../../utils/bash/commands.js'
 import { tryParseShellCommand } from '../../utils/bash/shellQuote.js'
-import { getDirectoryForPath } from '../../utils/path.js'
+import { getDirectoryForPath } from '../../server/utils/path.js'
 import { allWorkingDirectories } from '../../server/utils/permissions/filesystem.js'
 import type { PermissionResult } from '../../server/utils/permissions/PermissionResult.js'
 import { createReadRuleSuggestion } from '../../server/utils/permissions/PermissionUpdate.js'

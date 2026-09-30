@@ -12,24 +12,24 @@ import {
   GLOBAL_CLAUDE_FOLDER_PERMISSION_PATTERN,
 } from 'src/server/tools/FileEditTool/constants.js'
 import type { z } from 'zod/v4'
-import { getOriginalCwd, getSessionId } from '../../../bootstrap/state.js'
+import { getOriginalCwd, getSessionId } from '../../bootstrap/state.js'
 import { checkStatsigFeatureGate_CACHED_MAY_BE_STALE } from '../../services/analytics/growthbook.js'
 import type { AnyObject, Tool, ToolPermissionContext } from '../../../Tool.js'
 import { FILE_READ_TOOL_NAME } from '../../../tools/FileReadTool/prompt.js'
-import { getCwd } from '../../../utils/cwd.js'
-import { getClaudeConfigHomeDir } from '../../../utils/envUtils.js'
+import { getCwd } from '../cwd.js'
+import { getClaudeConfigHomeDir } from '../envUtils.js'
 import {
   getFsImplementation,
   getPathsForPermissionCheck,
-} from '../../../utils/fsOperations.js'
+} from '../fsOperations.js'
 import {
   containsPathTraversal,
   expandPath,
   getDirectoryForPath,
   sanitizePath,
-} from '../../../utils/path.js'
+} from '../path.js'
 import { getPlanSlug, getPlansDirectory } from '../../../utils/plans.js'
-import { getPlatform } from '../../../utils/platform.js'
+import { getPlatform } from '../platform.js'
 import { getProjectDir } from '../../../utils/sessionStorage.js'
 import { SETTING_SOURCES } from '../settings/constants.js'
 import {
@@ -38,7 +38,7 @@ import {
 } from '../settings/settings.js'
 import { containsVulnerableUncPath } from '../../../utils/shell/readOnlyCommandValidation.js'
 import { getToolResultsDir } from '../../../utils/toolResultStorage.js'
-import { windowsPathToPosixPath } from '../../../utils/windowsPaths.js'
+import { windowsPathToPosixPath } from '../windowsPaths.js'
 import type {
   PermissionDecision,
   PermissionResult,

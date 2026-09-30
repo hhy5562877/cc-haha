@@ -11,18 +11,18 @@ import { shouldUseSandbox } from '../../../tools/BashTool/shouldUseSandbox.js'
 import { BASH_TOOL_NAME } from '../../../tools/BashTool/toolName.js'
 import { POWERSHELL_TOOL_NAME } from '../../../tools/PowerShellTool/toolName.js'
 import { REPL_TOOL_NAME } from '../../../tools/REPLTool/constants.js'
-import type { AssistantMessage } from '../../../types/message.js'
+import type { AssistantMessage } from '../../types/message.js'
 import { extractOutputRedirections } from '../../../utils/bash/commands.js'
-import { logForDebugging } from '../../../utils/debug.js'
-import { AbortError, toError } from '../../../utils/errors.js'
-import { logError } from '../../../utils/log.js'
+import { logForDebugging } from '../debug.js'
+import { AbortError, toError } from '../errors.js'
+import { logError } from '../log.js'
 import { SandboxManager } from '../../../utils/sandbox/sandbox-adapter.js'
 import {
   getSettingSourceDisplayNameLowercase,
   SETTING_SOURCES,
 } from '../settings/constants.js'
 import { getAutoModeConfig } from '../settings/settings.js'
-import { plural } from '../../../utils/stringUtils.js'
+import { plural } from '../stringUtils.js'
 import { permissionModeTitle } from './PermissionMode.js'
 import type {
   PermissionAskDecision,
@@ -70,7 +70,7 @@ import {
   getTotalCacheReadInputTokens,
   getTotalInputTokens,
   getTotalOutputTokens,
-} from '../../../bootstrap/state.js'
+} from '../../bootstrap/state.js'
 import {
   type AnalyticsMetadata_I_VERIFIED_THIS_IS_NOT_CODE_OR_FILEPATHS,
   logEvent,
@@ -80,7 +80,7 @@ import {
   clearClassifierChecking,
   setClassifierChecking,
 } from '../../../utils/classifierApprovals.js'
-import { isInProtectedNamespace } from '../../../utils/envUtils.js'
+import { isInProtectedNamespace } from '../envUtils.js'
 import { executePermissionRequestHooks } from '../../../utils/hooks.js'
 import {
   AUTO_REJECT_MESSAGE,
@@ -90,7 +90,7 @@ import {
 } from '../../../utils/messages.js'
 import { calculateCostFromTokens } from '../../../utils/modelCost.js'
 /* eslint-enable @typescript-eslint/no-require-imports */
-import { jsonStringify } from '../../../utils/slowOperations.js'
+import { jsonStringify } from '../slowOperations.js'
 import {
   createDenialTrackingState,
   DENIAL_LIMITS,

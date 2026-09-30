@@ -11,8 +11,8 @@
 
 import { useCallback, useEffect, useRef } from 'react'
 import { useInterval } from 'usehooks-ts'
-import { logForDebugging } from '../utils/debug.js'
-import { errorMessage } from '../utils/errors.js'
+import { logForDebugging } from '../server/utils/debug.js'
+import { errorMessage } from '../server/utils/errors.js'
 import {
   type PermissionUpdate,
   permissionUpdateSchema,

@@ -15,7 +15,7 @@ import {
   type Output as FileReadToolOutput,
   registerFileReadListener,
 } from '../../tools/FileReadTool/FileReadTool.js'
-import { isFsInaccessible } from '../../utils/errors.js'
+import { isFsInaccessible } from '../../server/utils/errors.js'
 import { cloneFileStateCache } from '../../utils/fileStateCache.js'
 import {
   type REPLHookContext,

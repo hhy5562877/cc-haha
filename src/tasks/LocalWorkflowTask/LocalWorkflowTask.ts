@@ -7,11 +7,11 @@ import {
   TASK_TYPE_TAG,
   TOOL_USE_ID_TAG,
   WORKFLOW_RUN_ID_TAG,
-} from '../../constants/xml.js'
+} from '../../server/constants/xml.js'
 import type { SetAppState, Task, TaskStateBase } from '../../Task.js'
 import { createTaskStateBase } from '../../Task.js'
 import { createAbortController } from '../../utils/abortController.js'
-import { logForDebugging } from '../../utils/debug.js'
+import { logForDebugging } from '../../server/utils/debug.js'
 import { enqueuePendingNotification } from '../../utils/messageQueueManager.js'
 import { emitTaskTerminatedSdk } from '../../utils/sdkEventQueue.js'
 import {
@@ -22,7 +22,7 @@ import {
 import { PANEL_GRACE_MS, updateTaskState } from '../../utils/task/framework.js'
 import { WORKFLOW_MAX_PROGRESS_ROWS } from '../../server/utils/workflows/constants.js'
 import { getWorkflowTranscriptDir } from '../../server/utils/workflows/paths.js'
-import { asAgentId } from '../../types/ids.js'
+import { asAgentId } from '../../server/types/ids.js'
 import {
   isDurableWorkflowEvent,
   type WorkflowPhaseMeta,

@@ -5,7 +5,7 @@ import {
   SYSTEM_PROMPT_DYNAMIC_BOUNDARY,
 } from 'src/constants/prompts.js'
 import { microcompactMessages } from 'src/services/compact/microCompact.js'
-import { getSdkBetas } from '../bootstrap/state.js'
+import { getSdkBetas } from '../server/bootstrap/state.js'
 import { getCommandName } from '../commands.js'
 import { getSystemContext } from '../context.js'
 import { getFeatureValue_CACHED_MAY_BE_STALE } from '../server/services/analytics/growthbook.js'
@@ -47,7 +47,7 @@ import type {
   NormalizedAssistantMessage,
   NormalizedUserMessage,
   UserMessage,
-} from '../types/message.js'
+} from '../server/types/message.js'
 import { toolToAPISchema } from './api.js'
 import { filterInjectedMemoryFiles, getMemoryFiles } from './claudemd.js'
 import {
@@ -55,11 +55,11 @@ import {
   getContextWindowForModel,
 } from './context.js'
 import { getProviderUsageTrust, hasMediaInput } from './contextBudget.js'
-import { getCwd } from './cwd.js'
-import { logForDebugging } from './debug.js'
-import { isEnvTruthy } from './envUtils.js'
-import { errorMessage, toError } from './errors.js'
-import { logError } from './log.js'
+import { getCwd } from '../server/utils/cwd.js'
+import { logForDebugging } from '../server/utils/debug.js'
+import { isEnvTruthy } from '../server/utils/envUtils.js'
+import { errorMessage, toError } from '../server/utils/errors.js'
+import { logError } from '../server/utils/log.js'
 import {
   normalizeAttachmentForAPI,
   normalizeMessagesForAPI,
@@ -67,7 +67,7 @@ import {
 import { getRuntimeMainLoopModel } from '../server/utils/model/model.js'
 import { isFirstPartyAnthropicBaseUrl } from '../server/utils/model/providers.js'
 import type { SettingSource } from '../server/utils/settings/constants.js'
-import { jsonStringify } from './slowOperations.js'
+import { jsonStringify } from '../server/utils/slowOperations.js'
 import { buildEffectiveSystemPrompt } from './systemPrompt.js'
 import type { Theme } from './theme.js'
 import { getCurrentUsage, tokenCountWithEstimation } from './tokens.js'

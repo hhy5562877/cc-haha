@@ -1,5 +1,5 @@
 import memoize from 'lodash-es/memoize.js'
-import { MODEL_REASONING_CAPABILITY_TIERS } from '../../../shared/modelReasoning.js'
+import { MODEL_REASONING_CAPABILITY_TIERS } from '../../shared/modelReasoning.js'
 import { normalizeModelContextKey } from './modelContextWindows.js'
 import { getAPIProvider, isFirstPartyAnthropicBaseUrl } from './providers.js'
 

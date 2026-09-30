@@ -2,7 +2,7 @@ import * as fs from 'node:fs/promises'
 import * as crypto from 'node:crypto'
 import type { Stats } from 'node:fs'
 import { join } from 'node:path'
-import { getClaudeConfigHomeDir } from '../../../utils/envUtils.js'
+import { getClaudeConfigHomeDir } from '../../utils/envUtils.js'
 import {
   openScheduledRunIndex,
   type ScheduledRunIndex,

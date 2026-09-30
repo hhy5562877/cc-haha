@@ -1,7 +1,7 @@
 import { createHash } from 'node:crypto'
 import { z } from 'zod/v4'
 import type { QueuedCommand } from '../types/textInputTypes.js'
-import { formatSessionCollaborationPrompt } from './sessionCollaborationEnvelope.js'
+import { formatSessionCollaborationPrompt } from '../server/utils/sessionCollaborationEnvelope.js'
 
 export const sessionMessageInputSchema = z.strictObject({
   subtype: z.literal('enqueue_session_message'),

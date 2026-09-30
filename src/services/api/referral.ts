@@ -1,14 +1,14 @@
 import axios from 'axios'
-import { getOauthConfig } from '../../constants/oauth.js'
+import { getOauthConfig } from '../../server/constants/oauth.js'
 import {
   getOauthAccountInfo,
   getSubscriptionType,
   isClaudeAISubscriber,
 } from '../../utils/auth.js'
 import { getGlobalConfig, saveGlobalConfig } from '../../utils/config.js'
-import { logForDebugging } from '../../utils/debug.js'
-import { logError } from '../../utils/log.js'
-import { isEssentialTrafficOnly } from '../../utils/privacyLevel.js'
+import { logForDebugging } from '../../server/utils/debug.js'
+import { logError } from '../../server/utils/log.js'
+import { isEssentialTrafficOnly } from '../../server/utils/privacyLevel.js'
 import { getOAuthHeaders, prepareApiRequest } from '../../utils/teleport/api.js'
 import type {
   ReferralCampaign,

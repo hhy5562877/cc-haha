@@ -4,9 +4,9 @@ import type {
   StreamEvent,
   SystemAPIErrorMessage,
   SystemStreamingFallbackMessage,
-} from "../../types/message.js";
-import { logForDebugging } from "../../utils/debug.js";
-import { errorMessage } from "../../utils/errors.js";
+} from "../../server/types/message.js";
+import { logForDebugging } from "../../server/utils/debug.js";
+import { errorMessage } from "../../server/utils/errors.js";
 import { createSystemStreamingFallbackMessage } from "../../utils/messages.js";
 import {
   type AnalyticsMetadata_I_VERIFIED_THIS_IS_NOT_CODE_OR_FILEPATHS,

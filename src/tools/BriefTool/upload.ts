@@ -23,10 +23,10 @@ import {
   getBridgeAccessToken,
   getBridgeBaseUrlOverride,
 } from '../../bridge/bridgeConfig.js'
-import { getOauthConfig } from '../../constants/oauth.js'
-import { logForDebugging } from '../../utils/debug.js'
-import { lazySchema } from '../../utils/lazySchema.js'
-import { jsonStringify } from '../../utils/slowOperations.js'
+import { getOauthConfig } from '../../server/constants/oauth.js'
+import { logForDebugging } from '../../server/utils/debug.js'
+import { lazySchema } from '../../server/utils/lazySchema.js'
+import { jsonStringify } from '../../server/utils/slowOperations.js'
 
 // Matches the private_api backend limit
 const MAX_UPLOAD_BYTES = 30 * 1024 * 1024

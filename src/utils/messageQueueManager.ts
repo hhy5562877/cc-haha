@@ -1,12 +1,12 @@
 import { feature } from 'bun:bundle'
 import type { ContentBlockParam } from '@anthropic-ai/sdk/resources/messages.mjs'
 import type { Permutations } from 'src/types/utils.js'
-import { getSessionId } from '../bootstrap/state.js'
+import { getSessionId } from '../server/bootstrap/state.js'
 import type { AppState } from '../state/AppState.js'
 import type {
   QueueOperation,
   QueueOperationMessage,
-} from '../types/messageQueueTypes.js'
+} from '../server/types/messageQueueTypes.js'
 import type {
   EditablePromptInputMode,
   PromptInputMode,

@@ -6,7 +6,7 @@ import * as path from 'path'
 import { handleProvidersApi } from '../api/providers.js'
 import { PROVIDER_PRESETS, ProviderPresetSchema } from '../config/providerPresets.js'
 import { buildProviderManagedEnv, providerNeedsProxy } from '../services/providerRuntimeEnv.js'
-import { resolveModelApiFormat } from '../../shared/modelApiFormats.js'
+import { resolveModelApiFormat } from '../shared/modelApiFormats.js'
 import { resolveUpstreamHeaders } from '../proxy/upstreamHeaders.js'
 
 let tmpDir: string

@@ -19,11 +19,11 @@ import {
   AGENT_TOOL_NAME,
   LEGACY_AGENT_TOOL_NAME,
 } from '../server/tools/AgentTool/constants.js'
-import type { LogOption } from '../types/logs.js'
-import { getClaudeConfigHomeDir } from '../utils/envUtils.js'
-import { toError } from '../utils/errors.js'
+import type { LogOption } from '../server/types/logs.js'
+import { getClaudeConfigHomeDir } from '../server/utils/envUtils.js'
+import { toError } from '../server/utils/errors.js'
 import { execFileNoThrow } from '../utils/execFileNoThrow.js'
-import { logError } from '../utils/log.js'
+import { logError } from '../server/utils/log.js'
 import { extractTextContent } from '../utils/messages.js'
 import { getDefaultOpusModel } from '../server/utils/model/model.js'
 import {
@@ -32,8 +32,8 @@ import {
   getSessionIdFromLog,
   loadAllLogsFromSessionFile,
 } from '../utils/sessionStorage.js'
-import { jsonParse, jsonStringify } from '../utils/slowOperations.js'
-import { countCharInString } from '../utils/stringUtils.js'
+import { jsonParse, jsonStringify } from '../server/utils/slowOperations.js'
+import { countCharInString } from '../server/utils/stringUtils.js'
 import { asSystemPrompt } from '../utils/systemPromptType.js'
 import { escapeXmlAttr as escapeHtml } from '../utils/xml.js'
 

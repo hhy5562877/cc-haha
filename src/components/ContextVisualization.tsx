@@ -7,7 +7,7 @@ import { generateContextSuggestions } from '../utils/contextSuggestions.js';
 import { getDisplayPath } from '../utils/file.js';
 import { formatTokens } from '../utils/format.js';
 import { getSourceDisplayName, type SettingSource } from '../server/utils/settings/constants.js';
-import { plural } from '../utils/stringUtils.js';
+import { plural } from '../server/utils/stringUtils.js';
 import { ContextSuggestions } from './ContextSuggestions.js';
 const RESERVED_CATEGORY_NAME = 'Autocompact buffer';
 

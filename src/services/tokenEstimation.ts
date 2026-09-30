@@ -7,8 +7,8 @@ import { getAPIProvider } from '../server/utils/model/providers.js'
 import { VERTEX_COUNT_TOKENS_ALLOWED_BETAS } from '../constants/betas.js'
 import type { Attachment } from '../utils/attachments.js'
 import { getModelBetas } from '../utils/betas.js'
-import { getVertexRegionForModel, isEnvTruthy } from '../utils/envUtils.js'
-import { logError } from '../utils/log.js'
+import { getVertexRegionForModel, isEnvTruthy } from '../server/utils/envUtils.js'
+import { logError } from '../server/utils/log.js'
 import { normalizeAttachmentForAPI } from '../utils/messages.js'
 import { parseOpenAIReasoningEnvelope } from '../utils/openAIReasoningEnvelope.js'
 import {
@@ -22,7 +22,7 @@ import {
   getSmallFastModel,
   normalizeModelStringForAPI,
 } from '../server/utils/model/model.js'
-import { jsonStringify } from '../utils/slowOperations.js'
+import { jsonStringify } from '../server/utils/slowOperations.js'
 import { isToolReferenceBlock } from '../utils/toolSearch.js'
 import { getAPIMetadata, getExtraBodyParams } from './api/claude.js'
 import { getAnthropicClient } from './api/client.js'

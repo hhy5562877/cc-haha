@@ -1,20 +1,19 @@
 # 引擎解耦量化报告
 
-> 自动生成：bun scripts/engine-decoupling-report.ts（词法模块图，3744 文件）
+> 自动生成：bun scripts/engine-decoupling-report.ts（词法模块图，3747 文件）
 
 ## 总量
 
-- src/server 文件数：633
-- server → 引擎 **直接依赖边**：979（涉及 277 个引擎文件）
-- 引擎传递闭包（直接+间接可达）：**1818 个文件**
-- 其中疑似类型/模型定义类直接依赖：64
+- src/server 文件数：699
+- server → 引擎 **直接依赖边**：534（涉及 239 个引擎文件）
+- 引擎传递闭包（直接+间接可达）：**1754 个文件**
+- 其中疑似类型/模型定义类直接依赖：30
 
 ## 直接依赖按引擎目录分布
 
 | 目录 | 被引用文件数 |
 |---|---|
-| src/utils/model | 7 |
-| src/services/api | 6 |
+| src/services/api | 7 |
 | src/utils/computerUse | 4 |
 | src/tools/BashTool | 4 |
 | src/vendor/computer-use-mcp | 3 |
@@ -31,18 +30,9 @@
 | src/utils/dxt | 2 |
 | src/state/AppStateStore.ts | 1 |
 | src/utils/git.ts | 1 |
-| src/utils/terminalShellEnvironment.ts | 1 |
-| src/utils/sessionCollaborationEnvelope.ts | 1 |
 | src/utils/stats.ts | 1 |
-| src/utils/sessionStoragePortable.ts | 1 |
-| src/bootstrap/state.ts | 1 |
 | src/utils/config.ts | 1 |
-| src/utils/env.ts | 1 |
-| src/utils/cwd.ts | 1 |
-| src/utils/path.ts | 1 |
-| src/shared/modelApiFormats.ts | 1 |
 | src/commands.ts | 1 |
-| src/utils/json.ts | 1 |
 | src/utils/sessionBranching.ts | 1 |
 | src/utils/fileHistory.ts | 1 |
 | src/utils/sessionStorage.ts | 1 |
@@ -59,36 +49,26 @@
 | src/tasks/LocalWorkflowTask | 1 |
 | src/utils/workflows | 1 |
 | src/utils/slashCommandParsing.ts | 1 |
-| src/utils/envUtils.ts | 1 |
 | src/utils/statsCache.ts | 1 |
-| src/utils/debug.ts | 1 |
 | src/utils/effort.ts | 1 |
 | src/tools.ts | 1 |
 | src/utils/execFileNoThrow.ts | 1 |
 | src/utils/ripgrep.ts | 1 |
-| src/utils/frontmatterParser.ts | 1 |
 | src/memdir/memoryTypes.ts | 1 |
 | src/utils/auth.ts | 1 |
-| src/shared/modelReasoning.ts | 1 |
 | src/skills/skillRoots.ts | 1 |
 | src/skills/loadSkillsDir.ts | 1 |
 | src/types/plugin.ts | 1 |
 | src/commands/headless.ts | 1 |
-| src/utils/errors.ts | 1 |
-| src/utils/slowOperations.ts | 1 |
 | src/entrypoints/agentSdkTypes.ts | 1 |
 | src/entrypoints/sdk | 1 |
 | src/remote/RemoteSessionManager.ts | 1 |
-| src/utils/proxy.ts | 1 |
 | src/constants/claudeCodeCompatibility.ts | 1 |
 | src/utils/unparsedToolInput.ts | 1 |
 | src/utils/openAIReasoningEnvelope.ts | 1 |
 | src/utils/userAgent.ts | 1 |
 | src/shared/autoQuestionSettings.ts | 1 |
-| src/utils/privacyLevel.ts | 1 |
-| src/utils/log.ts | 1 |
 | src/utils/modelCost.ts | 1 |
-| src/utils/platform.ts | 1 |
 | src/utils/startupProfiler.ts | 1 |
 | src/utils/user.ts | 1 |
 | src/utils/http.ts | 1 |
@@ -99,7 +79,6 @@
 | src/utils/betas.ts | 1 |
 | src/utils/agentContext.ts | 1 |
 | src/utils/teammate.ts | 1 |
-| src/constants/oauth.ts | 1 |
 | src/types/command.ts | 1 |
 | src/types/composerMention.ts | 1 |
 | src/services/plugins | 1 |
@@ -119,28 +98,22 @@
 | src/utils/shotStats.ts | 1 |
 | src/utils/usageAccounting.ts | 1 |
 | src/utils/browser.ts | 1 |
-| src/utils/lazySchema.ts | 1 |
-| src/constants/xml.ts | 1 |
 | src/utils/xml.ts | 1 |
 | src/constants/product.ts | 1 |
 | src/tools/McpAuthTool | 1 |
 | src/tools/ReadMcpResourceTool | 1 |
 | src/utils/abortController.ts | 1 |
 | src/utils/array.ts | 1 |
-| src/utils/cleanupRegistry.ts | 1 |
 | src/utils/codeIndexing.ts | 1 |
 | src/utils/ide.ts | 1 |
 | src/utils/mcpOutputStorage.ts | 1 |
 | src/utils/mcpValidation.ts | 1 |
 | src/utils/mcpWebSocketTransport.ts | 1 |
-| src/utils/memoize.ts | 1 |
-| src/utils/mtls.ts | 1 |
 | src/utils/sanitization.ts | 1 |
 | src/utils/sessionIngressAuth.ts | 1 |
 | src/utils/mcpStdioEnvironment.ts | 1 |
 | src/utils/toolResultStorage.ts | 1 |
 | src/skills/mcpSkills.ts | 1 |
-| src/utils/fsOperations.ts | 1 |
 | src/utils/hooks.ts | 1 |
 | src/services/skillSearch | 1 |
 | src/context/notifications.tsx | 1 |
@@ -154,14 +127,12 @@
 | src/utils/contextBudget.ts | 1 |
 | src/services/tokenEstimation.ts | 1 |
 | src/utils/sessionMessageInbox.ts | 1 |
-| src/shared/teamPlan.ts | 1 |
 | src/utils/sessionTitle.ts | 1 |
 | src/constants/prompts.ts | 1 |
 | src/coordinator/coordinatorMode.ts | 1 |
 | src/services/AgentSummary | 1 |
 | src/tasks/LocalAgentTask | 1 |
 | src/tasks/RemoteAgentTask | 1 |
-| src/types/ids.ts | 1 |
 | src/utils/agentSwarmsEnabled.ts | 1 |
 | src/utils/forkedAgent.ts | 1 |
 | src/utils/sdkEventQueue.ts | 1 |
@@ -183,7 +154,6 @@
 | src/components/MessageResponse.tsx | 1 |
 | src/components/ToolUseLoader.tsx | 1 |
 | src/ink.ts | 1 |
-| src/types/message.ts | 1 |
 | src/utils/collapseReadSearch.ts | 1 |
 | src/utils/file.ts | 1 |
 | src/utils/format.ts | 1 |
@@ -210,7 +180,8 @@
 | src/utils/semanticBoolean.ts | 1 |
 | src/utils/diff.ts | 1 |
 | src/constants/figures.ts | 1 |
-| src/types/permissions.ts | 1 |
+| src/utils/sequential.ts | 1 |
+| src/utils/sideQuery.ts | 1 |
 | src/tools/AskUserQuestionTool | 1 |
 | src/tools/EnterPlanModeTool | 1 |
 | src/tools/GrepTool | 1 |
@@ -233,7 +204,6 @@
 | src/tools/WorkflowTool | 1 |
 | src/utils/plans.ts | 1 |
 | src/utils/shell | 1 |
-| src/utils/windowsPaths.ts | 1 |
 | src/utils/sandbox | 1 |
 | src/tools/BriefTool | 1 |
 | src/commands/add-dir | 1 |
@@ -241,17 +211,14 @@
 | src/utils/gracefulShutdown.ts | 1 |
 | src/tools/REPLTool | 1 |
 | src/utils/bash | 1 |
-| src/utils/stringUtils.ts | 1 |
 | src/utils/classifierApprovals.ts | 1 |
 | src/utils/fileRead.ts | 1 |
 | src/tools/SkillTool | 1 |
-| src/utils/which.ts | 1 |
 | src/utils/claudeCodeHints.ts | 1 |
 | src/utils/argumentSubstitution.ts | 1 |
 | src/utils/promptShellExecution.ts | 1 |
 | src/utils/systemDirectories.ts | 1 |
 | src/schemas/hooks.ts | 1 |
-| src/utils/yaml.ts | 1 |
 | src/utils/execFileNoThrowPortable.ts | 1 |
 | src/utils/diagLogs.ts | 1 |
 | src/services/remoteManagedSettings | 1 |
@@ -262,30 +229,30 @@
 | 文件 | 被依赖次数 |
 |---|---|
 | src/ink.ts | 390 |
-| src/utils/debug.ts | 327 |
-| src/utils/envUtils.ts | 230 |
-| src/utils/errors.ts | 224 |
 | src/Tool.ts | 213 |
-| src/bootstrap/state.ts | 211 |
-| src/utils/log.ts | 197 |
-| src/utils/slowOperations.ts | 190 |
 | src/commands.ts | 170 |
-| src/types/message.ts | 156 |
 | src/utils/config.ts | 134 |
 | src/utils/messages.ts | 117 |
 | src/state/AppState.tsx | 109 |
-| src/utils/cwd.ts | 97 |
 | src/utils/format.ts | 95 |
-| src/utils/lazySchema.ts | 93 |
 | src/keybindings/useKeybinding.ts | 91 |
-| src/utils/fsOperations.ts | 89 |
 | src/utils/auth.ts | 82 |
 | src/types/command.ts | 79 |
-| src/utils/stringUtils.ts | 73 |
-| src/utils/model/model.ts | 66 |
 | src/utils/execFileNoThrow.ts | 63 |
 | src/utils/theme.ts | 59 |
 | src/utils/sessionStorage.ts | 59 |
+| src/hooks/useTerminalSize.ts | 59 |
+| src/components/design-system/KeyboardShortcutHint.tsx | 55 |
+| src/components/design-system/Byline.tsx | 55 |
+| src/components/design-system/Dialog.tsx | 55 |
+| src/utils/file.ts | 53 |
+| src/utils/array.ts | 51 |
+| src/components/CustomSelect/select.tsx | 51 |
+| src/utils/git.ts | 50 |
+| src/components/MessageResponse.tsx | 50 |
+| src/ink/stringWidth.ts | 47 |
+| src/components/ConfigurableShortcutHint.tsx | 46 |
+| src/ink/events/keyboard-event.ts | 38 |
 
 ## 分批解耦建议
 

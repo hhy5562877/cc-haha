@@ -4,8 +4,8 @@ import type { AnalyticsMetadata_I_VERIFIED_THIS_IS_NOT_CODE_OR_FILEPATHS } from 
 import type { Tool } from '../../Tool.js'
 import { buildTool, type ToolDef } from '../../Tool.js'
 import { isAgentSwarmsEnabled } from '../../utils/agentSwarmsEnabled.js'
-import { lazySchema } from '../../utils/lazySchema.js'
-import { jsonStringify } from '../../utils/slowOperations.js'
+import { lazySchema } from '../../server/utils/lazySchema.js'
+import { jsonStringify } from '../../server/utils/slowOperations.js'
 import {
   cleanupTeamDirectories,
   getRegisteredTeamLifecycle,

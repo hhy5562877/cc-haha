@@ -23,8 +23,8 @@
  * - Bedrock/Vertex/Foundry (different endpoints, different auth)
  */
 
-import { getOauthConfig } from '../constants/oauth.js'
-import { isEnvTruthy } from './envUtils.js'
+import { getOauthConfig } from '../server/constants/oauth.js'
+import { isEnvTruthy } from '../server/utils/envUtils.js'
 
 let fired = false
 

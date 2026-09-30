@@ -12,9 +12,9 @@
 
 import { updatePluginOp } from '../../../services/plugins/pluginOperations.js'
 import { shouldSkipPluginAutoupdate } from '../../../utils/config.js'
-import { logForDebugging } from '../../../utils/debug.js'
-import { errorMessage } from '../../../utils/errors.js'
-import { logError } from '../../../utils/log.js'
+import { logForDebugging } from '../debug.js'
+import { errorMessage } from '../errors.js'
+import { logError } from '../log.js'
 import {
   getPendingUpdatesDetails,
   hasPendingUpdates,

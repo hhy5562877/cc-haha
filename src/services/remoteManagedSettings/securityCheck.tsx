@@ -1,5 +1,5 @@
 import React from 'react';
-import { getIsInteractive } from '../../bootstrap/state.js';
+import { getIsInteractive } from '../../server/bootstrap/state.js';
 import { ManagedSettingsSecurityDialog } from '../../components/ManagedSettingsSecurityDialog/ManagedSettingsSecurityDialog.js';
 import { extractDangerousSettings, hasDangerousSettings, hasDangerousSettingsChanged } from '../../components/ManagedSettingsSecurityDialog/utils.js';
 import { render } from '../../ink.js';

@@ -2,7 +2,7 @@ import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { ApiError } from '@/api/client'
 import { teamPlansApi } from '@/api/teamPlans'
 import { useTeamPlanStore } from './teamPlanStore'
-import type { TeamPlanRecord } from '../../../src/shared/teamPlan'
+import type { TeamPlanRecord } from '../../../src/server/shared/teamPlan.js'
 
 vi.mock('@/api/teamPlans', () => ({ teamPlansApi: { get: vi.fn(), save: vi.fn(), act: vi.fn() } }))
 

@@ -15,7 +15,7 @@
  * See docs/claude-code-hints.md for the vendor-facing spec.
  */
 
-import { logForDebugging } from './debug.js'
+import { logForDebugging } from '../server/utils/debug.js'
 import { createSignal } from './signal.js'
 
 export type ClaudeCodeHintType = 'plugin'

@@ -7,8 +7,8 @@ import {
   type ExternalPermissionMode,
   PERMISSION_MODES,
   type PermissionMode,
-} from '../../../types/permissions.js'
-import { lazySchema } from '../../../utils/lazySchema.js'
+} from '../../types/permissions.js'
+import { lazySchema } from '../lazySchema.js'
 
 // Re-export for backwards compatibility
 export {

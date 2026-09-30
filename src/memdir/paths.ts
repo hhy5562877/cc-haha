@@ -4,15 +4,15 @@ import { isAbsolute, join, normalize, sep } from 'path'
 import {
   getIsNonInteractiveSession,
   getProjectRoot,
-} from '../bootstrap/state.js'
+} from '../server/bootstrap/state.js'
 import { getFeatureValue_CACHED_MAY_BE_STALE } from '../server/services/analytics/growthbook.js'
 import {
   getClaudeConfigHomeDir,
   isEnvDefinedFalsy,
   isEnvTruthy,
-} from '../utils/envUtils.js'
+} from '../server/utils/envUtils.js'
 import { findCanonicalGitRoot } from '../utils/git.js'
-import { sanitizePath } from '../utils/path.js'
+import { sanitizePath } from '../server/utils/path.js'
 import {
   getInitialSettings,
   getSettingsForSource,

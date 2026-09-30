@@ -1,10 +1,10 @@
 import type { BetaContentBlock } from '@anthropic-ai/sdk/resources/beta/messages/messages.mjs'
 import { randomUUID, type UUID } from 'crypto'
-import { getSessionId } from 'src/bootstrap/state.js'
+import { getSessionId } from 'src/server/bootstrap/state.ts'
 import {
   LOCAL_COMMAND_STDERR_TAG,
   LOCAL_COMMAND_STDOUT_TAG,
-} from 'src/constants/xml.js'
+} from 'src/server/constants/xml.ts'
 import type {
   SDKAssistantMessage,
   SDKCompactBoundaryMessage,
@@ -17,7 +17,7 @@ import type {
   AssistantMessage,
   CompactMetadata,
   Message,
-} from 'src/types/message.js'
+} from 'src/server/types/message.ts'
 import type { DeepImmutable } from 'src/types/utils.js'
 import stripAnsi from 'strip-ansi'
 import { createAssistantMessage } from '../messages.js'

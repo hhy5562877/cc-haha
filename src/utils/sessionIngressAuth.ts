@@ -1,15 +1,15 @@
 import {
   getSessionIngressToken,
   setSessionIngressToken,
-} from '../bootstrap/state.js'
+} from '../server/bootstrap/state.js'
 import {
   CCR_SESSION_INGRESS_TOKEN_PATH,
   maybePersistTokenForSubprocesses,
   readTokenFromWellKnownFile,
 } from './authFileDescriptor.js'
-import { logForDebugging } from './debug.js'
-import { errorMessage } from './errors.js'
-import { getFsImplementation } from './fsOperations.js'
+import { logForDebugging } from '../server/utils/debug.js'
+import { errorMessage } from '../server/utils/errors.js'
+import { getFsImplementation } from '../server/utils/fsOperations.js'
 
 /**
  * Read token via file descriptor, falling back to well-known file.

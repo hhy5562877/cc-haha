@@ -1,19 +1,19 @@
 import axios, { type AxiosRequestConfig, type AxiosResponse } from 'axios'
 import { randomUUID } from 'crypto'
-import { getOauthConfig } from 'src/constants/oauth.js'
+import { getOauthConfig } from 'src/server/constants/oauth.ts'
 import { getOrganizationUUID } from 'src/server/services/oauth/client.js'
 import z from 'zod/v4'
 import {
   checkAndRefreshOAuthTokenIfNeeded,
   getClaudeAIOAuthTokens,
 } from '../auth.js'
-import { logForDebugging } from '../debug.js'
+import { logForDebugging } from '../../server/utils/debug.js'
 import { parseGitHubRepository } from '../detectRepository.js'
-import { errorMessage, toError } from '../errors.js'
-import { lazySchema } from '../lazySchema.js'
-import { logError } from '../log.js'
+import { errorMessage, toError } from '../../server/utils/errors.js'
+import { lazySchema } from '../../server/utils/lazySchema.js'
+import { logError } from '../../server/utils/log.js'
 import { sleep } from '../sleep.js'
-import { jsonStringify } from '../slowOperations.js'
+import { jsonStringify } from '../../server/utils/slowOperations.js'
 
 // Retry configuration for teleport API requests
 const TELEPORT_RETRY_DELAYS = [2000, 4000, 8000, 16000] // 4 retries with exponential backoff

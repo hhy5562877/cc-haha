@@ -7,18 +7,18 @@ import { createHash } from 'crypto'
 import { chmod, writeFile } from 'fs/promises'
 import { dirname, join } from 'path'
 import type { McpServerConfig } from '../../services/mcp/types.js'
-import { logForDebugging } from '../../../utils/debug.js'
+import { logForDebugging } from '../debug.js'
 import { parseAndValidateManifestFromBytes } from '../../../utils/dxt/helpers.js'
 import { parseZipModes, unzipFile } from '../../../utils/dxt/zip.js'
-import { errorMessage, getErrnoCode, isENOENT, toError } from '../../../utils/errors.js'
-import { getFsImplementation } from '../../../utils/fsOperations.js'
-import { logError } from '../../../utils/log.js'
+import { errorMessage, getErrnoCode, isENOENT, toError } from '../errors.js'
+import { getFsImplementation } from '../fsOperations.js'
+import { logError } from '../log.js'
 import { getSecureStorage } from '../secureStorage/index.js'
 import {
   getSettings_DEPRECATED,
   updateSettingsForSource,
 } from '../settings/settings.js'
-import { jsonParse, jsonStringify } from '../../../utils/slowOperations.js'
+import { jsonParse, jsonStringify } from '../slowOperations.js'
 import { getSystemDirectories } from '../../../utils/systemDirectories.js'
 import { classifyFetchError, logPluginFetch } from './fetchTelemetry.js'
 /**

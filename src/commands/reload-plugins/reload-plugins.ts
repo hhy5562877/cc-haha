@@ -1,11 +1,11 @@
 import { feature } from 'bun:bundle'
-import { getIsRemoteMode } from '../../bootstrap/state.js'
+import { getIsRemoteMode } from '../../server/bootstrap/state.js'
 import { redownloadUserSettings } from '../../services/settingsSync/index.js'
 import type { LocalCommandCall } from '../../types/command.js'
-import { isEnvTruthy } from '../../utils/envUtils.js'
+import { isEnvTruthy } from '../../server/utils/envUtils.js'
 import { refreshActivePlugins } from '../../server/utils/plugins/refresh.js'
 import { settingsChangeDetector } from '../../server/utils/settings/changeDetector.js'
-import { plural } from '../../utils/stringUtils.js'
+import { plural } from '../../server/utils/stringUtils.js'
 
 export const call: LocalCommandCall = async (_args, context) => {
   // CCR: re-pull user settings before the cache sweep so enabledPlugins /

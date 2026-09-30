@@ -143,7 +143,7 @@ const getWorkflowTool = () =>
 import type { ToolPermissionContext } from './Tool.js'
 import { getDenyRuleForTool } from './server/utils/permissions/permissions.js'
 import { hasEmbeddedSearchTools } from './utils/embeddedTools.js'
-import { isEnvTruthy } from './utils/envUtils.js'
+import { isEnvTruthy } from './server/utils/envUtils.js'
 import {
   isBashToolEnabled,
   isPowerShellToolEnabled,

@@ -23,8 +23,8 @@ import { normalizeJsonObject, readRecoverableJsonFile } from './recoverableJsonF
 import { ensurePersistentStorageUpgraded } from './persistentStorageMigrations.js'
 import { resetSettingsCache } from '../utils/settings/settingsCache.js'
 import { addFileGlobRuleToGitignore } from '../../utils/git/gitignore.js'
-import { getCcHahaDir, getClaudeConfigHomeDir, isEnvTruthy } from '../../utils/envUtils.js'
-import { getProcessEnvWithTerminalShellEnvironment } from '../../utils/terminalShellEnvironment.js'
+import { getCcHahaDir, getClaudeConfigHomeDir, isEnvTruthy } from '../utils/envUtils.js'
+import { getProcessEnvWithTerminalShellEnvironment } from '../utils/terminalShellEnvironment.js'
 import type { ModelMapping } from '../types/provider.js'
 
 /** 迁移期旧 Claude 配置根（仅读，用于一次性搬迁）。 */

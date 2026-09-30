@@ -12,17 +12,17 @@ import type {
   AssistantMessage,
   AttachmentMessage,
   ProgressMessage,
-} from '../../types/message.js'
-import type { PermissionDecision } from '../../types/permissions.js'
+} from '../../server/types/message.js'
+import type { PermissionDecision } from '../../server/types/permissions.js'
 import { createAttachmentMessage } from '../../utils/attachments.js'
-import { logForDebugging } from '../../utils/debug.js'
+import { logForDebugging } from '../../server/utils/debug.js'
 import {
   executePostToolHooks,
   executePostToolUseFailureHooks,
   executePreToolHooks,
   getPreToolHookBlockingMessage,
 } from '../../utils/hooks.js'
-import { logError } from '../../utils/log.js'
+import { logError } from '../../server/utils/log.js'
 import {
   getRuleBehaviorDescription,
   type PermissionDecisionReason,

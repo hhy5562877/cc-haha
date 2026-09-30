@@ -32,8 +32,8 @@ import type {
 } from '../services/mcp/types.js'
 import { describeMcpConfigFilePath, ensureConfigScope } from '../services/mcp/utils.js'
 import { enableConfigs, getGlobalConfig, getProjectPathForConfig } from '../../utils/config.js'
-import { getCwd, runWithCwdOverride } from '../../utils/cwd.js'
-import { normalizePathForConfigKey } from '../../utils/path.js'
+import { getCwd, runWithCwdOverride } from '../utils/cwd.js'
+import { normalizePathForConfigKey } from '../utils/path.js'
 import { ApiError, errorResponse } from '../middleware/errorHandler.js'
 import { conversationService } from '../services/conversationService.js'
 

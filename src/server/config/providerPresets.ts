@@ -5,7 +5,7 @@ import { z } from 'zod'
 
 import providerPresetsJson from './providerPresets.json'
 import { ApiFormatSchema, ProviderAuthStrategySchema } from '../types/provider.js'
-import type { ModelReasoningProviderKind } from '../../shared/modelReasoning.js'
+import type { ModelReasoningProviderKind } from '../shared/modelReasoning.js'
 
 const ModelMappingSchema = z.object({
   main: z.string(),

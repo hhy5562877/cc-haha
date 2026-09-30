@@ -4,7 +4,7 @@ import React from 'react';
 import { Markdown } from '../../components/Markdown.js';
 import { BLACK_CIRCLE } from '../../constants/figures.js';
 import { Box, Text } from '../../ink.js';
-import type { ProgressMessage } from '../../types/message.js';
+import type { ProgressMessage } from '../../server/types/message.js';
 import { getDisplayPath } from '../../utils/file.js';
 import { formatFileSize } from '../../utils/format.js';
 import { formatBriefTimestamp } from '../../utils/formatBriefTimestamp.js';

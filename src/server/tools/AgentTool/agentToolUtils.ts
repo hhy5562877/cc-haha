@@ -1,6 +1,6 @@
 import { feature } from 'bun:bundle'
 import { z } from 'zod/v4'
-import { clearInvokedSkillsForAgent } from '../../../bootstrap/state.js'
+import { clearInvokedSkillsForAgent } from '../../bootstrap/state.js'
 import {
   ALL_AGENT_DISALLOWED_TOOLS,
   ASYNC_AGENT_ALLOWED_TOOLS,
@@ -35,14 +35,14 @@ import {
   updateAgentProgress as updateAsyncAgentProgress,
   updateProgressFromMessage,
 } from '../../../tasks/LocalAgentTask/LocalAgentTask.js'
-import { asAgentId } from '../../../types/ids.js'
-import type { Message as MessageType } from '../../../types/message.js'
+import { asAgentId } from '../../types/ids.js'
+import type { Message as MessageType } from '../../types/message.js'
 import { isAgentSwarmsEnabled } from '../../../utils/agentSwarmsEnabled.js'
-import { logForDebugging } from '../../../utils/debug.js'
-import { isInProtectedNamespace } from '../../../utils/envUtils.js'
-import { AbortError, errorMessage } from '../../../utils/errors.js'
+import { logForDebugging } from '../../utils/debug.js'
+import { isInProtectedNamespace } from '../../utils/envUtils.js'
+import { AbortError, errorMessage } from '../../utils/errors.js'
 import type { CacheSafeParams } from '../../../utils/forkedAgent.js'
-import { lazySchema } from '../../../utils/lazySchema.js'
+import { lazySchema } from '../../utils/lazySchema.js'
 import {
   extractTextContent,
   getLastAssistantMessage,

@@ -2,7 +2,7 @@ import { c as _c } from "react/compiler-runtime";
 // biome-ignore-all assist/source/organizeImports: ANT-ONLY import markers must not be reordered
 import { feature } from 'bun:bundle';
 import { spawnSync } from 'child_process';
-import { snapshotOutputTokensForTurn, getCurrentTurnTokenBudget, getTurnOutputTokens, getBudgetContinuationCount, getTotalInputTokens } from '../bootstrap/state.js';
+import { snapshotOutputTokensForTurn, getCurrentTurnTokenBudget, getTurnOutputTokens, getBudgetContinuationCount, getTotalInputTokens } from '../server/bootstrap/state.js';
 import { parseTokenBudget } from '../utils/tokenBudget.js';
 import { count } from '../utils/array.js';
 import { dirname, join } from 'path';
@@ -29,11 +29,11 @@ import { startPreventSleep, stopPreventSleep } from '../services/preventSleep.js
 import { useTerminalNotification } from '../ink/useTerminalNotification.js';
 import { hasCursorUpViewportYankBug } from '../ink/terminal.js';
 import { createFileStateCacheWithSizeLimit, mergeFileStateCaches, READ_FILE_STATE_CACHE_SIZE } from '../utils/fileStateCache.js';
-import { updateLastInteractionTime, getLastInteractionTime, getOriginalCwd, getProjectRoot, getSessionId, switchSession, setCostStateForRestore, getTurnHookDurationMs, getTurnHookCount, resetTurnHookDuration, getTurnToolDurationMs, getTurnToolCount, resetTurnToolDuration, getTurnClassifierDurationMs, getTurnClassifierCount, resetTurnClassifierDuration } from '../bootstrap/state.js';
-import { asSessionId, asAgentId } from '../types/ids.js';
-import { logForDebugging } from '../utils/debug.js';
+import { updateLastInteractionTime, getLastInteractionTime, getOriginalCwd, getProjectRoot, getSessionId, switchSession, setCostStateForRestore, getTurnHookDurationMs, getTurnHookCount, resetTurnHookDuration, getTurnToolDurationMs, getTurnToolCount, resetTurnToolDuration, getTurnClassifierDurationMs, getTurnClassifierCount, resetTurnClassifierDuration } from '../server/bootstrap/state.js';
+import { asSessionId, asAgentId } from '../server/types/ids.js';
+import { logForDebugging } from '../server/utils/debug.js';
 import { QueryGuard } from '../utils/QueryGuard.js';
-import { isEnvTruthy } from '../utils/envUtils.js';
+import { isEnvTruthy } from '../server/utils/envUtils.js';
 import { formatTokens, truncateToWidth } from '../utils/format.js';
 import { consumeEarlyInput } from '../utils/earlyInput.js';
 import { setMemberActive } from '../utils/swarm/teamHelpers.js';
@@ -90,9 +90,9 @@ import { CancelRequestHandler } from '../hooks/useCancelRequest.js';
 import { useBackgroundTaskNavigation } from '../hooks/useBackgroundTaskNavigation.js';
 import { useSwarmInitialization } from '../hooks/useSwarmInitialization.js';
 import { useTeammateViewAutoExit } from '../hooks/useTeammateViewAutoExit.js';
-import { errorMessage } from '../utils/errors.js';
+import { errorMessage } from '../server/utils/errors.js';
 import { isHumanTurn } from '../utils/messagePredicates.js';
-import { logError } from '../utils/log.js';
+import { logError } from '../server/utils/log.js';
 // Dead code elimination: conditional imports
 /* eslint-disable custom-rules/no-process-env-top-level, @typescript-eslint/no-require-imports */
 const useVoiceIntegration: typeof import('../hooks/useVoiceIntegration.js').useVoiceIntegration = feature('VOICE_MODE') ? require('../hooks/useVoiceIntegration.js').useVoiceIntegration : () => ({
@@ -134,7 +134,7 @@ import { logEvent, type AnalyticsMetadata_I_VERIFIED_THIS_IS_NOT_CODE_OR_FILEPAT
 import { getFeatureValue_CACHED_MAY_BE_STALE } from '../server/services/analytics/growthbook.js';
 import { textForResubmit, handleMessageFromStream, type StreamingToolUse, type StreamingThinking, isCompactBoundaryMessage, getMessagesAfterCompactBoundary, getContentText, createUserMessage, createAssistantMessage, createTurnDurationMessage, createAgentsKilledMessage, createApiMetricsMessage, createSystemMessage, createCommandInputMessage, formatCommandInputTags } from '../utils/messages.js';
 import { generateSessionTitle } from '../utils/sessionTitle.js';
-import { BASH_INPUT_TAG, COMMAND_MESSAGE_TAG, COMMAND_NAME_TAG, LOCAL_COMMAND_STDOUT_TAG } from '../constants/xml.js';
+import { BASH_INPUT_TAG, COMMAND_MESSAGE_TAG, COMMAND_NAME_TAG, LOCAL_COMMAND_STDOUT_TAG } from '../server/constants/xml.js';
 import { escapeXml } from '../utils/xml.js';
 import type { ThinkingConfig } from '../utils/thinking.js';
 import { gracefulShutdownSync } from '../utils/gracefulShutdown.js';
@@ -142,7 +142,7 @@ import { handlePromptSubmit, type PromptInputHelpers } from '../utils/handleProm
 import { useQueueProcessor } from '../hooks/useQueueProcessor.js';
 import { useMailboxBridge } from '../hooks/useMailboxBridge.js';
 import { queryCheckpoint, logQueryProfileReport } from '../utils/queryProfiler.js';
-import type { Message as MessageType, UserMessage, ProgressMessage, HookResultMessage, PartialCompactDirection } from '../types/message.js';
+import type { Message as MessageType, UserMessage, ProgressMessage, HookResultMessage, PartialCompactDirection } from '../server/types/message.js';
 import { query } from '../query.js';
 import { mergeClients, useMergedClients } from '../hooks/useMergedClients.js';
 import { getQuerySourceForREPL } from '../utils/promptCategory.js';
@@ -179,7 +179,7 @@ import { resetMicrocompactState } from '../services/compact/microCompact.js';
 import { runPostCompactCleanup } from '../services/compact/postCompactCleanup.js';
 import { provisionContentReplacementState, reconstructContentReplacementState, type ContentReplacementRecord } from '../utils/toolResultStorage.js';
 import { partialCompactConversation } from '../services/compact/compact.js';
-import type { LogOption } from '../types/logs.js';
+import type { LogOption } from '../server/types/logs.js';
 import type { AgentColorName } from '../server/tools/AgentTool/agentColorManager.js';
 import { fileHistoryCompleteSnapshot, fileHistoryMakeSnapshot, type FileHistoryState, fileHistoryRewind, type FileHistorySnapshot, copyFileHistoryForResume, fileHistoryEnabled, fileHistoryHasAnyChanges } from '../utils/fileHistory.js';
 import { type AttributionState, incrementPromptCount } from '../utils/commitAttribution.js';

@@ -17,7 +17,7 @@ import {
   resolveModelReasoningProfile,
   type ModelReasoningApiFormat,
   type ModelReasoningProviderKind,
-} from '../../../src/shared/modelReasoning'
+} from '../../../src/server/shared/modelReasoning.js'
 import { getBundledPresetReasoningProviderKind } from '../config/providerPresets'
 
 const PROVIDER_MODEL_SLOTS = ['main', 'haiku', 'sonnet', 'opus', 'fable'] as const

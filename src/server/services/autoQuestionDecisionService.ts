@@ -1,5 +1,5 @@
 import { normalizeAnthropicBaseUrl } from './api/anthropicBaseUrl.js'
-import { getOauthConfig, OAUTH_BETA_HEADER } from '../../constants/oauth.js'
+import { getOauthConfig, OAUTH_BETA_HEADER } from '../constants/oauth.js'
 import { OPENAI_CODEX_API_ENDPOINT } from './openaiAuth/client.js'
 import { resolveOpenAICodexModel } from './openaiAuth/models.js'
 import { buildGrokIdentityHeaders, GROK_CLI_API_ENDPOINT } from './grokAuth/fetch.js'

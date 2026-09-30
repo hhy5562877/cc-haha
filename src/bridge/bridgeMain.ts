@@ -11,13 +11,13 @@ import {
   logEvent,
   logEventAsync,
 } from '../server/services/analytics/index.js'
-import { isInBundledMode } from '../utils/bundledMode.js'
-import { logForDebugging } from '../utils/debug.js'
+import { isInBundledMode } from '../server/utils/bundledMode.js'
+import { logForDebugging } from '../server/utils/debug.js'
 import { logForDiagnosticsNoPII } from '../utils/diagLogs.js'
-import { isEnvTruthy, isInProtectedNamespace } from '../utils/envUtils.js'
-import { errorMessage } from '../utils/errors.js'
+import { isEnvTruthy, isInProtectedNamespace } from '../server/utils/envUtils.js'
+import { errorMessage } from '../server/utils/errors.js'
 import { truncateToWidth } from '../utils/format.js'
-import { logError } from '../utils/log.js'
+import { logError } from '../server/utils/log.js'
 import { sleep } from '../utils/sleep.js'
 import { createAgentWorktree, removeAgentWorktree } from '../utils/worktree.js'
 import {
@@ -1889,7 +1889,7 @@ export function parseArgs(args: string[]): ParsedArgs {
 async function printHelp(): Promise<void> {
   // Use EXTERNAL_PERMISSION_MODES for help text — internal modes (bubble)
   // are ant-only and auto is feature-gated; they're still accepted by validation.
-  const { EXTERNAL_PERMISSION_MODES } = await import('../types/permissions.js')
+  const { EXTERNAL_PERMISSION_MODES } = await import('../server/types/permissions.js')
   const modes = EXTERNAL_PERMISSION_MODES.join(', ')
   const showServer = await isMultiSessionSpawnEnabled()
   const serverOptions = showServer
@@ -2021,7 +2021,7 @@ export async function bridgeMain(args: string[]): Promise<void> {
   // Validate permission mode early so the user gets an error before
   // the bridge starts polling for work.
   if (permissionMode !== undefined) {
-    const { PERMISSION_MODES } = await import('../types/permissions.js')
+    const { PERMISSION_MODES } = await import('../server/types/permissions.js')
     const valid: readonly string[] = PERMISSION_MODES
     if (!valid.includes(permissionMode)) {
       // biome-ignore lint/suspicious/noConsole: intentional error output
@@ -2077,7 +2077,7 @@ export async function bridgeMain(args: string[]): Promise<void> {
 
   // Set the bootstrap CWD so that trust checks, project config lookups, and
   // git utilities (getBranch, getRemoteUrl) resolve against the correct path.
-  const { setOriginalCwd, setCwdState } = await import('../bootstrap/state.js')
+  const { setOriginalCwd, setCwdState } = await import('../server/bootstrap/state.js')
   setOriginalCwd(dir)
   setCwdState(dir)
 
@@ -2817,7 +2817,7 @@ export async function runBridgeHeadless(
   // (getBranch/getRemoteUrl) — which read from bootstrap CWD state set
   // below — resolve against the right repo.
   process.chdir(dir)
-  const { setOriginalCwd, setCwdState } = await import('../bootstrap/state.js')
+  const { setOriginalCwd, setCwdState } = await import('../server/bootstrap/state.js')
   setOriginalCwd(dir)
   setCwdState(dir)
 

@@ -1,5 +1,5 @@
 import type { BetaStopReason } from '@anthropic-ai/sdk/resources/beta/messages/messages'
-import type { AssistantMessage } from '../../types/message.js'
+import type { AssistantMessage } from '../../server/types/message.js'
 import { createAssistantAPIErrorMessage } from '../../utils/messages.js'
 import { API_ERROR_MESSAGE_PREFIX } from './errors.js'
 import type { StreamAssistantCommitBuffer } from './streamAssistantCommitBuffer.js'

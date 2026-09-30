@@ -1,7 +1,7 @@
 import { homedir } from 'os'
 import { resolve } from 'path'
-import { getErrnoCode } from '../../../utils/errors.js'
-import { getFsImplementation } from '../../../utils/fsOperations.js'
+import { getErrnoCode } from '../errors.js'
+import { getFsImplementation } from '../fsOperations.js'
 import type { MarketplaceSource } from './schemas.js'
 
 /**

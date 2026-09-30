@@ -1,8 +1,8 @@
 import { BASH_TOOL_NAME } from '../../tools/BashTool/toolName.js'
 import { POWERSHELL_TOOL_NAME } from '../../tools/PowerShellTool/toolName.js'
-import { isEnvDefinedFalsy, isEnvTruthy } from '../envUtils.js'
-import { getPlatform } from '../platform.js'
-import { tryFindGitBashPath } from '../windowsPaths.js'
+import { isEnvDefinedFalsy, isEnvTruthy } from '../../server/utils/envUtils.js'
+import { getPlatform } from '../../server/utils/platform.js'
+import { tryFindGitBashPath } from '../../server/utils/windowsPaths.js'
 
 export const SHELL_TOOL_NAMES: string[] = [BASH_TOOL_NAME, POWERSHELL_TOOL_NAME]
 

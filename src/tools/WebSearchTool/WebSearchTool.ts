@@ -12,11 +12,11 @@ import {
   type ToolDef,
   type ToolUseContext,
 } from '../../Tool.js'
-import { lazySchema } from '../../utils/lazySchema.js'
-import { logError } from '../../utils/log.js'
+import { lazySchema } from '../../server/utils/lazySchema.js'
+import { logError } from '../../server/utils/log.js'
 import { createUserMessage } from '../../utils/messages.js'
 import { getMainLoopModel, getSmallFastModel } from '../../server/utils/model/model.js'
-import { jsonParse, jsonStringify } from '../../utils/slowOperations.js'
+import { jsonParse, jsonStringify } from '../../server/utils/slowOperations.js'
 import { asSystemPrompt } from '../../utils/systemPromptType.js'
 import {
   getApiKeyForProvider,

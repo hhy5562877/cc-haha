@@ -12,7 +12,7 @@ import type { CoreUserData } from 'src/utils/user.js'
 import {
   getIsNonInteractiveSession,
   getSessionId,
-} from '../../../bootstrap/state.js'
+} from '../../bootstrap/state.js'
 import { ClaudeCodeInternalEvent } from '../../../types/generated/events_mono/claude_code/v1/claude_code_internal_event.js'
 import { GrowthbookExperimentEvent } from '../../../types/generated/events_mono/growthbook/v1/growthbook_experiment_event.js'
 import {
@@ -21,14 +21,14 @@ import {
   isClaudeAISubscriber,
 } from '../../../utils/auth.js'
 import { checkHasTrustDialogAccepted } from '../../../utils/config.js'
-import { logForDebugging } from '../../../utils/debug.js'
-import { getClaudeConfigHomeDir } from '../../../utils/envUtils.js'
-import { errorMessage, isFsInaccessible, toError } from '../../../utils/errors.js'
+import { logForDebugging } from '../../utils/debug.js'
+import { getClaudeConfigHomeDir } from '../../utils/envUtils.js'
+import { errorMessage, isFsInaccessible, toError } from '../../utils/errors.js'
 import { getAuthHeaders } from '../../../utils/http.js'
-import { readJSONLFile } from '../../../utils/json.js'
-import { logError } from '../../../utils/log.js'
+import { readJSONLFile } from '../../utils/json.js'
+import { logError } from '../../utils/log.js'
 import { sleep } from '../../../utils/sleep.js'
-import { jsonStringify } from '../../../utils/slowOperations.js'
+import { jsonStringify } from '../../utils/slowOperations.js'
 import { getClaudeCodeUserAgent } from '../../../utils/userAgent.js'
 import { isOAuthTokenExpired } from '../oauth/client.js'
 import { stripProtoFields } from './index.js'

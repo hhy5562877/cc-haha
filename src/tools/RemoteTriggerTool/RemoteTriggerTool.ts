@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { z } from 'zod/v4'
-import { getOauthConfig } from '../../constants/oauth.js'
+import { getOauthConfig } from '../../server/constants/oauth.js'
 import { getFeatureValue_CACHED_MAY_BE_STALE } from '../../server/services/analytics/growthbook.js'
 import { getOrganizationUUID } from '../../server/services/oauth/client.js'
 import { isPolicyAllowed } from '../../services/policyLimits/index.js'
@@ -10,8 +10,8 @@ import {
   checkAndRefreshOAuthTokenIfNeeded,
   getClaudeAIOAuthTokens,
 } from '../../utils/auth.js'
-import { lazySchema } from '../../utils/lazySchema.js'
-import { jsonStringify } from '../../utils/slowOperations.js'
+import { lazySchema } from '../../server/utils/lazySchema.js'
+import { jsonStringify } from '../../server/utils/slowOperations.js'
 import { DESCRIPTION, PROMPT, REMOTE_TRIGGER_TOOL_NAME } from './prompt.js'
 import { renderToolResultMessage, renderToolUseMessage } from './UI.js'
 

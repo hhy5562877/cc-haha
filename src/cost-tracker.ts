@@ -28,7 +28,7 @@ import {
   resetStateForTests,
   setCostStateForRestore,
   setHasUnknownModelCost,
-} from './bootstrap/state.js'
+} from './server/bootstrap/state.js'
 import type { ModelUsage } from './entrypoints/agentSdkTypes.js'
 import {
   type AnalyticsMetadata_I_VERIFIED_THIS_IS_NOT_CODE_OR_FILEPATHS,

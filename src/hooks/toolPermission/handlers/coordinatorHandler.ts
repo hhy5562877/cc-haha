@@ -1,6 +1,6 @@
 import { feature } from 'bun:bundle'
-import type { PendingClassifierCheck } from '../../../types/permissions.js'
-import { logError } from '../../../utils/log.js'
+import type { PendingClassifierCheck } from '../../../server/types/permissions.js'
+import { logError } from '../../../server/utils/log.js'
 import type { PermissionDecision } from '../../../server/utils/permissions/PermissionResult.js'
 import type { PermissionUpdate } from '../../../server/utils/permissions/PermissionUpdateSchema.js'
 import type { PermissionContext } from '../PermissionContext.js'

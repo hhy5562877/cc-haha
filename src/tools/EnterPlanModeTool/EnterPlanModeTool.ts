@@ -3,10 +3,10 @@ import { z } from 'zod/v4'
 import {
   getAllowedChannels,
   handlePlanModeTransition,
-} from '../../bootstrap/state.js'
+} from '../../server/bootstrap/state.js'
 import type { Tool } from '../../Tool.js'
 import { buildTool, type ToolDef } from '../../Tool.js'
-import { lazySchema } from '../../utils/lazySchema.js'
+import { lazySchema } from '../../server/utils/lazySchema.js'
 import { applyPermissionUpdate } from '../../server/utils/permissions/PermissionUpdate.js'
 import { prepareContextForPlanMode } from '../../server/utils/permissions/permissionSetup.js'
 import { isPlanModeInterviewPhaseEnabled } from '../../utils/planModeV2.js'

@@ -7,7 +7,7 @@ import { createOfflineTestEnvironment } from '../../../scripts/pr/test-environme
 import { conversationService } from '../services/conversationService.js'
 import { ProviderService } from '../services/providerService.js'
 import { sessionService } from '../services/sessionService.js'
-import { resetTerminalShellEnvironmentCacheForTests } from '../../utils/terminalShellEnvironment.js'
+import { resetTerminalShellEnvironmentCacheForTests } from '../utils/terminalShellEnvironment.js'
 
 type SessionApiFormat = 'anthropic' | 'openai_chat' | 'openai_responses'
 

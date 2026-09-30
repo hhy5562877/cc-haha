@@ -13,18 +13,18 @@ import {
   getMainLoopModelOverride,
   getSessionBypassPermissionsMode,
   getSessionId,
-} from '../../bootstrap/state.js'
+} from '../../server/bootstrap/state.js'
 import type { AppState } from '../../state/AppState.js'
 import { createTaskStateBase, generateTaskId } from '../../Task.js'
 import type { ToolUseContext } from '../../Tool.js'
 import type { InProcessTeammateTaskState } from '../../tasks/InProcessTeammateTask/types.js'
 import { formatAgentId } from '../../utils/agentId.js'
 import { quote } from '../../utils/bash/shellQuote.js'
-import { isInBundledMode } from '../../utils/bundledMode.js'
-import { getCwd } from '../../utils/cwd.js'
-import { logForDebugging } from '../../utils/debug.js'
+import { isInBundledMode } from '../../server/utils/bundledMode.js'
+import { getCwd } from '../../server/utils/cwd.js'
+import { logForDebugging } from '../../server/utils/debug.js'
 import type { EffortValue } from '../../utils/effort.js'
-import { errorMessage } from '../../utils/errors.js'
+import { errorMessage } from '../../server/utils/errors.js'
 import { execFileNoThrow } from '../../utils/execFileNoThrow.js'
 import type { PermissionMode } from '../../server/utils/permissions/PermissionMode.js'
 import { isTmuxAvailable } from '../../utils/swarm/backends/detection.js'

@@ -20,7 +20,7 @@ import type {
   RenderableMessage,
   StopHookInfo,
   SystemStopHookSummaryMessage,
-} from '../types/message.js'
+} from '../server/types/message.js'
 import { getDisplayPath } from './file.js'
 import { isFullscreenEnvEnabled } from './fullscreen.js'
 import {

@@ -4,7 +4,7 @@ import { zh } from '@/i18n/locales/zh'
 import { zh as zhTW } from '@/i18n/locales/zh-TW'
 import { jp } from '@/i18n/locales/jp'
 import { kr } from '@/i18n/locales/kr'
-import { ALL_CONNECTORS } from '../../../../src/services/connectors/catalog'
+import { ALL_CONNECTORS } from '../../../../src/server/services/connectors/catalog.js'
 
 // Catalog definitions contain only data; no adapter or user-state access runs here.
 const connectorIds = ALL_CONNECTORS.map(item => item.id)

@@ -7,21 +7,21 @@ import {
   getFlagSettingsPath,
   getOriginalCwd,
   getUseCoworkPlugins,
-} from '../../../bootstrap/state.js'
+} from '../../bootstrap/state.js'
 import { getRemoteManagedSettingsSyncFromCache } from '../../../services/remoteManagedSettings/syncCacheState.js'
 import { uniq } from '../../../utils/array.js'
-import { logForDebugging } from '../../../utils/debug.js'
+import { logForDebugging } from '../debug.js'
 import { logForDiagnosticsNoPII } from '../../../utils/diagLogs.js'
-import { getClaudeConfigHomeDir, isEnvTruthy } from '../../../utils/envUtils.js'
-import { getErrnoCode, isENOENT } from '../../../utils/errors.js'
+import { getClaudeConfigHomeDir, isEnvTruthy } from '../envUtils.js'
+import { getErrnoCode, isENOENT } from '../errors.js'
 import { writeFileSyncAndFlush_DEPRECATED } from '../../../utils/file.js'
 import { readFileSync } from '../../../utils/fileRead.js'
-import { getFsImplementation, safeResolvePath } from '../../../utils/fsOperations.js'
+import { getFsImplementation, safeResolvePath } from '../fsOperations.js'
 import { addFileGlobRuleToGitignore } from '../../../utils/git/gitignore.js'
-import { safeParseJSON, safeParseJSONWithoutCache } from '../../../utils/json.js'
-import { logError } from '../../../utils/log.js'
-import { getPlatform } from '../../../utils/platform.js'
-import { clone, jsonStringify } from '../../../utils/slowOperations.js'
+import { safeParseJSON, safeParseJSONWithoutCache } from '../json.js'
+import { logError } from '../log.js'
+import { getPlatform } from '../platform.js'
+import { clone, jsonStringify } from '../slowOperations.js'
 import { profileCheckpoint } from '../../../utils/startupProfiler.js'
 import {
   type EditableSettingSource,

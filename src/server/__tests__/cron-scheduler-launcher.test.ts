@@ -12,7 +12,7 @@ import {
 } from '../services/cronScheduler.js'
 import { CronService } from '../services/cronService.js'
 import { ProviderService } from '../services/providerService.js'
-import { resetTerminalShellEnvironmentCacheForTests } from '../../utils/terminalShellEnvironment.js'
+import { resetTerminalShellEnvironmentCacheForTests } from '../utils/terminalShellEnvironment.js'
 import { resetSettingsCache } from '../utils/settings/settingsCache.js'
 
 const originalConfigDir = process.env.CLAUDE_CONFIG_DIR

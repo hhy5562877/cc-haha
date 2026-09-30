@@ -14,19 +14,19 @@ import {
 } from 'path'
 import { logEvent } from '../server/services/analytics/index.js'
 import { getFeatureValue_CACHED_MAY_BE_STALE } from '../server/services/analytics/growthbook.js'
-import { getCwd } from '../utils/cwd.js'
-import { logForDebugging } from './debug.js'
-import { isENOENT, isFsInaccessible } from './errors.js'
+import { getCwd } from '../server/utils/cwd.js'
+import { logForDebugging } from '../server/utils/debug.js'
+import { isENOENT, isFsInaccessible } from '../server/utils/errors.js'
 import {
   detectEncodingForResolvedPath,
   detectLineEndingsForString,
   type LineEndingType,
 } from './fileRead.js'
 import { fileReadCache } from './fileReadCache.js'
-import { getFsImplementation, safeResolvePath } from './fsOperations.js'
-import { logError } from './log.js'
-import { expandPath } from './path.js'
-import { getPlatform } from './platform.js'
+import { getFsImplementation, safeResolvePath } from '../server/utils/fsOperations.js'
+import { logError } from '../server/utils/log.js'
+import { expandPath } from '../server/utils/path.js'
+import { getPlatform } from '../server/utils/platform.js'
 
 export type File = {
   filename: string

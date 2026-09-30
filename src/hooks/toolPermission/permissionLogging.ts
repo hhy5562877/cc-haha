@@ -7,7 +7,7 @@ import {
   logEvent,
 } from '../../server/services/analytics/index.js'
 import { sanitizeToolNameForAnalytics } from '../../server/services/analytics/metadata.js'
-import { getCodeEditToolDecisionCounter } from '../../bootstrap/state.js'
+import { getCodeEditToolDecisionCounter } from '../../server/bootstrap/state.js'
 import type { Tool as ToolType, ToolUseContext } from '../../Tool.js'
 import { getLanguageName } from '../../utils/cliHighlight.js'
 import { SandboxManager } from '../../utils/sandbox/sandbox-adapter.js'

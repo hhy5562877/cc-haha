@@ -1,7 +1,7 @@
 import { describe, expect, it, vi } from 'vitest'
 import { api } from '@/api/client'
 import { teamPlansApi } from './teamPlans'
-import type { TeamPlanRecord } from '../../../src/shared/teamPlan'
+import type { TeamPlanRecord } from '../../../src/server/shared/teamPlan'
 
 vi.mock('@/api/client', () => ({ api: { get: vi.fn(), patch: vi.fn(), post: vi.fn() } }))
 

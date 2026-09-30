@@ -2,10 +2,10 @@ import { readFile } from 'fs/promises'
 import { z } from 'zod/v4'
 import { buildTool, type ToolDef } from '../../Tool.js'
 import { generateTaskId } from '../../Task.js'
-import { lazySchema } from '../../utils/lazySchema.js'
+import { lazySchema } from '../../server/utils/lazySchema.js'
 import { getRuleByContentsForTool } from '../../server/utils/permissions/permissions.js'
 import { hasAcceptedWorkflowsInAutoMode } from '../../utils/workflows/autoModeConsent.js'
-import { jsonStringify } from '../../utils/slowOperations.js'
+import { jsonStringify } from '../../server/utils/slowOperations.js'
 import { findWorkflowByName, loadWorkflows } from '../../server/utils/workflows/discovery.js'
 import {
   areWorkflowsEnabled,

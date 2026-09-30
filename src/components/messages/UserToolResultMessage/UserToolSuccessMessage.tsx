@@ -5,7 +5,7 @@ import { SentryErrorBoundary } from 'src/components/SentryErrorBoundary.js';
 import { Box, Text, useTheme } from '../../../ink.js';
 import { useAppState } from '../../../state/AppState.js';
 import { filterToolProgressMessages, type Tool, type Tools } from '../../../Tool.js';
-import type { NormalizedUserMessage, ProgressMessage } from '../../../types/message.js';
+import type { NormalizedUserMessage, ProgressMessage } from '../../../server/types/message.js';
 import { deleteClassifierApproval, getClassifierApproval, getYoloClassifierApproval } from '../../../utils/classifierApprovals.js';
 import type { buildMessageLookups } from '../../../utils/messages.js';
 import { MessageResponse } from '../../MessageResponse.js';

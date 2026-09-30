@@ -12,12 +12,12 @@
  */
 
 import { homedir } from 'os'
-import { logForDebugging } from '../debug.js'
+import { logForDebugging } from '../../server/utils/debug.js'
 import {
   filterExistingPaths,
   getKnownPathsForRepo,
 } from '../githubRepoPathMapping.js'
-import { jsonStringify } from '../slowOperations.js'
+import { jsonStringify } from '../../server/utils/slowOperations.js'
 import { readLastFetchTime } from './banner.js'
 import { parseDeepLink } from './parseDeepLink.js'
 import { MACOS_BUNDLE_ID } from './registerProtocol.js'

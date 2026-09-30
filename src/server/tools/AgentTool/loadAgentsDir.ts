@@ -13,16 +13,16 @@ import {
   McpServerConfigSchema,
 } from '../../services/mcp/types.js'
 import type { ToolUseContext } from '../../../Tool.js'
-import { logForDebugging } from '../../../utils/debug.js'
+import { logForDebugging } from '../../utils/debug.js'
 import {
   EFFORT_LEVELS,
   type EffortValue,
   parseEffortValue,
 } from '../../../utils/effort.js'
-import { isEnvTruthy } from '../../../utils/envUtils.js'
-import { parsePositiveIntFromFrontmatter } from '../../../utils/frontmatterParser.js'
-import { lazySchema } from '../../../utils/lazySchema.js'
-import { logError } from '../../../utils/log.js'
+import { isEnvTruthy } from '../../utils/envUtils.js'
+import { parsePositiveIntFromFrontmatter } from '../../utils/frontmatterParser.js'
+import { lazySchema } from '../../utils/lazySchema.js'
+import { logError } from '../../utils/log.js'
 import {
   loadMarkdownFilesForSubdir,
   parseAgentToolsFromFrontmatter,
@@ -38,7 +38,7 @@ import {
   loadPluginAgents,
 } from '../../utils/plugins/loadPluginAgents.js'
 import { HooksSchema, type HooksSettings } from '../../utils/settings/types.js'
-import { jsonStringify } from '../../../utils/slowOperations.js'
+import { jsonStringify } from '../../utils/slowOperations.js'
 import { FILE_EDIT_TOOL_NAME } from '../FileEditTool/constants.js'
 import { FILE_READ_TOOL_NAME } from '../../../tools/FileReadTool/prompt.js'
 import { FILE_WRITE_TOOL_NAME } from '../../../tools/FileWriteTool/prompt.js'

@@ -9,7 +9,7 @@ import type {
   AppGrant,
   CuGrantFlags,
 } from '../../vendor/computer-use-mcp/types.js'
-import { getClaudeConfigHomeDir } from '../envUtils.js'
+import { getClaudeConfigHomeDir } from '../../server/utils/envUtils.js'
 
 export type StoredAuthorizedApp = {
   bundleId: string
