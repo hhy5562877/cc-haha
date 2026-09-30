@@ -1,5 +1,7 @@
 # CHANGELOG
 
+- [2026-10-01 11:30] REFACTOR: 解耦批次 29 完成——utils/model 整目录（17 文件 997 行）迁入 src/server/utils/model/，语义归一 + 全仓 151 处消费方精算重指（含根文件、services 兄弟、utils 内部多级引用）；modelDefaults 改名 model.ts 与目录共存；E2E PASS (Files: src/server/utils/model/*, src/server/utils/modelDefaults.ts→model.ts, src/cost-tracker.ts, src/utils/* 等 151 文件)
+
 - [2026-10-01 10:10] REFACTOR: 解耦批次 29 完成——yoloClassifier/permissionExplainer 分类器 DAL 语义重接线：sideQuery→dalSideQuery（DAL 网关），getMainLoopModel/resolveAntModel→server/utils/model.ts 窄化实现；server→utils/model 与 utils/sideQuery 直接边全断；E2E PASS (Files: src/server/utils/permissions/{yoloClassifier,permissionExplainer}.ts, src/server/utils/dalSideQuery.ts)
 
 - [2026-10-01 10:10] REFACTOR: 解耦批次 28 完成——model 深链窄化收尾：getMainLoopModel(env 回退)/resolveAntModel(恒 undefined)/parseUserSpecifiedModelNarrow 入 src/server/utils/model.ts；yoloClassifier/permissionExplainer 重指；loadPluginCommands 保留引擎原导入（深链随引擎休眠）；E2E PASS (Files: src/server/utils/model.ts, src/server/utils/permissions/*, src/server/utils/plugins/loadPluginCommands.ts)

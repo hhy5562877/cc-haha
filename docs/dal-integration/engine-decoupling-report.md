@@ -5,7 +5,7 @@
 ## 总量
 
 - src/server 文件数：633
-- server → 引擎 **直接依赖边**：981（涉及 278 个引擎文件）
+- server → 引擎 **直接依赖边**：979（涉及 277 个引擎文件）
 - 引擎传递闭包（直接+间接可达）：**1818 个文件**
 - 其中疑似类型/模型定义类直接依赖：64
 
@@ -235,7 +235,6 @@
 | src/utils/shell | 1 |
 | src/utils/windowsPaths.ts | 1 |
 | src/utils/sandbox | 1 |
-| src/utils/sideQuery.ts | 1 |
 | src/tools/BriefTool | 1 |
 | src/commands/add-dir | 1 |
 | src/tools/PowerShellTool | 1 |
