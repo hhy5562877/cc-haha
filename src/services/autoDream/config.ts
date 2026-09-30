@@ -3,7 +3,7 @@
 // agent / task registry / message builder chain that autoDream.ts pulls in.
 
 import { getInitialSettings } from '../../server/utils/settings/settings.js'
-import { getFeatureValue_CACHED_MAY_BE_STALE } from '../analytics/growthbook.js'
+import { getFeatureValue_CACHED_MAY_BE_STALE } from '../../server/services/analytics/growthbook.js'
 
 /**
  * Whether background memory consolidation should run. User setting

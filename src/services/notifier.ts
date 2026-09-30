@@ -7,7 +7,7 @@ import { logError } from '../utils/log.js'
 import {
   type AnalyticsMetadata_I_VERIFIED_THIS_IS_NOT_CODE_OR_FILEPATHS,
   logEvent,
-} from './analytics/index.js'
+} from '../server/services/analytics/index.js'
 
 export type NotificationOptions = {
   message: string

@@ -2,7 +2,7 @@
 import { isUltrathinkEnabled } from './thinking.js'
 import { getInitialSettings } from '../server/utils/settings/settings.js'
 import { isClaudeAISubscriber, isProSubscriber, isMaxSubscriber, isTeamSubscriber } from './auth.js'
-import { getFeatureValue_CACHED_MAY_BE_STALE } from 'src/services/analytics/growthbook.js'
+import { getFeatureValue_CACHED_MAY_BE_STALE } from '../server/services/analytics/growthbook.js'
 import {
   getAPIProvider,
   hasAnthropicCompatibleThirdPartyConfig,

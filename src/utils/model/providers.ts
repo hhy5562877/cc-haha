@@ -1,4 +1,4 @@
-import type { AnalyticsMetadata_I_VERIFIED_THIS_IS_NOT_CODE_OR_FILEPATHS } from '../../services/analytics/index.js'
+import type { AnalyticsMetadata_I_VERIFIED_THIS_IS_NOT_CODE_OR_FILEPATHS } from '../../server/services/analytics/index.js'
 import { isEnvTruthy } from '../envUtils.js'
 
 export type APIProvider =

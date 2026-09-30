@@ -1,5 +1,5 @@
 import { feature } from 'bun:bundle'
-import { getFeatureValue_CACHED_MAY_BE_STALE } from '../services/analytics/growthbook.js'
+import { getFeatureValue_CACHED_MAY_BE_STALE } from '../server/services/analytics/growthbook.js'
 import {
   getClaudeAIOAuthTokens,
   isAnthropicAuthEnabled,

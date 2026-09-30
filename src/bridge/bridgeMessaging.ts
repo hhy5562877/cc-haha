@@ -18,7 +18,7 @@ import type {
 } from '../entrypoints/sdk/controlTypes.js'
 import type { SDKResultSuccess } from '../entrypoints/sdk/coreTypes.js'
 import { installDesktopApprovalToken } from '../utils/computerUse/desktopApprovalAuth.js'
-import { logEvent } from '../services/analytics/index.js'
+import { logEvent } from '../server/services/analytics/index.js'
 import { EMPTY_USAGE } from '../services/api/emptyUsage.js'
 import type { Message } from '../types/message.js'
 import { normalizeControlMessageKeys } from '../utils/controlMessageCompat.js'

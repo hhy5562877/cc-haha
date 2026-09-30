@@ -1,7 +1,7 @@
 import { feature } from 'bun:bundle';
 import { appendFileSync } from 'fs';
 import React from 'react';
-import { logEvent } from 'src/services/analytics/index.js';
+import { logEvent } from './server/services/analytics/index.js';
 import { gracefulShutdown, gracefulShutdownSync } from 'src/utils/gracefulShutdown.js';
 import { type ChannelEntry, getAllowedChannels, setAllowedChannels, setHasDevChannels, setSessionTrustAccepted, setStatsStore } from './bootstrap/state.js';
 import type { Command } from './commands.js';
@@ -12,7 +12,7 @@ import { isSynchronizedOutputSupported } from './ink/terminal.js';
 import type { RenderOptions, Root, TextProps } from './ink.js';
 import { KeybindingSetup } from './keybindings/KeybindingProviderSetup.js';
 import { startDeferredPrefetches } from './main.js';
-import { checkGate_CACHED_OR_BLOCKING, initializeGrowthBook, resetGrowthBook } from './services/analytics/growthbook.js';
+import { checkGate_CACHED_OR_BLOCKING, initializeGrowthBook, resetGrowthBook } from './server/services/analytics/growthbook.js';
 import { isQualifiedForGrove } from './services/api/grove.js';
 import { handleMcpjsonServerApprovals } from './services/mcpServerApproval.js';
 import { AppStateProvider } from './state/AppState.js';

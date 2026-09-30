@@ -10,7 +10,7 @@ import React from 'react';
 import { MCPServerDesktopImportDialog } from '../../components/MCPServerDesktopImportDialog.js';
 import { render } from '../../ink.js';
 import { KeybindingSetup } from '../../keybindings/KeybindingProviderSetup.js';
-import { type AnalyticsMetadata_I_VERIFIED_THIS_IS_NOT_CODE_OR_FILEPATHS, logEvent } from '../../services/analytics/index.js';
+import { type AnalyticsMetadata_I_VERIFIED_THIS_IS_NOT_CODE_OR_FILEPATHS, logEvent } from '../../server/services/analytics/index.js';
 import { clearMcpClientConfig, clearServerTokensFromLocalStorage, getMcpClientConfig, readClientSecret, saveMcpClientSecret } from '../../server/services/mcp/auth.js';
 import { connectToServer, getMcpServerConnectionBatchSize } from '../../server/services/mcp/client.js';
 import { addMcpConfig, getAllMcpConfigs, getMcpConfigByName, getMcpConfigsByScope, removeMcpConfig } from '../../server/services/mcp/config.js';

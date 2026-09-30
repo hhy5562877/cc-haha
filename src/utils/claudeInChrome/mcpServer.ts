@@ -6,14 +6,14 @@ import {
 } from '@ant/claude-for-chrome-mcp'
 import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js'
 import { format } from 'util'
-import { shutdownDatadog } from '../../services/analytics/datadog.js'
-import { shutdown1PEventLogging } from '../../services/analytics/firstPartyEventLogger.js'
-import { getFeatureValue_CACHED_MAY_BE_STALE } from '../../services/analytics/growthbook.js'
+import { shutdownDatadog } from '../../server/services/analytics/datadog.js'
+import { shutdown1PEventLogging } from '../../server/services/analytics/firstPartyEventLogger.js'
+import { getFeatureValue_CACHED_MAY_BE_STALE } from '../../server/services/analytics/growthbook.js'
 import {
   type AnalyticsMetadata_I_VERIFIED_THIS_IS_NOT_CODE_OR_FILEPATHS,
   logEvent,
-} from '../../services/analytics/index.js'
-import { initializeAnalyticsSink } from '../../services/analytics/sink.js'
+} from '../../server/services/analytics/index.js'
+import { initializeAnalyticsSink } from '../../server/services/analytics/sink.js'
 import { getClaudeAIOAuthTokens } from '../auth.js'
 import { enableConfigs, getGlobalConfig, saveGlobalConfig } from '../config.js'
 import { logForDebugging } from '../debug.js'

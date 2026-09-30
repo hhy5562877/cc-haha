@@ -57,7 +57,7 @@ import {
 import {
   logEvent,
   type AnalyticsMetadata_I_VERIFIED_THIS_IS_NOT_CODE_OR_FILEPATHS,
-} from 'src/services/analytics/index.js'
+} from '../server/services/analytics/index.js'
 import { logOTelEvent } from './telemetry/events.js'
 import { ALLOWED_OFFICIAL_MARKETPLACE_NAMES } from '../server/utils/plugins/schemas.js'
 import {

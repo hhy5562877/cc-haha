@@ -33,8 +33,8 @@ import { consumeInvokingRequestId } from '../../utils/agentContext.js'
 import {
   type AnalyticsMetadata_I_VERIFIED_THIS_IS_NOT_CODE_OR_FILEPATHS,
   logEvent,
-} from '../analytics/index.js'
-import { sanitizeToolNameForAnalytics } from '../analytics/metadata.js'
+} from '../../server/services/analytics/index.js'
+import { sanitizeToolNameForAnalytics } from '../../server/services/analytics/metadata.js'
 import { EMPTY_USAGE, normalizeUsage } from './emptyUsage.js'
 import { classifyAPIError } from './errors.js'
 import { extractConnectionErrorDetails } from './errorUtils.js'

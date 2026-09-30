@@ -14,7 +14,7 @@ import type { QuerySource } from '../../constants/querySource.js'
 import {
   type AnalyticsMetadata_I_VERIFIED_THIS_IS_NOT_CODE_OR_FILEPATHS,
   logEvent,
-} from '../analytics/index.js'
+} from '../../server/services/analytics/index.js'
 
 function getCacheBreakDiffPath(): string {
   const chars = 'abcdefghijklmnopqrstuvwxyz0123456789'

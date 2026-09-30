@@ -20,7 +20,7 @@ import {
   getOriginalCwd,
   getSessionId,
 } from 'src/bootstrap/state.js'
-import { logEvent } from 'src/services/analytics/index.js'
+import { logEvent } from '../server/services/analytics/index.js'
 import { notifyVscodeFileUpdated } from '../server/services/mcp/vscodeSdkMcp.js'
 import type { LogOption } from 'src/types/logs.js'
 import { inspect } from 'util'

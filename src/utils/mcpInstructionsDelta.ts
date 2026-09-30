@@ -1,5 +1,5 @@
-import { getFeatureValue_CACHED_MAY_BE_STALE } from '../services/analytics/growthbook.js'
-import { logEvent } from '../services/analytics/index.js'
+import { getFeatureValue_CACHED_MAY_BE_STALE } from '../server/services/analytics/growthbook.js'
+import { logEvent } from '../server/services/analytics/index.js'
 import type {
   ConnectedMCPServer,
   MCPServerConnection,

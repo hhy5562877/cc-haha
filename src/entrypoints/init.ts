@@ -92,8 +92,8 @@ export const init = memoize(async (): Promise<void> => {
     // the module cache by this point (firstPartyEventLogger imports it), so the
     // second dynamic import adds no load cost.
     void Promise.all([
-      import('../services/analytics/firstPartyEventLogger.js'),
-      import('../services/analytics/growthbook.js'),
+      import('../server/services/analytics/firstPartyEventLogger.js'),
+      import('../server/services/analytics/growthbook.js'),
     ]).then(([fp, gb]) => {
       fp.initialize1PEventLogging()
       // Rebuild the logger provider if tengu_1p_event_batch_config changes

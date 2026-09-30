@@ -38,8 +38,8 @@ import { getSettingsFilePathForSource } from '../../server/utils/settings/settin
 import { resetSettingsCache } from '../../server/utils/settings/settingsCache.js'
 import { sleep } from '../../utils/sleep.js'
 import { getClaudeCodeUserAgent } from '../../utils/userAgent.js'
-import { getFeatureValue_CACHED_MAY_BE_STALE } from '../analytics/growthbook.js'
-import { logEvent } from '../analytics/index.js'
+import { getFeatureValue_CACHED_MAY_BE_STALE } from '../../server/services/analytics/growthbook.js'
+import { logEvent } from '../../server/services/analytics/index.js'
 import { getRetryDelay } from '../api/withRetry.js'
 import {
   type SettingsSyncFetchResult,
