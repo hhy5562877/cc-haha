@@ -13,7 +13,7 @@ import type { Database } from 'bun:sqlite'
 import type { LocalIndexWriteOperation } from './database.js'
 import { LOCAL_INDEX_SCHEMA_VERSION } from './migrations.js'
 
-type EnvironmentName = 'HOME' | 'CLAUDE_CONFIG_DIR' | 'CC_HAHA_LOCAL_INDEX'
+type EnvironmentName = 'HOME' | 'CLAUDE_CONFIG_DIR' | 'DAL_CONFIG_DIR' | 'CC_HAHA_LOCAL_INDEX'
 
 const originalEnvironment: Partial<Record<EnvironmentName, string>> = {}
 const tempDirs: string[] = []
@@ -296,13 +296,19 @@ beforeEach(async () => {
 
   const environmentRoot = await createTempDir('local-index-environment')
   process.env.HOME = join(environmentRoot, 'home')
-  process.env.CLAUDE_CONFIG_DIR = join(environmentRoot, 'config')
+  // DAL 契约：索引 DB 默认路径派生自桌面状态根（$DAL_CONFIG_DIR/desktop/cc-haha），
+  // 托管目录校验 scope 派生自 $CLAUDE_CONFIG_DIR。no-arg 打开要求二者一致，
+  // 即 CLAUDE_CONFIG_DIR === $DAL_CONFIG_DIR/desktop。
+  const dalConfigRoot = join(environmentRoot, 'dal')
+  process.env.DAL_CONFIG_DIR = dalConfigRoot
+  process.env.CLAUDE_CONFIG_DIR = join(dalConfigRoot, 'desktop')
   delete process.env.CC_HAHA_LOCAL_INDEX
 })
 
 afterEach(async () => {
   restoreEnvironment('HOME')
   restoreEnvironment('CLAUDE_CONFIG_DIR')
+  restoreEnvironment('DAL_CONFIG_DIR')
   restoreEnvironment('CC_HAHA_LOCAL_INDEX')
   await Promise.all(tempDirs.splice(0).map(
     directory => rm(directory, { recursive: true, force: true }),
@@ -342,17 +348,16 @@ describe('local index config', () => {
   })
 
   it('resolves the database path from the config active at startup time', async () => {
-    const firstConfigDir = process.env.CLAUDE_CONFIG_DIR!
+    const firstDalConfigDir = process.env.DAL_CONFIG_DIR!
     const { getLocalIndexDatabasePath } = await loadConfig()
     const secondRoot = await createTempDir('local-index-second-profile')
-    const secondConfigDir = join(secondRoot, 'config')
 
-    process.env.CLAUDE_CONFIG_DIR = secondConfigDir
+    process.env.DAL_CONFIG_DIR = secondRoot
 
     expect(getLocalIndexDatabasePath()).toBe(
-      join(secondConfigDir, 'cc-haha', 'db', 'index-v1.sqlite'),
+      join(secondRoot, 'desktop', 'cc-haha', 'db', 'index-v1.sqlite'),
     )
-    expect(getLocalIndexDatabasePath()).not.toContain(firstConfigDir)
+    expect(getLocalIndexDatabasePath()).not.toContain(firstDalConfigDir)
   })
 })
 

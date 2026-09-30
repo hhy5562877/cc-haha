@@ -14,10 +14,13 @@ import {
 
 const tempDirs: string[] = []
 const originalConfig = process.env.CLAUDE_CONFIG_DIR
+const originalDalConfig = process.env.DAL_CONFIG_DIR
 
 afterEach(async () => {
   if (originalConfig === undefined) delete process.env.CLAUDE_CONFIG_DIR
   else process.env.CLAUDE_CONFIG_DIR = originalConfig
+  if (originalDalConfig === undefined) delete process.env.DAL_CONFIG_DIR
+  else process.env.DAL_CONFIG_DIR = originalDalConfig
   await Promise.all(tempDirs.splice(0).map(path =>
     rm(path, { recursive: true, force: true }),
   ))
@@ -27,29 +30,38 @@ describe('search content database', () => {
   it('uses a dedicated managed database and exposes bounded storage operations', async () => {
     const root = await mkdtemp(join(tmpdir(), 'cc-haha-search-database-'))
     tempDirs.push(root)
-    process.env.CLAUDE_CONFIG_DIR = join(root, 'config')
-
-    expect(getSearchContentDatabasePath()).toBe(
-      join(root, 'config', 'cc-haha', 'db', 'search-index-v1.sqlite'),
-    )
-    const database = openSearchContentDatabase()
+    const scope = join(root, 'config')
+    process.env.CLAUDE_CONFIG_DIR = scope
+    // DAL 契约：默认兜底路径迁移到桌面状态根（$DAL_CONFIG_DIR/desktop/cc-haha/db），
+    // 协调器实际以显式 (path, scope) 打开（scope 下的 cc-haha/db 托管目录）。
+    process.env.DAL_CONFIG_DIR = root
     try {
-      database.write(writer => writer.run(
-        `INSERT INTO search_backfill_state (
-          scope, state, generation, discovered, indexed, degraded,
-          last_error_code, updated_at_ms
-        ) VALUES (?, 'building', 1, 0, 0, 0, NULL, 1)`,
-        '/scope',
-      ))
-      expect(database.getStorageStats().databaseBytes).toBeGreaterThan(0)
-      expect(database.getStorageStats().walBytes).toBeGreaterThanOrEqual(0)
-      expect(database.checkpointPassive()).toMatchObject({
-        busy: expect.any(Number),
-        logFrames: expect.any(Number),
-        checkpointedFrames: expect.any(Number),
-      })
+      expect(getSearchContentDatabasePath()).toBe(
+        join(root, 'desktop', 'cc-haha', 'db', 'search-index-v1.sqlite'),
+      )
+      const databasePath = join(scope, 'cc-haha', 'db', 'search-index-v1.sqlite')
+      const database = openSearchContentDatabase({ path: databasePath, scope })
+      try {
+        database.write(writer => writer.run(
+          `INSERT INTO search_backfill_state (
+            scope, state, generation, discovered, indexed, degraded,
+            last_error_code, updated_at_ms
+          ) VALUES (?, 'building', 1, 0, 0, 0, NULL, 1)`,
+          '/scope',
+        ))
+        expect(database.getStorageStats().databaseBytes).toBeGreaterThan(0)
+        expect(database.getStorageStats().walBytes).toBeGreaterThanOrEqual(0)
+        expect(database.checkpointPassive()).toMatchObject({
+          busy: expect.any(Number),
+          logFrames: expect.any(Number),
+          checkpointedFrames: expect.any(Number),
+        })
+      } finally {
+        database.close()
+      }
     } finally {
-      database.close()
+      if (originalDalConfig === undefined) delete process.env.DAL_CONFIG_DIR
+      else process.env.DAL_CONFIG_DIR = originalDalConfig
     }
   })
 

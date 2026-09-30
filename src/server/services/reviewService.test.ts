@@ -40,6 +40,9 @@ async function initRepo(prefix = 'review-service-'): Promise<string> {
   git(repoDir, 'config', 'user.email', 'review-service@example.com')
   git(repoDir, 'config', 'user.name', 'Review Service')
   git(repoDir, 'config', 'commit.gpgsign', 'false')
+  // 断言按写入字节精确比对；宿主机的 core.autocrlf=true 会在 checkout/revert
+  // 时把 LF 工作区内容改写成 CRLF，必须逐仓关闭行尾转换。
+  git(repoDir, 'config', 'core.autocrlf', 'false')
   git(repoDir, 'checkout', '-q', '-b', 'main')
   return repoDir
 }
@@ -887,7 +890,8 @@ describe('ReviewService pathspec literalness', () => {
     expect(porcelain).toContain(' M ab.txt')
   })
 
-  it('reaches a file whose name starts with the pathspec magic prefix', async () => {
+  // NTFS 把前导冒号解析为 ADS 数据流，Windows 无法创建 `:colon.txt` 目录项。
+  it.skipIf(process.platform === 'win32')('reaches a file whose name starts with the pathspec magic prefix', async () => {
     const repoDir = await initRepo('review-colon-')
     await write(repoDir, 'colon.txt', 'base\n')
     git(repoDir, 'add', '-A')
@@ -1039,7 +1043,8 @@ describe('ReviewService symlink containment', () => {
     return { repoDir, backupRoot: await makeTempDir('review-symlink-backup-') }
   }
 
-  it('refuses a path that resolves into .git through a symlink', async () => {
+  // Windows 需要特权/开发者模式才能创建符号链接（EPERM）。
+  it.skipIf(process.platform === 'win32')('refuses a path that resolves into .git through a symlink', async () => {
     const { repoDir, backupRoot } = await createSymlinkRepo()
     const service = makeService(repoDir, backupRoot)
     const status = await service.getStatus(SESSION, UNSTAGED)
@@ -1071,7 +1076,7 @@ describe('ReviewService symlink containment', () => {
     ).rejects.toThrow(/version-control metadata/)
   })
 
-  it('refuses a symlinked file rather than acting through it', async () => {
+  it.skipIf(process.platform === 'win32')('refuses a symlinked file rather than acting through it', async () => {
     const { repoDir, backupRoot } = await createSymlinkRepo()
     const service = makeService(repoDir, backupRoot)
     const status = await service.getStatus(SESSION, UNSTAGED)
@@ -1405,7 +1410,8 @@ describe('ReviewService wildcard filenames', () => {
    * the other two wildmatch characters, and they are the ones that make a
    * single pathspec match an unbounded number of siblings.
    */
-  it('reverts only the star- and question-named files it was given', async () => {
+  // `*` / `?` 是 Windows 文件名保留字符，无法创建对应目录项。
+  it.skipIf(process.platform === 'win32')('reverts only the star- and question-named files it was given', async () => {
     const repoDir = await initRepo('review-wildcard-')
     await write(repoDir, 'report.txt', 'committed-report\n')
     await write(repoDir, 'report*.txt', 'committed-star\n')
@@ -1449,7 +1455,9 @@ describe('ReviewService review safety regressions', () => {
     const result = await service.stageHunk(SESSION, { patch: diff.diff!, snapshot: diff.snapshot, source: UNSTAGED })
     expect(result.state).toBe('ok')
     expect(execFileSync('git', ['show', ':new.txt'], { cwd: repoDir })).toEqual(Buffer.from(content))
-    expect(git(repoDir, 'ls-files', '--stage', 'new.txt').split(' ')[0]).toBe(mode === 0o755 ? '100755' : '100644')
+    // Windows/NTFS 无可执行位，git 恒报 100644。
+    expect(git(repoDir, 'ls-files', '--stage', 'new.txt').split(' ')[0])
+      .toBe(mode === 0o755 && process.platform !== 'win32' ? '100755' : '100644')
   })
 
   it('rejects working-tree writes from the staged comparison without changing either side', async () => {
@@ -1509,7 +1517,8 @@ describe('ReviewService rename and historical isolation regressions', () => {
     expect(git(repoDir, 'ls-files', '--stage')).toBe(oldIndex)
   })
 
-  it.each(['untracked', 'directory', 'symlink'])('reads an added historical blob when current path is %s', async (currentType) => {
+  // Windows 需要特权才能创建 symlink 用例的目录项。
+  it.each(process.platform === 'win32' ? ['untracked', 'directory'] : ['untracked', 'directory', 'symlink'])('reads an added historical blob when current path is %s', async (currentType) => {
     const repoDir = await initRepo()
     await write(repoDir, 'file.txt', 'historical\n')
     git(repoDir, 'add', '.')
@@ -1532,7 +1541,11 @@ describe('ReviewService rename and historical isolation regressions', () => {
 
 
 describe('ReviewService exact new-file path headers', () => {
-  it.each(['space name.txt', 'line\nbreak.txt', 'back\\slash.txt', 'trailing .txt '])('stages an empty file whose name needs Git quoting: %j', async (name) => {
+  // 控制字符/反斜杠/尾空格在 Windows 文件名中非法，仅 POSIX 可创建。
+  const GIT_QUOTING_NAMES = process.platform === 'win32'
+    ? ['space name.txt']
+    : ['space name.txt', 'line\nbreak.txt', 'back\\slash.txt', 'trailing .txt ']
+  it.each(GIT_QUOTING_NAMES)('stages an empty file whose name needs Git quoting: %j', async (name) => {
     const repoDir = await initRepo()
     await write(repoDir, name, '')
     const service = makeService(repoDir)

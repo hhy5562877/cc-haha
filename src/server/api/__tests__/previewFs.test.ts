@@ -147,7 +147,11 @@ describe('handlePreviewFs', () => {
     expect(res.status).toBe(403)
   })
 
-  it('blocks final and intermediate symlinks that escape the workspace', async () => {
+  // Windows symlink creation for files requires elevated privileges / developer
+  // mode (EPERM without them), same environment limitation as workspaceWatch.
+  it.skipIf(process.platform === 'win32')(
+    'blocks final and intermediate symlinks that escape the workspace',
+    async () => {
     const fixture = mkdtempSync(path.join(tmpdir(), 'pfs-symlink-'))
     const root = path.join(fixture, 'workspace')
     const outside = path.join(fixture, 'outside')
@@ -174,10 +178,11 @@ describe('handlePreviewFs', () => {
 
       expect(finalLink.status).toBe(403)
       expect(intermediateLink.status).toBe(403)
-    } finally {
-      rmSync(fixture, { recursive: true, force: true })
-    }
-  })
+      } finally {
+        rmSync(fixture, { recursive: true, force: true })
+      }
+    },
+  )
 
   it('rejects HTML above the transformed-document limit before buffering it', async () => {
     const root = mkdtempSync(path.join(tmpdir(), 'pfs-large-html-'))

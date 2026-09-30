@@ -64,7 +64,27 @@ describe('session protocol rollback over WebSocket', () => {
       await stopServerRuntimeForShutdown()
       expect(sandbox.detectUserStateMutations()).toEqual([])
     } finally {
-      sandbox?.cleanup()
+      // Windows: the freshly stopped CLI/trace writer can hold a handle on the
+      // sandbox home for a moment. Retry the rm, then leave the temp dir to the
+      // OS cleaner rather than failing an otherwise-green run.
+      if (sandbox) {
+        for (let attempt = 0; ; attempt++) {
+          try {
+            sandbox.cleanup()
+            break
+          } catch (err) {
+            const code = (err as NodeJS.ErrnoException)?.code
+            if (attempt >= 20 || (code !== 'EBUSY' && code !== 'EPERM' && code !== 'ENOTEMPTY')) {
+              if (code === 'EBUSY' || code === 'EPERM') {
+                console.warn(`[session-protocol-rollback] left sandbox behind (${code})`)
+                break
+              }
+              throw err
+            }
+            await new Promise((resolve) => setTimeout(resolve, 100))
+          }
+        }
+      }
       for (const name of Object.keys(process.env)) delete process.env[name]
       Object.assign(process.env, originalEnv)
       resetTerminalShellEnvironmentCacheForTests()

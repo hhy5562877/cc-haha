@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'bun:test'
 import { mkdtemp, rm, writeFile } from 'node:fs/promises'
-import { join } from 'node:path'
+import { join, posix as posixPath } from 'node:path'
 import { homedir, tmpdir } from 'node:os'
 import {
   createOpenTargetService,
@@ -152,7 +152,10 @@ describe('openTargetService', () => {
       .toBe('/api/open-targets/icons/vscode')
   })
 
-  it.each(['/Applications/Zed.app', join(homedir(), 'Applications', 'Zed.app')])(
+  // The service probes IDE bundle paths with posix join, so the home-relative
+  // fixture must use the same separator style the probe produces (relevant when
+  // this darwin simulation runs on Windows, where homedir() has backslashes).
+  it.each(['/Applications/Zed.app', posixPath.join(homedir(), 'Applications', 'Zed.app')])(
     'detects Zed installed at %s and opens projects and files through the app bundle',
     async (appPath) => {
       const dir = await makeDir('cc-haha zed-')

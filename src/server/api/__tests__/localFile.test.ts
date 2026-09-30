@@ -90,8 +90,14 @@ describe('reconstructAbsolutePath', () => {
     expect(reconstructAbsolutePath('C:/Users/me/page.html')).toBe('C:/Users/me/page.html')
   })
   it('expands home-relative paths after decoding', () => {
-    expect(reconstructAbsolutePath('~/Desktop/page.html')).toBe(path.join(homedir(), 'Desktop/page.html'))
-    expect(reconstructAbsolutePath('%7E/Desktop/with%20space.html')).toBe(path.join(homedir(), 'Desktop/with space.html'))
+    // expandTilde concatenates $HOME with the remainder verbatim; on Windows
+    // the remainder keeps its forward slashes (fs calls accept mixed separators).
+    const expandHome = (rel: string) =>
+      process.platform === 'win32'
+        ? `${homedir()}/${rel}`
+        : path.join(homedir(), rel)
+    expect(reconstructAbsolutePath('~/Desktop/page.html')).toBe(expandHome('Desktop/page.html'))
+    expect(reconstructAbsolutePath('%7E/Desktop/with%20space.html')).toBe(expandHome('Desktop/with space.html'))
     expect(reconstructAbsolutePath('~other/page.html')).toBe('/~other/page.html')
   })
   it('returns null for an empty remainder', () => {

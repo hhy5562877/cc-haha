@@ -283,7 +283,8 @@ describe('uninstallMarketSkill', () => {
     }
   })
 
-  it('refuses to follow a skill-directory symlink during uninstall', async () => {
+  // Windows needs elevated privileges (or developer mode) to create symlinks.
+  it.skipIf(process.platform === 'win32')('refuses to follow a skill-directory symlink during uninstall', async () => {
     const victim = path.join(tmpHome, 'victim')
     const target = path.join(tmpHome, '.claude', 'skills', 'demo')
     await fs.mkdir(victim, { recursive: true })

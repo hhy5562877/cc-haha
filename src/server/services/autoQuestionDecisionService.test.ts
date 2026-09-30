@@ -46,7 +46,24 @@ describe('autoQuestionDecisionService', () => {
     await drainTraceCaptureForTests()
     if (originalConfigDir === undefined) delete process.env.CLAUDE_CONFIG_DIR
     else process.env.CLAUDE_CONFIG_DIR = originalConfigDir
-    await fs.rm(configDir, { recursive: true, force: true })
+    // Windows：后台 trace writer 可能仍短暂持有句柄，重试后放弃，
+    // 不让清理失败拖垮本已通过的用例。
+    for (let attempt = 0; ; attempt++) {
+      try {
+        await fs.rm(configDir, { recursive: true, force: true })
+        return
+      } catch (err) {
+        const code = (err as NodeJS.ErrnoException)?.code
+        if (attempt >= 20 || (code !== 'EBUSY' && code !== 'EPERM' && code !== 'ENOTEMPTY')) {
+          if (code === 'EBUSY' || code === 'EPERM') {
+            console.warn(`[autoQuestionDecisionService.test] left temp dir behind (${code})`)
+            return
+          }
+          throw err
+        }
+        await new Promise((resolve) => setTimeout(resolve, 100))
+      }
+    }
   })
 
   test('asks the session Haiku model for every question including explicit recommendations', async () => {

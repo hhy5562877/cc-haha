@@ -230,11 +230,10 @@ describe('cron scheduler launcher resolution', () => {
       env: {},
     })
 
+    // DAL 契约：显式 cliPath 直接作为可执行文件，base args 原样跟在后面；
+    // 不再有 claude 时代的 `cli --app-root` 包装子命令。
     expect(args).toEqual([
       sidecarPath,
-      'cli',
-      '--app-root',
-      appRoot,
       '--print',
     ])
   })

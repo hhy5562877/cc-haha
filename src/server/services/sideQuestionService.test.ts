@@ -1,7 +1,6 @@
 import { expect, test } from 'bun:test'
 import { ApiError } from '../middleware/errorHandler.js'
 import { SideQuestionService, sideQuestionInputSchema } from './sideQuestionService.js'
-import { SDKControlRequestSchema } from '../../entrypoints/sdk/controlSchemas.js'
 const url = new URL('http://127.0.0.1/api/sessions/s/side-question')
 const input = () => ({ questionId: crypto.randomUUID(), question: 'why?', history: [] })
 const tick = () => new Promise(resolve => setTimeout(resolve, 0))
@@ -88,9 +87,9 @@ test('HTTP and SDK schemas validate question/history and preserve cancel correla
   for (const invalid of [{ ...body, question: ' ' }, { ...body, questionId: 'bad' }, { ...body, history: Array(21).fill({ question: 'q', response: 'r' }) }, { ...body, question: 'a'.repeat(16001) }]) {
     expect(sideQuestionInputSchema.safeParse(invalid).success).toBe(false)
   }
-  for (const request of [{ subtype: 'side_question', question_id: body.questionId, question: body.question, history: [] }, { subtype: 'cancel_side_question', question_id: body.questionId }]) {
-    expect(SDKControlRequestSchema().parse({ type: 'control_request', request_id: 'request', request }).request).toEqual(request)
-  }
+  // claude SDK 的 control_request zod schema（entrypoints/sdk/controlSchemas）
+  // 已随引擎下线删除；side_question / cancel_side_question 的请求形状由
+  // SideQuestionService 发送契约断言（上方 toEqual(['s', {...}, 300_000])）覆盖。
 })
 
 

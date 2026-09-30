@@ -16,6 +16,28 @@ import { drainTraceCaptureForTests } from '../services/traceCaptureService.js'
 import { hahaOpenAIOAuthService } from '../services/hahaOpenAIOAuthService.js'
 import { SYSTEM_PROXY_URL_ENV } from '../services/networkSettings.js'
 
+// Windows: the background trace writer can keep a handle on a freshly written
+// file for a moment even after draining. Retry, then give up gracefully — the
+// OS temp cleaner removes leftovers, and cleanup must not fail a green run.
+async function removeTmpDir(dir: string): Promise<void> {
+  for (let attempt = 0; ; attempt++) {
+    try {
+      await fs.rm(dir, { recursive: true, force: true })
+      return
+    } catch (err) {
+      const code = (err as NodeJS.ErrnoException)?.code
+      if (attempt >= 20 || (code !== 'EBUSY' && code !== 'EPERM' && code !== 'ENOTEMPTY')) {
+        if (code === 'EBUSY' || code === 'EPERM') {
+          console.warn(`[title-service.test] left temp dir behind (${code}): ${dir}`)
+          return
+        }
+        throw err
+      }
+      await new Promise((resolve) => setTimeout(resolve, 100))
+    }
+  }
+}
+
 describe('titleService', () => {
   let tmpDir: string
   let originalConfigDir: string | undefined
@@ -35,7 +57,7 @@ describe('titleService', () => {
     hahaOpenAIOAuthService.dispose()
     restoreEnv('CLAUDE_CONFIG_DIR', originalConfigDir)
     restoreEnv(SYSTEM_PROXY_URL_ENV, originalSystemProxyUrl)
-    await fs.rm(tmpDir, { recursive: true, force: true })
+    await removeTmpDir(tmpDir)
   })
 
   test('generates titles with a versioned Anthropic base URL (#1279)', async () => {
@@ -632,7 +654,7 @@ describe('titleService protocol routing', () => {
     // away, otherwise it fails the run with an unhandled ENOENT.
     await drainTraceCaptureForTests()
     restoreEnv('CLAUDE_CONFIG_DIR', originalConfigDir)
-    await fs.rm(tmpDir, { recursive: true, force: true })
+    await removeTmpDir(tmpDir)
   })
 
   test('uses the endpoint and client headers the provider actually requires', async () => {

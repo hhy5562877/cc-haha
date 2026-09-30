@@ -114,10 +114,11 @@ describe('DoctorService', () => {
     const report = await service.getReport()
     const byId = (id: string) => report.items.find((item) => item.id === id)?.path
 
-    // Reported paths are abbreviated, and configDir renders as `~/.claude`, so
-    // an `.agents` root built from the config dir would show up nested under it.
-    expect(byId('user-skills')).toBe(path.join('~', '.claude', 'skills'))
-    expect(byId('user-agent-skills')).toBe(path.join('~', '.agents', 'skills'))
+    // Reported paths are abbreviated (always with forward slashes, even on
+    // Windows), and configDir renders as `~/.claude`, so an `.agents` root
+    // built from the config dir would show up nested under it.
+    expect(byId('user-skills')).toBe('~/.claude/skills')
+    expect(byId('user-agent-skills')).toBe('~/.agents/skills')
   })
 
   test('drops the .agents targets when cross-client discovery is switched off', async () => {

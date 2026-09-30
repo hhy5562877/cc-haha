@@ -6,11 +6,17 @@ import { handleAdaptersApi, cleanupStaleWhatsAppLoginDirectories } from '../api/
 
 let tmpDir: string
 let originalConfigDir: string | undefined
+let originalDalConfigDir: string | undefined
 
 async function setup() {
   tmpDir = await fs.mkdtemp(path.join(os.tmpdir(), 'claude-adapters-test-'))
   originalConfigDir = process.env.CLAUDE_CONFIG_DIR
+  originalDalConfigDir = process.env.DAL_CONFIG_DIR
   process.env.CLAUDE_CONFIG_DIR = tmpDir
+  // DAL 契约：IM 适配器底层配置（adapters/common/config.ts）派生自
+  // DAL_CONFIG_DIR（~/.dal 默认值），unbind 的 managed-root 判定走这一支，
+  // 必须与 API 存储根（CLAUDE_CONFIG_DIR）钉进同一个沙箱。
+  process.env.DAL_CONFIG_DIR = tmpDir
 }
 
 async function teardown() {
@@ -18,6 +24,11 @@ async function teardown() {
     process.env.CLAUDE_CONFIG_DIR = originalConfigDir
   } else {
     delete process.env.CLAUDE_CONFIG_DIR
+  }
+  if (originalDalConfigDir !== undefined) {
+    process.env.DAL_CONFIG_DIR = originalDalConfigDir
+  } else {
+    delete process.env.DAL_CONFIG_DIR
   }
   await fs.rm(tmpDir, { recursive: true, force: true })
 }
@@ -343,7 +354,8 @@ describe('Adapters API', () => {
     }
   })
 
-  it('cleans up stale WhatsApp login staging directories on startup', async () => {
+  // Windows 需要特权/开发者模式才能创建符号链接（EPERM），与 workspaceWatch 同类。
+  it.skipIf(process.platform === 'win32')('cleans up stale WhatsApp login staging directories on startup', async () => {
     const managedRoot = path.join(tmpDir, 'whatsapp-auth')
     const staleDir = path.join(managedRoot, '.login-stale')
     const freshDir = path.join(managedRoot, '.login-fresh')

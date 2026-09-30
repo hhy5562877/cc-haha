@@ -1,5 +1,6 @@
 import { afterEach, beforeEach, expect, spyOn, test } from 'bun:test'
 import { mkdtemp, mkdir, readFile, readdir, rm, writeFile } from 'node:fs/promises'
+import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import { SessionService } from './sessionService.js'
 import { resetSettingsCache } from '../utils/settings/settingsCache.js'
@@ -15,7 +16,7 @@ async function retention(days: number) {
 }
 
 beforeEach(async () => {
-  directory = await mkdtemp('/tmp/session-service-retention-')
+  directory = await mkdtemp(join(tmpdir(), 'session-service-retention-'))
   previousConfig = process.env.CLAUDE_CONFIG_DIR
   previousHome = process.env.HOME
   process.env.CLAUDE_CONFIG_DIR = directory

@@ -27,6 +27,12 @@ const MODEL_ENV_KEYS = [
   'ANTHROPIC_DEFAULT_HAIKU_MODEL',
   'ANTHROPIC_DEFAULT_SONNET_MODEL',
   'ANTHROPIC_DEFAULT_OPUS_MODEL',
+  // DAL 契约：本地/宠物访问 token 会让 Origin 型浏览器请求失去 loopback 信任
+  //（localAccessTokenConfigured），宿主机全局导出会污染 CORS 预检断言。
+  'CC_HAHA_LOCAL_ACCESS_TOKEN',
+  'CC_HAHA_PET_ACCESS_TOKEN',
+  // dal 会话并入与 dal 网关目录都派生自该根，隔离真实 ~/.dal。
+  'DAL_CODING_AGENT_DIR',
 ] as const
 const originalModelEnv = Object.fromEntries(
   MODEL_ENV_KEYS.map((key) => [key, process.env[key]]),
@@ -65,6 +71,7 @@ async function startTestServer() {
   process.env.CLAUDE_CLI_PATH = mockSdkCliPath
   process.env.CC_HAHA_DISABLE_TERMINAL_SHELL_ENV = '1'
   for (const key of MODEL_ENV_KEYS) delete process.env[key]
+  process.env.DAL_CODING_AGENT_DIR = path.join(tmpDir, 'dal-agent')
 
   // Create required directories
   await fs.mkdir(path.join(tmpDir, 'projects'), { recursive: true })
@@ -215,9 +222,12 @@ describe('E2E: Full Flow', () => {
   // =============================================
 
   it('should list available models', async () => {
+    // DAL 契约：无激活 provider 时模型目录唯一来源是 DAL 网关目录（未登录为空），
+    // claude 内置 7 模型目录已随引擎下线；这里只验证响应契约与空目录兜底。
     const { data } = await api('GET', '/api/models')
-    expect(data.models.length).toBe(7)
-    expect(data.models[0].name).toBe('Fable 5.1')
+    expect(data.provider).toBeNull()
+    expect(Array.isArray(data.models)).toBe(true)
+    expect(data.models.length).toBe(0)
   })
 
   it('should switch model', async () => {

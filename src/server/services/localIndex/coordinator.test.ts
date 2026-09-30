@@ -30,7 +30,11 @@ import type {
 } from './reconciliationWatcher.js'
 import { aggregateActivityStatsForMode } from '../../api/activityStats.js'
 
-type EnvironmentName = 'HOME' | 'CLAUDE_CONFIG_DIR' | 'CC_HAHA_LOCAL_INDEX'
+type EnvironmentName = 'HOME' | 'CLAUDE_CONFIG_DIR' | 'DAL_CODING_AGENT_DIR' | 'CC_HAHA_LOCAL_INDEX'
+
+// DAL 契约：listSessions 会并入 ~/.dal/agent/sessions 的 dal 会话
+// （listAllDalSessions），必须把 DAL_CODING_AGENT_DIR 钉到空沙箱，
+// 否则真实机器的 dal 会话会污染 total 断言。
 
 const tempDirs: string[] = []
 const originalEnvironment: Partial<Record<EnvironmentName, string>> = {}
@@ -48,16 +52,32 @@ function restoreEnvironment(name: EnvironmentName): void {
 }
 
 afterEach(async () => {
-  for (const name of ['HOME', 'CLAUDE_CONFIG_DIR', 'CC_HAHA_LOCAL_INDEX'] as const) {
+  for (const name of ['HOME', 'CLAUDE_CONFIG_DIR', 'DAL_CODING_AGENT_DIR', 'CC_HAHA_LOCAL_INDEX'] as const) {
     restoreEnvironment(name)
   }
-  await Promise.all(tempDirs.splice(0).map(directory =>
-    rm(directory, { recursive: true, force: true }),
-  ))
+  await Promise.all(tempDirs.splice(0).map(async directory => {
+    // Windows：watcher/SQLite 句柄可能延迟释放，重试后放弃（不拖垮绿跑）。
+    for (let attempt = 0; ; attempt++) {
+      try {
+        await rm(directory, { recursive: true, force: true })
+        return
+      } catch (err) {
+        const code = (err as NodeJS.ErrnoException)?.code
+        if (attempt >= 20 || (code !== 'EBUSY' && code !== 'EPERM' && code !== 'ENOTEMPTY')) {
+          if (code === 'EBUSY' || code === 'EPERM') {
+            console.warn(`[coordinator.test] left temp dir behind (${code})`)
+            return
+          }
+          throw err
+        }
+        await new Promise(resolve => setTimeout(resolve, 100))
+      }
+    }
+  }))
 })
 
 function rememberEnvironment(): void {
-  for (const name of ['HOME', 'CLAUDE_CONFIG_DIR', 'CC_HAHA_LOCAL_INDEX'] as const) {
+  for (const name of ['HOME', 'CLAUDE_CONFIG_DIR', 'DAL_CODING_AGENT_DIR', 'CC_HAHA_LOCAL_INDEX'] as const) {
     originalEnvironment[name] = process.env[name]
   }
 }
@@ -347,7 +367,8 @@ describe('local index coordinator', () => {
     await coordinator.stop()
   })
 
-  it('converges external append, create, and delete events through the serial writer pump', async () => {
+  // 用例中段需要创建 symlink 逃逸样本，Windows 需特权（EPERM）。
+  it.skipIf(process.platform === 'win32')('converges external append, create, and delete events through the serial writer pump', async () => {
     const root = await createTempDir('coordinator-watch-convergence')
     const configDir = join(root, 'config')
     const databasePath = join(configDir, 'cc-haha', 'db', 'index-v1.sqlite')
@@ -598,6 +619,10 @@ describe('local index coordinator', () => {
     expect(coordinator.listSessions({ limit: 10 }).total).toBe(2)
     rememberEnvironment()
     process.env.CLAUDE_CONFIG_DIR = configDir
+    // listSessions 会并入 $DAL_CODING_AGENT_DIR/sessions 的 dal 会话；该变量
+    // 同时是 getClaudeConfigHomeDir 的最高优先级，必须钉成 configDir 本身：
+    // projects 根不变，dal sessions 根（configDir/sessions）为空。
+    process.env.DAL_CODING_AGENT_DIR = configDir
     const { SessionService } = await import('../sessionService.js')
     expect((await new SessionService(coordinator).listSessions({ limit: 10 })).total).toBe(3)
 
@@ -1245,10 +1270,16 @@ describe('local index coordinator', () => {
     const firstRoot = await createTempDir('coordinator-scope-a')
     const secondRoot = await createTempDir('coordinator-scope-b')
     process.env.HOME = join(firstRoot, 'home')
-    process.env.CLAUDE_CONFIG_DIR = join(firstRoot, 'config')
+    // DAL 契约：no-arg 真实 coordinator 的 DB 默认路径 = $DAL_CONFIG_DIR/desktop/
+    // cc-haha/db，托管校验 scope = getClaudeConfigHomeDir()。二者相等要求
+    // CLAUDE_CONFIG_DIR === $DAL_CONFIG_DIR/desktop，据此钉住沙箱。
+    const firstConfigDir = join(firstRoot, 'desktop')
+    process.env.CLAUDE_CONFIG_DIR = firstConfigDir
+    process.env.DAL_CODING_AGENT_DIR = firstConfigDir
+    process.env.DAL_CONFIG_DIR = firstRoot
     process.env.CC_HAHA_LOCAL_INDEX = 'on'
     const firstCandidate = await createRealTranscript(
-      process.env.CLAUDE_CONFIG_DIR,
+      firstConfigDir,
       '-repo-a',
       'first',
       'First scope',
@@ -1273,9 +1304,12 @@ describe('local index coordinator', () => {
     expect(restarted.getPublicStatus().state).toBe('ready')
     await restarted.stop()
 
-    process.env.CLAUDE_CONFIG_DIR = join(secondRoot, 'config')
+    const secondConfigDir = join(secondRoot, 'desktop')
+    process.env.CLAUDE_CONFIG_DIR = secondConfigDir
+    process.env.DAL_CODING_AGENT_DIR = secondConfigDir
+    process.env.DAL_CONFIG_DIR = secondRoot
     await createRealTranscript(
-      process.env.CLAUDE_CONFIG_DIR,
+      secondConfigDir,
       '-repo-b',
       'second',
       'Second scope',
@@ -2285,7 +2319,7 @@ describe('discoverActivityTranscriptSources', () => {
 
     const result = await discoverActivityTranscriptSources(root, new AbortController().signal)
 
-    const names = result.candidates.map(candidate => candidate.path.split('/').pop()).sort()
+    const names = result.candidates.map(candidate => candidate.path.split(/[\\/]/).pop()).sort()
     // agent-wf.jsonl lives at subagents/workflows/<wf_id>/ — the level that used to be skipped
     // entirely, leaving every workflow agent's tokens and tool calls out of the stats.
     expect(names).toEqual([

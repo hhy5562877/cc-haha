@@ -24,11 +24,12 @@ import { sessionService } from '../services/sessionService.js'
 import { createDumpPromptsFetch } from '../../services/api/dumpPrompts.js'
 import { buildOpenAICodexFetch } from '../services/openaiAuth/fetch.js'
 import { clearOpenAIOAuthTokenCache } from '../services/openaiAuth/storage.js'
-import { getTraceIndexDatabasePath } from '../services/localIndex/traceDatabase.js'
 
 let tmpDir: string
 let originalConfigDir: string | undefined
 let originalLocalIndexMode: string | undefined
+let originalDalConfigDir: string | undefined
+let originalTraceApiCalls: string | undefined
 
 async function waitForTrace(
   sessionId: string,
@@ -46,10 +47,22 @@ beforeEach(async () => {
   tmpDir = await fs.mkdtemp(path.join(os.tmpdir(), 'trace-capture-'))
   originalConfigDir = process.env.CLAUDE_CONFIG_DIR
   originalLocalIndexMode = process.env.CC_HAHA_LOCAL_INDEX
+  originalTraceApiCalls = process.env.CC_HAHA_TRACE_API_CALLS
   process.env.CLAUDE_CONFIG_DIR = tmpDir
   process.env.CC_HAHA_LOCAL_INDEX = 'on'
+  // 某些宿主环境会全局导出 CC_HAHA_TRACE_API_CALLS=1，它会短路 managed
+  // settings 的开关判定，这里必须清除才能测试 settings 真实语义。
+  delete process.env.CC_HAHA_TRACE_API_CALLS
   clearTraceCaptureStateForTests()
 })
+
+// trace SQLite 索引的生产路径由 api/traceCapture 的 scope 上下文派生
+//（$CLAUDE_CONFIG_DIR/cc-haha/db/trace-index-v1.sqlite）；traceDatabase 的
+// traceIndexPath()（桌面状态根）只是无显式 path 时的兜底，与本
+// 文件被测链路无关，测试统一用生产真实路径断言。
+function traceIndexPath(): string {
+  return path.join(tmpDir, 'cc-haha', 'db', 'trace-index-v1.sqlite')
+}
 
 afterEach(async () => {
   clearTraceCaptureStateForTests()
@@ -62,6 +75,11 @@ afterEach(async () => {
     delete process.env.CC_HAHA_LOCAL_INDEX
   } else {
     process.env.CC_HAHA_LOCAL_INDEX = originalLocalIndexMode
+  }
+  if (originalTraceApiCalls === undefined) {
+    delete process.env.CC_HAHA_TRACE_API_CALLS
+  } else {
+    process.env.CC_HAHA_TRACE_API_CALLS = originalTraceApiCalls
   }
   await fs.rm(tmpDir, { recursive: true, force: true })
 })
@@ -2434,7 +2452,7 @@ describe('trace read cache', () => {
       request: { body: { prompt: 'canonical only' } },
       response: { status: 200, body: { ok: true } },
     })
-    const databasePath = getTraceIndexDatabasePath()
+    const databasePath = traceIndexPath()
 
     expect((await traceCaptureService.listSessionTraces()).traces[0]?.summary.apiCalls).toBe(1)
     expect((await traceCaptureService.getSessionTraceRevision('session-off')).changed).toBe(true)
@@ -2472,7 +2490,7 @@ describe('trace read cache', () => {
       response: { status: 200, body: { ok: true } },
     })
     clearTraceCaptureStateForTests()
-    const database = new Database(getTraceIndexDatabasePath())
+    const database = new Database(traceIndexPath())
     database.exec('PRAGMA journal_mode = DELETE')
     database.exec('BEGIN EXCLUSIVE')
     const startedAt = performance.now()
@@ -2515,7 +2533,7 @@ describe('trace read cache', () => {
       request: { body: { prompt: 'first' } },
       response: { status: 200, body: { ok: true } },
     })
-    const databasePath = getTraceIndexDatabasePath()
+    const databasePath = traceIndexPath()
     const writer = new Database(databasePath)
     writer.exec('BEGIN IMMEDIATE')
     const traceFile = path.join(
@@ -2580,7 +2598,7 @@ describe('trace read cache', () => {
       response: { status: 200, body: { ok: true } },
     })
     clearTraceCaptureStateForTests()
-    const database = new Database(getTraceIndexDatabasePath())
+    const database = new Database(traceIndexPath())
     database.run(
       'UPDATE trace_sessions SET api_calls = 99 WHERE session_id = ?',
       ['session-shadow'],
@@ -2714,7 +2732,7 @@ describe('trace read cache', () => {
 
     clearTraceCaptureStateForTests()
     for (const suffix of ['', '-wal', '-shm']) {
-      await fs.rm(`${getTraceIndexDatabasePath()}${suffix}`, { force: true })
+      await fs.rm(`${traceIndexPath()}${suffix}`, { force: true })
     }
     // The detail overview rebuilds synchronously; the list then serves the
     // rebuilt projection.
@@ -2758,7 +2776,7 @@ describe('trace read cache', () => {
     clearTraceCaptureStateForTests()
     await fs.writeFile(filePath, rewritten)
     for (const suffix of ['', '-wal', '-shm']) {
-      await fs.rm(`${getTraceIndexDatabasePath()}${suffix}`, { force: true })
+      await fs.rm(`${traceIndexPath()}${suffix}`, { force: true })
     }
 
     const request = new Request(
@@ -2859,7 +2877,7 @@ describe('trace read cache', () => {
     expect(getTraceCaptureDiagnosticsForTests().fullJsonlBytesRead).toBe(0)
 
     clearTraceCaptureStateForTests()
-    const database = new Database(getTraceIndexDatabasePath())
+    const database = new Database(traceIndexPath())
     database.run(
       'UPDATE trace_calls SET byte_start = 1, byte_length = 8 WHERE session_id = ? AND call_id = ?',
       ['session-lww-detail', 'call-lww-detail'],
@@ -2895,7 +2913,7 @@ describe('trace read cache', () => {
     const raw = await fs.readFile(filePath)
     const oldLineLength = raw.indexOf(0x0a) + 1
     clearTraceCaptureStateForTests()
-    const database = new Database(getTraceIndexDatabasePath())
+    const database = new Database(traceIndexPath())
     database.run(
       'UPDATE trace_calls SET byte_start = 0, byte_length = ? WHERE session_id = ? AND call_id = ?',
       [oldLineLength, 'session-stale-locator', 'call-stale-locator'],

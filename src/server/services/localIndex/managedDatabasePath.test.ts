@@ -21,7 +21,9 @@ afterEach(async () => {
 })
 
 describe('managed SQLite database paths', () => {
-  test.each([
+  // 以下 symlink 相关用例在 Windows 需要特权/开发者模式（EPERM），统一跳过；
+  // 硬链接用例（fs.link）不受限，保留全平台执行。
+  test.skipIf(process.platform === 'win32').each([
     ['session', 'index-v1.sqlite', openLocalIndexDatabase],
     ['trace', 'trace-index-v1.sqlite', openTraceIndexDatabase],
     ['scheduled', 'scheduled-runs-v1.sqlite', openScheduledRunIndex],
@@ -45,7 +47,7 @@ describe('managed SQLite database paths', () => {
     },
   )
 
-  test('allows the configured trust root itself to be a symlink', async () => {
+  test.skipIf(process.platform === 'win32')('allows the configured trust root itself to be a symlink', async () => {
     const root = await tempRoot('scope-symlink')
     const realScope = path.join(root, 'real-config')
     const scope = path.join(root, 'config-link')
@@ -59,7 +61,7 @@ describe('managed SQLite database paths', () => {
     expect((await fs.lstat(databasePath)).isFile()).toBe(true)
   })
 
-  test('rejects an existing database-file symlink', async () => {
+  test.skipIf(process.platform === 'win32')('rejects an existing database-file symlink', async () => {
     const root = await tempRoot('file-symlink')
     const scope = path.join(root, 'config')
     const databaseDir = path.join(scope, 'cc-haha', 'db')

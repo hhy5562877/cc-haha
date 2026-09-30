@@ -42,17 +42,43 @@ async function cleanupTmpDir(dir: string): Promise<void> {
   }
 }
 
-async function createFakeCronCli(dir: string): Promise<string> {
-  const cliPath = path.join(dir, 'fake-cron-cli.ts')
+// DAL 定时任务直接把 CLI 覆盖路径当作可执行文件 spawn（不再由 launcher 包装
+// .ts），因此 fake CLI 必须是平台原生可执行：Windows 用 .cmd 包装 bun 调用，
+// POSIX 用带 shebang 的 sh 包装。
+async function createFakeCronCliWrapper(
+  dir: string,
+  name: string,
+  script: string,
+): Promise<string> {
+  const scriptPath = path.join(dir, `${name}.ts`)
+  await fs.writeFile(scriptPath, script, 'utf-8')
+  if (process.platform === 'win32') {
+    const wrapperPath = path.join(dir, `${name}.cmd`)
+    await fs.writeFile(
+      wrapperPath,
+      `@echo off\r\n"${process.execPath}" "${scriptPath}" %*\r\n`,
+      'utf-8',
+    )
+    return wrapperPath
+  }
+  const wrapperPath = path.join(dir, `${name}.sh`)
   await fs.writeFile(
-    cliPath,
+    wrapperPath,
+    `#!/bin/sh\nexec "${process.execPath}" "${scriptPath}" "$@"\n`,
+    { encoding: 'utf-8', mode: 0o755 },
+  )
+  return wrapperPath
+}
+
+async function createFakeCronCli(dir: string): Promise<string> {
+  return createFakeCronCliWrapper(
+    dir,
+    'fake-cron-cli',
     [
       "console.log(JSON.stringify({ type: 'assistant', message: { content: [{ type: 'text', text: 'fake cron output' }] } }))",
       "console.log(JSON.stringify({ type: 'result', result: 'fake cron result' }))",
     ].join('\n') + '\n',
-    'utf-8',
   )
-  return cliPath
 }
 
 async function createBlockingFakeCronCli(dir: string): Promise<{
@@ -60,11 +86,11 @@ async function createBlockingFakeCronCli(dir: string): Promise<{
   readyPath: string
   releasePath: string
 }> {
-  const cliPath = path.join(dir, 'blocking-fake-cron-cli.ts')
   const readyPath = path.join(dir, 'blocking-fake-cron-cli.ready')
   const releasePath = path.join(dir, 'blocking-fake-cron-cli.release')
-  await fs.writeFile(
-    cliPath,
+  const cliPath = await createFakeCronCliWrapper(
+    dir,
+    'blocking-fake-cron-cli',
     [
       "import { existsSync, writeFileSync } from 'node:fs'",
       `writeFileSync(${JSON.stringify(readyPath)}, 'ready')`,
@@ -72,7 +98,6 @@ async function createBlockingFakeCronCli(dir: string): Promise<{
       "console.log(JSON.stringify({ type: 'assistant', message: { content: [{ type: 'text', text: 'blocking fake cron output' }] } }))",
       "console.log(JSON.stringify({ type: 'result', result: 'blocking fake cron result' }))",
     ].join('\n') + '\n',
-    'utf-8',
   )
   return { cliPath, readyPath, releasePath }
 }

@@ -463,7 +463,8 @@ describe('targeted session entry reads', () => {
     }
   })
 
-  it('rejects corrupt, stale, out-of-scope, and symlink locator pages for file fallback', async () => {
+  // Windows 需要特权/开发者模式才能创建符号链接（EPERM）。
+  it.skipIf(process.platform === 'win32')('rejects corrupt, stale, out-of-scope, and symlink locator pages for file fallback', async () => {
     const root = await createTempDir('fallback')
     const candidate = await createCandidate({
       root,

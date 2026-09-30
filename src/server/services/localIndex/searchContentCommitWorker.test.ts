@@ -2,6 +2,7 @@ import { afterEach, expect, test } from 'bun:test'
 import { mkdtemp, rm, writeFile } from 'node:fs/promises'
 import { join } from 'node:path'
 import { tmpdir } from 'node:os'
+import { fileURLToPath } from 'node:url'
 import { withSearchProjectionBudget } from './searchContentCommitWorker.js'
 
 const directories: string[] = []
@@ -28,9 +29,9 @@ test('inline SQLite commit worker survives bun --compile without external worker
   directories.push(directory)
   const script = join(directory, 'entry.ts')
   const binary = join(directory, 'compiled-search')
-  const databaseModule = new URL('./searchContentDatabase.ts', import.meta.url).pathname
-  const indexModule = new URL('./searchContentIndex.ts', import.meta.url).pathname
-  const projectorModule = new URL('./searchContentProjector.ts', import.meta.url).pathname
+  const databaseModule = fileURLToPath(new URL('./searchContentDatabase.ts', import.meta.url))
+  const indexModule = fileURLToPath(new URL('./searchContentIndex.ts', import.meta.url))
+  const projectorModule = fileURLToPath(new URL('./searchContentProjector.ts', import.meta.url))
   await writeFile(script, `
     import { writeFile } from 'node:fs/promises'
     import { join } from 'node:path'

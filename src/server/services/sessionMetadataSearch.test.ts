@@ -1,5 +1,6 @@
 import { afterEach, beforeEach, expect, spyOn, mock, test } from 'bun:test'
 import { mkdtemp, mkdir, writeFile, rm } from 'node:fs/promises'
+import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import { SessionService } from './sessionService.js'
 import type { LocalIndexGateway } from './localIndex/sessionIndex.js'
@@ -9,7 +10,7 @@ let previousHome: string | undefined
 let previousConfig: string | undefined
 
 beforeEach(async () => {
-  directory = await mkdtemp('/tmp/session-metadata-')
+  directory = await mkdtemp(join(tmpdir(), 'session-metadata-'))
   previousHome = process.env.HOME
   previousConfig = process.env.CLAUDE_CONFIG_DIR
   process.env.HOME = directory

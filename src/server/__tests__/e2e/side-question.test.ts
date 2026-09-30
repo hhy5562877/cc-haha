@@ -86,6 +86,22 @@ test('side question HTTP controls preserve active/idle main session and cancel o
     server?.stop(true)
     for (const key of Object.keys(process.env)) delete process.env[key]
     Object.assign(process.env, original)
-    await rm(home, { recursive: true, force: true })
+    // Windows：后台 trace writer 可能仍短暂持有句柄，重试后放弃（不拖垮绿跑）。
+    for (let attempt = 0; ; attempt++) {
+      try {
+        await rm(home, { recursive: true, force: true })
+        break
+      } catch (err) {
+        const code = (err as NodeJS.ErrnoException)?.code
+        if (attempt >= 20 || (code !== 'EBUSY' && code !== 'EPERM' && code !== 'ENOTEMPTY')) {
+          if (code === 'EBUSY' || code === 'EPERM') {
+            console.warn(`[side-question.test] left temp dir behind (${code})`)
+            break
+          }
+          throw err
+        }
+        await new Promise((resolve) => setTimeout(resolve, 100))
+      }
+    }
   }
 }, 30_000)

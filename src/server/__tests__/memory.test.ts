@@ -274,7 +274,8 @@ describe('memory API', () => {
     expect(readResponse.status).toBe(400)
   })
 
-  it('rejects traversal and symlink escapes', async () => {
+  // Windows needs elevated privileges (or developer mode) to create symlinks.
+  it.skipIf(process.platform === 'win32')('rejects traversal and symlink escapes', async () => {
     const projectId = sanitizePath(path.join(tmpDir, 'workspace', 'app'))
     const memoryDir = path.join(tmpDir, 'projects', projectId, 'memory')
     const outsideDir = path.join(tmpDir, 'outside')

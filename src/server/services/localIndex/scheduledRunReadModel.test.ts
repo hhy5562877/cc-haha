@@ -11,10 +11,17 @@ import {
   setScheduledRunFingerprintAfterInitialStatHookForTests,
   setScheduledRunProjectionBeforeCommitHookForTests,
 } from './scheduledRunReadModel.js'
-import { getScheduledRunIndexDatabasePath } from './scheduledRunIndex.js'
+import { join } from 'node:path'
 import { CronScheduler } from '../cronScheduler.js'
 
 let tmpDir: string | undefined
+// 生产真实 DB 路径由 read model 的 target 派生（$CLAUDE_CONFIG_DIR/cc-haha/db）；
+// scheduledRunIndex.getScheduledRunIndexDatabasePath()（桌面状态根）只是无显式
+// path 的兜底，与被测链路无关。
+function scheduledRunIndexPath(): string {
+  return join(tmpDir, 'cc-haha', 'db', 'scheduled-runs-v1.sqlite')
+}
+
 const originalConfigDir = process.env.CLAUDE_CONFIG_DIR
 const originalLocalIndexMode = process.env.CC_HAHA_LOCAL_INDEX
 const exactFileTime = new Date(1_700_000_000_000)
@@ -116,7 +123,7 @@ describe('scheduled run read model', () => {
     const scheduler = new CronScheduler()
     await scheduler.getRunsPage({ summaryOnly: true })
 
-    const locker = new Database(getScheduledRunIndexDatabasePath())
+    const locker = new Database(scheduledRunIndexPath())
     locker.exec('BEGIN IMMEDIATE')
     await fs.writeFile(sourcePath, serialize('busy-fallback'))
     try {
@@ -154,7 +161,7 @@ describe('scheduled run read model', () => {
 
     const scheduler = new CronScheduler()
     expect(await scheduler.getRecentRuns()).toEqual(canonical.runs)
-    await expect(fs.stat(getScheduledRunIndexDatabasePath())).rejects.toMatchObject({ code: 'ENOENT' })
+    await expect(fs.stat(scheduledRunIndexPath())).rejects.toMatchObject({ code: 'ENOENT' })
   })
 
   test('drops a queued projection when rollout switches off before commit', async () => {
@@ -197,7 +204,7 @@ describe('scheduled run read model', () => {
     await projection
 
     expect(await fs.readFile(sourcePath, 'utf8')).toBe(serialized)
-    await expect(fs.stat(getScheduledRunIndexDatabasePath())).rejects.toMatchObject({ code: 'ENOENT' })
+    await expect(fs.stat(scheduledRunIndexPath())).rejects.toMatchObject({ code: 'ENOENT' })
   })
 
   test('keeps a queued projection in the config scope captured before commit', async () => {
@@ -316,7 +323,7 @@ describe('scheduled run read model', () => {
     }] }
     await fs.writeFile(sourcePath, JSON.stringify(canonical))
     await readScheduledRunPage(sourcePath, { summaryOnly: true })
-    const database = new Database(getScheduledRunIndexDatabasePath())
+    const database = new Database(scheduledRunIndexPath())
     database.query('UPDATE scheduled_runs SET status = ? WHERE run_id = ?')
       .run('failed', canonical.runs[0].id)
     database.close(true)
@@ -520,7 +527,7 @@ describe('scheduled run read model', () => {
     expect(await scheduler.getRecentRuns()).toEqual(canonical.runs)
     expect(await scheduler.getRunDetail(canonical.runs[0].id)).toEqual(canonical.runs[0])
 
-    const database = new Database(getScheduledRunIndexDatabasePath(), { readonly: true })
+    const database = new Database(scheduledRunIndexPath(), { readonly: true })
     const columns = database.query<{ name: string }, []>(
       'PRAGMA table_info(scheduled_runs)',
     ).all().map(column => column.name)

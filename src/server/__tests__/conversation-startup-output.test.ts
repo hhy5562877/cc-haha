@@ -26,9 +26,30 @@ describe('ConversationService startup output', () => {
       originalEnv.set(key, process.env[key])
     }
 
-    process.env.CLAUDE_CLI_PATH = fileURLToPath(
+    // DAL 直连 spawn CLI 覆盖路径：.ts 脚本不能被直接执行（Windows ENOENT，
+    // POSIX 无 shebang），用平台原生可执行包装 bun 调用 fixture。包装名含
+    // `mock-sdk-cli`：本用例验证的是 legacy lane「SDK 反连前退出 → 透传
+    // stdout」的契约，需显式命中 legacy 判定。
+    const fixturePath = fileURLToPath(
       new URL('./fixtures/mock-startup-exit-cli.ts', import.meta.url),
     )
+    if (process.platform === 'win32') {
+      const wrapperPath = path.join(tmpDir, 'mock-sdk-cli-startup-exit.cmd')
+      await fs.writeFile(
+        wrapperPath,
+        `@echo off\r\n"${process.execPath}" "${fixturePath}" %*\r\n`,
+        'utf-8',
+      )
+      process.env.CLAUDE_CLI_PATH = wrapperPath
+    } else {
+      const wrapperPath = path.join(tmpDir, 'mock-sdk-cli-startup-exit.sh')
+      await fs.writeFile(
+        wrapperPath,
+        `#!/bin/sh\nexec "${process.execPath}" "${fixturePath}" "$@"\n`,
+        { encoding: 'utf-8', mode: 0o755 },
+      )
+      process.env.CLAUDE_CLI_PATH = wrapperPath
+    }
     process.env.CLAUDE_CONFIG_DIR = tmpDir
     process.env.CC_HAHA_DISABLE_TERMINAL_SHELL_ENV = '1'
     process.env.MOCK_SDK_STARTUP_STDOUT = 'provider rejected request: invalid model id'

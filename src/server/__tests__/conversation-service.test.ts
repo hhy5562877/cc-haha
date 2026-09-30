@@ -10,7 +10,6 @@ import {
 import { ProviderService } from '../services/providerService.js'
 import { updateTraceCaptureSettings } from '../services/traceCaptureService.js'
 import { resetTerminalShellEnvironmentCacheForTests } from '../utils/terminalShellEnvironment.js'
-import { createSandboxedTestEnvironment } from '../../../scripts/pr/test-environment.js'
 
 describe('ConversationService', () => {
   let tmpDir: string
@@ -206,22 +205,30 @@ describe('ConversationService', () => {
     return session
   }
 
-  test('keeps inherited provider env when no desktop provider config exists', async () => {
-    const service = new ConversationService() as any
-    const env = (await service.buildChildEnv('D:\\workspace\\code\\myself_code\\cc-haha')) as Record<string, string>
+  // DAL 子进程契约：宿主不再向 CLI 透传 provider/诊断/内存 env，
+  // 任何 CLAUDE_*/ANTHROPIC_*/CC_HAHA_* 继承变量一律剥离（dal 侧凭
+  // ~/.dal 配置与 bridge env 自行取鉴权），仅 CALLER_DIR/PWD 钉到 workDir。
+  test('buildChildEnv strips inherited CLAUDE_*/ANTHROPIC_*/CC_HAHA_* env for dal sessions', async () => {
+    process.env.CC_HAHA_TRACE_API_CALLS = '1'
+    process.env.CC_HAHA_LOCAL_ACCESS_TOKEN = 'leaked-host-token'
+    process.env.DAL_TEST_PLAIN_VAR = 'survives'
+    try {
+      const service = new ConversationService() as any
+      const env = (await service.buildChildEnv('D:\\workspace\\code\\myself_code\\cc-haha')) as Record<string, string>
 
-    expect(env.ANTHROPIC_AUTH_TOKEN).toBe('test-token')
-    expect(env.ANTHROPIC_BASE_URL).toBe('https://example.invalid/anthropic')
-    expect(env.ANTHROPIC_MODEL).toBe('test-model')
-    expect(env.CLAUDE_CODE_ATTRIBUTION_HEADER).toBe('0')
-    expect(env.CLAUDE_CODE_DIAGNOSTICS_FILE).toBe(path.join(tmpDir, 'cc-haha', 'diagnostics', 'cli-diagnostics.jsonl'))
-    expect(env.CLAUDE_COWORK_MEMORY_PATH_OVERRIDE).toBe(
-      `${path.join(tmpDir, 'projects', 'D--workspace-code-myself-code-cc-haha', 'memory')}${path.sep}`,
-    )
-    const diagnosticsDirectory = await fs.stat(path.dirname(env.CLAUDE_CODE_DIAGNOSTICS_FILE))
-    expect(diagnosticsDirectory).toBeTruthy()
-    if (process.platform !== 'win32') {
-      expect(diagnosticsDirectory.mode & 0o777).toBe(0o700)
+      expect(env.ANTHROPIC_AUTH_TOKEN).toBeUndefined()
+      expect(env.ANTHROPIC_BASE_URL).toBeUndefined()
+      expect(env.ANTHROPIC_MODEL).toBeUndefined()
+      expect(env.CLAUDE_CODE_ATTRIBUTION_HEADER).toBeUndefined()
+      expect(env.CLAUDE_CODE_OAUTH_TOKEN).toBeUndefined()
+      expect(env.CC_HAHA_TRACE_API_CALLS).toBeUndefined()
+      expect(env.CC_HAHA_LOCAL_ACCESS_TOKEN).toBeUndefined()
+      // 非 Claude 前缀的普通环境变量不受剥离影响。
+      expect(env.DAL_TEST_PLAIN_VAR).toBe('survives')
+    } finally {
+      delete process.env.CC_HAHA_TRACE_API_CALLS
+      delete process.env.CC_HAHA_LOCAL_ACCESS_TOKEN
+      delete process.env.DAL_TEST_PLAIN_VAR
     }
   })
 
@@ -242,81 +249,31 @@ describe('ConversationService', () => {
     await expect(fs.stat(path.join(unrelatedDiagnosticsDir, 'cli-diagnostics.jsonl'))).rejects.toThrow()
   })
 
-  test('buildChildEnv injects stream watchdog + overall max-duration so a trickling provider stream cannot hang the desktop forever (#766)', async () => {
-    const prev = process.env.CLAUDE_STREAM_MAX_DURATION_MS
-    const previousToolInputDuration = process.env.CLAUDE_STREAM_TOOL_INPUT_MAX_DURATION_MS
-    delete process.env.CLAUDE_STREAM_MAX_DURATION_MS
-    delete process.env.CLAUDE_STREAM_TOOL_INPUT_MAX_DURATION_MS
-    try {
-      const service = new ConversationService() as any
-      const env = (await service.buildChildEnv('/tmp')) as Record<string, string>
+  // DAL 契约：CALLER_DIR/PWD 必须钉到 workDir（Bug#5），
+  // bridge env 仅在带 sdkUrl 时注入（URL 由 sdkUrl host 推导）。
+  test('buildChildEnv pins CALLER_DIR/PWD to the work dir and injects the dal bridge env from sdkUrl', async () => {
+    const service = new ConversationService() as any
+    const env = (await service.buildChildEnv(
+      'bridge-session-1',
+      'D:\\workspace\\code\\myself_code\\cc-haha',
+      'ws://127.0.0.1:3456/sdk/test-session?token=test',
+      { permissionMode: 'bypassPermissions' },
+    )) as Record<string, string>
 
-      // Idle watchdog frees a fully-silent stream after 240s...
-      expect(env.CLAUDE_ENABLE_STREAM_WATCHDOG).toBe('1')
-      expect(env.CLAUDE_STREAM_IDLE_TIMEOUT_MS).toBe('240000')
-      // ...but the idle timer is reset by EVERY SSE event, so an upstream that
-      // trickles content deltas (a large tool_use input_json_delta) just under
-      // 240s apart keeps it alive forever. The overall-duration cap is NOT reset
-      // by chunks and is what actually frees that case (#766).
-      expect(env.CLAUDE_STREAM_MAX_DURATION_MS).toBe('1800000')
-      // Tool JSON gets a shorter inactivity budget. Progress resets it, while
-      // the overall response cap still bounds a stream that trickles forever.
-      expect(env.CLAUDE_STREAM_TOOL_INPUT_MAX_DURATION_MS).toBe('120000')
-      // Non-streaming fallback stays off — its retry loop also hangs the UI (#766).
-      expect(env.CLAUDE_CODE_DISABLE_NONSTREAMING_FALLBACK).toBe('1')
-    } finally {
-      if (prev === undefined) delete process.env.CLAUDE_STREAM_MAX_DURATION_MS
-      else process.env.CLAUDE_STREAM_MAX_DURATION_MS = prev
-      if (previousToolInputDuration === undefined) {
-        delete process.env.CLAUDE_STREAM_TOOL_INPUT_MAX_DURATION_MS
-      } else {
-        process.env.CLAUDE_STREAM_TOOL_INPUT_MAX_DURATION_MS = previousToolInputDuration
-      }
-    }
+    expect(env.CALLER_DIR).toBe('D:\\workspace\\code\\myself_code\\cc-haha')
+    expect(env.PWD).toBe('D:\\workspace\\code\\myself_code\\cc-haha')
+    expect(env.DALCODE_BRIDGE_URL).toBe('http://127.0.0.1:3456')
+    expect(env.DALCODE_BRIDGE_TOKEN).toBeTruthy()
+    expect(env.DAL_GUARD_MODE).toBe('yolo')
   })
 
-  test('buildChildEnv flushes desktop transcripts before the SDK reports turn completion (#1033)', async () => {
-    const previous = process.env.CLAUDE_CODE_EAGER_FLUSH
-    delete process.env.CLAUDE_CODE_EAGER_FLUSH
-    resetTerminalShellEnvironmentCacheForTests()
-    try {
-      const service = new ConversationService() as any
-      const sdkEnv = (await service.buildChildEnv(
-        '/tmp',
-        'ws://127.0.0.1:3456/sdk/session?token=test',
-      )) as Record<string, string>
-      const nonSdkEnv = (await service.buildChildEnv('/tmp')) as Record<string, string>
+  test('buildChildEnv omits the dal bridge env when no sdkUrl is given', async () => {
+    const service = new ConversationService() as any
+    const env = (await service.buildChildEnv('/tmp')) as Record<string, string>
 
-      expect(sdkEnv.CLAUDE_CODE_EAGER_FLUSH).toBe('1')
-      expect(sdkEnv.CLAUDE_CODE_EMIT_SESSION_STATE_EVENTS).toBe('1')
-      expect(nonSdkEnv.CLAUDE_CODE_EAGER_FLUSH).toBeUndefined()
-      expect(nonSdkEnv.CLAUDE_CODE_EMIT_SESSION_STATE_EVENTS).toBeUndefined()
-
-      process.env.CLAUDE_CODE_EAGER_FLUSH = '0'
-      resetTerminalShellEnvironmentCacheForTests()
-      const explicitEnv = (await service.buildChildEnv(
-        '/tmp',
-        'ws://127.0.0.1:3456/sdk/session?token=test',
-      )) as Record<string, string>
-      expect(explicitEnv.CLAUDE_CODE_EAGER_FLUSH).toBe('0')
-    } finally {
-      if (previous === undefined) delete process.env.CLAUDE_CODE_EAGER_FLUSH
-      else process.env.CLAUDE_CODE_EAGER_FLUSH = previous
-      resetTerminalShellEnvironmentCacheForTests()
-    }
-  })
-
-  test('buildChildEnv lets caller env override the stream max-duration cap (#766)', async () => {
-    const prev = process.env.CLAUDE_STREAM_MAX_DURATION_MS
-    process.env.CLAUDE_STREAM_MAX_DURATION_MS = '120000'
-    try {
-      const service = new ConversationService() as any
-      const env = (await service.buildChildEnv('/tmp')) as Record<string, string>
-      expect(env.CLAUDE_STREAM_MAX_DURATION_MS).toBe('120000')
-    } finally {
-      if (prev === undefined) delete process.env.CLAUDE_STREAM_MAX_DURATION_MS
-      else process.env.CLAUDE_STREAM_MAX_DURATION_MS = prev
-    }
+    expect(env.DALCODE_BRIDGE_URL).toBeUndefined()
+    expect(env.DALCODE_BRIDGE_TOKEN).toBeUndefined()
+    expect(env.DAL_GUARD_MODE).toBeUndefined()
   })
 
   test('builds hidden CLI spawn options for desktop session subprocesses', () => {
@@ -330,20 +287,6 @@ describe('ConversationService', () => {
       stderr: 'pipe',
       windowsHide: true,
     })
-  })
-
-  test('buildChildEnv pins desktop memory to the current sanitized project directory', async () => {
-    const service = new ConversationService() as any
-    const workDir = path.join(tmpDir, 'workspace', 'myself_code', 'claude-code-haha')
-    await fs.mkdir(workDir, { recursive: true })
-
-    const env = (await service.buildChildEnv(workDir)) as Record<string, string>
-
-    expect(env.CLAUDE_COWORK_MEMORY_PATH_OVERRIDE).toBe(
-      `${path.join(tmpDir, 'projects', sanitizeMemoryPath(workDir), 'memory')}${path.sep}`,
-    )
-    expect(env.CLAUDE_COWORK_MEMORY_PATH_OVERRIDE).toContain('myself-code')
-    expect(env.CLAUDE_COWORK_MEMORY_PATH_OVERRIDE).not.toContain('myself_code')
   })
 
   test.skipIf(process.platform === 'win32')(
@@ -397,244 +340,6 @@ describe('ConversationService', () => {
     expect(env.ANTHROPIC_MODEL).toBeUndefined()
   })
 
-  for (const entrypoint of ['sdk-cli', 'claude-desktop']) {
-    for (const { settingsFile, setting, preference } of [
-      { settingsFile: 'settings.json', setting: undefined, preference: undefined },
-      { settingsFile: 'settings.json', setting: '0', preference: undefined },
-      { settingsFile: 'cc-haha/settings.json', setting: 'false', preference: undefined },
-      { settingsFile: 'cc-haha/settings.json', setting: 'false', preference: true },
-      { settingsFile: 'settings.json', setting: '1', preference: false },
-    ]) {
-      test(`desktop team tools survive child startup (${entrypoint}, ${settingsFile}=${setting ?? 'unset'}, preference=${preference ?? 'unset'})`, async () => {
-        if (setting !== undefined) {
-          const legacyPath = path.join(tmpDir, settingsFile)
-          await fs.mkdir(path.dirname(legacyPath), { recursive: true })
-          await fs.writeFile(legacyPath, JSON.stringify({
-            env: { CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS: setting },
-          }))
-        }
-        if (preference !== undefined) {
-          await fs.writeFile(path.join(tmpDir, 'settings.json'), JSON.stringify({
-            agentTeamsEnabled: preference,
-            env: { CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS: setting },
-          }))
-        }
-        const service = new ConversationService() as any
-        service.shouldMarkManagedOAuth = () => entrypoint === 'claude-desktop'
-        service.buildOfficialOAuthEnv = async () => ({ CLAUDE_CODE_ENTRYPOINT: 'claude-desktop' })
-        const childEnv = await service.buildChildEnv(tmpDir, 'ws://127.0.0.1:3456/sdk/test')
-        const probeHome = path.join(tmpDir, 'team-probe')
-        const probeEnv = createSandboxedTestEnvironment(probeHome, {
-          CLAUDE_CODE_ENTRYPOINT: childEnv.CLAUDE_CODE_ENTRYPOINT ?? 'sdk-cli',
-          ANTHROPIC_API_KEY: 'fake-team-probe-key',
-          CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC: '1',
-          DISABLE_TELEMETRY: '1',
-        })
-        // Pass the host's real team defaults across a fresh process boundary,
-        // without inheriting provider credentials or any user configuration.
-        for (const key of ['CC_HAHA_AGENT_TEAMS_DEFAULT', 'CC_HAHA_AGENT_TEAMS_ENABLED', 'CLAUDE_CODE_ENABLE_TASKS']) {
-          if (childEnv[key] !== undefined) probeEnv[key] = childEnv[key]
-        }
-        if (setting !== undefined) {
-          const settingsPath = path.join(probeEnv.CLAUDE_CONFIG_DIR!, settingsFile)
-          await fs.mkdir(path.dirname(settingsPath), { recursive: true })
-          await fs.writeFile(settingsPath, JSON.stringify({
-            env: { CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS: setting },
-          }))
-        }
-        const repoRoot = path.resolve(import.meta.dir, '../../..')
-        const probe = Bun.spawn([process.execPath, '--no-env-file', '--preload', path.join(repoRoot, 'preload.ts'), '-e', `
-          const { applySafeConfigEnvironmentVariables, applyConfigEnvironmentVariables } = await import(${JSON.stringify(path.join(repoRoot, 'src/utils/managedEnv.ts'))})
-          applySafeConfigEnvironmentVariables()
-          applyConfigEnvironmentVariables()
-          const { getAllBaseTools } = await import(${JSON.stringify(path.join(repoRoot, 'src/tools.ts'))})
-          const { default: teamCommand } = await import(${JSON.stringify(path.join(repoRoot, 'src/commands/team.ts'))})
-          const names = getAllBaseTools().filter(tool => tool.isEnabled()).map(tool => tool.name)
-          console.log('TEAM_PROBE:' + JSON.stringify({
-            tools: names.filter(name => ['TeamCreate', 'TeamDelete', 'SendMessage', 'TaskCreate'].includes(name)),
-            command: teamCommand.isEnabled(),
-          }))
-        `], { cwd: probeHome, env: probeEnv, stdout: 'pipe', stderr: 'pipe' })
-        const [stdout, stderr, code] = await Promise.all([
-          new Response(probe.stdout).text(),
-          new Response(probe.stderr).text(),
-          probe.exited,
-        ])
-        expect({ code, stderr }).toEqual({ code: 0, stderr: '' })
-        const report = JSON.parse(stdout.split('\n').find(line => line.startsWith('TEAM_PROBE:'))!.slice('TEAM_PROBE:'.length))
-        expect(report.tools).toContain('TaskCreate')
-        const expected = preference ?? (setting === undefined)
-        expect(report.command).toBe(expected)
-        for (const name of ['TeamCreate', 'TeamDelete', 'SendMessage']) {
-          expect(report.tools.includes(name)).toBe(expected)
-        }
-      })
-    }
-  }
-
-  test('buildChildEnv injects General network timeout and manual proxy for CLI requests', async () => {
-    await fs.writeFile(
-      path.join(tmpDir, 'settings.json'),
-      JSON.stringify({
-        network: {
-          aiRequestTimeoutMs: 180_000,
-          proxy: {
-            mode: 'manual',
-            url: ' http://127.0.0.1:7890 ',
-          },
-        },
-      }),
-      'utf-8',
-    )
-
-    const service = new ConversationService() as any
-    const env = (await service.buildChildEnv('/tmp')) as Record<string, string>
-
-    expect(env.API_TIMEOUT_MS).toBe('180000')
-    expect(env.HTTP_PROXY).toBe('http://127.0.0.1:7890')
-    expect(env.HTTPS_PROXY).toBe('http://127.0.0.1:7890')
-    expect(env.ALL_PROXY).toBe('http://127.0.0.1:7890')
-    expect(env.all_proxy).toBe('http://127.0.0.1:7890')
-    expect(env.NO_PROXY).toContain('127.0.0.1')
-    expect(env.no_proxy).toContain('localhost')
-  })
-
-  test('buildChildEnv routes system mode through the host-managed dynamic bridge', async () => {
-    const originalBridgeUrl = process.env.CC_HAHA_SYSTEM_PROXY_URL
-    process.env.CC_HAHA_SYSTEM_PROXY_URL = 'http://127.0.0.1:17890'
-    await fs.writeFile(
-      path.join(tmpDir, 'settings.json'),
-      JSON.stringify({
-        network: {
-          proxy: { mode: 'system', url: '' },
-        },
-      }),
-      'utf-8',
-    )
-
-    try {
-      const service = new ConversationService() as any
-      const env = (await service.buildChildEnv('/tmp')) as Record<string, string>
-
-      expect(env.HTTP_PROXY).toBe('http://127.0.0.1:17890')
-      expect(env.HTTPS_PROXY).toBe('http://127.0.0.1:17890')
-      expect(env.ALL_PROXY).toBe('http://127.0.0.1:17890')
-      expect(env.all_proxy).toBe('http://127.0.0.1:17890')
-    } finally {
-      if (originalBridgeUrl === undefined) delete process.env.CC_HAHA_SYSTEM_PROXY_URL
-      else process.env.CC_HAHA_SYSTEM_PROXY_URL = originalBridgeUrl
-    }
-  })
-
-  test('buildChildEnv ties the first-token watchdog to the user request timeout so slow prefill is not killed early (#826)', async () => {
-    const prev = process.env.CLAUDE_STREAM_FIRST_TOKEN_TIMEOUT_MS
-    delete process.env.CLAUDE_STREAM_FIRST_TOKEN_TIMEOUT_MS
-    await fs.writeFile(
-      path.join(tmpDir, 'settings.json'),
-      JSON.stringify({ network: { aiRequestTimeoutMs: 600_000 } }),
-      'utf-8',
-    )
-    try {
-      const service = new ConversationService() as any
-      const env = (await service.buildChildEnv('/tmp')) as Record<string, string>
-
-      // The user's "请求超时" must reach the first-token watchdog, not only the
-      // SDK client timeout (which on a stream is cleared the moment response
-      // headers arrive). Otherwise a local/3P model that needs minutes to emit
-      // its first token gets killed by the 240s idle watchdog no matter how high
-      // the configured timeout is (#826).
-      expect(env.CLAUDE_STREAM_FIRST_TOKEN_TIMEOUT_MS).toBe('600000')
-      expect(env.CLAUDE_STREAM_FIRST_TOKEN_TIMEOUT_MS).toBe(env.API_TIMEOUT_MS)
-    } finally {
-      if (prev === undefined) delete process.env.CLAUDE_STREAM_FIRST_TOKEN_TIMEOUT_MS
-      else process.env.CLAUDE_STREAM_FIRST_TOKEN_TIMEOUT_MS = prev
-    }
-  })
-
-  test.each([1_800_000, 14_400_000, 21_600_000])('buildChildEnv raises all request budgets for a long local-model response (%i ms, #1307)', async timeoutMs => {
-    const prev = process.env.CLAUDE_STREAM_MAX_DURATION_MS
-    delete process.env.CLAUDE_STREAM_MAX_DURATION_MS
-    await fs.writeFile(
-      path.join(tmpDir, 'settings.json'),
-      JSON.stringify({ network: { aiRequestTimeoutMs: timeoutMs } }),
-      'utf-8',
-    )
-    try {
-      const service = new ConversationService() as any
-      const env = (await service.buildChildEnv('/tmp')) as Record<string, string>
-
-      // The overall cap is NOT reset by incoming chunks, so a local model that
-      // keeps streaming thinking_delta events past it is killed mid-response.
-      // Raising "请求超时" must therefore extend the cap too — otherwise the
-      // user's timeout setting is silently capped at 600s (#1307).
-      expect(env.API_TIMEOUT_MS).toBe(String(timeoutMs))
-      expect(env.CLAUDE_STREAM_FIRST_TOKEN_TIMEOUT_MS).toBe(String(timeoutMs))
-      expect(env.CLAUDE_STREAM_MAX_DURATION_MS).toBe(String(timeoutMs))
-    } finally {
-      if (prev === undefined) delete process.env.CLAUDE_STREAM_MAX_DURATION_MS
-      else process.env.CLAUDE_STREAM_MAX_DURATION_MS = prev
-    }
-  })
-
-  test('buildChildEnv keeps the overall stream cap floor for a short request timeout (#766)', async () => {
-    const prev = process.env.CLAUDE_STREAM_MAX_DURATION_MS
-    delete process.env.CLAUDE_STREAM_MAX_DURATION_MS
-    await fs.writeFile(
-      path.join(tmpDir, 'settings.json'),
-      JSON.stringify({ network: { aiRequestTimeoutMs: 30_000 } }),
-      'utf-8',
-    )
-    try {
-      const service = new ConversationService() as any
-      const env = (await service.buildChildEnv('/tmp')) as Record<string, string>
-
-      // Shrinking the cap for a short first-byte budget would re-open #766:
-      // a stream that trickles content deltas just under the idle window must
-      // still be freed after a fixed overall duration.
-      expect(env.CLAUDE_STREAM_MAX_DURATION_MS).toBe('600000')
-    } finally {
-      if (prev === undefined) delete process.env.CLAUDE_STREAM_MAX_DURATION_MS
-      else process.env.CLAUDE_STREAM_MAX_DURATION_MS = prev
-    }
-  })
-
-  test('buildChildEnv lets caller env override the first-token watchdog (#826)', async () => {
-    const prev = process.env.CLAUDE_STREAM_FIRST_TOKEN_TIMEOUT_MS
-    process.env.CLAUDE_STREAM_FIRST_TOKEN_TIMEOUT_MS = '900000'
-    try {
-      const service = new ConversationService() as any
-      const env = (await service.buildChildEnv('/tmp')) as Record<string, string>
-      expect(env.CLAUDE_STREAM_FIRST_TOKEN_TIMEOUT_MS).toBe('900000')
-    } finally {
-      if (prev === undefined) delete process.env.CLAUDE_STREAM_FIRST_TOKEN_TIMEOUT_MS
-      else process.env.CLAUDE_STREAM_FIRST_TOKEN_TIMEOUT_MS = prev
-    }
-  })
-
-  test('buildChildEnv injects CLAUDE_CODE_OAUTH_TOKEN when official mode + haha oauth token exists', async () => {
-    const ccHahaDir = path.join(tmpDir, 'cc-haha')
-    await fs.mkdir(ccHahaDir, { recursive: true })
-    await fs.writeFile(
-      path.join(ccHahaDir, 'settings.json'),
-      JSON.stringify({ env: {} }),
-      'utf-8',
-    )
-
-    const { hahaOAuthService } = await import('../services/hahaOAuthService.js')
-    await hahaOAuthService.saveTokens({
-      accessToken: 'haha-fresh-token',
-      refreshToken: 'haha-refresh-xxx',
-      expiresAt: Date.now() + 30 * 60_000,
-      scopes: ['user:inference'],
-      subscriptionType: 'max',
-    })
-
-    const service = new ConversationService() as any
-    const env = (await service.buildChildEnv('/tmp')) as Record<string, string>
-
-    expect(env.CLAUDE_CODE_ENTRYPOINT).toBe('claude-desktop')
-    expect(env.CLAUDE_CODE_OAUTH_TOKEN).toBe('haha-fresh-token')
-  })
 
   test('sendMessage updates a running official OAuth CLI token before the user turn', async () => {
     const { hahaOAuthService } = await import('../services/hahaOAuthService.js')
@@ -1000,105 +705,6 @@ describe('ConversationService', () => {
     expect(env.CLAUDE_CODE_ENTRYPOINT).toBeUndefined()
   })
 
-  test('buildChildEnv injects explicit provider runtime env for session-scoped providers', async () => {
-    process.env.CC_HAHA_LOCAL_ACCESS_TOKEN = 'desktop-local-secret'
-    const providerService = new ProviderService()
-    const provider = await providerService.addProvider({
-      presetId: 'custom',
-      name: 'Packy',
-      apiKey: 'provider-key',
-      baseUrl: 'https://api.packy.example',
-      apiFormat: 'openai_chat',
-      models: {
-        main: 'kimi-k2.6',
-        haiku: '',
-        sonnet: '',
-        opus: '',
-      },
-    })
-
-    const service = new ConversationService() as any
-    const env = (await service.buildChildEnv('/tmp', undefined, {
-      providerId: provider.id,
-    })) as Record<string, string>
-
-    expect(env.ANTHROPIC_BASE_URL).toBe(`http://127.0.0.1:3456/proxy/providers/${provider.id}`)
-    expect(env.ANTHROPIC_API_KEY).toBe('proxy-managed')
-    expect(env.ANTHROPIC_MODEL).toBe('kimi-k2.6')
-    expect(env.ANTHROPIC_DEFAULT_HAIKU_MODEL).toBe('kimi-k2.6')
-    expect(env.ANTHROPIC_DEFAULT_SONNET_MODEL).toBe('kimi-k2.6')
-    expect(env.ANTHROPIC_DEFAULT_OPUS_MODEL).toBe('kimi-k2.6')
-    expect(env.CLAUDE_CODE_PROVIDER_MANAGED_BY_HOST).toBe('1')
-    expect(env.CC_HAHA_LOCAL_ACCESS_TOKEN).toBe('desktop-local-secret')
-    expect(env.CLAUDE_CODE_ATTRIBUTION_HEADER).toBe('0')
-    expect(env.CC_HAHA_TRANSCRIPT_ENTRYPOINT).toBe('claude-desktop')
-    expect(env.CLAUDE_CODE_ENTRYPOINT).toBeUndefined()
-    expect(env.CC_HAHA_TRACE_PROVIDER_ID).toBeUndefined()
-    expect(env.CC_HAHA_TRACE_PROVIDER_NAME).toBeUndefined()
-    expect(env.CC_HAHA_TRACE_PROVIDER_FORMAT).toBeUndefined()
-  })
-
-  test('buildChildEnv isolates experimental beta kill switch for session-scoped providers', async () => {
-    process.env.CLAUDE_CODE_DISABLE_EXPERIMENTAL_BETAS = '1'
-    const providerService = new ProviderService()
-    const provider = await providerService.addProvider({
-      presetId: 'custom',
-      name: 'Betas Managed',
-      apiKey: 'provider-key',
-      baseUrl: 'https://api.betas.example',
-      apiFormat: 'anthropic',
-      models: {
-        main: 'claude-sonnet-4-6',
-        haiku: '',
-        sonnet: '',
-        opus: '',
-      },
-    })
-
-    const service = new ConversationService() as any
-    const defaultEnv = (await service.buildChildEnv('/tmp', undefined, {
-      providerId: provider.id,
-    })) as Record<string, string>
-
-    expect(defaultEnv.CLAUDE_CODE_DISABLE_EXPERIMENTAL_BETAS).toBeUndefined()
-
-    await providerService.updateProvider(provider.id, { disableExperimentalBetas: true })
-    const disabledEnv = (await service.buildChildEnv('/tmp', undefined, {
-      providerId: provider.id,
-    })) as Record<string, string>
-
-    expect(disabledEnv.CLAUDE_CODE_DISABLE_EXPERIMENTAL_BETAS).toBe('1')
-  })
-
-  test('buildChildEnv injects trace provider metadata for desktop sdk session-scoped providers', async () => {
-    const providerService = new ProviderService()
-    const provider = await providerService.addProvider({
-      presetId: 'custom',
-      name: 'Traceable Provider',
-      apiKey: 'provider-key',
-      baseUrl: 'https://traceable.example',
-      apiFormat: 'anthropic',
-      models: {
-        main: 'gpt-5.5',
-        haiku: '',
-        sonnet: '',
-        opus: '',
-      },
-    })
-
-    const service = new ConversationService() as any
-    const env = (await service.buildChildEnv(
-      '/tmp',
-      'ws://127.0.0.1:3456/sdk/test-session?token=test-token',
-      { providerId: provider.id },
-    )) as Record<string, string>
-
-    expect(env.CC_HAHA_TRACE_API_CALLS).toBe('1')
-    expect(env.CC_HAHA_TRACE_PROVIDER_ID).toBe(provider.id)
-    expect(env.CC_HAHA_TRACE_PROVIDER_NAME).toBe('Traceable Provider')
-    expect(env.CC_HAHA_TRACE_PROVIDER_FORMAT).toBe('anthropic')
-  })
-
   test('buildChildEnv does not inject trace env when managed trace capture is disabled', async () => {
     await updateTraceCaptureSettings({ enabled: false })
     const providerService = new ProviderService()
@@ -1129,131 +735,6 @@ describe('ConversationService', () => {
     expect(env.CC_HAHA_TRACE_PROVIDER_FORMAT).toBeUndefined()
   })
 
-  test('buildChildEnv uses the session-selected model for session-scoped providers', async () => {
-    const providerService = new ProviderService()
-    const provider = await providerService.addProvider({
-      presetId: 'custom',
-      name: 'Switchable',
-      apiKey: 'provider-key',
-      baseUrl: 'https://api.switchable.example',
-      apiFormat: 'openai_chat',
-      models: {
-        main: 'old-provider-main',
-        haiku: 'new-provider-haiku',
-        sonnet: 'new-provider-sonnet',
-        opus: 'new-provider-opus',
-      },
-    })
-
-    const service = new ConversationService() as any
-    const env = (await service.buildChildEnv('/tmp', undefined, {
-      providerId: provider.id,
-      model: 'new-provider-sonnet',
-    })) as Record<string, string>
-
-    expect(env.ANTHROPIC_BASE_URL).toBe(`http://127.0.0.1:3456/proxy/providers/${provider.id}`)
-    expect(env.ANTHROPIC_MODEL).toBe('new-provider-sonnet')
-    expect(env.CLAUDE_CODE_ATTRIBUTION_HEADER).toBe('0')
-  })
-
-  test('buildChildEnv clears stale api key for bearer-token providers', async () => {
-    const providerService = new ProviderService()
-    const provider = await providerService.addProvider({
-      presetId: 'shengsuanyun',
-      name: 'ShengSuanYun',
-      apiKey: 'provider-key',
-      baseUrl: 'https://router.shengsuanyun.com/api',
-      apiFormat: 'anthropic',
-      models: {
-        main: 'claude-sonnet-4-6',
-        haiku: 'claude-haiku-4-5-20251001',
-        sonnet: 'claude-sonnet-4-6',
-        opus: 'claude-opus-4-7',
-      },
-    })
-
-    const service = new ConversationService() as any
-    const env = (await service.buildChildEnv('/tmp', undefined, {
-      providerId: provider.id,
-      model: 'claude-sonnet-4-6',
-    })) as Record<string, string>
-
-    expect(env.ANTHROPIC_BASE_URL).toBe('https://router.shengsuanyun.com/api')
-    expect(env.ANTHROPIC_AUTH_TOKEN).toBe('provider-key')
-    expect(env.ANTHROPIC_API_KEY).toBe('')
-    expect(env.ANTHROPIC_MODEL).toBe('claude-sonnet-4-6')
-    expect(env.ANTHROPIC_DEFAULT_SONNET_MODEL_SUPPORTED_CAPABILITIES).toBe(
-      'thinking,effort,adaptive_thinking,xhigh_effort,max_effort',
-    )
-    expect(env.CLAUDE_CODE_ATTRIBUTION_HEADER).toBe('1')
-  })
-
-  test('buildChildEnv lets General network timeout override provider preset timeouts', async () => {
-    await fs.writeFile(
-      path.join(tmpDir, 'settings.json'),
-      JSON.stringify({
-        network: {
-          aiRequestTimeoutMs: 180_000,
-          proxy: { mode: 'system', url: '' },
-        },
-      }),
-      'utf-8',
-    )
-
-    const providerService = new ProviderService()
-    const provider = await providerService.addProvider({
-      presetId: 'shengsuanyun',
-      name: 'Shengsuanyun',
-      apiKey: 'provider-key',
-      baseUrl: 'https://router.shengsuanyun.com/api',
-      apiFormat: 'anthropic',
-      models: {
-        main: 'anthropic/claude-sonnet-4.6',
-        haiku: 'anthropic/claude-haiku-4.5:thinking',
-        sonnet: 'anthropic/claude-sonnet-4.6',
-        opus: 'anthropic/claude-opus-4.7',
-      },
-    })
-
-    const service = new ConversationService() as any
-    const env = (await service.buildChildEnv('/tmp', undefined, {
-      providerId: provider.id,
-      model: 'anthropic/claude-sonnet-4.6',
-    })) as Record<string, string>
-
-    expect(env.ANTHROPIC_BASE_URL).toBe('https://router.shengsuanyun.com/api')
-    expect(env.API_TIMEOUT_MS).toBe('180000')
-    expect(env.CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC).toBe('1')
-  })
-
-  test('buildChildEnv can force official auth even when a custom default provider exists', async () => {
-    const ccHahaDir = path.join(tmpDir, 'cc-haha')
-    await fs.mkdir(ccHahaDir, { recursive: true })
-    await fs.writeFile(
-      path.join(ccHahaDir, 'settings.json'),
-      JSON.stringify({ env: { ANTHROPIC_AUTH_TOKEN: 'custom-provider-token' } }),
-      'utf-8',
-    )
-
-    const { hahaOAuthService } = await import('../services/hahaOAuthService.js')
-    await hahaOAuthService.saveTokens({
-      accessToken: 'forced-official-token',
-      refreshToken: 'forced-official-refresh',
-      expiresAt: Date.now() + 30 * 60_000,
-      scopes: ['user:inference'],
-      subscriptionType: 'max',
-    })
-
-    const service = new ConversationService() as any
-    const env = (await service.buildChildEnv('/tmp', undefined, {
-      providerId: null,
-    })) as Record<string, string>
-
-    expect(env.ANTHROPIC_API_KEY).toBeUndefined()
-    expect(env.CLAUDE_CODE_ENTRYPOINT).toBe('claude-desktop')
-    expect(env.CLAUDE_CODE_OAUTH_TOKEN).toBe('forced-official-token')
-  })
-
   test('buildChildEnv does not inject Claude OAuth when ChatGPT Official is active', async () => {
     const providerService = new ProviderService()
     await providerService.activateProvider('openai-official')
@@ -1277,110 +758,29 @@ describe('ConversationService', () => {
     expect(env.CLAUDE_CODE_OAUTH_TOKEN).toBeUndefined()
   })
 
-  test('buildChildEnv injects ChatGPT Official runtime env for session-scoped provider selection', async () => {
+  // DAL 契约：可执行文件解析优先级为 DAL_CLI_PATH/CLAUDE_CLI_PATH 覆盖 →
+  // 打包 sidecar → 仓库 rpc-entry → PATH 上的 `dal`；不再有 bun/preload 入口。
+  test('resolves the dal sidecar entrypoint with env override taking precedence', () => {
     const service = new ConversationService() as any
-    const env = (await service.buildChildEnv('/tmp', undefined, {
-      providerId: 'openai-official',
-    })) as Record<string, string>
-
-    expect(env.CC_HAHA_OPENAI_OAUTH_PROVIDER).toBe('1')
-    expect(env.OPENAI_CODEX_OAUTH_FILE).toBe(
-      path.join(tmpDir, 'cc-haha', 'openai-oauth.json'),
-    )
-    expect(env.ANTHROPIC_MODEL).toBe('gpt-6-sol')
-    expect(env.ANTHROPIC_DEFAULT_SONNET_MODEL).toBe('gpt-6-sol')
-    expect(env.CLAUDE_CODE_PROVIDER_MANAGED_BY_HOST).toBe('1')
-    expect(env.CLAUDE_CODE_ENTRYPOINT).toBeUndefined()
-    expect(env.CLAUDE_CODE_OAUTH_TOKEN).toBeUndefined()
-    expect(env.ANTHROPIC_API_KEY).toBeUndefined()
-    expect(env.ANTHROPIC_AUTH_TOKEN).toBeUndefined()
-    expect(env.ANTHROPIC_BASE_URL).toBeUndefined()
-  })
-
-  test('buildChildEnv injects isolated Grok Official runtime env for session-scoped selection', async () => {
-    const service = new ConversationService() as any
-    const env = (await service.buildChildEnv('/tmp', undefined, {
-      providerId: 'grok-official',
-      model: 'grok-4.5',
-    })) as Record<string, string>
-
-    expect(env.CC_HAHA_GROK_OAUTH_PROVIDER).toBe('1')
-    expect(env.GROK_OAUTH_FILE).toBe(path.join(tmpDir, 'cc-haha', 'grok-oauth.json'))
-    expect(env.ANTHROPIC_MODEL).toBe('grok-4.5')
-    expect(env.CLAUDE_CODE_PROVIDER_MANAGED_BY_HOST).toBe('1')
-    expect(env.CLAUDE_CODE_OAUTH_TOKEN).toBeUndefined()
-    expect(env.CC_HAHA_OPENAI_OAUTH_PROVIDER).toBeUndefined()
-    expect(env.OPENAI_CODEX_OAUTH_FILE).toBeUndefined()
-    expect(env.ANTHROPIC_API_KEY).toBeUndefined()
-    expect(env.ANTHROPIC_AUTH_TOKEN).toBeUndefined()
-    expect(env.ANTHROPIC_BASE_URL).toBeUndefined()
-  })
-
-  test('buildChildEnv passes OpenAI-native effort without leaking Claude effort state', async () => {
-    const originalEffort = process.env.CC_HAHA_OPENAI_REASONING_EFFORT
-    process.env.CC_HAHA_OPENAI_REASONING_EFFORT = 'stale-parent-effort'
+    const previousDal = process.env.DAL_CLI_PATH
+    const previousClaude = process.env.CLAUDE_CLI_PATH
     try {
-      const service = new ConversationService() as any
-      const env = (await service.buildChildEnv('/tmp', undefined, {
-        providerId: 'openai-official',
-        model: 'gpt-5.6-sol',
-        effort: 'xhigh',
-      })) as Record<string, string>
-
-      expect(env.ANTHROPIC_MODEL).toBe('gpt-5.6-sol')
-      expect(env.CC_HAHA_OPENAI_REASONING_EFFORT).toBe('xhigh')
+      process.env.DAL_CLI_PATH = path.join(tmpDir, 'dal-fixture')
+      delete process.env.CLAUDE_CLI_PATH
+      expect(service.resolveDalCliArgs(['--mode', 'rpc'])).toEqual([
+        path.join(tmpDir, 'dal-fixture'),
+        '--mode',
+        'rpc',
+      ])
     } finally {
-      if (originalEffort === undefined) delete process.env.CC_HAHA_OPENAI_REASONING_EFFORT
-      else process.env.CC_HAHA_OPENAI_REASONING_EFFORT = originalEffort
+      if (previousDal === undefined) delete process.env.DAL_CLI_PATH
+      else process.env.DAL_CLI_PATH = previousDal
+      if (previousClaude === undefined) delete process.env.CLAUDE_CLI_PATH
+      else process.env.CLAUDE_CLI_PATH = previousClaude
     }
   })
 
-  test('buildChildEnv does not leak inherited CLAUDE_CODE_OAUTH_TOKEN when official token is unavailable', async () => {
-    const ccHahaDir = path.join(tmpDir, 'cc-haha')
-    await fs.mkdir(ccHahaDir, { recursive: true })
-    await fs.writeFile(
-      path.join(ccHahaDir, 'settings.json'),
-      JSON.stringify({ env: {} }),
-      'utf-8',
-    )
-
-    const service = new ConversationService() as any
-    const env = (await service.buildChildEnv('/tmp')) as Record<string, string>
-
-    expect(env.CLAUDE_CODE_ENTRYPOINT).toBe('claude-desktop')
-    expect(env.CLAUDE_CODE_OAUTH_TOKEN).toBeUndefined()
-  })
-
-  test('buildChildEnv injects desktop Computer Use host bundle id for sdk sessions', async () => {
-    const service = new ConversationService() as any
-    const env = (await service.buildChildEnv(
-      '/tmp',
-      'ws://127.0.0.1:3456/sdk/test-session?token=test-token',
-    )) as Record<string, string>
-
-    expect(env.CC_HAHA_COMPUTER_USE_HOST_BUNDLE_ID).toBe(
-      'com.claude-code-haha.desktop',
-    )
-    expect(env.CC_HAHA_DESKTOP_SERVER_URL).toBe('http://127.0.0.1:3456')
-    expect(env.CC_HAHA_TRACE_API_CALLS).toBe('1')
-    expect(env.CLAUDE_CODE_ENABLE_SDK_FILE_CHECKPOINTING).toBe('1')
-  })
-
-  test('uses bun entrypoint fallback on Windows dev mode', () => {
-    const service = new ConversationService() as any
-    const args = service.resolveCliArgs(['--print'])
-
-    if (process.platform === 'win32') {
-      expect(args[0]).toBe(process.execPath)
-      expect(args[1]).toBe('--preload')
-      expect(args[2]).toContain('preload.ts')
-      expect(args[3]).toContain(path.join('src', 'entrypoints', 'cli.tsx'))
-    } else {
-      expect(args[0]).toContain(path.join('bin', 'claude-haha'))
-    }
-  })
-
-  test('buildSessionCliArgs enables partial assistant messages for desktop streaming', () => {
+  test('buildSessionCliArgs emits the dal rpc base args without legacy streaming flags', () => {
     const service = new ConversationService() as any
     const args = service.buildSessionCliArgs(
       '123e4567-e89b-12d3-a456-426614174000',
@@ -1389,20 +789,11 @@ describe('ConversationService', () => {
       { permissionMode: 'bypassPermissions' },
     ) as string[]
 
-    expect(args).toContain('--include-partial-messages')
-    expect(args).toContain('--sdk-url')
-    expect(args).toContain('--replay-user-messages')
-  })
-
-  test('buildChildEnv asks desktop SDK sessions to wait briefly for MCP tools', async () => {
-    const service = new ConversationService() as any
-    const env = (await service.buildChildEnv(
-      '/tmp',
-      'ws://127.0.0.1:3456/sdk/test-session?token=test-token',
-    )) as Record<string, string>
-
-    expect(env.CC_HAHA_DESKTOP_AWAIT_MCP).toBe('1')
-    expect(env.CC_HAHA_DESKTOP_AWAIT_MCP_TIMEOUT_MS).toBe('5000')
+    // args[0] 是环境相关的 dal 可执行路径，其余为固定 rpc 基座。
+    expect(args.slice(1)).toEqual(['--mode', 'rpc', '--session-id', '123e4567-e89b-12d3-a456-426614174000'])
+    expect(args).not.toContain('--include-partial-messages')
+    expect(args).not.toContain('--sdk-url')
+    expect(args).not.toContain('--replay-user-messages')
   })
 
   test('buildChildEnv disables inherited interrupted-turn resume for prewarm launches', async () => {
@@ -1417,67 +808,10 @@ describe('ConversationService', () => {
     expect(env.CLAUDE_CODE_RESUME_INTERRUPTED_TURN).toBeUndefined()
   })
 
-  test('buildChildEnv enables stream idle watchdog for desktop CLI sessions', async () => {
-    const service = new ConversationService() as any
-    const env = (await service.buildChildEnv(
-      '/tmp',
-      'ws://127.0.0.1:3456/sdk/test-session?token=test-token',
-    )) as Record<string, string>
 
-    expect(env.CLAUDE_ENABLE_STREAM_WATCHDOG).toBe('1')
-  })
-
-  test('buildChildEnv widens the stream idle window and disables the non-streaming fallback (#766)', async () => {
-    const service = new ConversationService() as any
-    const env = (await service.buildChildEnv(
-      '/tmp',
-      'ws://127.0.0.1:3456/sdk/test-session?token=test-token',
-    )) as Record<string, string>
-
-    // 90s default kills healthy-but-silent third-party streams; 240s keeps the
-    // watchdog useful without aborting slow thinking/prefill phases.
-    expect(env.CLAUDE_STREAM_IDLE_TIMEOUT_MS).toBe('240000')
-    // Non-streaming fallback can never finish for slow providers (first byte
-    // only arrives after FULL generation), so retries must stay streaming.
-    expect(env.CLAUDE_CODE_DISABLE_NONSTREAMING_FALLBACK).toBe('1')
-  })
-
-  test('buildChildEnv respects caller overrides for stream timeout tuning envs', async () => {
-    const service = new ConversationService() as any
-    const previous = {
-      watchdog: process.env.CLAUDE_ENABLE_STREAM_WATCHDOG,
-      idle: process.env.CLAUDE_STREAM_IDLE_TIMEOUT_MS,
-      toolInput: process.env.CLAUDE_STREAM_TOOL_INPUT_MAX_DURATION_MS,
-      fallback: process.env.CLAUDE_CODE_DISABLE_NONSTREAMING_FALLBACK,
-    }
-    process.env.CLAUDE_ENABLE_STREAM_WATCHDOG = '0'
-    process.env.CLAUDE_STREAM_IDLE_TIMEOUT_MS = '90000'
-    process.env.CLAUDE_STREAM_TOOL_INPUT_MAX_DURATION_MS = '45000'
-    process.env.CLAUDE_CODE_DISABLE_NONSTREAMING_FALLBACK = '0'
-    try {
-      const env = (await service.buildChildEnv(
-        '/tmp',
-        'ws://127.0.0.1:3456/sdk/test-session?token=test-token',
-      )) as Record<string, string>
-
-      expect(env.CLAUDE_ENABLE_STREAM_WATCHDOG).toBe('0')
-      expect(env.CLAUDE_STREAM_IDLE_TIMEOUT_MS).toBe('90000')
-      expect(env.CLAUDE_STREAM_TOOL_INPUT_MAX_DURATION_MS).toBe('45000')
-      expect(env.CLAUDE_CODE_DISABLE_NONSTREAMING_FALLBACK).toBe('0')
-    } finally {
-      for (const [key, value] of [
-        ['CLAUDE_ENABLE_STREAM_WATCHDOG', previous.watchdog],
-        ['CLAUDE_STREAM_IDLE_TIMEOUT_MS', previous.idle],
-        ['CLAUDE_STREAM_TOOL_INPUT_MAX_DURATION_MS', previous.toolInput],
-        ['CLAUDE_CODE_DISABLE_NONSTREAMING_FALLBACK', previous.fallback],
-      ] as const) {
-        if (value === undefined) delete process.env[key]
-        else process.env[key] = value
-      }
-    }
-  })
-
-  test('buildSessionCliArgs forwards the selected runtime model and effort to the CLI process', () => {
+  // DAL 契约：effort 映射为 --thinking；模型/provider 不从桌面直传
+  //（dal 以 ~/.dal/agent/settings.json 为唯一事实源，运行时切换走 RPC set_model）。
+  test('buildSessionCliArgs forwards the selected effort as --thinking and never passes a desktop model', () => {
     const service = new ConversationService() as any
     const args = service.buildSessionCliArgs(
       '123e4567-e89b-12d3-a456-426614174000',
@@ -1489,13 +823,17 @@ describe('ConversationService', () => {
       },
     ) as string[]
 
-    expect(args).toContain('--model')
-    expect(args).toContain('model-b-opus')
-    expect(args).toContain('--effort')
-    expect(args).toContain('max')
+    expect(args.slice(1)).toEqual([
+      '--mode', 'rpc',
+      '--session-id', '123e4567-e89b-12d3-a456-426614174000',
+      '--thinking', 'max',
+    ])
+    expect(args).not.toContain('--model')
+    expect(args).not.toContain('model-b-opus')
   })
 
-  test('buildSessionCliArgs starts pending desktop worktrees through the native CLI flag', () => {
+  // DAL 契约：worktree 不再走 CLI flag，由 launchWorkDir 的 cwd 承载。
+  test('buildSessionCliArgs does not pass worktree flags for pending desktop worktrees', () => {
     const service = new ConversationService() as any
     const args = service.buildSessionCliArgs(
       '123e4567-e89b-12d3-a456-426614174000',
@@ -1512,10 +850,9 @@ describe('ConversationService', () => {
       },
     ) as string[]
 
-    expect(args).toContain('--worktree')
-    expect(args).toContain('desktop-feature-rail-123e4567')
-    expect(args).toContain('--worktree-base-ref')
-    expect(args).toContain('feature/rail')
+    expect(args.slice(1)).toEqual(['--mode', 'rpc', '--session-id', '123e4567-e89b-12d3-a456-426614174000'])
+    expect(args).not.toContain('--worktree')
+    expect(args).not.toContain('--worktree-base-ref')
   })
 
   test('stopAllSessionsAndWait kills every active CLI subprocess and waits for exits', async () => {
@@ -1856,7 +1193,3 @@ describe('ConversationService', () => {
     expect(serialized).not.toContain('PRIVATE_ASSISTANT_REPLY')
   })
 })
-
-function sanitizeMemoryPath(value: string): string {
-  return value.replace(/[^a-zA-Z0-9]/g, '-')
-}

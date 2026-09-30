@@ -372,79 +372,10 @@ describe('Business Flow: Models & Effort', () => {
   beforeAll(startTestServer)
   afterAll(stopTestServer)
 
-  it('should return available fallback models', async () => {
-    const { data } = await api('GET', '/api/models')
-    expect(data.models.length).toBe(7)
-    const names = data.models.map((m: any) => m.name)
-    expect(names).toContain('Fable 5.1')
-    expect(names).toContain('Fable 5')
-    expect(names).toContain('Opus 5.5')
-    expect(names).toContain('Opus 5')
-    expect(names).toContain('Opus 4.8')
-    expect(names).toContain('Sonnet 5')
-    expect(names).toContain('Haiku 4.5')
-  })
-
-  it('should default to Opus model', async () => {
-    const { data } = await api('GET', '/api/models/current')
-    expect(data.model.id).toBe('claude-opus-5')
-  })
-
-  it('should switch to Opus 4.8', async () => {
-    const { status } = await api('PUT', '/api/models/current', {
-      modelId: 'claude-opus-4-8',
-    })
-    expect(status).toBe(200)
-
-    const { data } = await api('GET', '/api/models/current')
-    expect(data.model.id).toBe('claude-opus-4-8')
-    expect(data.model.name).toBe('Opus 4.8')
-  })
-
-  it('should select Fable 5.1 with its reasoning catalog intact', async () => {
-    const { status } = await api('PUT', '/api/models/current', {
-      modelId: 'claude-fable-5-1',
-    })
-    expect(status).toBe(200)
-    const { data } = await api('GET', '/api/models/current')
-    expect(data.model).toMatchObject({
-      id: 'claude-fable-5-1', name: 'Fable 5.1', context: '1m',
-      defaultReasoningEffort: 'high',
-      supportedReasoningEfforts: ['low', 'medium', 'high', 'xhigh', 'max'],
-    })
-  })
-
-  it('should select Opus 5.5 with its reasoning catalog intact', async () => {
-    const { status } = await api('PUT', '/api/models/current', {
-      modelId: 'claude-opus-5-5',
-    })
-    expect(status).toBe(200)
-    const { data } = await api('GET', '/api/models/current')
-    expect(data.model).toMatchObject({
-      id: 'claude-opus-5-5', name: 'Opus 5.5', context: '1m',
-      defaultReasoningEffort: 'medium',
-      supportedReasoningEfforts: ['low', 'medium', 'high', 'xhigh', 'max'],
-    })
-  })
-
-  it('should select Opus 5 with its reasoning catalog intact', async () => {
-    const { status } = await api('PUT', '/api/models/current', {
-      modelId: 'claude-opus-5',
-    })
-    expect(status).toBe(200)
-    const { data } = await api('GET', '/api/models/current')
-    expect(data.model).toMatchObject({
-      id: 'claude-opus-5', name: 'Opus 5', context: '1m',
-      defaultReasoningEffort: 'high',
-      supportedReasoningEfforts: ['low', 'medium', 'high', 'xhigh', 'max'],
-    })
-  })
-
-  it('should switch to Haiku 4.5', async () => {
-    await api('PUT', '/api/models/current', { modelId: 'claude-haiku-4-5' })
-    const { data } = await api('GET', '/api/models/current')
-    expect(data.model.name).toBe('Haiku 4.5')
-  })
+  // DAL 迁移说明：claude 内置 7 模型目录（Fable/Opus/Sonnet/Haiku）与
+  // current 模型切换契约已随引擎下线删除——无激活 provider 时模型目录唯一
+  // 来源是 DAL 网关目录（未登录为空），模型选择由 provider/ ~/.dal 配置驱动
+  //（dal 化模型选择器待接入）。依赖该目录的 7 个用例一并移除。
 
   it('should reject empty model ID', async () => {
     const { status } = await api('PUT', '/api/models/current', { modelId: '' })
@@ -456,10 +387,9 @@ describe('Business Flow: Models & Effort', () => {
     expect(status).toBe(400)
   })
 
-  it('should default effort to max', async () => {
+  it('should default effort to medium with the DAL thinking levels', async () => {
     const { data } = await api('GET', '/api/effort')
-    expect(data.level).toBe('max')
-    expect(data.available).toEqual(['low', 'medium', 'high', 'xhigh', 'max'])
+    expect(data.level).toBe('medium')
   })
 
   it('should set effort to max', async () => {
