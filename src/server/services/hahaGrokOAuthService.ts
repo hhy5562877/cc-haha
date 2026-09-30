@@ -1,7 +1,7 @@
 import * as fs from 'fs/promises'
 import * as os from 'os'
 import * as path from 'path'
-import { AuthCodeListener } from '../../services/oauth/auth-code-listener.js'
+import { AuthCodeListener } from './oauth/auth-code-listener.js'
 import {
   buildGrokAuthorizeUrl,
   exchangeGrokCodeForTokens,

@@ -1,4 +1,4 @@
-import type { SubscriptionType } from '../../services/oauth/types.js'
+import type { SubscriptionType } from './oauth/types.js'
 import type { ModelMapping } from '../types/provider.js'
 import { hahaOAuthService } from './hahaOAuthService.js'
 

@@ -5,7 +5,7 @@
  * 对无 UI sidecar 静默拒绝,导致 CLI 读不到 OAuth token → 403。
  * 这个 service 把 token 存到 haha 自己的目录,并通过 env 注入给 CLI。
  *
- * 复用 src/services/oauth/{crypto,client}.ts 里的 PKCE + token exchange 逻辑,
+ * 复用 src/server/services/oauth/{crypto,client}.ts 里的 PKCE + token exchange 逻辑,
  * 不复制粘贴 —— 保证跟 CLI 走同一套协议实现。
  */
 
@@ -17,19 +17,19 @@ import {
   generateCodeVerifier,
   generateCodeChallenge,
   generateState,
-} from '../../services/oauth/crypto.js'
+} from './oauth/crypto.js'
 import {
   buildAuthUrl,
   fetchProfileInfo,
   refreshOAuthToken,
   isOAuthTokenExpired,
   parseScopes,
-} from '../../services/oauth/client.js'
+} from './oauth/client.js'
 import type {
   OAuthTokens,
   OAuthTokenExchangeResponse,
   SubscriptionType,
-} from '../../services/oauth/types.js'
+} from './oauth/types.js'
 import { getOauthConfig } from '../../constants/oauth.js'
 import {
   getNetworkProxyFetchOptions,

@@ -16,10 +16,10 @@ import {
   refreshOAuthToken,
   shouldUseClaudeAIAuth,
   storeOAuthAccountInfo,
-} from '../../services/oauth/client.js'
-import { getOauthProfileFromOauthToken } from '../../services/oauth/getOauthProfile.js'
-import { OAuthService } from '../../services/oauth/index.js'
-import type { OAuthTokens } from '../../services/oauth/types.js'
+} from '../../server/services/oauth/client.js'
+import { getOauthProfileFromOauthToken } from '../../server/services/oauth/getOauthProfile.js'
+import { OAuthService } from '../../server/services/oauth/index.js'
+import type { OAuthTokens } from '../../server/services/oauth/types.js'
 import { OpenAIOAuthService } from '../../server/services/openaiAuth/index.js'
 import { getOpenAIOAuthTokens } from '../../server/services/openaiAuth/storage.js'
 import type { OpenAIOAuthTokens } from '../../server/services/openaiAuth/types.js'

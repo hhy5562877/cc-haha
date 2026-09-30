@@ -1,5 +1,5 @@
 import { randomBytes } from 'crypto'
-import { generateCodeChallenge } from '../../../services/oauth/crypto.js'
+import { generateCodeChallenge } from '../oauth/crypto.js'
 import type {
   OpenAIJwtClaims,
   OpenAIOAuthTokenResponse,
