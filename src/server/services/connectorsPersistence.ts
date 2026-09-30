@@ -1,6 +1,6 @@
 import { mkdirSync, readFileSync, renameSync, writeFileSync } from 'node:fs'
 import { join } from 'node:path'
-import type { ConnectorDto, ConnectorInstallation } from '../../services/connectors/types.js'
+import type { ConnectorDto, ConnectorInstallation } from '../services/connectors/types.js'
 
 export type ConnectorRecord = Partial<ConnectorDto> & { installation?: ConnectorInstallation, sharedCredentialsAcknowledged?: boolean }
 type Store = { schemaVersion: number, connectors: Record<string, ConnectorRecord>, [key: string]: unknown }
