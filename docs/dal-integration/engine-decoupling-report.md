@@ -1,33 +1,32 @@
 # 引擎解耦量化报告
 
-> 自动生成：bun scripts/engine-decoupling-report.ts（词法模块图，3737 文件）
+> 自动生成：bun scripts/engine-decoupling-report.ts（词法模块图，3744 文件）
 
 ## 总量
 
-- src/server 文件数：543
-- server → 引擎 **直接依赖边**：672（涉及 207 个引擎文件）
-- 引擎传递闭包（直接+间接可达）：**1902 个文件**
-- 其中疑似类型/模型定义类直接依赖：37
+- src/server 文件数：633
+- server → 引擎 **直接依赖边**：981（涉及 278 个引擎文件）
+- 引擎传递闭包（直接+间接可达）：**1818 个文件**
+- 其中疑似类型/模型定义类直接依赖：64
 
 ## 直接依赖按引擎目录分布
 
 | 目录 | 被引用文件数 |
 |---|---|
-| src/services/connectors | 8 |
-| src/tools/AgentTool | 7 |
-| src/utils/permissions | 6 |
-| src/utils/computerUse | 5 |
-| src/utils/model | 4 |
-| src/utils/secureStorage | 4 |
-| src/utils/swarm | 4 |
-| src/services/oauth | 4 |
+| src/utils/model | 7 |
+| src/services/api | 6 |
+| src/utils/computerUse | 4 |
+| src/tools/BashTool | 4 |
 | src/vendor/computer-use-mcp | 3 |
-| src/tools/FileEditTool | 3 |
-| src/services/analytics | 3 |
+| src/utils/swarm | 3 |
+| src/types/generated | 3 |
 | src/utils/claudeInChrome | 3 |
-| src/services/api | 2 |
+| src/utils/hooks | 3 |
+| src/utils/task | 2 |
+| src/tools/ListMcpResourcesTool | 2 |
 | src/tools/MCPTool | 2 |
 | src/utils/git | 2 |
+| src/utils/telemetry | 2 |
 | src/services/lsp | 2 |
 | src/utils/dxt | 2 |
 | src/state/AppStateStore.ts | 1 |
@@ -57,7 +56,6 @@
 | src/Task.ts | 1 |
 | src/hooks/useCanUseTool.tsx | 1 |
 | src/Tool.ts | 1 |
-| src/utils/task | 1 |
 | src/tasks/LocalWorkflowTask | 1 |
 | src/utils/workflows | 1 |
 | src/utils/slashCommandParsing.ts | 1 |
@@ -87,12 +85,27 @@
 | src/utils/openAIReasoningEnvelope.ts | 1 |
 | src/utils/userAgent.ts | 1 |
 | src/shared/autoQuestionSettings.ts | 1 |
+| src/utils/privacyLevel.ts | 1 |
+| src/utils/log.ts | 1 |
+| src/utils/modelCost.ts | 1 |
+| src/utils/platform.ts | 1 |
+| src/utils/startupProfiler.ts | 1 |
+| src/utils/user.ts | 1 |
+| src/utils/http.ts | 1 |
+| src/utils/sleep.ts | 1 |
+| src/constants/keys.ts | 1 |
+| src/utils/signal.ts | 1 |
+| src/utils/envDynamic.ts | 1 |
+| src/utils/betas.ts | 1 |
+| src/utils/agentContext.ts | 1 |
+| src/utils/teammate.ts | 1 |
 | src/constants/oauth.ts | 1 |
 | src/types/command.ts | 1 |
 | src/types/composerMention.ts | 1 |
+| src/services/plugins | 1 |
+| src/tools/FileEditTool | 1 |
 | src/utils/teammateMailbox.ts | 1 |
 | src/services/imageGeneration | 1 |
-| src/utils/log.ts | 1 |
 | src/utils/imageResizer.ts | 1 |
 | src/utils/managedEnvConstants.ts | 1 |
 | src/utils/desktopBundledCli.ts | 1 |
@@ -106,20 +119,16 @@
 | src/utils/shotStats.ts | 1 |
 | src/utils/usageAccounting.ts | 1 |
 | src/utils/browser.ts | 1 |
-| src/utils/platform.ts | 1 |
-| src/utils/sleep.ts | 1 |
 | src/utils/lazySchema.ts | 1 |
 | src/constants/xml.ts | 1 |
 | src/utils/xml.ts | 1 |
 | src/constants/product.ts | 1 |
-| src/tools/ListMcpResourcesTool | 1 |
 | src/tools/McpAuthTool | 1 |
 | src/tools/ReadMcpResourceTool | 1 |
 | src/utils/abortController.ts | 1 |
 | src/utils/array.ts | 1 |
 | src/utils/cleanupRegistry.ts | 1 |
 | src/utils/codeIndexing.ts | 1 |
-| src/utils/http.ts | 1 |
 | src/utils/ide.ts | 1 |
 | src/utils/mcpOutputStorage.ts | 1 |
 | src/utils/mcpValidation.ts | 1 |
@@ -139,38 +148,113 @@
 | src/components/mcp | 1 |
 | src/utils/providerManagedEnvCompat.ts | 1 |
 | src/plugins/builtinPlugins.ts | 1 |
-| src/services/plugins | 1 |
 | src/utils/markdownConfigLoader.ts | 1 |
 | src/utils/worktree.ts | 1 |
-| src/tools/BashTool | 1 |
-| src/utils/modelCost.ts | 1 |
 | src/utils/context.ts | 1 |
 | src/utils/contextBudget.ts | 1 |
 | src/services/tokenEstimation.ts | 1 |
 | src/utils/sessionMessageInbox.ts | 1 |
 | src/shared/teamPlan.ts | 1 |
 | src/utils/sessionTitle.ts | 1 |
-| src/tools/SkillTool | 1 |
+| src/constants/prompts.ts | 1 |
+| src/coordinator/coordinatorMode.ts | 1 |
+| src/services/AgentSummary | 1 |
+| src/tasks/LocalAgentTask | 1 |
+| src/tasks/RemoteAgentTask | 1 |
+| src/types/ids.ts | 1 |
+| src/utils/agentSwarmsEnabled.ts | 1 |
+| src/utils/forkedAgent.ts | 1 |
+| src/utils/sdkEventQueue.ts | 1 |
+| src/utils/systemPrompt.ts | 1 |
+| src/utils/systemPromptType.ts | 1 |
+| src/utils/teammateContext.ts | 1 |
+| src/utils/teleport.tsx | 1 |
+| src/utils/tokens.ts | 1 |
+| src/utils/uuid.ts | 1 |
+| src/tools/FileReadTool | 1 |
+| src/tools/shared | 1 |
+| src/proactive/index.ts | 1 |
+| src/types/tools.ts | 1 |
+| src/components/AgentProgressLine.tsx | 1 |
+| src/components/FallbackToolUseErrorMessage.tsx | 1 |
+| src/components/FallbackToolUseRejectedMessage.tsx | 1 |
+| src/components/Markdown.tsx | 1 |
+| src/components/Message.tsx | 1 |
+| src/components/MessageResponse.tsx | 1 |
+| src/components/ToolUseLoader.tsx | 1 |
+| src/ink.ts | 1 |
+| src/types/message.ts | 1 |
+| src/utils/collapseReadSearch.ts | 1 |
+| src/utils/file.ts | 1 |
+| src/utils/format.ts | 1 |
+| src/utils/theme.ts | 1 |
+| src/memdir/memdir.ts | 1 |
+| src/memdir/paths.ts | 1 |
+| src/constants/tools.ts | 1 |
+| src/tools/SyntheticOutputTool | 1 |
+| src/tools/ExitPlanModeTool | 1 |
+| src/coordinator/workerAgent.ts | 1 |
+| src/tools/FileWriteTool | 1 |
+| src/utils/embeddedTools.ts | 1 |
+| src/tools/GlobTool | 1 |
+| src/tools/SendMessageTool | 1 |
+| src/utils/promptCategory.ts | 1 |
+| src/constants/querySource.ts | 1 |
+| src/context.ts | 1 |
+| src/query.ts | 1 |
+| src/tasks/LocalShellTask | 1 |
 | src/utils/attachments.ts | 1 |
+| src/utils/fileStateCache.ts | 1 |
+| src/utils/processUserInput | 1 |
+| src/tasks/MonitorMcpTask | 1 |
+| src/utils/semanticBoolean.ts | 1 |
+| src/utils/diff.ts | 1 |
+| src/constants/figures.ts | 1 |
+| src/types/permissions.ts | 1 |
+| src/tools/AskUserQuestionTool | 1 |
+| src/tools/EnterPlanModeTool | 1 |
+| src/tools/GrepTool | 1 |
+| src/tools/LSPTool | 1 |
+| src/tools/SleepTool | 1 |
+| src/tools/TaskCreateTool | 1 |
+| src/tools/TaskGetTool | 1 |
+| src/tools/TaskListTool | 1 |
+| src/tools/TaskOutputTool | 1 |
+| src/tools/TaskStopTool | 1 |
+| src/tools/TaskUpdateTool | 1 |
+| src/tools/TeamCreateTool | 1 |
+| src/tools/TeamPlanTool | 1 |
+| src/tools/TeamDeleteTool | 1 |
+| src/tools/TodoWriteTool | 1 |
+| src/tools/ToolSearchTool | 1 |
+| src/tools/TerminalCaptureTool | 1 |
+| src/tools/OverflowTestTool | 1 |
+| src/tools/VerifyPlanExecutionTool | 1 |
+| src/tools/WorkflowTool | 1 |
+| src/utils/plans.ts | 1 |
+| src/utils/shell | 1 |
+| src/utils/windowsPaths.ts | 1 |
+| src/utils/sandbox | 1 |
+| src/utils/sideQuery.ts | 1 |
+| src/tools/BriefTool | 1 |
+| src/commands/add-dir | 1 |
+| src/tools/PowerShellTool | 1 |
+| src/utils/gracefulShutdown.ts | 1 |
+| src/tools/REPLTool | 1 |
+| src/utils/bash | 1 |
+| src/utils/stringUtils.ts | 1 |
+| src/utils/classifierApprovals.ts | 1 |
+| src/utils/fileRead.ts | 1 |
+| src/tools/SkillTool | 1 |
 | src/utils/which.ts | 1 |
 | src/utils/claudeCodeHints.ts | 1 |
-| src/memdir/paths.ts | 1 |
-| src/tools/FileReadTool | 1 |
-| src/tools/FileWriteTool | 1 |
 | src/utils/argumentSubstitution.ts | 1 |
 | src/utils/promptShellExecution.ts | 1 |
-| src/utils/stringUtils.ts | 1 |
 | src/utils/systemDirectories.ts | 1 |
-| src/utils/format.ts | 1 |
-| src/utils/telemetry | 1 |
-| src/utils/file.ts | 1 |
 | src/schemas/hooks.ts | 1 |
 | src/utils/yaml.ts | 1 |
-| src/utils/hooks | 1 |
-| src/utils/signal.ts | 1 |
+| src/utils/execFileNoThrowPortable.ts | 1 |
 | src/utils/diagLogs.ts | 1 |
-| src/utils/fileRead.ts | 1 |
-| src/utils/startupProfiler.ts | 1 |
 | src/services/remoteManagedSettings | 1 |
 | src/entrypoints/sandboxTypes.ts | 1 |
 
@@ -179,8 +263,8 @@
 | 文件 | 被依赖次数 |
 |---|---|
 | src/ink.ts | 390 |
-| src/utils/debug.ts | 325 |
-| src/utils/envUtils.ts | 228 |
+| src/utils/debug.ts | 327 |
+| src/utils/envUtils.ts | 230 |
 | src/utils/errors.ts | 224 |
 | src/Tool.ts | 213 |
 | src/bootstrap/state.ts | 211 |
@@ -188,11 +272,9 @@
 | src/utils/slowOperations.ts | 190 |
 | src/commands.ts | 170 |
 | src/types/message.ts | 156 |
-| src/services/analytics/index.ts | 147 |
 | src/utils/config.ts | 134 |
 | src/utils/messages.ts | 117 |
 | src/state/AppState.tsx | 109 |
-| src/services/analytics/growthbook.ts | 100 |
 | src/utils/cwd.ts | 97 |
 | src/utils/format.ts | 95 |
 | src/utils/lazySchema.ts | 93 |
@@ -201,8 +283,10 @@
 | src/utils/auth.ts | 82 |
 | src/types/command.ts | 79 |
 | src/utils/stringUtils.ts | 73 |
-| src/utils/model/model.ts | 68 |
-| src/tools/AgentTool/loadAgentsDir.ts | 62 |
+| src/utils/model/model.ts | 66 |
+| src/utils/execFileNoThrow.ts | 63 |
+| src/utils/theme.ts | 59 |
+| src/utils/sessionStorage.ts | 59 |
 
 ## 分批解耦建议
 

@@ -1,5 +1,7 @@
 # CHANGELOG
 
+- [2026-10-01 10:10] REFACTOR: 解耦批次 29 完成——yoloClassifier/permissionExplainer 分类器 DAL 语义重接线：sideQuery→dalSideQuery（DAL 网关），getMainLoopModel/resolveAntModel→server/utils/model.ts 窄化实现；server→utils/model 与 utils/sideQuery 直接边全断；E2E PASS (Files: src/server/utils/permissions/{yoloClassifier,permissionExplainer}.ts, src/server/utils/dalSideQuery.ts)
+
 - [2026-10-01 10:10] REFACTOR: 解耦批次 28 完成——model 深链窄化收尾：getMainLoopModel(env 回退)/resolveAntModel(恒 undefined)/parseUserSpecifiedModelNarrow 入 src/server/utils/model.ts；yoloClassifier/permissionExplainer 重指；loadPluginCommands 保留引擎原导入（深链随引擎休眠）；E2E PASS (Files: src/server/utils/model.ts, src/server/utils/permissions/*, src/server/utils/plugins/loadPluginCommands.ts)
 
 - [2026-10-01 11:30] FIX: 批次 27 收尾——FileEditTool 拆分边界校正：主文件 FileEditTool.tsx/UI.tsx/prompt.ts 留守引擎（UI 深链），constants/utils/types 迁入 server 并全消费方重指（含留守件回指与 tools 兄弟），E2E PASS (Files: src/tools/FileEditTool/*, src/server/tools/FileEditTool/*)
