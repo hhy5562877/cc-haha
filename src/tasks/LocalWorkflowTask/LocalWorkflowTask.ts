@@ -10,15 +10,15 @@ import {
 } from '../../server/constants/xml.js'
 import type { SetAppState, Task, TaskStateBase } from '../../Task.js'
 import { createTaskStateBase } from '../../Task.js'
-import { createAbortController } from '../../utils/abortController.js'
+import { createAbortController } from '../../server/utils/abortController.js'
 import { logForDebugging } from '../../server/utils/debug.js'
 import { enqueuePendingNotification } from '../../utils/messageQueueManager.js'
-import { emitTaskTerminatedSdk } from '../../utils/sdkEventQueue.js'
+import { emitTaskTerminatedSdk } from '../../server/utils/sdkEventQueue.js'
 import {
   evictTaskOutput,
   getTaskOutputPath,
   writeTaskOutput,
-} from '../../utils/task/diskOutput.js'
+} from '../../server/utils/task/diskOutput.js'
 import { PANEL_GRACE_MS, updateTaskState } from '../../utils/task/framework.js'
 import { WORKFLOW_MAX_PROGRESS_ROWS } from '../../server/utils/workflows/constants.js'
 import { getWorkflowTranscriptDir } from '../../server/utils/workflows/paths.js'

@@ -1,12 +1,12 @@
 import { randomUUID } from 'crypto'
-import type { QuerySource } from '../../constants/querySource.js'
+import type { QuerySource } from '../../server/constants/querySource.js'
 import { queryModelWithoutStreaming } from '../../services/api/claude.js'
 import type { Message } from '../../server/types/message.js'
-import { createAbortController } from '../../utils/abortController.js'
+import { createAbortController } from '../../server/utils/abortController.js'
 import { logError } from '../../server/utils/log.js'
 import { toError } from '../../server/utils/errors.js'
 import { extractTextContent } from '../messages.js'
-import { asSystemPrompt } from '../systemPromptType.js'
+import { asSystemPrompt } from '../../server/utils/systemPromptType.js'
 import type { REPLHookContext } from './postSamplingHooks.js'
 
 export type ApiQueryHookContext = REPLHookContext & {

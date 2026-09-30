@@ -36,7 +36,7 @@ import { getMainLoopModel } from '../server/utils/model/model.js';
 import { isTranscriptMessage } from './sessionStorage.js';
 import { getSettings_DEPRECATED } from '../server/utils/settings/settings.js';
 import { jsonStringify } from '../server/utils/slowOperations.js';
-import { asSystemPrompt } from './systemPromptType.js';
+import { asSystemPrompt } from '../server/utils/systemPromptType.js';
 import { fetchSession, type GitRepositoryOutcome, type GitSource, getBranchFromSession, getOAuthHeaders, type SessionResource } from './teleport/api.js';
 import { fetchEnvironments } from './teleport/environments.js';
 import { createAndUploadGitBundle } from './teleport/gitBundle.js';

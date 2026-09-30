@@ -16,8 +16,8 @@ import type { AgentId } from '../../server/types/ids.js';
 import type { AssistantMessage } from '../../server/types/message.js';
 import { parseForSecurity } from '../../utils/bash/ast.js';
 import { splitCommand_DEPRECATED, splitCommandWithOperators } from '../../utils/bash/commands.js';
-import { extractClaudeCodeHints } from '../../utils/claudeCodeHints.js';
-import { detectCodeIndexingFromCommand } from '../../utils/codeIndexing.js';
+import { extractClaudeCodeHints } from '../../server/utils/claudeCodeHints.js';
+import { detectCodeIndexingFromCommand } from '../../server/utils/codeIndexing.js';
 import { isEnvTruthy } from '../../server/utils/envUtils.js';
 import { isENOENT, ShellError } from '../../server/utils/errors.js';
 import { detectFileEncoding, detectLineEndings, getFileModificationTime, writeTextContent } from '../../server/utils/file.js';
@@ -30,11 +30,11 @@ import type { PermissionResult } from '../../server/utils/permissions/Permission
 import { maybeRecordPluginHint } from '../../server/utils/plugins/hintRecommendation.js';
 import { exec } from '../../utils/Shell.js';
 import type { ExecResult } from '../../utils/ShellCommand.js';
-import { SandboxManager } from '../../utils/sandbox/sandbox-adapter.js';
-import { semanticBoolean } from '../../utils/semanticBoolean.js';
+import { SandboxManager } from '../../server/utils/sandbox/sandbox-adapter.js';
+import { semanticBoolean } from '../../server/utils/semanticBoolean.js';
 import { semanticNumber } from '../../utils/semanticNumber.js';
 import { EndTruncatingAccumulator } from '../../server/utils/stringUtils.js';
-import { getTaskOutputPath } from '../../utils/task/diskOutput.js';
+import { getTaskOutputPath } from '../../server/utils/task/diskOutput.js';
 import { TaskOutput } from '../../utils/task/TaskOutput.js';
 import { isOutputLineTruncated } from '../../utils/terminal.js';
 import { buildLargeToolResultMessage, ensureToolResultsDir, generatePreview, getToolResultPath, PREVIEW_SIZE_BYTES } from '../../utils/toolResultStorage.js';
@@ -296,8 +296,8 @@ type OutputSchema = ReturnType<typeof outputSchema>;
 export type Out = z.infer<OutputSchema>;
 
 // Re-export BashProgress from centralized types to break import cycles
-export type { BashProgress } from '../../types/tools.js';
-import type { BashProgress } from '../../types/tools.js';
+export type { BashProgress } from '../../server/types/tools.js';
+import type { BashProgress } from '../../server/types/tools.js';
 
 /**
  * Checks if a command is allowed to be automatically backgrounded

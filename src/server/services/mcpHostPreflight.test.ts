@@ -2,7 +2,7 @@ import { afterEach, beforeEach, describe, expect, it } from 'bun:test'
 import { mkdir, mkdtemp, rm, writeFile } from 'node:fs/promises'
 import { tmpdir } from 'node:os'
 import path from 'node:path'
-import { resetMcpStdioEnvironmentCacheForTests } from '../../utils/mcpStdioEnvironment.js'
+import { resetMcpStdioEnvironmentCacheForTests } from '../utils/mcpStdioEnvironment.js'
 import { inspectMcpHostCommand } from './mcpHostPreflight.js'
 
 let tmpDir: string

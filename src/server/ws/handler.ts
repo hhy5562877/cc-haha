@@ -68,7 +68,7 @@ import {
   saveAiTitle,
   type TitleConversationTurn,
 } from '../services/titleService.js'
-import { parseSlashCommand } from '../../utils/slashCommandParsing.js'
+import { parseSlashCommand } from '../utils/slashCommandParsing.js'
 import { archiveRemoteSession } from '../../utils/teleport/api.js'
 import { shouldCreateWorktreeForSessionLaunch } from '../services/repositoryLaunchService.js'
 import { getDisconnectGraceMs } from './disconnectGraceConfig.js'

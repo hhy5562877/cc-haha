@@ -27,9 +27,9 @@ import {
   getAllNativeMessagingHostsDirs,
   getAllWindowsRegistryKeys,
   openInChrome,
-} from './common.js'
+} from '../../server/utils/claudeInChrome/common.js'
 import { getChromeSystemPrompt } from './prompt.js'
-import { isChromeExtensionInstalledPortable } from './setupPortable.js'
+import { isChromeExtensionInstalledPortable } from '../../server/utils/claudeInChrome/setupPortable.js'
 
 const CHROME_EXTENSION_RECONNECT_URL = 'https://clau.de/chrome/reconnect'
 

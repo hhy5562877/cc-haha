@@ -15,8 +15,8 @@ import { completeAgentTask as completeAsyncAgent, createActivityDescriptionResol
 import { checkRemoteAgentEligibility, formatPreconditionError, getRemoteTaskSessionUrl, registerRemoteAgentTask } from '../../../tasks/RemoteAgentTask/RemoteAgentTask.js';
 import { assembleToolPool } from '../../../tools.js';
 import { asAgentId } from '../../types/ids.js';
-import { runWithAgentContext } from '../../../utils/agentContext.js';
-import { isAgentSwarmsEnabled } from '../../../utils/agentSwarmsEnabled.js';
+import { runWithAgentContext } from '../../utils/agentContext.js';
+import { isAgentSwarmsEnabled } from '../../utils/agentSwarmsEnabled.js';
 import { getCwd, runWithCwdOverride } from '../../utils/cwd.js';
 import { logForDebugging } from '../../utils/debug.js';
 import { isEnvTruthy } from '../../utils/envUtils.js';
@@ -28,18 +28,18 @@ import { getAgentModel } from '../../utils/model/agent.js';
 import { permissionModeSchema } from '../../utils/permissions/PermissionMode.js';
 import type { PermissionResult } from '../../utils/permissions/PermissionResult.js';
 import { filterDeniedAgents, getDenyRuleForAgent } from '../../utils/permissions/permissions.js';
-import { enqueueSdkEvent } from '../../../utils/sdkEventQueue.js';
+import { enqueueSdkEvent } from '../../utils/sdkEventQueue.js';
 import { writeAgentMetadata } from '../../../utils/sessionStorage.js';
-import { sleep } from '../../../utils/sleep.js';
+import { sleep } from '../../utils/sleep.js';
 import { buildEffectiveSystemPrompt } from '../../../utils/systemPrompt.js';
-import { asSystemPrompt } from '../../../utils/systemPromptType.js';
+import { asSystemPrompt } from '../../utils/systemPromptType.js';
 import { isValidTeamFile, readTeamFile, type TeamFile } from '../../../utils/swarm/teamHelpers.js';
-import { getTaskOutputPath } from '../../../utils/task/diskOutput.js';
+import { getTaskOutputPath } from '../../utils/task/diskOutput.js';
 import { getParentSessionId, isTeammate } from '../../../utils/teammate.js';
-import { isInProcessTeammate } from '../../../utils/teammateContext.js';
+import { isInProcessTeammate } from '../../utils/teammateContext.js';
 import { teleportToRemote } from '../../../utils/teleport.js';
 import { getAssistantMessageContentLength } from '../../../utils/tokens.js';
-import { createAgentId } from '../../../utils/uuid.js';
+import { createAgentId } from '../../utils/uuid.js';
 import { createAgentWorktreeIfSupported, hasWorktreeChanges, removeAgentWorktree } from '../../../utils/worktree.js';
 import { BASH_TOOL_NAME } from '../../../tools/BashTool/toolName.js';
 import { BackgroundHint } from '../../../tools/BashTool/UI.js';
@@ -190,7 +190,7 @@ export type RemoteLaunchedOutput = {
   outputFile: string;
 };
 type InternalOutput = Output | TeammateSpawnedOutput | RemoteLaunchedOutput;
-import type { AgentToolProgress, ShellProgress } from '../../../types/tools.js';
+import type { AgentToolProgress, ShellProgress } from '../../types/tools.js';
 // AgentTool forwards both its own progress events and shell progress
 // events from the sub-agent so the SDK receives tool_progress updates during bash/powershell runs.
 export type Progress = AgentToolProgress | ShellProgress;

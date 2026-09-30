@@ -2,7 +2,7 @@ import type { OpenAIResponsesReasoningItem } from './types.js'
 import {
   OPENAI_REASONING_ENVELOPE_PREFIX,
   parseOpenAIReasoningEnvelope,
-} from '../../../utils/openAIReasoningEnvelope.js'
+} from '../../utils/openAIReasoningEnvelope.js'
 
 type OpenAIReasoningEnvelope = {
   id?: string

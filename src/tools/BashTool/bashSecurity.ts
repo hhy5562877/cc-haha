@@ -5,7 +5,7 @@ import {
   hasMalformedTokens,
   hasShellQuoteSingleQuoteBug,
   tryParseShellCommand,
-} from '../../utils/bash/shellQuote.js'
+} from '../../server/utils/bash/shellQuote.js'
 import type { TreeSitterAnalysis } from '../../utils/bash/treeSitterAnalysis.js'
 import type { PermissionResult } from '../../server/utils/permissions/PermissionResult.js'
 

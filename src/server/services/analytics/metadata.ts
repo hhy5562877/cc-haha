@@ -9,7 +9,7 @@
 import { extname } from 'path'
 import memoize from 'lodash-es/memoize.js'
 import { env, getHostPlatformForAnalytics } from '../../utils/env.js'
-import { envDynamic } from '../../../utils/envDynamic.js'
+import { envDynamic } from '../../utils/envDynamic.js'
 import { getModelBetas } from '../../../utils/betas.js'
 import { getMainLoopModel } from '../../utils/model/model.js'
 import {
@@ -29,9 +29,9 @@ import {
   detectVcs,
 } from '../../utils/platform.js'
 import type { CoreUserData } from 'src/utils/user.js'
-import { getAgentContext } from '../../../utils/agentContext.js'
-import type { EnvironmentMetadata } from '../../../types/generated/events_mono/claude_code/v1/claude_code_internal_event.js'
-import type { PublicApiAuth } from '../../../types/generated/events_mono/common/v1/auth.js'
+import { getAgentContext } from '../../utils/agentContext.js'
+import type { EnvironmentMetadata } from '../../types/generated/events_mono/claude_code/v1/claude_code_internal_event.js'
+import type { PublicApiAuth } from '../../types/generated/events_mono/common/v1/auth.js'
 import { jsonStringify } from '../../utils/slowOperations.js'
 import {
   getAgentId,
@@ -128,7 +128,7 @@ export function isAnalyticsToolDetailsLoggingEnabled(
 /* eslint-disable @typescript-eslint/no-require-imports */
 const BUILTIN_MCP_SERVER_NAMES: ReadonlySet<string> = new Set([
   (
-    require('../../../utils/computerUse/common.js') as typeof import('../../../utils/computerUse/common.js')
+    require('../../utils/computerUse/common.js') as typeof import('../../utils/computerUse/common.js')
   ).COMPUTER_USE_MCP_SERVER_NAME,
 ])
 /* eslint-enable @typescript-eslint/no-require-imports */

@@ -9,7 +9,7 @@ import {
   getMainLoopModelOverride,
   getSessionBypassPermissionsMode,
 } from '../../server/bootstrap/state.js'
-import { quote } from '../bash/shellQuote.js'
+import { quote } from '../../server/utils/bash/shellQuote.js'
 import { isInBundledMode } from '../../server/utils/bundledMode.js'
 import type { PermissionMode } from '../../server/utils/permissions/PermissionMode.js'
 import { getTeammateModeFromSnapshot } from './backends/teammateModeSnapshot.js'

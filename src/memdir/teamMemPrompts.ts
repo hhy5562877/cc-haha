@@ -10,8 +10,8 @@ import {
   TRUSTING_RECALL_SECTION,
   TYPES_SECTION_COMBINED,
   WHAT_NOT_TO_SAVE_SECTION,
-} from './memoryTypes.js'
-import { getAutoMemPath } from './paths.js'
+} from '../server/memdir/memoryTypes.js'
+import { getAutoMemPath } from '../server/memdir/paths.js'
 import { getTeamMemPath } from './teamMemPaths.js'
 
 /**

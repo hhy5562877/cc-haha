@@ -48,7 +48,7 @@ import {
   isTeamLead,
   isTeammate,
 } from '../utils/teammate.js'
-import { isInProcessTeammate } from '../utils/teammateContext.js'
+import { isInProcessTeammate } from '../server/utils/teammateContext.js'
 import {
   getTrustedShutdownApproval,
   isModeSetRequest,

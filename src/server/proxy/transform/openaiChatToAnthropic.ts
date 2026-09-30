@@ -10,7 +10,7 @@ import type {
   AnthropicContentBlock,
 } from './types.js'
 import { openaiUsageToAnthropic } from './usage.js'
-import { createUnparsedToolInput } from '../../../utils/unparsedToolInput.js'
+import { createUnparsedToolInput } from '../../utils/unparsedToolInput.js'
 
 /**
  * Convert OpenAI Chat Completions response to Anthropic Messages response.

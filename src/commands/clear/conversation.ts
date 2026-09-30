@@ -24,7 +24,7 @@ import { isLocalShellTask } from '../../tasks/LocalShellTask/guards.js'
 import { asAgentId } from '../../server/types/ids.js'
 import type { Message } from '../../server/types/message.js'
 import { createEmptyAttributionState } from '../../utils/commitAttribution.js'
-import type { FileStateCache } from '../../utils/fileStateCache.js'
+import type { FileStateCache } from '../../server/utils/fileStateCache.js'
 import {
   executeSessionEndHooks,
   getSessionEndHookTimeoutMs,
@@ -42,7 +42,7 @@ import {
 import {
   evictTaskOutput,
   initTaskOutputAsSymlink,
-} from '../../utils/task/diskOutput.js'
+} from '../../server/utils/task/diskOutput.js'
 import { getCurrentWorktreeSession } from '../../utils/worktree.js'
 import { clearSessionCaches } from './caches.js'
 

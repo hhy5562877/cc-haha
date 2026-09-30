@@ -17,8 +17,8 @@ import type { Progress as AgentProgress } from '../../server/tools/AgentTool/Age
 import { runAgent } from '../../server/tools/AgentTool/runAgent.js';
 import { renderToolUseProgressMessage } from '../../server/tools/AgentTool/UI.js';
 import type { CommandResultDisplay } from '../../types/command.js';
-import { createAbortController } from '../abortController.js';
-import { getAgentContext } from '../agentContext.js';
+import { createAbortController } from '../../server/utils/abortController.js';
+import { getAgentContext } from '../../server/utils/agentContext.js';
 import { createAttachmentMessage, getAttachmentMessages } from '../attachments.js';
 import { logForDebugging } from '../../server/utils/debug.js';
 import { isEnvTruthy } from '../../server/utils/envUtils.js';
@@ -37,13 +37,13 @@ import { parseToolListFromCLI } from '../../server/utils/permissions/permissionS
 import { hasPermissionsToUseTool } from '../../server/utils/permissions/permissions.js';
 import { isOfficialMarketplaceName, parsePluginIdentifier } from '../../server/utils/plugins/pluginIdentifier.js';
 import { isRestrictedToPluginOnly, isSourceAdminTrusted } from '../../server/utils/settings/pluginOnlyPolicy.js';
-import { parseSlashCommand } from '../slashCommandParsing.js';
-import { sleep } from '../sleep.js';
+import { parseSlashCommand } from '../../server/utils/slashCommandParsing.js';
+import { sleep } from '../../server/utils/sleep.js';
 import { recordSkillUsage } from '../suggestions/skillUsageTracking.js';
 import { logOTelEvent, redactIfDisabled } from '../telemetry/events.js';
 import { buildPluginCommandTelemetryFields } from '../telemetry/pluginTelemetry.js';
 import { getAssistantMessageContentLength } from '../tokens.js';
-import { createAgentId } from '../uuid.js';
+import { createAgentId } from '../../server/utils/uuid.js';
 import { getWorkload } from '../workloadContext.js';
 import type { ProcessUserInputBaseResult, ProcessUserInputContext } from './processUserInput.js';
 type SlashCommandResult = ProcessUserInputBaseResult & {

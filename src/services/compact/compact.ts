@@ -10,7 +10,7 @@ const sessionTranscriptModule = feature('KAIROS')
 import { APIUserAbortError } from '@anthropic-ai/sdk'
 import { markPostCompaction } from 'src/server/bootstrap/state.ts'
 import { getInvokedSkillsForAgent } from '../../server/bootstrap/state.js'
-import type { QuerySource } from '../../constants/querySource.js'
+import type { QuerySource } from '../../server/constants/querySource.js'
 import type { CanUseToolFn } from '../../hooks/useCanUseTool.js'
 import type { Tool, ToolUseContext } from '../../Tool.js'
 import type { LocalAgentTaskState } from '../../tasks/LocalAgentTask/LocalAgentTask.js'
@@ -46,7 +46,7 @@ import {
 } from '../../utils/contextAnalysis.js'
 import { logForDebugging } from '../../server/utils/debug.js'
 import { hasExactErrorMessage } from '../../server/utils/errors.js'
-import { cacheToObject } from '../../utils/fileStateCache.js'
+import { cacheToObject } from '../../server/utils/fileStateCache.js'
 import {
   type CacheSafeParams,
   runForkedAgent,
@@ -77,11 +77,11 @@ import {
   getTranscriptPath,
   reAppendSessionMetadata,
 } from '../../utils/sessionStorage.js'
-import { sleep } from '../../utils/sleep.js'
+import { sleep } from '../../server/utils/sleep.js'
 import { jsonStringify } from '../../server/utils/slowOperations.js'
 /* eslint-enable @typescript-eslint/no-require-imports */
-import { asSystemPrompt } from '../../utils/systemPromptType.js'
-import { getTaskOutputPath } from '../../utils/task/diskOutput.js'
+import { asSystemPrompt } from '../../server/utils/systemPromptType.js'
+import { getTaskOutputPath } from '../../server/utils/task/diskOutput.js'
 import {
   getTokenUsage,
   tokenCountFromLastAPIResponse,

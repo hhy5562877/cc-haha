@@ -5,9 +5,9 @@ import { getCwd } from '../../server/utils/cwd.js'
 import { logForDebugging } from '../../server/utils/debug.js'
 import { errorMessage } from '../../server/utils/errors.js'
 import { logError } from '../../server/utils/log.js'
-import { sleep } from '../../utils/sleep.js'
+import { sleep } from '../../server/utils/sleep.js'
 import type { createLSPClient as createLSPClientType } from './LSPClient.js'
-import type { LspServerState, ScopedLspServerConfig } from './types.js'
+import type { LspServerState, ScopedLspServerConfig } from '../../server/services/lsp/types.js'
 
 /**
  * LSP error code for "content modified" - indicates the server's state changed

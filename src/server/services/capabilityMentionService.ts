@@ -1,6 +1,6 @@
 import type { Command } from '../../types/command.js'
 import type { LoadedPlugin } from '../../types/plugin.js'
-import type { CapabilityMentionCandidate, CapabilityMentionResponse } from '../../types/composerMention.js'
+import type { CapabilityMentionCandidate, CapabilityMentionResponse } from '../types/composerMention.js'
 
 type Brand = { pluginId: string, id: string, displayName?: string, description?: string }
 export type CapabilityMentionSnapshot = {

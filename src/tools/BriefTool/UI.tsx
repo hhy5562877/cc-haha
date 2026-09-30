@@ -2,7 +2,7 @@ import { c as _c } from "react/compiler-runtime";
 import figures from 'figures';
 import React from 'react';
 import { Markdown } from '../../components/Markdown.js';
-import { BLACK_CIRCLE } from '../../constants/figures.js';
+import { BLACK_CIRCLE } from '../../server/constants/figures.js';
 import { Box, Text } from '../../ink.js';
 import type { ProgressMessage } from '../../server/types/message.js';
 import { getDisplayPath } from '../../server/utils/file.js';

@@ -18,7 +18,7 @@ import { isEnvTruthy, isInProtectedNamespace } from '../server/utils/envUtils.js
 import { errorMessage } from '../server/utils/errors.js'
 import { truncateToWidth } from '../utils/format.js'
 import { logError } from '../server/utils/log.js'
-import { sleep } from '../utils/sleep.js'
+import { sleep } from '../server/utils/sleep.js'
 import { createAgentWorktree, removeAgentWorktree } from '../utils/worktree.js'
 import {
   BridgeFatalError,

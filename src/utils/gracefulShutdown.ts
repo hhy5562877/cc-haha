@@ -45,7 +45,7 @@ import {
   getProcessOutputDrainTimeoutMs,
 } from '../server/utils/process.js'
 import { getCurrentSessionTitle, sessionIdExists } from './sessionStorage.js'
-import { sleep } from './sleep.js'
+import { sleep } from '../server/utils/sleep.js'
 import { profileReport } from './startupProfiler.js'
 
 /**

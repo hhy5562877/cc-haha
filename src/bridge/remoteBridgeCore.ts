@@ -56,7 +56,7 @@ import { logForDebugging } from '../server/utils/debug.js'
 import { logForDiagnosticsNoPII } from '../server/utils/diagLogs.js'
 import { isInProtectedNamespace } from '../server/utils/envUtils.js'
 import { errorMessage } from '../server/utils/errors.js'
-import { sleep } from '../utils/sleep.js'
+import { sleep } from '../server/utils/sleep.js'
 import { registerCleanup } from '../server/utils/cleanupRegistry.js'
 import {
   type AnalyticsMetadata_I_VERIFIED_THIS_IS_NOT_CODE_OR_FILEPATHS,

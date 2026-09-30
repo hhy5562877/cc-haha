@@ -17,7 +17,7 @@ import { findCanonicalGitRoot } from '../utils/git.js'
 import { sanitizePath } from '../utils/path.js'
 import { extractJsonStringField } from '../utils/sessionStoragePortable.js'
 import { getCwd } from '../utils/cwd.js'
-import { parseMemoryType } from '../../memdir/memoryTypes.js'
+import { parseMemoryType } from '../memdir/memoryTypes.js'
 import { ApiError, errorResponse } from '../middleware/errorHandler.js'
 
 type MemoryProject = {

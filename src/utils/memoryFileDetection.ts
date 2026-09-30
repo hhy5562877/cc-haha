@@ -5,7 +5,7 @@ import {
   getMemoryBaseDir,
   isAutoMemoryEnabled,
   isAutoMemPath,
-} from '../memdir/paths.js'
+} from '../server/memdir/paths.js'
 import { isAgentMemoryPath } from '../server/tools/AgentTool/agentMemory.js'
 import { getClaudeConfigHomeDir } from '../server/utils/envUtils.js'
 import {

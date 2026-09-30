@@ -10,7 +10,7 @@ import {
 import { getMainLoopModel } from '../server/utils/model/model.js'
 import { permissionRuleValueToString } from '../server/utils/permissions/permissionRuleParser.js'
 import { detectUnreachableRules } from '../server/utils/permissions/shadowedRuleDetection.js'
-import { SandboxManager } from './sandbox/sandbox-adapter.js'
+import { SandboxManager } from '../server/utils/sandbox/sandbox-adapter.js'
 import {
   AGENT_DESCRIPTIONS_THRESHOLD,
   getAgentDescriptionsTotalTokens,

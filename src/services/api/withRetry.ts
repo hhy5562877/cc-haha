@@ -5,7 +5,7 @@ import {
   APIError,
   APIUserAbortError,
 } from '@anthropic-ai/sdk'
-import type { QuerySource } from 'src/constants/querySource.js'
+import type { QuerySource } from 'src/server/constants/querySource.js'
 import type {
   AssistantMessage,
   SystemAPIErrorMessage,
@@ -36,7 +36,7 @@ import {
 } from '../../utils/fastMode.js'
 import { isNonCustomOpusModel } from '../../server/utils/model/model.js'
 import { disableKeepAlive } from '../../server/utils/proxy.js'
-import { sleep } from '../../utils/sleep.js'
+import { sleep } from '../../server/utils/sleep.js'
 import type { ThinkingConfig } from '../../utils/thinking.js'
 import {
   type AnalyticsMetadata_I_VERIFIED_THIS_IS_NOT_CODE_OR_FILEPATHS,

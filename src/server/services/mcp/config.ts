@@ -5,7 +5,7 @@ import { dirname, join, parse } from 'path'
 import { getPlatform } from 'src/server/utils/platform.ts'
 import type { PluginError } from '../../../types/plugin.js'
 import { getPluginErrorMessage } from '../../../types/plugin.js'
-import { isClaudeInChromeMCPServer } from '../../../utils/claudeInChrome/common.js'
+import { isClaudeInChromeMCPServer } from '../../utils/claudeInChrome/common.js'
 import {
   getCurrentProjectConfig,
   getGlobalConfig,
@@ -653,7 +653,7 @@ export async function addMcpConfig(
   }
 
   const { isComputerUseMCPServer } = await import(
-    '../../../utils/computerUse/common.js'
+    '../../utils/computerUse/common.js'
   )
   if (isComputerUseMCPServer(name)) {
     throw new Error(`Cannot add MCP server "${name}": this name is reserved.`)
@@ -1666,7 +1666,7 @@ export function areMcpConfigsAllowedWithEnterpriseMcpConfig(
  */
 /* eslint-disable @typescript-eslint/no-require-imports */
 const DEFAULT_DISABLED_BUILTIN = (
-  require('../../../utils/computerUse/common.js') as typeof import('../../../utils/computerUse/common.js')
+  require('../../utils/computerUse/common.js') as typeof import('../../utils/computerUse/common.js')
 ).COMPUTER_USE_MCP_SERVER_NAME
 /* eslint-enable @typescript-eslint/no-require-imports */
 

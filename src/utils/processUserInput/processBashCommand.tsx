@@ -5,14 +5,14 @@ import { BashModeProgress } from 'src/components/BashModeProgress.js';
 import type { SetToolJSXFn } from 'src/Tool.js';
 import { BashTool } from 'src/tools/BashTool/BashTool.js';
 import type { AttachmentMessage, SystemMessage, UserMessage } from 'src/server/types/message.ts';
-import type { ShellProgress } from 'src/types/tools.js';
+import type { ShellProgress } from 'src/server/types/tools.js';
 import { logEvent } from '../../server/services/analytics/index.js';
 import { errorMessage, ShellError } from '../../server/utils/errors.js';
 import { createSyntheticUserCaveatMessage, createUserInterruptionMessage, createUserMessage, prepareUserContent } from '../messages.js';
 import { resolveDefaultShell } from '../shell/resolveDefaultShell.js';
 import { isPowerShellToolEnabled } from '../shell/shellToolUtils.js';
 import { processToolResultBlock } from '../toolResultStorage.js';
-import { escapeXml } from '../xml.js';
+import { escapeXml } from '../../server/utils/xml.js';
 import type { ProcessUserInputContext } from './processUserInput.js';
 export async function processBashCommand(inputString: string, precedingInputBlocks: ContentBlockParam[], attachmentMessages: AttachmentMessage[], context: ProcessUserInputContext, setToolJSX: SetToolJSXFn): Promise<{
   messages: (UserMessage | AttachmentMessage | SystemMessage)[];

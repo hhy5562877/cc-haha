@@ -10,7 +10,7 @@ import { stringWidth } from '../../ink/stringWidth.js';
 import { Ansi, Box, Text } from '../../ink.js';
 import type { ToolProgressData } from '../../Tool.js';
 import type { ProgressMessage } from '../../server/types/message.js';
-import type { MCPProgress } from '../../types/tools.js';
+import type { MCPProgress } from '../../server/types/tools.js';
 import { formatNumber } from '../../utils/format.js';
 import { createHyperlink } from '../../utils/hyperlink.js';
 import { getContentSizeEstimate, type MCPToolResult } from '../../utils/mcpValidation.js';

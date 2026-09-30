@@ -7,7 +7,7 @@ import {
   createSubcommandPrefixExtractor,
 } from '../shell/prefix.js'
 import { extractHeredocs, restoreHeredocs } from './heredoc.js'
-import { quote, tryParseShellCommand } from './shellQuote.js'
+import { quote, tryParseShellCommand } from '../../server/utils/bash/shellQuote.js'
 
 /**
  * Generates placeholder strings with random salt to prevent injection attacks.

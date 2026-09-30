@@ -4,7 +4,7 @@ import {
   getIsNonInteractiveSession,
   getSessionTrustAccepted,
 } from '../../bootstrap/state.js'
-import { getGrowthBookClientKey } from '../../../constants/keys.js'
+import { getGrowthBookClientKey } from '../../constants/keys.js'
 import {
   checkHasTrustDialogAccepted,
   getGlobalConfig,
@@ -14,7 +14,7 @@ import { logForDebugging } from '../../utils/debug.js'
 import { toError } from '../../utils/errors.js'
 import { getAuthHeaders } from '../../../utils/http.js'
 import { logError } from '../../utils/log.js'
-import { createSignal } from '../../../utils/signal.js'
+import { createSignal } from '../../utils/signal.js'
 import { jsonStringify } from '../../utils/slowOperations.js'
 import {
   type GitHubActionsMetadata,

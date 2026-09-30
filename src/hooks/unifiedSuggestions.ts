@@ -7,7 +7,7 @@ import { getAgentColor } from 'src/server/tools/AgentTool/agentColorManager.js'
 import type { AgentDefinition } from 'src/server/tools/AgentTool/loadAgentsDir.js'
 import { truncateToWidth } from 'src/utils/format.js'
 import { logError } from 'src/server/utils/log.ts'
-import type { Theme } from 'src/utils/theme.js'
+import type { Theme } from 'src/server/utils/theme.js'
 
 type FileSuggestionSource = {
   type: 'file'

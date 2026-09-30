@@ -54,15 +54,15 @@ import { ListMcpResourcesTool } from '../../../tools/ListMcpResourcesTool/ListMc
 import { type MCPProgress, MCPTool } from '../../../tools/MCPTool/MCPTool.js'
 import { createMcpAuthTool } from '../../../tools/McpAuthTool/McpAuthTool.js'
 import { ReadMcpResourceTool } from '../../../tools/ReadMcpResourceTool/ReadMcpResourceTool.js'
-import { createAbortController } from '../../../utils/abortController.js'
-import { count } from '../../../utils/array.js'
+import { createAbortController } from '../../utils/abortController.js'
+import { count } from '../../utils/array.js'
 import {
   checkAndRefreshOAuthTokenIfNeeded,
   getClaudeAIOAuthTokens,
   handleOAuth401Error,
 } from '../../../utils/auth.js'
 import { registerCleanup } from '../../utils/cleanupRegistry.js'
-import { detectCodeIndexingFromMcpServerName } from '../../../utils/codeIndexing.js'
+import { detectCodeIndexingFromMcpServerName } from '../../utils/codeIndexing.js'
 import { logForDebugging } from '../../utils/debug.js'
 import { isEnvDefinedFalsy, isEnvTruthy } from '../../utils/envUtils.js'
 import {
@@ -85,7 +85,7 @@ import {
   mcpContentNeedsTruncation,
   truncateMcpContentIfNeeded,
 } from '../../../utils/mcpValidation.js'
-import { WebSocketTransport } from '../../../utils/mcpWebSocketTransport.js'
+import { WebSocketTransport } from '../../utils/mcpWebSocketTransport.js'
 import { memoizeWithLRU } from '../../utils/memoize.js'
 import { getWebSocketTLSOptions } from '../../utils/mtls.js'
 import {
@@ -93,9 +93,9 @@ import {
   getWebSocketProxyAgent,
   getWebSocketProxyUrl,
 } from '../../utils/proxy.js'
-import { recursivelySanitizeUnicode } from '../../../utils/sanitization.js'
-import { getSessionIngressAuthToken } from '../../../utils/sessionIngressAuth.js'
-import { getMcpStdioEnvironment } from '../../../utils/mcpStdioEnvironment.js'
+import { recursivelySanitizeUnicode } from '../../utils/sanitization.js'
+import { getSessionIngressAuthToken } from '../../utils/sessionIngressAuth.js'
+import { getMcpStdioEnvironment } from '../../utils/mcpStdioEnvironment.js'
 import {
   isPersistError,
   persistToolResult,
@@ -116,7 +116,7 @@ import { getLoggingSafeMcpBaseUrl } from './utils.js'
 /* eslint-disable @typescript-eslint/no-require-imports */
 const fetchMcpSkillsForClient = feature('MCP_SKILLS')
   ? (
-      require('../../../skills/mcpSkills.js') as typeof import('../../../skills/mcpSkills.js')
+      require('../../skills/mcpSkills.js') as typeof import('../../skills/mcpSkills.js')
     ).fetchMcpSkillsForClient
   : null
 
@@ -125,7 +125,7 @@ import type { AssistantMessage } from 'src/server/types/message.ts'
 /* eslint-enable @typescript-eslint/no-require-imports */
 import { classifyMcpToolForCollapse } from '../../../tools/MCPTool/classifyForCollapse.js'
 import { clearKeychainCache } from '../../utils/secureStorage/macOsKeychainHelpers.js'
-import { sleep } from '../../../utils/sleep.js'
+import { sleep } from '../../utils/sleep.js'
 import {
   ClaudeAuthProvider,
   clearMcpDiscoveryWithoutTokens,
@@ -239,7 +239,7 @@ function getMcpToolTimeoutMs(): number {
   )
 }
 
-import { isClaudeInChromeMCPServer } from '../../../utils/claudeInChrome/common.js'
+import { isClaudeInChromeMCPServer } from '../../utils/claudeInChrome/common.js'
 
 // Lazy: toolRendering.tsx pulls React/ink; only needed when Claude-in-Chrome MCP server is connected
 /* eslint-disable @typescript-eslint/no-require-imports */
@@ -253,7 +253,7 @@ const computerUseWrapper =
   (): typeof import('../../../utils/computerUse/wrapper.js') =>
     require('../../../utils/computerUse/wrapper.js')
 const isComputerUseMCPServer = (
-  require('../../../utils/computerUse/common.js') as typeof import('../../../utils/computerUse/common.js')
+  require('../../utils/computerUse/common.js') as typeof import('../../utils/computerUse/common.js')
 ).isComputerUseMCPServer
 
 import { mkdir, readFile, unlink, writeFile } from 'fs/promises'

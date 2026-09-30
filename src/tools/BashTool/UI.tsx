@@ -16,7 +16,7 @@ import { env } from '../../server/utils/env.js';
 import { isEnvTruthy } from '../../server/utils/envUtils.js';
 import { getDisplayPath } from '../../server/utils/file.js';
 import { isFullscreenEnvEnabled } from '../../utils/fullscreen.js';
-import type { ThemeName } from '../../utils/theme.js';
+import type { ThemeName } from '../../server/utils/theme.js';
 import type { BashProgress, BashToolInput, Out } from './BashTool.js';
 import BashToolResultMessage from './BashToolResultMessage.js';
 import { extractBashCommentLabel } from './commentLabel.js';

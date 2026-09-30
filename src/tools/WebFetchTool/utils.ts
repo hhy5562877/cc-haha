@@ -13,7 +13,7 @@ import {
   persistBinaryContent,
 } from '../../utils/mcpOutputStorage.js'
 import { getSettings_DEPRECATED } from '../../server/utils/settings/settings.js'
-import { asSystemPrompt } from '../../utils/systemPromptType.js'
+import { asSystemPrompt } from '../../server/utils/systemPromptType.js'
 import { isPreapprovedHost } from './preapproved.js'
 import { makeSecondaryModelPrompt } from './prompt.js'
 

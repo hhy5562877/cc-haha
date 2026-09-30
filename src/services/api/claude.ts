@@ -95,7 +95,7 @@ import { disableKeepAlive } from "../../server/utils/proxy.js";
 import {
   asSystemPrompt,
   type SystemPrompt,
-} from "../../utils/systemPromptType.js";
+} from "../../server/utils/systemPromptType.js";
 import { tokenCountFromLastAPIResponse } from "../../utils/tokens.js";
 import { getDynamicConfig_BLOCKS_ON_INIT } from '../../server/services/analytics/growthbook.js';
 import {
@@ -146,7 +146,7 @@ import {
   STRUCTURED_OUTPUTS_BETA_HEADER,
   TASK_BUDGETS_BETA_HEADER,
 } from "src/constants/betas.js";
-import type { QuerySource } from "src/constants/querySource.js";
+import type { QuerySource } from "src/server/constants/querySource.js";
 import type { Notification } from "src/context/notifications.js";
 import { addToTotalSessionCost } from "src/cost-tracker.js";
 import { getFeatureValue_CACHED_MAY_BE_STALE } from '../../server/services/analytics/growthbook.js';
@@ -158,7 +158,7 @@ import {
   isValidAdvisorModel,
   modelSupportsAdvisor,
 } from "src/utils/advisor.js";
-import { getAgentContext } from "src/utils/agentContext.js";
+import { getAgentContext } from "src/server/utils/agentContext.js";
 import { isClaudeAISubscriber } from "src/utils/auth.js";
 import {
   getToolSearchBetaHeader,
@@ -166,7 +166,7 @@ import {
   shouldIncludeFirstPartyOnlyBetas,
   shouldUseGlobalCacheScope,
 } from "src/utils/betas.js";
-import { CLAUDE_IN_CHROME_MCP_SERVER_NAME } from "src/utils/claudeInChrome/common.js";
+import { CLAUDE_IN_CHROME_MCP_SERVER_NAME } from "src/server/utils/claudeInChrome/common.js";
 import { CHROME_TOOL_SEARCH_INSTRUCTIONS } from "src/utils/claudeInChrome/prompt.js";
 import { getMaxThinkingTokensForModel } from "src/utils/context.js";
 import { logForDebugging } from "src/server/utils/debug.ts";
@@ -213,7 +213,7 @@ import {
   isDeferredTool,
   TOOL_SEARCH_TOOL_NAME,
 } from "../../tools/ToolSearchTool/prompt.js";
-import { count } from "../../utils/array.js";
+import { count } from "../../server/utils/array.js";
 import { insertBlockAfterToolResults } from "../../utils/contentArray.js";
 import { validateBoundedIntEnvVar } from "../../utils/envValidation.js";
 import { safeParseJSON } from "../../server/utils/json.js";

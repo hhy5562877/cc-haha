@@ -46,7 +46,7 @@ import {
   type AnalyticsMetadata_I_VERIFIED_THIS_IS_PII_TAGGED,
   logEvent,
 } from '../../server/services/analytics/index.js'
-import { getAgentContext } from '../../utils/agentContext.js'
+import { getAgentContext } from '../../server/utils/agentContext.js'
 import { errorMessage } from '../../server/utils/errors.js'
 import {
   extractResultText,
@@ -58,7 +58,7 @@ import { createUserMessage, normalizeMessages } from '../../utils/messages.js'
 import type { ModelAlias } from '../../server/utils/model/aliases.js'
 import { resolveSkillModelOverride } from '../../server/utils/model/model.js'
 import { recordSkillUsage } from '../../utils/suggestions/skillUsageTracking.js'
-import { createAgentId } from '../../utils/uuid.js'
+import { createAgentId } from '../../server/utils/uuid.js'
 import { runAgent } from '../../server/tools/AgentTool/runAgent.js'
 import {
   getToolUseIDFromParentMessage,
@@ -94,9 +94,9 @@ async function getAllCommands(context: ToolUseContext): Promise<Command[]> {
 }
 
 // Re-export Progress from centralized types to break import cycles
-export type { SkillToolProgress as Progress } from '../../types/tools.js'
+export type { SkillToolProgress as Progress } from '../../server/types/tools.js'
 
-import type { SkillToolProgress as Progress } from '../../types/tools.js'
+import type { SkillToolProgress as Progress } from '../../server/types/tools.js'
 
 // Conditional require for remote skill modules — static imports here would
 // pull in akiBackend.ts (via remoteSkillLoader → akiBackend), which has

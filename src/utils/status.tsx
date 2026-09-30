@@ -15,11 +15,11 @@ import { getAPIProvider } from '../server/utils/model/providers.js';
 import { getMTLSConfig } from '../server/utils/mtls.js';
 import { checkInstall } from './nativeInstaller/index.js';
 import { getProxyUrl } from '../server/utils/proxy.js';
-import { SandboxManager } from './sandbox/sandbox-adapter.js';
+import { SandboxManager } from '../server/utils/sandbox/sandbox-adapter.js';
 import { getSettingsWithAllErrors } from '../server/utils/settings/allErrors.js';
 import { getEnabledSettingSources, getSettingSourceDisplayNameCapitalized } from '../server/utils/settings/constants.js';
 import { getManagedFileSettingsPresence, getPolicySettingsOrigin, getSettingsForSource } from '../server/utils/settings/settings.js';
-import type { ThemeName } from './theme.js';
+import type { ThemeName } from '../server/utils/theme.js';
 export type Property = {
   label?: string;
   value: React.ReactNode | Array<string>;

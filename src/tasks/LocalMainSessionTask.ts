@@ -29,16 +29,16 @@ import type {
 } from '../server/tools/AgentTool/loadAgentsDir.js'
 import { asAgentId } from '../server/types/ids.js'
 import type { Message } from '../server/types/message.js'
-import { createAbortController } from '../utils/abortController.js'
+import { createAbortController } from '../server/utils/abortController.js'
 import {
   runWithAgentContext,
   type SubagentContext,
-} from '../utils/agentContext.js'
+} from '../server/utils/agentContext.js'
 import { registerCleanup } from '../server/utils/cleanupRegistry.js'
 import { logForDebugging } from '../server/utils/debug.js'
 import { logError } from '../server/utils/log.js'
 import { enqueuePendingNotification } from '../utils/messageQueueManager.js'
-import { emitTaskTerminatedSdk } from '../utils/sdkEventQueue.js'
+import { emitTaskTerminatedSdk } from '../server/utils/sdkEventQueue.js'
 import {
   getAgentTranscriptPath,
   recordSidechainTranscript,
@@ -47,7 +47,7 @@ import {
   evictTaskOutput,
   getTaskOutputPath,
   initTaskOutputAsSymlink,
-} from '../utils/task/diskOutput.js'
+} from '../server/utils/task/diskOutput.js'
 import { registerTask, updateTaskState } from '../utils/task/framework.js'
 import type { LocalAgentTaskState } from './LocalAgentTask/LocalAgentTask.js'
 

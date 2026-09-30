@@ -4,7 +4,7 @@
  * License: LGPL-3.0-or-later, Copyright (c) 2026 Wesley Liddick.
  */
 import { createHash } from 'crypto'
-import { CLAUDE_CODE_COMPAT_VERSION } from '../constants/claudeCodeCompatibility.js'
+import { CLAUDE_CODE_COMPAT_VERSION } from '../server/constants/claudeCodeCompatibility.js'
 import type { AssistantMessage, UserMessage } from '../server/types/message.js'
 
 /**

@@ -28,7 +28,7 @@ import { cleanupStaleLocks, getAllLockInfo, isPidBasedLockingEnabled, type LockI
 import { getInitialSettings } from '../server/utils/settings/settings.js';
 import { BASH_MAX_OUTPUT_DEFAULT, BASH_MAX_OUTPUT_UPPER_LIMIT } from '../utils/shell/outputLimits.js';
 import { TASK_MAX_OUTPUT_DEFAULT, TASK_MAX_OUTPUT_UPPER_LIMIT } from '../utils/task/outputFormatting.js';
-import { getXDGStateHome } from '../utils/xdg.js';
+import { getXDGStateHome } from '../server/utils/xdg.js';
 type Props = {
   onDone: (result?: string, options?: {
     display?: CommandResultDisplay;

@@ -1,4 +1,4 @@
-import { createUnparsedToolInput } from '../../../utils/unparsedToolInput.js'
+import { createUnparsedToolInput } from '../../utils/unparsedToolInput.js'
 import { getOpenAIPolicyError } from '../../services/openaiAuth/policyError.js'
 
 export function responsesRecord(value: unknown): Record<string, unknown> | null {

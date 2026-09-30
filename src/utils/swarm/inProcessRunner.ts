@@ -64,14 +64,14 @@ import {
   createAssistantAPIErrorMessage,
   createUserMessage,
 } from '../../utils/messages.js'
-import { evictTaskOutput } from '../../utils/task/diskOutput.js'
+import { evictTaskOutput } from '../../server/utils/task/diskOutput.js'
 import { evictTerminalTask } from '../../utils/task/framework.js'
 import { tokenCountWithEstimation } from '../../utils/tokens.js'
-import { createAbortController } from '../abortController.js'
-import { type AgentContext, runWithAgentContext } from '../agentContext.js'
-import { count } from '../array.js'
+import { createAbortController } from '../../server/utils/abortController.js'
+import { type AgentContext, runWithAgentContext } from '../../server/utils/agentContext.js'
+import { count } from '../../server/utils/array.js'
 import { logForDebugging } from '../../server/utils/debug.js'
-import { cloneFileStateCache } from '../fileStateCache.js'
+import { cloneFileStateCache } from '../../server/utils/fileStateCache.js'
 import {
   SUBAGENT_REJECT_MESSAGE,
   SUBAGENT_REJECT_MESSAGE_WITH_REASON_PREFIX,
@@ -83,21 +83,21 @@ import {
 } from '../../server/utils/permissions/PermissionUpdate.js'
 import type { PermissionUpdate } from '../../server/utils/permissions/PermissionUpdateSchema.js'
 import { hasPermissionsToUseTool } from '../../server/utils/permissions/permissions.js'
-import { emitTaskTerminatedSdk } from '../sdkEventQueue.js'
-import { sleep } from '../sleep.js'
+import { emitTaskTerminatedSdk } from '../../server/utils/sdkEventQueue.js'
+import { sleep } from '../../server/utils/sleep.js'
 import { jsonStringify } from '../../server/utils/slowOperations.js'
-import { asSystemPrompt } from '../systemPromptType.js'
+import { asSystemPrompt } from '../../server/utils/systemPromptType.js'
 import {
   claimTask,
   getCanonicalTeamTaskListId,
   listTasks,
   type Task,
 } from '../tasks.js'
-import type { TeammateContext } from '../teammateContext.js'
+import type { TeammateContext } from '../../server/utils/teammateContext.js'
 import {
   createTeamStreamScopeId,
   runWithTeammateContext,
-} from '../teammateContext.js'
+} from '../../server/utils/teammateContext.js'
 import {
   createIdleNotification,
   getLastPeerDmSummary,

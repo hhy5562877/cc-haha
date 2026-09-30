@@ -16,7 +16,7 @@ import {
   hasRules,
 } from 'src/server/utils/permissions/PermissionUpdate.js'
 import { permissionRuleValueToString } from 'src/server/utils/permissions/permissionRuleParser.js'
-import { SandboxManager } from 'src/utils/sandbox/sandbox-adapter.js'
+import { SandboxManager } from 'src/server/utils/sandbox/sandbox-adapter.js'
 import type { ToolUseConfirm } from '../../components/permissions/PermissionRequest.js'
 import { useSetAppState } from '../../state/AppState.js'
 import { env } from '../../server/utils/env.js'

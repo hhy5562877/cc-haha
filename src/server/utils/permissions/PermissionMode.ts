@@ -1,6 +1,6 @@
 import { feature } from 'bun:bundle'
 import z from 'zod/v4'
-import { PAUSE_ICON } from '../../../constants/figures.js'
+import { PAUSE_ICON } from '../../constants/figures.js'
 // Types extracted to src/types/permissions.ts to break import cycles
 import {
   EXTERNAL_PERMISSION_MODES,

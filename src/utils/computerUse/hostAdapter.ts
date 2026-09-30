@@ -4,7 +4,7 @@ import type {
 } from '../../vendor/computer-use-mcp/types.js'
 import { format } from 'util'
 import { logForDebugging } from '../../server/utils/debug.js'
-import { COMPUTER_USE_MCP_SERVER_NAME } from './common.js'
+import { COMPUTER_USE_MCP_SERVER_NAME } from '../../server/utils/computerUse/common.js'
 import { createCliExecutor } from './executor.js'
 import { getChicagoEnabled, getChicagoSubGates } from './gates.js'
 import { normalizeOsPermissions } from './permissions.js'

@@ -19,11 +19,11 @@ import {
 } from '../../tools/SyntheticOutputTool/SyntheticOutputTool.js'
 import { assembleToolPool } from '../../tools.js'
 import type { Message } from '../../server/types/message.js'
-import { createAbortController } from '../abortController.js'
+import { createAbortController } from '../../server/utils/abortController.js'
 import { runWithCwdOverride } from '../../server/utils/cwd.js'
 import { logForDebugging } from '../../server/utils/debug.js'
 import { createUserMessage, extractTextContent } from '../messages.js'
-import { createAgentId } from '../uuid.js'
+import { createAgentId } from '../../server/utils/uuid.js'
 import type { AgentMetadata } from '../sessionStorage.js'
 import {
   createAgentWorktreeIfSupported,

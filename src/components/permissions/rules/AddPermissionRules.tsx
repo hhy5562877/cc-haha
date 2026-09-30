@@ -8,7 +8,7 @@ import type { PermissionBehavior, PermissionRule, PermissionRuleValue } from '..
 import { applyPermissionUpdate, persistPermissionUpdate } from '../../../server/utils/permissions/PermissionUpdate.js';
 import { permissionRuleValueToString } from '../../../server/utils/permissions/permissionRuleParser.js';
 import { detectUnreachableRules, type UnreachableRule } from '../../../server/utils/permissions/shadowedRuleDetection.js';
-import { SandboxManager } from '../../../utils/sandbox/sandbox-adapter.js';
+import { SandboxManager } from '../../../server/utils/sandbox/sandbox-adapter.js';
 import { type EditableSettingSource, SOURCES } from '../../../server/utils/settings/constants.js';
 import { getRelativeSettingsFilePathForSource } from '../../../server/utils/settings/settings.js';
 import { plural } from '../../../server/utils/stringUtils.js';

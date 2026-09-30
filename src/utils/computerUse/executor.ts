@@ -25,12 +25,12 @@ import type {
 } from '../../vendor/computer-use-mcp/index.js'
 import { API_RESIZE_PARAMS, targetImageSize } from '../../vendor/computer-use-mcp/index.js'
 import { formatNativeAppList, type NativeAppInfo } from '../../vendor/computer-use-mcp/executor.js'
-import { sleep } from '../sleep.js'
+import { sleep } from '../../server/utils/sleep.js'
 import {
   CLI_HOST_BUNDLE_ID,
   getCliComputerUseCapabilities,
   isComputerUseSupportedPlatform,
-} from './common.js'
+} from '../../server/utils/computerUse/common.js'
 // Platform-routed helper: macOS → native cu-helper (no cursor steal),
 // Windows → Python helper (pyautogui, which does move the real cursor).
 import { callHelper } from './helperBridge.js'

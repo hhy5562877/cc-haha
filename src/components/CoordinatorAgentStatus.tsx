@@ -9,7 +9,7 @@ import { c as _c } from "react/compiler-runtime";
 
 import figures from 'figures';
 import * as React from 'react';
-import { BLACK_CIRCLE, PAUSE_ICON, PLAY_ICON } from '../constants/figures.js';
+import { BLACK_CIRCLE, PAUSE_ICON, PLAY_ICON } from '../server/constants/figures.js';
 import { useTerminalSize } from '../hooks/useTerminalSize.js';
 import { stringWidth } from '../ink/stringWidth.js';
 import { Box, Text, wrapText } from '../ink.js';

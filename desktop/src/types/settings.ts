@@ -160,7 +160,7 @@ export type UserSettings = {
   workflowKeywordTriggerEnabled?: boolean
   agentTeamsEnabled?: boolean
   autoDreamEnabled?: boolean
-  autoQuestion?: import('../../../src/shared/autoQuestionSettings').AutoQuestionSettings
+  autoQuestion?: import('../../../src/server/shared/autoQuestionSettings.js').AutoQuestionSettings
   skipAutoPermissionPrompt?: boolean
   permissionMode?: PermissionMode
   theme?: ThemeMode

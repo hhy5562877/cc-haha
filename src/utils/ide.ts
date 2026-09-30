@@ -22,7 +22,7 @@ import {
   execSyncWithDefaults_DEPRECATED,
 } from '../server/utils/execFileNoThrow.js'
 import { getFsImplementation } from '../server/utils/fsOperations.js'
-import { getAncestorPidsAsync } from './genericProcessUtils.js'
+import { getAncestorPidsAsync } from '../server/utils/genericProcessUtils.js'
 import { isJetBrainsPluginInstalledCached } from './jetbrains.js'
 import { logError } from '../server/utils/log.js'
 import { getPlatform } from '../server/utils/platform.js'
@@ -34,16 +34,16 @@ const ideOnboardingDialog =
   (): typeof import('src/components/IdeOnboardingDialog.js') =>
     require('src/components/IdeOnboardingDialog.js')
 
-import { createAbortController } from './abortController.js'
+import { createAbortController } from '../server/utils/abortController.js'
 import { logForDebugging } from '../server/utils/debug.js'
-import { envDynamic } from './envDynamic.js'
+import { envDynamic } from '../server/utils/envDynamic.js'
 import { errorMessage, isFsInaccessible } from '../server/utils/errors.js'
 /* eslint-enable @typescript-eslint/no-require-imports */
 import {
   checkWSLDistroMatch,
   WindowsToWSLConverter,
 } from './idePathConversion.js'
-import { sleep } from './sleep.js'
+import { sleep } from '../server/utils/sleep.js'
 import { jsonParse } from '../server/utils/slowOperations.js'
 
 function isProcessRunning(pid: number): boolean {

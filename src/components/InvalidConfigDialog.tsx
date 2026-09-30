@@ -6,7 +6,7 @@ import { AppStateProvider } from '../state/AppState.js';
 import type { ConfigParseError } from '../server/utils/errors.js';
 import { getBaseRenderOptions } from '../utils/renderOptions.js';
 import { jsonStringify, writeFileSync_DEPRECATED } from '../server/utils/slowOperations.js';
-import type { ThemeName } from '../utils/theme.js';
+import type { ThemeName } from '../server/utils/theme.js';
 import { Select } from './CustomSelect/index.js';
 import { Dialog } from './design-system/Dialog.js';
 interface InvalidConfigHandlerProps {

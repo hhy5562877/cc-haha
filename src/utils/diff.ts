@@ -3,7 +3,7 @@ import { logEvent } from '../server/services/analytics/index.js'
 import { getLocCounter } from '../server/bootstrap/state.js'
 import { addToTotalLinesChanged } from '../cost-tracker.js'
 import type { FileEdit } from '../server/tools/FileEditTool/types.js'
-import { count } from './array.js'
+import { count } from '../server/utils/array.js'
 import { convertLeadingTabsToSpaces } from '../server/utils/file.js'
 
 export const CONTEXT_LINES = 3

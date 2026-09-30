@@ -19,13 +19,13 @@ import {
   AGENT_SKILLS_DIR,
   getUserAgentSkillsDir,
   isAgentSkillsDirectoryEnabled,
-} from '../../skills/skillRoots.js'
+} from '../../server/skills/skillRoots.js'
 import { resetSentSkillNames } from '../attachments.js'
 import { registerCleanup } from '../../server/utils/cleanupRegistry.js'
 import { logForDebugging } from '../../server/utils/debug.js'
 import { getFsImplementation } from '../../server/utils/fsOperations.js'
 import { executeConfigChangeHooks, hasBlockingResult } from '../hooks.js'
-import { createSignal } from '../signal.js'
+import { createSignal } from '../../server/utils/signal.js'
 
 /**
  * Time in milliseconds to wait for file writes to stabilize before processing.

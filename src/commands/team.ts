@@ -5,7 +5,7 @@ import { SEND_MESSAGE_TOOL_NAME } from '../tools/SendMessageTool/constants.js'
 import { TASK_CREATE_TOOL_NAME } from '../tools/TaskCreateTool/constants.js'
 import { TASK_UPDATE_TOOL_NAME } from '../tools/TaskUpdateTool/constants.js'
 import { TEAM_CREATE_TOOL_NAME } from '../tools/TeamCreateTool/constants.js'
-import { isAgentSwarmsEnabled } from '../utils/agentSwarmsEnabled.js'
+import { isAgentSwarmsEnabled } from '../server/utils/agentSwarmsEnabled.js'
 import { isTeamReviewRequired } from '../utils/swarm/teamPlanPolicy.js'
 import { TEAM_PLAN_TOOL_NAME } from '../tools/TeamPlanTool/constants.js'
 

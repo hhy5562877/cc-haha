@@ -7,7 +7,7 @@ import {
   extractOutputRedirections,
   splitCommand_DEPRECATED,
 } from '../../utils/bash/commands.js'
-import { tryParseShellCommand } from '../../utils/bash/shellQuote.js'
+import { tryParseShellCommand } from '../../server/utils/bash/shellQuote.js'
 import { getDirectoryForPath } from '../../server/utils/path.js'
 import { allWorkingDirectories } from '../../server/utils/permissions/filesystem.js'
 import type { PermissionResult } from '../../server/utils/permissions/PermissionResult.js'

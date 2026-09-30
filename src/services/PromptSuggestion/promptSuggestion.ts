@@ -1,8 +1,8 @@
 import { getIsNonInteractiveSession } from '../../server/bootstrap/state.js'
 import type { AppState } from '../../state/AppState.js'
 import type { Message } from '../../server/types/message.js'
-import { isAgentSwarmsEnabled } from '../../utils/agentSwarmsEnabled.js'
-import { count } from '../../utils/array.js'
+import { isAgentSwarmsEnabled } from '../../server/utils/agentSwarmsEnabled.js'
+import { count } from '../../server/utils/array.js'
 import { isEnvDefinedFalsy, isEnvTruthy } from '../../server/utils/envUtils.js'
 import { toError } from '../../server/utils/errors.js'
 import {

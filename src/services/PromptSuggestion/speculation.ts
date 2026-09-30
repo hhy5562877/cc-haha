@@ -14,8 +14,8 @@ import { commandHasAnyCd } from '../../tools/BashTool/bashPermissions.js'
 import { checkReadOnlyConstraints } from '../../tools/BashTool/readOnlyValidation.js'
 import type { SpeculationAcceptMessage } from '../../server/types/logs.js'
 import type { Message } from '../../server/types/message.js'
-import { createChildAbortController } from '../../utils/abortController.js'
-import { count } from '../../utils/array.js'
+import { createChildAbortController } from '../../server/utils/abortController.js'
+import { count } from '../../server/utils/array.js'
 import { getGlobalConfig } from '../../utils/config.js'
 import { logForDebugging } from '../../server/utils/debug.js'
 import { errorMessage } from '../../server/utils/errors.js'
@@ -23,7 +23,7 @@ import {
   type FileStateCache,
   mergeFileStateCaches,
   READ_FILE_STATE_CACHE_SIZE,
-} from '../../utils/fileStateCache.js'
+} from '../../server/utils/fileStateCache.js'
 import {
   type CacheSafeParams,
   createCacheSafeParams,

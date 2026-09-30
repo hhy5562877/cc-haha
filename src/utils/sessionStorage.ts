@@ -62,7 +62,7 @@ import type {
   UserMessage,
 } from '../server/types/message.js'
 import type { QueueOperationMessage } from '../server/types/messageQueueTypes.js'
-import { uniq } from './array.js'
+import { uniq } from '../server/utils/array.js'
 import { registerCleanup } from '../server/utils/cleanupRegistry.js'
 import { updateSessionName } from './concurrentSessions.js'
 import { getCwd } from '../server/utils/cwd.js'
@@ -92,7 +92,7 @@ import {
 import { getSettings_DEPRECATED } from '../server/utils/settings/settings.js'
 import { jsonParse, jsonStringify } from '../server/utils/slowOperations.js'
 import type { ContentReplacementRecord } from './toolResultStorage.js'
-import { validateUuid } from './uuid.js'
+import { validateUuid } from '../server/utils/uuid.js'
 
 // Cache MACRO.VERSION at module level to work around bun --define bug in async contexts
 // See: https://github.com/oven-sh/bun/issues/26168

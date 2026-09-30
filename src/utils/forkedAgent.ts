@@ -11,7 +11,7 @@
 import type { UUID } from 'crypto'
 import { randomUUID } from 'crypto'
 import type { PromptCommand } from '../commands.js'
-import type { QuerySource } from '../constants/querySource.js'
+import type { QuerySource } from '../server/constants/querySource.js'
 import type { CanUseToolFn } from '../hooks/useCanUseTool.js'
 import { query } from '../query.js'
 import {
@@ -24,9 +24,9 @@ import type { ToolUseContext } from '../Tool.js'
 import type { AgentDefinition } from '../server/tools/AgentTool/loadAgentsDir.js'
 import type { AgentId } from '../server/types/ids.js'
 import type { Message } from '../server/types/message.js'
-import { createChildAbortController } from './abortController.js'
+import { createChildAbortController } from '../server/utils/abortController.js'
 import { logForDebugging } from '../server/utils/debug.js'
-import { cloneFileStateCache } from './fileStateCache.js'
+import { cloneFileStateCache } from '../server/utils/fileStateCache.js'
 import type { REPLHookContext } from './hooks/postSamplingHooks.js'
 import {
   createUserMessage,
@@ -36,12 +36,12 @@ import {
 import { createDenialTrackingState } from '../server/utils/permissions/denialTracking.js'
 import { parseToolListFromCLI } from '../server/utils/permissions/permissionSetup.js'
 import { recordSidechainTranscript } from './sessionStorage.js'
-import type { SystemPrompt } from './systemPromptType.js'
+import type { SystemPrompt } from '../server/utils/systemPromptType.js'
 import {
   type ContentReplacementState,
   cloneContentReplacementState,
 } from './toolResultStorage.js'
-import { createAgentId } from './uuid.js'
+import { createAgentId } from '../server/utils/uuid.js'
 
 /**
  * Parameters that must be identical between the fork and parent API requests

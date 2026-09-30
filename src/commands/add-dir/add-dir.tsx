@@ -10,7 +10,7 @@ import { Box, Text } from '../../ink.js';
 import type { LocalJSXCommandOnDone } from '../../types/command.js';
 import { applyPermissionUpdate, persistPermissionUpdate } from '../../server/utils/permissions/PermissionUpdate.js';
 import type { PermissionUpdateDestination } from '../../server/utils/permissions/PermissionUpdateSchema.js';
-import { SandboxManager } from '../../utils/sandbox/sandbox-adapter.js';
+import { SandboxManager } from '../../server/utils/sandbox/sandbox-adapter.js';
 import { addDirHelpMessage, validateDirectoryForWorkspace } from './validation.js';
 function AddDirError(t0) {
   const $ = _c(10);

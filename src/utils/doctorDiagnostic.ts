@@ -32,7 +32,7 @@ import {
 } from './nativeInstaller/packageManagers.js'
 import { getPlatform } from '../server/utils/platform.js'
 import { getRipgrepStatus } from '../server/utils/ripgrep.js'
-import { SandboxManager } from './sandbox/sandbox-adapter.js'
+import { SandboxManager } from '../server/utils/sandbox/sandbox-adapter.js'
 import { getManagedFilePath } from '../server/utils/settings/managedPath.js'
 import { CUSTOMIZATION_SURFACES } from '../server/utils/settings/types.js'
 import {

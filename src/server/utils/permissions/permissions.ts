@@ -16,7 +16,7 @@ import { extractOutputRedirections } from '../../../utils/bash/commands.js'
 import { logForDebugging } from '../debug.js'
 import { AbortError, toError } from '../errors.js'
 import { logError } from '../log.js'
-import { SandboxManager } from '../../../utils/sandbox/sandbox-adapter.js'
+import { SandboxManager } from '../sandbox/sandbox-adapter.js'
 import {
   getSettingSourceDisplayNameLowercase,
   SETTING_SOURCES,
@@ -79,7 +79,7 @@ import { sanitizeToolNameForAnalytics } from '../../services/analytics/metadata.
 import {
   clearClassifierChecking,
   setClassifierChecking,
-} from '../../../utils/classifierApprovals.js'
+} from '../classifierApprovals.js'
 import { isInProtectedNamespace } from '../envUtils.js'
 import { executePermissionRequestHooks } from '../../../utils/hooks.js'
 import {

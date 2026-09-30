@@ -20,7 +20,7 @@ import {
 } from '../../services/lsp/manager.js'
 import type { ValidationResult } from '../../Tool.js'
 import { buildTool, type ToolDef } from '../../Tool.js'
-import { uniq } from '../../utils/array.js'
+import { uniq } from '../../server/utils/array.js'
 import { getCwd } from '../../server/utils/cwd.js'
 import { logForDebugging } from '../../server/utils/debug.js'
 import { isENOENT, toError } from '../../server/utils/errors.js'

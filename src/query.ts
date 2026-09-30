@@ -29,7 +29,7 @@ import { BUSINESS_ERROR_CODES } from './constants/businessErrors.js'
 import { ImageSizeError } from './utils/imageValidation.js'
 import { ImageResizeError } from './utils/imageResizer.js'
 import { findToolByName, type ToolUseContext } from './Tool.js'
-import { asSystemPrompt, type SystemPrompt } from './utils/systemPromptType.js'
+import { asSystemPrompt, type SystemPrompt } from './server/utils/systemPromptType.js'
 import type {
   AssistantMessage,
   AttachmentMessage,
@@ -95,7 +95,7 @@ import { getFeatureValue_CACHED_MAY_BE_STALE } from './server/services/analytics
 import { SLEEP_TOOL_NAME } from './tools/SleepTool/prompt.js'
 import { executePostSamplingHooks } from './utils/hooks/postSamplingHooks.js'
 import { executeStopFailureHooks } from './utils/hooks.js'
-import type { QuerySource } from './constants/querySource.js'
+import type { QuerySource } from './server/constants/querySource.js'
 import { createDumpPromptsFetch } from './services/api/dumpPrompts.js'
 import { shouldCaptureApiTrace } from './server/services/api/traceCapture.js'
 import { StreamingToolExecutor } from './services/tools/StreamingToolExecutor.js'
@@ -115,7 +115,7 @@ import {
   incrementBudgetContinuationCount,
 } from './server/bootstrap/state.js'
 import { createBudgetTracker, checkTokenBudget } from './query/tokenBudget.js'
-import { count } from './utils/array.js'
+import { count } from './server/utils/array.js'
 
 /* eslint-disable @typescript-eslint/no-require-imports */
 const snipModule = feature('HISTORY_SNIP')

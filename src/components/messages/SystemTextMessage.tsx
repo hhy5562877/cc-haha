@@ -5,12 +5,12 @@ import { feature } from 'bun:bundle';
 import * as React from 'react';
 import { useState } from 'react';
 import sample from 'lodash-es/sample.js';
-import { BLACK_CIRCLE, REFERENCE_MARK, TEARDROP_ASTERISK } from '../../constants/figures.js';
+import { BLACK_CIRCLE, REFERENCE_MARK, TEARDROP_ASTERISK } from '../../server/constants/figures.js';
 import figures from 'figures';
 import { basename } from 'path';
 import { MessageResponse } from '../MessageResponse.js';
 import { FilePathLink } from '../FilePathLink.js';
-import { openPath } from '../../utils/browser.js';
+import { openPath } from '../../server/utils/browser.js';
 /* eslint-disable @typescript-eslint/no-require-imports */
 const teamMemSaved = feature('TEAMMEM') ? require('./teamMemSaved.js') as typeof import('./teamMemSaved.js') : null;
 /* eslint-enable @typescript-eslint/no-require-imports */

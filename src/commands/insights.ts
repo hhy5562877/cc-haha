@@ -34,8 +34,8 @@ import {
 } from '../utils/sessionStorage.js'
 import { jsonParse, jsonStringify } from '../server/utils/slowOperations.js'
 import { countCharInString } from '../server/utils/stringUtils.js'
-import { asSystemPrompt } from '../utils/systemPromptType.js'
-import { escapeXmlAttr as escapeHtml } from '../utils/xml.js'
+import { asSystemPrompt } from '../server/utils/systemPromptType.js'
+import { escapeXmlAttr as escapeHtml } from '../server/utils/xml.js'
 
 // Model for facet extraction and summarization (Opus - best quality)
 function getAnalysisModel(): string {

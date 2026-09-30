@@ -1,7 +1,7 @@
 import { feature } from 'bun:bundle'
 import { markPostCompaction } from 'src/server/bootstrap/state.ts'
 import { getSdkBetas } from '../../server/bootstrap/state.js'
-import type { QuerySource } from '../../constants/querySource.js'
+import type { QuerySource } from '../../server/constants/querySource.js'
 import type { ToolUseContext } from '../../Tool.js'
 import type { Message } from '../../server/types/message.js'
 import { getGlobalConfig } from '../../utils/config.js'

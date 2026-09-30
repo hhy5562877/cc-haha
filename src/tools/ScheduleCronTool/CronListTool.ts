@@ -4,7 +4,7 @@ import { cronToHuman } from '../../utils/cron.js'
 import { listAllCronTasks } from '../../utils/cronTasks.js'
 import { truncate } from '../../utils/format.js'
 import { lazySchema } from '../../server/utils/lazySchema.js'
-import { getTeammateContext } from '../../utils/teammateContext.js'
+import { getTeammateContext } from '../../server/utils/teammateContext.js'
 import {
   buildCronListPrompt,
   CRON_LIST_DESCRIPTION,

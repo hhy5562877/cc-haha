@@ -20,7 +20,7 @@ import { renderModelName } from '../server/utils/model/model.js';
 import { copyAnsiToClipboard } from '../utils/screenshotClipboard.js';
 import { aggregateClaudeCodeStatsForRange, type ClaudeCodeStats, type DailyModelTokens, type StatsDateRange } from '../utils/stats.js';
 import { resolveThemeSetting } from '../utils/systemTheme.js';
-import { getTheme, themeColorToAnsi } from '../utils/theme.js';
+import { getTheme, themeColorToAnsi } from '../server/utils/theme.js';
 import { Pane } from './design-system/Pane.js';
 import { Tab, Tabs, useTabHeaderFocus } from './design-system/Tabs.js';
 import { Spinner } from './Spinner.js';

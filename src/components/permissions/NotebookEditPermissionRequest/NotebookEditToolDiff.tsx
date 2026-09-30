@@ -4,7 +4,7 @@ import * as React from 'react';
 import { Suspense, use, useMemo } from 'react';
 import { Box, NoSelect, Text } from '../../../ink.js';
 import type { NotebookCellType, NotebookContent } from '../../../types/notebook.js';
-import { intersperse } from '../../../utils/array.js';
+import { intersperse } from '../../../server/utils/array.js';
 import { getCwd } from '../../../server/utils/cwd.js';
 import { getPatchForDisplay } from '../../../utils/diff.js';
 import { getFsImplementation } from '../../../server/utils/fsOperations.js';

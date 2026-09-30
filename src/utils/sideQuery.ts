@@ -9,8 +9,8 @@ import {
   STRUCTURED_OUTPUTS_BETA_HEADER,
   THINKING_BINDING_CONTROLS_BETA_HEADER,
 } from '../constants/betas.js'
-import { CLAUDE_CODE_COMPAT_VERSION } from '../constants/claudeCodeCompatibility.js'
-import type { QuerySource } from '../constants/querySource.js'
+import { CLAUDE_CODE_COMPAT_VERSION } from '../server/constants/claudeCodeCompatibility.js'
+import type { QuerySource } from '../server/constants/querySource.js'
 import {
   getAttributionHeader,
   getCLISyspromptPrefix,

@@ -8,7 +8,7 @@ import { normalizeApiKeyForConfig } from '../utils/authPortable.js';
 import { getCustomApiKeyStatus } from '../utils/config.js';
 import { env } from '../server/utils/env.js';
 import { isRunningOnHomespace } from '../server/utils/envUtils.js';
-import type { ThemeSetting } from '../utils/theme.js';
+import type { ThemeSetting } from '../server/utils/theme.js';
 import { ApproveApiKey } from './ApproveApiKey.js';
 import { Select } from './CustomSelect/select.js';
 import { WelcomeV2 } from './LogoV2/WelcomeV2.js';

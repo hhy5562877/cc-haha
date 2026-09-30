@@ -3,7 +3,7 @@ import {
   type ParseEntry,
   quote,
   tryParseShellCommand,
-} from '../bash/shellQuote.js'
+} from '../../server/utils/bash/shellQuote.js'
 import { logForDebugging } from '../../server/utils/debug.js'
 import { getShellType } from '../localInstaller.js'
 import * as Shell from '../Shell.js'

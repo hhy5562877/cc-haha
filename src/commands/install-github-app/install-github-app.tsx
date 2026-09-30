@@ -8,7 +8,7 @@ import type { KeyboardEvent } from '../../ink/events/keyboard-event.js';
 import { Box } from '../../ink.js';
 import type { LocalJSXCommandOnDone } from '../../types/command.js';
 import { getAnthropicApiKey, isAnthropicAuthEnabled } from '../../utils/auth.js';
-import { openBrowser } from '../../utils/browser.js';
+import { openBrowser } from '../../server/utils/browser.js';
 import { execFileNoThrow } from '../../server/utils/execFileNoThrow.js';
 import { getGithubRepo } from '../../server/utils/git.js';
 import { plural } from '../../server/utils/stringUtils.js';

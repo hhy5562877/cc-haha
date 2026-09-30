@@ -65,7 +65,7 @@ import {
 } from './networkSettings.js'
 import { readTraceCaptureSettings } from './traceCaptureService.js'
 import { logError } from '../utils/log.js'
-import { normalizeAutoQuestionSettings } from '../../shared/autoQuestionSettings.js'
+import { normalizeAutoQuestionSettings } from '../shared/autoQuestionSettings.js'
 import { decideAutoQuestionAnswers, type AutoQuestion } from './autoQuestionDecisionService.js'
 import {
   createImageMetadataText,

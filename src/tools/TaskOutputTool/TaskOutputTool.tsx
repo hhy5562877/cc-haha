@@ -16,14 +16,14 @@ import type { TaskState } from '../../tasks/types.js';
 import { AbortError } from '../../server/utils/errors.js';
 import { lazySchema } from '../../server/utils/lazySchema.js';
 import { extractTextContent } from '../../utils/messages.js';
-import { semanticBoolean } from '../../utils/semanticBoolean.js';
-import { sleep } from '../../utils/sleep.js';
+import { semanticBoolean } from '../../server/utils/semanticBoolean.js';
+import { sleep } from '../../server/utils/sleep.js';
 import { jsonParse } from '../../server/utils/slowOperations.js';
 import { countCharInString } from '../../server/utils/stringUtils.js';
-import { getTaskOutput } from '../../utils/task/diskOutput.js';
+import { getTaskOutput } from '../../server/utils/task/diskOutput.js';
 import { updateTaskState } from '../../utils/task/framework.js';
 import { formatTaskOutput } from '../../utils/task/outputFormatting.js';
-import type { ThemeName } from '../../utils/theme.js';
+import type { ThemeName } from '../../server/utils/theme.js';
 import { AgentPromptDisplay, AgentResponseDisplay } from '../../server/tools/AgentTool/UI.js';
 import BashToolResultMessage from '../BashTool/BashToolResultMessage.js';
 import { TASK_OUTPUT_TOOL_NAME } from './constants.js';
@@ -54,7 +54,7 @@ type TaskOutputToolOutput = {
 };
 
 // Re-export Progress from centralized types to break import cycles
-export type { TaskOutputProgress as Progress } from '../../types/tools.js';
+export type { TaskOutputProgress as Progress } from '../../server/types/tools.js';
 
 // Get output for any task type
 async function getTaskOutputData(task: TaskState): Promise<TaskOutput> {

@@ -17,7 +17,7 @@ import { getCompoundCommandPrefixesStatic } from '../../../utils/bash/prefix.js'
 import { createPromptRuleContent, generateGenericDescription, getBashPromptAllowDescriptions, isClassifierPermissionsEnabled } from '../../../server/utils/permissions/bashClassifier.js';
 import { extractRules } from '../../../server/utils/permissions/PermissionUpdate.js';
 import type { PermissionUpdate } from '../../../server/utils/permissions/PermissionUpdateSchema.js';
-import { SandboxManager } from '../../../utils/sandbox/sandbox-adapter.js';
+import { SandboxManager } from '../../../server/utils/sandbox/sandbox-adapter.js';
 import { Select } from '../../CustomSelect/select.js';
 import { ShimmerChar } from '../../Spinner/ShimmerChar.js';
 import { useShimmerAnimation } from '../../Spinner/useShimmerAnimation.js';

@@ -6,7 +6,7 @@
 import { isFsInaccessible } from '../../server/utils/errors.js'
 import { getFsImplementation } from '../../server/utils/fsOperations.js'
 import { getSessionMemoryPath } from '../../server/utils/permissions/filesystem.js'
-import { sleep } from '../../utils/sleep.js'
+import { sleep } from '../../server/utils/sleep.js'
 import { logEvent } from '../../server/services/analytics/index.js'
 
 const EXTRACTION_WAIT_TIMEOUT_MS = 15000

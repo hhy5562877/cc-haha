@@ -17,7 +17,7 @@ import {
   type Output as FileReadToolOutput,
 } from '../../tools/FileReadTool/FileReadTool.js'
 import type { Message } from '../../server/types/message.js'
-import { count } from '../../utils/array.js'
+import { count } from '../../server/utils/array.js'
 import {
   createCacheSafeParams,
   createSubagentContext,
@@ -36,8 +36,8 @@ import {
   getSessionMemoryDir,
   getSessionMemoryPath,
 } from '../../server/utils/permissions/filesystem.js'
-import { sequential } from '../../utils/sequential.js'
-import { asSystemPrompt } from '../../utils/systemPromptType.js'
+import { sequential } from '../../server/utils/sequential.js'
+import { asSystemPrompt } from '../../server/utils/systemPromptType.js'
 import { getTokenUsage, tokenCountWithEstimation } from '../../utils/tokens.js'
 import { logEvent } from '../../server/services/analytics/index.js'
 import { isAutoCompactEnabled } from '../compact/autoCompact.js'

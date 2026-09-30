@@ -23,8 +23,8 @@ import {
   getTeamName,
   isTeammate,
 } from '../../utils/teammate.js'
-import { isInProcessTeammate } from '../../utils/teammateContext.js'
-import type { Theme } from '../../utils/theme.js'
+import { isInProcessTeammate } from '../../server/utils/teammateContext.js'
+import type { Theme } from '../../server/utils/theme.js'
 
 type SwarmBannerInfo = {
   text: string

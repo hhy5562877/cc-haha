@@ -4,7 +4,7 @@ import {
   BRIDGE_FAILED_INDICATOR,
   BRIDGE_READY_INDICATOR,
   BRIDGE_SPINNER_FRAMES,
-} from '../constants/figures.js'
+} from '../server/constants/figures.js'
 import { stringWidth } from '../ink/stringWidth.js'
 import { logForDebugging } from '../server/utils/debug.js'
 import {

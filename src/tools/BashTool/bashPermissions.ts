@@ -8,7 +8,7 @@ import {
 } from '../../server/services/analytics/index.js'
 import type { ToolPermissionContext, ToolUseContext } from '../../Tool.js'
 import type { PendingClassifierCheck } from '../../server/types/permissions.js'
-import { count } from '../../utils/array.js'
+import { count } from '../../server/utils/array.js'
 import {
   checkSemantics,
   nodeTypeId,
@@ -24,7 +24,7 @@ import {
   splitCommand_DEPRECATED,
 } from '../../utils/bash/commands.js'
 import { parseCommandRaw } from '../../utils/bash/parser.js'
-import { tryParseShellCommand } from '../../utils/bash/shellQuote.js'
+import { tryParseShellCommand } from '../../server/utils/bash/shellQuote.js'
 import { getCwd } from '../../server/utils/cwd.js'
 import { logForDebugging } from '../../server/utils/debug.js'
 import { isEnvTruthy } from '../../server/utils/envUtils.js'
@@ -64,7 +64,7 @@ import {
   suggestionForPrefix as sharedSuggestionForPrefix,
 } from '../../server/utils/permissions/shellRuleMatching.js'
 import { getPlatform } from '../../server/utils/platform.js'
-import { SandboxManager } from '../../utils/sandbox/sandbox-adapter.js'
+import { SandboxManager } from '../../server/utils/sandbox/sandbox-adapter.js'
 import { jsonStringify } from '../../server/utils/slowOperations.js'
 import { windowsPathToPosixPath } from '../../server/utils/windowsPaths.js'
 import { BashTool } from './BashTool.js'

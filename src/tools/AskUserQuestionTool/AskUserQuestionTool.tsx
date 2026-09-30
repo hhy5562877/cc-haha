@@ -2,7 +2,7 @@ import { feature } from 'bun:bundle';
 import * as React from 'react';
 import { getAllowedChannels, getQuestionPreviewFormat } from 'src/server/bootstrap/state.ts';
 import { MessageResponse } from 'src/components/MessageResponse.js';
-import { BLACK_CIRCLE } from 'src/constants/figures.js';
+import { BLACK_CIRCLE } from 'src/server/constants/figures.js';
 import { getModeColor } from 'src/server/utils/permissions/PermissionMode.js';
 import { z } from 'zod/v4';
 import { Box, Text } from '../../ink.js';

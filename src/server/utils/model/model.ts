@@ -29,7 +29,7 @@ import {
   getAPIProvider,
   hasAnthropicCompatibleThirdPartyConfig,
 } from './providers.js'
-import { LIGHTNING_BOLT } from '../../../constants/figures.js'
+import { LIGHTNING_BOLT } from '../../constants/figures.js'
 import { isModelAllowed } from './modelAllowlist.js'
 import { type ModelAlias, isModelAlias } from './aliases.js'
 import {

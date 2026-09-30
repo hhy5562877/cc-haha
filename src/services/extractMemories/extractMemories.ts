@@ -26,7 +26,7 @@ import {
   getAutoMemPath,
   isAutoMemoryEnabled,
   isAutoMemPath,
-} from '../../memdir/paths.js'
+} from '../../server/memdir/paths.js'
 import type { Tool } from '../../Tool.js'
 import { BASH_TOOL_NAME } from '../../tools/BashTool/toolName.js'
 import { FILE_EDIT_TOOL_NAME } from '../../server/tools/FileEditTool/constants.js'
@@ -41,8 +41,8 @@ import type {
   SystemLocalCommandMessage,
   SystemMessage,
 } from '../../server/types/message.js'
-import { createAbortController } from '../../utils/abortController.js'
-import { count, uniq } from '../../utils/array.js'
+import { createAbortController } from '../../server/utils/abortController.js'
+import { count, uniq } from '../../server/utils/array.js'
 import { logForDebugging } from '../../server/utils/debug.js'
 import {
   createCacheSafeParams,

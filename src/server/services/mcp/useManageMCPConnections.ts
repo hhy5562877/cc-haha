@@ -24,7 +24,7 @@ import type {
 /* eslint-disable @typescript-eslint/no-require-imports */
 const fetchMcpSkillsForClient = feature('MCP_SKILLS')
   ? (
-      require('../../../skills/mcpSkills.js') as typeof import('../../../skills/mcpSkills.js')
+      require('../../skills/mcpSkills.js') as typeof import('../../skills/mcpSkills.js')
     ).fetchMcpSkillsForClient
   : null
 const clearSkillIndexCache = feature('EXPERIMENTAL_SKILL_SEARCH')

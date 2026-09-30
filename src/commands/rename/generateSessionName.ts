@@ -5,7 +5,7 @@ import { errorMessage } from '../../server/utils/errors.js'
 import { safeParseJSON } from '../../server/utils/json.js'
 import { extractTextContent } from '../../utils/messages.js'
 import { extractConversationText } from '../../utils/sessionTitle.js'
-import { asSystemPrompt } from '../../utils/systemPromptType.js'
+import { asSystemPrompt } from '../../server/utils/systemPromptType.js'
 
 export async function generateSessionName(
   messages: Message[],

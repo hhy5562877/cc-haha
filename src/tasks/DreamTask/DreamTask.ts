@@ -7,7 +7,7 @@ import { rollbackConsolidationLock } from '../../services/autoDream/consolidatio
 import type { SetAppState, Task, TaskStateBase } from '../../Task.js'
 import { createTaskStateBase, generateTaskId } from '../../Task.js'
 import { registerTask, updateTaskState } from '../../utils/task/framework.js'
-import { emitTaskTerminatedSdk } from '../../utils/sdkEventQueue.js'
+import { emitTaskTerminatedSdk } from '../../server/utils/sdkEventQueue.js'
 
 // Keep only the N most recent turns for live display.
 const MAX_TURNS = 30

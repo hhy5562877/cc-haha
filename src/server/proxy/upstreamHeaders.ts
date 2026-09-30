@@ -12,7 +12,7 @@
  * ships with the app version and needs no migration or edit-form control.
  */
 
-import { getCcHahaVersion } from '../../utils/userAgent.js'
+import { getCcHahaVersion } from '../utils/userAgent.js'
 
 export const UPSTREAM_SESSION_ID_PLACEHOLDER = '$SESSION_ID'
 export const UPSTREAM_VERSION_PLACEHOLDER = '$VERSION'

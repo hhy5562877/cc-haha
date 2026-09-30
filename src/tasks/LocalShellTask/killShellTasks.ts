@@ -7,7 +7,7 @@ import type { AgentId } from '../../server/types/ids.js'
 import { logForDebugging } from '../../server/utils/debug.js'
 import { logError } from '../../server/utils/log.js'
 import { dequeueAllMatching } from '../../utils/messageQueueManager.js'
-import { evictTaskOutput } from '../../utils/task/diskOutput.js'
+import { evictTaskOutput } from '../../server/utils/task/diskOutput.js'
 import { updateTaskState } from '../../utils/task/framework.js'
 import { isLocalShellTask } from './guards.js'
 

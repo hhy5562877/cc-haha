@@ -9,7 +9,7 @@ import {
   type HookOutsideReplResult,
 } from '../hooks.js'
 import { clearCwdEnvFiles } from '../sessionEnvironment.js'
-import { getHooksConfigFromSnapshot } from './hooksConfigSnapshot.js'
+import { getHooksConfigFromSnapshot } from '../../server/utils/hooks/hooksConfigSnapshot.js'
 
 let watcher: FSWatcher | null = null
 let currentCwd: string

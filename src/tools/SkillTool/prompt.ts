@@ -11,7 +11,7 @@ import {
   type AnalyticsMetadata_I_VERIFIED_THIS_IS_NOT_CODE_OR_FILEPATHS,
   logEvent,
 } from '../../server/services/analytics/index.js'
-import { count } from '../../utils/array.js'
+import { count } from '../../server/utils/array.js'
 import { logForDebugging } from '../../server/utils/debug.js'
 import { toError } from '../../server/utils/errors.js'
 import { truncate } from '../../utils/format.js'

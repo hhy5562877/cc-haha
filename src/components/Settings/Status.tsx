@@ -10,7 +10,7 @@ import { type AppState, useAppState } from '../../state/AppState.js';
 import { getCwd } from '../../server/utils/cwd.js';
 import { getCurrentSessionTitle } from '../../utils/sessionStorage.js';
 import { buildAccountProperties, buildAPIProviderProperties, buildIDEProperties, buildInstallationDiagnostics, buildInstallationHealthDiagnostics, buildMcpProperties, buildMemoryDiagnostics, buildSandboxProperties, buildSettingSourcesProperties, type Diagnostic, getModelDisplayLabel, type Property } from '../../utils/status.js';
-import type { ThemeName } from '../../utils/theme.js';
+import type { ThemeName } from '../../server/utils/theme.js';
 import { ConfigurableShortcutHint } from '../ConfigurableShortcutHint.js';
 type Props = {
   context: LocalJSXCommandContext;

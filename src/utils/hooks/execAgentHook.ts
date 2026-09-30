@@ -9,7 +9,7 @@ import { SYNTHETIC_OUTPUT_TOOL_NAME } from '../../tools/SyntheticOutputTool/Synt
 import { ALL_AGENT_DISALLOWED_TOOLS } from '../../tools.js'
 import { asAgentId } from '../../server/types/ids.js'
 import type { Message } from '../../server/types/message.js'
-import { createAbortController } from '../abortController.js'
+import { createAbortController } from '../../server/utils/abortController.js'
 import { createAttachmentMessage } from '../attachments.js'
 import { createCombinedAbortSignal } from '../combinedAbortSignal.js'
 import { logForDebugging } from '../../server/utils/debug.js'
@@ -21,7 +21,7 @@ import { hasPermissionsToUseTool } from '../../server/utils/permissions/permissi
 import { getAgentTranscriptPath, getTranscriptPath } from '../sessionStorage.js'
 import type { AgentHook } from '../../server/utils/settings/types.js'
 import { jsonStringify } from '../../server/utils/slowOperations.js'
-import { asSystemPrompt } from '../systemPromptType.js'
+import { asSystemPrompt } from '../../server/utils/systemPromptType.js'
 import {
   addArgumentsToPrompt,
   createStructuredOutputTool,

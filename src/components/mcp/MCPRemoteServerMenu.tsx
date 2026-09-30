@@ -15,7 +15,7 @@ import { useMcpReconnect, useMcpToggleEnabled } from '../../server/services/mcp/
 import { describeMcpConfigFilePath, excludeCommandsByServer, excludeResourcesByServer, excludeToolsByServer, filterMcpPromptsByServer } from '../../server/services/mcp/utils.js';
 import { useAppState, useSetAppState } from '../../state/AppState.js';
 import { getOauthAccountInfo } from '../../utils/auth.js';
-import { openBrowser } from '../../utils/browser.js';
+import { openBrowser } from '../../server/utils/browser.js';
 import { errorMessage } from '../../server/utils/errors.js';
 import { logMCPDebug } from '../../server/utils/log.js';
 import { capitalize } from '../../server/utils/stringUtils.js';

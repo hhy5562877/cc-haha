@@ -21,14 +21,14 @@ import {
 import { getCommands } from './commands.js'
 import { initSessionMemory } from './services/SessionMemory/sessionMemory.js'
 import { asSessionId } from './server/types/ids.js'
-import { isAgentSwarmsEnabled } from './utils/agentSwarmsEnabled.js'
+import { isAgentSwarmsEnabled } from './server/utils/agentSwarmsEnabled.js'
 import { checkAndRestoreTerminalBackup } from './utils/appleTerminalBackup.js'
 import { prefetchApiKeyFromApiKeyHelperIfSafe } from './utils/auth.js'
 import { clearMemoryFileCaches } from './utils/claudemd.js'
 import { getCurrentProjectConfig, getGlobalConfig } from './utils/config.js'
 import { logForDiagnosticsNoPII } from './server/utils/diagLogs.js'
 import { env } from './server/utils/env.js'
-import { envDynamic } from './utils/envDynamic.js'
+import { envDynamic } from './server/utils/envDynamic.js'
 import { isBareMode, isEnvTruthy } from './server/utils/envUtils.js'
 import { errorMessage } from './server/utils/errors.js'
 import { findCanonicalGitRoot, findGitRoot, getIsGit } from './server/utils/git.js'
@@ -36,7 +36,7 @@ import { initializeFileChangedWatcher } from './utils/hooks/fileChangedWatcher.j
 import {
   captureHooksConfigSnapshot,
   updateHooksConfigSnapshot,
-} from './utils/hooks/hooksConfigSnapshot.js'
+} from './server/utils/hooks/hooksConfigSnapshot.js'
 import { hasWorktreeCreateHook } from './utils/hooks.js'
 import { checkAndRestoreITerm2Backup } from './utils/iTermBackup.js'
 import { logError } from './server/utils/log.js'

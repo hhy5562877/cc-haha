@@ -1,7 +1,7 @@
 import { feature } from 'bun:bundle'
 import { getShortcutDisplay } from '../keybindings/shortcutFormat.js'
 import { getSessionId } from '../server/bootstrap/state.js'
-import { isExtractModeActive } from '../memdir/paths.js'
+import { isExtractModeActive } from '../server/memdir/paths.js'
 import {
   type AnalyticsMetadata_I_VERIFIED_THIS_IS_NOT_CODE_OR_FILEPATHS,
   logEvent,
@@ -41,7 +41,7 @@ import {
   createUserInterruptionMessage,
   createUserMessage,
 } from '../utils/messages.js'
-import type { SystemPrompt } from '../utils/systemPromptType.js'
+import type { SystemPrompt } from '../server/utils/systemPromptType.js'
 import { getTaskListId, listTasks } from '../utils/tasks.js'
 import { getAgentName, getTeamName, isTeammate } from '../utils/teammate.js'
 
@@ -55,7 +55,7 @@ const jobClassifierModule = feature('TEMPLATES')
 
 /* eslint-enable @typescript-eslint/no-require-imports */
 
-import type { QuerySource } from '../constants/querySource.js'
+import type { QuerySource } from '../server/constants/querySource.js'
 import { executeAutoDream } from '../services/autoDream/autoDream.js'
 import { executePromptSuggestion } from '../services/PromptSuggestion/promptSuggestion.js'
 import { isBareMode, isEnvDefinedFalsy } from '../server/utils/envUtils.js'

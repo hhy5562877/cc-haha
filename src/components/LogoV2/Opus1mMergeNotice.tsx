@@ -1,7 +1,7 @@
 import { c as _c } from "react/compiler-runtime";
 import * as React from 'react';
 import { useEffect, useState } from 'react';
-import { UP_ARROW } from '../../constants/figures.js';
+import { UP_ARROW } from '../../server/constants/figures.js';
 import { Box, Text } from '../../ink.js';
 import { getGlobalConfig, saveGlobalConfig } from '../../utils/config.js';
 import { isOpus1mMergeEnabled } from '../../server/utils/model/model.js';

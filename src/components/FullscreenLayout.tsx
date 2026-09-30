@@ -9,7 +9,7 @@ import ScrollBox, { type ScrollBoxHandle } from '../ink/components/ScrollBox.js'
 import instances from '../ink/instances.js';
 import { Box, Text } from '../ink.js';
 import type { Message } from '../server/types/message.js';
-import { openBrowser, openPath } from '../utils/browser.js';
+import { openBrowser, openPath } from '../server/utils/browser.js';
 import { isFullscreenEnvEnabled } from '../utils/fullscreen.js';
 import { plural } from '../server/utils/stringUtils.js';
 import { isNullRenderingAttachment } from './messages/nullRenderingAttachments.js';

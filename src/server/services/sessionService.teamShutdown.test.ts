@@ -1,5 +1,5 @@
 import { expect, test } from 'bun:test'
-import { SHUTDOWN_TEAM_PROMPT } from '../../utils/swarm/teamShutdownPrompt.js'
+import { SHUTDOWN_TEAM_PROMPT } from '../utils/swarm/teamShutdownPrompt.js'
 import { sessionService } from './sessionService.js'
 
 test('old shutdown reminders without isMeta stay out of restored chat history', () => {

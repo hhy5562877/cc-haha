@@ -19,7 +19,7 @@ import {
   retrievePastedText,
   storePastedText,
 } from './utils/pasteStore.js'
-import { sleep } from './utils/sleep.js'
+import { sleep } from './server/utils/sleep.js'
 import { jsonParse, jsonStringify } from './server/utils/slowOperations.js'
 
 const MAX_HISTORY_ITEMS = 100

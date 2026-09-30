@@ -4,7 +4,7 @@ import type { HybridTransport } from '../cli/transports/HybridTransport.js'
 import { SSETransport } from '../cli/transports/SSETransport.js'
 import { logForDebugging } from '../server/utils/debug.js'
 import { errorMessage } from '../server/utils/errors.js'
-import { updateSessionIngressAuthToken } from '../utils/sessionIngressAuth.js'
+import { updateSessionIngressAuthToken } from '../server/utils/sessionIngressAuth.js'
 import type { SessionState } from '../utils/sessionState.js'
 import { registerWorker } from './workSecret.js'
 

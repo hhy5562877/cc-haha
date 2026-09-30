@@ -26,7 +26,7 @@ import { readFileSyncWithMetadata } from '../server/utils/fileRead.js'
 import {
   createFileStateCacheWithSizeLimit,
   type FileStateCache,
-} from './fileStateCache.js'
+} from '../server/utils/fileStateCache.js'
 import {
   INTERRUPT_MESSAGE,
   INTERRUPT_MESSAGE_FOR_TOOL_USE,

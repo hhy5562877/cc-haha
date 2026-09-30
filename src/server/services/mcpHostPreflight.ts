@@ -2,7 +2,7 @@ import { constants } from 'node:fs'
 import { access } from 'node:fs/promises'
 import path from 'node:path'
 import { getCwd } from '../utils/cwd.js'
-import { getMcpStdioEnvironment } from '../../utils/mcpStdioEnvironment.js'
+import { getMcpStdioEnvironment } from '../utils/mcpStdioEnvironment.js'
 
 type HostCommandCheckResult =
   | {

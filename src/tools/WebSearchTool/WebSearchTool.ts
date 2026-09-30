@@ -17,7 +17,7 @@ import { logError } from '../../server/utils/log.js'
 import { createUserMessage } from '../../utils/messages.js'
 import { getMainLoopModel, getSmallFastModel } from '../../server/utils/model/model.js'
 import { jsonParse, jsonStringify } from '../../server/utils/slowOperations.js'
-import { asSystemPrompt } from '../../utils/systemPromptType.js'
+import { asSystemPrompt } from '../../server/utils/systemPromptType.js'
 import {
   getApiKeyForProvider,
   getFallbackProvider,
@@ -83,9 +83,9 @@ type OutputSchema = ReturnType<typeof outputSchema>
 export type Output = z.infer<OutputSchema>
 
 // Re-export WebSearchProgress from centralized types to break import cycles
-export type { WebSearchProgress } from '../../types/tools.js'
+export type { WebSearchProgress } from '../../server/types/tools.js'
 
-import type { WebSearchProgress } from '../../types/tools.js'
+import type { WebSearchProgress } from '../../server/types/tools.js'
 
 function makeToolSchema(input: Input): BetaWebSearchTool20250305 {
   return {

@@ -5,7 +5,7 @@ import type { AnalyticsMetadata_I_VERIFIED_THIS_IS_NOT_CODE_OR_FILEPATHS } from 
 import type { Tool } from '../../Tool.js'
 import { buildTool, type ToolDef } from '../../Tool.js'
 import { formatAgentId } from '../../utils/agentId.js'
-import { isAgentSwarmsEnabled } from '../../utils/agentSwarmsEnabled.js'
+import { isAgentSwarmsEnabled } from '../../server/utils/agentSwarmsEnabled.js'
 import { getCwd } from '../../server/utils/cwd.js'
 import { lazySchema } from '../../server/utils/lazySchema.js'
 import {

@@ -22,7 +22,7 @@ type OutputSchema = ReturnType<typeof outputSchema>
 export type Output = z.infer<OutputSchema>
 
 // Re-export MCPProgress from centralized types to break import cycles
-export type { MCPProgress } from '../../types/tools.js'
+export type { MCPProgress } from '../../server/types/tools.js'
 
 export const MCPTool = buildTool({
   isMcp: true,

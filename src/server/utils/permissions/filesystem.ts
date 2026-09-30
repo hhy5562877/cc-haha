@@ -4,7 +4,7 @@ import ignore from 'ignore'
 import memoize from 'lodash-es/memoize.js'
 import { homedir, tmpdir } from 'os'
 import { join, normalize, posix, sep } from 'path'
-import { hasAutoMemPathOverride, isAutoMemPath } from 'src/memdir/paths.js'
+import { hasAutoMemPathOverride, isAutoMemPath } from 'src/server/memdir/paths.js'
 import { isAgentMemoryPath } from 'src/server/tools/AgentTool/agentMemory.js'
 import {
   CLAUDE_FOLDER_PERMISSION_PATTERN,
@@ -36,7 +36,7 @@ import {
   getSettingsFilePathForSource,
   getSettingsRootPathForSource,
 } from '../settings/settings.js'
-import { containsVulnerableUncPath } from '../../../utils/shell/readOnlyCommandValidation.js'
+import { containsVulnerableUncPath } from '../shell/readOnlyCommandValidation.js'
 import { getToolResultsDir } from '../../../utils/toolResultStorage.js'
 import { windowsPathToPosixPath } from '../windowsPaths.js'
 import type {

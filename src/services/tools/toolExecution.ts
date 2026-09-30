@@ -57,7 +57,7 @@ import type {
   ProgressMessage,
   StopHookInfo,
 } from '../../server/types/message.js'
-import { count } from '../../utils/array.js'
+import { count } from '../../server/utils/array.js'
 import { createAttachmentMessage } from '../../utils/attachments.js'
 import { logForDebugging } from '../../server/utils/debug.js'
 import {
@@ -86,7 +86,7 @@ import {
   stopSessionActivity,
 } from '../../utils/sessionActivity.js'
 import { jsonStringify } from '../../server/utils/slowOperations.js'
-import { isUnparsedToolInput } from '../../utils/unparsedToolInput.js'
+import { isUnparsedToolInput } from '../../server/utils/unparsedToolInput.js'
 import { Stream } from '../../utils/stream.js'
 import { logOTelEvent } from '../../utils/telemetry/events.js'
 import {

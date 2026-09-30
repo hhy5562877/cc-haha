@@ -21,7 +21,7 @@ import { join } from 'path'
 import { z } from 'zod'
 import { lazySchema } from '../../server/utils/lazySchema.js'
 import { jsonParse, jsonStringify } from '../../server/utils/slowOperations.js'
-import { getSecureSocketPath, getSocketDir } from './common.js'
+import { getSecureSocketPath, getSocketDir } from '../../server/utils/claudeInChrome/common.js'
 
 const VERSION = '1.0.0'
 const MAX_MESSAGE_SIZE = 1024 * 1024 // 1MB - Max message size that can be sent to Chrome

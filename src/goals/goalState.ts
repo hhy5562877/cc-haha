@@ -13,7 +13,7 @@ import {
 import {
   shouldAllowManagedHooksOnly,
   shouldDisableAllHooksIncludingManaged,
-} from '../utils/hooks/hooksConfigSnapshot.js'
+} from '../server/utils/hooks/hooksConfigSnapshot.js'
 import type { PromptHook } from '../server/utils/settings/types.js'
 
 export type ThreadGoal = {

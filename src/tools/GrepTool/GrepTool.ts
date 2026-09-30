@@ -19,7 +19,7 @@ import type { PermissionDecision } from '../../server/utils/permissions/Permissi
 import { matchWildcardPattern } from '../../server/utils/permissions/shellRuleMatching.js'
 import { getGlobExclusionsForPluginCache } from '../../server/utils/plugins/orphanedPluginFilter.js'
 import { ripGrep } from '../../server/utils/ripgrep.js'
-import { semanticBoolean } from '../../utils/semanticBoolean.js'
+import { semanticBoolean } from '../../server/utils/semanticBoolean.js'
 import { semanticNumber } from '../../utils/semanticNumber.js'
 import { plural } from '../../server/utils/stringUtils.js'
 import { GREP_TOOL_NAME, getDescription } from './prompt.js'

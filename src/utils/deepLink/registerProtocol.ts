@@ -27,7 +27,7 @@ import { getErrnoCode } from '../../server/utils/errors.js'
 import { execFileNoThrow } from '../../server/utils/execFileNoThrow.js'
 import { getInitialSettings } from '../../server/utils/settings/settings.js'
 import { which } from '../../server/utils/which.js'
-import { getUserBinDir, getXDGDataHome } from '../xdg.js'
+import { getUserBinDir, getXDGDataHome } from '../../server/utils/xdg.js'
 import { DEEP_LINK_PROTOCOL } from './parseDeepLink.js'
 
 export const MACOS_BUNDLE_ID = 'com.anthropic.claude-code-url-handler'

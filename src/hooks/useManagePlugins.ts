@@ -8,7 +8,7 @@ import {
 import { reinitializeLspServerManager } from '../services/lsp/manager.js'
 import { useAppState, useSetAppState } from '../state/AppState.js'
 import type { AgentDefinition } from '../server/tools/AgentTool/loadAgentsDir.js'
-import { count } from '../utils/array.js'
+import { count } from '../server/utils/array.js'
 import { logForDebugging } from '../server/utils/debug.js'
 import { logForDiagnosticsNoPII } from '../server/utils/diagLogs.js'
 import { toError } from '../server/utils/errors.js'

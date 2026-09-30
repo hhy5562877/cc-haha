@@ -33,7 +33,7 @@ import type { OAuthTokens, SubscriptionType } from '../server/services/oauth/typ
 import {
   getApiKeyFromFileDescriptor,
   getOAuthTokenFromFileDescriptor,
-} from './authFileDescriptor.js'
+} from '../server/utils/authFileDescriptor.js'
 import {
   maybeRemoveApiKeyFromMacOSKeychainThrows,
   normalizeApiKeyForConfig,
@@ -77,7 +77,7 @@ import {
   getSettings_DEPRECATED,
   getSettingsForSource,
 } from '../server/utils/settings/settings.js'
-import { sleep } from './sleep.js'
+import { sleep } from '../server/utils/sleep.js'
 import { jsonParse } from '../server/utils/slowOperations.js'
 import { clearToolSchemaCache } from './toolSchemaCache.js'
 

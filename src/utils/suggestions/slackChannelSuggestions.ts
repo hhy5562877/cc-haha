@@ -3,7 +3,7 @@ import type { SuggestionItem } from '../../components/PromptInput/PromptInputFoo
 import type { MCPServerConnection } from '../../server/services/mcp/types.js'
 import { logForDebugging } from '../../server/utils/debug.js'
 import { lazySchema } from '../../server/utils/lazySchema.js'
-import { createSignal } from '../signal.js'
+import { createSignal } from '../../server/utils/signal.js'
 import { jsonParse } from '../../server/utils/slowOperations.js'
 
 const SLACK_SEARCH_TOOL = 'slack_search_channels'

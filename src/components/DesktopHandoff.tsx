@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import type { CommandResultDisplay } from '../commands.js';
 // eslint-disable-next-line custom-rules/prefer-use-keybindings -- raw input for "any key" dismiss and y/n prompt
 import { Box, Text, useInput } from '../ink.js';
-import { openBrowser } from '../utils/browser.js';
+import { openBrowser } from '../server/utils/browser.js';
 import { getDesktopInstallStatus, openCurrentSessionInDesktop } from '../utils/desktopDeepLink.js';
 import { errorMessage } from '../server/utils/errors.js';
 import { gracefulShutdown } from '../utils/gracefulShutdown.js';

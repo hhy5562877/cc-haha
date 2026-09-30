@@ -5,7 +5,7 @@ import { useInterval } from 'usehooks-ts';
 import type { CommandResultDisplay } from '../../commands.js';
 import { Markdown } from '../../components/Markdown.js';
 import { SpinnerGlyph } from '../../components/Spinner/SpinnerGlyph.js';
-import { DOWN_ARROW, UP_ARROW } from '../../constants/figures.js';
+import { DOWN_ARROW, UP_ARROW } from '../../server/constants/figures.js';
 import { getSystemPrompt } from '../../constants/prompts.js';
 import { useModalOrTerminalSize } from '../../context/modalContext.js';
 import { getSystemContext, getUserContext } from '../../context.js';
@@ -14,13 +14,13 @@ import ScrollBox, { type ScrollBoxHandle } from '../../ink/components/ScrollBox.
 import type { KeyboardEvent } from '../../ink/events/keyboard-event.js';
 import { Box, Text } from '../../ink.js';
 import type { LocalJSXCommandOnDone } from '../../types/command.js';
-import { createAbortController } from '../../utils/abortController.js';
+import { createAbortController } from '../../server/utils/abortController.js';
 import { saveGlobalConfig } from '../../utils/config.js';
 import { errorMessage } from '../../server/utils/errors.js';
 import { type CacheSafeParams, getLastCacheSafeParams } from '../../utils/forkedAgent.js';
 import type { ProcessUserInputContext } from '../../utils/processUserInput/processUserInput.js';
 import { prepareSideQuestionContext, runSideQuestion } from '../../utils/sideQuestion.js';
-import { asSystemPrompt } from '../../utils/systemPromptType.js';
+import { asSystemPrompt } from '../../server/utils/systemPromptType.js';
 type BtwComponentProps = {
   question: string;
   context: ProcessUserInputContext;

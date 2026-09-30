@@ -18,7 +18,7 @@ import {
 } from '../../tasks/LocalWorkflowTask/LocalWorkflowTask.js'
 import { logForDebugging } from '../../server/utils/debug.js'
 import { registerTask, updateTaskState } from '../../utils/task/framework.js'
-import { emitTaskProgress } from '../../utils/task/sdkProgress.js'
+import { emitTaskProgress } from '../../server/utils/task/sdkProgress.js'
 import {
   WORKFLOW_PANEL_EMIT_INTERVAL_MS,
   WORKFLOW_PROGRESS_BATCH_MS,

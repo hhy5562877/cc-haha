@@ -5,7 +5,7 @@ import Link from '../ink/components/Link.js';
 import { supportsHyperlinks } from '../ink/supports-hyperlinks.js';
 import { Text } from '../ink.js';
 import { getStoredImagePath } from '../utils/imageStore.js';
-import type { Theme } from '../utils/theme.js';
+import type { Theme } from '../server/utils/theme.js';
 type Props = {
   imageId: number;
   backgroundColor?: keyof Theme;

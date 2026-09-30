@@ -1,7 +1,7 @@
 import { feature } from 'bun:bundle'
 import { join } from 'path'
 import { getFsImplementation } from '../server/utils/fsOperations.js'
-import { getAutoMemPath, isAutoMemoryEnabled } from './paths.js'
+import { getAutoMemPath, isAutoMemoryEnabled } from '../server/memdir/paths.js'
 
 /* eslint-disable @typescript-eslint/no-require-imports */
 const teamMemPaths = feature('TEAMMEM')
@@ -18,7 +18,7 @@ import {
 import { GREP_TOOL_NAME } from '../tools/GrepTool/prompt.js'
 import { isReplModeEnabled } from '../tools/REPLTool/constants.js'
 import { logForDebugging } from '../server/utils/debug.js'
-import { hasEmbeddedSearchTools } from '../utils/embeddedTools.js'
+import { hasEmbeddedSearchTools } from '../server/utils/embeddedTools.js'
 import { isEnvTruthy } from '../server/utils/envUtils.js'
 import { formatFileSize } from '../utils/format.js'
 import { getProjectDir } from '../utils/sessionStorage.js'
@@ -29,7 +29,7 @@ import {
   TYPES_SECTION_INDIVIDUAL,
   WHAT_NOT_TO_SAVE_SECTION,
   WHEN_TO_ACCESS_SECTION,
-} from './memoryTypes.js'
+} from '../server/memdir/memoryTypes.js'
 
 export const ENTRYPOINT_NAME = 'MEMORY.md'
 export const MAX_ENTRYPOINT_LINES = 200

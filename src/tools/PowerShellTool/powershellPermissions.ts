@@ -34,7 +34,7 @@ import {
   parsePowerShellCommand,
   stripModulePrefix,
 } from '../../utils/powershell/parser.js'
-import { containsVulnerableUncPath } from '../../utils/shell/readOnlyCommandValidation.js'
+import { containsVulnerableUncPath } from '../../server/utils/shell/readOnlyCommandValidation.js'
 import { isDotGitPathPS, isGitInternalPathPS } from './gitSafety.js'
 import {
   checkPermissionMode,

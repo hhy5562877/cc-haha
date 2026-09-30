@@ -19,7 +19,7 @@ import { checkCrossProjectResume } from '../../utils/crossProjectResume.js';
 import { getWorktreePaths } from '../../utils/getWorktreePaths.js';
 import { logError } from '../../server/utils/log.js';
 import { getLastSessionLog, getSessionIdFromLog, isCustomTitleEnabled, isLiteLog, loadAllProjectsMessageLogs, loadFullLog, loadSameRepoMessageLogs, searchSessionsByCustomTitle } from '../../utils/sessionStorage.js';
-import { validateUuid } from '../../utils/uuid.js';
+import { validateUuid } from '../../server/utils/uuid.js';
 type ResumeResult = {
   resultType: 'sessionNotFound';
   arg: string;

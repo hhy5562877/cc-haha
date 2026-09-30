@@ -26,7 +26,7 @@ import { OPENAI_CODEX_API_ENDPOINT } from './openaiAuth/client.js'
 import { resolveOpenAICodexModel } from './openaiAuth/models.js'
 import { anthropicToOpenaiResponses } from '../proxy/transform/anthropicToOpenaiResponses.js'
 import { openaiResponsesStreamToAnthropicResponse } from '../proxy/streaming/openaiResponsesStreamToAnthropicResponse.js'
-import { cleanSessionTitleSource, hasSessionTitleMarkup } from '../../utils/sessionTitleText.js'
+import { cleanSessionTitleSource, hasSessionTitleMarkup } from '../utils/sessionTitleText.js'
 import { extractConversationText, SESSION_TITLE_PROMPT } from '../../utils/sessionTitle.js'
 import type { ProviderAuthStrategy } from '../types/provider.js'
 

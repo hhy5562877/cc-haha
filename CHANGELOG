@@ -1,5 +1,7 @@
 # CHANGELOG
 
+- [2026-09-29 23:10] REFACTOR: 解耦批次 33 完成——剩余长尾纯净集 70 文件（433KB）一次迁入 src/server 镜像路径（64 个纯净种子 union 闭包，域外污染 0：utils 叶片/claudeInChrome-common/computerUse-common/dxt/types-generated/skills/memdir/lsp-types 等；swarm/teamShutdownPrompt 与既有 server 孪生一致做去重删除），全仓 487 文件 820 说明符语义重指；直接依赖边 487→371（累计 998→371，-63%），闭包→1670，tsc 3503 持平；server 测试 3285 pass/167 fail 持平零回归；E2E 仍因 deepailab 网络阻断暂阻 (Files: src/server/** 70 文件, src/** 487 文件重指)
+
 - [2026-09-29 22:40] REFACTOR: 解耦批次 32 完成——markdownConfigLoader/file/ripgrep 系 5 文件迁入 src/server 镜像路径（markdownConfigLoader/file/fileRead/fileReadCache/ripgrep），87 文件 123 说明符语义重指；直接依赖边 505→487，闭包→1740，tsc 3503 持平；server 测试 3285 pass/167 fail 持平；E2E 仍因 deepailab 代理阻断暂阻（环境问题，聊天链路零改动） (Files: src/server/utils/* 5 文件, src/** 87 文件重指)
 
 - [2026-09-29 22:05] REFACTOR: 解耦批次 31 完成——git/lockfile/execFileNoThrow 系 9 文件（82KB）迁入 src/server 镜像路径（git.ts/git/gitFilesystem/gitConfigParser/lockfile/execFileNoThrow(+Portable)/detectRepository/diagLogs/constants/files），全仓 142 文件 201 说明符语义重指（迁移脚本泛化为可复用版，天然幂等）；直接依赖边 534→505，tsc 3506→3503；server 测试 3285 pass/167 fail 与批次30持平；E2E 因本机代理中断（proxy/direct 对 deepailab 均不可达）暂阻，聊天链路代码本批零改动 (Files: src/server/{utils,constants}/* 9 文件, src/** 142 文件重指)

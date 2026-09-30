@@ -5,7 +5,7 @@ import memoize from 'lodash-es/memoize.js'
 import pickBy from 'lodash-es/pickBy.js'
 import { basename, dirname, join, resolve } from 'path'
 import { getOriginalCwd, getSessionTrustAccepted } from '../server/bootstrap/state.js'
-import { getAutoMemEntrypoint } from '../memdir/paths.js'
+import { getAutoMemEntrypoint } from '../server/memdir/paths.js'
 import { logEvent } from '../server/services/analytics/index.js'
 import type { McpServerConfig } from '../server/services/mcp/types.js'
 import type {
@@ -30,7 +30,7 @@ import type { MemoryType } from './memory/types.js'
 import { normalizePathForConfigKey } from '../server/utils/path.js'
 import { getEssentialTrafficOnlyReason } from '../server/utils/privacyLevel.js'
 import { getManagedFilePath } from '../server/utils/settings/managedPath.js'
-import type { ThemeSetting } from './theme.js'
+import type { ThemeSetting } from '../server/utils/theme.js'
 
 /* eslint-disable @typescript-eslint/no-require-imports */
 const teamMemPaths = feature('TEAMMEM')

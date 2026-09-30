@@ -1,5 +1,5 @@
 import type { RequestCompatibility, SavedProvider } from './types/provider.js'
-import { AUTO_QUESTION_TIMEOUT_OPTIONS, normalizeAutoQuestionSettings } from '../shared/autoQuestionSettings.js'
+import { AUTO_QUESTION_TIMEOUT_OPTIONS, normalizeAutoQuestionSettings } from './shared/autoQuestionSettings.js'
 
 export type ApiRequestContext = { remoteBrowser?: boolean }
 const READ_SETTINGS = ['alwaysThinkingEnabled', 'workflowKeywordTriggerEnabled', 'autoDreamEnabled', 'skipAutoPermissionPrompt', 'chatSendBehavior', 'outputStyle', 'skipWebFetchPreflight', 'language']

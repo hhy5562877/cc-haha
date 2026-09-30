@@ -41,7 +41,7 @@ import {
   DEFAULT_AUTO_QUESTION_SETTINGS,
   normalizeAutoQuestionSettings,
   type AutoQuestionSettings,
-} from '../../../src/shared/autoQuestionSettings'
+} from '../../../src/server/shared/autoQuestionSettings.js'
 import {
   applyDocumentLocale,
   getInitialLocale,

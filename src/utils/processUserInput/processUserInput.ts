@@ -5,7 +5,7 @@ import type {
   ImageBlockParam,
 } from '@anthropic-ai/sdk/resources/messages.mjs'
 import { randomUUID } from 'crypto'
-import type { QuerySource } from 'src/constants/querySource.js'
+import type { QuerySource } from 'src/server/constants/querySource.js'
 import { logEvent } from '../../server/services/analytics/index.js'
 import { getContentText } from 'src/utils/messages.js'
 import {
@@ -53,7 +53,7 @@ import {
   createUserMessage,
 } from '../messages.js'
 import { queryCheckpoint } from '../queryProfiler.js'
-import { parseSlashCommand } from '../slashCommandParsing.js'
+import { parseSlashCommand } from '../../server/utils/slashCommandParsing.js'
 import {
   hasUltraplanKeyword,
   replaceUltraplanKeyword,

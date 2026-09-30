@@ -13,7 +13,7 @@ import { lazySchema } from '../../server/utils/lazySchema.js'
 import * as lockfile from '../../server/utils/lockfile.js'
 import type { PermissionMode } from '../../server/utils/permissions/PermissionMode.js'
 import { jsonParse, jsonStringify } from '../../server/utils/slowOperations.js'
-import { sleep } from '../sleep.js'
+import { sleep } from '../../server/utils/sleep.js'
 import {
   completeTaskListLifecycle,
   getCanonicalTeamTaskListId,

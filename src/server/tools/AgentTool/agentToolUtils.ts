@@ -37,7 +37,7 @@ import {
 } from '../../../tasks/LocalAgentTask/LocalAgentTask.js'
 import { asAgentId } from '../../types/ids.js'
 import type { Message as MessageType } from '../../types/message.js'
-import { isAgentSwarmsEnabled } from '../../../utils/agentSwarmsEnabled.js'
+import { isAgentSwarmsEnabled } from '../../utils/agentSwarmsEnabled.js'
 import { logForDebugging } from '../../utils/debug.js'
 import { isInProtectedNamespace } from '../../utils/envUtils.js'
 import { AbortError, errorMessage } from '../../utils/errors.js'
@@ -53,10 +53,10 @@ import {
   buildTranscriptForClassifier,
   classifyYoloAction,
 } from '../../utils/permissions/yoloClassifier.js'
-import { emitTaskProgress as emitTaskProgressEvent } from '../../../utils/task/sdkProgress.js'
-import { emitAgentToolActivity, type AgentToolActivity } from '../../../utils/sdkEventQueue.js'
+import { emitTaskProgress as emitTaskProgressEvent } from '../../utils/task/sdkProgress.js'
+import { emitAgentToolActivity, type AgentToolActivity } from '../../utils/sdkEventQueue.js'
 import { SYNTHETIC_OUTPUT_TOOL_NAME } from '../../../tools/SyntheticOutputTool/SyntheticOutputTool.js'
-import { isInProcessTeammate } from '../../../utils/teammateContext.js'
+import { isInProcessTeammate } from '../../utils/teammateContext.js'
 import { getTokenCountFromUsage } from '../../../utils/tokens.js'
 import { EXIT_PLAN_MODE_V2_TOOL_NAME } from '../../../tools/ExitPlanModeTool/constants.js'
 import { AGENT_TOOL_NAME, LEGACY_AGENT_TOOL_NAME } from './constants.js'

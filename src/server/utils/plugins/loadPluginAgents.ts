@@ -1,7 +1,7 @@
 import memoize from 'lodash-es/memoize.js'
 import { createHash } from 'node:crypto'
 import { basename } from 'path'
-import { isAutoMemoryEnabled } from '../../../memdir/paths.js'
+import { isAutoMemoryEnabled } from '../../memdir/paths.js'
 import type { AgentColorName } from '../../tools/AgentTool/agentColorManager.js'
 import {
   type AgentMemoryScope,

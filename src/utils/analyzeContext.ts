@@ -54,7 +54,7 @@ import {
   calculateCurrentContextTokenTotal,
   getContextWindowForModel,
 } from './context.js'
-import { getProviderUsageTrust, hasMediaInput } from './contextBudget.js'
+import { getProviderUsageTrust, hasMediaInput } from '../server/utils/contextBudget.js'
 import { getCwd } from '../server/utils/cwd.js'
 import { logForDebugging } from '../server/utils/debug.js'
 import { isEnvTruthy } from '../server/utils/envUtils.js'
@@ -69,7 +69,7 @@ import { isFirstPartyAnthropicBaseUrl } from '../server/utils/model/providers.js
 import type { SettingSource } from '../server/utils/settings/constants.js'
 import { jsonStringify } from '../server/utils/slowOperations.js'
 import { buildEffectiveSystemPrompt } from './systemPrompt.js'
-import type { Theme } from './theme.js'
+import type { Theme } from '../server/utils/theme.js'
 import { getCurrentUsage, tokenCountWithEstimation } from './tokens.js'
 
 const RESERVED_CATEGORY_NAME = 'Autocompact buffer'

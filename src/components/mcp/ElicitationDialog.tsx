@@ -9,7 +9,7 @@ import { useTerminalSize } from '../../hooks/useTerminalSize.js';
 import { Box, Text, useInput } from '../../ink.js';
 import { useKeybinding } from '../../keybindings/useKeybinding.js';
 import type { ElicitationRequestEvent } from '../../server/services/mcp/elicitationHandler.js';
-import { openBrowser } from '../../utils/browser.js';
+import { openBrowser } from '../../server/utils/browser.js';
 import { getEnumLabel, getEnumValues, getMultiSelectLabel, getMultiSelectValues, isDateTimeSchema, isEnumSchema, isMultiSelectEnumSchema, validateElicitationInput, validateElicitationInputAsync } from '../../utils/mcp/elicitationValidation.js';
 import { plural } from '../../server/utils/stringUtils.js';
 import { ConfigurableShortcutHint } from '../ConfigurableShortcutHint.js';

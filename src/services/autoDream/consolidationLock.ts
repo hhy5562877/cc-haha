@@ -9,9 +9,9 @@
 import { mkdir, readFile, stat, unlink, utimes, writeFile } from 'fs/promises'
 import { join } from 'path'
 import { getOriginalCwd } from '../../server/bootstrap/state.js'
-import { getAutoMemPath } from '../../memdir/paths.js'
+import { getAutoMemPath } from '../../server/memdir/paths.js'
 import { logForDebugging } from '../../server/utils/debug.js'
-import { isProcessRunning } from '../../utils/genericProcessUtils.js'
+import { isProcessRunning } from '../../server/utils/genericProcessUtils.js'
 import { listCandidates } from '../../utils/listSessionsImpl.js'
 import { getProjectDir } from '../../utils/sessionStorage.js'
 

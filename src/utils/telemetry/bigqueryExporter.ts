@@ -17,7 +17,7 @@ import { errorMessage, toError } from '../../server/utils/errors.js'
 import { getAuthHeaders } from '../http.js'
 import { logError } from '../../server/utils/log.js'
 import { jsonStringify } from '../../server/utils/slowOperations.js'
-import { getClaudeCodeUserAgent } from '../userAgent.js'
+import { getClaudeCodeUserAgent } from '../../server/utils/userAgent.js'
 
 type DataPoint = {
   attributes: Record<string, string>

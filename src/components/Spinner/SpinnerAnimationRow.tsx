@@ -7,7 +7,7 @@ import { Box, Text, useAnimationFrame } from '../../ink.js';
 import type { InProcessTeammateTaskState } from '../../tasks/InProcessTeammateTask/types.js';
 import { formatDuration, formatTokens } from '../../utils/format.js';
 import { toInkColor } from '../../utils/ink.js';
-import type { Theme } from '../../utils/theme.js';
+import type { Theme } from '../../server/utils/theme.js';
 import { Byline } from '../design-system/Byline.js';
 import { GlimmerMessage } from './GlimmerMessage.js';
 import { SpinnerGlyph } from './SpinnerGlyph.js';

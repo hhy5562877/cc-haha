@@ -8,7 +8,7 @@ import {
   createLSPServerInstance,
   type LSPServerInstance,
 } from './LSPServerInstance.js'
-import type { ScopedLspServerConfig } from './types.js'
+import type { ScopedLspServerConfig } from '../../server/services/lsp/types.js'
 /**
  * LSP Server Manager interface returned by createLSPServerManager.
  * Manages multiple LSP server instances and routes requests based on file extensions.

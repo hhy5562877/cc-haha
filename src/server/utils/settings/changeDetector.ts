@@ -10,7 +10,7 @@ import {
   executeConfigChangeHooks,
   hasBlockingResult,
 } from '../../../utils/hooks.js'
-import { createSignal } from '../../../utils/signal.js'
+import { createSignal } from '../signal.js'
 import { jsonStringify } from '../slowOperations.js'
 import { SETTING_SOURCES, type SettingSource } from './constants.js'
 import { clearInternalWrites, consumeInternalWrite } from './internalWrites.js'

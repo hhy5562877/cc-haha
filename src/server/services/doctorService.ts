@@ -3,7 +3,7 @@ import * as os from 'node:os'
 import * as path from 'node:path'
 import type { Dirent } from 'node:fs'
 import { getClaudeConfigHomeDir } from '../utils/envUtils.js'
-import { AGENT_SKILLS_DIR, isAgentSkillsDirectoryEnabled } from '../../skills/skillRoots.js'
+import { AGENT_SKILLS_DIR, isAgentSkillsDirectoryEnabled } from '../skills/skillRoots.js'
 import { ProvidersIndexSchema } from '../types/provider.js'
 import { diagnosticsService } from './diagnosticsService.js'
 

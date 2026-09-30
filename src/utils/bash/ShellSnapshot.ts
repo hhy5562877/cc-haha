@@ -9,14 +9,14 @@ import { logForDebugging } from '../../server/utils/debug.js'
 import {
   embeddedSearchToolsBinaryPath,
   hasEmbeddedSearchTools,
-} from '../embeddedTools.js'
+} from '../../server/utils/embeddedTools.js'
 import { getClaudeConfigHomeDir } from '../../server/utils/envUtils.js'
 import { pathExists } from '../../server/utils/file.js'
 import { getFsImplementation } from '../../server/utils/fsOperations.js'
 import { logError } from '../../server/utils/log.js'
 import { ripgrepCommand } from '../../server/utils/ripgrep.js'
-import { subprocessEnv } from '../subprocessEnv.js'
-import { quote } from './shellQuote.js'
+import { subprocessEnv } from '../../server/utils/subprocessEnv.js'
+import { quote } from '../../server/utils/bash/shellQuote.js'
 
 const LITERAL_BACKSLASH = '\\'
 const SNAPSHOT_CREATION_TIMEOUT = 10000 // 10 seconds

@@ -14,7 +14,7 @@ import type {
 import { logForDebugging } from '../../server/utils/debug.js'
 import { errorMessage } from '../../server/utils/errors.js'
 import { logError } from '../../server/utils/log.js'
-import { subprocessEnv } from '../../utils/subprocessEnv.js'
+import { subprocessEnv } from '../../server/utils/subprocessEnv.js'
 /**
  * LSP client interface.
  */

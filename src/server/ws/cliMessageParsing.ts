@@ -19,7 +19,7 @@ import {
 import {
   getCommandMetadataDisplayText,
   shouldHideCommandMetadataContent,
-} from '../../utils/commandMetadata.js'
+} from '../utils/commandMetadata.js'
 
 export function extractAssistantStreamTextForTitle(cliMsg: any): string | null {
   const event = cliMsg?.event

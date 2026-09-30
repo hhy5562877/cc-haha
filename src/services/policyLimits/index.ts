@@ -37,9 +37,9 @@ import {
   isFirstPartyAnthropicBaseUrl,
 } from '../../server/utils/model/providers.js'
 import { isEssentialTrafficOnly } from '../../server/utils/privacyLevel.js'
-import { sleep } from '../../utils/sleep.js'
+import { sleep } from '../../server/utils/sleep.js'
 import { jsonStringify } from '../../server/utils/slowOperations.js'
-import { getClaudeCodeUserAgent } from '../../utils/userAgent.js'
+import { getClaudeCodeUserAgent } from '../../server/utils/userAgent.js'
 import { getRetryDelay } from '../api/withRetry.js'
 import {
   type PolicyLimitsFetchResult,

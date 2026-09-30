@@ -34,7 +34,7 @@ import { getDesktopNotificationPermission, notifyDesktop, getDesktopNotification
 import { SETTINGS_CHECKBOX_INPUT_CLASS, SettingsCheckboxMark, isValidHttpProxyUrl } from '../settings/shared'
 import { isTouchH5Document } from '../../lib/touchH5'
 import { MODEL_REASONING_EFFORTS } from '../../../../src/server/shared/modelReasoning.js'
-import { AUTO_QUESTION_TIMEOUT_OPTIONS } from '../../../../src/shared/autoQuestionSettings'
+import { AUTO_QUESTION_TIMEOUT_OPTIONS } from '../../../../src/server/shared/autoQuestionSettings.js'
 import { ChatAppearanceSettings } from './ChatAppearanceSettings'
 
 /**

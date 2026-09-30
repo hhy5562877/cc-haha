@@ -17,7 +17,7 @@ import {
   toolMatchesName,
 } from '../../Tool.js'
 import { formatAgentId, generateRequestId } from '../../utils/agentId.js'
-import { isAgentSwarmsEnabled } from '../../utils/agentSwarmsEnabled.js'
+import { isAgentSwarmsEnabled } from '../../server/utils/agentSwarmsEnabled.js'
 import { logForDebugging } from '../../server/utils/debug.js'
 import {
   findInProcessTeammateTaskId,

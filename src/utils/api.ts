@@ -35,7 +35,7 @@ import type { AgentDefinition } from '../server/tools/AgentTool/loadAgentsDir.js
 import { EXIT_PLAN_MODE_V2_TOOL_NAME } from '../tools/ExitPlanModeTool/constants.js'
 import { TASK_OUTPUT_TOOL_NAME } from '../tools/TaskOutputTool/constants.js'
 import type { Message } from '../server/types/message.js'
-import { isAgentSwarmsEnabled } from './agentSwarmsEnabled.js'
+import { isAgentSwarmsEnabled } from '../server/utils/agentSwarmsEnabled.js'
 import {
   modelSupportsStructuredOutputs,
   shouldUseGlobalCacheScope,
@@ -60,7 +60,7 @@ import {
 import { getPlatform } from '../server/utils/platform.js'
 import { countFilesRoundedRg } from '../server/utils/ripgrep.js'
 import { jsonStringify } from '../server/utils/slowOperations.js'
-import type { SystemPrompt } from './systemPromptType.js'
+import type { SystemPrompt } from '../server/utils/systemPromptType.js'
 import { getToolSchemaCache } from './toolSchemaCache.js'
 import { windowsPathToPosixPath } from '../server/utils/windowsPaths.js'
 import { zodToJsonSchema } from './zodToJsonSchema.js'

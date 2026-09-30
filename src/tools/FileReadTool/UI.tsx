@@ -8,7 +8,7 @@ import { Text } from '../../ink.js';
 import { FILE_NOT_FOUND_CWD_NOTE, getDisplayPath } from '../../server/utils/file.js';
 import { formatFileSize } from '../../utils/format.js';
 import { getPlansDirectory } from '../../utils/plans.js';
-import { getTaskOutputDir } from '../../utils/task/diskOutput.js';
+import { getTaskOutputDir } from '../../server/utils/task/diskOutput.js';
 import type { Input, Output } from './FileReadTool.js';
 
 /**

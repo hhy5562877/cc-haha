@@ -1,6 +1,6 @@
 import { c as _c } from "react/compiler-runtime";
 import * as React from 'react';
-import { DIAMOND_FILLED, DIAMOND_OPEN } from '../../constants/figures.js';
+import { DIAMOND_FILLED, DIAMOND_OPEN } from '../../server/constants/figures.js';
 import { NO_CONTENT_MESSAGE } from '../../constants/messages.js';
 import { Box, Text } from '../../ink.js';
 import { extractTag } from '../../utils/messages.js';

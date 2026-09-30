@@ -14,7 +14,7 @@ import { lazySchema } from '../../server/utils/lazySchema.js'
 import { logError } from '../../server/utils/log.js'
 import { getAPIProvider } from '../../server/utils/model/providers.js'
 import { isEssentialTrafficOnly } from '../../server/utils/privacyLevel.js'
-import { getClaudeCodeUserAgent } from '../../utils/userAgent.js'
+import { getClaudeCodeUserAgent } from '../../server/utils/userAgent.js'
 
 const bootstrapResponseSchema = lazySchema(() =>
   z.object({

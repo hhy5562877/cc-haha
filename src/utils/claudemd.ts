@@ -46,7 +46,7 @@ import {
   getOriginalCwd,
 } from '../server/bootstrap/state.js'
 import { truncateEntrypointContent } from '../memdir/memdir.js'
-import { getAutoMemEntrypoint, isAutoMemoryEnabled } from '../memdir/paths.js'
+import { getAutoMemEntrypoint, isAutoMemoryEnabled } from '../server/memdir/paths.js'
 import { getFeatureValue_CACHED_MAY_BE_STALE } from '../server/services/analytics/growthbook.js'
 import {
   getCurrentProjectConfig,
@@ -59,7 +59,7 @@ import { logForDiagnosticsNoPII } from '../server/utils/diagLogs.js'
 import { getClaudeConfigHomeDir, isEnvTruthy } from '../server/utils/envUtils.js'
 import { getErrnoCode } from '../server/utils/errors.js'
 import { normalizePathForComparison } from '../server/utils/file.js'
-import { cacheKeys, type FileStateCache } from './fileStateCache.js'
+import { cacheKeys, type FileStateCache } from '../server/utils/fileStateCache.js'
 import {
   parseFrontmatter,
   splitPathInFrontmatter,

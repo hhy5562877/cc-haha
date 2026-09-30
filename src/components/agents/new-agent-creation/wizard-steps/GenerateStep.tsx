@@ -3,7 +3,7 @@ import React, { type ReactNode, useCallback, useRef, useState } from 'react';
 import { useMainLoopModel } from '../../../../hooks/useMainLoopModel.js';
 import { Box, Text } from '../../../../ink.js';
 import { useKeybinding } from '../../../../keybindings/useKeybinding.js';
-import { createAbortController } from '../../../../utils/abortController.js';
+import { createAbortController } from '../../../../server/utils/abortController.js';
 import { editPromptInEditor } from '../../../../utils/promptEditor.js';
 import { ConfigurableShortcutHint } from '../../../ConfigurableShortcutHint.js';
 import { Byline } from '../../../design-system/Byline.js';

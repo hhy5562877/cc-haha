@@ -4,7 +4,7 @@
  * Original work by Jason Young, MIT License
  */
 
-import { CLAUDE_CODE_BILLING_HEADER_PREFIX } from '../../../constants/claudeCodeCompatibility.js'
+import { CLAUDE_CODE_BILLING_HEADER_PREFIX } from '../../constants/claudeCodeCompatibility.js'
 
 /**
  * Strip a leading Claude Code billing attribution line from system text.

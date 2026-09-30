@@ -38,7 +38,7 @@ import {
   calculateContextBudget,
   getProviderUsageTrust,
   hasMediaInput,
-} from '../../utils/contextBudget.js'
+} from '../utils/contextBudget.js'
 import { getCanonicalName } from '../utils/model.js'
 import { isFirstPartyAnthropicBaseUrl } from '../utils/model.js'
 import {
@@ -48,12 +48,12 @@ import {
 } from './repositoryLaunchService.js'
 import { registerFilesystemAccessRoot } from './filesystemAccessRoots.js'
 import { normalizeDriveRootPathForPlatform } from './windowsDrivePath.js'
-import { cleanSessionTitleSource } from '../../utils/sessionTitleText.js'
+import { cleanSessionTitleSource } from '../utils/sessionTitleText.js'
 import {
   roughTokenCountEstimationForMessage,
 } from '../../services/tokenEstimation.js'
 import { ProviderService } from './providerService.js'
-import { shouldHideCommandMetadataContent } from '../../utils/commandMetadata.js'
+import { shouldHideCommandMetadataContent } from '../utils/commandMetadata.js'
 import { getClaudeConfigHomeDir } from '../utils/envUtils.js'
 import {
   countDalSessionMessages,

@@ -2,7 +2,7 @@ import { relative } from 'path'
 import type { ToolUseContext } from '../../Tool.js'
 import type { LocalCommandResult } from '../../types/command.js'
 import { getCwd } from '../../server/utils/cwd.js'
-import { cacheKeys } from '../../utils/fileStateCache.js'
+import { cacheKeys } from '../../server/utils/fileStateCache.js'
 
 export async function call(
   _args: string,

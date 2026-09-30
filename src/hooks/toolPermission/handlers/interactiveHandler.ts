@@ -23,7 +23,7 @@ import {
   setClassifierApproval,
   setClassifierChecking,
   setYoloClassifierApproval,
-} from '../../../utils/classifierApprovals.js'
+} from '../../../server/utils/classifierApprovals.js'
 import { errorMessage } from '../../../server/utils/errors.js'
 import type { PermissionDecision } from '../../../server/utils/permissions/PermissionResult.js'
 import type { PermissionUpdate } from '../../../server/utils/permissions/PermissionUpdateSchema.js'

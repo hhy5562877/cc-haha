@@ -1,7 +1,7 @@
 import {
   DANGEROUS_SHELL_SETTINGS,
   SAFE_ENV_VARS,
-} from '../../utils/managedEnvConstants.js'
+} from '../../server/utils/managedEnvConstants.js'
 import type { SettingsJson } from '../../server/utils/settings/types.js'
 import { jsonStringify } from '../../server/utils/slowOperations.js'
 

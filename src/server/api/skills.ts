@@ -16,7 +16,7 @@ import {
   outranksClaimedSkill,
   type SkillRoot,
   type SkillRootFlavor,
-} from '../../skills/skillRoots.js'
+} from '../skills/skillRoots.js'
 import { clearInstalledPluginsCache } from '../utils/plugins/installedPluginsManager.js'
 import { clearPluginCache, loadAllPlugins, loadAllPluginsCacheOnly } from '../utils/plugins/pluginLoader.js'
 import { getSkillDirCommands } from '../../skills/loadSkillsDir.js'

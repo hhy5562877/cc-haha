@@ -12,7 +12,7 @@ import { consumeSpeculativeClassifierCheck, peekSpeculativeClassifierCheck } fro
 import { BASH_TOOL_NAME } from '../tools/BashTool/toolName.js';
 import type { AssistantMessage } from '../server/types/message.js';
 import { recordAutoModeDenial } from '../utils/autoModeDenials.js';
-import { clearClassifierChecking, setClassifierApproval, setYoloClassifierApproval } from '../utils/classifierApprovals.js';
+import { clearClassifierChecking, setClassifierApproval, setYoloClassifierApproval } from '../server/utils/classifierApprovals.js';
 import { logForDebugging } from '../server/utils/debug.js';
 import { AbortError } from '../server/utils/errors.js';
 import { logError } from '../server/utils/log.js';

@@ -6,7 +6,7 @@ import {
   shouldFallbackToPermissionRestart,
   translateCliMessage,
 } from '../ws/handler.js'
-import { parseSlashCommand } from '../../utils/slashCommandParsing.js'
+import { parseSlashCommand } from '../utils/slashCommandParsing.js'
 
 afterEach(() => {
   __resetWebSocketHandlerStateForTests()

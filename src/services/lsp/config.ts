@@ -4,7 +4,7 @@ import { errorMessage, toError } from '../../server/utils/errors.js'
 import { logError } from '../../server/utils/log.js'
 import { getPluginLspServers } from '../../server/utils/plugins/lspPluginIntegration.js'
 import { loadAllPluginsCacheOnly } from '../../server/utils/plugins/pluginLoader.js'
-import type { ScopedLspServerConfig } from './types.js'
+import type { ScopedLspServerConfig } from '../../server/services/lsp/types.js'
 
 /**
  * Get all configured LSP servers from plugins.

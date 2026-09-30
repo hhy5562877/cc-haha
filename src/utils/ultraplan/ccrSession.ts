@@ -11,7 +11,7 @@ import type {
 import type { SDKMessage } from '../../entrypoints/agentSdkTypes.js'
 import { EXIT_PLAN_MODE_V2_TOOL_NAME } from '../../tools/ExitPlanModeTool/constants.js'
 import { logForDebugging } from '../../server/utils/debug.js'
-import { sleep } from '../sleep.js'
+import { sleep } from '../../server/utils/sleep.js'
 import { isTransientNetworkError } from '../teleport/api.js'
 import {
   type PollRemoteSessionResponse,

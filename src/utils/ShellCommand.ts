@@ -7,7 +7,7 @@ import { formatDuration } from './format.js'
 import {
   MAX_TASK_OUTPUT_BYTES,
   MAX_TASK_OUTPUT_BYTES_DISPLAY,
-} from './task/diskOutput.js'
+} from '../server/utils/task/diskOutput.js'
 import { TaskOutput } from './task/TaskOutput.js'
 
 export type ExecResult = {

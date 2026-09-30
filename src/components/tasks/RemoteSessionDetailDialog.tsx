@@ -5,7 +5,7 @@ import type { SDKMessage } from 'src/entrypoints/agentSdkTypes.js';
 import type { ToolUseContext } from 'src/Tool.js';
 import type { DeepImmutable } from 'src/types/utils.js';
 import type { CommandResultDisplay } from '../../commands.js';
-import { DIAMOND_FILLED, DIAMOND_OPEN } from '../../constants/figures.js';
+import { DIAMOND_FILLED, DIAMOND_OPEN } from '../../server/constants/figures.js';
 import { useElapsedTime } from '../../hooks/useElapsedTime.js';
 import type { KeyboardEvent } from '../../ink/events/keyboard-event.js';
 import { Box, Link, Text } from '../../ink.js';
@@ -14,7 +14,7 @@ import { getRemoteTaskSessionUrl } from '../../tasks/RemoteAgentTask/RemoteAgent
 import { AGENT_TOOL_NAME, LEGACY_AGENT_TOOL_NAME } from '../../server/tools/AgentTool/constants.js';
 import { ASK_USER_QUESTION_TOOL_NAME } from '../../tools/AskUserQuestionTool/prompt.js';
 import { EXIT_PLAN_MODE_V2_TOOL_NAME } from '../../tools/ExitPlanModeTool/constants.js';
-import { openBrowser } from '../../utils/browser.js';
+import { openBrowser } from '../../server/utils/browser.js';
 import { errorMessage } from '../../server/utils/errors.js';
 import { formatDuration, truncateToWidth } from '../../utils/format.js';
 import { toInternalMessages } from '../../utils/messages/mappers.js';

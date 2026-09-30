@@ -8,7 +8,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { every } from 'src/utils/set.js';
 import { getIsRemoteMode } from '../server/bootstrap/state.js';
 import type { Command } from '../commands.js';
-import { BLACK_CIRCLE } from '../constants/figures.js';
+import { BLACK_CIRCLE } from '../server/constants/figures.js';
 import { useTerminalSize } from '../hooks/useTerminalSize.js';
 import type { ScrollBoxHandle } from '../ink/components/ScrollBox.js';
 import { useTerminalNotification } from '../ink/useTerminalNotification.js';

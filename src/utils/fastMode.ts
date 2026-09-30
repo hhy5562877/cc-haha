@@ -33,7 +33,7 @@ import {
   getSettingsForSource,
   updateSettingsForSource,
 } from '../server/utils/settings/settings.js'
-import { createSignal } from './signal.js'
+import { createSignal } from '../server/utils/signal.js'
 
 export function isFastModeEnabled(): boolean {
   return !isEnvTruthy(process.env.CLAUDE_CODE_DISABLE_FAST_MODE)

@@ -40,7 +40,7 @@ import { getGlobalConfig, saveGlobalConfig } from '../config.js'
 import { logForDebugging } from '../../server/utils/debug.js'
 import { getCurrentInstallationType } from '../doctorDiagnostic.js'
 import { env } from '../../server/utils/env.js'
-import { envDynamic } from '../envDynamic.js'
+import { envDynamic } from '../../server/utils/envDynamic.js'
 import { isEnvTruthy } from '../../server/utils/envUtils.js'
 import { errorMessage, getErrnoCode, isENOENT, toError } from '../../server/utils/errors.js'
 import { execFileNoThrowWithCwd } from '../../server/utils/execFileNoThrow.js'
@@ -54,13 +54,13 @@ import {
   readFileLines,
   writeFileLines,
 } from '../shellConfig.js'
-import { sleep } from '../sleep.js'
+import { sleep } from '../../server/utils/sleep.js'
 import {
   getUserBinDir,
   getXDGCacheHome,
   getXDGDataHome,
   getXDGStateHome,
-} from '../xdg.js'
+} from '../../server/utils/xdg.js'
 import { downloadVersion, getLatestVersion } from './download.js'
 import {
   acquireProcessLifetimeLock,

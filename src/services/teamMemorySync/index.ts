@@ -39,7 +39,7 @@ import {
   PathTraversalError,
   validateTeamMemKey,
 } from '../../memdir/teamMemPaths.js'
-import { count } from '../../utils/array.js'
+import { count } from '../../server/utils/array.js'
 import {
   checkAndRefreshOAuthTokenIfNeeded,
   getClaudeAIOAuthTokens,
@@ -51,9 +51,9 @@ import {
   getAPIProvider,
   isFirstPartyAnthropicBaseUrl,
 } from '../../server/utils/model/providers.js'
-import { sleep } from '../../utils/sleep.js'
+import { sleep } from '../../server/utils/sleep.js'
 import { jsonStringify } from '../../server/utils/slowOperations.js'
-import { getClaudeCodeUserAgent } from '../../utils/userAgent.js'
+import { getClaudeCodeUserAgent } from '../../server/utils/userAgent.js'
 import { logEvent } from '../../server/services/analytics/index.js'
 import type { AnalyticsMetadata_I_VERIFIED_THIS_IS_NOT_CODE_OR_FILEPATHS } from '../../server/services/analytics/metadata.js'
 import { getRetryDelay } from '../api/withRetry.js'

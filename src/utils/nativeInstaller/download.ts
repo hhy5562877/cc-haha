@@ -18,7 +18,7 @@ import { toError } from '../../server/utils/errors.js'
 import { execFileNoThrowWithCwd } from '../../server/utils/execFileNoThrow.js'
 import { getFsImplementation } from '../../server/utils/fsOperations.js'
 import { logError } from '../../server/utils/log.js'
-import { sleep } from '../sleep.js'
+import { sleep } from '../../server/utils/sleep.js'
 import { jsonStringify, writeFileSync_DEPRECATED } from '../../server/utils/slowOperations.js'
 import { getBinaryName, getPlatform } from './installer.js'
 

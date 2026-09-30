@@ -37,7 +37,7 @@ import {
   createV1ReplTransport,
   createV2ReplTransport,
 } from './replBridgeTransport.js'
-import { updateSessionIngressAuthToken } from '../utils/sessionIngressAuth.js'
+import { updateSessionIngressAuthToken } from '../server/utils/sessionIngressAuth.js'
 import { isEnvTruthy, isInProtectedNamespace } from '../server/utils/envUtils.js'
 import { validateBridgeId } from './bridgeApi.js'
 import {
@@ -59,7 +59,7 @@ import {
   type PollIntervalConfig,
 } from './pollConfigDefaults.js'
 import { errorMessage } from '../server/utils/errors.js'
-import { sleep } from '../utils/sleep.js'
+import { sleep } from '../server/utils/sleep.js'
 import {
   wrapApiForFaultInjection,
   registerBridgeDebugHandle,

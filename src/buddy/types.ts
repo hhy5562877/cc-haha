@@ -148,4 +148,4 @@ export const RARITY_COLORS = {
   rare: 'permission',
   epic: 'autoAccept',
   legendary: 'warning',
-} as const satisfies Record<Rarity, keyof import('../utils/theme.js').Theme>
+} as const satisfies Record<Rarity, keyof import('../server/utils/theme.js').Theme>

@@ -4,12 +4,12 @@ import {
   extractOutputRedirections,
   splitCommand_DEPRECATED,
 } from '../../utils/bash/commands.js'
-import { tryParseShellCommand } from '../../utils/bash/shellQuote.js'
+import { tryParseShellCommand } from '../../server/utils/bash/shellQuote.js'
 import { getCwd } from '../../server/utils/cwd.js'
 import { isCurrentDirectoryBareGitRepo } from '../../server/utils/git.js'
 import type { PermissionResult } from '../../server/utils/permissions/PermissionResult.js'
 import { getPlatform } from '../../server/utils/platform.js'
-import { SandboxManager } from '../../utils/sandbox/sandbox-adapter.js'
+import { SandboxManager } from '../../server/utils/sandbox/sandbox-adapter.js'
 import {
   containsVulnerableUncPath,
   DOCKER_READ_ONLY_COMMANDS,
@@ -20,7 +20,7 @@ import {
   PYRIGHT_READ_ONLY_COMMANDS,
   RIPGREP_READ_ONLY_COMMANDS,
   validateFlags,
-} from '../../utils/shell/readOnlyCommandValidation.js'
+} from '../../server/utils/shell/readOnlyCommandValidation.js'
 import type { BashTool } from './BashTool.js'
 import { commandHasAnyCd, isNormalizedGitCommand } from './bashPermissions.js'
 import { bashCommandIsSafe_DEPRECATED } from './bashSecurity.js'

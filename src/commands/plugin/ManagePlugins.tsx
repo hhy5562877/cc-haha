@@ -25,8 +25,8 @@ import { disablePluginOp, enablePluginOp, getPluginInstallationFromV2, isInstall
 import { useAppState } from '../../state/AppState.js';
 import type { Tool } from '../../Tool.js';
 import type { LoadedPlugin, PluginError } from '../../types/plugin.js';
-import { count } from '../../utils/array.js';
-import { openBrowser } from '../../utils/browser.js';
+import { count } from '../../server/utils/array.js';
+import { openBrowser } from '../../server/utils/browser.js';
 import { logForDebugging } from '../../server/utils/debug.js';
 import { errorMessage, toError } from '../../server/utils/errors.js';
 import { logError } from '../../server/utils/log.js';

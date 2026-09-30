@@ -25,7 +25,7 @@ import { toError } from '../server/utils/errors.js'
 import { getSystemLocaleLanguage } from '../utils/intl.js'
 import { logError } from '../server/utils/log.js'
 import { getInitialSettings } from '../server/utils/settings/settings.js'
-import { sleep } from '../utils/sleep.js'
+import { sleep } from '../server/utils/sleep.js'
 
 // ─── Language normalization ─────────────────────────────────────────────
 

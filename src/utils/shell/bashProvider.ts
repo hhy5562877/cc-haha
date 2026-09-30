@@ -6,7 +6,7 @@ import { join as posixJoin } from 'path/posix'
 import { rearrangePipeCommand } from '../bash/bashPipeCommand.js'
 import { createAndSaveSnapshot } from '../bash/ShellSnapshot.js'
 import { formatShellPrefixCommand } from '../bash/shellPrefix.js'
-import { quote } from '../bash/shellQuote.js'
+import { quote } from '../../server/utils/bash/shellQuote.js'
 import {
   quoteShellCommand,
   rewriteWindowsNullRedirect,
@@ -22,7 +22,7 @@ import {
   hasTmuxToolBeenUsed,
 } from '../tmuxSocket.js'
 import { windowsPathToPosixPath } from '../../server/utils/windowsPaths.js'
-import { resolveClaudeCliLauncher } from '../desktopBundledCli.js'
+import { resolveClaudeCliLauncher } from '../../server/utils/desktopBundledCli.js'
 import { getWslInteropEnvironmentOverrides } from './wslInterop.js'
 import type { ShellProvider } from './shellProvider.js'
 

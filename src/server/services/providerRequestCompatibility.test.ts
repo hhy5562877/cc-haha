@@ -8,7 +8,7 @@ import {
 } from './persistentStorageMigrations.js'
 import { buildProviderManagedEnv, mergeActiveProviderManagedEnv } from './providerRuntimeEnv.js'
 import { CreateProviderSchema, TestProviderSchema, UpdateProviderSchema } from '../types/provider.js'
-import { isProviderManagedEnvVar, SAFE_ENV_VARS } from '../../utils/managedEnvConstants.js'
+import { isProviderManagedEnvVar, SAFE_ENV_VARS } from '../utils/managedEnvConstants.js'
 
 const budgetEnvKey = 'CLAUDE_CODE_PROVIDER_MAX_OUTPUT_TOKENS'
 const fixture = {

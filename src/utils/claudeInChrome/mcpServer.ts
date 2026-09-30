@@ -19,7 +19,7 @@ import { enableConfigs, getGlobalConfig, saveGlobalConfig } from '../config.js'
 import { logForDebugging } from '../../server/utils/debug.js'
 import { isEnvTruthy } from '../../server/utils/envUtils.js'
 import { sideQuery } from '../sideQuery.js'
-import { getAllSocketPaths, getSecureSocketPath } from './common.js'
+import { getAllSocketPaths, getSecureSocketPath } from '../../server/utils/claudeInChrome/common.js'
 
 const EXTENSION_DOWNLOAD_URL = 'https://claude.ai/chrome'
 const BUG_REPORT_URL =

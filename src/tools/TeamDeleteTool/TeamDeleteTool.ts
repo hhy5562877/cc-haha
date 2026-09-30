@@ -3,7 +3,7 @@ import { logEvent } from '../../server/services/analytics/index.js'
 import type { AnalyticsMetadata_I_VERIFIED_THIS_IS_NOT_CODE_OR_FILEPATHS } from '../../server/services/analytics/metadata.js'
 import type { Tool } from '../../Tool.js'
 import { buildTool, type ToolDef } from '../../Tool.js'
-import { isAgentSwarmsEnabled } from '../../utils/agentSwarmsEnabled.js'
+import { isAgentSwarmsEnabled } from '../../server/utils/agentSwarmsEnabled.js'
 import { lazySchema } from '../../server/utils/lazySchema.js'
 import { jsonStringify } from '../../server/utils/slowOperations.js'
 import {

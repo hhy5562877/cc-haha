@@ -2,7 +2,7 @@ import * as fs from 'fs/promises'
 import * as os from 'os'
 import * as path from 'path'
 import { randomBytes } from 'node:crypto'
-import { normalizeLegacyDeepSeekManagedEnv } from '../../utils/providerManagedEnvCompat.js'
+import { normalizeLegacyDeepSeekManagedEnv } from '../utils/providerManagedEnvCompat.js'
 import { isOpenAIOfficialProviderId } from './openaiOfficialProvider.js'
 import { isGrokOfficialProviderId } from './grokOfficialProvider.js'
 import {

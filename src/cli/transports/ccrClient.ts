@@ -15,13 +15,13 @@ import {
 import {
   getSessionIngressAuthHeaders,
   getSessionIngressAuthToken,
-} from '../../utils/sessionIngressAuth.js'
+} from '../../server/utils/sessionIngressAuth.js'
 import type {
   RequiresActionDetails,
   SessionState,
 } from '../../utils/sessionState.js'
-import { sleep } from '../../utils/sleep.js'
-import { getClaudeCodeUserAgent } from '../../utils/userAgent.js'
+import { sleep } from '../../server/utils/sleep.js'
+import { getClaudeCodeUserAgent } from '../../server/utils/userAgent.js'
 import {
   RetryableError,
   SerialBatchEventUploader,

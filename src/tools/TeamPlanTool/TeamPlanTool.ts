@@ -1,7 +1,7 @@
 import { z } from 'zod/v4'
 import { getSessionId } from '../../server/bootstrap/state.js'
 import { buildTool } from '../../Tool.js'
-import { isAgentSwarmsEnabled } from '../../utils/agentSwarmsEnabled.js'
+import { isAgentSwarmsEnabled } from '../../server/utils/agentSwarmsEnabled.js'
 import { lazySchema } from '../../server/utils/lazySchema.js'
 import { jsonStringify } from '../../server/utils/slowOperations.js'
 import { isTeamReviewRequired } from '../../utils/swarm/teamPlanPolicy.js'

@@ -5,7 +5,7 @@ import { logForDebugging } from '../server/utils/debug.js'
 import { isEnvDefinedFalsy } from '../server/utils/envUtils.js'
 import { getAPIProvider } from '../server/utils/model/providers.js'
 import { getWorkload } from '../utils/workloadContext.js'
-import { formatClaudeCodeBillingHeader } from './claudeCodeCompatibility.js'
+import { formatClaudeCodeBillingHeader } from '../server/constants/claudeCodeCompatibility.js'
 
 const DEFAULT_PREFIX = `You are Claude Code, Anthropic's official CLI for Claude.`
 const AGENT_SDK_CLAUDE_CODE_PRESET_PREFIX = `You are Claude Code, Anthropic's official CLI for Claude, running within the Claude Agent SDK.`

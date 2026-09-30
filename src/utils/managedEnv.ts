@@ -12,8 +12,8 @@ import { getClaudeConfigHomeDir, isEnvTruthy } from '../server/utils/envUtils.js
 import {
   isProviderManagedEnvVar,
   SAFE_ENV_VARS,
-} from './managedEnvConstants.js'
-import { normalizeLegacyDeepSeekManagedEnv } from './providerManagedEnvCompat.js'
+} from '../server/utils/managedEnvConstants.js'
+import { normalizeLegacyDeepSeekManagedEnv } from '../server/utils/providerManagedEnvCompat.js'
 import { clearMTLSCache } from '../server/utils/mtls.js'
 import { clearProxyCache, configureGlobalAgents } from '../server/utils/proxy.js'
 import { isSettingSourceEnabled } from '../server/utils/settings/constants.js'

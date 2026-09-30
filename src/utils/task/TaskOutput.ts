@@ -4,7 +4,7 @@ import { logForDebugging } from '../../server/utils/debug.js'
 import { readFileRange, tailFile } from '../../server/utils/fsOperations.js'
 import { getMaxOutputLength } from '../shell/outputLimits.js'
 import { safeJoinLines } from '../../server/utils/stringUtils.js'
-import { DiskTaskOutput, getTaskOutputPath } from './diskOutput.js'
+import { DiskTaskOutput, getTaskOutputPath } from '../../server/utils/task/diskOutput.js'
 
 const DEFAULT_MAX_MEMORY = 8 * 1024 * 1024 // 8MB
 const POLL_INTERVAL_MS = 1000

@@ -39,7 +39,7 @@ import {
   type BusinessErrorCode,
   BUSINESS_ERROR_MEDIA_BLOCK_TYPES,
 } from '../constants/businessErrors.js'
-import { isAutoMemoryEnabled } from '../memdir/paths.js'
+import { isAutoMemoryEnabled } from '../server/memdir/paths.js'
 import {
   checkStatsigFeatureGate_CACHED_MAY_BE_STALE,
   getFeatureValue_CACHED_MAY_BE_STALE,
@@ -89,15 +89,15 @@ import type {
   UserMessage,
 } from '../server/types/message.js'
 import { isAdvisorBlock } from './advisor.js'
-import { isAgentSwarmsEnabled } from './agentSwarmsEnabled.js'
-import { count } from './array.js'
+import { isAgentSwarmsEnabled } from '../server/utils/agentSwarmsEnabled.js'
+import { count } from '../server/utils/array.js'
 import {
   type Attachment,
   type HookAttachment,
   type HookPermissionDecisionAttachment,
   memoryHeader,
 } from './attachments.js'
-import { quote } from './bash/shellQuote.js'
+import { quote } from '../server/utils/bash/shellQuote.js'
 import { formatNumber, formatTokens } from './format.js'
 import { getPewterLedgerVariant } from './planModeV2.js'
 import { jsonStringify } from '../server/utils/slowOperations.js'
@@ -162,11 +162,11 @@ import { TASK_OUTPUT_TOOL_NAME } from '../tools/TaskOutputTool/constants.js'
 import { TASK_UPDATE_TOOL_NAME } from '../tools/TaskUpdateTool/constants.js'
 import type { PermissionMode } from '../server/types/permissions.js'
 import { normalizeToolInput, normalizeToolInputForAPI } from './api.js'
-import { createUnparsedToolInput, isUnparsedToolInput } from './unparsedToolInput.js'
+import { createUnparsedToolInput, isUnparsedToolInput } from '../server/utils/unparsedToolInput.js'
 import { getCurrentProjectConfig } from './config.js'
 import { logAntError, logForDebugging } from '../server/utils/debug.js'
 import { stripIdeContextTags } from '../server/utils/displayTags.js'
-import { hasEmbeddedSearchTools } from './embeddedTools.js'
+import { hasEmbeddedSearchTools } from '../server/utils/embeddedTools.js'
 import { formatFileSize } from './format.js'
 import { validateImagesForAPI } from './imageValidation.js'
 import { safeParseJSON } from '../server/utils/json.js'

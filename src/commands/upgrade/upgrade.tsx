@@ -3,7 +3,7 @@ import type { LocalJSXCommandContext } from '../../commands.js';
 import { getOauthProfileFromOauthToken } from '../../server/services/oauth/getOauthProfile.js';
 import type { LocalJSXCommandOnDone } from '../../types/command.js';
 import { getClaudeAIOAuthTokens, isClaudeAISubscriber } from '../../utils/auth.js';
-import { openBrowser } from '../../utils/browser.js';
+import { openBrowser } from '../../server/utils/browser.js';
 import { logError } from '../../server/utils/log.js';
 import { Login } from '../login/login.js';
 export async function call(onDone: LocalJSXCommandOnDone, context: LocalJSXCommandContext): Promise<React.ReactNode | null> {

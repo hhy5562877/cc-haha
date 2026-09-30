@@ -3,10 +3,10 @@ import type { StdoutMessage } from 'src/entrypoints/sdk/controlTypes.js'
 import { logForDebugging } from '../../server/utils/debug.js'
 import { logForDiagnosticsNoPII } from '../../server/utils/diagLogs.js'
 import { errorMessage } from '../../server/utils/errors.js'
-import { getSessionIngressAuthHeaders } from '../../utils/sessionIngressAuth.js'
-import { sleep } from '../../utils/sleep.js'
+import { getSessionIngressAuthHeaders } from '../../server/utils/sessionIngressAuth.js'
+import { sleep } from '../../server/utils/sleep.js'
 import { jsonParse, jsonStringify } from '../../server/utils/slowOperations.js'
-import { getClaudeCodeUserAgent } from '../../utils/userAgent.js'
+import { getClaudeCodeUserAgent } from '../../server/utils/userAgent.js'
 import type { Transport } from './Transport.js'
 
 // ---------------------------------------------------------------------------

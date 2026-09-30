@@ -1,7 +1,7 @@
 import { readFileSync } from 'fs';
 import { REMOTE_CONTROL_DISCONNECTED_MSG } from '../bridge/types.js';
 import type { Command } from '../commands.js';
-import { DIAMOND_OPEN } from '../constants/figures.js';
+import { DIAMOND_OPEN } from '../server/constants/figures.js';
 import { getRemoteSessionUrl } from '../constants/product.js';
 import { getFeatureValue_CACHED_MAY_BE_STALE } from '../server/services/analytics/growthbook.js';
 import { type AnalyticsMetadata_I_VERIFIED_THIS_IS_NOT_CODE_OR_FILEPATHS, logEvent } from '../server/services/analytics/index.js';

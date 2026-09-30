@@ -1,4 +1,4 @@
-import type { LspServerConfig } from '../services/lsp/types.js'
+import type { LspServerConfig } from '../server/services/lsp/types.js'
 import type { McpServerConfig } from '../server/services/mcp/types.js'
 import type { BundledSkillDefinition } from '../skills/bundledSkills.js'
 import type {

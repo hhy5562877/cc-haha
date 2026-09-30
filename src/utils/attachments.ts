@@ -18,7 +18,7 @@ import {
 import { FileTooLargeError, readFileInRange } from './readFileInRange.js'
 import { expandPath } from '../server/utils/path.js'
 import { countCharInString } from '../server/utils/stringUtils.js'
-import { count, uniq } from './array.js'
+import { count, uniq } from '../server/utils/array.js'
 import { getFsImplementation } from '../server/utils/fsOperations.js'
 import { readdir, stat } from 'fs/promises'
 import type { IDESelection } from '../hooks/useIdeSelection.js'
@@ -102,11 +102,11 @@ import {
   FILE_READ_TOOL_NAME,
 } from 'src/tools/FileReadTool/prompt.js'
 import { getDefaultFileReadingLimits } from 'src/tools/FileReadTool/limits.js'
-import { cacheKeys, type FileStateCache } from './fileStateCache.js'
+import { cacheKeys, type FileStateCache } from '../server/utils/fileStateCache.js'
 import {
   createAbortController,
   createChildAbortController,
-} from './abortController.js'
+} from '../server/utils/abortController.js'
 import { isAbortError } from '../server/utils/errors.js'
 import {
   getFileModificationTimeAsync,
@@ -130,7 +130,7 @@ import {
   generateTaskAttachments,
   applyTaskOffsetsAndEvictions,
 } from './task/framework.js'
-import { getTaskOutputPath } from './task/diskOutput.js'
+import { getTaskOutputPath } from '../server/utils/task/diskOutput.js'
 import { drainPendingMessages } from '../tasks/LocalAgentTask/LocalAgentTask.js'
 import type { TaskType, TaskStatus } from '../Task.js'
 import {
@@ -151,7 +151,7 @@ import {
   setLastEmittedDate,
   getKairosActive,
 } from '../server/bootstrap/state.js'
-import type { QuerySource } from '../constants/querySource.js'
+import type { QuerySource } from '../server/constants/querySource.js'
 import {
   getDeferredToolsDelta,
   isDeferredToolsDeltaEnabled,
@@ -165,7 +165,7 @@ import {
   isMcpInstructionsDeltaEnabled,
   type ClientSideInstruction,
 } from './mcpInstructionsDelta.js'
-import { CLAUDE_IN_CHROME_MCP_SERVER_NAME } from './claudeInChrome/common.js'
+import { CLAUDE_IN_CHROME_MCP_SERVER_NAME } from '../server/utils/claudeInChrome/common.js'
 import { CHROME_TOOL_SEARCH_INSTRUCTIONS } from './claudeInChrome/prompt.js'
 import type { MCPServerConnection } from '../server/services/mcp/types.js'
 import type {
@@ -226,10 +226,10 @@ import { isPDFExtension } from './pdfUtils.js'
 import { getLocalISODate } from '../constants/common.js'
 import { getPDFPageCount } from './pdf.js'
 import { PDF_AT_MENTION_INLINE_THRESHOLD } from '../constants/apiLimits.js'
-import { isAgentSwarmsEnabled } from './agentSwarmsEnabled.js'
+import { isAgentSwarmsEnabled } from '../server/utils/agentSwarmsEnabled.js'
 import { findRelevantMemories } from '../memdir/findRelevantMemories.js'
 import { memoryAge, memoryFreshnessText } from '../memdir/memoryAge.js'
-import { getAutoMemPath, isAutoMemoryEnabled } from '../memdir/paths.js'
+import { getAutoMemPath, isAutoMemoryEnabled } from '../server/memdir/paths.js'
 import { getAgentMemoryDir } from '../server/tools/AgentTool/agentMemory.js'
 import {
   readUnreadMessages,
@@ -244,7 +244,7 @@ import {
   getTeamName,
   isTeamLead,
 } from './teammate.js'
-import { isInProcessTeammate } from './teammateContext.js'
+import { isInProcessTeammate } from '../server/utils/teammateContext.js'
 import { removeTeammateFromTeamFile } from './swarm/teamHelpers.js'
 import { unassignTeammateTasks } from './tasks.js'
 import { getCompanionIntroAttachment } from '../buddy/prompt.js'

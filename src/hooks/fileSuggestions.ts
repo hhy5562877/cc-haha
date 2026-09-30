@@ -28,7 +28,7 @@ import { logError } from '../server/utils/log.js'
 import { expandPath } from '../server/utils/path.js'
 import { ripGrep } from '../server/utils/ripgrep.js'
 import { getInitialSettings } from '../server/utils/settings/settings.js'
-import { createSignal } from '../utils/signal.js'
+import { createSignal } from '../server/utils/signal.js'
 
 // Lazily constructed singleton
 let fileIndex: FileIndex | null = null

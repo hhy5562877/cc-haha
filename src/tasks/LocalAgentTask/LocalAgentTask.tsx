@@ -11,15 +11,15 @@ import type { AgentDefinition } from '../../server/tools/AgentTool/loadAgentsDir
 import { SYNTHETIC_OUTPUT_TOOL_NAME } from '../../tools/SyntheticOutputTool/SyntheticOutputTool.js';
 import { asAgentId } from '../../server/types/ids.js';
 import type { Message } from '../../server/types/message.js';
-import { createAbortController, createChildAbortController } from '../../utils/abortController.js';
+import { createAbortController, createChildAbortController } from '../../server/utils/abortController.js';
 import { registerCleanup } from '../../server/utils/cleanupRegistry.js';
 import { getToolSearchOrReadInfo } from '../../utils/collapseReadSearch.js';
 import { enqueuePendingNotification } from '../../utils/messageQueueManager.js';
 import { getAgentTranscriptPath } from '../../utils/sessionStorage.js';
-import { evictTaskOutput, getTaskOutputPath, initTaskOutputAsSymlink } from '../../utils/task/diskOutput.js';
+import { evictTaskOutput, getTaskOutputPath, initTaskOutputAsSymlink } from '../../server/utils/task/diskOutput.js';
 import { PANEL_GRACE_MS, registerTask, updateTaskState } from '../../utils/task/framework.js';
-import { emitTaskProgress } from '../../utils/task/sdkProgress.js';
-import { emitTaskTerminatedSdk } from '../../utils/sdkEventQueue.js';
+import { emitTaskProgress } from '../../server/utils/task/sdkProgress.js';
+import { emitTaskTerminatedSdk } from '../../server/utils/sdkEventQueue.js';
 import type { TaskState } from '../types.js';
 export type ToolActivity = {
   toolName: string;

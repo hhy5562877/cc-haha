@@ -1,7 +1,7 @@
 import { getSessionId } from '../../../server/bootstrap/state.js'
 import type { ToolUseContext } from '../../../Tool.js'
 import { formatAgentId, parseAgentId } from '../../../utils/agentId.js'
-import { quote } from '../../../utils/bash/shellQuote.js'
+import { quote } from '../../../server/utils/bash/shellQuote.js'
 import { registerCleanup } from '../../../server/utils/cleanupRegistry.js'
 import { logForDebugging } from '../../../server/utils/debug.js'
 import { jsonStringify } from '../../../server/utils/slowOperations.js'

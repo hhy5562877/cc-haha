@@ -24,7 +24,7 @@ import { enableConfigs, recordFirstStartTime } from '../utils/config.js'
 import { logForDebugging } from '../server/utils/debug.js'
 import { detectCurrentRepository } from '../server/utils/detectRepository.js'
 import { logForDiagnosticsNoPII } from '../server/utils/diagLogs.js'
-import { initJetBrainsDetection } from '../utils/envDynamic.js'
+import { initJetBrainsDetection } from '../server/utils/envDynamic.js'
 import { isEnvTruthy } from '../server/utils/envUtils.js'
 import { ConfigParseError, errorMessage } from '../server/utils/errors.js'
 // showInvalidConfigDialog is dynamically imported in the error path to avoid loading React at init
@@ -170,7 +170,7 @@ export const init = memoize(async (): Promise<void> => {
           '../upstreamproxy/upstreamproxy.js'
         )
         const { registerUpstreamProxyEnvFn } = await import(
-          '../utils/subprocessEnv.js'
+          '../server/utils/subprocessEnv.js'
         )
         registerUpstreamProxyEnvFn(getUpstreamProxyEnv)
         await initUpstreamProxy()

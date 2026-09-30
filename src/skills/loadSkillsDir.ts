@@ -22,7 +22,7 @@ import type { Command, PromptCommand } from '../types/command.js'
 import {
   parseArgumentNames,
   substituteArguments,
-} from '../utils/argumentSubstitution.js'
+} from '../server/utils/argumentSubstitution.js'
 import { logForDebugging } from '../server/utils/debug.js'
 import {
   EFFORT_LEVELS,
@@ -45,7 +45,7 @@ import {
   splitPathInFrontmatter,
 } from '../server/utils/frontmatterParser.js'
 import { getFsImplementation } from '../server/utils/fsOperations.js'
-import { isPathGitignored } from '../utils/git/gitignore.js'
+import { isPathGitignored } from '../server/utils/git/gitignore.js'
 import { logError } from '../server/utils/log.js'
 import {
   extractDescriptionFromMarkdown,
@@ -61,7 +61,7 @@ import {
   outranksClaimedSkill,
   type SkillRoot,
   type SkillRootFlavor,
-} from './skillRoots.js'
+} from '../server/skills/skillRoots.js'
 import { parseUserSpecifiedModel } from '../server/utils/model/model.js'
 import { executeShellCommandsInPrompt } from '../utils/promptShellExecution.js'
 import type { SettingSource } from '../server/utils/settings/constants.js'
@@ -69,7 +69,7 @@ import { isSettingSourceEnabled } from '../server/utils/settings/constants.js'
 import { getManagedFilePath } from '../server/utils/settings/managedPath.js'
 import { isRestrictedToPluginOnly } from '../server/utils/settings/pluginOnlyPolicy.js'
 import { HooksSchema, type HooksSettings } from '../server/utils/settings/types.js'
-import { createSignal } from '../utils/signal.js'
+import { createSignal } from '../server/utils/signal.js'
 import { registerMCPSkillBuilders } from './mcpSkillBuilders.js'
 
 export type LoadedFrom =

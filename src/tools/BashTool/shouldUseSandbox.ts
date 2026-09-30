@@ -1,6 +1,6 @@
 import { getFeatureValue_CACHED_MAY_BE_STALE } from '../../server/services/analytics/growthbook.js'
 import { splitCommand_DEPRECATED } from '../../utils/bash/commands.js'
-import { SandboxManager } from '../../utils/sandbox/sandbox-adapter.js'
+import { SandboxManager } from '../../server/utils/sandbox/sandbox-adapter.js'
 import { getSettings_DEPRECATED } from '../../server/utils/settings/settings.js'
 import {
   BINARY_HIJACK_VARS,

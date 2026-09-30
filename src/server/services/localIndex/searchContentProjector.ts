@@ -6,7 +6,7 @@ import { commitSearchContentSpool, withSearchProjectionBudget } from './searchCo
 import {
   getCommandMetadataDisplayText,
   shouldHideCommandMetadataContent,
-} from '../../../utils/commandMetadata.js'
+} from '../../utils/commandMetadata.js'
 import type { SearchContentDatabase } from './searchContentDatabase.js'
 import {
   normalizeSearchContent,

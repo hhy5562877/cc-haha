@@ -15,7 +15,7 @@ import {
   getHookEnvFilePath,
   invalidateSessionEnvCache,
 } from './sessionEnvironment.js'
-import { subprocessEnv } from './subprocessEnv.js'
+import { subprocessEnv } from '../server/utils/subprocessEnv.js'
 import { getPlatform } from '../server/utils/platform.js'
 import {
   tryFindGitBashPath,
@@ -44,7 +44,7 @@ import {
   getHooksConfigFromSnapshot,
   shouldAllowManagedHooksOnly,
   shouldDisableAllHooksIncludingManaged,
-} from './hooks/hooksConfigSnapshot.js'
+} from '../server/utils/hooks/hooksConfigSnapshot.js'
 import {
   getTranscriptPathForSession,
   getAgentTranscriptPath,

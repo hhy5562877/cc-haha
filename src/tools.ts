@@ -142,13 +142,13 @@ const getWorkflowTool = () =>
 /* eslint-enable @typescript-eslint/no-require-imports */
 import type { ToolPermissionContext } from './Tool.js'
 import { getDenyRuleForTool } from './server/utils/permissions/permissions.js'
-import { hasEmbeddedSearchTools } from './utils/embeddedTools.js'
+import { hasEmbeddedSearchTools } from './server/utils/embeddedTools.js'
 import { isEnvTruthy } from './server/utils/envUtils.js'
 import {
   isBashToolEnabled,
   isPowerShellToolEnabled,
 } from './utils/shell/shellToolUtils.js'
-import { isAgentSwarmsEnabled } from './utils/agentSwarmsEnabled.js'
+import { isAgentSwarmsEnabled } from './server/utils/agentSwarmsEnabled.js'
 import { isWorktreeModeEnabled } from './utils/worktreeModeEnabled.js'
 import {
   REPL_TOOL_NAME,

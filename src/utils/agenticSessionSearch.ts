@@ -1,5 +1,5 @@
 import type { LogOption, SerializedMessage } from '../server/types/logs.js'
-import { count } from './array.js'
+import { count } from '../server/utils/array.js'
 import { logForDebugging } from '../server/utils/debug.js'
 import { getLogDisplayTitle, logError } from '../server/utils/log.js'
 import { getSmallFastModel } from '../server/utils/model/model.js'

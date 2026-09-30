@@ -17,7 +17,7 @@ import type { AppState } from '../../state/AppState.js'
 import type { SetAppState } from '../../Task.js'
 import type { CanUseToolFn } from '../../hooks/useCanUseTool.js'
 import type { ToolUseContext } from '../../Tool.js'
-import { cleanupTaskOutput } from '../../utils/task/diskOutput.js'
+import { cleanupTaskOutput } from '../utils/task/diskOutput.js'
 import {
   completeWorkflowTask,
   registerWorkflowTask,

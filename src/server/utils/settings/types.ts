@@ -27,7 +27,7 @@ export {
 
 // Also import for use within this file
 import { type HookCommand, HooksSchema } from '../../../schemas/hooks.js'
-import { count } from '../../../utils/array.js'
+import { count } from '../array.js'
 
 /**
  * Schema for environment variables

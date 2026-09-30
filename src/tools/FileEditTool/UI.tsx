@@ -18,7 +18,7 @@ import { logError } from '../../server/utils/log.js';
 import { getPlansDirectory } from '../../utils/plans.js';
 import { readEditContext } from '../../utils/readEditContext.js';
 import { firstLineOf } from '../../server/utils/stringUtils.js';
-import type { ThemeName } from '../../utils/theme.js';
+import type { ThemeName } from '../../server/utils/theme.js';
 import type { FileEditOutput } from '../../server/tools/FileEditTool/types.js';
 import { findActualString, getPatchForEdit, preserveQuoteStyle } from '../../server/tools/FileEditTool/utils.js';
 export function userFacingName(input: Partial<{

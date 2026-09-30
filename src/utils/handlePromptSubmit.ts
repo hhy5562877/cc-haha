@@ -4,7 +4,7 @@ import type { AnalyticsMetadata_I_VERIFIED_THIS_IS_NOT_CODE_OR_FILEPATHS } from 
 import { type Command, getCommandName, isCommandEnabled } from '../commands.js'
 import { selectableUserMessagesFilter } from '../components/MessageSelector.js'
 import type { SpinnerMode } from '../components/Spinner/types.js'
-import type { QuerySource } from '../constants/querySource.js'
+import type { QuerySource } from '../server/constants/querySource.js'
 import { expandPastedTextRefs, parseReferences } from '../history.js'
 import type { CanUseToolFn } from '../hooks/useCanUseTool.js'
 import type { IDESelection } from '../hooks/useIdeSelection.js'
@@ -17,7 +17,7 @@ import {
   type PromptInputMode,
   type QueuedCommand,
 } from '../types/textInputTypes.js'
-import { createAbortController } from './abortController.js'
+import { createAbortController } from '../server/utils/abortController.js'
 import type { PastedContent } from './config.js'
 import { logForDebugging } from '../server/utils/debug.js'
 import type { EffortValue } from './effort.js'

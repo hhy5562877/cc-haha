@@ -10,7 +10,7 @@ import { KeyboardShortcutHint } from '../../components/design-system/KeyboardSho
 import { Box, Text, useInput } from '../../ink.js';
 import { useKeybinding, useKeybindings } from '../../keybindings/useKeybinding.js';
 import type { LoadedPlugin } from '../../types/plugin.js';
-import { count } from '../../utils/array.js';
+import { count } from '../../server/utils/array.js';
 import { shouldSkipPluginAutoupdate } from '../../utils/config.js';
 import { errorMessage } from '../../server/utils/errors.js';
 import { clearAllCaches } from '../../server/utils/plugins/cacheUtils.js';

@@ -17,7 +17,7 @@ import type { StatusLineCommandInput } from '../types/statusLine.js';
 import type { VimMode } from '../types/textInputTypes.js';
 import { checkHasTrustDialogAccepted } from '../utils/config.js';
 import { calculateCurrentContextTokenTotal, getContextWindowForModel } from '../utils/context.js';
-import { calculateContextPercentagesFromTokens, getProviderUsageTrust, hasMediaInput } from '../utils/contextBudget.js';
+import { calculateContextPercentagesFromTokens, getProviderUsageTrust, hasMediaInput } from '../server/utils/contextBudget.js';
 import { getCwd } from '../server/utils/cwd.js';
 import { logForDebugging } from '../server/utils/debug.js';
 import { isFullscreenEnvEnabled } from '../utils/fullscreen.js';

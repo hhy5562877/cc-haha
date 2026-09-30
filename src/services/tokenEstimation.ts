@@ -10,7 +10,7 @@ import { getModelBetas } from '../utils/betas.js'
 import { getVertexRegionForModel, isEnvTruthy } from '../server/utils/envUtils.js'
 import { logError } from '../server/utils/log.js'
 import { normalizeAttachmentForAPI } from '../utils/messages.js'
-import { parseOpenAIReasoningEnvelope } from '../utils/openAIReasoningEnvelope.js'
+import { parseOpenAIReasoningEnvelope } from '../server/utils/openAIReasoningEnvelope.js'
 import {
   createBedrockRuntimeClient,
   getInferenceProfileBackingModel,

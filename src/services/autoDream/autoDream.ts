@@ -24,7 +24,7 @@ import { logForDebugging } from '../../server/utils/debug.js'
 import type { ToolUseContext } from '../../Tool.js'
 import { logEvent } from '../../server/services/analytics/index.js'
 import { getFeatureValue_CACHED_MAY_BE_STALE } from '../../server/services/analytics/growthbook.js'
-import { isAutoMemoryEnabled, getAutoMemPath } from '../../memdir/paths.js'
+import { isAutoMemoryEnabled, getAutoMemPath } from '../../server/memdir/paths.js'
 import { isAutoDreamEnabled } from './config.js'
 import { getProjectDir } from '../../utils/sessionStorage.js'
 import {

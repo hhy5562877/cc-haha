@@ -21,8 +21,8 @@ import { logForDebugging } from '../server/utils/debug.js'
 import { safeParseJSON } from '../server/utils/json.js'
 import { lazySchema } from '../server/utils/lazySchema.js'
 import { extractTextContent } from './messages.js'
-import { cleanSessionTitleSource, hasSessionTitleMarkup } from './sessionTitleText.js'
-import { asSystemPrompt } from './systemPromptType.js'
+import { cleanSessionTitleSource, hasSessionTitleMarkup } from '../server/utils/sessionTitleText.js'
+import { asSystemPrompt } from '../server/utils/systemPromptType.js'
 
 const MAX_CONVERSATION_TEXT = 1000
 const MAX_GENERATED_TITLE_LENGTH = 80
