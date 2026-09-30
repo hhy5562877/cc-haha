@@ -14,7 +14,7 @@ import { startMdmRawRead } from './server/utils/settings/mdm/rawRead.js';
 
 // eslint-disable-next-line custom-rules/no-top-level-side-effects
 startMdmRawRead();
-import { ensureKeychainPrefetchCompleted, startKeychainPrefetch } from './utils/secureStorage/keychainPrefetch.js';
+import { ensureKeychainPrefetchCompleted, startKeychainPrefetch } from './server/utils/secureStorage/keychainPrefetch.js';
 
 // eslint-disable-next-line custom-rules/no-top-level-side-effects
 startKeychainPrefetch();
@@ -53,7 +53,7 @@ import { checkHasTrustDialogAccepted, getGlobalConfig, getRemoteControlAtStartup
 import { seedEarlyInput, stopCapturingEarlyInput } from './utils/earlyInput.js';
 import { getInitialEffortSetting, parseEffortValue } from './utils/effort.js';
 import { initialRuntimeEffort } from './utils/swarm/teamWorkerRuntime.js';
-import { ULTRACODE_EFFORT_ARG, ULTRACODE_EFFORT_LEVEL } from './server/utils/workflows/ultracode.js';
+import { ULTRACODE_EFFORT_ARG, ULTRACODE_EFFORT_LEVEL } from './utils/workflows/ultracode.js';
 import { getInitialFastModeSetting, isFastModeEnabled, prefetchFastModeStatus, resolveFastModeStatusFromCache } from './utils/fastMode.js';
 import { applyConfigEnvironmentVariables } from './utils/managedEnv.js';
 import { createSystemMessage, createUserMessage } from './utils/messages.js';
@@ -99,8 +99,8 @@ import { checkQuotaStatus } from './services/claudeAiLimits.js';
 import { getMcpToolsCommandsAndResources, prefetchAllMcpResources } from './server/services/mcp/client.js';
 import { VALID_INSTALLABLE_SCOPES, VALID_UPDATE_SCOPES } from './services/plugins/pluginCliCommands.js';
 import { initBundledSkills } from './skills/bundled/index.js';
-import type { AgentColorName } from './tools/AgentTool/agentColorManager.js';
-import { getActiveAgentsFromList, getAgentDefinitionsWithOverrides, isBuiltInAgent, isCustomAgent, parseAgentsFromJson } from './tools/AgentTool/loadAgentsDir.js';
+import type { AgentColorName } from './server/tools/AgentTool/agentColorManager.js';
+import { getActiveAgentsFromList, getAgentDefinitionsWithOverrides, isBuiltInAgent, isCustomAgent, parseAgentsFromJson } from './server/tools/AgentTool/loadAgentsDir.js';
 import type { LogOption } from './types/logs.js';
 import type { Message as MessageType } from './types/message.js';
 import { assertMinVersion } from './utils/autoUpdater.js';
@@ -141,8 +141,8 @@ import { generateTempFilePath } from './utils/tempfile.js';
 import { validateUuid } from './utils/uuid.js';
 // Plugin startup checks are now handled non-blockingly in REPL.tsx
 
-import { registerMcpAddCommand } from 'src/commands/mcp/addCommand.js';
-import { registerMcpXaaIdpCommand } from 'src/commands/mcp/xaaIdpCommand.js';
+import { registerMcpAddCommand } from './commands/mcp/addCommand.js';
+import { registerMcpXaaIdpCommand } from './commands/mcp/xaaIdpCommand.js';
 import { logPermissionContextForAnts } from 'src/services/internalLogging.js';
 import { fetchClaudeAIMcpConfigsIfEligible } from './server/services/mcp/claudeai.js';
 import { clearServerCache } from './server/services/mcp/client.js';
