@@ -5,7 +5,7 @@ import { join } from 'path'
 import { normalizeNameForMCP } from '../../server/services/mcp/normalization.js'
 import { logForDebugging } from '../../server/utils/debug.js'
 import { isFsInaccessible } from '../../server/utils/errors.js'
-import { execFileNoThrow } from '../execFileNoThrow.js'
+import { execFileNoThrow } from '../../server/utils/execFileNoThrow.js'
 import { getPlatform } from '../../server/utils/platform.js'
 import { which } from '../../server/utils/which.js'
 

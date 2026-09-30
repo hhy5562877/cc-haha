@@ -18,8 +18,8 @@ import { getFeatureValue_CACHED_MAY_BE_STALE } from '../../server/services/analy
 import { type FilesApiConfig, uploadFile } from '../../services/api/filesApi.js'
 import { getCwd } from '../../server/utils/cwd.js'
 import { logForDebugging } from '../../server/utils/debug.js'
-import { execFileNoThrowWithCwd } from '../execFileNoThrow.js'
-import { findGitRoot, gitExe } from '../git.js'
+import { execFileNoThrowWithCwd } from '../../server/utils/execFileNoThrow.js'
+import { findGitRoot, gitExe } from '../../server/utils/git.js'
 import { generateTempFilePath } from '../tempfile.js'
 
 // Tunable via tengu_ccr_bundle_max_bytes.

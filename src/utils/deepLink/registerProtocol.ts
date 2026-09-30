@@ -24,7 +24,7 @@ import {
 import { logForDebugging } from '../../server/utils/debug.js'
 import { getClaudeConfigHomeDir } from '../../server/utils/envUtils.js'
 import { getErrnoCode } from '../../server/utils/errors.js'
-import { execFileNoThrow } from '../execFileNoThrow.js'
+import { execFileNoThrow } from '../../server/utils/execFileNoThrow.js'
 import { getInitialSettings } from '../../server/utils/settings/settings.js'
 import { which } from '../../server/utils/which.js'
 import { getUserBinDir, getXDGDataHome } from '../xdg.js'

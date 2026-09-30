@@ -1,5 +1,7 @@
 # CHANGELOG
 
+- [2026-09-29 22:05] REFACTOR: 解耦批次 31 完成——git/lockfile/execFileNoThrow 系 9 文件（82KB）迁入 src/server 镜像路径（git.ts/git/gitFilesystem/gitConfigParser/lockfile/execFileNoThrow(+Portable)/detectRepository/diagLogs/constants/files），全仓 142 文件 201 说明符语义重指（迁移脚本泛化为可复用版，天然幂等）；直接依赖边 534→505，tsc 3506→3503；server 测试 3285 pass/167 fail 与批次30持平；E2E 因本机代理中断（proxy/direct 对 deepailab 均不可达）暂阻，聊天链路代码本批零改动 (Files: src/server/{utils,constants}/* 9 文件, src/** 142 文件重指)
+
 - [2026-09-29 21:25] REFACTOR: 解耦批次 30 完成——支撑枢纽层 49 文件迁入 src/server/ 镜像路径（envUtils/debug/log/errors/slowOperations/lazySchema/fsOperations/cwd/platform/json/path/env/bootstrap/state 等，含 shared/types/constants 子集），全仓 1011 文件 2623 说明符语义重指（相对/根式/早前批次 server 孪生三形态，移动件自身深度重算）；desktop/tests/scripts 同步重指 6 处 + 补修早前批次 desktop connectors 遗留 3 处；直接依赖边 998→534（-46%），tsc 全仓错误 4589→3506（-1083），server 测试 3270→3285 pass（+15）167 fail 持平零回归；E2E PASS (Files: src/server/{utils,bootstrap,shared,types,constants}/* 49 文件, src/** 1011 文件重指)
 
 - [2026-10-01 11:30] REFACTOR: 解耦批次 29 完成——utils/model 整目录（17 文件 997 行）迁入 src/server/utils/model/，语义归一 + 全仓 151 处消费方精算重指（含根文件、services 兄弟、utils 内部多级引用）；modelDefaults 改名 model.ts 与目录共存；E2E PASS (Files: src/server/utils/model/*, src/server/utils/modelDefaults.ts→model.ts, src/cost-tracker.ts, src/utils/* 等 151 文件)

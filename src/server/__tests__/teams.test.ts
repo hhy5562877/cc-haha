@@ -15,7 +15,7 @@ import {
 } from '../services/teamService.js'
 import type { TeamWorkbenchSnapshot } from '../services/teamService.js'
 import { sessionService, type MessageEntry } from '../services/sessionService.js'
-import * as lockfile from '../../utils/lockfile.js'
+import * as lockfile from '../utils/lockfile.js'
 import { getSessionCreatedTeams } from '../bootstrap/state.js'
 import {
   cleanupSessionTeams,

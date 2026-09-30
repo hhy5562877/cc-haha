@@ -55,7 +55,7 @@ import {
   getUserClaudeRulesDir,
 } from './config.js'
 import { logForDebugging } from '../server/utils/debug.js'
-import { logForDiagnosticsNoPII } from './diagLogs.js'
+import { logForDiagnosticsNoPII } from '../server/utils/diagLogs.js'
 import { getClaudeConfigHomeDir, isEnvTruthy } from '../server/utils/envUtils.js'
 import { getErrnoCode } from '../server/utils/errors.js'
 import { normalizePathForComparison } from './file.js'
@@ -65,7 +65,7 @@ import {
   splitPathInFrontmatter,
 } from '../server/utils/frontmatterParser.js'
 import { getFsImplementation, safeResolvePath } from '../server/utils/fsOperations.js'
-import { findCanonicalGitRoot, findGitRoot } from './git.js'
+import { findCanonicalGitRoot, findGitRoot } from '../server/utils/git.js'
 import {
   executeInstructionsLoadedHooks,
   hasInstructionsLoadedHook,

@@ -123,7 +123,7 @@ import type {
 } from '../server/utils/settings/types.js'
 import { getHookDisplayText } from './hooks/hooksSettings.js'
 import { logForDebugging } from '../server/utils/debug.js'
-import { logForDiagnosticsNoPII } from './diagLogs.js'
+import { logForDiagnosticsNoPII } from '../server/utils/diagLogs.js'
 import { firstLineOf } from '../server/utils/stringUtils.js'
 import {
   normalizeLegacyToolName,

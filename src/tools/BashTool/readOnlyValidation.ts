@@ -6,7 +6,7 @@ import {
 } from '../../utils/bash/commands.js'
 import { tryParseShellCommand } from '../../utils/bash/shellQuote.js'
 import { getCwd } from '../../server/utils/cwd.js'
-import { isCurrentDirectoryBareGitRepo } from '../../utils/git.js'
+import { isCurrentDirectoryBareGitRepo } from '../../server/utils/git.js'
 import type { PermissionResult } from '../../server/utils/permissions/PermissionResult.js'
 import { getPlatform } from '../../server/utils/platform.js'
 import { SandboxManager } from '../../utils/sandbox/sandbox-adapter.js'

@@ -8,7 +8,7 @@ import {
 } from './bridgeApi.js'
 import type { BridgeConfig, BridgeApiClient } from './types.js'
 import { logForDebugging } from '../server/utils/debug.js'
-import { logForDiagnosticsNoPII } from '../utils/diagLogs.js'
+import { logForDiagnosticsNoPII } from '../server/utils/diagLogs.js'
 import {
   type AnalyticsMetadata_I_VERIFIED_THIS_IS_NOT_CODE_OR_FILEPATHS,
   logEvent,

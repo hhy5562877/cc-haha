@@ -20,7 +20,7 @@ import {
   execFileNoThrow,
   execFileNoThrowWithCwd,
   execSyncWithDefaults_DEPRECATED,
-} from './execFileNoThrow.js'
+} from '../server/utils/execFileNoThrow.js'
 import { getFsImplementation } from '../server/utils/fsOperations.js'
 import { getAncestorPidsAsync } from './genericProcessUtils.js'
 import { isJetBrainsPluginInstalledCached } from './jetbrains.js'

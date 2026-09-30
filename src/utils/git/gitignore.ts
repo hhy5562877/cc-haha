@@ -3,8 +3,8 @@ import { homedir } from 'os'
 import { dirname, join } from 'path'
 import { getCwd } from '../../server/utils/cwd.js'
 import { getErrnoCode } from '../../server/utils/errors.js'
-import { execFileNoThrowWithCwd } from '../execFileNoThrow.js'
-import { dirIsInGitRepo } from '../git.js'
+import { execFileNoThrowWithCwd } from '../../server/utils/execFileNoThrow.js'
+import { dirIsInGitRepo } from '../../server/utils/git.js'
 import { logError } from '../../server/utils/log.js'
 
 /**

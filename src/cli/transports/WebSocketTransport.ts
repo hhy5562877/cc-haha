@@ -3,7 +3,7 @@ import type WsWebSocket from 'ws'
 import { logEvent } from '../../server/services/analytics/index.js'
 import { CircularBuffer } from '../../utils/CircularBuffer.js'
 import { logForDebugging } from '../../server/utils/debug.js'
-import { logForDiagnosticsNoPII } from '../../utils/diagLogs.js'
+import { logForDiagnosticsNoPII } from '../../server/utils/diagLogs.js'
 import { isEnvTruthy } from '../../server/utils/envUtils.js'
 import { getWebSocketTLSOptions } from '../../server/utils/mtls.js'
 import {

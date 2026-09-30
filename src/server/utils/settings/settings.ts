@@ -11,7 +11,7 @@ import {
 import { getRemoteManagedSettingsSyncFromCache } from '../../../services/remoteManagedSettings/syncCacheState.js'
 import { uniq } from '../../../utils/array.js'
 import { logForDebugging } from '../debug.js'
-import { logForDiagnosticsNoPII } from '../../../utils/diagLogs.js'
+import { logForDiagnosticsNoPII } from '../diagLogs.js'
 import { getClaudeConfigHomeDir, isEnvTruthy } from '../envUtils.js'
 import { getErrnoCode, isENOENT } from '../errors.js'
 import { writeFileSyncAndFlush_DEPRECATED } from '../../../utils/file.js'

@@ -15,9 +15,9 @@
 import { unwatchFile, watchFile } from 'fs'
 import { readdir, readFile, stat } from 'fs/promises'
 import { join, resolve } from 'path'
-import { waitForScrollIdle } from '../../server/bootstrap/state.js'
-import { registerCleanup } from '../../server/utils/cleanupRegistry.js'
-import { getCwd } from '../../server/utils/cwd.js'
+import { waitForScrollIdle } from '../../bootstrap/state.js'
+import { registerCleanup } from '../cleanupRegistry.js'
+import { getCwd } from '../cwd.js'
 import { findGitRoot } from '../git.js'
 import { parseGitConfigValue } from './gitConfigParser.js'
 

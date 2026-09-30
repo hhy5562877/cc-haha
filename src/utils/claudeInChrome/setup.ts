@@ -18,7 +18,7 @@ import {
   isEnvDefinedFalsy,
   isEnvTruthy,
 } from '../../server/utils/envUtils.js'
-import { execFileNoThrowWithCwd } from '../execFileNoThrow.js'
+import { execFileNoThrowWithCwd } from '../../server/utils/execFileNoThrow.js'
 import { getPlatform } from '../../server/utils/platform.js'
 import { jsonStringify } from '../../server/utils/slowOperations.js'
 import {

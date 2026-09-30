@@ -42,7 +42,7 @@ export type PersistableScope = Exclude<PluginScope, never> // All scopes are per
 
 import { getOriginalCwd } from '../../bootstrap/state.js'
 import { getCwd } from '../cwd.js'
-import { getHeadForDir } from '../../../utils/git/gitFilesystem.js'
+import { getHeadForDir } from '../git/gitFilesystem.js'
 import type { EditableSettingSource } from '../settings/constants.js'
 import {
   getSettings_DEPRECATED,

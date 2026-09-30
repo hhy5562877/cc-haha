@@ -4,7 +4,7 @@ import { logForDebugging } from '../../../server/utils/debug.js'
 import {
   execFileNoThrow,
   execFileNoThrowWithCwd,
-} from '../../../utils/execFileNoThrow.js'
+} from '../../../server/utils/execFileNoThrow.js'
 import { logError } from '../../../server/utils/log.js'
 
 /**

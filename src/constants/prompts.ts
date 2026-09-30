@@ -1,7 +1,7 @@
 // biome-ignore-all assist/source/organizeImports: ANT-ONLY import markers must not be reordered
 import { type as osType, version as osVersion, release as osRelease } from 'os'
 import { env } from '../server/utils/env.js'
-import { getIsGit } from '../utils/git.js'
+import { getIsGit } from '../server/utils/git.js'
 import { getCwd } from '../server/utils/cwd.js'
 import { getIsNonInteractiveSession } from '../server/bootstrap/state.js'
 import { getCurrentWorktreeSession } from '../utils/worktree.js'

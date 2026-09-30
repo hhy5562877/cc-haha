@@ -46,7 +46,7 @@ import {
 } from '../../utils/auth.js'
 import { logForDebugging } from '../../server/utils/debug.js'
 import { classifyAxiosError } from '../../server/utils/errors.js'
-import { getGithubRepo } from '../../utils/git.js'
+import { getGithubRepo } from '../../server/utils/git.js'
 import {
   getAPIProvider,
   isFirstPartyAnthropicBaseUrl,

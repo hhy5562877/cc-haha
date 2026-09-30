@@ -56,8 +56,8 @@ export async function createBridgeSession({
   const { getOrganizationUUID } = await import('../server/services/oauth/client.js')
   const { getOauthConfig } = await import('../server/constants/oauth.js')
   const { getOAuthHeaders } = await import('../utils/teleport/api.js')
-  const { parseGitHubRepository } = await import('../utils/detectRepository.js')
-  const { getDefaultBranch } = await import('../utils/git.js')
+  const { parseGitHubRepository } = await import('../server/utils/detectRepository.js')
+  const { getDefaultBranch } = await import('../server/utils/git.js')
   const { getMainLoopModel } = await import('../server/utils/model/model.js')
   const { default: axios } = await import('axios')
 
@@ -79,7 +79,7 @@ export async function createBridgeSession({
   let gitOutcome: GitOutcome | null = null
 
   if (gitRepoUrl) {
-    const { parseGitRemote } = await import('../utils/detectRepository.js')
+    const { parseGitRemote } = await import('../server/utils/detectRepository.js')
     const parsed = parseGitRemote(gitRepoUrl)
     if (parsed) {
       const { host, owner, name } = parsed

@@ -27,7 +27,7 @@ import { posix } from 'path'
 import { registerCleanup } from '../server/utils/cleanupRegistry.js'
 import { logForDebugging } from '../server/utils/debug.js'
 import { toError } from '../server/utils/errors.js'
-import { execFileNoThrow } from './execFileNoThrow.js'
+import { execFileNoThrow } from '../server/utils/execFileNoThrow.js'
 import { logError } from '../server/utils/log.js'
 import { getPlatform } from '../server/utils/platform.js'
 

@@ -1,6 +1,6 @@
 import type { Command } from '../commands.js'
 import type { ToolUseContext } from '../Tool.js'
-import { getDefaultBranch } from '../utils/git.js'
+import { getDefaultBranch } from '../server/utils/git.js'
 import { executeShellCommandsInPrompt } from '../utils/promptShellExecution.js'
 import {
   resolveDefaultShell,

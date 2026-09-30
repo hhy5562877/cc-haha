@@ -13,7 +13,7 @@ import { Box, Text } from '../../ink.js';
 import { enablePluginOp } from '../../services/plugins/pluginOperations.js';
 import { logForDebugging } from '../../server/utils/debug.js';
 import { isENOENT, toError } from '../../server/utils/errors.js';
-import { execFileNoThrow } from '../../utils/execFileNoThrow.js';
+import { execFileNoThrow } from '../../server/utils/execFileNoThrow.js';
 import { pathExists } from '../../utils/file.js';
 import { logError } from '../../server/utils/log.js';
 import { getPlatform } from '../../server/utils/platform.js';

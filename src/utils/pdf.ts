@@ -6,7 +6,7 @@ import {
   PDF_TARGET_RAW_SIZE,
 } from '../constants/apiLimits.js'
 import { errorMessage } from '../server/utils/errors.js'
-import { execFileNoThrow } from './execFileNoThrow.js'
+import { execFileNoThrow } from '../server/utils/execFileNoThrow.js'
 import { formatFileSize } from './format.js'
 import { getFsImplementation } from '../server/utils/fsOperations.js'
 import { getToolResultsDir } from './toolResultStorage.js'

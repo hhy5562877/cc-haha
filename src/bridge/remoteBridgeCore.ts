@@ -53,7 +53,7 @@ import {
 } from './bridgeMessaging.js'
 import { logBridgeSkip } from './debugUtils.js'
 import { logForDebugging } from '../server/utils/debug.js'
-import { logForDiagnosticsNoPII } from '../utils/diagLogs.js'
+import { logForDiagnosticsNoPII } from '../server/utils/diagLogs.js'
 import { isInProtectedNamespace } from '../server/utils/envUtils.js'
 import { errorMessage } from '../server/utils/errors.js'
 import { sleep } from '../utils/sleep.js'

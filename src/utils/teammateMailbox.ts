@@ -21,7 +21,7 @@ import { logForDebugging } from '../server/utils/debug.js'
 import { getTeamsDir } from '../server/utils/envUtils.js'
 import { getErrnoCode } from '../server/utils/errors.js'
 import { lazySchema } from '../server/utils/lazySchema.js'
-import * as lockfile from './lockfile.js'
+import * as lockfile from '../server/utils/lockfile.js'
 import { logError } from '../server/utils/log.js'
 import {
   permissionUpdateSchema,

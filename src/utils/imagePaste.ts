@@ -10,7 +10,7 @@ import {
 import { getFeatureValue_CACHED_MAY_BE_STALE } from '../server/services/analytics/growthbook.js'
 import { getImageProcessor } from '../tools/FileReadTool/imageProcessor.js'
 import { logForDebugging } from '../server/utils/debug.js'
-import { execFileNoThrowWithCwd } from './execFileNoThrow.js'
+import { execFileNoThrowWithCwd } from '../server/utils/execFileNoThrow.js'
 import { getFsImplementation } from '../server/utils/fsOperations.js'
 import {
   detectImageFormatFromBase64,

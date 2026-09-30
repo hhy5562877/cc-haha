@@ -52,7 +52,7 @@ import {
   REJECT_MESSAGE_WITH_REASON_PREFIX,
 } from '../constants/messages.js'
 import { getClaudeConfigHomeDir } from '../utils/envUtils.js'
-import { findCanonicalGitRoot } from '../../utils/git.js'
+import { findCanonicalGitRoot } from '../utils/git.js'
 import { sanitizePath } from '../utils/path.js'
 import { getProcessEnvWithTerminalShellEnvironment } from '../utils/terminalShellEnvironment.js'
 import { attributionHeaderEnvForModel } from './attributionHeaderPolicy.js'

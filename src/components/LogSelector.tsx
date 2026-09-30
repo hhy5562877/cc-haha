@@ -15,7 +15,7 @@ import { logEvent } from '../server/services/analytics/index.js';
 import type { LogOption, SerializedMessage } from '../server/types/logs.js';
 import { formatLogMetadata, truncateToWidth } from '../utils/format.js';
 import { getWorktreePaths } from '../utils/getWorktreePaths.js';
-import { getBranch } from '../utils/git.js';
+import { getBranch } from '../server/utils/git.js';
 import { getLogDisplayTitle } from '../server/utils/log.js';
 import { getFirstMeaningfulUserMessageTextContent, getSessionIdFromLog, isCustomTitleEnabled, saveCustomTitle } from '../utils/sessionStorage.js';
 import { getTheme } from '../utils/theme.js';

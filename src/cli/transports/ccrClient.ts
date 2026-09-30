@@ -5,7 +5,7 @@ import type {
 } from 'src/entrypoints/sdk/controlTypes.js'
 import { decodeJwtExpiry } from '../../bridge/jwtUtils.js'
 import { logForDebugging } from '../../server/utils/debug.js'
-import { logForDiagnosticsNoPII } from '../../utils/diagLogs.js'
+import { logForDiagnosticsNoPII } from '../../server/utils/diagLogs.js'
 import { errorMessage, getErrnoCode } from '../../server/utils/errors.js'
 import { createAxiosInstance } from '../../server/utils/proxy.js'
 import {

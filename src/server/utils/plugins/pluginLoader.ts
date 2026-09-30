@@ -67,10 +67,10 @@ import {
   isFsInaccessible,
   toError,
 } from '../errors.js'
-import { execFileNoThrow, execFileNoThrowWithCwd } from '../../../utils/execFileNoThrow.js'
+import { execFileNoThrow, execFileNoThrowWithCwd } from '../execFileNoThrow.js'
 import { pathExists } from '../../../utils/file.js'
 import { getFsImplementation } from '../fsOperations.js'
-import { gitExe } from '../../../utils/git.js'
+import { gitExe } from '../git.js'
 import { lazySchema } from '../lazySchema.js'
 import { logError } from '../log.js'
 import { getSettings_DEPRECATED, getSettingsForSource } from '../settings/settings.js'

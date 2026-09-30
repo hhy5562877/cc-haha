@@ -57,7 +57,7 @@ import {
   SessionBranchingError,
 } from '../../utils/sessionBranching.js'
 import { registerChangedFileAccessRoot, registerFilesystemAccessRoot } from '../services/filesystemAccessRoots.js'
-import { findGitRoot } from '../../utils/git.js'
+import { findGitRoot } from '../utils/git.js'
 import { traceCaptureService, trimTraceCallPreviews } from '../services/traceCaptureService.js'
 import { getSubagentRunByAgentId, getSubagentRunByTool } from '../services/subagentRunService.js'
 import { isValidPermissionMode } from '../services/settingsService.js'

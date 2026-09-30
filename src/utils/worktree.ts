@@ -27,21 +27,21 @@ import { saveCurrentProjectConfig } from './config.js'
 import { getCwd } from '../server/utils/cwd.js'
 import { logForDebugging } from '../server/utils/debug.js'
 import { errorMessage, getErrnoCode } from '../server/utils/errors.js'
-import { execFileNoThrow, execFileNoThrowWithCwd } from './execFileNoThrow.js'
-import { parseGitConfigValue } from './git/gitConfigParser.js'
+import { execFileNoThrow, execFileNoThrowWithCwd } from '../server/utils/execFileNoThrow.js'
+import { parseGitConfigValue } from '../server/utils/git/gitConfigParser.js'
 import {
   getCommonDir,
   readWorktreeHeadSha,
   resolveGitDir,
   resolveRef,
-} from './git/gitFilesystem.js'
+} from '../server/utils/git/gitFilesystem.js'
 import {
   findCanonicalGitRoot,
   findGitRoot,
   getBranch,
   getDefaultBranch,
   gitExe,
-} from './git.js'
+} from '../server/utils/git.js'
 import {
   executeWorktreeCreateHook,
   executeWorktreeRemoveHook,

@@ -14,7 +14,7 @@ import { type AppState, useAppState, useSetAppState } from '../../state/AppState
 import { getEmptyToolPermissionContext } from '../../Tool.js';
 import { AGENT_COLOR_TO_THEME_COLOR } from '../../server/tools/AgentTool/agentColorManager.js';
 import { logForDebugging } from '../../server/utils/debug.js';
-import { execFileNoThrow } from '../../utils/execFileNoThrow.js';
+import { execFileNoThrow } from '../../server/utils/execFileNoThrow.js';
 import { truncateToWidth } from '../../utils/format.js';
 import { getNextPermissionMode } from '../../server/utils/permissions/getNextPermissionMode.js';
 import { getModeColor, type PermissionMode, permissionModeFromString, permissionModeSymbol } from '../../server/utils/permissions/PermissionMode.js';

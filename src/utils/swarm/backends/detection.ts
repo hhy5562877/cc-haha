@@ -1,5 +1,5 @@
 import { env } from '../../../server/utils/env.js'
-import { execFileNoThrow } from '../../../utils/execFileNoThrow.js'
+import { execFileNoThrow } from '../../../server/utils/execFileNoThrow.js'
 import { TMUX_COMMAND } from '../constants.js'
 
 /**

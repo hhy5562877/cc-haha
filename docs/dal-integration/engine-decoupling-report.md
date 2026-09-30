@@ -1,12 +1,12 @@
 # 引擎解耦量化报告
 
-> 自动生成：bun scripts/engine-decoupling-report.ts（词法模块图，3747 文件）
+> 自动生成：bun scripts/engine-decoupling-report.ts（词法模块图，3745 文件）
 
 ## 总量
 
-- src/server 文件数：699
-- server → 引擎 **直接依赖边**：534（涉及 239 个引擎文件）
-- 引擎传递闭包（直接+间接可达）：**1754 个文件**
+- src/server 文件数：709
+- server → 引擎 **直接依赖边**：505（涉及 233 个引擎文件）
+- 引擎传递闭包（直接+间接可达）：**1745 个文件**
 - 其中疑似类型/模型定义类直接依赖：30
 
 ## 直接依赖按引擎目录分布
@@ -24,12 +24,10 @@
 | src/utils/task | 2 |
 | src/tools/ListMcpResourcesTool | 2 |
 | src/tools/MCPTool | 2 |
-| src/utils/git | 2 |
 | src/utils/telemetry | 2 |
 | src/services/lsp | 2 |
 | src/utils/dxt | 2 |
 | src/state/AppStateStore.ts | 1 |
-| src/utils/git.ts | 1 |
 | src/utils/stats.ts | 1 |
 | src/utils/config.ts | 1 |
 | src/commands.ts | 1 |
@@ -39,7 +37,6 @@
 | src/constants/outputStyles.ts | 1 |
 | src/outputStyles/loadOutputStylesDir.ts | 1 |
 | src/utils/cleanup.ts | 1 |
-| src/utils/lockfile.ts | 1 |
 | src/utils/tasks.ts | 1 |
 | src/utils/teleport | 1 |
 | src/state/AppState.tsx | 1 |
@@ -52,7 +49,6 @@
 | src/utils/statsCache.ts | 1 |
 | src/utils/effort.ts | 1 |
 | src/tools.ts | 1 |
-| src/utils/execFileNoThrow.ts | 1 |
 | src/utils/ripgrep.ts | 1 |
 | src/memdir/memoryTypes.ts | 1 |
 | src/utils/auth.ts | 1 |
@@ -127,6 +123,7 @@
 | src/utils/contextBudget.ts | 1 |
 | src/services/tokenEstimation.ts | 1 |
 | src/utils/sessionMessageInbox.ts | 1 |
+| src/utils/git | 1 |
 | src/utils/sessionTitle.ts | 1 |
 | src/constants/prompts.ts | 1 |
 | src/coordinator/coordinatorMode.ts | 1 |
@@ -219,8 +216,6 @@
 | src/utils/promptShellExecution.ts | 1 |
 | src/utils/systemDirectories.ts | 1 |
 | src/schemas/hooks.ts | 1 |
-| src/utils/execFileNoThrowPortable.ts | 1 |
-| src/utils/diagLogs.ts | 1 |
 | src/services/remoteManagedSettings | 1 |
 | src/entrypoints/sandboxTypes.ts | 1 |
 
@@ -238,7 +233,6 @@
 | src/keybindings/useKeybinding.ts | 91 |
 | src/utils/auth.ts | 82 |
 | src/types/command.ts | 79 |
-| src/utils/execFileNoThrow.ts | 63 |
 | src/utils/theme.ts | 59 |
 | src/utils/sessionStorage.ts | 59 |
 | src/hooks/useTerminalSize.ts | 59 |
@@ -248,11 +242,12 @@
 | src/utils/file.ts | 53 |
 | src/utils/array.ts | 51 |
 | src/components/CustomSelect/select.tsx | 51 |
-| src/utils/git.ts | 50 |
 | src/components/MessageResponse.tsx | 50 |
 | src/ink/stringWidth.ts | 47 |
 | src/components/ConfigurableShortcutHint.tsx | 46 |
 | src/ink/events/keyboard-event.ts | 38 |
+| src/utils/sleep.ts | 35 |
+| src/constants/figures.ts | 33 |
 
 ## 分批解耦建议
 

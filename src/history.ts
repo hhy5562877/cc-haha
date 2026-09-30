@@ -13,7 +13,7 @@ import { logForDebugging } from './server/utils/debug.js'
 import { getClaudeConfigHomeDir, isEnvTruthy } from './server/utils/envUtils.js'
 import { getErrnoCode } from './server/utils/errors.js'
 import { readLinesReverse } from './server/utils/fsOperations.js'
-import { lock } from './utils/lockfile.js'
+import { lock } from './server/utils/lockfile.js'
 import {
   hashPastedText,
   retrievePastedText,

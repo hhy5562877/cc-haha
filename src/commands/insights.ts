@@ -22,7 +22,7 @@ import {
 import type { LogOption } from '../server/types/logs.js'
 import { getClaudeConfigHomeDir } from '../server/utils/envUtils.js'
 import { toError } from '../server/utils/errors.js'
-import { execFileNoThrow } from '../utils/execFileNoThrow.js'
+import { execFileNoThrow } from '../server/utils/execFileNoThrow.js'
 import { logError } from '../server/utils/log.js'
 import { extractTextContent } from '../utils/messages.js'
 import { getDefaultOpusModel } from '../server/utils/model/model.js'

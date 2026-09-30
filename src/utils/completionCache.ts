@@ -7,7 +7,7 @@ import { color } from '../components/design-system/color.js'
 import { supportsHyperlinks } from '../ink/supports-hyperlinks.js'
 import { logForDebugging } from '../server/utils/debug.js'
 import { isENOENT } from '../server/utils/errors.js'
-import { execFileNoThrow } from './execFileNoThrow.js'
+import { execFileNoThrow } from '../server/utils/execFileNoThrow.js'
 import { logError } from '../server/utils/log.js'
 import type { ThemeName } from './theme.js'
 

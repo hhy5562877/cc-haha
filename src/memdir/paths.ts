@@ -11,7 +11,7 @@ import {
   isEnvDefinedFalsy,
   isEnvTruthy,
 } from '../server/utils/envUtils.js'
-import { findCanonicalGitRoot } from '../utils/git.js'
+import { findCanonicalGitRoot } from '../server/utils/git.js'
 import { sanitizePath } from '../server/utils/path.js'
 import {
   getInitialSettings,

@@ -18,7 +18,7 @@ import {
 import { registerCleanup } from '../../server/utils/cleanupRegistry.js'
 import { logForDebugging } from '../../server/utils/debug.js'
 import { errorMessage } from '../../server/utils/errors.js'
-import { getGithubRepo } from '../../utils/git.js'
+import { getGithubRepo } from '../../server/utils/git.js'
 import {
   type AnalyticsMetadata_I_VERIFIED_THIS_IS_NOT_CODE_OR_FILEPATHS,
   logEvent,

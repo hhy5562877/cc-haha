@@ -8,7 +8,7 @@ import {
   getClaudeAIOAuthTokens,
 } from '../auth.js'
 import { logForDebugging } from '../../server/utils/debug.js'
-import { parseGitHubRepository } from '../detectRepository.js'
+import { parseGitHubRepository } from '../../server/utils/detectRepository.js'
 import { errorMessage, toError } from '../../server/utils/errors.js'
 import { lazySchema } from '../../server/utils/lazySchema.js'
 import { logError } from '../../server/utils/log.js'

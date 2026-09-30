@@ -8,7 +8,7 @@ import {
   PDF_EXTRACT_SIZE_THRESHOLD,
   PDF_MAX_PAGES_PER_READ,
 } from '../../constants/apiLimits.js'
-import { hasBinaryExtension } from '../../constants/files.js'
+import { hasBinaryExtension } from '../../server/constants/files.js'
 import { memoryFreshnessNote } from '../../memdir/memoryAge.js'
 import { getFeatureValue_CACHED_MAY_BE_STALE } from '../../server/services/analytics/growthbook.js'
 import { logEvent } from '../../server/services/analytics/index.js'

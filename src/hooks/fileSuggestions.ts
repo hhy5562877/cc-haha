@@ -17,9 +17,9 @@ import { getGlobalConfig } from '../utils/config.js'
 import { getCwd } from '../server/utils/cwd.js'
 import { logForDebugging } from '../server/utils/debug.js'
 import { errorMessage } from '../server/utils/errors.js'
-import { execFileNoThrowWithCwd } from '../utils/execFileNoThrow.js'
+import { execFileNoThrowWithCwd } from '../server/utils/execFileNoThrow.js'
 import { getFsImplementation } from '../server/utils/fsOperations.js'
-import { findGitRoot, gitExe } from '../utils/git.js'
+import { findGitRoot, gitExe } from '../server/utils/git.js'
 import {
   createBaseHookInput,
   executeFileSuggestionCommand,

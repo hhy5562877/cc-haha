@@ -34,7 +34,7 @@ import { getGlobalConfig, saveGlobalConfig } from '../utils/config.js'
 import { logForDebugging } from '../server/utils/debug.js'
 import { stripDisplayTagsAllowEmpty } from '../server/utils/displayTags.js'
 import { errorMessage } from '../server/utils/errors.js'
-import { getBranch, getRemoteUrl } from '../utils/git.js'
+import { getBranch, getRemoteUrl } from '../server/utils/git.js'
 import { toSDKMessages } from '../utils/messages/mappers.js'
 import {
   getContentText,

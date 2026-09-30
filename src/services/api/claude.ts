@@ -170,7 +170,7 @@ import { CLAUDE_IN_CHROME_MCP_SERVER_NAME } from "src/utils/claudeInChrome/commo
 import { CHROME_TOOL_SEARCH_INSTRUCTIONS } from "src/utils/claudeInChrome/prompt.js";
 import { getMaxThinkingTokensForModel } from "src/utils/context.js";
 import { logForDebugging } from "src/server/utils/debug.ts";
-import { logForDiagnosticsNoPII } from "src/utils/diagLogs.js";
+import { logForDiagnosticsNoPII } from "src/server/utils/diagLogs.js";
 import {
   type EffortLevel,
   type EffortValue,

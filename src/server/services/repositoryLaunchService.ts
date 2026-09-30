@@ -3,7 +3,7 @@ import * as fs from 'node:fs/promises'
 import * as path from 'node:path'
 import { promisify } from 'node:util'
 import { ApiError } from '../middleware/errorHandler.js'
-import { findCanonicalGitRoot, findGitRoot } from '../../utils/git.js'
+import { findCanonicalGitRoot, findGitRoot } from '../utils/git.js'
 import { registerFilesystemAccessRoot } from './filesystemAccessRoots.js'
 import { normalizeDriveRootPathForPlatform } from './windowsDrivePath.js'
 import {

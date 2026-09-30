@@ -1,6 +1,6 @@
 import type { AgentColorName } from '../../../server/tools/AgentTool/agentColorManager.js'
 import { logForDebugging } from '../../../server/utils/debug.js'
-import { execFileNoThrow } from '../../../utils/execFileNoThrow.js'
+import { execFileNoThrow } from '../../../server/utils/execFileNoThrow.js'
 import { IT2_COMMAND, isInITerm2, isIt2CliAvailable } from './detection.js'
 import { registerITermBackend } from './registry.js'
 import type { CreatePaneResult, PaneBackend, PaneId } from './types.js'

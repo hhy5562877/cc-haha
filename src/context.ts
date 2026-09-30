@@ -10,10 +10,10 @@ import {
   getClaudeMds,
   getMemoryFiles,
 } from './utils/claudemd.js'
-import { logForDiagnosticsNoPII } from './utils/diagLogs.js'
+import { logForDiagnosticsNoPII } from './server/utils/diagLogs.js'
 import { isBareMode, isEnvTruthy } from './server/utils/envUtils.js'
-import { execFileNoThrow } from './utils/execFileNoThrow.js'
-import { getBranch, getDefaultBranch, getIsGit, gitExe } from './utils/git.js'
+import { execFileNoThrow } from './server/utils/execFileNoThrow.js'
+import { getBranch, getDefaultBranch, getIsGit, gitExe } from './server/utils/git.js'
 import { shouldIncludeGitInstructions } from './utils/gitSettings.js'
 import { logError } from './server/utils/log.js'
 import { getInstructionFilesMode, type InstructionFilesMode } from './utils/instructionFiles.js'

@@ -17,7 +17,7 @@ import { checkAndRefreshOAuthTokenIfNeeded } from '../utils/auth.js';
 import { openBrowser } from '../utils/browser.js';
 import { logForDebugging } from '../server/utils/debug.js';
 import { env } from '../server/utils/env.js';
-import { type GitRepoState, getGitState, getIsGit } from '../utils/git.js';
+import { type GitRepoState, getGitState, getIsGit } from '../server/utils/git.js';
 import { getAuthHeaders, getUserAgent } from '../utils/http.js';
 import { getInMemoryErrors, logError } from '../server/utils/log.js';
 import { isEssentialTrafficOnly } from '../server/utils/privacyLevel.js';

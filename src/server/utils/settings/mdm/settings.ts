@@ -20,7 +20,7 @@
 
 import { join } from 'path'
 import { logForDebugging } from '../../debug.js'
-import { logForDiagnosticsNoPII } from '../../../../utils/diagLogs.js'
+import { logForDiagnosticsNoPII } from '../../diagLogs.js'
 import { readFileSync } from '../../../../utils/fileRead.js'
 import { getFsImplementation } from '../../fsOperations.js'
 import { safeParseJSON } from '../../json.js'

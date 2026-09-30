@@ -1,7 +1,7 @@
 import { existsSync } from 'node:fs'
 import { release } from 'node:os'
 import path from 'node:path'
-import { execFileNoThrow } from '../execFileNoThrow.js'
+import { execFileNoThrow } from '../../server/utils/execFileNoThrow.js'
 import { ensureInstalledHelper, isNestedInHostApp } from './cuHelperInstall.js'
 import { getRuntimePaths } from './pythonBridge.js'
 

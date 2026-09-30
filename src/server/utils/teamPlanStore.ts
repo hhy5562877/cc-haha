@@ -12,7 +12,7 @@ import { createHash, randomUUID } from 'node:crypto'
 import { mkdir, readFile, readdir, rename, unlink, writeFile } from 'node:fs/promises'
 import { dirname, join } from 'node:path'
 import { AsyncLocalStorage } from 'node:async_hooks'
-import { lock } from '../../utils/lockfile.js'
+import { lock } from './lockfile.js'
 import type { TeamFile as TeamConfigFile } from './teamFileTypes.js'
 export type { TeamConfigFile }
 import { isValidTeamMemberName, teamPlanRecordSchema, type TeamPlanIdentity, type TeamPlanMember, type TeamPlanPatch, type TeamPlanRecord, type TeamPlanRuntime } from '../shared/teamPlan.js'

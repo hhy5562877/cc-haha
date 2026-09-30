@@ -26,9 +26,9 @@ import {
 } from '../../utils/auth.js'
 import { clearMemoryFileCaches } from '../../utils/claudemd.js'
 import { getMemoryPath } from '../../utils/config.js'
-import { logForDiagnosticsNoPII } from '../../utils/diagLogs.js'
+import { logForDiagnosticsNoPII } from '../../server/utils/diagLogs.js'
 import { classifyAxiosError } from '../../server/utils/errors.js'
-import { getRepoRemoteHash } from '../../utils/git.js'
+import { getRepoRemoteHash } from '../../server/utils/git.js'
 import {
   getAPIProvider,
   isFirstPartyAnthropicBaseUrl,

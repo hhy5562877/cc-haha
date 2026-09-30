@@ -15,7 +15,7 @@ import { setupShellCompletion } from '../../utils/completionCache.js';
 import { getGlobalConfig, saveGlobalConfig } from '../../utils/config.js';
 import { env } from '../../server/utils/env.js';
 import { isFsInaccessible } from '../../server/utils/errors.js';
-import { execFileNoThrow } from '../../utils/execFileNoThrow.js';
+import { execFileNoThrow } from '../../server/utils/execFileNoThrow.js';
 import { addItemToJSONCArray, safeParseJSONC } from '../../server/utils/json.js';
 import { logError } from '../../server/utils/log.js';
 import { getPlatform } from '../../server/utils/platform.js';

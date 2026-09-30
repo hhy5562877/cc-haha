@@ -38,7 +38,7 @@ import {
 import type { AppState } from '../state/AppState.js'
 import { runCleanupFunctions } from '../server/utils/cleanupRegistry.js'
 import { logForDebugging } from '../server/utils/debug.js'
-import { logForDiagnosticsNoPII } from './diagLogs.js'
+import { logForDiagnosticsNoPII } from '../server/utils/diagLogs.js'
 import { isEnvTruthy } from '../server/utils/envUtils.js'
 import {
   flushProcessOutput,

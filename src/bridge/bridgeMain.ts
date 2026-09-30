@@ -13,7 +13,7 @@ import {
 } from '../server/services/analytics/index.js'
 import { isInBundledMode } from '../server/utils/bundledMode.js'
 import { logForDebugging } from '../server/utils/debug.js'
-import { logForDiagnosticsNoPII } from '../utils/diagLogs.js'
+import { logForDiagnosticsNoPII } from '../server/utils/diagLogs.js'
 import { isEnvTruthy, isInProtectedNamespace } from '../server/utils/envUtils.js'
 import { errorMessage } from '../server/utils/errors.js'
 import { truncateToWidth } from '../utils/format.js'
@@ -2204,7 +2204,7 @@ export async function bridgeMain(args: string[]): Promise<void> {
       : baseUrl
 
   const { getBranch, getRemoteUrl, findGitRoot } = await import(
-    '../utils/git.js'
+    '../server/utils/git.js'
   )
 
   // Precheck worktree availability for the first-run dialog and the `w`
@@ -2591,7 +2591,7 @@ export async function bridgeMain(args: string[]): Promise<void> {
   })
 
   const logger = createBridgeLogger({ verbose })
-  const { parseGitHubRepository } = await import('../utils/detectRepository.js')
+  const { parseGitHubRepository } = await import('../server/utils/detectRepository.js')
   const ownerRepo = gitRepoUrl ? parseGitHubRepository(gitRepoUrl) : null
   // Use the repo name from the parsed owner/repo, or fall back to the dir basename
   const repoName = ownerRepo ? ownerRepo.split('/').pop()! : basename(dir)
@@ -2857,7 +2857,7 @@ export async function runBridgeHeadless(
       : baseUrl
 
   const { getBranch, getRemoteUrl, findGitRoot } = await import(
-    '../utils/git.js'
+    '../server/utils/git.js'
   )
   const { hasWorktreeCreateHook } = await import('../utils/hooks.js')
 
