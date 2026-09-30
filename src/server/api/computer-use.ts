@@ -29,7 +29,7 @@ import {
   callCuHelper,
   isMacosComputerUseRuntimeSupported,
   resolveLaunchableCuHelperBinary,
-} from '../../utils/computerUse/cuHelperBridge.js'
+} from '../utils/computerUse/cuHelperBridge.js'
 // Embed the runtime scripts at compile time so bundled mode has them without
 // shipping loose files. Windows only: macOS drives Computer Use through the
 // signed native `cu-helper` daemon, and `helperBridge` refuses to fall back to
