@@ -13,7 +13,7 @@ import {
   IMAGE_GENERATION_PROVIDER_ID_ENV_KEY,
   IMAGE_GENERATION_PROVIDER_KIND_ENV_KEY,
   OPENAI_IMAGE_DEFAULT_MODEL,
-} from '../../services/imageGeneration/config.js'
+} from './imageGeneration/config.js'
 import { getHahaOpenAIOAuthFilePath } from './hahaOpenAIOAuthService.js'
 import {
   OPENAI_OFFICIAL_PROVIDER_ID,

@@ -8,7 +8,7 @@ import {
   getOriginalCwd,
   getUseCoworkPlugins,
 } from '../../bootstrap/state.js'
-import { getRemoteManagedSettingsSyncFromCache } from '../../../services/remoteManagedSettings/syncCacheState.js'
+import { getRemoteManagedSettingsSyncFromCache } from '../../services/remoteManagedSettings/syncCacheState.js'
 import { uniq } from '../array.js'
 import { logForDebugging } from '../debug.js'
 import { logForDiagnosticsNoPII } from '../diagLogs.js'

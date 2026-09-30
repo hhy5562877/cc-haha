@@ -12,7 +12,7 @@ import {
   type AnalyticsMetadata_I_VERIFIED_THIS_IS_NOT_CODE_OR_FILEPATHS,
   logEvent,
 } from '../../services/analytics/index.js'
-import { clearDumpState } from '../../../services/api/dumpPrompts.js'
+import { clearDumpState } from '../../services/api/dumpPrompts.js'
 import type { AppState } from '../../../state/AppState.js'
 import type {
   Tool,
@@ -58,7 +58,7 @@ import { emitAgentToolActivity, type AgentToolActivity } from '../../utils/sdkEv
 import { SYNTHETIC_OUTPUT_TOOL_NAME } from '../../../tools/SyntheticOutputTool/SyntheticOutputTool.js'
 import { isInProcessTeammate } from '../../utils/teammateContext.js'
 import { getTokenCountFromUsage } from '../../../utils/tokens.js'
-import { EXIT_PLAN_MODE_V2_TOOL_NAME } from '../../../tools/ExitPlanModeTool/constants.js'
+import { EXIT_PLAN_MODE_V2_TOOL_NAME } from '../ExitPlanModeTool/constants.js'
 import { AGENT_TOOL_NAME, LEGACY_AGENT_TOOL_NAME } from './constants.js'
 import type { AgentDefinition } from './loadAgentsDir.js'
 export type ResolvedAgentTools = {

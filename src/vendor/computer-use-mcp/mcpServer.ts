@@ -24,9 +24,9 @@ import {
   ListToolsRequestSchema,
 } from "@modelcontextprotocol/sdk/types.js";
 
-import type { ScreenshotResult } from "./executor.js";
-import type { CuCallToolResult } from "./toolCalls.js";
-import { NATIVE_ERROR } from './nativeError.js'
+import type { ScreenshotResult } from "../../server/vendor/computer-use-mcp/executor.js";
+import type { CuCallToolResult } from "../../server/vendor/computer-use-mcp/toolCalls.js";
+import { NATIVE_ERROR } from '../../server/vendor/computer-use-mcp/nativeError.js'
 import {
   APP_INVENTORY,
   NATIVE_CALL_NOT_DISPATCHED,
@@ -35,8 +35,8 @@ import {
   resetMouseButtonHeld,
   RESOLVED_APP_PATH,
   staticRequestError,
-} from "./toolCalls.js";
-import { buildComputerUseTools } from "./tools.js";
+} from "../../server/vendor/computer-use-mcp/toolCalls.js";
+import { buildComputerUseTools } from "../../server/vendor/computer-use-mcp/tools.js";
 import {
   defersLockAcquire as legacyDefersLockAcquire,
   handleToolCall as legacyHandleToolCall,
@@ -55,9 +55,9 @@ import type {
   CoordinateMode,
   CuGrantFlags,
   CuPermissionResponse,
-} from "./types.js";
-import { DEFAULT_GRANT_FLAGS } from "./types.js";
-import { REPL_MAX_CODE_BYTES, type ComputerUseReplRuntime } from './replProtocol.js'
+} from "../../server/vendor/computer-use-mcp/types.js";
+import { DEFAULT_GRANT_FLAGS } from "../../server/vendor/computer-use-mcp/types.js";
+import { REPL_MAX_CODE_BYTES, type ComputerUseReplRuntime } from '../../server/vendor/computer-use-mcp/replProtocol.js'
 
 const DEFAULT_LOCK_HELD_MESSAGE =
   "Another Claude session is currently using the computer. Wait for that " +

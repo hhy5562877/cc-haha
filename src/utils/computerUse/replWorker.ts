@@ -3,7 +3,7 @@ import { randomUUID } from 'node:crypto'
 import { createInterface } from 'node:readline'
 import { createContext, Script } from 'node:vm'
 import { compileReplCell, type ReplBinding } from './replCompiler'
-import type { ReplInput, ReplOutput } from '../../vendor/computer-use-mcp/replProtocol'
+import type { ReplInput, ReplOutput } from '../../server/vendor/computer-use-mcp/replProtocol.js'
 
 interface CellState {
   cellId: number

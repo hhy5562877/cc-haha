@@ -95,7 +95,7 @@ const webCmd = feature('CCR_REMOTE_SETUP')
   : null
 const clearSkillIndexCache = feature('EXPERIMENTAL_SKILL_SEARCH')
   ? (
-      require('./services/skillSearch/localSearch.js') as typeof import('./services/skillSearch/localSearch.js')
+      require('./server/services/skillSearch/localSearch.js') as typeof import('./server/services/skillSearch/localSearch.js')
     ).clearSkillIndexCache
   : null
 const subscribePr = feature('KAIROS_GITHUB_WEBHOOKS')

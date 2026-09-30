@@ -1,4 +1,4 @@
-import type { CuSubGates } from './types.js'
+import type { CuSubGates } from '../../server/vendor/computer-use-mcp/types.js'
 
 export const ALL_SUB_GATES_ON: CuSubGates = {
   pixelValidation: false,

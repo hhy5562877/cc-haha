@@ -17,7 +17,7 @@ import { parseCellId } from '../../utils/notebook.js'
 import { checkWritePermissionForTool } from '../../server/utils/permissions/filesystem.js'
 import type { PermissionDecision } from '../../server/utils/permissions/PermissionResult.js'
 import { jsonParse, jsonStringify } from '../../server/utils/slowOperations.js'
-import { NOTEBOOK_EDIT_TOOL_NAME } from './constants.js'
+import { NOTEBOOK_EDIT_TOOL_NAME } from '../../server/tools/NotebookEditTool/constants.js'
 import { DESCRIPTION, PROMPT } from './prompt.js'
 import {
   getToolUseSummary,

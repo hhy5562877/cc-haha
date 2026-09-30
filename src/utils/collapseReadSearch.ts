@@ -2,10 +2,10 @@ import { feature } from 'bun:bundle'
 import type { UUID } from 'crypto'
 import { findToolByName, type Tools } from '../Tool.js'
 import { extractBashCommentLabel } from '../tools/BashTool/commentLabel.js'
-import { BASH_TOOL_NAME } from '../tools/BashTool/toolName.js'
+import { BASH_TOOL_NAME } from '../server/tools/BashTool/toolName.js'
 import { FILE_EDIT_TOOL_NAME } from '../server/tools/FileEditTool/constants.js'
-import { FILE_WRITE_TOOL_NAME } from '../tools/FileWriteTool/prompt.js'
-import { REPL_TOOL_NAME } from '../tools/REPLTool/constants.js'
+import { FILE_WRITE_TOOL_NAME } from '../server/tools/FileWriteTool/prompt.js'
+import { REPL_TOOL_NAME } from '../server/tools/REPLTool/constants.js'
 import { getReplPrimitiveTools } from '../tools/REPLTool/primitiveTools.js'
 import {
   type BranchAction,

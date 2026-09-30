@@ -1,25 +1,22 @@
 # 引擎解耦量化报告
 
-> 自动生成：bun scripts/engine-decoupling-report.ts（词法模块图，3746 文件）
+> 自动生成：bun scripts/engine-decoupling-report.ts（词法模块图，3745 文件）
 
 ## 总量
 
-- src/server 文件数：783
-- server → 引擎 **直接依赖边**：371（涉及 165 个引擎文件）
-- 引擎传递闭包（直接+间接可达）：**1670 个文件**
-- 其中疑似类型/模型定义类直接依赖：22
+- src/server 文件数：835
+- server → 引擎 **直接依赖边**：296（涉及 121 个引擎文件）
+- 引擎传递闭包（直接+间接可达）：**1617 个文件**
+- 其中疑似类型/模型定义类直接依赖：20
 
 ## 直接依赖按引擎目录分布
 
 | 目录 | 被引用文件数 |
 |---|---|
-| src/services/api | 7 |
-| src/tools/BashTool | 4 |
-| src/vendor/computer-use-mcp | 3 |
 | src/utils/computerUse | 3 |
+| src/tools/BashTool | 3 |
+| src/services/api | 3 |
 | src/utils/swarm | 2 |
-| src/tools/ListMcpResourcesTool | 2 |
-| src/tools/MCPTool | 2 |
 | src/utils/claudeInChrome | 2 |
 | src/utils/hooks | 2 |
 | src/utils/telemetry | 2 |
@@ -59,17 +56,13 @@
 | src/utils/teammate.ts | 1 |
 | src/types/command.ts | 1 |
 | src/services/plugins | 1 |
-| src/tools/FileEditTool | 1 |
-| src/utils/teammateMailbox.ts | 1 |
-| src/services/imageGeneration | 1 |
 | src/utils/imageResizer.ts | 1 |
 | src/utils/shellConfig.ts | 1 |
-| src/services/teamMemorySync | 1 |
-| src/services/modelCatalogCache.ts | 1 |
 | src/utils/messages.ts | 1 |
-| src/utils/shotStats.ts | 1 |
 | src/utils/usageAccounting.ts | 1 |
 | src/constants/product.ts | 1 |
+| src/tools/ListMcpResourcesTool | 1 |
+| src/tools/MCPTool | 1 |
 | src/tools/McpAuthTool | 1 |
 | src/tools/ReadMcpResourceTool | 1 |
 | src/utils/ide.ts | 1 |
@@ -77,7 +70,6 @@
 | src/utils/mcpValidation.ts | 1 |
 | src/utils/toolResultStorage.ts | 1 |
 | src/utils/hooks.ts | 1 |
-| src/services/skillSearch | 1 |
 | src/context/notifications.tsx | 1 |
 | src/utils/messageQueueManager.ts | 1 |
 | src/components/mcp | 1 |
@@ -86,6 +78,7 @@
 | src/utils/context.ts | 1 |
 | src/services/tokenEstimation.ts | 1 |
 | src/utils/sessionMessageInbox.ts | 1 |
+| src/utils/teammateMailbox.ts | 1 |
 | src/utils/sessionTitle.ts | 1 |
 | src/constants/prompts.ts | 1 |
 | src/coordinator/coordinatorMode.ts | 1 |
@@ -96,7 +89,6 @@
 | src/utils/systemPrompt.ts | 1 |
 | src/utils/teleport.tsx | 1 |
 | src/utils/tokens.ts | 1 |
-| src/tools/FileReadTool | 1 |
 | src/tools/shared | 1 |
 | src/proactive/index.ts | 1 |
 | src/components/AgentProgressLine.tsx | 1 |
@@ -112,11 +104,7 @@
 | src/memdir/memdir.ts | 1 |
 | src/constants/tools.ts | 1 |
 | src/tools/SyntheticOutputTool | 1 |
-| src/tools/ExitPlanModeTool | 1 |
 | src/coordinator/workerAgent.ts | 1 |
-| src/tools/FileWriteTool | 1 |
-| src/tools/GlobTool | 1 |
-| src/tools/SendMessageTool | 1 |
 | src/utils/promptCategory.ts | 1 |
 | src/context.ts | 1 |
 | src/query.ts | 1 |
@@ -126,38 +114,15 @@
 | src/tasks/MonitorMcpTask | 1 |
 | src/utils/diff.ts | 1 |
 | src/utils/sideQuery.ts | 1 |
-| src/tools/AskUserQuestionTool | 1 |
-| src/tools/EnterPlanModeTool | 1 |
-| src/tools/GrepTool | 1 |
-| src/tools/LSPTool | 1 |
-| src/tools/SleepTool | 1 |
-| src/tools/TaskCreateTool | 1 |
-| src/tools/TaskGetTool | 1 |
-| src/tools/TaskListTool | 1 |
-| src/tools/TaskOutputTool | 1 |
-| src/tools/TaskStopTool | 1 |
-| src/tools/TaskUpdateTool | 1 |
-| src/tools/TeamCreateTool | 1 |
-| src/tools/TeamPlanTool | 1 |
-| src/tools/TeamDeleteTool | 1 |
-| src/tools/TodoWriteTool | 1 |
 | src/tools/ToolSearchTool | 1 |
-| src/tools/TerminalCaptureTool | 1 |
-| src/tools/OverflowTestTool | 1 |
-| src/tools/VerifyPlanExecutionTool | 1 |
-| src/tools/WorkflowTool | 1 |
 | src/utils/plans.ts | 1 |
-| src/tools/BriefTool | 1 |
 | src/commands/add-dir | 1 |
-| src/tools/PowerShellTool | 1 |
 | src/utils/gracefulShutdown.ts | 1 |
-| src/tools/REPLTool | 1 |
 | src/utils/bash | 1 |
 | src/tools/SkillTool | 1 |
 | src/utils/promptShellExecution.ts | 1 |
 | src/services/lsp | 1 |
 | src/schemas/hooks.ts | 1 |
-| src/services/remoteManagedSettings | 1 |
 | src/entrypoints/sandboxTypes.ts | 1 |
 
 ## 解耦枢纽（闭包内扇入 Top 25——先解耦它们可级联释放最多文件）
@@ -165,7 +130,7 @@
 | 文件 | 被依赖次数 |
 |---|---|
 | src/ink.ts | 390 |
-| src/Tool.ts | 213 |
+| src/Tool.ts | 212 |
 | src/commands.ts | 170 |
 | src/utils/config.ts | 134 |
 | src/utils/messages.ts | 117 |
@@ -188,7 +153,7 @@
 | src/utils/hooks.ts | 30 |
 | src/components/permissions/PermissionRequest.tsx | 30 |
 | src/types/plugin.ts | 29 |
-| src/utils/tasks.ts | 28 |
+| src/components/CustomSelect/index.ts | 28 |
 
 ## 分批解耦建议
 

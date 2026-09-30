@@ -8,7 +8,7 @@ import { useExitOnCtrlCDWithKeybindings } from '../../hooks/useExitOnCtrlCDWithK
 import { Box, Link, Text } from '../../ink.js';
 import { useKeybinding } from '../../keybindings/useKeybinding.js';
 import { getMcpConfigsByScope } from '../../server/services/mcp/config.js';
-import { BASH_TOOL_NAME } from '../../tools/BashTool/toolName.js';
+import { BASH_TOOL_NAME } from '../../server/tools/BashTool/toolName.js';
 import { checkHasTrustDialogAccepted, saveCurrentProjectConfig } from '../../utils/config.js';
 import { getCwd } from '../../server/utils/cwd.js';
 import { getFsImplementation } from '../../server/utils/fsOperations.js';

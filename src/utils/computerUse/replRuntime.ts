@@ -17,8 +17,8 @@ import {
   type ReplInput,
   type ReplInvoke,
   type ReplOutput,
-} from '../../vendor/computer-use-mcp/replProtocol.js'
-import type { CuCallToolResult } from '../../vendor/computer-use-mcp/toolCalls.js'
+} from '../../server/vendor/computer-use-mcp/replProtocol.js'
+import type { CuCallToolResult } from '../../server/vendor/computer-use-mcp/toolCalls.js'
 
 const INVOCABLE_TOOLS = new Set([
   'list_apps', 'get_app_state', 'click', 'drag', 'scroll', 'press_key',

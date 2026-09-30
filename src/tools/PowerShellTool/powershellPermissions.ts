@@ -55,7 +55,7 @@ import {
   isSafeOutputCommand,
   resolveToCanonical,
 } from './readOnlyValidation.js'
-import { POWERSHELL_TOOL_NAME } from './toolName.js'
+import { POWERSHELL_TOOL_NAME } from '../../server/tools/PowerShellTool/toolName.js'
 
 // Matches `$var = `, `$var += `, `$env:X = `, `$x ??= ` etc. Used to strip
 // nested assignment prefixes in the parse-failed fallback path.

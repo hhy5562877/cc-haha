@@ -8,7 +8,7 @@ import { createInterface } from 'node:readline'
 import { describe, expect, it } from 'vitest'
 import { createComputerUseReplSandboxCommand } from '../../src/utils/computerUse/replRuntime'
 import { REPL_BOOTSTRAP_SOURCE } from '../../src/vendor/computer-use-mcp/replApi'
-import type { ReplInput, ReplOutput } from '../../src/vendor/computer-use-mcp/replProtocol'
+import type { ReplInput, ReplOutput } from '../../src/server/vendor/computer-use-mcp/replProtocol.js'
 
 const repoRoot = path.resolve(import.meta.dirname, '../..')
 

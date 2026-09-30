@@ -22,7 +22,7 @@ import type { Tool, ToolUseContext } from '../../Tool.js';
 import { logForDebugging } from '../../server/utils/debug.js';
 import { checkComputerUseLock, tryAcquireComputerUseLock, releaseComputerUseLock } from './computerUseLock.js';
 import { registerEscHotkey } from './escHotkey.js';
-import { getChicagoCoordinateMode } from './gates.js';
+import { getChicagoCoordinateMode } from '../../server/utils/computerUse/gates.js';
 import { getComputerUseHostAdapter } from './hostAdapter.js';
 import { getComputerUseMCPRenderingOverrides } from './toolRendering.js';
 import { getImageProcessor } from '../../tools/FileReadTool/imageProcessor.js'

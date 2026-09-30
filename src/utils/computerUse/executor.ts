@@ -24,7 +24,7 @@ import type {
   SetValueResult,
 } from '../../vendor/computer-use-mcp/index.js'
 import { API_RESIZE_PARAMS, targetImageSize } from '../../vendor/computer-use-mcp/index.js'
-import { formatNativeAppList, type NativeAppInfo } from '../../vendor/computer-use-mcp/executor.js'
+import { formatNativeAppList, type NativeAppInfo } from '../../server/vendor/computer-use-mcp/executor.js'
 import { sleep } from '../../server/utils/sleep.js'
 import {
   CLI_HOST_BUNDLE_ID,

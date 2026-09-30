@@ -2,7 +2,7 @@ import { z } from 'zod/v4'
 
 import {
   getImageGenerationRuntimeConfig,
-} from '../../services/imageGeneration/config.js'
+} from '../../server/services/imageGeneration/config.js'
 import { buildTool, type ToolDef } from '../../Tool.js'
 import { lazySchema } from '../../server/utils/lazySchema.js'
 import {

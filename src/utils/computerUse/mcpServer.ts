@@ -12,7 +12,7 @@ import { initializeAnalyticsSink } from '../../server/services/analytics/sink.js
 import { enableConfigs } from '../config.js'
 import { logForDebugging } from '../../server/utils/debug.js'
 import { filterAppsForDescription } from './appNames.js'
-import { getChicagoCoordinateMode } from './gates.js'
+import { getChicagoCoordinateMode } from '../../server/utils/computerUse/gates.js'
 import { getComputerUseHostAdapter } from './hostAdapter.js'
 
 const APP_ENUM_TIMEOUT_MS = 1000

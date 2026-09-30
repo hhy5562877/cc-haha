@@ -260,7 +260,7 @@ import { getInitializationStatus } from "../lsp/manager.js";
 import { isToolFromMcpServer } from "../../server/services/mcp/utils.js";
 import { withStreamingVCR, withVCR } from "../vcr.js";
 import { requestAzureOpenAI } from "./azureOpenAI.js";
-import { CLIENT_REQUEST_ID_HEADER, getAnthropicClient } from "./client.js";
+import { CLIENT_REQUEST_ID_HEADER, getAnthropicClient } from "../../server/services/api/client.js";
 import {
   CUSTOM_OFF_SWITCH_MESSAGE,
   getAssistantMessageFromError,
@@ -279,7 +279,7 @@ import {
   CACHE_TTL_1HOUR_MS,
   checkResponseForCacheBreak,
   recordPromptState,
-} from "./promptCacheBreakDetection.js";
+} from "../../server/services/api/promptCacheBreakDetection.js";
 import { withStreamRetry } from "./streamRetry.js";
 import {
   CannotRetryError,

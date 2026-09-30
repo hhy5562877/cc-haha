@@ -28,13 +28,13 @@ import {
   isAutoMemPath,
 } from '../../server/memdir/paths.js'
 import type { Tool } from '../../Tool.js'
-import { BASH_TOOL_NAME } from '../../tools/BashTool/toolName.js'
+import { BASH_TOOL_NAME } from '../../server/tools/BashTool/toolName.js'
 import { FILE_EDIT_TOOL_NAME } from '../../server/tools/FileEditTool/constants.js'
-import { FILE_READ_TOOL_NAME } from '../../tools/FileReadTool/prompt.js'
-import { FILE_WRITE_TOOL_NAME } from '../../tools/FileWriteTool/prompt.js'
-import { GLOB_TOOL_NAME } from '../../tools/GlobTool/prompt.js'
-import { GREP_TOOL_NAME } from '../../tools/GrepTool/prompt.js'
-import { REPL_TOOL_NAME } from '../../tools/REPLTool/constants.js'
+import { FILE_READ_TOOL_NAME } from '../../server/tools/FileReadTool/prompt.js'
+import { FILE_WRITE_TOOL_NAME } from '../../server/tools/FileWriteTool/prompt.js'
+import { GLOB_TOOL_NAME } from '../../server/tools/GlobTool/prompt.js'
+import { GREP_TOOL_NAME } from '../../server/tools/GrepTool/prompt.js'
+import { REPL_TOOL_NAME } from '../../server/tools/REPLTool/constants.js'
 import type {
   AssistantMessage,
   Message,

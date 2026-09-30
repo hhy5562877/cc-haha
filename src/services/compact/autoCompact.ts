@@ -22,7 +22,7 @@ import {
 import { zodToJsonSchema } from '../../utils/zodToJsonSchema.js'
 import { getFeatureValue_CACHED_MAY_BE_STALE } from '../../server/services/analytics/growthbook.js'
 import { getMaxOutputTokensForModel } from '../api/claude.js'
-import { notifyCompaction } from '../api/promptCacheBreakDetection.js'
+import { notifyCompaction } from '../../server/services/api/promptCacheBreakDetection.js'
 import { setLastSummarizedMessageId } from '../SessionMemory/sessionMemoryUtils.js'
 import {
   type CompactionResult,

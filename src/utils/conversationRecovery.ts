@@ -56,13 +56,13 @@ import type { ContentReplacementRecord } from './toolResultStorage.js'
 const BRIEF_TOOL_NAME: string | null =
   feature('KAIROS') || feature('KAIROS_BRIEF')
     ? (
-        require('../tools/BriefTool/prompt.js') as typeof import('../tools/BriefTool/prompt.js')
+        require('../server/tools/BriefTool/prompt.js') as typeof import('../server/tools/BriefTool/prompt.js')
       ).BRIEF_TOOL_NAME
     : null
 const LEGACY_BRIEF_TOOL_NAME: string | null =
   feature('KAIROS') || feature('KAIROS_BRIEF')
     ? (
-        require('../tools/BriefTool/prompt.js') as typeof import('../tools/BriefTool/prompt.js')
+        require('../server/tools/BriefTool/prompt.js') as typeof import('../server/tools/BriefTool/prompt.js')
       ).LEGACY_BRIEF_TOOL_NAME
     : null
 const SEND_USER_FILE_TOOL_NAME: string | null = feature('KAIROS')

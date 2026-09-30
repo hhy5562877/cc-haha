@@ -19,8 +19,8 @@
  * this package never imports it — the crop is a function parameter.
  */
 
-import type { ScreenshotResult } from "./executor.js";
-import type { Logger } from "./types.js";
+import type { ScreenshotResult } from "../../server/vendor/computer-use-mcp/executor.js";
+import type { Logger } from "../../server/vendor/computer-use-mcp/types.js";
 
 /** Injected by the host. See `ComputerUseHostAdapter.cropRawPatch`. */
 export type CropRawPatchFn = (

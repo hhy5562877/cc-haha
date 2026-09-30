@@ -21,14 +21,14 @@
 import type { CallToolResult } from "@modelcontextprotocol/sdk/types.js";
 import { randomUUID } from "node:crypto";
 
-import { getDefaultTierForApp, getDeniedCategoryForApp, isPolicyDenied } from "./deniedApps.js";
+import { getDefaultTierForApp, getDeniedCategoryForApp, isPolicyDenied } from "../../server/vendor/computer-use-mcp/deniedApps.js";
 import type {
   ComputerExecutor,
   DisplayGeometry,
   InstalledApp,
   ScreenshotResult,
-} from "./executor.js";
-import { isSystemKeyCombo } from "./keyBlocklist.js";
+} from "../../server/vendor/computer-use-mcp/executor.js";
+import { isSystemKeyCombo } from "../../server/vendor/computer-use-mcp/keyBlocklist.js";
 import { validateClickTarget } from "./pixelCompare.js";
 import { SENTINEL_BUNDLE_IDS } from "./sentinelApps.js";
 import type {
@@ -44,7 +44,7 @@ import type {
   Logger,
   ResolvedAppRequest,
   TeachStepRequest,
-} from "./types.js";
+} from "../../server/vendor/computer-use-mcp/types.js";
 
 /**
  * Finder is never hidden by the hide loop (hiding Finder kills the Desktop),

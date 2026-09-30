@@ -49,7 +49,7 @@ import {
 import type { PermissionDecision } from '../../server/utils/permissions/PermissionResult.js'
 import { matchWildcardPattern } from '../../server/utils/permissions/shellRuleMatching.js'
 import { validateInputForSettingsFileEdit } from '../../server/utils/settings/validateEditTool.js'
-import { NOTEBOOK_EDIT_TOOL_NAME } from '../NotebookEditTool/constants.js'
+import { NOTEBOOK_EDIT_TOOL_NAME } from '../../server/tools/NotebookEditTool/constants.js'
 import {
   FILE_EDIT_TOOL_NAME,
   FILE_UNEXPECTEDLY_MODIFIED_ERROR,

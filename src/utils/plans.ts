@@ -11,7 +11,7 @@ import type {
   UserMessage,
 } from 'src/server/types/message.ts'
 import { getPlanSlugCache, getSessionId } from '../server/bootstrap/state.js'
-import { EXIT_PLAN_MODE_V2_TOOL_NAME } from '../tools/ExitPlanModeTool/constants.js'
+import { EXIT_PLAN_MODE_V2_TOOL_NAME } from '../server/tools/ExitPlanModeTool/constants.js'
 import { getCwd } from '../server/utils/cwd.js'
 import { logForDebugging } from '../server/utils/debug.js'
 import { getClaudeConfigHomeDir } from '../server/utils/envUtils.js'

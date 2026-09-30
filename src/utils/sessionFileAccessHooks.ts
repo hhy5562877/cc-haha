@@ -13,13 +13,13 @@ import {
 import { FILE_EDIT_TOOL_NAME } from '../server/tools/FileEditTool/constants.js'
 import { inputSchema as editInputSchema } from '../server/tools/FileEditTool/types.js'
 import { FileReadTool } from '../tools/FileReadTool/FileReadTool.js'
-import { FILE_READ_TOOL_NAME } from '../tools/FileReadTool/prompt.js'
+import { FILE_READ_TOOL_NAME } from '../server/tools/FileReadTool/prompt.js'
 import { FileWriteTool } from '../tools/FileWriteTool/FileWriteTool.js'
-import { FILE_WRITE_TOOL_NAME } from '../tools/FileWriteTool/prompt.js'
+import { FILE_WRITE_TOOL_NAME } from '../server/tools/FileWriteTool/prompt.js'
 import { GlobTool } from '../tools/GlobTool/GlobTool.js'
-import { GLOB_TOOL_NAME } from '../tools/GlobTool/prompt.js'
+import { GLOB_TOOL_NAME } from '../server/tools/GlobTool/prompt.js'
 import { GrepTool } from '../tools/GrepTool/GrepTool.js'
-import { GREP_TOOL_NAME } from '../tools/GrepTool/prompt.js'
+import { GREP_TOOL_NAME } from '../server/tools/GrepTool/prompt.js'
 import type { HookCallback } from '../types/hooks.js'
 import {
   detectSessionFileType,

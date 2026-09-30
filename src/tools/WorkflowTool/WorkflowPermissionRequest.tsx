@@ -18,7 +18,7 @@ import { shouldShowAlwaysAllowOptions } from '../../server/utils/permissions/per
 import { recordWorkflowAutoModeConsent } from '../../utils/workflows/autoModeConsent.js'
 import { parseWorkflowScript } from '../../server/utils/workflows/meta.js'
 import type { WorkflowMeta } from '../../server/utils/workflows/types.js'
-import { WORKFLOW_TOOL_NAME } from './constants.js'
+import { WORKFLOW_TOOL_NAME } from '../../server/tools/WorkflowTool/constants.js'
 
 type WorkflowOptionValue = 'yes' | 'yes-always' | 'view' | 'no'
 

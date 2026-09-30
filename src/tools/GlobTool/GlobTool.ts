@@ -14,7 +14,7 @@ import { expandPath, toRelativePath } from '../../server/utils/path.js'
 import { checkReadPermissionForTool } from '../../server/utils/permissions/filesystem.js'
 import type { PermissionDecision } from '../../server/utils/permissions/PermissionResult.js'
 import { matchWildcardPattern } from '../../server/utils/permissions/shellRuleMatching.js'
-import { DESCRIPTION, GLOB_TOOL_NAME } from './prompt.js'
+import { DESCRIPTION, GLOB_TOOL_NAME } from '../../server/tools/GlobTool/prompt.js'
 import {
   getToolUseSummary,
   renderToolResultMessage,

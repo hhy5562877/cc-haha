@@ -12,7 +12,7 @@
 
 import type { Tool } from "@modelcontextprotocol/sdk/types.js";
 
-import type { CoordinateMode } from "./types.js";
+import type { CoordinateMode } from "../../server/vendor/computer-use-mcp/types.js";
 
 // See packages/desktop/computer-use-mcp/COORDINATES.md before touching any
 // model-facing coordinate text. Chrome's browserTools.ts:143 is the reference

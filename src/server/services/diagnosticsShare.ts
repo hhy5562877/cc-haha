@@ -1,5 +1,5 @@
 import type { DiagnosticEvent, DiagnosticSeverity } from './diagnosticsService.js'
-import { redactSecrets, scanForSecrets } from '../../services/teamMemorySync/secretScanner.js'
+import { redactSecrets, scanForSecrets } from './teamMemorySync/secretScanner.js'
 
 export type SharedDiagnosticEvent = {
   id: string

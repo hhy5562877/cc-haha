@@ -41,7 +41,7 @@ import {
   formatPrepareCallHierarchyResult,
   formatWorkspaceSymbolResult,
 } from './formatters.js'
-import { DESCRIPTION, LSP_TOOL_NAME } from './prompt.js'
+import { DESCRIPTION, LSP_TOOL_NAME } from '../../server/tools/LSPTool/prompt.js'
 import { lspToolInputSchema } from './schemas.js'
 import {
   renderToolResultMessage,

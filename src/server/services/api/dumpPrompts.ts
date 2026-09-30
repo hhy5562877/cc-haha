@@ -4,16 +4,16 @@ import { createHash } from 'crypto'
 import { promises as fs } from 'fs'
 import { dirname, join } from 'path'
 import { getSessionId } from 'src/server/bootstrap/state.ts'
-import { getClaudeConfigHomeDir } from '../../server/utils/envUtils.js'
-import { jsonParse, jsonStringify } from '../../server/utils/slowOperations.js'
+import { getClaudeConfigHomeDir } from '../../utils/envUtils.js'
+import { jsonParse, jsonStringify } from '../../utils/slowOperations.js'
 import {
   captureResponseTraceSnapshot,
   createTraceCallId,
   createTraceBodySnapshot,
   shouldCaptureApiTrace,
   traceCaptureService,
-} from '../../server/services/api/traceCapture.js'
-import type { TraceBodySnapshot, TraceProviderInfo, TraceResponseCapture } from '../../server/services/api/traceCapture.js'
+} from './traceCapture.js'
+import type { TraceBodySnapshot, TraceProviderInfo, TraceResponseCapture } from './traceCapture.js'
 
 const TRACE_SESSION_HEADER = 'x-claude-code-session-id'
 

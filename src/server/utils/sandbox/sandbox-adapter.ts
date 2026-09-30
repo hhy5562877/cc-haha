@@ -49,9 +49,9 @@ import type { SettingsJson } from '../settings/types.js'
 // Settings Converter
 // ============================================================================
 
-import { BASH_TOOL_NAME } from 'src/tools/BashTool/toolName.js'
+import { BASH_TOOL_NAME } from 'src/server/tools/BashTool/toolName.js'
 import { FILE_EDIT_TOOL_NAME } from 'src/server/tools/FileEditTool/constants.js'
-import { FILE_READ_TOOL_NAME } from 'src/tools/FileReadTool/prompt.js'
+import { FILE_READ_TOOL_NAME } from 'src/server/tools/FileReadTool/prompt.js'
 import { WEB_FETCH_TOOL_NAME } from 'src/tools/WebFetchTool/prompt.js'
 import { errorMessage } from '../errors.js'
 import { getClaudeTempDir } from '../permissions/filesystem.js'

@@ -46,7 +46,7 @@ import { getDefaultTimeoutMs, getMaxTimeoutMs, getSimplePrompt } from './prompt.
 import { checkReadOnlyConstraints } from './readOnlyValidation.js';
 import { parseSedEditCommand } from './sedEditParser.js';
 import { shouldUseSandbox } from './shouldUseSandbox.js';
-import { BASH_TOOL_NAME } from './toolName.js';
+import { BASH_TOOL_NAME } from '../../server/tools/BashTool/toolName.js';
 import { BackgroundHint, renderToolResultMessage, renderToolUseErrorMessage, renderToolUseMessage, renderToolUseProgressMessage, renderToolUseQueuedMessage } from './UI.js';
 import { buildImageToolResult, isImageOutput, resetCwdIfOutsideProject, resizeShellImageOutput, stdErrAppendShellResetMessage, stripEmptyLines } from './utils.js';
 const EOL = '\n';

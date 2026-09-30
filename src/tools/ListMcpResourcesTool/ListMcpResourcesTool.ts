@@ -9,7 +9,7 @@ import { lazySchema } from '../../server/utils/lazySchema.js'
 import { logMCPError } from '../../server/utils/log.js'
 import { jsonStringify } from '../../server/utils/slowOperations.js'
 import { isOutputLineTruncated } from '../../utils/terminal.js'
-import { DESCRIPTION, LIST_MCP_RESOURCES_TOOL_NAME, PROMPT } from './prompt.js'
+import { DESCRIPTION, LIST_MCP_RESOURCES_TOOL_NAME, PROMPT } from '../../server/tools/ListMcpResourcesTool/prompt.js'
 import { renderToolResultMessage, renderToolUseMessage } from './UI.js'
 
 const inputSchema = lazySchema(() =>

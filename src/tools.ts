@@ -111,7 +111,7 @@ import { feature } from 'bun:bundle'
 // Dead code elimination: conditional import for OVERFLOW_TEST_TOOL
 /* eslint-disable custom-rules/no-process-env-top-level, @typescript-eslint/no-require-imports */
 const OverflowTestTool = feature('OVERFLOW_TEST_TOOL')
-  ? require('./tools/OverflowTestTool/OverflowTestTool.js').OverflowTestTool
+  ? require('./server/tools/OverflowTestTool/OverflowTestTool.js').OverflowTestTool
   : null
 const CtxInspectTool = feature('CONTEXT_COLLAPSE')
   ? require('./tools/CtxInspectTool/CtxInspectTool.js').CtxInspectTool
@@ -147,14 +147,14 @@ import { isEnvTruthy } from './server/utils/envUtils.js'
 import {
   isBashToolEnabled,
   isPowerShellToolEnabled,
-} from './utils/shell/shellToolUtils.js'
+} from './server/utils/shell/shellToolUtils.js'
 import { isAgentSwarmsEnabled } from './server/utils/agentSwarmsEnabled.js'
 import { isWorktreeModeEnabled } from './utils/worktreeModeEnabled.js'
 import {
   REPL_TOOL_NAME,
   REPL_ONLY_TOOLS,
   isReplModeEnabled,
-} from './tools/REPLTool/constants.js'
+} from './server/tools/REPLTool/constants.js'
 export { REPL_ONLY_TOOLS }
 /* eslint-disable @typescript-eslint/no-require-imports */
 const getPowerShellTool = () => {

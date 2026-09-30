@@ -10,7 +10,7 @@ import { logEvent } from '../../server/services/analytics/index.js';
 import { errorMessage, ShellError } from '../../server/utils/errors.js';
 import { createSyntheticUserCaveatMessage, createUserInterruptionMessage, createUserMessage, prepareUserContent } from '../messages.js';
 import { resolveDefaultShell } from '../shell/resolveDefaultShell.js';
-import { isPowerShellToolEnabled } from '../shell/shellToolUtils.js';
+import { isPowerShellToolEnabled } from '../../server/utils/shell/shellToolUtils.js';
 import { processToolResultBlock } from '../toolResultStorage.js';
 import { escapeXml } from '../../server/utils/xml.js';
 import type { ProcessUserInputContext } from './processUserInput.js';

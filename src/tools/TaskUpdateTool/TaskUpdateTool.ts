@@ -27,7 +27,7 @@ import {
 } from '../../utils/teammate.js'
 import { writeToMailbox } from '../../utils/teammateMailbox.js'
 import { VERIFICATION_AGENT_TYPE } from '../../server/tools/AgentTool/constants.js'
-import { TASK_UPDATE_TOOL_NAME } from './constants.js'
+import { TASK_UPDATE_TOOL_NAME } from '../../server/tools/TaskUpdateTool/constants.js'
 import { DESCRIPTION, PROMPT } from './prompt.js'
 
 const inputSchema = lazySchema(() => {

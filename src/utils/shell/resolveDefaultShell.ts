@@ -4,9 +4,9 @@ import {
   resolveAvailableShellTool,
   type ShellToolAvailability,
   type ShellToolType,
-} from './shellToolUtils.js'
+} from '../../server/utils/shell/shellToolUtils.js'
 
-export type { ShellToolType } from './shellToolUtils.js'
+export type { ShellToolType } from '../../server/utils/shell/shellToolUtils.js'
 
 /**
  * Resolve the default shell for input-box `!` commands.

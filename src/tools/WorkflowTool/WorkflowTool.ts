@@ -16,7 +16,7 @@ import { WORKFLOW_SCRIPT_MAX_BYTES } from '../../server/utils/workflows/constant
 import { createWorkflowRunId } from '../../server/utils/workflows/paths.js'
 import { prepareWorkflowScript } from '../../utils/workflows/runtime.js'
 import { launchWorkflow } from './launchWorkflow.js'
-import { WORKFLOW_TOOL_NAME } from './constants.js'
+import { WORKFLOW_TOOL_NAME } from '../../server/tools/WorkflowTool/constants.js'
 import { getWorkflowToolPrompt } from './prompt.js'
 
 const inputSchema = lazySchema(() =>

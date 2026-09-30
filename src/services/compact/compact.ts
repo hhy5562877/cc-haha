@@ -18,7 +18,7 @@ import { FileReadTool } from '../../tools/FileReadTool/FileReadTool.js'
 import {
   FILE_READ_TOOL_NAME,
   FILE_UNCHANGED_STUB,
-} from '../../tools/FileReadTool/prompt.js'
+} from '../../server/tools/FileReadTool/prompt.js'
 import { ToolSearchTool } from '../../tools/ToolSearchTool/ToolSearchTool.js'
 import type { AgentId } from '../../server/types/ids.js'
 import type {
@@ -106,7 +106,7 @@ import {
   PROMPT_TOO_LONG_ERROR_MESSAGE,
   startsWithApiErrorPrefix,
 } from '../api/errors.js'
-import { notifyCompaction } from '../api/promptCacheBreakDetection.js'
+import { notifyCompaction } from '../../server/services/api/promptCacheBreakDetection.js'
 import { getRetryDelay } from '../api/withRetry.js'
 import { logPermissionContextForAnts } from '../internalLogging.js'
 import {

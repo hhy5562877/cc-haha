@@ -19,7 +19,7 @@ import { getSteps, shouldShowProjectOnboarding, incrementProjectOnboardingSeenCo
 import { CondensedLogo } from './CondensedLogo.js';
 import { OffscreenFreeze } from '../OffscreenFreeze.js';
 import { checkForReleaseNotesSync } from '../../utils/releaseNotes.js';
-import { getDumpPromptsPath } from 'src/services/api/dumpPrompts.js';
+import { getDumpPromptsPath } from 'src/server/services/api/dumpPrompts.js';
 import { isEnvTruthy } from 'src/server/utils/envUtils.ts';
 import { getStartupPerfLogPath, isDetailedProfilingEnabled } from 'src/utils/startupProfiler.js';
 import { EmergencyTip } from './EmergencyTip.js';

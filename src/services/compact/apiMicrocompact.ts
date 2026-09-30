@@ -1,12 +1,12 @@
 import { FILE_EDIT_TOOL_NAME } from 'src/server/tools/FileEditTool/constants.js'
-import { FILE_READ_TOOL_NAME } from 'src/tools/FileReadTool/prompt.js'
-import { FILE_WRITE_TOOL_NAME } from 'src/tools/FileWriteTool/prompt.js'
-import { GLOB_TOOL_NAME } from 'src/tools/GlobTool/prompt.js'
-import { GREP_TOOL_NAME } from 'src/tools/GrepTool/prompt.js'
-import { NOTEBOOK_EDIT_TOOL_NAME } from 'src/tools/NotebookEditTool/constants.js'
+import { FILE_READ_TOOL_NAME } from 'src/server/tools/FileReadTool/prompt.js'
+import { FILE_WRITE_TOOL_NAME } from 'src/server/tools/FileWriteTool/prompt.js'
+import { GLOB_TOOL_NAME } from 'src/server/tools/GlobTool/prompt.js'
+import { GREP_TOOL_NAME } from 'src/server/tools/GrepTool/prompt.js'
+import { NOTEBOOK_EDIT_TOOL_NAME } from 'src/server/tools/NotebookEditTool/constants.js'
 import { WEB_FETCH_TOOL_NAME } from 'src/tools/WebFetchTool/prompt.js'
 import { WEB_SEARCH_TOOL_NAME } from 'src/tools/WebSearchTool/prompt.js'
-import { SHELL_TOOL_NAMES } from 'src/utils/shell/shellToolUtils.js'
+import { SHELL_TOOL_NAMES } from 'src/server/utils/shell/shellToolUtils.js'
 import { isEnvTruthy } from '../../server/utils/envUtils.js'
 
 // docs: https://docs.google.com/document/d/1oCT4evvWTh3P6z-kcfNQwWTCxAhkoFndSaNS9Gm40uw/edit?tab=t.0

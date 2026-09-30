@@ -13,7 +13,7 @@ import {
   IMAGE_GENERATION_MODEL_ENV_KEY,
   IMAGE_GENERATION_PROVIDER_ID_ENV_KEY,
   IMAGE_GENERATION_PROVIDER_KIND_ENV_KEY,
-} from '../../services/imageGeneration/config.js'
+} from './imageGeneration/config.js'
 import {
   GROK_OFFICIAL_PROVIDER_ID,
   type SavedProvider,

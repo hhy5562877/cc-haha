@@ -8,14 +8,14 @@ import type { SDKMessage } from 'src/entrypoints/agentSdkTypes.js'
 import type { CanUseToolFn } from '../hooks/useCanUseTool.js'
 import { runTools } from '../services/tools/toolOrchestration.js'
 import { findToolByName, type Tool, type Tools } from '../Tool.js'
-import { BASH_TOOL_NAME } from '../tools/BashTool/toolName.js'
+import { BASH_TOOL_NAME } from '../server/tools/BashTool/toolName.js'
 import { FILE_EDIT_TOOL_NAME } from '../server/tools/FileEditTool/constants.js'
 import type { Input as FileReadInput } from '../tools/FileReadTool/FileReadTool.js'
 import {
   FILE_READ_TOOL_NAME,
   FILE_UNCHANGED_STUB,
-} from '../tools/FileReadTool/prompt.js'
-import { FILE_WRITE_TOOL_NAME } from '../tools/FileWriteTool/prompt.js'
+} from '../server/tools/FileReadTool/prompt.js'
+import { FILE_WRITE_TOOL_NAME } from '../server/tools/FileWriteTool/prompt.js'
 import type { Message } from '../server/types/message.js'
 import type { OrphanedPermission } from '../types/textInputTypes.js'
 import { logForDebugging } from '../server/utils/debug.js'

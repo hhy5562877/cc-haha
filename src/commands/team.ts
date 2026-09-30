@@ -1,13 +1,13 @@
 import type { ContentBlockParam } from '@anthropic-ai/sdk/resources/messages.js'
 import type { Command } from '../commands.js'
 import { AGENT_TOOL_NAME } from '../server/tools/AgentTool/constants.js'
-import { SEND_MESSAGE_TOOL_NAME } from '../tools/SendMessageTool/constants.js'
-import { TASK_CREATE_TOOL_NAME } from '../tools/TaskCreateTool/constants.js'
-import { TASK_UPDATE_TOOL_NAME } from '../tools/TaskUpdateTool/constants.js'
-import { TEAM_CREATE_TOOL_NAME } from '../tools/TeamCreateTool/constants.js'
+import { SEND_MESSAGE_TOOL_NAME } from '../server/tools/SendMessageTool/constants.js'
+import { TASK_CREATE_TOOL_NAME } from '../server/tools/TaskCreateTool/constants.js'
+import { TASK_UPDATE_TOOL_NAME } from '../server/tools/TaskUpdateTool/constants.js'
+import { TEAM_CREATE_TOOL_NAME } from '../server/tools/TeamCreateTool/constants.js'
 import { isAgentSwarmsEnabled } from '../server/utils/agentSwarmsEnabled.js'
 import { isTeamReviewRequired } from '../utils/swarm/teamPlanPolicy.js'
-import { TEAM_PLAN_TOOL_NAME } from '../tools/TeamPlanTool/constants.js'
+import { TEAM_PLAN_TOOL_NAME } from '../server/tools/TeamPlanTool/constants.js'
 
 function teamPrompt(goal: string): string {
   if (!goal) {

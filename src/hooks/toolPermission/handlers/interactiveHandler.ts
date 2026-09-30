@@ -17,7 +17,7 @@ import {
   truncateForPreview,
 } from '../../../server/services/mcp/channelPermissions.js'
 import { executeAsyncClassifierCheck } from '../../../tools/BashTool/bashPermissions.js'
-import { BASH_TOOL_NAME } from '../../../tools/BashTool/toolName.js'
+import { BASH_TOOL_NAME } from '../../../server/tools/BashTool/toolName.js'
 import {
   clearClassifierChecking,
   setClassifierApproval,

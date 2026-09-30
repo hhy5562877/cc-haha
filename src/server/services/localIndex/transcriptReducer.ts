@@ -1,6 +1,6 @@
 import { cleanSessionTitleSource } from '../../utils/sessionTitleText.js'
 import { SYNTHETIC_MODEL } from '../../../utils/messages.js'
-import { extractShotCountFromAssistantContent } from '../../../utils/shotStats.js'
+import { extractShotCountFromAssistantContent } from '../../utils/shotStats.js'
 import { normalizeDriveRootPathForPlatform } from '../windowsDrivePath.js'
 import {
   activeGapMs,

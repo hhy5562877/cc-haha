@@ -18,7 +18,7 @@ import {
 import { logEvent } from '../server/services/analytics/index.js'
 import type { AnalyticsMetadata_I_VERIFIED_THIS_IS_NOT_CODE_OR_FILEPATHS } from '../server/services/analytics/metadata.js'
 import { getAPIMetadata } from '../services/api/claude.js'
-import { getAnthropicClient } from '../services/api/client.js'
+import { getAnthropicClient } from '../server/services/api/client.js'
 import { normalizeUsage } from '../services/api/emptyUsage.js'
 import { getModelBetas, modelSupportsStructuredOutputs } from './betas.js'
 import { getModelMaxOutputTokens } from './context.js'

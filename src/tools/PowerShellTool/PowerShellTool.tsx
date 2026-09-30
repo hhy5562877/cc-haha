@@ -41,7 +41,7 @@ import { interpretCommandResult } from './commandSemantics.js';
 import { powershellToolHasPermission } from './powershellPermissions.js';
 import { getDefaultTimeoutMs, getMaxTimeoutMs, getPrompt } from './prompt.js';
 import { hasSyncSecurityConcerns, isReadOnlyCommand, resolveToCanonical } from './readOnlyValidation.js';
-import { POWERSHELL_TOOL_NAME } from './toolName.js';
+import { POWERSHELL_TOOL_NAME } from '../../server/tools/PowerShellTool/toolName.js';
 import { renderToolResultMessage, renderToolUseErrorMessage, renderToolUseMessage, renderToolUseProgressMessage, renderToolUseQueuedMessage } from './UI.js';
 
 // Never use os.EOL for terminal output — \r\n on Windows breaks Ink rendering

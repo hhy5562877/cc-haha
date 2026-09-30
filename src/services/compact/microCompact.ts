@@ -3,22 +3,22 @@ import type { ToolResultBlockParam } from '@anthropic-ai/sdk/resources/index.mjs
 import type { QuerySource } from '../../server/constants/querySource.js'
 import type { ToolUseContext } from '../../Tool.js'
 import { FILE_EDIT_TOOL_NAME } from '../../server/tools/FileEditTool/constants.js'
-import { FILE_READ_TOOL_NAME } from '../../tools/FileReadTool/prompt.js'
-import { FILE_WRITE_TOOL_NAME } from '../../tools/FileWriteTool/prompt.js'
-import { GLOB_TOOL_NAME } from '../../tools/GlobTool/prompt.js'
-import { GREP_TOOL_NAME } from '../../tools/GrepTool/prompt.js'
+import { FILE_READ_TOOL_NAME } from '../../server/tools/FileReadTool/prompt.js'
+import { FILE_WRITE_TOOL_NAME } from '../../server/tools/FileWriteTool/prompt.js'
+import { GLOB_TOOL_NAME } from '../../server/tools/GlobTool/prompt.js'
+import { GREP_TOOL_NAME } from '../../server/tools/GrepTool/prompt.js'
 import { WEB_FETCH_TOOL_NAME } from '../../tools/WebFetchTool/prompt.js'
 import { WEB_SEARCH_TOOL_NAME } from '../../tools/WebSearchTool/prompt.js'
 import type { Message } from '../../server/types/message.js'
 import { logForDebugging } from '../../server/utils/debug.js'
 import { getMainLoopModel } from '../../server/utils/model/model.js'
-import { SHELL_TOOL_NAMES } from '../../utils/shell/shellToolUtils.js'
+import { SHELL_TOOL_NAMES } from '../../server/utils/shell/shellToolUtils.js'
 import { jsonStringify } from '../../server/utils/slowOperations.js'
 import {
   type AnalyticsMetadata_I_VERIFIED_THIS_IS_NOT_CODE_OR_FILEPATHS,
   logEvent,
 } from '../../server/services/analytics/index.js'
-import { notifyCacheDeletion } from '../api/promptCacheBreakDetection.js'
+import { notifyCacheDeletion } from '../../server/services/api/promptCacheBreakDetection.js'
 import { roughTokenCountEstimation } from '../tokenEstimation.js'
 import {
   clearCompactWarningSuppression,

@@ -1,4 +1,4 @@
-import type { ImageGenerationRuntimeConfig } from '../../services/imageGeneration/config.js'
+import type { ImageGenerationRuntimeConfig } from '../../server/services/imageGeneration/config.js'
 import type { ImageGenerationInput, PreparedInputImage } from './backend.js'
 
 export function isApiSmartImageConfig(config: ImageGenerationRuntimeConfig): boolean {

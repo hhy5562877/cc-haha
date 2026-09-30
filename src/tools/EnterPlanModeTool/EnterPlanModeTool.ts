@@ -10,7 +10,7 @@ import { lazySchema } from '../../server/utils/lazySchema.js'
 import { applyPermissionUpdate } from '../../server/utils/permissions/PermissionUpdate.js'
 import { prepareContextForPlanMode } from '../../server/utils/permissions/permissionSetup.js'
 import { isPlanModeInterviewPhaseEnabled } from '../../utils/planModeV2.js'
-import { ENTER_PLAN_MODE_TOOL_NAME } from './constants.js'
+import { ENTER_PLAN_MODE_TOOL_NAME } from '../../server/tools/EnterPlanModeTool/constants.js'
 import { getEnterPlanModeToolPrompt } from './prompt.js'
 import {
   renderToolResultMessage,

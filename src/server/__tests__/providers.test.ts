@@ -17,7 +17,7 @@ import {
   traceCaptureService,
 } from '../services/traceCaptureService.js'
 import type { CreateProviderInput } from '../types/provider.js'
-import { buildComputerUseTools } from '../../vendor/computer-use-mcp/tools.js'
+import { buildComputerUseTools } from '../vendor/computer-use-mcp/tools.js'
 
 // ─── Test helpers ─────────────────────────────────────────────────────────────
 

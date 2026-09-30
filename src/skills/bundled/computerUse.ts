@@ -1,5 +1,5 @@
 import { COMPUTER_USE_BATCHING_GUIDANCE } from '../../vendor/computer-use-mcp/instructions.js'
-import { isComputerUseSkillEnabled } from '../../utils/computerUse/skillGate.js'
+import { isComputerUseSkillEnabled } from '../../server/utils/computerUse/skillGate.js'
 import { buildPlatformComputerUseTools } from '../../vendor/computer-use-mcp/mcpServer.js'
 import { registerBundledSkill } from '../bundledSkills.js'
 

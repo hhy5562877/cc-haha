@@ -1,12 +1,12 @@
 import type {
   ComputerUseHostAdapter,
   Logger,
-} from '../../vendor/computer-use-mcp/types.js'
+} from '../../server/vendor/computer-use-mcp/types.js'
 import { format } from 'util'
 import { logForDebugging } from '../../server/utils/debug.js'
 import { COMPUTER_USE_MCP_SERVER_NAME } from '../../server/utils/computerUse/common.js'
 import { createCliExecutor } from './executor.js'
-import { getChicagoEnabled, getChicagoSubGates } from './gates.js'
+import { getChicagoEnabled, getChicagoSubGates } from '../../server/utils/computerUse/gates.js'
 import { normalizeOsPermissions } from './permissions.js'
 // Platform-routed helper: macOS → native cu-helper, Windows → Python helper.
 import { callHelper } from './helperBridge.js'

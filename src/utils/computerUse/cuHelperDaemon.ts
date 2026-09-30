@@ -9,7 +9,7 @@ import { logForDebugging } from '../../server/utils/debug.js'
 import { ensureInstalledHelper } from './cuHelperInstall.js'
 import { attestDaemonSocketPeer } from './cuHelperPeerAttestation.js'
 import { getRuntimePaths } from './pythonBridge.js'
-import { NativeCommandError } from '../../vendor/computer-use-mcp/nativeError.js'
+import { NativeCommandError } from '../../server/vendor/computer-use-mcp/nativeError.js'
 
 /**
  * Long-lived `cu-helper daemon` client (macOS only).

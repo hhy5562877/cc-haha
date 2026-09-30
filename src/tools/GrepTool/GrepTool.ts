@@ -22,7 +22,7 @@ import { ripGrep } from '../../server/utils/ripgrep.js'
 import { semanticBoolean } from '../../server/utils/semanticBoolean.js'
 import { semanticNumber } from '../../utils/semanticNumber.js'
 import { plural } from '../../server/utils/stringUtils.js'
-import { GREP_TOOL_NAME, getDescription } from './prompt.js'
+import { GREP_TOOL_NAME, getDescription } from '../../server/tools/GrepTool/prompt.js'
 import {
   getToolUseSummary,
   renderToolResultMessage,

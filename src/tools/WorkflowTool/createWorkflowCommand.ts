@@ -3,7 +3,7 @@ import type { Command } from '../../types/command.js'
 import { loadWorkflows } from '../../server/utils/workflows/discovery.js'
 import { areWorkflowsEnabled } from '../../server/utils/workflows/enabled.js'
 import type { WorkflowDefinition } from '../../server/utils/workflows/types.js'
-import { WORKFLOW_TOOL_NAME } from './constants.js'
+import { WORKFLOW_TOOL_NAME } from '../../server/tools/WorkflowTool/constants.js'
 
 /**
  * Turn every discovered workflow into a `/<name>` command.

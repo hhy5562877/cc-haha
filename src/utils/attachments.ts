@@ -22,10 +22,10 @@ import { count, uniq } from '../server/utils/array.js'
 import { getFsImplementation } from '../server/utils/fsOperations.js'
 import { readdir, stat } from 'fs/promises'
 import type { IDESelection } from '../hooks/useIdeSelection.js'
-import { TODO_WRITE_TOOL_NAME } from '../tools/TodoWriteTool/constants.js'
-import { TASK_CREATE_TOOL_NAME } from '../tools/TaskCreateTool/constants.js'
-import { TASK_UPDATE_TOOL_NAME } from '../tools/TaskUpdateTool/constants.js'
-import { BASH_TOOL_NAME } from '../tools/BashTool/toolName.js'
+import { TODO_WRITE_TOOL_NAME } from '../server/tools/TodoWriteTool/constants.js'
+import { TASK_CREATE_TOOL_NAME } from '../server/tools/TaskCreateTool/constants.js'
+import { TASK_UPDATE_TOOL_NAME } from '../server/tools/TaskUpdateTool/constants.js'
+import { BASH_TOOL_NAME } from '../server/tools/BashTool/toolName.js'
 import { SKILL_TOOL_NAME } from '../tools/SkillTool/constants.js'
 import type { TodoList } from './todo/types.js'
 import {
@@ -100,7 +100,7 @@ const autoModeStateModule = feature('TRANSCRIPT_CLASSIFIER')
 import {
   MAX_LINES_TO_READ,
   FILE_READ_TOOL_NAME,
-} from 'src/tools/FileReadTool/prompt.js'
+} from 'src/server/tools/FileReadTool/prompt.js'
 import { getDefaultFileReadingLimits } from 'src/tools/FileReadTool/limits.js'
 import { cacheKeys, type FileStateCache } from '../server/utils/fileStateCache.js'
 import {
@@ -193,7 +193,7 @@ import { feature } from 'bun:bundle'
 const BRIEF_TOOL_NAME: string | null =
   feature('KAIROS') || feature('KAIROS_BRIEF')
     ? (
-        require('../tools/BriefTool/prompt.js') as typeof import('../tools/BriefTool/prompt.js')
+        require('../server/tools/BriefTool/prompt.js') as typeof import('../server/tools/BriefTool/prompt.js')
       ).BRIEF_TOOL_NAME
     : null
 const sessionTranscriptModule = feature('KAIROS')
@@ -222,7 +222,7 @@ import {
   type InstructionsMemoryType,
 } from './hooks.js'
 import { jsonStringify } from '../server/utils/slowOperations.js'
-import { isPDFExtension } from './pdfUtils.js'
+import { isPDFExtension } from '../server/utils/pdfUtils.js'
 import { getLocalISODate } from '../constants/common.js'
 import { getPDFPageCount } from './pdf.js'
 import { PDF_AT_MENTION_INLINE_THRESHOLD } from '../constants/apiLimits.js'

@@ -124,17 +124,17 @@ import { EXPLORE_AGENT } from 'src/server/tools/AgentTool/built-in/exploreAgent.
 import { PLAN_AGENT } from 'src/server/tools/AgentTool/built-in/planAgent.js'
 import { areExplorePlanAgentsEnabled } from 'src/server/tools/AgentTool/builtInAgents.js'
 import { AGENT_TOOL_NAME } from 'src/server/tools/AgentTool/constants.js'
-import { ASK_USER_QUESTION_TOOL_NAME } from 'src/tools/AskUserQuestionTool/prompt.js'
+import { ASK_USER_QUESTION_TOOL_NAME } from 'src/server/tools/AskUserQuestionTool/prompt.js'
 import { BashTool } from 'src/tools/BashTool/BashTool.js'
 import { ExitPlanModeV2Tool } from 'src/tools/ExitPlanModeTool/ExitPlanModeV2Tool.js'
 import { FileEditTool } from 'src/tools/FileEditTool/FileEditTool.js'
 import {
   FILE_READ_TOOL_NAME,
   MAX_LINES_TO_READ,
-} from 'src/tools/FileReadTool/prompt.js'
+} from 'src/server/tools/FileReadTool/prompt.js'
 import { FileWriteTool } from 'src/tools/FileWriteTool/FileWriteTool.js'
-import { GLOB_TOOL_NAME } from 'src/tools/GlobTool/prompt.js'
-import { GREP_TOOL_NAME } from 'src/tools/GrepTool/prompt.js'
+import { GLOB_TOOL_NAME } from 'src/server/tools/GlobTool/prompt.js'
+import { GREP_TOOL_NAME } from 'src/server/tools/GrepTool/prompt.js'
 import type { DeepImmutable } from 'src/types/utils.js'
 import { getStrictToolResultPairing } from '../server/bootstrap/state.js'
 import type { SpinnerMode } from '../components/Spinner.js'
@@ -156,10 +156,10 @@ import {
   FileReadTool,
   type Output as FileReadToolOutput,
 } from '../tools/FileReadTool/FileReadTool.js'
-import { SEND_MESSAGE_TOOL_NAME } from '../tools/SendMessageTool/constants.js'
-import { TASK_CREATE_TOOL_NAME } from '../tools/TaskCreateTool/constants.js'
-import { TASK_OUTPUT_TOOL_NAME } from '../tools/TaskOutputTool/constants.js'
-import { TASK_UPDATE_TOOL_NAME } from '../tools/TaskUpdateTool/constants.js'
+import { SEND_MESSAGE_TOOL_NAME } from '../server/tools/SendMessageTool/constants.js'
+import { TASK_CREATE_TOOL_NAME } from '../server/tools/TaskCreateTool/constants.js'
+import { TASK_OUTPUT_TOOL_NAME } from '../server/tools/TaskOutputTool/constants.js'
+import { TASK_UPDATE_TOOL_NAME } from '../server/tools/TaskUpdateTool/constants.js'
 import type { PermissionMode } from '../server/types/permissions.js'
 import { normalizeToolInput, normalizeToolInputForAPI } from './api.js'
 import { createUnparsedToolInput, isUnparsedToolInput } from '../server/utils/unparsedToolInput.js'

@@ -10,7 +10,7 @@ import { openaiResponsesToAnthropic } from '../proxy/transform/openaiResponsesTo
 import { stripLeadingBillingHeader } from '../proxy/transform/billingHeader.js'
 import { openaiUsageToAnthropic } from '../proxy/transform/usage.js'
 import { resolvePromptCacheKey } from '../proxy/promptCacheKey.js'
-import { buildComputerUseTools } from '../../vendor/computer-use-mcp/tools.js'
+import { buildComputerUseTools } from '../vendor/computer-use-mcp/tools.js'
 import type { AnthropicRequest, OpenAIChatResponse, OpenAIResponsesResponse } from '../proxy/transform/types.js'
 
 const BILLING_HEADER = 'x-anthropic-billing-header: cc_version=2.1.220.693; cc_entrypoint=cli; cch=00000;'

@@ -14,7 +14,7 @@ import {
 } from '../../utils/swarm/teamHelpers.js'
 import { clearTeammateColors } from '../../utils/swarm/teammateLayoutManager.js'
 import { clearLeaderTeamName, type Task } from '../../utils/tasks.js'
-import { TEAM_DELETE_TOOL_NAME } from './constants.js'
+import { TEAM_DELETE_TOOL_NAME } from '../../server/tools/TeamDeleteTool/constants.js'
 import { getPrompt } from './prompt.js'
 import { renderToolResultMessage, renderToolUseMessage } from './UI.js'
 

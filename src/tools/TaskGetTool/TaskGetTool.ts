@@ -7,7 +7,7 @@ import {
   isTodoV2Enabled,
   TaskStatusSchema,
 } from '../../utils/tasks.js'
-import { TASK_GET_TOOL_NAME } from './constants.js'
+import { TASK_GET_TOOL_NAME } from '../../server/tools/TaskGetTool/constants.js'
 import { DESCRIPTION, PROMPT } from './prompt.js'
 
 const inputSchema = lazySchema(() =>

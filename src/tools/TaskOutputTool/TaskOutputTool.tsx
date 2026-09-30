@@ -26,7 +26,7 @@ import { formatTaskOutput } from '../../utils/task/outputFormatting.js';
 import type { ThemeName } from '../../server/utils/theme.js';
 import { AgentPromptDisplay, AgentResponseDisplay } from '../../server/tools/AgentTool/UI.js';
 import BashToolResultMessage from '../BashTool/BashToolResultMessage.js';
-import { TASK_OUTPUT_TOOL_NAME } from './constants.js';
+import { TASK_OUTPUT_TOOL_NAME } from '../../server/tools/TaskOutputTool/constants.js';
 const inputSchema = lazySchema(() => z.strictObject({
   task_id: z.string().describe('The task ID to get output from'),
   block: semanticBoolean(z.boolean().default(true)).describe('Whether to wait for completion'),

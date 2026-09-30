@@ -1,7 +1,7 @@
 import type { CoordinateMode, CuSubGates } from '../../vendor/computer-use-mcp/types.js'
 
-import { getDynamicConfig_CACHED_MAY_BE_STALE } from '../../server/services/analytics/growthbook.js'
-import { isEnvDefinedFalsy } from '../../server/utils/envUtils.js'
+import { getDynamicConfig_CACHED_MAY_BE_STALE } from '../../services/analytics/growthbook.js'
+import { isEnvDefinedFalsy } from '../envUtils.js'
 
 type ChicagoConfig = CuSubGates & {
   enabled: boolean

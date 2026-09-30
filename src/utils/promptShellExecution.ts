@@ -35,7 +35,7 @@ type PromptShellExecutionDependencies = {
 import {
   getShellToolAvailability,
   resolveAvailableShellTool,
-} from './shell/shellToolUtils.js'
+} from '../server/utils/shell/shellToolUtils.js'
 
 // Lazy: this file is on the startup import chain (main → commands →
 // loadSkillsDir → here). A static import would load PowerShellTool.ts

@@ -42,7 +42,7 @@ import {
   getRemoteManagedSettingsSyncFromCache,
   getSettingsPath,
   setSessionCache,
-} from './syncCacheState.js'
+} from '../../server/services/remoteManagedSettings/syncCacheState.js'
 import {
   type RemoteManagedSettingsFetchResult,
   RemoteManagedSettingsResponseSchema,

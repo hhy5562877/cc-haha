@@ -16,12 +16,12 @@ import {
 } from '../../utils/undercover.js'
 import { AGENT_TOOL_NAME } from '../../server/tools/AgentTool/constants.js'
 import { FILE_EDIT_TOOL_NAME } from '../../server/tools/FileEditTool/constants.js'
-import { FILE_READ_TOOL_NAME } from '../FileReadTool/prompt.js'
-import { FILE_WRITE_TOOL_NAME } from '../FileWriteTool/prompt.js'
-import { GLOB_TOOL_NAME } from '../GlobTool/prompt.js'
-import { GREP_TOOL_NAME } from '../GrepTool/prompt.js'
+import { FILE_READ_TOOL_NAME } from '../../server/tools/FileReadTool/prompt.js'
+import { FILE_WRITE_TOOL_NAME } from '../../server/tools/FileWriteTool/prompt.js'
+import { GLOB_TOOL_NAME } from '../../server/tools/GlobTool/prompt.js'
+import { GREP_TOOL_NAME } from '../../server/tools/GrepTool/prompt.js'
 import { TodoWriteTool } from '../TodoWriteTool/TodoWriteTool.js'
-import { BASH_TOOL_NAME } from './toolName.js'
+import { BASH_TOOL_NAME } from '../../server/tools/BashTool/toolName.js'
 
 export function getDefaultTimeoutMs(): number {
   return getDefaultBashTimeoutMs()

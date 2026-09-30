@@ -1,6 +1,6 @@
-import type { OpenAICodexTurnState } from '../../server/services/openaiAuth/turnState.js'
+import type { OpenAICodexTurnState } from '../openaiAuth/turnState.js'
 import Anthropic, { type ClientOptions } from '@anthropic-ai/sdk'
-import { normalizeAnthropicBaseUrl } from '../../server/services/api/anthropicBaseUrl.js'
+import { normalizeAnthropicBaseUrl } from './anthropicBaseUrl.js'
 import { randomUUID } from 'crypto'
 import type { GoogleAuth } from 'google-auth-library'
 import {
@@ -14,34 +14,34 @@ import {
 } from 'src/utils/auth.js'
 import { signClaudeCodeCCHBody } from 'src/utils/claudeCodeCch.js'
 import { getUserAgent } from 'src/utils/http.js'
-import { getSmallFastModel } from '../../server/utils/model/model.js'
+import { getSmallFastModel } from '../../utils/model/model.js'
 import {
   getAPIProvider,
   isFirstPartyAnthropicBaseUrl,
-} from '../../server/utils/model/providers.js'
+} from '../../utils/model/providers.js'
 import { getProxyFetchOptions } from 'src/server/utils/proxy.ts'
 import {
   getIsNonInteractiveSession,
   getSessionId,
-} from '../../server/bootstrap/state.js'
-import { getOauthConfig } from '../../server/constants/oauth.js'
+} from '../../bootstrap/state.js'
+import { getOauthConfig } from '../../constants/oauth.js'
 import {
   buildOpenAICodexFetch,
   OPENAI_OAUTH_DUMMY_KEY,
   shouldUseOpenAICodexAuth,
-} from '../../server/services/openaiAuth/fetch.js'
-import { isOpenAIResponsesModel } from '../../server/services/openaiAuth/models.js'
+} from '../openaiAuth/fetch.js'
+import { isOpenAIResponsesModel } from '../openaiAuth/models.js'
 import {
   buildGrokFetch,
   GROK_OAUTH_DUMMY_KEY,
   shouldUseGrokAuth,
-} from '../../server/services/grokAuth/fetch.js'
-import { isDebugToStdErr, logForDebugging } from '../../server/utils/debug.js'
+} from '../grokAuth/fetch.js'
+import { isDebugToStdErr, logForDebugging } from '../../utils/debug.js'
 import {
   getAWSRegion,
   getVertexRegionForModel,
   isEnvTruthy,
-} from '../../server/utils/envUtils.js'
+} from '../../utils/envUtils.js'
 
 /**
  * Environment variables for different client types:

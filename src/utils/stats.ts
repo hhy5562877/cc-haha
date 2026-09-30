@@ -9,7 +9,7 @@ import { getFsImplementation } from '../server/utils/fsOperations.js'
 import { readJSONLFile } from '../server/utils/json.js'
 import { SYNTHETIC_MODEL } from './messages.js'
 import { getProjectsDir, isTranscriptMessage } from './sessionStorage.js'
-import { extractShotCountFromAssistantContent } from './shotStats.js'
+import { extractShotCountFromAssistantContent } from '../server/utils/shotStats.js'
 import {
   activeGapMs,
   estimateCostUSD,

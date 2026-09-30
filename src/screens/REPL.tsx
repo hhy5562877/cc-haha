@@ -125,7 +125,7 @@ import { buildPermissionUpdates } from '../components/permissions/ExitPlanModePe
 import { stripDangerousPermissionsForAutoMode } from '../server/utils/permissions/permissionSetup.js';
 import { getScratchpadDir, isScratchpadEnabled } from '../server/utils/permissions/filesystem.js';
 import { WEB_FETCH_TOOL_NAME } from '../tools/WebFetchTool/prompt.js';
-import { SLEEP_TOOL_NAME } from '../tools/SleepTool/prompt.js';
+import { SLEEP_TOOL_NAME } from '../server/tools/SleepTool/prompt.js';
 import { clearSpeculativeChecks } from '../tools/BashTool/bashPermissions.js';
 import type { AutoUpdaterResult } from '../utils/autoUpdater.js';
 import { getGlobalConfig, saveGlobalConfig, getGlobalConfigWriteCount } from '../utils/config.js';

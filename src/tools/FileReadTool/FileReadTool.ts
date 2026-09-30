@@ -64,7 +64,7 @@ import {
   isPDFExtension,
   isPDFSupported,
   parsePDFPageRange,
-} from '../../utils/pdfUtils.js'
+} from '../../server/utils/pdfUtils.js'
 import {
   checkReadPermissionForTool,
   matchingRuleForInput,
@@ -74,7 +74,7 @@ import { matchWildcardPattern } from '../../server/utils/permissions/shellRuleMa
 import { readFileInRange } from '../../utils/readFileInRange.js'
 import { semanticNumber } from '../../utils/semanticNumber.js'
 import { jsonStringify } from '../../server/utils/slowOperations.js'
-import { BASH_TOOL_NAME } from '../BashTool/toolName.js'
+import { BASH_TOOL_NAME } from '../../server/tools/BashTool/toolName.js'
 import { getDefaultFileReadingLimits } from './limits.js'
 import { getImageProcessor } from './imageProcessor.js'
 import {
@@ -85,7 +85,7 @@ import {
   OFFSET_INSTRUCTION_DEFAULT,
   OFFSET_INSTRUCTION_TARGETED,
   renderPromptTemplate,
-} from './prompt.js'
+} from '../../server/tools/FileReadTool/prompt.js'
 import {
   getToolUseSummary,
   renderToolResultMessage,

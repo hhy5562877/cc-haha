@@ -20,7 +20,7 @@ import {
 import {
   resetSyncCache as resetLeafCache,
   setEligibility,
-} from './syncCacheState.js'
+} from '../../server/services/remoteManagedSettings/syncCacheState.js'
 
 let cached: boolean | undefined
 

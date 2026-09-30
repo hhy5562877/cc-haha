@@ -1,7 +1,7 @@
 import type { PermissionRule } from 'src/server/utils/permissions/PermissionRule.js'
 import { getSettingsForSource } from '../../server/utils/settings/settings.js'
 import type { SettingsJson } from '../../server/utils/settings/types.js'
-import { BASH_TOOL_NAME } from '../../tools/BashTool/toolName.js'
+import { BASH_TOOL_NAME } from '../../server/tools/BashTool/toolName.js'
 import { SAFE_ENV_VARS } from '../../server/utils/managedEnvConstants.js'
 import { getPermissionRulesForSource } from '../../server/utils/permissions/permissionsLoader.js'
 

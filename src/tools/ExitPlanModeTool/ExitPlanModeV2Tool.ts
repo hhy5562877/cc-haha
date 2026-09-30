@@ -39,8 +39,8 @@ import {
 } from '../../utils/teammate.js'
 import { writeToMailbox } from '../../utils/teammateMailbox.js'
 import { AGENT_TOOL_NAME } from '../../server/tools/AgentTool/constants.js'
-import { TEAM_CREATE_TOOL_NAME } from '../TeamCreateTool/constants.js'
-import { EXIT_PLAN_MODE_V2_TOOL_NAME } from './constants.js'
+import { TEAM_CREATE_TOOL_NAME } from '../../server/tools/TeamCreateTool/constants.js'
+import { EXIT_PLAN_MODE_V2_TOOL_NAME } from '../../server/tools/ExitPlanModeTool/constants.js'
 import { EXIT_PLAN_MODE_V2_TOOL_PROMPT } from './prompt.js'
 import {
   renderToolResultMessage,

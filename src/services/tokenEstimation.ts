@@ -25,7 +25,7 @@ import {
 import { jsonStringify } from '../server/utils/slowOperations.js'
 import { isToolReferenceBlock } from '../utils/toolSearch.js'
 import { getAPIMetadata, getExtraBodyParams } from './api/claude.js'
-import { getAnthropicClient } from './api/client.js'
+import { getAnthropicClient } from '../server/services/api/client.js'
 import { withTokenCountVCR } from './vcr.js'
 
 // Minimal values for token counting with thinking enabled

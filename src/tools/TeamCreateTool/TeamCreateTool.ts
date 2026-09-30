@@ -33,7 +33,7 @@ import {
   withTaskListLifecycleLock,
 } from '../../utils/tasks.js'
 import { generateWordSlug } from '../../utils/words.js'
-import { TEAM_CREATE_TOOL_NAME } from './constants.js'
+import { TEAM_CREATE_TOOL_NAME } from '../../server/tools/TeamCreateTool/constants.js'
 import { getPrompt } from './prompt.js'
 import { renderToolUseMessage } from './UI.js'
 import { getTeamLeaderRuntime, isTeamReviewRequired } from '../../utils/swarm/teamPlanPolicy.js'

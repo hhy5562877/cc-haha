@@ -11,14 +11,14 @@ import {
   AGENT_TOOL_NAME,
   VERIFICATION_AGENT_TYPE,
 } from '../server/tools/AgentTool/constants.js'
-import { FILE_WRITE_TOOL_NAME } from '../tools/FileWriteTool/prompt.js'
-import { FILE_READ_TOOL_NAME } from '../tools/FileReadTool/prompt.js'
+import { FILE_WRITE_TOOL_NAME } from '../server/tools/FileWriteTool/prompt.js'
+import { FILE_READ_TOOL_NAME } from '../server/tools/FileReadTool/prompt.js'
 import { FILE_EDIT_TOOL_NAME } from '../server/tools/FileEditTool/constants.js'
-import { TODO_WRITE_TOOL_NAME } from '../tools/TodoWriteTool/constants.js'
-import { TASK_CREATE_TOOL_NAME } from '../tools/TaskCreateTool/constants.js'
+import { TODO_WRITE_TOOL_NAME } from '../server/tools/TodoWriteTool/constants.js'
+import { TASK_CREATE_TOOL_NAME } from '../server/tools/TaskCreateTool/constants.js'
 import type { Tools } from '../Tool.js'
 import type { Command } from '../types/command.js'
-import { BASH_TOOL_NAME } from '../tools/BashTool/toolName.js'
+import { BASH_TOOL_NAME } from '../server/tools/BashTool/toolName.js'
 import {
   getCanonicalName,
   getMarketingNameForModel,
@@ -30,10 +30,10 @@ import type {
   MCPServerConnection,
   ConnectedMCPServer,
 } from '../server/services/mcp/types.js'
-import { GLOB_TOOL_NAME } from 'src/tools/GlobTool/prompt.js'
-import { GREP_TOOL_NAME } from 'src/tools/GrepTool/prompt.js'
+import { GLOB_TOOL_NAME } from 'src/server/tools/GlobTool/prompt.js'
+import { GREP_TOOL_NAME } from 'src/server/tools/GrepTool/prompt.js'
 import { hasEmbeddedSearchTools } from 'src/server/utils/embeddedTools.js'
-import { ASK_USER_QUESTION_TOOL_NAME } from '../tools/AskUserQuestionTool/prompt.js'
+import { ASK_USER_QUESTION_TOOL_NAME } from '../server/tools/AskUserQuestionTool/prompt.js'
 import {
   EXPLORE_AGENT,
   EXPLORE_AGENT_MIN_QUERIES,
@@ -44,7 +44,7 @@ import {
   getScratchpadDir,
 } from '../server/utils/permissions/filesystem.js'
 import { isEnvTruthy } from '../server/utils/envUtils.js'
-import { isReplModeEnabled } from '../tools/REPLTool/constants.js'
+import { isReplModeEnabled } from '../server/tools/REPLTool/constants.js'
 import { feature } from 'bun:bundle'
 import { getFeatureValue_CACHED_MAY_BE_STALE } from '../server/services/analytics/growthbook.js'
 import { shouldUseGlobalCacheScope } from '../utils/betas.js'
@@ -54,7 +54,7 @@ import {
   DANGEROUS_uncachedSystemPromptSection,
   resolveSystemPromptSections,
 } from './systemPromptSections.js'
-import { SLEEP_TOOL_NAME } from '../tools/SleepTool/prompt.js'
+import { SLEEP_TOOL_NAME } from '../server/tools/SleepTool/prompt.js'
 import { TICK_TAG } from '../server/constants/xml.js'
 import { logForDebugging } from '../server/utils/debug.js'
 import { loadMemoryPrompt } from '../memdir/memdir.js'
@@ -76,7 +76,7 @@ const proactiveModule =
 const BRIEF_PROACTIVE_SECTION: string | null =
   feature('KAIROS') || feature('KAIROS_BRIEF')
     ? (
-        require('../tools/BriefTool/prompt.js') as typeof import('../tools/BriefTool/prompt.js')
+        require('../server/tools/BriefTool/prompt.js') as typeof import('../server/tools/BriefTool/prompt.js')
       ).BRIEF_PROACTIVE_SECTION
     : null
 const briefToolModule =

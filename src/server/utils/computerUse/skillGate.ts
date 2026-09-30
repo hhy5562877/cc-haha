@@ -5,7 +5,7 @@ import {
   getComputerUseConfigPath,
   resolveStoredComputerUseConfig,
   type StoredComputerUseConfig,
-} from './preauthorizedConfig.js'
+} from '../../../utils/computerUse/preauthorizedConfig.js'
 
 /**
  * Is Computer Use turned on by the user right now?

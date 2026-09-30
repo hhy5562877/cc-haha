@@ -1,4 +1,4 @@
-import type { CuPermissionRequest, CuPermissionResponse } from '../../vendor/computer-use-mcp/types.js'
+import type { CuPermissionRequest, CuPermissionResponse } from '../vendor/computer-use-mcp/types.js'
 import { getSessionTurnState, sendToSession } from '../ws/handler.js'
 import { emitSessionTurnEvent } from './sessionTurnEvents.js'
 

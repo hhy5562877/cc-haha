@@ -12,7 +12,7 @@ import type {
   ToolUseContext,
 } from '../../Tool.js'
 import { awaitClassifierAutoApproval } from '../../tools/BashTool/bashPermissions.js'
-import { BASH_TOOL_NAME } from '../../tools/BashTool/toolName.js'
+import { BASH_TOOL_NAME } from '../../server/tools/BashTool/toolName.js'
 import type { AssistantMessage } from '../../server/types/message.js'
 import type {
   PendingClassifierCheck,

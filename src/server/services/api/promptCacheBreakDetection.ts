@@ -10,11 +10,11 @@ import { djb2Hash } from 'src/server/utils/hash.ts'
 import { logError } from 'src/server/utils/log.ts'
 import { getClaudeTempDir } from 'src/server/utils/permissions/filesystem.js'
 import { jsonStringify } from 'src/server/utils/slowOperations.ts'
-import type { QuerySource } from '../../server/constants/querySource.js'
+import type { QuerySource } from '../../constants/querySource.js'
 import {
   type AnalyticsMetadata_I_VERIFIED_THIS_IS_NOT_CODE_OR_FILEPATHS,
   logEvent,
-} from '../../server/services/analytics/index.js'
+} from '../analytics/index.js'
 
 function getCacheBreakDiffPath(): string {
   const chars = 'abcdefghijklmnopqrstuvwxyz0123456789'

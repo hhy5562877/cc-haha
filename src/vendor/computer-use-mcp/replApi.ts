@@ -1,4 +1,4 @@
-import type { NativeErrorMetadata } from './nativeError.js'
+import type { NativeErrorMetadata } from '../../server/vendor/computer-use-mcp/nativeError.js'
 
 /**
  * Native-app facade for the isolated Computer Use JavaScript worker.

@@ -4,11 +4,11 @@ import { dirname, join } from 'node:path'
 import {
   getDefaultTierForApp,
   isPolicyDenied,
-} from '../../../vendor/computer-use-mcp/deniedApps.js'
+} from '../../vendor/computer-use-mcp/deniedApps.js'
 import type {
   AppGrant,
   CuGrantFlags,
-} from '../../../vendor/computer-use-mcp/types.js'
+} from '../../vendor/computer-use-mcp/types.js'
 import { getClaudeConfigHomeDir } from '../envUtils.js'
 
 export type StoredAuthorizedApp = {

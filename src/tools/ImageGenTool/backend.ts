@@ -18,7 +18,7 @@ import {
 import type {
   ImageGenerationProviderKind,
   ImageGenerationRuntimeConfig,
-} from '../../services/imageGeneration/config.js'
+} from '../../server/services/imageGeneration/config.js'
 import { createCombinedAbortSignal } from '../../utils/combinedAbortSignal.js'
 import { getCcHahaDir, getClaudeConfigHomeDir } from '../../server/utils/envUtils.js'
 import { getImageStoreDir } from '../../utils/imageStore.js'

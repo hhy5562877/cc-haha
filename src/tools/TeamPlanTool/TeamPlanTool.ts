@@ -8,7 +8,7 @@ import { isTeamReviewRequired } from '../../utils/swarm/teamPlanPolicy.js'
 import { readTeamPlan, replaceTeamPlan, submitTeamPlan } from '../../utils/swarm/teamPlanStore.js'
 import { isTeammate } from '../../utils/teammate.js'
 import { requestTeamPlanTurnPause } from '../../utils/swarm/teamPlanTurnBoundary.js'
-import { TEAM_PLAN_TOOL_NAME } from './constants.js'
+import { TEAM_PLAN_TOOL_NAME } from '../../server/tools/TeamPlanTool/constants.js'
 import { captureLegacyPlanTasks, proposedTeamPlanSchema, resolveProposedTeamPlan, snapshotTeamAgents, teamPlanToolResult } from './context.js'
 
 const inputSchema = lazySchema(() => z.object({

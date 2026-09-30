@@ -1620,7 +1620,7 @@ async function run(): Promise<CommanderCommand> {
       try {
         const {
           getChicagoEnabled
-        } = await import('src/utils/computerUse/gates.js');
+        } = await import('src/server/utils/computerUse/gates.js');
         const computerUseCliEnabled = options.computerUse !== false;
         if (getChicagoEnabled() && computerUseCliEnabled) {
           const {
@@ -1752,7 +1752,7 @@ async function run(): Promise<CommanderCommand> {
       const {
         BRIEF_TOOL_NAME,
         LEGACY_BRIEF_TOOL_NAME
-      } = require('./tools/BriefTool/prompt.js') as typeof import('./tools/BriefTool/prompt.js');
+      } = require('./server/tools/BriefTool/prompt.js') as typeof import('./server/tools/BriefTool/prompt.js');
       const {
         isBriefEntitled
       } = require('./tools/BriefTool/BriefTool.js') as typeof import('./tools/BriefTool/BriefTool.js');
