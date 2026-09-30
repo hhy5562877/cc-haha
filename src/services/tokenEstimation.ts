@@ -3,7 +3,7 @@ import type { BetaMessageParam as MessageParam } from '@anthropic-ai/sdk/resourc
 // @aws-sdk/client-bedrock-runtime is imported dynamically in countTokensWithBedrock()
 // to defer ~279KB of AWS SDK code until a Bedrock call is actually made
 import type { CountTokensCommandInput } from '@aws-sdk/client-bedrock-runtime'
-import { getAPIProvider } from 'src/utils/model/providers.js'
+import { getAPIProvider } from '../server/utils/model/providers.js'
 import { VERTEX_COUNT_TOKENS_ALLOWED_BETAS } from '../constants/betas.js'
 import type { Attachment } from '../utils/attachments.js'
 import { getModelBetas } from '../utils/betas.js'
@@ -15,13 +15,13 @@ import {
   createBedrockRuntimeClient,
   getInferenceProfileBackingModel,
   isFoundationModel,
-} from '../utils/model/bedrock.js'
+} from '../server/utils/model/bedrock.js'
 import {
   getDefaultSonnetModel,
   getMainLoopModel,
   getSmallFastModel,
   normalizeModelStringForAPI,
-} from '../utils/model/model.js'
+} from '../server/utils/model/model.js'
 import { jsonStringify } from '../utils/slowOperations.js'
 import { isToolReferenceBlock } from '../utils/toolSearch.js'
 import { getAPIMetadata, getExtraBodyParams } from './api/claude.js'

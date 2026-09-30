@@ -32,7 +32,7 @@ import { getRepoRemoteHash } from '../../utils/git.js'
 import {
   getAPIProvider,
   isFirstPartyAnthropicBaseUrl,
-} from '../../utils/model/providers.js'
+} from '../../server/utils/model/providers.js'
 import { markInternalWrite } from '../../server/utils/settings/internalWrites.js'
 import { getSettingsFilePathForSource } from '../../server/utils/settings/settings.js'
 import { resetSettingsCache } from '../../server/utils/settings/settingsCache.js'

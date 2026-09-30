@@ -25,7 +25,7 @@ import { randomUUID } from "crypto";
 import {
   getAPIProvider,
   isFirstPartyAnthropicBaseUrl,
-} from "src/utils/model/providers.js";
+} from '../../server/utils/model/providers.js';
 import {
   getAttributionHeader,
   getCLISyspromptPrefix,
@@ -90,7 +90,7 @@ import {
   getDefaultSonnetModel,
   getSmallFastModel,
   isNonCustomOpusModel,
-} from "../../utils/model/model.js";
+} from '../../server/utils/model/model.js';
 import { disableKeepAlive } from "../../utils/proxy.js";
 import {
   asSystemPrompt,
@@ -217,11 +217,11 @@ import { count } from "../../utils/array.js";
 import { insertBlockAfterToolResults } from "../../utils/contentArray.js";
 import { validateBoundedIntEnvVar } from "../../utils/envValidation.js";
 import { safeParseJSON } from "../../utils/json.js";
-import { getInferenceProfileBackingModel } from "../../utils/model/bedrock.js";
+import { getInferenceProfileBackingModel } from '../../server/utils/model/bedrock.js';
 import {
   normalizeModelStringForAPI,
   parseUserSpecifiedModel,
-} from "../../utils/model/model.js";
+} from '../../server/utils/model/model.js';
 import {
   startSessionActivity,
   stopSessionActivity,

@@ -8,7 +8,7 @@ import {
   isTeamPremiumSubscriber,
 } from '../utils/auth.js'
 import { getGlobalConfig, saveGlobalConfig } from '../utils/config.js'
-import { getAPIProvider } from '../utils/model/providers.js'
+import { getAPIProvider } from '../server/utils/model/providers.js'
 import {
   getSettingsForSource,
   updateSettingsForSource,

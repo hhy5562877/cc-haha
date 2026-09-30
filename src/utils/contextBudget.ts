@@ -1,4 +1,4 @@
-import { getAPIProvider } from './model/providers.js'
+import { getAPIProvider } from '../server/utils/model/providers.js'
 
 export type ProviderUsageTrust = 'high' | 'low'
 

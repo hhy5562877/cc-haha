@@ -42,7 +42,7 @@ import type { EffortValue } from './effort.js'
 import type { FileHistorySnapshot } from './fileHistory.js'
 import { fileHistoryRestoreStateFromLog } from './fileHistory.js'
 import { createSystemMessage } from './messages.js'
-import { parseUserSpecifiedModel } from './model/model.js'
+import { parseUserSpecifiedModel } from '../server/utils/model/model.js'
 import { getPlansDirectory } from './plans.js'
 import { setCwd } from './Shell.js'
 import {

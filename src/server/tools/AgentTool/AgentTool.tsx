@@ -24,7 +24,7 @@ import { AbortError, errorMessage, toError } from '../../../utils/errors.js';
 import type { CacheSafeParams } from '../../../utils/forkedAgent.js';
 import { lazySchema } from '../../../utils/lazySchema.js';
 import { createUserMessage, extractTextContent, isSyntheticMessage, normalizeMessages } from '../../../utils/messages.js';
-import { getAgentModel } from '../../../utils/model/agent.js';
+import { getAgentModel } from '../../utils/model/agent.js';
 import { permissionModeSchema } from '../../utils/permissions/PermissionMode.js';
 import type { PermissionResult } from '../../utils/permissions/PermissionResult.js';
 import { filterDeniedAgents, getDenyRuleForAgent } from '../../utils/permissions/permissions.js';

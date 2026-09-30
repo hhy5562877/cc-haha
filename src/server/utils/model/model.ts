@@ -5,7 +5,7 @@
  * literals with process.env.USER_TYPE === 'ant' for Bun to remove the codenames
  * during dead code elimination
  */
-import { getMainLoopModelOverride } from '../../bootstrap/state.js'
+import { getMainLoopModelOverride } from '../../../bootstrap/state.js'
 import {
   getSubscriptionType,
   is1PApiCustomer,
@@ -14,29 +14,29 @@ import {
   isOpenAIAuthActive,
   isProSubscriber,
   isTeamPremiumSubscriber,
-} from '../auth.js'
+} from '../../../utils/auth.js'
 import {
   has1mContext,
   is1mContextDisabled,
   modelSupports1M,
-} from '../context.js'
-import { isEnvTruthy } from '../envUtils.js'
+} from '../../../utils/context.js'
+import { isEnvTruthy } from '../../../utils/envUtils.js'
 import { getModelStrings, resolveOverriddenModel } from './modelStrings.js'
-import { formatModelPricing, getOpus46CostTier } from '../modelCost.js'
-import { getSettings_DEPRECATED } from '../../server/utils/settings/settings.js'
-import type { PermissionMode } from '../../server/utils/permissions/PermissionMode.js'
+import { formatModelPricing, getOpus46CostTier } from '../../../utils/modelCost.js'
+import { getSettings_DEPRECATED } from '../settings/settings.js'
+import type { PermissionMode } from '../permissions/PermissionMode.js'
 import {
   getAPIProvider,
   hasAnthropicCompatibleThirdPartyConfig,
 } from './providers.js'
-import { LIGHTNING_BOLT } from '../../constants/figures.js'
+import { LIGHTNING_BOLT } from '../../../constants/figures.js'
 import { isModelAllowed } from './modelAllowlist.js'
 import { type ModelAlias, isModelAlias } from './aliases.js'
 import {
   getOpenAIModelDisplayName,
   resolveOpenAICodexModel,
-} from '../../server/services/openaiAuth/models.js'
-import { capitalize } from '../stringUtils.js'
+} from '../../services/openaiAuth/models.js'
+import { capitalize } from '../../../utils/stringUtils.js'
 
 export type ModelShortName = string
 export type ModelName = string

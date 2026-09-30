@@ -8,7 +8,7 @@ import {
   createUserMessage,
   normalizeMessagesForAPI,
 } from 'src/utils/messages.js'
-import type { ModelName } from 'src/utils/model/model.js'
+import type { ModelName } from '../../server/utils/model/model.js'
 import { isAutoMemoryEnabled } from '../../memdir/paths.js'
 import {
   type AnalyticsMetadata_I_VERIFIED_THIS_IS_NOT_CODE_OR_FILEPATHS,

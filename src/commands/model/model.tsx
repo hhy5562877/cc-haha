@@ -10,11 +10,11 @@ import type { LocalJSXCommandCall } from '../../types/command.js';
 import type { EffortLevel } from '../../utils/effort.js';
 import { isBilledAsExtraUsage } from '../../utils/extraUsage.js';
 import { clearFastModeCooldown, isFastModeAvailable, isFastModeEnabled, isFastModeSupportedByModel } from '../../utils/fastMode.js';
-import { MODEL_ALIASES } from '../../utils/model/aliases.js';
-import { checkOpus1mAccess, checkSonnet1mAccess } from '../../utils/model/check1mAccess.js';
-import { getDefaultMainLoopModelSetting, getDefaultSonnetModel, isOpus1mMergeEnabled, renderDefaultModelSetting } from '../../utils/model/model.js';
-import { isModelAllowed } from '../../utils/model/modelAllowlist.js';
-import { validateModel } from '../../utils/model/validateModel.js';
+import { MODEL_ALIASES } from '../../server/utils/model/aliases.js';
+import { checkOpus1mAccess, checkSonnet1mAccess } from '../../server/utils/model/check1mAccess.js';
+import { getDefaultMainLoopModelSetting, getDefaultSonnetModel, isOpus1mMergeEnabled, renderDefaultModelSetting } from '../../server/utils/model/model.js';
+import { isModelAllowed } from '../../server/utils/model/modelAllowlist.js';
+import { validateModel } from '../../server/utils/model/validateModel.js';
 function ModelPickerWrapper(t0) {
   const $ = _c(17);
   const {

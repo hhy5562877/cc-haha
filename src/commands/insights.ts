@@ -25,7 +25,7 @@ import { toError } from '../utils/errors.js'
 import { execFileNoThrow } from '../utils/execFileNoThrow.js'
 import { logError } from '../utils/log.js'
 import { extractTextContent } from '../utils/messages.js'
-import { getDefaultOpusModel } from '../utils/model/model.js'
+import { getDefaultOpusModel } from '../server/utils/model/model.js'
 import {
   getProjectsDir,
   getSessionFilesWithMtime,

@@ -22,7 +22,7 @@ import { BASH_TOOL_NAME } from '../tools/BashTool/toolName.js'
 import {
   getCanonicalName,
   getMarketingNameForModel,
-} from '../utils/model/model.js'
+} from '../server/utils/model/model.js'
 import { getSkillToolCommands } from 'src/commands.js'
 import { SKILL_TOOL_NAME } from '../tools/SkillTool/constants.js'
 import { getOutputStyleConfig } from './outputStyles.js'

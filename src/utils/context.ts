@@ -8,12 +8,12 @@ import {
   type ProviderUsageTrust,
 } from './contextBudget.js'
 import { isEnvTruthy } from './envUtils.js'
-import { getCanonicalName } from './model/model.js'
-import { getModelCapability } from './model/modelCapabilities.js'
+import { getCanonicalName } from '../server/utils/model/model.js'
+import { getModelCapability } from '../server/utils/model/modelCapabilities.js'
 import {
   getBuiltInModelContextWindow,
   getConfiguredModelContextWindow,
-} from './model/modelContextWindows.js'
+} from '../server/utils/model/modelContextWindows.js'
 
 // Default fallback when the model-specific capability is unknown.
 export const MODEL_CONTEXT_WINDOW_DEFAULT = 200_000

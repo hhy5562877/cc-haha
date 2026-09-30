@@ -15,7 +15,7 @@ import {
 import {
   getAPIProvider,
   isFirstPartyAnthropicBaseUrl,
-} from '../../utils/model/providers.js'
+} from '../../server/utils/model/providers.js'
 
 import {
   resetSyncCache as resetLeafCache,

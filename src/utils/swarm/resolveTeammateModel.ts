@@ -1,5 +1,5 @@
 import { getGlobalConfig } from '../config.js'
-import { parseUserSpecifiedModel } from '../model/model.js'
+import { parseUserSpecifiedModel } from '../../server/utils/model/model.js'
 import { getHardcodedTeammateModelFallback } from './teammateModel.js'
 
 function getDefaultTeammateModel(leaderModel: string | null): string {

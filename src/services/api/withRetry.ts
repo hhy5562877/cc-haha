@@ -14,7 +14,7 @@ import { isAwsCredentialsProviderError } from 'src/utils/aws.js'
 import { logForDebugging } from 'src/utils/debug.js'
 import { logError } from 'src/utils/log.js'
 import { createSystemAPIErrorMessage } from 'src/utils/messages.js'
-import { getAPIProviderForStatsig } from 'src/utils/model/providers.js'
+import { getAPIProviderForStatsig } from '../../server/utils/model/providers.js'
 import {
   clearApiKeyHelperCache,
   clearAwsCredentialsCache,
@@ -34,7 +34,7 @@ import {
   isFastModeEnabled,
   triggerFastModeCooldown,
 } from '../../utils/fastMode.js'
-import { isNonCustomOpusModel } from '../../utils/model/model.js'
+import { isNonCustomOpusModel } from '../../server/utils/model/model.js'
 import { disableKeepAlive } from '../../utils/proxy.js'
 import { sleep } from '../../utils/sleep.js'
 import type { ThinkingConfig } from '../../utils/thinking.js'

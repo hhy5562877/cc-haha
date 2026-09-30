@@ -9,11 +9,11 @@ import {
   type AnalyticsMetadata_I_VERIFIED_THIS_IS_NOT_CODE_OR_FILEPATHS,
   logEvent,
 } from '../server/services/analytics/index.js'
-import { getModelStrings } from 'src/utils/model/modelStrings.js'
+import { getModelStrings } from '../server/utils/model/modelStrings.js'
 import {
   getAPIProvider,
   isFirstPartyAnthropicBaseUrl,
-} from 'src/utils/model/providers.js'
+} from '../server/utils/model/providers.js'
 import {
   getIsNonInteractiveSession,
   preferThirdPartyAuthentication,

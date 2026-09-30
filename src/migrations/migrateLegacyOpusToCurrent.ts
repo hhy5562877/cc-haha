@@ -3,8 +3,8 @@ import {
   logEvent,
 } from '../server/services/analytics/index.js'
 import { saveGlobalConfig } from '../utils/config.js'
-import { isLegacyModelRemapEnabled } from '../utils/model/model.js'
-import { getAPIProvider } from '../utils/model/providers.js'
+import { isLegacyModelRemapEnabled } from '../server/utils/model/model.js'
+import { getAPIProvider } from '../server/utils/model/providers.js'
 import {
   getSettingsForSource,
   updateSettingsForSource,

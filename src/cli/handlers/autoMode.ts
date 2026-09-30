@@ -7,7 +7,7 @@ import { errorMessage } from '../../utils/errors.js'
 import {
   getMainLoopModel,
   parseUserSpecifiedModel,
-} from '../../utils/model/model.js'
+} from '../../server/utils/model/model.js'
 import {
   type AutoModeRules,
   buildDefaultExternalSystemPrompt,

@@ -1,5 +1,5 @@
 import { describe, expect, test } from 'bun:test'
-import { MODEL_CONTEXT_WINDOWS_ENV_KEY } from '../../utils/model/modelContextWindows.js'
+import { MODEL_CONTEXT_WINDOWS_ENV_KEY } from '../utils/model/modelContextWindows.js'
 import { buildOpenAIOfficialRuntimeEnv } from './openaiOfficialProvider.js'
 
 describe('ChatGPT Official runtime environment', () => {

@@ -64,8 +64,8 @@ import {
   normalizeAttachmentForAPI,
   normalizeMessagesForAPI,
 } from './messages.js'
-import { getRuntimeMainLoopModel } from './model/model.js'
-import { isFirstPartyAnthropicBaseUrl } from './model/providers.js'
+import { getRuntimeMainLoopModel } from '../server/utils/model/model.js'
+import { isFirstPartyAnthropicBaseUrl } from '../server/utils/model/providers.js'
 import type { SettingSource } from '../server/utils/settings/constants.js'
 import { jsonStringify } from './slowOperations.js'
 import { buildEffectiveSystemPrompt } from './systemPrompt.js'

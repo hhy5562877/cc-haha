@@ -32,7 +32,7 @@ import { findGitRoot, getDefaultBranch, getIsClean, gitExe } from './git.js';
 import { safeParseJSON } from './json.js';
 import { logError } from './log.js';
 import { createSystemMessage, createUserMessage } from './messages.js';
-import { getMainLoopModel } from './model/model.js';
+import { getMainLoopModel } from '../server/utils/model/model.js';
 import { isTranscriptMessage } from './sessionStorage.js';
 import { getSettings_DEPRECATED } from '../server/utils/settings/settings.js';
 import { jsonStringify } from './slowOperations.js';

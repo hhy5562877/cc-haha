@@ -16,11 +16,11 @@ import {
   filterUnresolvedToolUses,
   filterWhitespaceOnlyAssistantMessages,
 } from '../../../utils/messages.js'
-import { getAgentModel } from '../../../utils/model/agent.js'
+import { getAgentModel } from '../../utils/model/agent.js'
 import {
   isModelAlias,
   type ModelAlias,
-} from '../../../utils/model/aliases.js'
+} from '../../utils/model/aliases.js'
 import { getQuerySourceForAgent } from '../../../utils/promptCategory.js'
 import {
   getAgentTranscript,

@@ -175,7 +175,7 @@ import { normalizeLegacyToolName } from '../server/utils/permissions/permissionR
 import {
   normalizeModelStringForAPI,
   parseUserSpecifiedModel,
-} from './model/model.js'
+} from '../server/utils/model/model.js'
 import {
   getPlanModeV2AgentCount,
   getPlanModeV2ExploreAgentCount,

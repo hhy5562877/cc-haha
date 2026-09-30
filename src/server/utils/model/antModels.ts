@@ -1,5 +1,5 @@
-import { getFeatureValue_CACHED_MAY_BE_STALE } from '../../server/services/analytics/growthbook.js'
-import type { EffortLevel } from '../effort.js'
+import { getFeatureValue_CACHED_MAY_BE_STALE } from '../../services/analytics/growthbook.js'
+import type { EffortLevel } from '../../../utils/effort.js'
 
 export type AntModel = {
   alias: string

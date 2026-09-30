@@ -5,8 +5,8 @@ import {
   NOTIFICATION_CHANNELS,
   TEAMMATE_MODES,
 } from '../../utils/configConstants.js'
-import { getModelOptions } from '../../utils/model/modelOptions.js'
-import { validateModel } from '../../utils/model/validateModel.js'
+import { getModelOptions } from '../../server/utils/model/modelOptions.js'
+import { validateModel } from '../../server/utils/model/validateModel.js'
 import { THEME_NAMES, THEME_SETTINGS } from '../../utils/theme.js'
 
 /** AppState keys that can be synced for immediate UI effect */

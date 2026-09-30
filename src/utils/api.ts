@@ -47,7 +47,7 @@ import { createUserMessage } from './messages.js'
 import {
   getAPIProvider,
   isFirstPartyAnthropicBaseUrl,
-} from './model/providers.js'
+} from '../server/utils/model/providers.js'
 import {
   getFileReadIgnorePatterns,
   normalizePatternsToPath,

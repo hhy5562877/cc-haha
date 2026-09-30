@@ -1,4 +1,4 @@
-import { getSettings_DEPRECATED } from '../../server/utils/settings/settings.js'
+import { getSettings_DEPRECATED } from '../settings/settings.js'
 import { isModelAlias, isModelFamilyAlias } from './aliases.js'
 import { parseUserSpecifiedModel } from './model.js'
 import { resolveOverriddenModel } from './modelStrings.js'

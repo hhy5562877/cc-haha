@@ -10,7 +10,7 @@ import {
   readActiveProviderManagedEnv,
 } from '../services/providerRuntimeEnv.js'
 import { PROVIDER_TOOL_SEARCH_OPT_IN_SCHEMA_VERSION } from '../types/provider.js'
-import { get3PModelCapabilityOverride } from '../../utils/model/modelSupportOverrides.js'
+import { get3PModelCapabilityOverride } from '../utils/model/modelSupportOverrides.js'
 
 let tmpDir: string
 let originalConfigDir: string | undefined

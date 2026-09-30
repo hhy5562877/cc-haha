@@ -73,7 +73,7 @@ import type { ImageDimensions } from '../../utils/imageResizer.js';
 import { cacheImagePath, storeImage } from '../../utils/imageStore.js';
 import { isMacosOptionChar, MACOS_OPTION_SPECIAL_CHARS } from '../../utils/keyboardShortcuts.js';
 import { logError } from '../../utils/log.js';
-import { isOpus1mMergeEnabled, modelDisplayString } from '../../utils/model/model.js';
+import { isOpus1mMergeEnabled, modelDisplayString } from '../../server/utils/model/model.js';
 import { setAutoModeActive } from '../../server/utils/permissions/autoModeState.js';
 import { cyclePermissionMode, getNextPermissionMode } from '../../server/utils/permissions/getNextPermissionMode.js';
 import { transitionPermissionMode } from '../../server/utils/permissions/permissionSetup.js';

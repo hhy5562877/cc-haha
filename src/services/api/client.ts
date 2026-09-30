@@ -14,11 +14,11 @@ import {
 } from 'src/utils/auth.js'
 import { signClaudeCodeCCHBody } from 'src/utils/claudeCodeCch.js'
 import { getUserAgent } from 'src/utils/http.js'
-import { getSmallFastModel } from 'src/utils/model/model.js'
+import { getSmallFastModel } from '../../server/utils/model/model.js'
 import {
   getAPIProvider,
   isFirstPartyAnthropicBaseUrl,
-} from 'src/utils/model/providers.js'
+} from '../../server/utils/model/providers.js'
 import { getProxyFetchOptions } from 'src/utils/proxy.js'
 import {
   getIsNonInteractiveSession,

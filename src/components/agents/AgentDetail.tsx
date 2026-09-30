@@ -9,7 +9,7 @@ import { getAgentColor } from '../../server/tools/AgentTool/agentColorManager.js
 import { getMemoryScopeDisplay } from '../../server/tools/AgentTool/agentMemory.js';
 import { resolveAgentTools } from '../../server/tools/AgentTool/agentToolUtils.js';
 import { type AgentDefinition, isBuiltInAgent } from '../../server/tools/AgentTool/loadAgentsDir.js';
-import { getAgentModelDisplay } from '../../utils/model/agent.js';
+import { getAgentModelDisplay } from '../../server/utils/model/agent.js';
 import { Markdown } from '../Markdown.js';
 import { getActualRelativeAgentFilePath } from './agentFileUtils.js';
 type Props = {

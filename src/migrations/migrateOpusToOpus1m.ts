@@ -3,7 +3,7 @@ import {
   getDefaultMainLoopModelSetting,
   isOpus1mMergeEnabled,
   parseUserSpecifiedModel,
-} from '../utils/model/model.js'
+} from '../server/utils/model/model.js'
 import {
   getSettingsForSource,
   updateSettingsForSource,

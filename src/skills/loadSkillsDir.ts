@@ -62,7 +62,7 @@ import {
   type SkillRoot,
   type SkillRootFlavor,
 } from './skillRoots.js'
-import { parseUserSpecifiedModel } from '../utils/model/model.js'
+import { parseUserSpecifiedModel } from '../server/utils/model/model.js'
 import { executeShellCommandsInPrompt } from '../utils/promptShellExecution.js'
 import type { SettingSource } from '../server/utils/settings/constants.js'
 import { isSettingSourceEnabled } from '../server/utils/settings/constants.js'

@@ -53,7 +53,7 @@ import { lazySchema } from '../../utils/lazySchema.js'
 import { logError } from '../../utils/log.js'
 import { isAutoMemFile } from '../../utils/memoryFileDetection.js'
 import { createUserMessage } from '../../utils/messages.js'
-import { getCanonicalName, getMainLoopModel } from '../../utils/model/model.js'
+import { getCanonicalName, getMainLoopModel } from '../../server/utils/model/model.js'
 import {
   mapNotebookCellsToToolResult,
   readNotebook,

@@ -25,9 +25,9 @@ import { OAUTH_BETA_HEADER } from '../constants/oauth.js'
 import { isClaudeAISubscriber } from './auth.js'
 import { has1mContext } from './context.js'
 import { isEnvDefinedFalsy, isEnvTruthy } from './envUtils.js'
-import { getCanonicalName } from './model/model.js'
-import { get3PModelCapabilityOverride } from './model/modelSupportOverrides.js'
-import { getAPIProvider, isFirstPartyAnthropicBaseUrl } from './model/providers.js'
+import { getCanonicalName } from '../server/utils/model/model.js'
+import { get3PModelCapabilityOverride } from '../server/utils/model/modelSupportOverrides.js'
+import { getAPIProvider, isFirstPartyAnthropicBaseUrl } from '../server/utils/model/providers.js'
 import { getInitialSettings } from '../server/utils/settings/settings.js'
 
 /**

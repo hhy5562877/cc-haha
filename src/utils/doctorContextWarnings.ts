@@ -7,7 +7,7 @@ import {
   getMemoryFiles,
   MAX_MEMORY_CHARACTER_COUNT,
 } from './claudemd.js'
-import { getMainLoopModel } from './model/model.js'
+import { getMainLoopModel } from '../server/utils/model/model.js'
 import { permissionRuleValueToString } from '../server/utils/permissions/permissionRuleParser.js'
 import { detectUnreachableRules } from '../server/utils/permissions/shadowedRuleDetection.js'
 import { SandboxManager } from './sandbox/sandbox-adapter.js'

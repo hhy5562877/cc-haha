@@ -117,9 +117,9 @@ import { findGitRoot, getBranch, getIsGit, getWorktreeCount } from './utils/git.
 import { getGhAuthStatus } from './utils/github/ghAuthStatus.js';
 import { safeParseJSON } from './utils/json.js';
 import { logError } from './utils/log.js';
-import { getModelDeprecationWarning } from './utils/model/deprecation.js';
-import { getDefaultMainLoopModel, getUserSpecifiedModelSetting, normalizeModelStringForAPI, parseUserSpecifiedModel } from './utils/model/model.js';
-import { ensureModelStringsInitialized } from './utils/model/modelStrings.js';
+import { getModelDeprecationWarning } from './server/utils/model/deprecation.js';
+import { getDefaultMainLoopModel, getUserSpecifiedModelSetting, normalizeModelStringForAPI, parseUserSpecifiedModel } from './server/utils/model/model.js';
+import { ensureModelStringsInitialized } from './server/utils/model/modelStrings.js';
 import { PERMISSION_MODES } from './server/utils/permissions/PermissionMode.js';
 import { checkAndDisableBypassPermissions, getAutoModeEnabledStateIfCached, initializeToolPermissionContext, initialPermissionModeFromCLI, isDefaultPermissionModeAuto, parseToolListFromCLI, removeDangerousPermissions, stripDangerousPermissionsForAutoMode, verifyAutoModeGateAccess } from './server/utils/permissions/permissionSetup.js';
 import { cleanupOrphanedPluginVersionsInBackground } from './server/utils/plugins/cacheUtils.js';
@@ -162,7 +162,7 @@ import { errorMessage, getErrnoCode, isENOENT, TeleportOperationError, toError }
 import { getFsImplementation, safeResolvePath } from 'src/utils/fsOperations.js';
 import { gracefulShutdown, gracefulShutdownSync } from 'src/utils/gracefulShutdown.js';
 import { setAllHookEventsEnabled } from 'src/utils/hooks/hookEvents.js';
-import { refreshModelCapabilities } from 'src/utils/model/modelCapabilities.js';
+import { refreshModelCapabilities } from './server/utils/model/modelCapabilities.js';
 import { peekForStdinData, writeToStderr } from 'src/utils/process.js';
 import { setCwd } from 'src/utils/Shell.js';
 import { type ProcessedResume, processResumedConversation } from 'src/utils/sessionRestore.js';

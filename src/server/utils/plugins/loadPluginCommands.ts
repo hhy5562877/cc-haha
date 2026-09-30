@@ -24,7 +24,7 @@ import {
   extractDescriptionFromMarkdown,
   parseSlashCommandToolsFromFrontmatter,
 } from '../../../utils/markdownConfigLoader.js'
-import { parseUserSpecifiedModel } from '../../../utils/model/model.js'
+import { parseUserSpecifiedModel } from '../model/model.js'
 import { executeShellCommandsInPrompt } from '../../../utils/promptShellExecution.js'
 import { loadAllPluginsCacheOnly } from './pluginLoader.js'
 import {

@@ -28,9 +28,9 @@ import {
 import {
   getDefaultMainLoopModelSetting,
   isNonCustomOpusModel,
-} from 'src/utils/model/model.js'
-import { getModelStrings } from 'src/utils/model/modelStrings.js'
-import { getAPIProvider } from 'src/utils/model/providers.js'
+} from '../../server/utils/model/model.js'
+import { getModelStrings } from '../../server/utils/model/modelStrings.js'
+import { getAPIProvider } from '../../server/utils/model/providers.js'
 import { getIsNonInteractiveSession } from '../../bootstrap/state.js'
 import {
   API_PDF_MAX_PAGES,

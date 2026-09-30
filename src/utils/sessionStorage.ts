@@ -79,7 +79,7 @@ import { gracefulShutdownSync, isShuttingDown } from './gracefulShutdown.js'
 import { parseJSONL } from './json.js'
 import { logError } from './log.js'
 import { extractTag, isCompactBoundaryMessage } from './messages.js'
-import type { ModelAlias } from './model/aliases.js'
+import type { ModelAlias } from '../server/utils/model/aliases.js'
 import { sanitizePath } from './path.js'
 import {
   extractJsonStringField,

@@ -2,8 +2,8 @@
 import { MODEL_ALIASES } from './aliases.js'
 import { isModelAllowed } from './modelAllowlist.js'
 import { getAPIProvider } from './providers.js'
-import { sideQuery } from '../sideQuery.js'
-import { isOpenAIAuthActive } from '../auth.js'
+import { sideQuery } from '../../../utils/sideQuery.js'
+import { isOpenAIAuthActive } from '../../../utils/auth.js'
 import {
   NotFoundError,
   APIError,
@@ -11,7 +11,7 @@ import {
   AuthenticationError,
 } from '@anthropic-ai/sdk'
 import { getModelStrings } from './modelStrings.js'
-import { isOpenAIResponsesModel } from '../../server/services/openaiAuth/models.js'
+import { isOpenAIResponsesModel } from '../../services/openaiAuth/models.js'
 
 // Cache valid models to avoid repeated API calls
 const validModelCache = new Map<string, boolean>()

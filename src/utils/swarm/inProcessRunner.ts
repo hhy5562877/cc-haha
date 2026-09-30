@@ -76,7 +76,7 @@ import {
   SUBAGENT_REJECT_MESSAGE,
   SUBAGENT_REJECT_MESSAGE_WITH_REASON_PREFIX,
 } from '../messages.js'
-import type { ModelAlias } from '../model/aliases.js'
+import type { ModelAlias } from '../../server/utils/model/aliases.js'
 import {
   applyPermissionUpdates,
   persistPermissionUpdates,

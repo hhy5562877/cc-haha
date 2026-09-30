@@ -65,7 +65,7 @@ async function main(): Promise<void> {
     enableConfigs();
     const {
       getMainLoopModel
-    } = await import('../utils/model/model.js');
+    } = await import('../server/utils/model/model.js');
     const modelIdx = args.indexOf('--model');
     const model = modelIdx !== -1 && args[modelIdx + 1] || getMainLoopModel();
     const {

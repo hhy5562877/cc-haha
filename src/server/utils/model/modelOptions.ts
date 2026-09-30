@@ -1,12 +1,12 @@
 // biome-ignore-all assist/source/organizeImports: ANT-ONLY import markers must not be reordered
-import { getInitialMainLoopModel } from '../../bootstrap/state.js'
+import { getInitialMainLoopModel } from '../../../bootstrap/state.js'
 import {
   hasOpenAIAuthLogin,
   isClaudeAISubscriber,
   isMaxSubscriber,
   isOpenAIAuthActive,
   isTeamPremiumSubscriber,
-} from '../auth.js'
+} from '../../../utils/auth.js'
 import { getModelStrings } from './modelStrings.js'
 import {
   COST_TIER_10_50,
@@ -14,8 +14,8 @@ import {
   COST_HAIKU_35,
   COST_HAIKU_45,
   formatModelPricing,
-} from '../modelCost.js'
-import { getSettings_DEPRECATED } from '../../server/utils/settings/settings.js'
+} from '../../../utils/modelCost.js'
+import { getSettings_DEPRECATED } from '../settings/settings.js'
 import { checkOpus1mAccess, checkSonnet1mAccess } from './check1mAccess.js'
 import {
   getAPIProvider,
@@ -37,9 +37,9 @@ import {
   renderDefaultModelSetting,
   type ModelSetting,
 } from './model.js'
-import { has1mContext } from '../context.js'
-import { getGlobalConfig } from '../config.js'
-import { OPENAI_CODEX_MODEL_CATALOG } from '../../server/services/openaiAuth/models.js'
+import { has1mContext } from '../../../utils/context.js'
+import { getGlobalConfig } from '../../../utils/config.js'
+import { OPENAI_CODEX_MODEL_CATALOG } from '../../services/openaiAuth/models.js'
 
 // @[MODEL LAUNCH]: Update all the available and default model option strings below.
 

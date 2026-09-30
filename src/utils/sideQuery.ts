@@ -23,7 +23,7 @@ import { normalizeUsage } from '../services/api/emptyUsage.js'
 import { getModelBetas, modelSupportsStructuredOutputs } from './betas.js'
 import { getModelMaxOutputTokens } from './context.js'
 import { computeFingerprint } from './fingerprint.js'
-import { normalizeModelStringForAPI } from './model/model.js'
+import { normalizeModelStringForAPI } from '../server/utils/model/model.js'
 import {
   modelRequiresThinking,
   modelSupportsAdaptiveThinking,

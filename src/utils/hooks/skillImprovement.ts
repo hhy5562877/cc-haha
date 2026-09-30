@@ -19,7 +19,7 @@ import {
   extractTag,
   extractTextContent,
 } from '../messages.js'
-import { getSmallFastModel } from '../model/model.js'
+import { getSmallFastModel } from '../../server/utils/model/model.js'
 import { jsonParse } from '../slowOperations.js'
 import { asSystemPrompt } from '../systemPromptType.js'
 import {

@@ -16,8 +16,8 @@ import type { HookCallbackMatcher } from 'src/types/hooks.js'
 // (rule only checks ./ and / prefixes); explicit disable documents intent.
 // eslint-disable-next-line custom-rules/bootstrap-isolation
 import { randomUUID } from 'src/utils/crypto.js'
-import type { ModelSetting } from 'src/utils/model/model.js'
-import type { ModelStrings } from 'src/utils/model/modelStrings.js'
+import type { ModelSetting } from '../server/utils/model/model.js'
+import type { ModelStrings } from '../server/utils/model/modelStrings.js'
 import type { SettingSource } from '../server/utils/settings/constants.js'
 import { resetSettingsCache } from '../server/utils/settings/settingsCache.js'
 import type { PluginHookMatcher } from '../server/utils/settings/types.js'
@@ -961,12 +961,12 @@ export function resetStateForTests(): void {
   sessionSwitched.clear()
 }
 
-// You shouldn't use this directly. See src/utils/model/modelStrings.ts::getModelStrings()
+// You shouldn't use this directly. See src/server/utils/model/modelStrings.ts::getModelStrings()
 export function getModelStrings(): ModelStrings | null {
   return STATE.modelStrings
 }
 
-// You shouldn't use this directly. See src/utils/model/modelStrings.ts
+// You shouldn't use this directly. See src/server/utils/model/modelStrings.ts
 export function setModelStrings(modelStrings: ModelStrings): void {
   STATE.modelStrings = modelStrings
 }

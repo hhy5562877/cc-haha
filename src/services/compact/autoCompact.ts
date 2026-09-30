@@ -13,7 +13,7 @@ import type { CacheSafeParams } from '../../utils/forkedAgent.js'
 import { logError } from '../../utils/log.js'
 import { getOpenAICodexContextWindowForModel } from '../../server/services/openaiAuth/models.js'
 import { roughTokenCountEstimation } from '../../services/tokenEstimation.js'
-import { getConfiguredOrBuiltInModelContextWindow } from '../../utils/model/modelContextWindows.js'
+import { getConfiguredOrBuiltInModelContextWindow } from '../../server/utils/model/modelContextWindows.js'
 import { jsonStringify } from '../../utils/slowOperations.js'
 import {
   hasUsableContextUsage,

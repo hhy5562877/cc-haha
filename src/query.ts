@@ -84,7 +84,7 @@ import { headlessProfilerCheckpoint } from './utils/headlessProfiler.js'
 import {
   getRuntimeMainLoopModel,
   renderModelName,
-} from './utils/model/model.js'
+} from './server/utils/model/model.js'
 import {
   doesMostRecentAssistantMessageExceed200k,
   finalContextTokensFromLastResponse,

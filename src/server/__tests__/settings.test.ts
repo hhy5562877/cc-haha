@@ -32,11 +32,11 @@ import {
   getModelOptions,
   getOpus46_1MOption,
   getSonnet46_1MOption,
-} from '../../utils/model/modelOptions.js'
+} from '../utils/model/modelOptions.js'
 import {
   getDefaultMainLoopModelSetting,
   parseUserSpecifiedModel,
-} from '../../utils/model/model.js'
+} from '../utils/model/model.js'
 import {
   getSettingsForSource,
   updateSettingsForSource,

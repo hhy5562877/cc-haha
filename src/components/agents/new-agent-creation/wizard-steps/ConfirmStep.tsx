@@ -8,7 +8,7 @@ import type { Tools } from '../../../../Tool.js';
 import { getMemoryScopeDisplay } from '../../../../server/tools/AgentTool/agentMemory.js';
 import type { AgentDefinition } from '../../../../server/tools/AgentTool/loadAgentsDir.js';
 import { truncateToWidth } from '../../../../utils/format.js';
-import { getAgentModelDisplay } from '../../../../utils/model/agent.js';
+import { getAgentModelDisplay } from '../../../../server/utils/model/agent.js';
 import { ConfigurableShortcutHint } from '../../../ConfigurableShortcutHint.js';
 import { Byline } from '../../../design-system/Byline.js';
 import { KeyboardShortcutHint } from '../../../design-system/KeyboardShortcutHint.js';
