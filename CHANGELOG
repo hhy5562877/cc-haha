@@ -1,5 +1,7 @@
 # CHANGELOG
 
+- [2026-09-29 23:59] FIX: settings.test.ts 11 个失败断言适配 DAL 现实——output-styles 两用例 fixture 迁至 DAL 路径（项目 local 设置={projectRoot}/.dal/settings.json，用户样式=CLAUDE_CONFIG_DIR/output-styles）；Models API：未登录目录断言改空列表+provider null（网关唯一事实源），Anthropic env 模型角色断言改"不再并入目录"，Claude OAuth Pro/Max 订阅默认模型改写断言改为 opus[1m]/显式模型原样返回（无订阅重写），effort 默认/回退改 DAL 思考等级全集（off..max，默认 medium）；88 pass/0 fail (Files: src/server/__tests__/settings.test.ts, CHANGELOG)
+
 - [2026-09-29 23:10] REFACTOR: 解耦批次 33 完成——剩余长尾纯净集 70 文件（433KB）一次迁入 src/server 镜像路径（64 个纯净种子 union 闭包，域外污染 0：utils 叶片/claudeInChrome-common/computerUse-common/dxt/types-generated/skills/memdir/lsp-types 等；swarm/teamShutdownPrompt 与既有 server 孪生一致做去重删除），全仓 487 文件 820 说明符语义重指；直接依赖边 487→371（累计 998→371，-63%），闭包→1670，tsc 3503 持平；server 测试 3285 pass/167 fail 持平零回归；E2E 仍因 deepailab 网络阻断暂阻 (Files: src/server/** 70 文件, src/** 487 文件重指)
 
 - [2026-09-29 22:40] REFACTOR: 解耦批次 32 完成——markdownConfigLoader/file/ripgrep 系 5 文件迁入 src/server 镜像路径（markdownConfigLoader/file/fileRead/fileReadCache/ripgrep），87 文件 123 说明符语义重指；直接依赖边 505→487，闭包→1740，tsc 3503 持平；server 测试 3285 pass/167 fail 持平；E2E 仍因 deepailab 代理阻断暂阻（环境问题，聊天链路零改动） (Files: src/server/utils/* 5 文件, src/** 87 文件重指)

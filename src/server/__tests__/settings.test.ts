@@ -570,6 +570,8 @@ describe('Settings API', () => {
 
   it('GET /api/settings/output-styles should include built-in, user, and project styles', async () => {
     const projectRoot = path.join(tmpDir, 'myproject')
+    // 用户级样式从 CLAUDE_CONFIG_DIR/output-styles 发现，项目级从
+    // {projectRoot}/.claude/output-styles 发现（markdownConfigLoader）。
     await fs.mkdir(path.join(tmpDir, 'output-styles'), { recursive: true })
     await fs.mkdir(path.join(projectRoot, '.claude', 'output-styles'), { recursive: true })
     await fs.writeFile(
@@ -595,8 +597,11 @@ describe('Settings API', () => {
       ].join('\n'),
       'utf-8',
     )
+    // DAL 下 local 层并入项目层：{projectRoot}/.dal/settings.json（settingsService
+    // 的 getLocalSettingsPath === getProjectSettingsPath）。
+    await fs.mkdir(path.join(projectRoot, '.dal'), { recursive: true })
     await fs.writeFile(
-      path.join(projectRoot, '.claude', 'settings.local.json'),
+      path.join(projectRoot, '.dal', 'settings.json'),
       JSON.stringify({ outputStyle: 'Project Style' }),
       'utf-8',
     )
@@ -628,9 +633,10 @@ describe('Settings API', () => {
 
   it('PUT /api/settings/output-style should save to project-local settings and preserve fields', async () => {
     const projectRoot = path.join(tmpDir, 'myproject')
-    await fs.mkdir(path.join(projectRoot, '.claude'), { recursive: true })
+    // DAL 下项目本地设置并入 {projectRoot}/.dal/settings.json（浅合并保留其他键）。
+    await fs.mkdir(path.join(projectRoot, '.dal'), { recursive: true })
     await fs.writeFile(
-      path.join(projectRoot, '.claude', 'settings.local.json'),
+      path.join(projectRoot, '.dal', 'settings.json'),
       JSON.stringify({ preserved: 'yes' }),
       'utf-8',
     )
@@ -651,7 +657,7 @@ describe('Settings API', () => {
     })
 
     const raw = await fs.readFile(
-      path.join(projectRoot, '.claude', 'settings.local.json'),
+      path.join(projectRoot, '.dal', 'settings.json'),
       'utf-8',
     )
     const settings = JSON.parse(raw)
@@ -929,60 +935,11 @@ describe('Models API', () => {
 
     expect(res.status).toBe(200)
     const body = await res.json()
-    expect(body.models).toEqual([
-      {
-        id: 'claude-fable-5-1',
-        name: 'Fable 5.1',
-        description: 'Highest capability for long-running tasks',
-        context: '1m',
-        defaultReasoningEffort: 'high',
-        supportedReasoningEfforts: ['low', 'medium', 'high', 'xhigh', 'max'],
-      },
-      {
-        id: 'claude-fable-5',
-        name: 'Fable 5',
-        description: 'Highest capability for long-running tasks',
-        context: '1m',
-      },
-      {
-        id: 'claude-opus-5-5',
-        name: 'Opus 5.5',
-        description: 'Best for complex agentic coding and enterprise work',
-        context: '1m',
-        defaultReasoningEffort: 'medium',
-        supportedReasoningEfforts: ['low', 'medium', 'high', 'xhigh', 'max'],
-      },
-      {
-        id: 'claude-opus-5',
-        name: 'Opus 5',
-        description: 'Best for complex agentic coding and enterprise work',
-        context: '1m',
-        defaultReasoningEffort: 'high',
-        supportedReasoningEfforts: ['low', 'medium', 'high', 'xhigh', 'max'],
-      },
-      {
-        id: 'claude-opus-4-8',
-        name: 'Opus 4.8',
-        description: 'Best for complex agentic coding and enterprise work',
-        context: '1m',
-        defaultReasoningEffort: 'high',
-        supportedReasoningEfforts: ['low', 'medium', 'high', 'xhigh', 'max'],
-      },
-      {
-        id: 'claude-sonnet-5',
-        name: 'Sonnet 5',
-        description: 'Best combination of speed and intelligence',
-        context: '1m',
-        defaultReasoningEffort: 'high',
-        supportedReasoningEfforts: ['low', 'medium', 'high', 'xhigh', 'max'],
-      },
-      {
-        id: 'claude-haiku-4-5',
-        name: 'Haiku 4.5',
-        description: 'Fastest with near-frontier intelligence',
-        context: '200k',
-      },
-    ])
+    // DAL 语义：模型目录唯一事实源是 DAL 网关（登录后经 {gateway}/models
+    // 动态发现），未登录返回空列表而非硬编码种子——一个过期的种子比空
+    // 列表更糟（用户会选到必然 404 的模型）。
+    expect(body.models).toEqual([])
+    expect(body.provider).toBeNull()
   })
 
   it('GET /api/models should expose the active provider model effort catalog', async () => {
@@ -1096,7 +1053,10 @@ describe('Models API', () => {
     ])
   })
 
-  it('GET /api/models should merge env-configured provider models with saved OpenAI OAuth models', async () => {
+  it('GET /api/models should expose saved OpenAI OAuth models and skip legacy Anthropic env models', async () => {
+    // DAL 下 Anthropic env 配置的模型已随 Claude 引擎移除而废弃，即使设置
+    // 了 env 也不再并入目录；OpenAI Codex Auth 目录仍是 standalone 列表的
+    // 补充来源（离线时回退到内置 fallback 目录）。
     process.env.ANTHROPIC_API_KEY = 'deepseek-key'
     process.env.ANTHROPIC_BASE_URL = 'https://api.deepseek.com/anthropic'
     process.env.ANTHROPIC_MODEL = 'deepseek-v4-pro'
@@ -1122,16 +1082,18 @@ describe('Models API', () => {
     const body = await res.json()
     const ids = body.models.map((model: { id: string }) => model.id)
 
-    expect(ids).toContain('deepseek-v4-pro')
-    expect(ids).toContain('deepseek-v4-flash')
+    expect(ids).not.toContain('deepseek-v4-pro')
+    expect(ids).not.toContain('deepseek-v4-flash')
     expect(ids).toContain('gpt-5.6-sol')
     expect(ids).toContain('gpt-5.3-codex')
     expect(ids).toContain('gpt-5.4')
     expect(ids).toContain('gpt-5.4-mini')
-    expect(ids.filter((id: string) => id === 'deepseek-v4-pro')).toHaveLength(1)
+    expect(ids.filter((id: string) => id === 'gpt-5.3-codex')).toHaveLength(1)
   })
 
-  it('GET /api/models should merge user settings model roles with runtime env and include Fable', async () => {
+  it('GET /api/models should not merge legacy Anthropic env model roles into the DAL catalog', async () => {
+    // DAL 语义：standalone 列表只来自 DAL 网关目录 + OpenAI Auth 目录，
+    // 用户 settings 里遗留的 ANTHROPIC_* 模型角色配置不再生效。
     await new SettingsService().updateUserSettings({
       env: {
         ANTHROPIC_MODEL: 'claude-opus-4-8',
@@ -1148,12 +1110,8 @@ describe('Models API', () => {
 
     expect(res.status).toBe(200)
     const body = await res.json()
-    expect(body.models.map((model: { id: string }) => model.id)).toEqual([
-      'claude-opus-4-8',
-      'claude-haiku-4-5-20251001',
-      'claude-sonnet-4-6',
-      'claude-fable-5',
-    ])
+    expect(body.models).toEqual([])
+    expect(body.provider).toBeNull()
   })
 
   it('GET /api/models/current should use the configured user env model without a runtime override', async () => {
@@ -1171,16 +1129,21 @@ describe('Models API', () => {
     })
   })
 
-  it('GET /api/models/current should return default model when not set', async () => {
+  it('GET /api/models/current should return an empty selection when not set', async () => {
     const { req, url, segments } = makeRequest('GET', '/api/models/current')
     const res = await handleModelsApi(req, url, segments)
 
     expect(res.status).toBe(200)
     const body = await res.json()
-    expect(body.model.id).toBe('claude-opus-5')
+    // DAL 下无 provider、无显式模型时没有订阅默认模型可回退，
+    // 返回空 id，由 UI 展示"选择模型"。
+    expect(body.model.id).toBe('')
   })
 
-  it('GET /api/models/current should replace the legacy opus[1m] default with the Claude OAuth Pro default', async () => {
+  it('GET /api/models/current should return the stored opus[1m] selection verbatim without Claude OAuth subscription rewrite', async () => {
+    // DAL 下 Claude OAuth 订阅体系已移除：即使存在 Claude OAuth 凭据，
+    // 也不再按 Pro/Max 订阅改写遗留的 opus[1m] 选择，模型目录也不再由
+    // 订阅身份播种（未登录 DAL 网关时保持空列表）。
     await hahaOAuthService.saveTokens({
       accessToken: 'claude-pro-access',
       refreshToken: 'claude-pro-refresh',
@@ -1200,8 +1163,10 @@ describe('Models API', () => {
     const currentBody = await currentResponse.json()
 
     expect(currentBody.model).toMatchObject({
-      id: 'claude-sonnet-5',
-      name: 'Sonnet 5',
+      id: 'opus[1m]',
+      name: 'opus[1m]',
+      description: 'Custom model',
+      context: 'unknown',
     })
 
     const listRequest = makeRequest('GET', '/api/models')
@@ -1211,18 +1176,10 @@ describe('Models API', () => {
       listRequest.segments,
     )
     const listBody = await listResponse.json()
-    expect(listBody.models.map((model: { id: string }) => model.id)).toEqual([
-      'claude-fable-5-1',
-      'claude-fable-5',
-      'claude-opus-5-5',
-      'claude-opus-5',
-      'claude-opus-4-8',
-      'claude-sonnet-5',
-      'claude-haiku-4-5',
-    ])
+    expect(listBody.models).toEqual([])
   })
 
-  it('GET /api/models/current should use Opus for a Claude OAuth Max account without a full model selection', async () => {
+  it('GET /api/models/current should return the stored opus[1m] selection for a Claude OAuth Max account without subscription rewrite', async () => {
     await hahaOAuthService.saveTokens({
       accessToken: 'claude-max-access',
       refreshToken: 'claude-max-refresh',
@@ -1237,13 +1194,14 @@ describe('Models API', () => {
     const body = await response.json()
 
     expect(body.model).toMatchObject({
-      id: 'claude-opus-5-5',
-      name: 'Opus 5.5',
-      defaultReasoningEffort: 'medium',
+      id: 'opus[1m]',
+      name: 'opus[1m]',
+      description: 'Custom model',
+      context: 'unknown',
     })
   })
 
-  it('GET /api/models/current should preserve an explicit full Claude model selection across subscription defaults', async () => {
+  it('GET /api/models/current should preserve an explicit model selection without Claude subscription defaults', async () => {
     await hahaOAuthService.saveTokens({
       accessToken: 'claude-pro-explicit-access',
       refreshToken: 'claude-pro-explicit-refresh',
@@ -1257,9 +1215,12 @@ describe('Models API', () => {
     const response = await handleModelsApi(req, url, segments)
     const body = await response.json()
 
+    // 显式选择仍被原样保留，但目录里已无该模型（DAL 未登录），
+    // name 回退为 id 本身。
     expect(body.model).toMatchObject({
       id: 'claude-opus-4-8',
-      name: 'Opus 4.8',
+      name: 'claude-opus-4-8',
+      description: 'Custom model',
     })
   })
 
@@ -1530,8 +1491,9 @@ describe('Models API', () => {
 
     expect(res.status).toBe(200)
     const body = await res.json()
-    expect(body.level).toBe('max')
-    expect(body.available).toEqual(['low', 'medium', 'high', 'xhigh', 'max'])
+    // DAL 思考等级全集（pi-agent-core ThinkingLevel），默认 medium。
+    expect(body.level).toBe('medium')
+    expect(body.available).toEqual(['off', 'minimal', 'low', 'medium', 'high', 'xhigh', 'max'])
   })
 
   it('GET /api/effort should fall back when stored effort is stale', async () => {
@@ -1543,8 +1505,8 @@ describe('Models API', () => {
 
     expect(res.status).toBe(200)
     const body = await res.json()
-    expect(body.level).toBe('max')
-    expect(body.available).toEqual(['low', 'medium', 'high', 'xhigh', 'max'])
+    expect(body.level).toBe('medium')
+    expect(body.available).toEqual(['off', 'minimal', 'low', 'medium', 'high', 'xhigh', 'max'])
   })
 
   it('PUT /api/effort should set effort level', async () => {
