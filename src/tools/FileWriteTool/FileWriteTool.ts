@@ -40,8 +40,8 @@ import {
 } from '../../server/utils/permissions/filesystem.js'
 import type { PermissionDecision } from '../../server/utils/permissions/PermissionResult.js'
 import { matchWildcardPattern } from '../../server/utils/permissions/shellRuleMatching.js'
-import { FILE_UNEXPECTEDLY_MODIFIED_ERROR } from '../FileEditTool/constants.js'
-import { gitDiffSchema, hunkSchema } from '../FileEditTool/types.js'
+import { FILE_UNEXPECTEDLY_MODIFIED_ERROR } from '../../server/tools/FileEditTool/constants.js'
+import { gitDiffSchema, hunkSchema } from '../../server/tools/FileEditTool/types.js'
 import { FILE_WRITE_TOOL_NAME, getWriteToolDescription } from './prompt.js'
 import {
   getToolUseSummary,

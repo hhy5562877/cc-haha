@@ -39,7 +39,7 @@ import {
 } from '../../utils/plugins/loadPluginAgents.js'
 import { HooksSchema, type HooksSettings } from '../../utils/settings/types.js'
 import { jsonStringify } from '../../../utils/slowOperations.js'
-import { FILE_EDIT_TOOL_NAME } from '../../../tools/FileEditTool/constants.js'
+import { FILE_EDIT_TOOL_NAME } from '../FileEditTool/constants.js'
 import { FILE_READ_TOOL_NAME } from '../../../tools/FileReadTool/prompt.js'
 import { FILE_WRITE_TOOL_NAME } from '../../../tools/FileWriteTool/prompt.js'
 import {

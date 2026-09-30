@@ -10,8 +10,8 @@ import {
   type AnalyticsMetadata_I_VERIFIED_THIS_IS_NOT_CODE_OR_FILEPATHS,
   logEvent,
 } from '../server/services/analytics/index.js'
-import { FILE_EDIT_TOOL_NAME } from '../tools/FileEditTool/constants.js'
-import { inputSchema as editInputSchema } from '../tools/FileEditTool/types.js'
+import { FILE_EDIT_TOOL_NAME } from '../server/tools/FileEditTool/constants.js'
+import { inputSchema as editInputSchema } from '../server/tools/FileEditTool/types.js'
 import { FileReadTool } from '../tools/FileReadTool/FileReadTool.js'
 import { FILE_READ_TOOL_NAME } from '../tools/FileReadTool/prompt.js'
 import { FileWriteTool } from '../tools/FileWriteTool/FileWriteTool.js'

@@ -1,6 +1,6 @@
 import type { StructuredPatchHunk } from 'diff'
 import { useMemo, useRef } from 'react'
-import type { FileEditOutput } from '../tools/FileEditTool/types.js'
+import type { FileEditOutput } from '../server/tools/FileEditTool/types.js'
 import type { Output as FileWriteOutput } from '../tools/FileWriteTool/FileWriteTool.js'
 import type { Message } from '../types/message.js'
 

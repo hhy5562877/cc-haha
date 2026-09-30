@@ -9,7 +9,7 @@
 import type { Tool, ToolUseContext } from '../../Tool.js'
 import type { BuiltInAgentDefinition } from '../../server/tools/AgentTool/loadAgentsDir.js'
 import { runAgent } from '../../server/tools/AgentTool/runAgent.js'
-import { FILE_EDIT_TOOL_NAME } from '../../tools/FileEditTool/constants.js'
+import { FILE_EDIT_TOOL_NAME } from '../../server/tools/FileEditTool/constants.js'
 import {
   FileReadTool,
   type Output as FileReadToolOutput,

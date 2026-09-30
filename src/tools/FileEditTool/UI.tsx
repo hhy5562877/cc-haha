@@ -19,8 +19,8 @@ import { getPlansDirectory } from '../../utils/plans.js';
 import { readEditContext } from '../../utils/readEditContext.js';
 import { firstLineOf } from '../../utils/stringUtils.js';
 import type { ThemeName } from '../../utils/theme.js';
-import type { FileEditOutput } from './types.js';
-import { findActualString, getPatchForEdit, preserveQuoteStyle } from './utils.js';
+import type { FileEditOutput } from '../../server/tools/FileEditTool/types.js';
+import { findActualString, getPatchForEdit, preserveQuoteStyle } from '../../server/tools/FileEditTool/utils.js';
 export function userFacingName(input: Partial<{
   file_path: string;
   old_string: string;

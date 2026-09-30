@@ -62,7 +62,7 @@ import {
 } from 'src/types/textInputTypes.js'
 import { randomUUID, type UUID } from 'crypto'
 import { getSettings_DEPRECATED } from '../server/utils/settings/settings.js'
-import { getSnippetForTwoFileDiff } from 'src/tools/FileEditTool/utils.js'
+import { getSnippetForTwoFileDiff } from 'src/server/tools/FileEditTool/utils.js'
 import type {
   ContentBlockParam,
   ImageBlockParam,

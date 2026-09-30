@@ -5,7 +5,7 @@ import { basename, dirname, isAbsolute, join, parse, relative, resolve } from 'n
 import { createTwoFilesPatch, diffLines } from 'diff'
 import { ApiError } from '../middleware/errorHandler.js'
 import { recordedCommandIsReadOnly } from '../../tools/BashTool/readOnlyValidation.js'
-import { applyEditToFile } from '../../tools/FileEditTool/utils.js'
+import { applyEditToFile } from '../tools/FileEditTool/utils.js'
 import {
   type FileHistorySnapshot,
   readBackupFileSafely,
