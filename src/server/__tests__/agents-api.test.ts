@@ -277,9 +277,11 @@ describe('Agents API Markdown CRUD', () => {
       `/api/agents?cwd=${encodeURIComponent(projectCwd)}`,
     )
     expect(userList.status).toBe(200)
+    // DAL 引擎下 shell 工具为 PowerShell（Bash 工具在 Windows/DAL 不可用）
     expect(userList.data.availableTools).toEqual(
-      expect.arrayContaining(['Read', 'Grep', 'Bash']),
+      expect.arrayContaining(['Read', 'Grep', 'PowerShell']),
     )
+    expect(userList.data.availableTools).not.toContain('Bash')
     expect(userList.data.availableTools).not.toContain('Agent')
     expect(userList.data.activeAgents).toEqual(
       expect.arrayContaining([
@@ -982,7 +984,8 @@ describe('Agents API Markdown CRUD', () => {
       '---\nname: escaped-user\ndescription: Outside user agent\n---\nOutside user prompt.\n'
     await fs.mkdir(outsideUserAgents, { recursive: true })
     await fs.writeFile(outsideUserFile, outsideUserContent, 'utf-8')
-    await fs.symlink(outsideUserAgents, path.join(configDir, 'agents'))
+    // Windows 无管理员权限时目录 symlink 需用 junction（POSIX 忽略该类型参数）
+    await fs.symlink(outsideUserAgents, path.join(configDir, 'agents'), 'junction')
 
     const userCreate = await api('POST', '/api/agents', {
       scope: 'user',
@@ -1042,6 +1045,7 @@ describe('Agents API Markdown CRUD', () => {
     await fs.symlink(
       outsideProjectAgents,
       path.join(projectRoot, '.claude', 'agents'),
+      'junction',
     )
 
     const projectCreate = await api('POST', '/api/agents', {
@@ -1105,7 +1109,7 @@ describe('Agents API Markdown CRUD', () => {
     await fs.mkdir(path.join(ancestorProjectRoot, '.git'), { recursive: true })
     await fs.mkdir(ancestorProjectCwd, { recursive: true })
     await fs.mkdir(path.join(outsideClaudeDir, 'agents'), { recursive: true })
-    await fs.symlink(outsideClaudeDir, path.join(ancestorProjectRoot, '.claude'))
+    await fs.symlink(outsideClaudeDir, path.join(ancestorProjectRoot, '.claude'), 'junction')
     const ancestorCreate = await api('POST', '/api/agents', {
       scope: 'project',
       cwd: ancestorProjectCwd,
@@ -1439,29 +1443,45 @@ describe('Agents API Markdown CRUD', () => {
       )
     }
 
+    // Windows 非管理员/未开开发者模式时无法创建文件 symlink（EPERM），
+    // 此时跳过 symlink 分支，仅保留常规越界与身份冲突断言。
+    let canCreateFileSymlinks = true
+    try {
+      const probeTarget = path.join(tempRoot, 'symlink-capability-probe.md')
+      await fs.writeFile(probeTarget, 'probe', 'utf-8')
+      const probeLink = `${probeTarget}.link`
+      await fs.symlink(probeTarget, probeLink, 'file')
+      await fs.rm(probeLink, { force: true })
+      await fs.rm(probeTarget, { force: true })
+    } catch {
+      canCreateFileSymlinks = false
+    }
+
     const outsideFile = path.join(tempRoot, 'outside-agent.md')
     await fs.writeFile(
       outsideFile,
       '---\nname: linked-agent\ndescription: Outside\n---\nPrompt',
       'utf-8',
     )
-    await fs.symlink(outsideFile, path.join(agentsDir, 'linked-agent.md'))
-    const linkedUpdate = await api('PUT', '/api/agents/linked-agent', {
-      scope: 'user',
-      cwd: projectCwd,
-      description: 'Must not follow the link',
-    })
-    expect(linkedUpdate.status).toBe(403)
-    expect(await fs.readFile(outsideFile, 'utf-8')).toContain('description: Outside')
+    if (canCreateFileSymlinks) {
+      await fs.symlink(outsideFile, path.join(agentsDir, 'linked-agent.md'))
+      const linkedUpdate = await api('PUT', '/api/agents/linked-agent', {
+        scope: 'user',
+        cwd: projectCwd,
+        description: 'Must not follow the link',
+      })
+      expect(linkedUpdate.status).toBe(403)
+      expect(await fs.readFile(outsideFile, 'utf-8')).toContain('description: Outside')
 
-    const linkedTargetUpdate = await api('PUT', '/api/agents/linked-agent', {
-      scope: 'user',
-      cwd: projectCwd,
-      target: path.join(agentsDir, 'linked-agent.md'),
-      description: 'Must not follow an explicit link either',
-    })
-    expect(linkedTargetUpdate.status).toBe(403)
-    expect(await fs.readFile(outsideFile, 'utf-8')).toContain('description: Outside')
+      const linkedTargetUpdate = await api('PUT', '/api/agents/linked-agent', {
+        scope: 'user',
+        cwd: projectCwd,
+        target: path.join(agentsDir, 'linked-agent.md'),
+        description: 'Must not follow an explicit link either',
+      })
+      expect(linkedTargetUpdate.status).toBe(403)
+      expect(await fs.readFile(outsideFile, 'utf-8')).toContain('description: Outside')
+    }
 
     const escapedTarget = path.join(tempRoot, 'escaped-target.md')
     const escapedContent =

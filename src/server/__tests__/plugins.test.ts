@@ -109,7 +109,7 @@ describe('Plugins API', () => {
         plugins: [
           {
             name: 'demo',
-            source: '../../server/utils/plugins/demo',
+            source: './plugins/demo',
             version: '1.0.0',
           },
         ],
@@ -433,7 +433,7 @@ describe('Plugins API', () => {
         plugins: [
           {
             name: 'draw',
-            source: '../../server/utils/plugins/draw',
+            source: './plugins/draw',
             version: '1.0.0',
           },
         ],

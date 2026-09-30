@@ -17,10 +17,10 @@ import type { TeamFile as TeamConfigFile } from './teamFileTypes.js'
 export type { TeamConfigFile }
 import { isValidTeamMemberName, teamPlanRecordSchema, type TeamPlanIdentity, type TeamPlanMember, type TeamPlanPatch, type TeamPlanRecord, type TeamPlanRuntime } from '../shared/teamPlan.js'
 import { getClaudeConfigHomeDir, getTeamsDir } from './envUtils.js'
-
-export class TeamPlanError extends Error {
-  constructor(message: string, public status = 409) { super(message) }
-}
+// 规范错误类型唯一来源：api/teams.ts 以 instanceof 映射 409/4xx，
+// 此处必须复用同一类实例（原本地重复定义会导致映射失效、错误降级为 500）。
+import { TeamPlanError } from './teamPlanError.js'
+export { TeamPlanError }
 
 // ─── 内联最小切片（原 teamHelpers/tasks）───────────────────────────────
 
