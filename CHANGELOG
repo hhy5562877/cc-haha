@@ -1,5 +1,7 @@
 # CHANGELOG
 
+- [2026-10-01 09:40] REFACTOR: 解耦批次 23 完成——tools/AgentTool 整目录（16 文件 6608 行含 built-in/ 嵌套与 .tsx）迁入 src/server/tools/AgentTool/，语义归一单步重算 + 全形态消费方终扫 140 处；E2E PASS (Files: src/server/tools/AgentTool/*, src/tools.ts, src/main.tsx, src/server/api/agents.ts 等)
+
 - [2026-10-01 08:10] FEAT: 分类器 DAL 语义重设计地基——新增 src/server/utils/dalSideQuery.ts：DAL 网关（OpenAI 兼容）一次性查询，输入兼容 SideQueryOptions 必要子集（system/messages/tools/tool_choice/output_format），输出映射回 BetaMessage 形状；模型解析 opts.model→ANTHROPIC_MODEL→网关目录；凭据经 dalAuthService 同源。yoloClassifier/permissionExplainer 全量重接线（cache_control/thinking/betas 语义映射）归入分类器移植工作流 (Files: src/server/utils/dalSideQuery.ts)
 
 - [2026-10-01 04:10] REFACTOR: 解耦批次 21 完成——团队 config.json 读写收敛至 server 本地（teamPlanStore 新增 readTeamConfigFile/writeTeamConfigFile 原子实现 + teamFileTypes.ts 完整 TeamFile 类型移植），teamPlanRuntime 四处调用重指（sync→async 归一），server→utils/swarm 残余边仅剩 teamService.cleanupTeamDirectories（深链 tasks 子系统，归入 teams 工作流）；E2E PASS (Files: src/server/utils/{teamPlanStore,teamFileTypes}.ts, src/server/services/teamPlanRuntime.ts)

@@ -120,10 +120,10 @@ import type {
   HookEvent,
   SDKAssistantMessageError,
 } from 'src/entrypoints/agentSdkTypes.js'
-import { EXPLORE_AGENT } from 'src/tools/AgentTool/built-in/exploreAgent.js'
-import { PLAN_AGENT } from 'src/tools/AgentTool/built-in/planAgent.js'
-import { areExplorePlanAgentsEnabled } from 'src/tools/AgentTool/builtInAgents.js'
-import { AGENT_TOOL_NAME } from 'src/tools/AgentTool/constants.js'
+import { EXPLORE_AGENT } from 'src/server/tools/AgentTool/built-in/exploreAgent.js'
+import { PLAN_AGENT } from 'src/server/tools/AgentTool/built-in/planAgent.js'
+import { areExplorePlanAgentsEnabled } from 'src/server/tools/AgentTool/builtInAgents.js'
+import { AGENT_TOOL_NAME } from 'src/server/tools/AgentTool/constants.js'
 import { ASK_USER_QUESTION_TOOL_NAME } from 'src/tools/AskUserQuestionTool/prompt.js'
 import { BashTool } from 'src/tools/BashTool/BashTool.js'
 import { ExitPlanModeV2Tool } from 'src/tools/ExitPlanModeTool/ExitPlanModeV2Tool.js'

@@ -47,8 +47,8 @@ import {
 import type {
   CustomAgentDefinition,
   PluginAgentDefinition,
-} from '../../tools/AgentTool/loadAgentsDir.js'
-import { runAgent } from '../../tools/AgentTool/runAgent.js'
+} from '../../server/tools/AgentTool/loadAgentsDir.js'
+import { runAgent } from '../../server/tools/AgentTool/runAgent.js'
 import { awaitClassifierAutoApproval } from '../../tools/BashTool/bashPermissions.js'
 import { BASH_TOOL_NAME } from '../../tools/BashTool/toolName.js'
 import { SEND_MESSAGE_TOOL_NAME } from '../../tools/SendMessageTool/constants.js'

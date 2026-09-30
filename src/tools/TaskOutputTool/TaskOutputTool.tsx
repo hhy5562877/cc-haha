@@ -24,7 +24,7 @@ import { getTaskOutput } from '../../utils/task/diskOutput.js';
 import { updateTaskState } from '../../utils/task/framework.js';
 import { formatTaskOutput } from '../../utils/task/outputFormatting.js';
 import type { ThemeName } from '../../utils/theme.js';
-import { AgentPromptDisplay, AgentResponseDisplay } from '../AgentTool/UI.js';
+import { AgentPromptDisplay, AgentResponseDisplay } from '../../server/tools/AgentTool/UI.js';
 import BashToolResultMessage from '../BashTool/BashToolResultMessage.js';
 import { TASK_OUTPUT_TOOL_NAME } from './constants.js';
 const inputSchema = lazySchema(() => z.strictObject({

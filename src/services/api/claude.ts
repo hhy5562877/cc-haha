@@ -38,7 +38,7 @@ import {
   type ToolPermissionContext,
   type Tools,
 } from "../../Tool.js";
-import type { AgentDefinition } from "../../tools/AgentTool/loadAgentsDir.js";
+import type { AgentDefinition } from "../../server/tools/AgentTool/loadAgentsDir.js";
 import {
   type ConnectorTextBlock,
   type ConnectorTextDelta,

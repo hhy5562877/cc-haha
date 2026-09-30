@@ -8,7 +8,7 @@ import {
   uninstallPluginOp,
   updatePluginOp,
 } from '../../services/plugins/pluginOperations.js'
-import { getAgentDefinitionsWithOverrides } from '../../tools/AgentTool/loadAgentsDir.js'
+import { getAgentDefinitionsWithOverrides } from '../tools/AgentTool/loadAgentsDir.js'
 import type { LoadedPlugin, PluginError } from '../../types/plugin.js'
 import { getPluginErrorMessage } from '../../types/plugin.js'
 import { clearAllCaches } from '../utils/plugins/cacheUtils.js'

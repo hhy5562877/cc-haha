@@ -6,8 +6,8 @@ import type { SetAppState, Task, TaskStateBase } from '../../Task.js';
 import { createTaskStateBase } from '../../Task.js';
 import type { Tools } from '../../Tool.js';
 import { findToolByName } from '../../Tool.js';
-import type { AgentToolResult } from '../../tools/AgentTool/agentToolUtils.js';
-import type { AgentDefinition } from '../../tools/AgentTool/loadAgentsDir.js';
+import type { AgentToolResult } from '../../server/tools/AgentTool/agentToolUtils.js';
+import type { AgentDefinition } from '../../server/tools/AgentTool/loadAgentsDir.js';
 import { SYNTHETIC_OUTPUT_TOOL_NAME } from '../../tools/SyntheticOutputTool/SyntheticOutputTool.js';
 import { asAgentId } from '../../types/ids.js';
 import type { Message } from '../../types/message.js';
@@ -287,7 +287,7 @@ export function enqueueAgentNotification({
 /**
  * LocalAgentTask - Handles background agent execution.
  *
- * Replaces the AsyncAgent implementation from src/tools/AgentTool/asyncAgentUtils.ts
+ * Replaces the AsyncAgent implementation from src/server/tools/AgentTool/asyncAgentUtils.ts
  * with a unified Task interface.
  */
 export const LocalAgentTask: Task = {

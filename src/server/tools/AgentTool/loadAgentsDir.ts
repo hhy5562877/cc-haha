@@ -1,47 +1,47 @@
 import { feature } from 'bun:bundle'
 import memoize from 'lodash-es/memoize.js'
 import { basename } from 'path'
-import type { SettingSource } from '../../server/utils/settings/constants.js'
+import type { SettingSource } from '../../utils/settings/constants.js'
 import { z } from 'zod/v4'
-import { isAutoMemoryEnabled } from '../../memdir/paths.js'
+import { isAutoMemoryEnabled } from '../../../memdir/paths.js'
 import {
   type AnalyticsMetadata_I_VERIFIED_THIS_IS_NOT_CODE_OR_FILEPATHS,
   logEvent,
-} from '../../services/analytics/index.js'
+} from '../../../services/analytics/index.js'
 import {
   type McpServerConfig,
   McpServerConfigSchema,
-} from '../../server/services/mcp/types.js'
-import type { ToolUseContext } from '../../Tool.js'
-import { logForDebugging } from '../../utils/debug.js'
+} from '../../services/mcp/types.js'
+import type { ToolUseContext } from '../../../Tool.js'
+import { logForDebugging } from '../../../utils/debug.js'
 import {
   EFFORT_LEVELS,
   type EffortValue,
   parseEffortValue,
-} from '../../utils/effort.js'
-import { isEnvTruthy } from '../../utils/envUtils.js'
-import { parsePositiveIntFromFrontmatter } from '../../utils/frontmatterParser.js'
-import { lazySchema } from '../../utils/lazySchema.js'
-import { logError } from '../../utils/log.js'
+} from '../../../utils/effort.js'
+import { isEnvTruthy } from '../../../utils/envUtils.js'
+import { parsePositiveIntFromFrontmatter } from '../../../utils/frontmatterParser.js'
+import { lazySchema } from '../../../utils/lazySchema.js'
+import { logError } from '../../../utils/log.js'
 import {
   loadMarkdownFilesForSubdir,
   parseAgentToolsFromFrontmatter,
   parseRawToolListFromFrontmatter,
   parseSlashCommandToolsFromFrontmatter,
-} from '../../utils/markdownConfigLoader.js'
+} from '../../../utils/markdownConfigLoader.js'
 import {
   PERMISSION_MODES,
   type PermissionMode,
-} from '../../server/utils/permissions/PermissionMode.js'
+} from '../../utils/permissions/PermissionMode.js'
 import {
   clearPluginAgentCache,
   loadPluginAgents,
-} from '../../server/utils/plugins/loadPluginAgents.js'
-import { HooksSchema, type HooksSettings } from '../../server/utils/settings/types.js'
-import { jsonStringify } from '../../utils/slowOperations.js'
-import { FILE_EDIT_TOOL_NAME } from '../FileEditTool/constants.js'
-import { FILE_READ_TOOL_NAME } from '../FileReadTool/prompt.js'
-import { FILE_WRITE_TOOL_NAME } from '../FileWriteTool/prompt.js'
+} from '../../utils/plugins/loadPluginAgents.js'
+import { HooksSchema, type HooksSettings } from '../../utils/settings/types.js'
+import { jsonStringify } from '../../../utils/slowOperations.js'
+import { FILE_EDIT_TOOL_NAME } from '../../../tools/FileEditTool/constants.js'
+import { FILE_READ_TOOL_NAME } from '../../../tools/FileReadTool/prompt.js'
+import { FILE_WRITE_TOOL_NAME } from '../../../tools/FileWriteTool/prompt.js'
 import {
   AGENT_COLORS,
   type AgentColorName,

@@ -7,8 +7,8 @@ import { WEB_FETCH_TOOL_NAME } from 'src/tools/WebFetchTool/prompt.js'
 import { WEB_SEARCH_TOOL_NAME } from 'src/tools/WebSearchTool/prompt.js'
 import { isUsing3PServices } from 'src/utils/auth.js'
 import { hasEmbeddedSearchTools } from 'src/utils/embeddedTools.js'
-import { getSettings_DEPRECATED } from '../../../server/utils/settings/settings.js'
-import { jsonStringify } from '../../../utils/slowOperations.js'
+import { getSettings_DEPRECATED } from '../../../../server/utils/settings/settings.js'
+import { jsonStringify } from '../../../../utils/slowOperations.js'
 import type {
   AgentDefinition,
   BuiltInAgentDefinition,

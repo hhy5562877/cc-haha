@@ -14,7 +14,7 @@ import YAML from 'yaml'
 import { getCwd } from '../../utils/cwd.js'
 import { getClaudeConfigHomeDir } from '../../utils/envUtils.js'
 import { findCanonicalGitRoot, findGitRoot } from '../../utils/git.js'
-import { getAgentDefinitionsWithOverrides } from '../../tools/AgentTool/loadAgentsDir.js'
+import { getAgentDefinitionsWithOverrides } from '../tools/AgentTool/loadAgentsDir.js'
 import { ApiError } from '../middleware/errorHandler.js'
 
 export type AgentScope = 'user' | 'project'

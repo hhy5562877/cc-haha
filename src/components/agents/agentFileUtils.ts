@@ -4,14 +4,14 @@ import { isAbsolute, join, relative, resolve, sep } from 'path'
 import type { SettingSource } from '../../server/utils/settings/constants.js'
 import { getManagedFilePath } from '../../server/utils/settings/managedPath.js'
 import { stringify as stringifyYaml } from 'yaml'
-import type { AgentMemoryScope } from '../../tools/AgentTool/agentMemory.js'
+import type { AgentMemoryScope } from '../../server/tools/AgentTool/agentMemory.js'
 import {
   clearAgentDefinitionsCache,
   type AgentDefinition,
   isBuiltInAgent,
   isCustomAgent,
   isPluginAgent,
-} from '../../tools/AgentTool/loadAgentsDir.js'
+} from '../../server/tools/AgentTool/loadAgentsDir.js'
 import { getCwd } from '../../utils/cwd.js'
 import type { EffortValue } from '../../utils/effort.js'
 import { getClaudeConfigHomeDir } from '../../utils/envUtils.js'

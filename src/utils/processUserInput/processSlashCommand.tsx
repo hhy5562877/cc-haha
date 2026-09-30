@@ -13,9 +13,9 @@ import { type AnalyticsMetadata_I_VERIFIED_THIS_IS_NOT_CODE_OR_FILEPATHS, type A
 import { getDumpPromptsPath } from '../../services/api/dumpPrompts.js';
 import { buildPostCompactMessages } from '../../services/compact/compact.js';
 import { resetMicrocompactState } from '../../services/compact/microCompact.js';
-import type { Progress as AgentProgress } from '../../tools/AgentTool/AgentTool.js';
-import { runAgent } from '../../tools/AgentTool/runAgent.js';
-import { renderToolUseProgressMessage } from '../../tools/AgentTool/UI.js';
+import type { Progress as AgentProgress } from '../../server/tools/AgentTool/AgentTool.js';
+import { runAgent } from '../../server/tools/AgentTool/runAgent.js';
+import { renderToolUseProgressMessage } from '../../server/tools/AgentTool/UI.js';
 import type { CommandResultDisplay } from '../../types/command.js';
 import { createAbortController } from '../abortController.js';
 import { getAgentContext } from '../agentContext.js';

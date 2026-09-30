@@ -10,9 +10,9 @@ import {
 import type {
   AgentDefinition,
   BuiltInAgentDefinition,
-} from '../../tools/AgentTool/loadAgentsDir.js'
-import { getLastToolUseName } from '../../tools/AgentTool/agentToolUtils.js'
-import { runAgent } from '../../tools/AgentTool/runAgent.js'
+} from '../../server/tools/AgentTool/loadAgentsDir.js'
+import { getLastToolUseName } from '../../server/tools/AgentTool/agentToolUtils.js'
+import { runAgent } from '../../server/tools/AgentTool/runAgent.js'
 import {
   createSyntheticOutputTool,
   SYNTHETIC_OUTPUT_TOOL_NAME,

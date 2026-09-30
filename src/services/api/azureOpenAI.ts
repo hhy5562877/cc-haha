@@ -9,7 +9,7 @@ import { getProxyFetchOptions } from 'src/utils/proxy.js'
 import { getModelStrings } from 'src/utils/model/modelStrings.js'
 import { isEnvTruthy } from 'src/utils/envUtils.js'
 import { toolToAPISchema } from 'src/utils/api.js'
-import type { AgentDefinition } from 'src/tools/AgentTool/loadAgentsDir.js'
+import type { AgentDefinition } from 'src/server/tools/AgentTool/loadAgentsDir.js'
 
 const DEFAULT_API_VERSION = '2025-04-01-preview'
 

@@ -73,11 +73,11 @@ import { snapshotTeamAgents } from '../TeamPlanTool/context.js'
 import type {
   CustomAgentDefinition,
   PluginAgentDefinition,
-} from '../AgentTool/loadAgentsDir.js'
+} from '../../server/tools/AgentTool/loadAgentsDir.js'
 import {
   isCustomAgent,
   isPluginAgent,
-} from '../AgentTool/loadAgentsDir.js'
+} from '../../server/tools/AgentTool/loadAgentsDir.js'
 
 // ============================================================================
 // Types

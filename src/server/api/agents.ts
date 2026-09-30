@@ -30,19 +30,19 @@ import {
   resolveAgentModelDisplay,
   resolveAgentOverrides,
   type ResolvedAgent,
-} from '../../tools/AgentTool/agentDisplay.js'
+} from '../tools/AgentTool/agentDisplay.js'
 import {
   clearAgentDefinitionsCache,
   getAgentDefinitionsWithOverrides,
   type AgentDefinition as SharedAgentDefinition,
-} from '../../tools/AgentTool/loadAgentsDir.js'
+} from '../tools/AgentTool/loadAgentsDir.js'
 import { getCwd } from '../../utils/cwd.js'
-import { AGENT_COLORS } from '../../tools/AgentTool/agentColorManager.js'
-import { getBuiltInAgentsWithoutOverrides } from '../../tools/AgentTool/builtInAgents.js'
+import { AGENT_COLORS } from '../tools/AgentTool/agentColorManager.js'
+import { getBuiltInAgentsWithoutOverrides } from '../tools/AgentTool/builtInAgents.js'
 import {
   resolveBuiltInAgentOverrides,
   type ResolvedBuiltInAgentOverride,
-} from '../../tools/AgentTool/builtInAgentOverrides.js'
+} from '../tools/AgentTool/builtInAgentOverrides.js'
 import { isRestrictedToPluginOnly } from '../utils/settings/pluginOnlyPolicy.js'
 import {
   SETTING_SOURCES,
@@ -51,7 +51,7 @@ import {
 import { parseEffortValue } from '../../utils/effort.js'
 import { reloadSessionComponents } from '../services/sessionComponentReloadService.js'
 import { getAllBaseTools } from '../../tools.js'
-import { filterToolsForAgent } from '../../tools/AgentTool/agentToolUtils.js'
+import { filterToolsForAgent } from '../tools/AgentTool/agentToolUtils.js'
 
 const agentService = new AgentService()
 const settingsService = new SettingsService()
