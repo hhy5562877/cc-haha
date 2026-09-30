@@ -1,5 +1,7 @@
 # CHANGELOG
 
+- [2026-10-01 09:30] REFACTOR: 解耦批次 25 完成——services/analytics 整目录（9 文件）迁入 src/server/services/analytics/，语义归一 + 全仓消费方重指（含 src/utils 与根式形态，共 400+ 处引用更新）；E2E PASS (Files: src/server/services/analytics/*, src/utils/*, src/cost-tracker.ts 等)
+
 - [2026-10-01 04:10] REFACTOR: 解耦批次 24 完成——services/oauth 整目录（6 文件 1101 行）迁入 src/server/services/oauth/，全仓消费方（含 services 内兄弟 3 处、根式 1 处）重指；E2E PASS (Files: src/server/services/oauth/*, src/services/analytics/firstPartyEventLoggingExporter.ts 等)
 
 - [2026-10-01 09:40] REFACTOR: 解耦批次 23 完成——tools/AgentTool 整目录（16 文件 6608 行含 built-in/ 嵌套与 .tsx）迁入 src/server/tools/AgentTool/，语义归一单步重算 + 全形态消费方终扫 140 处；E2E PASS (Files: src/server/tools/AgentTool/*, src/tools.ts, src/main.tsx, src/server/api/agents.ts 等)
