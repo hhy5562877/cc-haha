@@ -128,3 +128,27 @@ export function getCanonicalName(fullModelName: string): string {
   name = name.replace(/^anthropic\./, '')
   return name.toLowerCase()
 }
+
+
+// ─── 模型深链窄化（批次 28）────────────────────────────────────────────
+// 原 getMainLoopModel/resolveAntModel/parseUserSpecifiedModel 深链引擎
+// modelStrings/settings/bedrock 子系统。server 侧语义：
+// - getMainLoopModel: 返回 env 模型或 undefined（dalSideQuery 自行回退网关默认）
+// - resolveAntModel: 外部构建恒 undefined（原实现 ant 门控等价降级）
+// - parseUserSpecifiedModel: 身份规范化近似（不做引擎别名映射）
+
+export function getMainLoopModel(): string | undefined {
+  return process.env.ANTHROPIC_MODEL || undefined
+}
+
+export function resolveAntModel(_model: string | undefined): undefined {
+  return undefined
+}
+
+export function parseUserSpecifiedModelNarrow(modelInput: string): string {
+  let name = modelInput.trim()
+  name = name.replace(/\[(1|2)m\]/gi, '')
+  const slash = name.lastIndexOf('/')
+  if (slash !== -1) name = name.slice(slash + 1)
+  return name.toLowerCase()
+}

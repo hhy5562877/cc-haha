@@ -279,7 +279,7 @@ function createPluginCommand(
       frontmatter.model === 'inherit'
         ? undefined
         : frontmatter.model
-          ? parseUserSpecifiedModel(frontmatter.model as string)
+          ? parseUserSpecifiedModelNarrow(String(frontmatter.model ?? ''))
           : undefined
 
     const effortRaw = frontmatter['effort']

@@ -1,5 +1,9 @@
 # CHANGELOG
 
+- [2026-10-01 10:10] REFACTOR: 解耦批次 28 完成——model 深链窄化收尾：getMainLoopModel(env 回退)/resolveAntModel(恒 undefined)/parseUserSpecifiedModelNarrow 入 src/server/utils/model.ts；yoloClassifier/permissionExplainer 重指；loadPluginCommands 保留引擎原导入（深链随引擎休眠）；E2E PASS (Files: src/server/utils/model.ts, src/server/utils/permissions/*, src/server/utils/plugins/loadPluginCommands.ts)
+
+- [2026-10-01 11:30] FIX: 批次 27 收尾——FileEditTool 拆分边界校正：主文件 FileEditTool.tsx/UI.tsx/prompt.ts 留守引擎（UI 深链），constants/utils/types 迁入 server 并全消费方重指（含留守件回指与 tools 兄弟），E2E PASS (Files: src/tools/FileEditTool/*, src/server/tools/FileEditTool/*)
+
 - [2026-10-01 10:40] REFACTOR: 解耦批次 26 完成——cuHelperBridge/cuHelperInstall/pythonBridge 窄切片迁入 src/server/utils/computerUse/（darwin 链自包含），api/computer-use 重指；E2E PASS (Files: src/server/utils/computerUse/*, src/server/api/computer-use.ts)
 
 - [2026-10-01 09:30] REFACTOR: 解耦批次 25 完成——services/analytics 整目录（9 文件）迁入 src/server/services/analytics/，语义归一 + 全仓消费方重指（含 src/utils 与根式形态，共 400+ 处引用更新）；E2E PASS (Files: src/server/services/analytics/*, src/utils/*, src/cost-tracker.ts 等)

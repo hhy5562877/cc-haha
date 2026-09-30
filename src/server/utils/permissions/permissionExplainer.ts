@@ -7,7 +7,7 @@ import { logForDebugging } from '../../../utils/debug.js'
 import { errorMessage } from '../../../utils/errors.js'
 import { lazySchema } from '../../../utils/lazySchema.js'
 import { logError } from '../../../utils/log.js'
-import { getMainLoopModel } from '../../../utils/model/model.js'
+import { getMainLoopModel } from '../../utils/model.js'
 import { sideQuery } from '../../../utils/sideQuery.js'
 import { jsonStringify } from '../../../utils/slowOperations.js'
 
