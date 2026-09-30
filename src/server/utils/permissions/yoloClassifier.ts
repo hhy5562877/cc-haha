@@ -30,7 +30,7 @@ import { extractTextContent } from '../../../utils/messages.js'
 import { resolveAntModel } from '../../utils/model.js'
 import { getMainLoopModel } from '../../utils/model.js'
 import { getAutoModeConfig } from '../settings/settings.js'
-import { sideQuery } from '../../../utils/sideQuery.js'
+import { dalSideQuery } from '../dalSideQuery.js'
 import { jsonStringify } from '../../../utils/slowOperations.js'
 import { tokenCountWithEstimation } from '../../../utils/tokens.js'
 import {
@@ -779,7 +779,7 @@ async function classifyYoloActionXml(
   let stage1DurationMs: number | undefined
   let stage1RequestId: string | undefined
   let stage1MsgId: string | undefined
-  let stage1Opts: Parameters<typeof sideQuery>[0] | undefined
+  let stage1Opts: Parameters<typeof dalSideQuery>[0] | undefined
   const overallStart = Date.now()
   const [disableThinking, thinkingPadding] = getClassifierThinkingConfig(model)
 
@@ -821,7 +821,7 @@ async function classifyYoloActionXml(
         ...(mode !== 'fast' && { stop_sequences: ['</block>'] }),
         querySource: 'auto_mode',
       }
-      const stage1Raw = await sideQuery(stage1Opts)
+      const stage1Raw = await dalSideQuery(stage1Opts)
       stage1DurationMs = Date.now() - stage1Start
       stage1Usage = extractUsage(stage1Raw)
       stage1RequestId = extractRequestId(stage1Raw)
@@ -907,7 +907,7 @@ async function classifyYoloActionXml(
       signal,
       querySource: 'auto_mode' as const,
     }
-    const stage2Raw = await sideQuery(stage2Opts)
+    const stage2Raw = await dalSideQuery(stage2Opts)
     const stage2DurationMs = Date.now() - stage2Start
     const stage2Usage = extractUsage(stage2Raw)
     const stage2RequestId = extractRequestId(stage2Raw)
@@ -1186,7 +1186,7 @@ export async function classifyYoloAction(
       signal,
       querySource: 'auto_mode' as const,
     }
-    const result = await sideQuery(sideQueryOpts)
+    const result = await dalSideQuery(sideQueryOpts)
     void maybeDumpAutoMode(sideQueryOpts, result, start)
     setLastClassifierRequests([sideQueryOpts])
     const durationMs = Date.now() - start

@@ -6,6 +6,11 @@
  * 输入沿用 SideQueryOptions 的必要子集，输出映射回 BetaMessage 形状，
  * 使 yoloClassifier / permissionExplainer 的解析逻辑无需改动。
  *
+ * 支持特性：system(串/文本块)、messages(文本+base64图像块)、tools/tool_choice、
+ * output_format(json_schema/json_object)、stop_sequences、temperature、max_tokens、
+ * maxRetries(简单重试)、signal。
+ * 不支持（分类器不使用）：cache_control（静默剥除）、thinking（静默降级为不启用）。
+ *
  * 模型解析优先级：opts.model → ANTHROPIC_MODEL env → 网关模型目录首个。
  * 网关凭据经 dalAuthService（与 spawn 注入同一来源）。
  */
@@ -13,6 +18,11 @@ import { dalAuthService } from '../services/dalAuthService.js'
 import { normalizeAnthropicBaseUrl } from '../services/api/anthropicBaseUrl.js'
 
 type TextBlockParam = { type: 'text'; text: string }
+type ImageBlockParam = {
+  type: 'image'
+  source: { type: string; media_type?: string; data?: string; url?: string }
+}
+type ContentBlock = TextBlockParam | ImageBlockParam
 type ToolParam = { name: string; description?: string; input_schema: unknown }
 type ToolChoiceParam = { type: 'tool'; name: string }
 type JSONOutputFormat =
@@ -21,13 +31,15 @@ type JSONOutputFormat =
 
 export type DalSideQueryOptions = {
   model?: string
-  system?: string | Array<{ type: 'text'; text: string }>
-  messages: Array<{ role: string; content: unknown }>
+  system?: string | ContentBlock[]
+  messages: Array<{ role: string; content: string | ContentBlock[] }>
   tools?: ToolParam[]
   tool_choice?: ToolChoiceParam
   output_format?: JSONOutputFormat
+  stop_sequences?: string[]
   max_tokens?: number
   temperature?: number
+  maxRetries?: number
   signal?: AbortSignal
 }
 
@@ -39,7 +51,7 @@ export type DalBetaMessage = {
     | { type: 'text'; text: string }
     | { type: 'tool_use'; id: string; name: string; input: unknown }
   >
-  stop_reason: 'end_turn' | 'tool_use' | 'max_tokens' | null
+  stop_reason: 'end_turn' | 'tool_use' | 'max_tokens' | 'stop_sequence' | null
   model: string
   usage: { input_tokens: number; output_tokens: number }
 }
@@ -56,7 +68,17 @@ async function resolveGateway(): Promise<{ url: string; token: string }> {
   return cachedGateway
 }
 
-/** Anthropic 消息参数 → OpenAI chat messages（文本/tool_result 扁平化）。 */
+function contentBlockToOpenAI(block: ContentBlock): unknown | null {
+  if (block.type === 'text') return { type: 'text', text: block.text }
+  if (block.type === 'image') {
+    const src = block.source ?? (block as unknown as { source?: { data?: string; media_type?: string } }).source
+    const data = src?.data ?? (block as unknown as { data?: string }).data
+    const media = src?.media_type ?? (block as unknown as { media_type?: string }).media_type ?? 'image/png'
+    if (data) return { type: 'image_url', image_url: { url: `data:${media};base64,${data}` } }
+  }
+  return null
+}
+
 function toOpenAIMessages(
   system: DalSideQueryOptions['system'],
   messages: DalSideQueryOptions['messages'],
@@ -65,7 +87,7 @@ function toOpenAIMessages(
   const sysText = typeof system === 'string'
     ? system
     : Array.isArray(system)
-      ? system.map(block => block.text).join('\n')
+      ? system.map(block => (block.type === 'text' ? block.text : '')).filter(Boolean).join('\n')
       : undefined
   if (sysText) out.push({ role: 'system', content: sysText })
   for (const message of messages) {
@@ -75,11 +97,14 @@ function toOpenAIMessages(
       continue
     }
     if (Array.isArray(content)) {
-      const text = content
-        .map(block => (block && typeof block === 'object' && 'text' in block ? String((block as { text: unknown }).text ?? '') : ''))
+      const parts = content
+        .map(block => contentBlockToOpenAI(block as ContentBlock))
         .filter(Boolean)
-        .join('\n')
-      if (text) out.push({ role: message.role, content: text })
+      if (parts.length === 1 && (parts[0] as { type: string }).type === 'text') {
+        out.push({ role: message.role, content: (parts[0] as { text: string }).text })
+      } else if (parts.length > 0) {
+        out.push({ role: message.role, content: parts })
+      }
       continue
     }
     out.push({ role: message.role, content: String(content ?? '') })
@@ -103,6 +128,34 @@ async function resolveModel(opts: DalSideQueryOptions): Promise<string> {
   return first
 }
 
+async function fetchWithRetry(
+  url: string,
+  init: RequestInit,
+  maxRetries: number,
+): Promise<Response> {
+  let lastError: unknown
+  for (let attempt = 0; attempt <= maxRetries; attempt++) {
+    try {
+      const res = await fetch(url, init)
+      if (res.status === 429 || res.status >= 500) {
+        lastError = new Error(`DAL gateway query failed: ${res.status}`)
+        if (attempt < maxRetries) {
+          await new Promise(resolve => setTimeout(resolve, 1000 * (attempt + 1)))
+          continue
+        }
+      }
+      return res
+    } catch (error) {
+      lastError = error
+      if (attempt < maxRetries) {
+        await new Promise(resolve => setTimeout(resolve, 1000 * (attempt + 1)))
+        continue
+      }
+    }
+  }
+  throw lastError
+}
+
 /**
  * DAL 网关一次性查询。
  * 返回 BetaMessage 形状（text / tool_use 块），供分类器既有解析逻辑直接消费。
@@ -119,6 +172,7 @@ export async function dalSideQuery(opts: DalSideQueryOptions): Promise<DalBetaMe
     max_tokens: opts.max_tokens ?? 1024,
   }
   if (opts.temperature !== undefined) body.temperature = opts.temperature
+  if (opts.stop_sequences?.length) body.stop = opts.stop_sequences
   if (opts.tools?.length) {
     body.tools = opts.tools.map(tool => ({
       type: 'function',
@@ -141,7 +195,8 @@ export async function dalSideQuery(opts: DalSideQueryOptions): Promise<DalBetaMe
     body.response_format = { type: 'json_object' }
   }
 
-  const res = await fetch(`${base}/chat/completions`, {
+  const maxRetries = opts.maxRetries ?? 2
+  const res = await fetchWithRetry(`${base}/chat/completions`, {
     method: 'POST',
     headers: {
       'content-type': 'application/json',
@@ -149,7 +204,7 @@ export async function dalSideQuery(opts: DalSideQueryOptions): Promise<DalBetaMe
     },
     body: JSON.stringify(body),
     signal: opts.signal,
-  })
+  }, maxRetries)
   if (!res.ok) {
     const text = await res.text().catch(() => '')
     throw new Error(`DAL gateway query failed: ${res.status} ${text.slice(0, 300)}`)

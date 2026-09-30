@@ -8,7 +8,7 @@ import { errorMessage } from '../../../utils/errors.js'
 import { lazySchema } from '../../../utils/lazySchema.js'
 import { logError } from '../../../utils/log.js'
 import { getMainLoopModel } from '../../utils/model.js'
-import { sideQuery } from '../../../utils/sideQuery.js'
+import { dalSideQuery } from '../dalSideQuery.js'
 import { jsonStringify } from '../../../utils/slowOperations.js'
 
 export type RiskLevel = 'LOW' | 'MEDIUM' | 'HIGH'
@@ -175,7 +175,7 @@ Explain this command in context.`
     const model = getMainLoopModel()
 
     // sideQuery adapts forced tool choice for models with required thinking.
-    const response = await sideQuery({
+    const response = await dalSideQuery({
       model,
       system: SYSTEM_PROMPT,
       messages: [{ role: 'user', content: userPrompt }],
