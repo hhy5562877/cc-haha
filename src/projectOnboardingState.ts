@@ -3,7 +3,7 @@ import { join } from 'path'
 import {
   getCurrentProjectConfig,
   saveCurrentProjectConfig,
-} from './utils/config.js'
+} from './server/utils/config.js'
 import { getCwd } from './server/utils/cwd.js'
 import { isDirEmpty } from './server/utils/file.js'
 import { getFsImplementation } from './server/utils/fsOperations.js'

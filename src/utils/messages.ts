@@ -163,7 +163,7 @@ import { TASK_UPDATE_TOOL_NAME } from '../server/tools/TaskUpdateTool/constants.
 import type { PermissionMode } from '../server/types/permissions.js'
 import { normalizeToolInput, normalizeToolInputForAPI } from './api.js'
 import { createUnparsedToolInput, isUnparsedToolInput } from '../server/utils/unparsedToolInput.js'
-import { getCurrentProjectConfig } from './config.js'
+import { getCurrentProjectConfig } from '../server/utils/config.js'
 import { logAntError, logForDebugging } from '../server/utils/debug.js'
 import { stripIdeContextTags } from '../server/utils/displayTags.js'
 import { hasEmbeddedSearchTools } from '../server/utils/embeddedTools.js'

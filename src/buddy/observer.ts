@@ -1,6 +1,6 @@
 import type { Message } from '../server/types/message.js'
 import { getCompanion } from './companion.js'
-import { getGlobalConfig } from '../utils/config.js'
+import { getGlobalConfig } from '../server/utils/config.js'
 
 // Simple companion observer: picks a reaction based on the last assistant message.
 // This is a lightweight placeholder that generates fun reactions without an LLM call.

@@ -38,7 +38,7 @@ import { useVoiceState } from '../../context/voice.js';
 import { isFullscreenEnvEnabled } from '../../utils/fullscreen.js';
 import { isXtermJs } from '../../ink/terminal.js';
 import { useHasSelection, useSelection } from '../../ink/hooks/use-selection.js';
-import { getGlobalConfig, saveGlobalConfig } from '../../utils/config.js';
+import { getGlobalConfig, saveGlobalConfig } from '../../server/utils/config.js';
 import { getPlatform } from '../../server/utils/platform.js';
 import { PrBadge } from '../PrBadge.js';
 

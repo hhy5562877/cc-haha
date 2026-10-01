@@ -50,7 +50,7 @@ import {
   checkHasTrustDialogAccepted,
   getGlobalConfig,
   saveGlobalConfig,
-} from './config.js'
+} from '../server/utils/config.js'
 import { logAntError, logForDebugging } from '../server/utils/debug.js'
 import {
   getClaudeConfigHomeDir,

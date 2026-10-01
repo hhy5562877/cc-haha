@@ -25,7 +25,7 @@ import {
   getClaudeAIOAuthTokens,
 } from '../../utils/auth.js'
 import { clearMemoryFileCaches } from '../../utils/claudemd.js'
-import { getMemoryPath } from '../../utils/config.js'
+import { getMemoryPath } from '../../server/utils/config.js'
 import { logForDiagnosticsNoPII } from '../../server/utils/diagLogs.js'
 import { classifyAxiosError } from '../../server/utils/errors.js'
 import { getRepoRemoteHash } from '../../server/utils/git.js'

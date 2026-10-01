@@ -38,7 +38,7 @@ import {
   getDeferredToolsDeltaAttachment,
   getMcpInstructionsDeltaAttachment,
 } from '../../utils/attachments.js'
-import { getMemoryPath } from '../../utils/config.js'
+import { getMemoryPath } from '../../server/utils/config.js'
 import { COMPACT_MAX_OUTPUT_TOKENS } from '../../utils/context.js'
 import {
   analyzeContext,

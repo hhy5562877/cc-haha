@@ -5,7 +5,7 @@ import { useInterval } from 'usehooks-ts';
 import { useUpdateNotification } from '../hooks/useUpdateNotification.js';
 import { Box, Text } from '../ink.js';
 import { type AutoUpdaterResult, getLatestVersion, getMaxVersion, type InstallStatus, installGlobalPackage, shouldSkipVersion } from '../utils/autoUpdater.js';
-import { getGlobalConfig, isAutoUpdaterDisabled } from '../utils/config.js';
+import { getGlobalConfig, isAutoUpdaterDisabled } from '../server/utils/config.js';
 import { logForDebugging } from '../server/utils/debug.js';
 import { getCurrentInstallationType } from '../utils/doctorDiagnostic.js';
 import { installOrUpdateClaudePackage, localInstallationExists } from '../utils/localInstaller.js';

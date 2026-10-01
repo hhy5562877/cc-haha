@@ -18,7 +18,7 @@ import { useExitOnCtrlCDWithKeybindings } from '../hooks/useExitOnCtrlCDWithKeyb
 import { Box, Text } from '../ink.js';
 import { useKeybindings } from '../keybindings/useKeybinding.js';
 import { useAppState } from '../state/AppState.js';
-import { getPluginErrorMessage } from '../types/plugin.js';
+import { getPluginErrorMessage } from '../server/types/plugin.js';
 import { getGcsDistTags, getNpmDistTags, type NpmDistTags } from '../utils/autoUpdater.js';
 import { type ContextWarnings, checkContextWarnings } from '../utils/doctorContextWarnings.js';
 import { type DiagnosticInfo, getDoctorDiagnostic } from '../utils/doctorDiagnostic.js';

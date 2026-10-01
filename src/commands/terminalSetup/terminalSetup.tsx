@@ -12,7 +12,7 @@ import type { ToolUseContext } from '../../Tool.js';
 import type { LocalJSXCommandContext, LocalJSXCommandOnDone } from '../../types/command.js';
 import { backupTerminalPreferences, checkAndRestoreTerminalBackup, getTerminalPlistPath, markTerminalSetupComplete } from '../../utils/appleTerminalBackup.js';
 import { setupShellCompletion } from '../../utils/completionCache.js';
-import { getGlobalConfig, saveGlobalConfig } from '../../utils/config.js';
+import { getGlobalConfig, saveGlobalConfig } from '../../server/utils/config.js';
 import { env } from '../../server/utils/env.js';
 import { isFsInaccessible } from '../../server/utils/errors.js';
 import { execFileNoThrow } from '../../server/utils/execFileNoThrow.js';

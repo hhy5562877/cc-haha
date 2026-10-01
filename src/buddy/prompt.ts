@@ -1,6 +1,6 @@
 import type { Message } from '../server/types/message.js'
 import type { Attachment } from '../utils/attachments.js'
-import { getGlobalConfig } from '../utils/config.js'
+import { getGlobalConfig } from '../server/utils/config.js'
 import { getCompanion } from './companion.js'
 
 export function companionIntroText(name: string, species: string): string {

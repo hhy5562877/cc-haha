@@ -3,8 +3,8 @@ import mapValues from 'lodash-es/mapValues.js'
 import memoize from 'lodash-es/memoize.js'
 import { dirname, join, parse } from 'path'
 import { getPlatform } from 'src/server/utils/platform.ts'
-import type { PluginError } from '../../../types/plugin.js'
-import { getPluginErrorMessage } from '../../../types/plugin.js'
+import type { PluginError } from '../../types/plugin.js'
+import { getPluginErrorMessage } from '../../types/plugin.js'
 import { isClaudeInChromeMCPServer } from '../../utils/claudeInChrome/common.js'
 import {
   getCurrentProjectConfig,
@@ -12,7 +12,7 @@ import {
   getProjectPathForConfig,
   saveCurrentProjectConfig,
   saveGlobalConfig,
-} from '../../../utils/config.js'
+} from '../../utils/config.js'
 import { getCwd } from '../../utils/cwd.js'
 import { getGlobalClaudeFile } from '../../utils/env.js'
 import { logForDebugging } from '../../utils/debug.js'

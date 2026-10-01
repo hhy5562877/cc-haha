@@ -2038,7 +2038,7 @@ export async function bridgeMain(args: string[]): Promise<void> {
   // The bridge fast-path bypasses init.ts, so we must enable config reading
   // before any code that transitively calls getGlobalConfig()
   const { enableConfigs, checkHasTrustDialogAccepted } = await import(
-    '../utils/config.js'
+    '../server/utils/config.js'
   )
   enableConfigs()
 
@@ -2113,7 +2113,7 @@ export async function bridgeMain(args: string[]): Promise<void> {
     saveGlobalConfig,
     getCurrentProjectConfig,
     saveCurrentProjectConfig,
-  } = await import('../utils/config.js')
+  } = await import('../server/utils/config.js')
   if (!getGlobalConfig().remoteDialogSeen) {
     const readline = await import('readline')
     const rl = readline.createInterface({
@@ -2822,7 +2822,7 @@ export async function runBridgeHeadless(
   setCwdState(dir)
 
   const { enableConfigs, checkHasTrustDialogAccepted } = await import(
-    '../utils/config.js'
+    '../server/utils/config.js'
   )
   enableConfigs()
   const { initSinks } = await import('../utils/sinks.js')

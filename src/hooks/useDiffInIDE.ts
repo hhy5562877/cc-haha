@@ -16,7 +16,7 @@ import {
   getEditsForPatch,
   getPatchForEdits,
 } from '../server/tools/FileEditTool/utils.js'
-import { getGlobalConfig } from '../utils/config.js'
+import { getGlobalConfig } from '../server/utils/config.js'
 import { getPatchFromContents } from '../utils/diff.js'
 import { isENOENT } from '../server/utils/errors.js'
 import {

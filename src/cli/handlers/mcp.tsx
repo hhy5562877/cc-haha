@@ -17,7 +17,7 @@ import { addMcpConfig, getAllMcpConfigs, getMcpConfigByName, getMcpConfigsByScop
 import type { ConfigScope, ScopedMcpServerConfig } from '../../server/services/mcp/types.js';
 import { describeMcpConfigFilePath, ensureConfigScope, getScopeLabel } from '../../server/services/mcp/utils.js';
 import { AppStateProvider } from '../../state/AppState.js';
-import { getCurrentProjectConfig, getGlobalConfig, saveCurrentProjectConfig } from '../../utils/config.js';
+import { getCurrentProjectConfig, getGlobalConfig, saveCurrentProjectConfig } from '../../server/utils/config.js';
 import { isFsInaccessible } from '../../server/utils/errors.js';
 import { gracefulShutdown } from '../../utils/gracefulShutdown.js';
 import { safeParseJSON } from '../../server/utils/json.js';

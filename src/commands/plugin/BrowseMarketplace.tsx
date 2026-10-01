@@ -5,7 +5,7 @@ import { ConfigurableShortcutHint } from '../../components/ConfigurableShortcutH
 import { Byline } from '../../components/design-system/Byline.js';
 import { Box, Text } from '../../ink.js';
 import { useKeybinding, useKeybindings } from '../../keybindings/useKeybinding.js';
-import type { LoadedPlugin } from '../../types/plugin.js';
+import type { LoadedPlugin } from '../../server/types/plugin.js';
 import { count } from '../../server/utils/array.js';
 import { openBrowser } from '../../server/utils/browser.js';
 import { logForDebugging } from '../../server/utils/debug.js';

@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { useInterval } from 'usehooks-ts';
 import { Text } from '../ink.js';
 import { type AutoUpdaterResult, getLatestVersionFromGcs, getMaxVersion, shouldSkipVersion } from '../utils/autoUpdater.js';
-import { isAutoUpdaterDisabled } from '../utils/config.js';
+import { isAutoUpdaterDisabled } from '../server/utils/config.js';
 import { logForDebugging } from '../server/utils/debug.js';
 import { getPackageManager, type PackageManager } from '../utils/nativeInstaller/packageManagers.js';
 import { gt, gte } from '../utils/semver.js';

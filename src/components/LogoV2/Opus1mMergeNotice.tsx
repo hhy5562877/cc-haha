@@ -3,7 +3,7 @@ import * as React from 'react';
 import { useEffect, useState } from 'react';
 import { UP_ARROW } from '../../server/constants/figures.js';
 import { Box, Text } from '../../ink.js';
-import { getGlobalConfig, saveGlobalConfig } from '../../utils/config.js';
+import { getGlobalConfig, saveGlobalConfig } from '../../server/utils/config.js';
 import { isOpus1mMergeEnabled } from '../../server/utils/model/model.js';
 import { AnimatedAsterisk } from './AnimatedAsterisk.js';
 const MAX_SHOW_COUNT = 6;

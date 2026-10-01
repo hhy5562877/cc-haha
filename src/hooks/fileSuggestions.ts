@@ -13,7 +13,7 @@ import {
 } from '../native-ts/file-index/index.js'
 import { logEvent } from '../server/services/analytics/index.js'
 import type { FileSuggestionCommandInput } from '../types/fileSuggestion.js'
-import { getGlobalConfig } from '../utils/config.js'
+import { getGlobalConfig } from '../server/utils/config.js'
 import { getCwd } from '../server/utils/cwd.js'
 import { logForDebugging } from '../server/utils/debug.js'
 import { errorMessage } from '../server/utils/errors.js'

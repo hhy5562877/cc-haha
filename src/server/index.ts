@@ -25,7 +25,7 @@ import { searchContentCoordinator } from './services/localIndex/searchContentCoo
 import { conversationService } from './services/conversationService.js'
 import { OPENAI_CODEX_REDIRECT_PATH } from './services/openaiAuth/client.js'
 import { ensureDesktopCliLauncherInstalled } from './services/desktopCliLauncherService.js'
-import { enableConfigs } from '../utils/config.js'
+import { enableConfigs } from './utils/config.js'
 import { diagnosticsService } from './services/diagnosticsService.js'
 import { apiPerformanceMonitor } from './services/apiPerformanceMonitor.js'
 import { ensurePersistentStorageUpgraded } from './services/persistentStorageMigrations.js'

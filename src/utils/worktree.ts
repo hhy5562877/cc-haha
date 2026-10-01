@@ -23,7 +23,7 @@ import {
   resolve,
   sep,
 } from 'path'
-import { saveCurrentProjectConfig } from './config.js'
+import { saveCurrentProjectConfig } from '../server/utils/config.js'
 import { getCwd } from '../server/utils/cwd.js'
 import { logForDebugging } from '../server/utils/debug.js'
 import { errorMessage, getErrnoCode } from '../server/utils/errors.js'

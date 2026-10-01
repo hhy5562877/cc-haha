@@ -46,7 +46,7 @@ import { PermissionRuleExplanation } from '../PermissionRuleExplanation.js';
 const autoModeStateModule = feature('TRANSCRIPT_CLASSIFIER') ? require('../../../server/utils/permissions/autoModeState.js') as typeof import('../../../server/utils/permissions/autoModeState.js') : null;
 import type { Base64ImageSource, ImageBlockParam } from '@anthropic-ai/sdk/resources/messages.mjs';
 /* eslint-enable @typescript-eslint/no-require-imports */
-import type { PastedContent } from '../../../utils/config.js';
+import type { PastedContent } from '../../../server/utils/config.js';
 import type { ImageDimensions } from '../../../utils/imageResizer.js';
 import { maybeResizeAndDownsampleImageBlock } from '../../../utils/imageResizer.js';
 import { cacheImagePath, storeImage } from '../../../utils/imageStore.js';

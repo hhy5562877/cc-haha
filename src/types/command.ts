@@ -11,7 +11,7 @@ import type { HooksSettings } from '../server/utils/settings/types.js'
 import type { ThemeName } from '../server/utils/theme.js'
 import type { LogOption } from '../server/types/logs.js'
 import type { Message } from '../server/types/message.js'
-import type { PluginManifest } from './plugin.js'
+import type { PluginManifest } from '../server/types/plugin.js'
 
 export type LocalCommandResult =
   | { type: 'text'; value: string }

@@ -10,7 +10,7 @@ import { getDisplayPath } from '../../server/utils/file.js';
 import { Clawd } from './Clawd.js';
 import { FeedColumn } from './FeedColumn.js';
 import { createRecentActivityFeed, createWhatsNewFeed, createProjectOnboardingFeed, createGuestPassesFeed } from './feedConfigs.js';
-import { getGlobalConfig, saveGlobalConfig } from 'src/utils/config.js';
+import { getGlobalConfig, saveGlobalConfig } from 'src/server/utils/config.js';
 import { resolveThemeSetting } from 'src/utils/systemTheme.js';
 import { getInitialSettings } from '../../server/utils/settings/settings.js';
 import { isDebugMode, isDebugToStdErr, getDebugLogPath } from 'src/server/utils/debug.ts';

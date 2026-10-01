@@ -12,7 +12,7 @@ import { useAppState } from '../../../state/AppState.js';
 import type { Question } from '../../../tools/AskUserQuestionTool/AskUserQuestionTool.js';
 import { AskUserQuestionTool } from '../../../tools/AskUserQuestionTool/AskUserQuestionTool.js';
 import { type CliHighlight, getCliHighlightPromise } from '../../../utils/cliHighlight.js';
-import type { PastedContent } from '../../../utils/config.js';
+import type { PastedContent } from '../../../server/utils/config.js';
 import type { ImageDimensions } from '../../../utils/imageResizer.js';
 import { maybeResizeAndDownsampleImageBlock } from '../../../utils/imageResizer.js';
 import { cacheImagePath, storeImage } from '../../../utils/imageStore.js';

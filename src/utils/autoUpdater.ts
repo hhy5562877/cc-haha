@@ -8,7 +8,7 @@ import {
   type AnalyticsMetadata_I_VERIFIED_THIS_IS_NOT_CODE_OR_FILEPATHS,
   logEvent,
 } from '../server/services/analytics/index.js'
-import { type ReleaseChannel, saveGlobalConfig } from './config.js'
+import { type ReleaseChannel, saveGlobalConfig } from '../server/utils/config.js'
 import { logForDebugging } from '../server/utils/debug.js'
 import { env } from '../server/utils/env.js'
 import { getClaudeConfigHomeDir } from '../server/utils/envUtils.js'

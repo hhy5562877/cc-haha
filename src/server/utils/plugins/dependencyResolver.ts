@@ -11,7 +11,7 @@
  *    unsatisfied deps (session-local, does NOT write settings)
  */
 
-import type { LoadedPlugin, PluginError } from '../../../types/plugin.js'
+import type { LoadedPlugin, PluginError } from '../../types/plugin.js'
 import type { EditableSettingSource } from '../settings/constants.js'
 import { getSettingsForSource } from '../settings/settings.js'
 import { parsePluginIdentifier } from './pluginIdentifier.js'

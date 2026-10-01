@@ -36,7 +36,7 @@ import {
 } from '../../server/services/analytics/index.js'
 import { getMaxVersion, shouldSkipVersion } from '../autoUpdater.js'
 import { registerCleanup } from '../../server/utils/cleanupRegistry.js'
-import { getGlobalConfig, saveGlobalConfig } from '../config.js'
+import { getGlobalConfig, saveGlobalConfig } from '../../server/utils/config.js'
 import { logForDebugging } from '../../server/utils/debug.js'
 import { getCurrentInstallationType } from '../doctorDiagnostic.js'
 import { env } from '../../server/utils/env.js'

@@ -11,7 +11,7 @@ import {
 import { getFeatureValue_CACHED_MAY_BE_STALE } from '../../server/services/analytics/growthbook.js'
 import type { ScopedMcpServerConfig } from '../../server/services/mcp/types.js'
 import { isInBundledMode } from '../../server/utils/bundledMode.js'
-import { getGlobalConfig, saveGlobalConfig } from '../config.js'
+import { getGlobalConfig, saveGlobalConfig } from '../../server/utils/config.js'
 import { logForDebugging } from '../../server/utils/debug.js'
 import {
   getClaudeConfigHomeDir,

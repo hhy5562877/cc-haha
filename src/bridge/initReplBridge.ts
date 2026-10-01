@@ -30,7 +30,7 @@ import {
   getClaudeAIOAuthTokens,
   handleOAuth401Error,
 } from '../utils/auth.js'
-import { getGlobalConfig, saveGlobalConfig } from '../utils/config.js'
+import { getGlobalConfig, saveGlobalConfig } from '../server/utils/config.js'
 import { logForDebugging } from '../server/utils/debug.js'
 import { stripDisplayTagsAllowEmpty } from '../server/utils/displayTags.js'
 import { errorMessage } from '../server/utils/errors.js'

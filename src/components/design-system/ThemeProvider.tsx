@@ -2,7 +2,7 @@ import { c as _c } from "react/compiler-runtime";
 import { feature } from 'bun:bundle';
 import React, { createContext, useContext, useEffect, useMemo, useState } from 'react';
 import useStdin from '../../ink/hooks/use-stdin.js';
-import { getGlobalConfig, saveGlobalConfig } from '../../utils/config.js';
+import { getGlobalConfig, saveGlobalConfig } from '../../server/utils/config.js';
 import { getSystemThemeName, type SystemTheme } from '../../utils/systemTheme.js';
 import type { ThemeName, ThemeSetting } from '../../server/utils/theme.js';
 type ThemeContextValue = {

@@ -61,7 +61,7 @@ async function main(): Promise<void> {
     profileCheckpoint('cli_dump_system_prompt_path');
     const {
       enableConfigs
-    } = await import('../utils/config.js');
+    } = await import('../server/utils/config.js');
     enableConfigs();
     const {
       getMainLoopModel
@@ -120,7 +120,7 @@ async function main(): Promise<void> {
     profileCheckpoint('cli_bridge_path');
     const {
       enableConfigs
-    } = await import('../utils/config.js');
+    } = await import('../server/utils/config.js');
     enableConfigs();
     const {
       getBridgeDisabledReason,
@@ -173,7 +173,7 @@ async function main(): Promise<void> {
     profileCheckpoint('cli_daemon_path');
     const {
       enableConfigs
-    } = await import('../utils/config.js');
+    } = await import('../server/utils/config.js');
     enableConfigs();
     const {
       initSinks
@@ -193,7 +193,7 @@ async function main(): Promise<void> {
     profileCheckpoint('cli_bg_path');
     const {
       enableConfigs
-    } = await import('../utils/config.js');
+    } = await import('../server/utils/config.js');
     enableConfigs();
     const bg = await import('../cli/bg.js');
     switch (args[0]) {
@@ -257,7 +257,7 @@ async function main(): Promise<void> {
     profileCheckpoint('cli_tmux_worktree_fast_path');
     const {
       enableConfigs
-    } = await import('../utils/config.js');
+    } = await import('../server/utils/config.js');
     enableConfigs();
     const {
       isWorktreeModeEnabled

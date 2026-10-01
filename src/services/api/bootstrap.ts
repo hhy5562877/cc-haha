@@ -7,7 +7,7 @@ import {
 } from 'src/utils/auth.js'
 import { z } from 'zod'
 import { getOauthConfig, OAUTH_BETA_HEADER } from '../../server/constants/oauth.js'
-import { getGlobalConfig, saveGlobalConfig } from '../../utils/config.js'
+import { getGlobalConfig, saveGlobalConfig } from '../../server/utils/config.js'
 import { logForDebugging } from '../../server/utils/debug.js'
 import { withOAuth401Retry } from '../../utils/http.js'
 import { lazySchema } from '../../server/utils/lazySchema.js'

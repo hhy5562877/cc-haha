@@ -38,7 +38,7 @@ import {
   type ModelSetting,
 } from './model.js'
 import { has1mContext } from '../../../utils/context.js'
-import { getGlobalConfig } from '../../../utils/config.js'
+import { getGlobalConfig } from '../config.js'
 import { OPENAI_CODEX_MODEL_CATALOG } from '../../services/openaiAuth/models.js'
 
 // @[MODEL LAUNCH]: Update all the available and default model option strings below.

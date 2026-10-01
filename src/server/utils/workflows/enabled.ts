@@ -1,5 +1,5 @@
 import { getIsNonInteractiveSession } from '../../bootstrap/state.js'
-import { getGlobalConfig } from '../../../utils/config.js'
+import { getGlobalConfig } from '../config.js'
 import { isEnvTruthy } from '../envUtils.js'
 import {
   getSettings_DEPRECATED,

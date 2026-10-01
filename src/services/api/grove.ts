@@ -10,7 +10,7 @@ import { gracefulShutdown } from 'src/utils/gracefulShutdown.js'
 import { isEssentialTrafficOnly } from 'src/server/utils/privacyLevel.ts'
 import { writeToStderr } from 'src/server/utils/process.ts'
 import { getOauthConfig } from '../../server/constants/oauth.js'
-import { getGlobalConfig, saveGlobalConfig } from '../../utils/config.js'
+import { getGlobalConfig, saveGlobalConfig } from '../../server/utils/config.js'
 import {
   getAuthHeaders,
   getUserAgent,

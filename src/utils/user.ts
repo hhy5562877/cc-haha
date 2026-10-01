@@ -6,7 +6,7 @@ import {
   getRateLimitTier,
   getSubscriptionType,
 } from './auth.js'
-import { getGlobalConfig, getOrCreateUserID } from './config.js'
+import { getGlobalConfig, getOrCreateUserID } from '../server/utils/config.js'
 import { getCwd } from '../server/utils/cwd.js'
 import { type env, getHostPlatformForAnalytics } from '../server/utils/env.js'
 import { isEnvTruthy } from '../server/utils/envUtils.js'

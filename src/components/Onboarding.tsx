@@ -5,7 +5,7 @@ import { useExitOnCtrlCDWithKeybindings } from '../hooks/useExitOnCtrlCDWithKeyb
 import { Box, Link, Newline, Text, useTheme } from '../ink.js';
 import { useKeybindings } from '../keybindings/useKeybinding.js';
 import { normalizeApiKeyForConfig } from '../utils/authPortable.js';
-import { getCustomApiKeyStatus } from '../utils/config.js';
+import { getCustomApiKeyStatus } from '../server/utils/config.js';
 import { env } from '../server/utils/env.js';
 import { isRunningOnHomespace } from '../server/utils/envUtils.js';
 import type { ThemeSetting } from '../server/utils/theme.js';

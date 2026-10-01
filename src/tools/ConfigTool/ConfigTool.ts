@@ -10,7 +10,7 @@ import {
   getGlobalConfig,
   getRemoteControlAtStartup,
   saveGlobalConfig,
-} from '../../utils/config.js'
+} from '../../server/utils/config.js'
 import { errorMessage } from '../../server/utils/errors.js'
 import { lazySchema } from '../../server/utils/lazySchema.js'
 import { logError } from '../../server/utils/log.js'

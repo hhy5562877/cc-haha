@@ -3,7 +3,7 @@ import * as fs from 'node:fs/promises'
 import * as os from 'node:os'
 import * as path from 'node:path'
 import { getCwdState, setCwdState } from '../bootstrap/state.js'
-import { enableConfigs } from '../../utils/config.js'
+import { enableConfigs } from '../utils/config.js'
 import { invalidateComputerUseSkillGate } from '../utils/computerUse/skillGate.js'
 import { clearInstalledPluginsCache } from '../utils/plugins/installedPluginsManager.js'
 import { clearPluginCache } from '../utils/plugins/pluginLoader.js'
@@ -810,7 +810,7 @@ describe('Skills API', () => {
       await fs.writeFile(
         scriptPath,
         [
-          `import { enableConfigs } from '${posix(repoRoot, 'src', 'utils', 'config.js')}'`,
+          `import { enableConfigs } from '${posix(repoRoot, 'src', 'server', 'utils', 'config.js')}'`,
           `import { listSkillSlashCommands } from '${posix(repoRoot, 'src', 'server', 'api', 'skills.js')}'`,
           'enableConfigs()',
           'const commands = await listSkillSlashCommands(process.env.PROBE_CWD!)',

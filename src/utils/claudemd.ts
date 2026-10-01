@@ -53,7 +53,7 @@ import {
   getManagedClaudeRulesDir,
   getMemoryPath,
   getUserClaudeRulesDir,
-} from './config.js'
+} from '../server/utils/config.js'
 import { logForDebugging } from '../server/utils/debug.js'
 import { logForDiagnosticsNoPII } from '../server/utils/diagLogs.js'
 import { getClaudeConfigHomeDir, isEnvTruthy } from '../server/utils/envUtils.js'

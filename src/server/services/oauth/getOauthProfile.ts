@@ -2,7 +2,7 @@ import axios from 'axios'
 import { getOauthConfig, OAUTH_BETA_HEADER } from 'src/server/constants/oauth.ts'
 import type { OAuthProfileResponse } from './types.js'
 import { getAnthropicApiKey } from 'src/utils/auth.js'
-import { getGlobalConfig } from 'src/utils/config.js'
+import { getGlobalConfig } from 'src/server/utils/config.js'
 import { logError } from 'src/server/utils/log.ts'
 import { getAxiosProxyOptions } from 'src/server/utils/proxy.ts'
 

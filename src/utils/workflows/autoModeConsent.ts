@@ -1,4 +1,4 @@
-import { getGlobalConfig, saveGlobalConfig } from '../config.js'
+import { getGlobalConfig, saveGlobalConfig } from '../../server/utils/config.js'
 
 /**
  * Whether the user has already approved running workflows in auto mode.

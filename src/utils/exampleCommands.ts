@@ -1,7 +1,7 @@
 import memoize from 'lodash-es/memoize.js'
 import sample from 'lodash-es/sample.js'
 import { getCwd } from '../server/utils/cwd.js'
-import { getCurrentProjectConfig, saveCurrentProjectConfig } from './config.js'
+import { getCurrentProjectConfig, saveCurrentProjectConfig } from '../server/utils/config.js'
 import { env } from '../server/utils/env.js'
 import { execFileNoThrowWithCwd } from '../server/utils/execFileNoThrow.js'
 import { getIsGit, gitExe } from '../server/utils/git.js'

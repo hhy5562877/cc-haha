@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { getOauthConfig } from '../../server/constants/oauth.js'
 import { getOauthAccountInfo } from '../../utils/auth.js'
-import { getGlobalConfig, saveGlobalConfig } from '../../utils/config.js'
+import { getGlobalConfig, saveGlobalConfig } from '../../server/utils/config.js'
 import { logError } from '../../server/utils/log.js'
 import { isEssentialTrafficOnly } from '../../server/utils/privacyLevel.js'
 import { getOAuthHeaders, prepareApiRequest } from '../../utils/teleport/api.js'

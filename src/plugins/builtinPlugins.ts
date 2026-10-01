@@ -15,7 +15,7 @@
 
 import type { Command } from '../commands.js'
 import type { BundledSkillDefinition } from '../skills/bundledSkills.js'
-import type { BuiltinPluginDefinition, LoadedPlugin } from '../types/plugin.js'
+import type { BuiltinPluginDefinition, LoadedPlugin } from '../server/types/plugin.js'
 import { getSettings_DEPRECATED } from '../server/utils/settings/settings.js'
 
 const BUILTIN_PLUGINS: Map<string, BuiltinPluginDefinition> = new Map()

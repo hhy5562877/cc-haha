@@ -1,4 +1,4 @@
-import type { PluginError } from '../../types/plugin.js'
+import type { PluginError } from '../../server/types/plugin.js'
 import { logForDebugging } from '../../server/utils/debug.js'
 import { errorMessage, toError } from '../../server/utils/errors.js'
 import { logError } from '../../server/utils/log.js'

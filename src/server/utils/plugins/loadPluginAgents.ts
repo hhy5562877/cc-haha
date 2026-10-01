@@ -11,7 +11,7 @@ import type { AgentDefinition } from '../../tools/AgentTool/loadAgentsDir.js'
 import { FILE_EDIT_TOOL_NAME } from '../../tools/FileEditTool/constants.js'
 import { FILE_READ_TOOL_NAME } from '../../tools/FileReadTool/prompt.js'
 import { FILE_WRITE_TOOL_NAME } from '../../tools/FileWriteTool/prompt.js'
-import { getPluginErrorMessage } from '../../../types/plugin.js'
+import { getPluginErrorMessage } from '../../types/plugin.js'
 import { logForDebugging } from '../debug.js'
 import { EFFORT_LEVELS, parseEffortValue } from '../../../utils/effort.js'
 import {

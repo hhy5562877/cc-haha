@@ -20,7 +20,7 @@ import {
 import { preconnectAnthropicApi } from '../utils/apiPreconnect.js'
 import { applyExtraCACertsFromConfig } from '../utils/caCertsConfig.js'
 import { registerCleanup } from '../server/utils/cleanupRegistry.js'
-import { enableConfigs, recordFirstStartTime } from '../utils/config.js'
+import { enableConfigs, recordFirstStartTime } from '../server/utils/config.js'
 import { logForDebugging } from '../server/utils/debug.js'
 import { detectCurrentRepository } from '../server/utils/detectRepository.js'
 import { logForDiagnosticsNoPII } from '../server/utils/diagLogs.js'

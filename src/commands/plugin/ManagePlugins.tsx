@@ -24,7 +24,7 @@ import { filterToolsByServer } from '../../server/services/mcp/utils.js';
 import { disablePluginOp, enablePluginOp, getPluginInstallationFromV2, isInstallableScope, isPluginEnabledAtProjectScope, uninstallPluginOp, updatePluginOp } from '../../services/plugins/pluginOperations.js';
 import { useAppState } from '../../state/AppState.js';
 import type { Tool } from '../../Tool.js';
-import type { LoadedPlugin, PluginError } from '../../types/plugin.js';
+import type { LoadedPlugin, PluginError } from '../../server/types/plugin.js';
 import { count } from '../../server/utils/array.js';
 import { openBrowser } from '../../server/utils/browser.js';
 import { logForDebugging } from '../../server/utils/debug.js';

@@ -2,7 +2,7 @@ import {
   getMainLoopModelOverride,
   setMainLoopModelOverride,
 } from '../server/bootstrap/state.js'
-import { getGlobalConfig, saveGlobalConfig } from '../utils/config.js'
+import { getGlobalConfig, saveGlobalConfig } from '../server/utils/config.js'
 import {
   getSettingsForSource,
   updateSettingsForSource,

@@ -14,7 +14,7 @@ import {
   STAT_NAMES,
   type StoredCompanion,
 } from '../../buddy/types.js'
-import { saveGlobalConfig } from '../../utils/config.js'
+import { saveGlobalConfig } from '../../server/utils/config.js'
 
 function CompanionCard({
   onDone,

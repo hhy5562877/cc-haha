@@ -16,7 +16,7 @@ import type { SpeculationAcceptMessage } from '../../server/types/logs.js'
 import type { Message } from '../../server/types/message.js'
 import { createChildAbortController } from '../../server/utils/abortController.js'
 import { count } from '../../server/utils/array.js'
-import { getGlobalConfig } from '../../utils/config.js'
+import { getGlobalConfig } from '../../server/utils/config.js'
 import { logForDebugging } from '../../server/utils/debug.js'
 import { errorMessage } from '../../server/utils/errors.js'
 import {

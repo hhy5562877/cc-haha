@@ -10,7 +10,7 @@ import { useTerminalSize } from '../../hooks/useTerminalSize.js';
 // eslint-disable-next-line custom-rules/prefer-use-keybindings -- useInput needed for raw search mode text input
 import { Box, Text, useInput, useTerminalFocus } from '../../ink.js';
 import { useKeybinding, useKeybindings } from '../../keybindings/useKeybinding.js';
-import type { LoadedPlugin } from '../../types/plugin.js';
+import type { LoadedPlugin } from '../../server/types/plugin.js';
 import { count } from '../../server/utils/array.js';
 import { openBrowser } from '../../server/utils/browser.js';
 import { logForDebugging } from '../../server/utils/debug.js';

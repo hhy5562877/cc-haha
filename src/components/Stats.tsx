@@ -13,7 +13,7 @@ import type { Color } from '../ink/styles.js';
 // eslint-disable-next-line custom-rules/prefer-use-keybindings -- raw j/k/arrow stats navigation
 import { Ansi, Box, Text, useInput } from '../ink.js';
 import { useKeybinding } from '../keybindings/useKeybinding.js';
-import { getGlobalConfig } from '../utils/config.js';
+import { getGlobalConfig } from '../server/utils/config.js';
 import { formatDuration, formatNumber } from '../utils/format.js';
 import { generateHeatmap } from '../utils/heatmap.js';
 import { renderModelName } from '../server/utils/model/model.js';

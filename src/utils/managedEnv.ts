@@ -7,7 +7,7 @@ import {
 } from '../server/services/providerRuntimeEnv.js'
 import { ensureStandaloneProviderProxy } from '../server/proxy/standaloneProviderProxy.js'
 import { clearCACertsCache } from '../server/utils/caCerts.js'
-import { getGlobalConfig } from './config.js'
+import { getGlobalConfig } from '../server/utils/config.js'
 import { getClaudeConfigHomeDir, isEnvTruthy } from '../server/utils/envUtils.js'
 import {
   isProviderManagedEnvVar,

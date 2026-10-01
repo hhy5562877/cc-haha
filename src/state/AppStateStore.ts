@@ -20,7 +20,7 @@ import type { AgentDefinitionsResult } from '../server/tools/AgentTool/loadAgent
 import type { AllowedPrompt } from '../tools/ExitPlanModeTool/ExitPlanModeV2Tool.js'
 import type { AgentId } from '../server/types/ids.js'
 import type { Message, UserMessage } from '../server/types/message.js'
-import type { LoadedPlugin, PluginError } from '../types/plugin.js'
+import type { LoadedPlugin, PluginError } from '../server/types/plugin.js'
 import type { DeepImmutable } from '../types/utils.js'
 import {
   type AttributionState,

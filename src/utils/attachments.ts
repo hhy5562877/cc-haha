@@ -70,7 +70,7 @@ import type {
 } from '@anthropic-ai/sdk/resources/messages.mjs'
 import { maybeResizeAndDownsampleImageBlock } from './imageResizer.js'
 import { registerUserProvidedImage } from './userProvidedImages.js'
-import type { PastedContent } from './config.js'
+import type { PastedContent } from '../server/utils/config.js'
 import type { ReadResourceResult } from '@modelcontextprotocol/sdk/types.js'
 import { getSkillToolCommands, getMcpSkillCommands } from '../commands.js'
 import type { Command } from '../types/command.js'

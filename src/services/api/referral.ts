@@ -5,7 +5,7 @@ import {
   getSubscriptionType,
   isClaudeAISubscriber,
 } from '../../utils/auth.js'
-import { getGlobalConfig, saveGlobalConfig } from '../../utils/config.js'
+import { getGlobalConfig, saveGlobalConfig } from '../../server/utils/config.js'
 import { logForDebugging } from '../../server/utils/debug.js'
 import { logError } from '../../server/utils/log.js'
 import { isEssentialTrafficOnly } from '../../server/utils/privacyLevel.js'

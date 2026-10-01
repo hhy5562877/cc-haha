@@ -35,7 +35,7 @@ import figures from 'figures';
 import { getCurrentTurnTokenBudget, getTurnOutputTokens } from '../server/bootstrap/state.js';
 import { TeammateSpinnerTree } from './Spinner/TeammateSpinnerTree.js';
 import { useAnimationFrame } from '../ink.js';
-import { getGlobalConfig } from '../utils/config.js';
+import { getGlobalConfig } from '../server/utils/config.js';
 export type { SpinnerMode } from './Spinner/index.js';
 const DEFAULT_CHARACTERS = getDefaultCharacters();
 const SPINNER_FRAMES = [...DEFAULT_CHARACTERS, ...[...DEFAULT_CHARACTERS].reverse()];

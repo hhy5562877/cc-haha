@@ -19,7 +19,7 @@ import { AppStateProvider } from './state/AppState.js';
 import { onChangeAppState } from './state/onChangeAppState.js';
 import { normalizeApiKeyForConfig } from './utils/authPortable.js';
 import { getExternalClaudeMdIncludes, getMemoryFiles, shouldShowClaudeMdExternalIncludesWarning } from './utils/claudemd.js';
-import { checkHasTrustDialogAccepted, getCustomApiKeyStatus, getGlobalConfig, saveGlobalConfig } from './utils/config.js';
+import { checkHasTrustDialogAccepted, getCustomApiKeyStatus, getGlobalConfig, saveGlobalConfig } from './server/utils/config.js';
 import { updateDeepLinkTerminalPreference } from './utils/deepLink/terminalPreference.js';
 import { isEnvTruthy, isRunningOnHomespace } from './server/utils/envUtils.js';
 import { type FpsMetrics, FpsTracker } from './utils/fpsTracker.js';

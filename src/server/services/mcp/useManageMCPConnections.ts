@@ -53,7 +53,7 @@ import {
   setMcpServerEnabled,
 } from './config.js'
 import type { AppState } from 'src/state/AppState.js'
-import type { PluginError } from 'src/types/plugin.js'
+import type { PluginError } from 'src/server/types/plugin.js'
 import { getAllowedChannels } from '../../bootstrap/state.js'
 import { useNotifications } from '../../../context/notifications.js'
 import {

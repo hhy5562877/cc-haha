@@ -1,4 +1,4 @@
-import { getGlobalConfig } from '../config.js'
+import { getGlobalConfig } from '../../server/utils/config.js'
 import { parseUserSpecifiedModel } from '../../server/utils/model/model.js'
 import { getHardcodedTeammateModelFallback } from './teammateModel.js'
 

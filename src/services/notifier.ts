@@ -1,5 +1,5 @@
 import type { TerminalNotification } from '../ink/useTerminalNotification.js'
-import { getGlobalConfig } from '../utils/config.js'
+import { getGlobalConfig } from '../server/utils/config.js'
 import { env } from '../server/utils/env.js'
 import { execFileNoThrow } from '../server/utils/execFileNoThrow.js'
 import { executeNotificationHooks } from '../utils/hooks.js'

@@ -58,7 +58,7 @@ import { isAgentSwarmsEnabled } from '../../server/utils/agentSwarmsEnabled.js';
 import { count } from '../../server/utils/array.js';
 import type { AutoUpdaterResult } from '../../utils/autoUpdater.js';
 import { Cursor } from '../../utils/Cursor.js';
-import { getGlobalConfig, type PastedContent, saveGlobalConfig } from '../../utils/config.js';
+import { getGlobalConfig, type PastedContent, saveGlobalConfig } from '../../server/utils/config.js';
 import { logForDebugging } from '../../server/utils/debug.js';
 import { parseDirectMemberMessage, sendDirectMemberMessage } from '../../utils/directMemberMessage.js';
 import type { EffortLevel } from '../../utils/effort.js';

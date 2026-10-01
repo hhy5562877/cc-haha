@@ -1,9 +1,9 @@
-import type { LoadedPlugin } from '../../../types/plugin.js'
+import type { LoadedPlugin } from '../../types/plugin.js'
 import memoize from 'lodash-es/memoize.js'
 import { basename, dirname, join } from 'path'
 import { getInlinePlugins, getSessionId } from '../../bootstrap/state.js'
 import type { Command } from '../../../types/command.js'
-import { getPluginErrorMessage } from '../../../types/plugin.js'
+import { getPluginErrorMessage } from '../../types/plugin.js'
 import {
   parseArgumentNames,
   substituteArguments,

@@ -1,7 +1,7 @@
 // biome-ignore-all assist/source/organizeImports: ANT-ONLY import markers must not be reordered
 import { CONTEXT_1M_BETA_HEADER } from '../constants/betas.js'
 import { getOpenAICodexContextWindowForModel } from '../server/services/openaiAuth/models.js'
-import { getGlobalConfig } from './config.js'
+import { getGlobalConfig } from '../server/utils/config.js'
 import {
   calculateContextBudget,
   calculateContextPercentagesFromTokens,

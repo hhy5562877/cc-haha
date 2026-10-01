@@ -15,7 +15,7 @@ import { getRawUtilization } from '../services/claudeAiLimits.js';
 import type { Message } from '../server/types/message.js';
 import type { StatusLineCommandInput } from '../types/statusLine.js';
 import type { VimMode } from '../types/textInputTypes.js';
-import { checkHasTrustDialogAccepted } from '../utils/config.js';
+import { checkHasTrustDialogAccepted } from '../server/utils/config.js';
 import { calculateCurrentContextTokenTotal, getContextWindowForModel } from '../utils/context.js';
 import { calculateContextPercentagesFromTokens, getProviderUsageTrust, hasMediaInput } from '../server/utils/contextBudget.js';
 import { getCwd } from '../server/utils/cwd.js';

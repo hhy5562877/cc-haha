@@ -1,6 +1,6 @@
 import { logEvent } from '../server/services/analytics/index.js'
 import { isProSubscriber } from '../utils/auth.js'
-import { getGlobalConfig, saveGlobalConfig } from '../utils/config.js'
+import { getGlobalConfig, saveGlobalConfig } from '../server/utils/config.js'
 import { getAPIProvider } from '../server/utils/model/providers.js'
 import { getSettings_DEPRECATED } from '../server/utils/settings/settings.js'
 

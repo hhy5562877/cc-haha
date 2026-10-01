@@ -4,7 +4,7 @@ import { use } from 'react';
 import { Box } from '../ink.js';
 import type { AgentDefinitionsResult } from '../server/tools/AgentTool/loadAgentsDir.js';
 import { getMemoryFiles } from '../utils/claudemd.js';
-import { getGlobalConfig } from '../utils/config.js';
+import { getGlobalConfig } from '../server/utils/config.js';
 import { getActiveNotices, type StatusNoticeContext } from '../utils/statusNoticeDefinitions.js';
 type Props = {
   agentDefinitions?: AgentDefinitionsResult;

@@ -8,7 +8,7 @@ import { isClaudeAISubscriber } from '../../utils/auth.js';
 import { openBrowser } from '../../server/utils/browser.js';
 import { CLAUDE_IN_CHROME_MCP_SERVER_NAME, openInChrome } from '../../server/utils/claudeInChrome/common.js';
 import { isChromeExtensionInstalled } from '../../utils/claudeInChrome/setup.js';
-import { getGlobalConfig, saveGlobalConfig } from '../../utils/config.js';
+import { getGlobalConfig, saveGlobalConfig } from '../../server/utils/config.js';
 import { env } from '../../server/utils/env.js';
 import { isRunningOnHomespace } from '../../server/utils/envUtils.js';
 const CHROME_EXTENSION_URL = 'https://claude.ai/chrome';

@@ -9,9 +9,9 @@ import { KeyboardShortcutHint } from '../../components/design-system/KeyboardSho
 // eslint-disable-next-line custom-rules/prefer-use-keybindings -- useInput needed for marketplace-specific u/r shortcuts and y/n confirmation not in keybinding schema
 import { Box, Text, useInput } from '../../ink.js';
 import { useKeybinding, useKeybindings } from '../../keybindings/useKeybinding.js';
-import type { LoadedPlugin } from '../../types/plugin.js';
+import type { LoadedPlugin } from '../../server/types/plugin.js';
 import { count } from '../../server/utils/array.js';
-import { shouldSkipPluginAutoupdate } from '../../utils/config.js';
+import { shouldSkipPluginAutoupdate } from '../../server/utils/config.js';
 import { errorMessage } from '../../server/utils/errors.js';
 import { clearAllCaches } from '../../server/utils/plugins/cacheUtils.js';
 import { createPluginId, formatMarketplaceLoadingErrors, getMarketplaceSourceDisplay, loadMarketplacesWithGracefulDegradation } from '../../server/utils/plugins/marketplaceHelpers.js';

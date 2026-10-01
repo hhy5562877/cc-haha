@@ -6,7 +6,7 @@ import {
   logEvent,
 } from '../analytics/index.js'
 import { getClaudeAIOAuthTokens } from 'src/utils/auth.js'
-import { getGlobalConfig, saveGlobalConfig } from 'src/utils/config.js'
+import { getGlobalConfig, saveGlobalConfig } from 'src/server/utils/config.js'
 import { logForDebugging } from 'src/server/utils/debug.ts'
 import { isEnvDefinedFalsy } from 'src/server/utils/envUtils.ts'
 import { clearMcpAuthCache } from './client.js'

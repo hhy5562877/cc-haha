@@ -9,7 +9,7 @@ import {
   getAutoUpdaterDisabledReason,
   getGlobalConfig,
   type InstallMethod,
-} from './config.js'
+} from '../server/utils/config.js'
 import { getCwd } from '../server/utils/cwd.js'
 import { isEnvTruthy } from '../server/utils/envUtils.js'
 import { execFileNoThrow } from '../server/utils/execFileNoThrow.js'

@@ -8,7 +8,7 @@ import {
 import { join } from 'path'
 import { getProjectRoot, getSessionId } from './server/bootstrap/state.js'
 import { registerCleanup } from './server/utils/cleanupRegistry.js'
-import type { HistoryEntry, PastedContent } from './utils/config.js'
+import type { HistoryEntry, PastedContent } from './server/utils/config.js'
 import { logForDebugging } from './server/utils/debug.js'
 import { getClaudeConfigHomeDir, isEnvTruthy } from './server/utils/envUtils.js'
 import { getErrnoCode } from './server/utils/errors.js'

@@ -3,7 +3,7 @@ import { feature } from 'bun:bundle';
 import * as React from 'react';
 import { useEffect, useState } from 'react';
 import { Box, Text } from '../../ink.js';
-import { getGlobalConfig, saveGlobalConfig } from '../../utils/config.js';
+import { getGlobalConfig, saveGlobalConfig } from '../../server/utils/config.js';
 import { getInitialSettings } from '../../server/utils/settings/settings.js';
 import { isVoiceModeEnabled } from '../../voice/voiceModeEnabled.js';
 import { AnimatedAsterisk } from './AnimatedAsterisk.js';

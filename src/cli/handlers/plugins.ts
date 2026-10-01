@@ -21,7 +21,7 @@ import {
   VALID_INSTALLABLE_SCOPES,
   VALID_UPDATE_SCOPES,
 } from '../../services/plugins/pluginCliCommands.js'
-import { getPluginErrorMessage } from '../../types/plugin.js'
+import { getPluginErrorMessage } from '../../server/types/plugin.js'
 import { errorMessage } from '../../server/utils/errors.js'
 import { logError } from '../../server/utils/log.js'
 import { clearAllCaches } from '../../server/utils/plugins/cacheUtils.js'

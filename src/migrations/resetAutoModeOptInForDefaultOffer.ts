@@ -1,6 +1,6 @@
 import { feature } from 'bun:bundle'
 import { logEvent } from '../server/services/analytics/index.js'
-import { getGlobalConfig, saveGlobalConfig } from '../utils/config.js'
+import { getGlobalConfig, saveGlobalConfig } from '../server/utils/config.js'
 import { logError } from '../server/utils/log.js'
 import { getAutoModeEnabledState } from '../server/utils/permissions/permissionSetup.js'
 import {

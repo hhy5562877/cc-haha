@@ -49,7 +49,7 @@ import { isAgentSwarmsEnabled } from './server/utils/agentSwarmsEnabled.js';
 import { count, uniq } from './server/utils/array.js';
 import { installAsciicastRecorder } from './utils/asciicast.js';
 import { getSubscriptionType, isClaudeAISubscriber, prefetchAwsCredentialsAndBedRockInfoIfSafe, prefetchGcpCredentialsIfSafe, validateForceLoginOrg } from './utils/auth.js';
-import { checkHasTrustDialogAccepted, getGlobalConfig, getRemoteControlAtStartup, isAutoUpdaterDisabled, saveGlobalConfig } from './utils/config.js';
+import { checkHasTrustDialogAccepted, getGlobalConfig, getRemoteControlAtStartup, isAutoUpdaterDisabled, saveGlobalConfig } from './server/utils/config.js';
 import { seedEarlyInput, stopCapturingEarlyInput } from './utils/earlyInput.js';
 import { getInitialEffortSetting, parseEffortValue } from './utils/effort.js';
 import { initialRuntimeEffort } from './utils/swarm/teamWorkerRuntime.js';
@@ -652,7 +652,7 @@ export async function main() {
     if (handleUriIdx !== -1 && process.argv[handleUriIdx + 1]) {
       const {
         enableConfigs
-      } = await import('./utils/config.js');
+      } = await import('./server/utils/config.js');
       enableConfigs();
       const uri = process.argv[handleUriIdx + 1]!;
       const {
@@ -669,7 +669,7 @@ export async function main() {
     if (process.platform === 'darwin' && process.env.__CFBundleIdentifier === 'com.anthropic.claude-code-url-handler') {
       const {
         enableConfigs
-      } = await import('./utils/config.js');
+      } = await import('./server/utils/config.js');
       enableConfigs();
       const {
         handleUrlSchemeLaunch

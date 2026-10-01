@@ -22,7 +22,7 @@
  */
 
 import { getRepoClassCached } from './commitAttribution.js'
-import { getGlobalConfig } from './config.js'
+import { getGlobalConfig } from '../server/utils/config.js'
 import { isEnvTruthy } from '../server/utils/envUtils.js'
 
 export function isUndercover(): boolean {

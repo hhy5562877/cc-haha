@@ -4,7 +4,7 @@ import {
   clearAwsCredentialsCache,
   clearGcpCredentialsCache,
 } from '../utils/auth.js'
-import { getGlobalConfig, saveGlobalConfig } from '../utils/config.js'
+import { getGlobalConfig, saveGlobalConfig } from '../server/utils/config.js'
 import { toError } from '../server/utils/errors.js'
 import { logError } from '../server/utils/log.js'
 import { applyConfigEnvironmentVariables } from '../utils/managedEnv.js'

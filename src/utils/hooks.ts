@@ -39,7 +39,7 @@ import {
   getOriginalCwd,
   getMainThreadAgentType,
 } from '../server/bootstrap/state.js'
-import { checkHasTrustDialogAccepted } from './config.js'
+import { checkHasTrustDialogAccepted } from '../server/utils/config.js'
 import {
   getHooksConfigFromSnapshot,
   shouldAllowManagedHooksOnly,

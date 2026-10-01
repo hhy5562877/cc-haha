@@ -17,7 +17,7 @@ import { Box, Text } from '../../ink.js';
 import { logEvent } from '../../server/services/analytics/index.js';
 import type { LocalJSXCommandCall } from '../../types/command.js';
 import type { AssistantMessage, Message } from '../../server/types/message.js';
-import { getGlobalConfig, saveGlobalConfig } from '../../utils/config.js';
+import { getGlobalConfig, saveGlobalConfig } from '../../server/utils/config.js';
 import { extractTextContent, stripPromptXMLTags } from '../../utils/messages.js';
 import { countCharInString } from '../../server/utils/stringUtils.js';
 const COPY_DIR = join(tmpdir(), 'claude');

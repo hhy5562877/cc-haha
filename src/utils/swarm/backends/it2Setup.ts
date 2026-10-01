@@ -1,5 +1,5 @@
 import { homedir } from 'os'
-import { getGlobalConfig, saveGlobalConfig } from '../../../utils/config.js'
+import { getGlobalConfig, saveGlobalConfig } from '../../../server/utils/config.js'
 import { logForDebugging } from '../../../server/utils/debug.js'
 import {
   execFileNoThrow,

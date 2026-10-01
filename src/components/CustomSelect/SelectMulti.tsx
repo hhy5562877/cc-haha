@@ -2,7 +2,7 @@ import { c as _c } from "react/compiler-runtime";
 import figures from 'figures';
 import React from 'react';
 import { Box, Text } from '../../ink.js';
-import type { PastedContent } from '../../utils/config.js';
+import type { PastedContent } from '../../server/utils/config.js';
 import type { ImageDimensions } from '../../utils/imageResizer.js';
 import type { OptionWithDescription } from './select.js';
 import { SelectInputOption } from './select-input-option.js';

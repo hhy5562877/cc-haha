@@ -3,7 +3,7 @@ import React from 'react';
 import { envDynamic } from 'src/server/utils/envDynamic.js';
 import { Box, Text } from '../ink.js';
 import { useKeybindings } from '../keybindings/useKeybinding.js';
-import { getGlobalConfig, saveGlobalConfig } from '../utils/config.js';
+import { getGlobalConfig, saveGlobalConfig } from '../server/utils/config.js';
 import { env } from '../server/utils/env.js';
 import { getTerminalIdeType, type IDEExtensionInstallationStatus, isJetBrainsIde, toIDEDisplayName } from '../utils/ide.js';
 import { Dialog } from './design-system/Dialog.js';

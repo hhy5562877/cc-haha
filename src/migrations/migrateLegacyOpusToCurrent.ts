@@ -2,7 +2,7 @@ import {
   type AnalyticsMetadata_I_VERIFIED_THIS_IS_NOT_CODE_OR_FILEPATHS,
   logEvent,
 } from '../server/services/analytics/index.js'
-import { saveGlobalConfig } from '../utils/config.js'
+import { saveGlobalConfig } from '../server/utils/config.js'
 import { isLegacyModelRemapEnabled } from '../server/utils/model/model.js'
 import { getAPIProvider } from '../server/utils/model/providers.js'
 import {

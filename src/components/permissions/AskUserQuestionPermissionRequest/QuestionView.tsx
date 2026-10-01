@@ -5,7 +5,7 @@ import type { KeyboardEvent } from '../../../ink/events/keyboard-event.js';
 import { Box, Text } from '../../../ink.js';
 import { useAppState } from '../../../state/AppState.js';
 import type { Question, QuestionOption } from '../../../tools/AskUserQuestionTool/AskUserQuestionTool.js';
-import type { PastedContent } from '../../../utils/config.js';
+import type { PastedContent } from '../../../server/utils/config.js';
 import { getExternalEditor } from '../../../utils/editor.js';
 import { toIDEDisplayName } from '../../../utils/ide.js';
 import type { ImageDimensions } from '../../../utils/imageResizer.js';
