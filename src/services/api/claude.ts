@@ -58,7 +58,7 @@ import {
   splitSysPromptPrefix,
   toolToAPISchema,
 } from "../../utils/api.js";
-import { getOauthAccountInfo } from "../../utils/auth.js";
+import { getOauthAccountInfo } from "../../server/utils/auth.js";
 import {
   getBedrockExtraBodyParamsBetas,
   getMergedBetas,
@@ -159,7 +159,7 @@ import {
   modelSupportsAdvisor,
 } from "src/utils/advisor.js";
 import { getAgentContext } from "src/server/utils/agentContext.js";
-import { isClaudeAISubscriber } from "src/utils/auth.js";
+import { isClaudeAISubscriber } from "src/server/utils/auth.js";
 import {
   getToolSearchBetaHeader,
   modelSupportsStructuredOutputs,

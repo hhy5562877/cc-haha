@@ -2,7 +2,7 @@ import { normalizeLanguageForSTT } from '../../hooks/useVoice.js'
 import { getShortcutDisplay } from '../../keybindings/shortcutFormat.js'
 import { logEvent } from '../../server/services/analytics/index.js'
 import type { LocalCommandCall } from '../../types/command.js'
-import { isAnthropicAuthEnabled } from '../../utils/auth.js'
+import { isAnthropicAuthEnabled } from '../../server/utils/auth.js'
 import { getGlobalConfig, saveGlobalConfig } from '../../server/utils/config.js'
 import { settingsChangeDetector } from '../../server/utils/settings/changeDetector.js'
 import {

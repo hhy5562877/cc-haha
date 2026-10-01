@@ -29,7 +29,7 @@ import {
   checkAndRefreshOAuthTokenIfNeeded,
   getClaudeAIOAuthTokens,
   handleOAuth401Error,
-} from '../utils/auth.js'
+} from '../server/utils/auth.js'
 import { getGlobalConfig, saveGlobalConfig } from '../server/utils/config.js'
 import { logForDebugging } from '../server/utils/debug.js'
 import { stripDisplayTagsAllowEmpty } from '../server/utils/displayTags.js'

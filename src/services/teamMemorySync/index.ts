@@ -43,7 +43,7 @@ import { count } from '../../server/utils/array.js'
 import {
   checkAndRefreshOAuthTokenIfNeeded,
   getClaudeAIOAuthTokens,
-} from '../../utils/auth.js'
+} from '../../server/utils/auth.js'
 import { logForDebugging } from '../../server/utils/debug.js'
 import { classifyAxiosError } from '../../server/utils/errors.js'
 import { getGithubRepo } from '../../server/utils/git.js'

@@ -20,7 +20,7 @@ import {
   checkAndRefreshOAuthTokenIfNeeded,
   getAnthropicApiKeyWithSource,
   getClaudeAIOAuthTokens,
-} from '../../utils/auth.js'
+} from '../../server/utils/auth.js'
 import { registerCleanup } from '../../server/utils/cleanupRegistry.js'
 import { logForDebugging } from '../../server/utils/debug.js'
 import { classifyAxiosError, getErrnoCode } from '../../server/utils/errors.js'

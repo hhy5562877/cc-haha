@@ -23,7 +23,7 @@ import {
   handleOAuth401Error,
   isClaudeAISubscriber,
   isEnterpriseSubscriber,
-} from '../../utils/auth.js'
+} from '../../server/utils/auth.js'
 import { isEnvTruthy } from '../../server/utils/envUtils.js'
 import { errorMessage } from '../../server/utils/errors.js'
 import {

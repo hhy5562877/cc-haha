@@ -5,7 +5,7 @@ import {
   type AnalyticsMetadata_I_VERIFIED_THIS_IS_NOT_CODE_OR_FILEPATHS,
   logEvent,
 } from '../analytics/index.js'
-import { getClaudeAIOAuthTokens } from 'src/utils/auth.js'
+import { getClaudeAIOAuthTokens } from 'src/server/utils/auth.js'
 import { getGlobalConfig, saveGlobalConfig } from 'src/server/utils/config.js'
 import { logForDebugging } from 'src/server/utils/debug.ts'
 import { isEnvDefinedFalsy } from 'src/server/utils/envUtils.ts'

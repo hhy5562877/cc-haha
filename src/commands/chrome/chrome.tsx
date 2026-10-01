@@ -4,7 +4,7 @@ import { type OptionWithDescription, Select } from '../../components/CustomSelec
 import { Dialog } from '../../components/design-system/Dialog.js';
 import { Box, Text } from '../../ink.js';
 import { useAppState } from '../../state/AppState.js';
-import { isClaudeAISubscriber } from '../../utils/auth.js';
+import { isClaudeAISubscriber } from '../../server/utils/auth.js';
 import { openBrowser } from '../../server/utils/browser.js';
 import { CLAUDE_IN_CHROME_MCP_SERVER_NAME, openInChrome } from '../../server/utils/claudeInChrome/common.js';
 import { isChromeExtensionInstalled } from '../../utils/claudeInChrome/setup.js';

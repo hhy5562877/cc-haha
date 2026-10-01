@@ -3,7 +3,7 @@ import {
   clearApiKeyHelperCache,
   clearAwsCredentialsCache,
   clearGcpCredentialsCache,
-} from '../utils/auth.js'
+} from '../server/utils/auth.js'
 import { getGlobalConfig, saveGlobalConfig } from '../server/utils/config.js'
 import { toError } from '../server/utils/errors.js'
 import { logError } from '../server/utils/log.js'

@@ -4,7 +4,7 @@ import {
   getOauthAccountInfo,
   getSubscriptionType,
   isClaudeAISubscriber,
-} from '../../utils/auth.js'
+} from '../../server/utils/auth.js'
 import { getGlobalConfig, saveGlobalConfig } from '../../server/utils/config.js'
 import { logForDebugging } from '../../server/utils/debug.js'
 import { logError } from '../../server/utils/log.js'

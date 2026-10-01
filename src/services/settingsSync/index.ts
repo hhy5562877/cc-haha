@@ -23,7 +23,7 @@ import {
 import {
   checkAndRefreshOAuthTokenIfNeeded,
   getClaudeAIOAuthTokens,
-} from '../../utils/auth.js'
+} from '../../server/utils/auth.js'
 import { clearMemoryFileCaches } from '../../utils/claudemd.js'
 import { getMemoryPath } from '../../server/utils/config.js'
 import { logForDiagnosticsNoPII } from '../../server/utils/diagLogs.js'

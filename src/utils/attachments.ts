@@ -120,7 +120,7 @@ import {
   shouldInjectAgentListInMessages,
 } from '../server/tools/AgentTool/prompt.js'
 import { filterDeniedAgents } from '../server/utils/permissions/permissions.js'
-import { getSubscriptionType } from './auth.js'
+import { getSubscriptionType } from '../server/utils/auth.js'
 import { mcpInfoFromString } from '../server/services/mcp/mcpStringUtils.js'
 import {
   matchingRuleForInput,

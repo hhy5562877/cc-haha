@@ -1,12 +1,12 @@
 # 引擎解耦量化报告
 
-> 自动生成：bun scripts/engine-decoupling-report.ts（词法模块图，3749 文件）
+> 自动生成：bun scripts/engine-decoupling-report.ts（词法模块图，3748 文件）
 
 ## 总量
 
-- src/server 文件数：839
-- server → 引擎 **直接依赖边**：270（涉及 126 个引擎文件）
-- 引擎传递闭包（直接+间接可达）：**1614 个文件**
+- src/server 文件数：840
+- server → 引擎 **直接依赖边**：263（涉及 130 个引擎文件）
+- 引擎传递闭包（直接+间接可达）：**1613 个文件**
 - 其中疑似类型/模型定义类直接依赖：7
 
 ## 直接依赖按引擎目录分布
@@ -39,7 +39,6 @@
 | src/utils/workflows | 1 |
 | src/utils/statsCache.ts | 1 |
 | src/utils/effort.ts | 1 |
-| src/utils/auth.ts | 1 |
 | src/skills/loadSkillsDir.ts | 1 |
 | src/entrypoints/agentSdkTypes.ts | 1 |
 | src/entrypoints/sdk | 1 |
@@ -113,6 +112,11 @@
 | src/skills/bundledSkills.ts | 1 |
 | src/tools/WebSearchTool | 1 |
 | src/utils/worktreeModeEnabled.ts | 1 |
+| src/services/mockRateLimits.ts | 1 |
+| src/utils/authPortable.ts | 1 |
+| src/utils/aws.ts | 1 |
+| src/utils/awsAuthStatusManager.ts | 1 |
+| src/utils/toolSchemaCache.ts | 1 |
 | src/utils/memory | 1 |
 | src/memdir/teamMemPaths.ts | 1 |
 | src/bridge/bridgeEnabled.ts | 1 |
@@ -141,7 +145,6 @@
 | src/state/AppState.tsx | 109 |
 | src/utils/format.ts | 95 |
 | src/keybindings/useKeybinding.ts | 91 |
-| src/utils/auth.ts | 82 |
 | src/types/command.ts | 78 |
 | src/utils/sessionStorage.ts | 59 |
 | src/hooks/useTerminalSize.ts | 59 |
@@ -159,6 +162,7 @@
 | src/utils/tasks.ts | 28 |
 | src/components/CustomSelect/index.ts | 28 |
 | src/utils/effort.ts | 26 |
+| src/hooks/useCanUseTool.tsx | 26 |
 
 ## 分批解耦建议
 

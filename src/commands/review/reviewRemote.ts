@@ -24,7 +24,7 @@ import {
   getRemoteTaskSessionUrl,
   registerRemoteAgentTask,
 } from '../../tasks/RemoteAgentTask/RemoteAgentTask.js'
-import { isEnterpriseSubscriber, isTeamSubscriber } from '../../utils/auth.js'
+import { isEnterpriseSubscriber, isTeamSubscriber } from '../../server/utils/auth.js'
 import { detectCurrentRepositoryWithHost } from '../../server/utils/detectRepository.js'
 import { execFileNoThrow } from '../../server/utils/execFileNoThrow.js'
 import { getDefaultBranch, gitExe } from '../../server/utils/git.js'

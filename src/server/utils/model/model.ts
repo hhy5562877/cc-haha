@@ -14,7 +14,7 @@ import {
   isOpenAIAuthActive,
   isProSubscriber,
   isTeamPremiumSubscriber,
-} from '../../../utils/auth.js'
+} from '../auth.js'
 import {
   has1mContext,
   is1mContextDisabled,

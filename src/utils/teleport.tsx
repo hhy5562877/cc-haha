@@ -18,7 +18,7 @@ import { getOrganizationUUID } from '../server/services/oauth/client.js';
 import { AppStateProvider } from '../state/AppState.js';
 import type { Message, SystemMessage } from '../server/types/message.js';
 import type { PermissionMode } from '../server/types/permissions.js';
-import { checkAndRefreshOAuthTokenIfNeeded, getClaudeAIOAuthTokens } from './auth.js';
+import { checkAndRefreshOAuthTokenIfNeeded, getClaudeAIOAuthTokens } from '../server/utils/auth.js';
 import { checkGithubAppInstalled } from './background/remote/preconditions.js';
 import { deserializeMessages, type TeleportRemoteResponse } from './conversationRecovery.js';
 import { getCwd } from '../server/utils/cwd.js';

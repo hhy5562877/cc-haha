@@ -9,7 +9,7 @@ import { buildTool, type ToolDef } from '../../Tool.js'
 import {
   checkAndRefreshOAuthTokenIfNeeded,
   getClaudeAIOAuthTokens,
-} from '../../utils/auth.js'
+} from '../../server/utils/auth.js'
 import { lazySchema } from '../../server/utils/lazySchema.js'
 import { jsonStringify } from '../../server/utils/slowOperations.js'
 import { DESCRIPTION, PROMPT, REMOTE_TRIGGER_TOOL_NAME } from './prompt.js'

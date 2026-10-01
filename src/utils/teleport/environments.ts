@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { getOauthConfig } from 'src/server/constants/oauth.ts'
 import { getOrganizationUUID } from 'src/server/services/oauth/client.js'
-import { getClaudeAIOAuthTokens } from '../auth.js'
+import { getClaudeAIOAuthTokens } from '../../server/utils/auth.js'
 import { toError } from '../../server/utils/errors.js'
 import { logError } from '../../server/utils/log.js'
 import { getOAuthHeaders } from './api.js'

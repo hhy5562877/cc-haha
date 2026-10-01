@@ -1,6 +1,6 @@
 import { getIsNonInteractiveSession } from '../../server/bootstrap/state.js'
 import type { Command } from '../../commands.js'
-import { isOverageProvisioningAllowed } from '../../utils/auth.js'
+import { isOverageProvisioningAllowed } from '../../server/utils/auth.js'
 import { isEnvTruthy } from '../../server/utils/envUtils.js'
 
 function isExtraUsageAllowed(): boolean {

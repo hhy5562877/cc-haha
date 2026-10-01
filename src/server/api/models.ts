@@ -12,7 +12,7 @@ import { SettingsService } from '../services/settingsService.js'
 import { ProviderService } from '../services/providerService.js'
 import { attributionHeaderEnvForModel } from '../services/attributionHeaderPolicy.js'
 import { ApiError, errorResponse } from '../middleware/errorHandler.js'
-import { hasOpenAIAuthLogin } from '../../utils/auth.js'
+import { hasOpenAIAuthLogin } from '../utils/auth.js'
 import { getOpenAICodexModelCatalog } from '../services/openaiAuth/modelCatalog.js'
 import { getDesktopOpenAICodexModelCatalog } from '../services/openaiModelCatalog.js'
 import {

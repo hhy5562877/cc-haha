@@ -167,7 +167,7 @@ import {
   clearPluginSkillsCache,
 } from './server/utils/plugins/loadPluginCommands.js'
 import memoize from 'lodash-es/memoize.js'
-import { isUsing3PServices, isClaudeAISubscriber } from './utils/auth.js'
+import { isUsing3PServices, isClaudeAISubscriber } from './server/utils/auth.js'
 import { isFirstPartyAnthropicBaseUrl } from './server/utils/model/providers.js'
 import env from './commands/env/index.js'
 import exit from './commands/exit/index.js'

@@ -4,7 +4,7 @@ import {
   getClaudeAIOAuthTokens,
   hasProfileScope,
   isClaudeAISubscriber,
-} from '../../utils/auth.js'
+} from '../../server/utils/auth.js'
 import { getAuthHeaders } from '../../utils/http.js'
 import { getClaudeCodeUserAgent } from '../../server/utils/userAgent.js'
 import { isOAuthTokenExpired } from '../../server/services/oauth/client.js'

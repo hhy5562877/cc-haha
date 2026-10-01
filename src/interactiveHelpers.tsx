@@ -255,7 +255,7 @@ export async function showSetupScreens(root: Root, permissionMode: PermissionMod
         isChannelsEnabled
       }, {
         getClaudeAIOAuthTokens
-      }] = await Promise.all([import('./server/services/mcp/channelAllowlist.js'), import('./utils/auth.js')]);
+      }] = await Promise.all([import('./server/services/mcp/channelAllowlist.js'), import('./server/utils/auth.js')]);
       // Skip the dialog when channels are blocked (tengu_harbor off or no
       // OAuth) — accepting then immediately seeing "not available" in
       // ChannelsNotice is worse than no dialog. Append entries anyway so

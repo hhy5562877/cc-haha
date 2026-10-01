@@ -7,7 +7,7 @@ import {
   isAnthropicAuthEnabled,
   isClaudeAISubscriber,
   isOpenAIAuthActive,
-} from '../utils/auth.js'
+} from '../server/utils/auth.js'
 
 export type VerificationStatus =
   | 'loading'

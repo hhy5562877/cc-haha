@@ -6,7 +6,7 @@ import {
   checkAndRefreshOAuthTokenIfNeeded,
   getClaudeAIOAuthTokens,
   isClaudeAISubscriber,
-} from '../../auth.js'
+} from '../../../server/utils/auth.js'
 import { getCwd } from '../../../server/utils/cwd.js'
 import { logForDebugging } from '../../../server/utils/debug.js'
 import { detectCurrentRepository } from '../../../server/utils/detectRepository.js'

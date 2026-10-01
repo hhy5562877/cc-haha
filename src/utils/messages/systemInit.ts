@@ -11,7 +11,7 @@ import {
   AGENT_TOOL_NAME,
   LEGACY_AGENT_TOOL_NAME,
 } from 'src/server/tools/AgentTool/constants.js'
-import { getAnthropicApiKeyWithSource } from '../auth.js'
+import { getAnthropicApiKeyWithSource } from '../../server/utils/auth.js'
 import { getCwd } from '../../server/utils/cwd.js'
 import { getFastModeState } from '../fastMode.js'
 import { getSettings_DEPRECATED } from '../../server/utils/settings/settings.js'

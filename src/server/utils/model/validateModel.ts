@@ -3,7 +3,7 @@ import { MODEL_ALIASES } from './aliases.js'
 import { isModelAllowed } from './modelAllowlist.js'
 import { getAPIProvider } from './providers.js'
 import { sideQuery } from '../../../utils/sideQuery.js'
-import { isOpenAIAuthActive } from '../../../utils/auth.js'
+import { isOpenAIAuthActive } from '../auth.js'
 import {
   NotFoundError,
   APIError,

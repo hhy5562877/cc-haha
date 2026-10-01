@@ -11,7 +11,7 @@ import {
   isClaudeAISubscriber,
   refreshAndGetAwsCredentials,
   refreshGcpCredentialsIfNeeded,
-} from 'src/utils/auth.js'
+} from 'src/server/utils/auth.js'
 import { signClaudeCodeCCHBody } from 'src/utils/claudeCodeCch.js'
 import { getUserAgent } from 'src/utils/http.js'
 import { getSmallFastModel } from '../../utils/model/model.js'

@@ -15,7 +15,7 @@ import {
   getClaudeAIOAuthTokens,
   handleOAuth401Error,
   hasProfileScope,
-} from './auth.js'
+} from '../server/utils/auth.js'
 import { isInBundledMode } from '../server/utils/bundledMode.js'
 import { getGlobalConfig, saveGlobalConfig } from '../server/utils/config.js'
 import { logForDebugging } from '../server/utils/debug.js'

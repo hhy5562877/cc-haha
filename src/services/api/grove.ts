@@ -4,7 +4,7 @@ import {
   type AnalyticsMetadata_I_VERIFIED_THIS_IS_NOT_CODE_OR_FILEPATHS,
   logEvent,
 } from '../../server/services/analytics/index.js'
-import { getOauthAccountInfo, isConsumerSubscriber } from 'src/utils/auth.js'
+import { getOauthAccountInfo, isConsumerSubscriber } from 'src/server/utils/auth.js'
 import { logForDebugging } from 'src/server/utils/debug.ts'
 import { gracefulShutdown } from 'src/utils/gracefulShutdown.js'
 import { isEssentialTrafficOnly } from 'src/server/utils/privacyLevel.ts'

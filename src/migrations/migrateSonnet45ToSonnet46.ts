@@ -6,7 +6,7 @@ import {
   isMaxSubscriber,
   isProSubscriber,
   isTeamPremiumSubscriber,
-} from '../utils/auth.js'
+} from '../server/utils/auth.js'
 import { getGlobalConfig, saveGlobalConfig } from '../server/utils/config.js'
 import { getAPIProvider } from '../server/utils/model/providers.js'
 import {

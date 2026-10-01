@@ -8,78 +8,78 @@ import { CLAUDE_AI_PROFILE_SCOPE } from 'src/server/constants/oauth.ts'
 import {
   type AnalyticsMetadata_I_VERIFIED_THIS_IS_NOT_CODE_OR_FILEPATHS,
   logEvent,
-} from '../server/services/analytics/index.js'
-import { getModelStrings } from '../server/utils/model/modelStrings.js'
+} from '../services/analytics/index.js'
+import { getModelStrings } from './model/modelStrings.js'
 import {
   getAPIProvider,
   isFirstPartyAnthropicBaseUrl,
-} from '../server/utils/model/providers.js'
+} from './model/providers.js'
 import {
   getIsNonInteractiveSession,
   preferThirdPartyAuthentication,
-} from '../server/bootstrap/state.js'
+} from '../bootstrap/state.js'
 import {
   getMockSubscriptionType,
   shouldUseMockSubscription,
-} from '../services/mockRateLimits.js'
-import { getOpenAIOAuthTokens } from '../server/services/openaiAuth/storage.js'
+} from '../../services/mockRateLimits.js'
+import { getOpenAIOAuthTokens } from '../services/openaiAuth/storage.js'
 import {
   isOAuthTokenExpired,
   refreshOAuthToken,
   shouldUseClaudeAIAuth,
-} from '../server/services/oauth/client.js'
-import { getOauthProfileFromOauthToken } from '../server/services/oauth/getOauthProfile.js'
-import type { OAuthTokens, SubscriptionType } from '../server/services/oauth/types.js'
+} from '../services/oauth/client.js'
+import { getOauthProfileFromOauthToken } from '../services/oauth/getOauthProfile.js'
+import type { OAuthTokens, SubscriptionType } from '../services/oauth/types.js'
 import {
   getApiKeyFromFileDescriptor,
   getOAuthTokenFromFileDescriptor,
-} from '../server/utils/authFileDescriptor.js'
+} from './authFileDescriptor.js'
 import {
   maybeRemoveApiKeyFromMacOSKeychainThrows,
   normalizeApiKeyForConfig,
-} from './authPortable.js'
+} from '../../utils/authPortable.js'
 import {
   checkStsCallerIdentity,
   clearAwsIniCache,
   isValidAwsStsOutput,
-} from './aws.js'
-import { AwsAuthStatusManager } from './awsAuthStatusManager.js'
-import { clearBetasCaches } from './betas.js'
+} from '../../utils/aws.js'
+import { AwsAuthStatusManager } from '../../utils/awsAuthStatusManager.js'
+import { clearBetasCaches } from '../../utils/betas.js'
 import {
   type AccountInfo,
   checkHasTrustDialogAccepted,
   getGlobalConfig,
   saveGlobalConfig,
-} from '../server/utils/config.js'
-import { logAntError, logForDebugging } from '../server/utils/debug.js'
+} from './config.js'
+import { logAntError, logForDebugging } from './debug.js'
 import {
   getClaudeConfigHomeDir,
   isBareMode,
   isEnvTruthy,
   isRunningOnHomespace,
-} from '../server/utils/envUtils.js'
-import { errorMessage } from '../server/utils/errors.js'
-import { execSyncWithDefaults_DEPRECATED } from '../server/utils/execFileNoThrow.js'
-import * as lockfile from '../server/utils/lockfile.js'
-import { logError } from '../server/utils/log.js'
-import { memoizeWithTTLAsync } from '../server/utils/memoize.js'
-import { getSecureStorage } from '../server/utils/secureStorage/index.js'
+} from './envUtils.js'
+import { errorMessage } from './errors.js'
+import { execSyncWithDefaults_DEPRECATED } from './execFileNoThrow.js'
+import * as lockfile from './lockfile.js'
+import { logError } from './log.js'
+import { memoizeWithTTLAsync } from './memoize.js'
+import { getSecureStorage } from './secureStorage/index.js'
 import {
   clearLegacyApiKeyPrefetch,
   getLegacyApiKeyPrefetchResult,
-} from '../server/utils/secureStorage/keychainPrefetch.js'
+} from './secureStorage/keychainPrefetch.js'
 import {
   clearKeychainCache,
   getMacOsKeychainStorageServiceName,
   getUsername,
-} from '../server/utils/secureStorage/macOsKeychainHelpers.js'
+} from './secureStorage/macOsKeychainHelpers.js'
 import {
   getSettings_DEPRECATED,
   getSettingsForSource,
-} from '../server/utils/settings/settings.js'
-import { sleep } from '../server/utils/sleep.js'
-import { jsonParse } from '../server/utils/slowOperations.js'
-import { clearToolSchemaCache } from './toolSchemaCache.js'
+} from './settings/settings.js'
+import { sleep } from './sleep.js'
+import { jsonParse } from './slowOperations.js'
+import { clearToolSchemaCache } from '../../utils/toolSchemaCache.js'
 
 /** Default TTL for API key helper cache in milliseconds (5 minutes) */
 const DEFAULT_API_KEY_HELPER_TTL = 5 * 60 * 1000

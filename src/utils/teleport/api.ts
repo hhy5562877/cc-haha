@@ -6,7 +6,7 @@ import z from 'zod/v4'
 import {
   checkAndRefreshOAuthTokenIfNeeded,
   getClaudeAIOAuthTokens,
-} from '../auth.js'
+} from '../../server/utils/auth.js'
 import { logForDebugging } from '../../server/utils/debug.js'
 import { parseGitHubRepository } from '../../server/utils/detectRepository.js'
 import { errorMessage, toError } from '../../server/utils/errors.js'

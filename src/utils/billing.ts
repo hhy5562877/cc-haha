@@ -3,7 +3,7 @@ import {
   getAuthTokenSource,
   getSubscriptionType,
   isClaudeAISubscriber,
-} from './auth.js'
+} from '../server/utils/auth.js'
 import { getGlobalConfig } from '../server/utils/config.js'
 import { isEnvTruthy } from '../server/utils/envUtils.js'
 

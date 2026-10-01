@@ -6,7 +6,7 @@ import {
   isMaxSubscriber,
   isOpenAIAuthActive,
   isTeamPremiumSubscriber,
-} from '../../../utils/auth.js'
+} from '../auth.js'
 import { getModelStrings } from './modelStrings.js'
 import {
   COST_TIER_10_50,

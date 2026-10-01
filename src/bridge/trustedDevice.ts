@@ -120,7 +120,7 @@ export async function enrollTrustedDevice(): Promise<void> {
     // of getTrustedDeviceToken() don't need this; only /login does.
     /* eslint-disable @typescript-eslint/no-require-imports */
     const { getClaudeAIOAuthTokens } =
-      require('../utils/auth.js') as typeof import('../utils/auth.js')
+      require('../server/utils/auth.js') as typeof import('../server/utils/auth.js')
     /* eslint-enable @typescript-eslint/no-require-imports */
     const accessToken = getClaudeAIOAuthTokens()?.accessToken
     if (!accessToken) {

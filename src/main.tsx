@@ -48,7 +48,7 @@ import { canUserConfigureAdvisor, getInitialAdvisorSetting, isAdvisorEnabled, is
 import { isAgentSwarmsEnabled } from './server/utils/agentSwarmsEnabled.js';
 import { count, uniq } from './server/utils/array.js';
 import { installAsciicastRecorder } from './utils/asciicast.js';
-import { getSubscriptionType, isClaudeAISubscriber, prefetchAwsCredentialsAndBedRockInfoIfSafe, prefetchGcpCredentialsIfSafe, validateForceLoginOrg } from './utils/auth.js';
+import { getSubscriptionType, isClaudeAISubscriber, prefetchAwsCredentialsAndBedRockInfoIfSafe, prefetchGcpCredentialsIfSafe, validateForceLoginOrg } from './server/utils/auth.js';
 import { checkHasTrustDialogAccepted, getGlobalConfig, getRemoteControlAtStartup, isAutoUpdaterDisabled, saveGlobalConfig } from './server/utils/config.js';
 import { seedEarlyInput, stopCapturingEarlyInput } from './utils/earlyInput.js';
 import { getInitialEffortSetting, parseEffortValue } from './utils/effort.js';
@@ -3390,7 +3390,7 @@ async function run(): Promise<CommanderCommand> {
       const {
         checkAndRefreshOAuthTokenIfNeeded,
         getClaudeAIOAuthTokens
-      } = await import('./utils/auth.js');
+      } = await import('./server/utils/auth.js');
       await checkAndRefreshOAuthTokenIfNeeded();
       let apiCreds;
       try {
@@ -3541,7 +3541,7 @@ async function run(): Promise<CommanderCommand> {
         // Create remote session config for the REPL
         const {
           getClaudeAIOAuthTokens: getTokensForRemote
-        } = await import('./utils/auth.js');
+        } = await import('./server/utils/auth.js');
         const getAccessTokenForRemote = (): string => getTokensForRemote()?.accessToken ?? apiCreds.accessToken;
         const remoteSessionConfig = createRemoteSessionConfig(createdSession.id, getAccessTokenForRemote, apiCreds.orgUUID, hasInitialPrompt);
 
