@@ -18,7 +18,7 @@
  */
 
 import { getOriginalCwd } from '../../bootstrap/state.js'
-import type { Command } from '../../../commands.js'
+import type { Command } from '../../types/command.js'
 import { reinitializeLspServerManager } from '../../../services/lsp/manager.js'
 import type { AppState } from '../../../state/AppState.js'
 import type { AgentDefinitionsResult } from '../../tools/AgentTool/loadAgentsDir.js'

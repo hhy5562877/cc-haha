@@ -1,11 +1,11 @@
 # 引擎解耦量化报告
 
-> 自动生成：bun scripts/engine-decoupling-report.ts（词法模块图，3748 文件）
+> 自动生成：bun scripts/engine-decoupling-report.ts（词法模块图，3749 文件）
 
 ## 总量
 
-- src/server 文件数：844
-- server → 引擎 **直接依赖边**：259（涉及 128 个引擎文件）
+- src/server 文件数：845
+- server → 引擎 **直接依赖边**：256（涉及 128 个引擎文件）
 - 引擎传递闭包（直接+间接可达）：**1609 个文件**
 - 其中疑似类型/模型定义类直接依赖：3
 
@@ -22,7 +22,6 @@
 | src/utils/telemetry | 2 |
 | src/state/AppStateStore.ts | 1 |
 | src/utils/stats.ts | 1 |
-| src/commands.ts | 1 |
 | src/utils/sessionBranching.ts | 1 |
 | src/utils/fileHistory.ts | 1 |
 | src/utils/sessionStorage.ts | 1 |
@@ -37,6 +36,7 @@
 | src/Tool.ts | 1 |
 | src/tasks/LocalWorkflowTask | 1 |
 | src/utils/workflows | 1 |
+| src/commands.ts | 1 |
 | src/utils/statsCache.ts | 1 |
 | src/utils/effort.ts | 1 |
 | src/entrypoints/agentSdkTypes.ts | 1 |
@@ -138,7 +138,7 @@
 |---|---|
 | src/ink.ts | 390 |
 | src/Tool.ts | 212 |
-| src/commands.ts | 165 |
+| src/commands.ts | 162 |
 | src/utils/messages.ts | 117 |
 | src/state/AppState.tsx | 109 |
 | src/utils/format.ts | 95 |

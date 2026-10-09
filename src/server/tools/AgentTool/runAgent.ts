@@ -4,7 +4,10 @@ import { randomUUID } from 'crypto'
 import uniqBy from 'lodash-es/uniqBy.js'
 import { logForDebugging } from 'src/server/utils/debug.ts'
 import { getProjectRoot, getSessionId } from '../../bootstrap/state.js'
-import { getCommand, getSkillToolCommands, hasCommand } from '../../../commands.js'
+// getCommand/hasCommand 为纯查找，走 server 本地实现（窄提取）；
+// getSkillToolCommands 挂引擎 getCommands 全量装载器，仍走引擎链。
+import { getCommand, hasCommand } from '../../utils/commandLookup.js'
+import { getSkillToolCommands } from '../../../commands.js'
 import {
   DEFAULT_AGENT_PROMPT,
   enhanceSystemPromptWithEnvDetails,

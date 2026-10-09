@@ -1,5 +1,7 @@
 # CHANGELOG
 
+- [2026-09-30 16:40] REFACTOR: 解耦批次 40 完成——commands.ts 窄提取：新建 server/utils/commandLookup.ts（findCommand/hasCommand/getCommand 纯查找移植 + server 版 clearCommandsCache=插件命令/插件技能/技能目录三层缓存清理，引擎 memo 层不装载故略去）；runAgent 拆分导入（纯查找走本地，getSkillToolCommands 挂引擎 getCommands 装载器留引擎链）；cacheUtils/refresh/sessions.test 重指（mcp×4 类型边已随批次39 重指顺带切断）；直接依赖边 259→256（累计 998→256，-74.3%）；受影响测试 381 pass/0 fail；tsc 3473 持平；E2E PASS (Files: src/server/utils/commandLookup.ts 新建, src/server/tools/AgentTool/runAgent.ts, src/server/utils/plugins/{cacheUtils,refresh}.ts, src/server/__tests__/sessions.test.ts)
+
 - [2026-09-30 15:40] REFACTOR: 解耦批次 39 完成——Command 类型链 3 文件迁入 server（types/command.ts 217 行/skills/loadSkillsDir.ts/skills/mcpSkillBuilders.ts），全仓 93 文件重指；直接依赖边 262→259（累计 998→259，-74%），闭包→1609，tsc 归一化 2434=2434 零真实新增（command.ts 的 Message TS2614 为预存搬迁）；skills/plugins/agents-api/mcp 91 pass/0 fail；E2E PASS (Files: src/server/{types,skills}/* 3 文件, src/** 93 文件重指)
 
 - [2026-09-30 14:30] REFACTOR: 解耦批次 38 完成——最后纯叶 utils/worktreeModeEnabled.ts 迁入 server（preauthorizedConfig 因 server 孪生为 DAL 适配版按批 34 裁定不迁），4 处说明符补重指；直接依赖边 263→262，闭包→1612，tsc→3473；sessions+agents-api 343 pass/0 fail；纯叶迁移至此全部耗尽，commands.ts（102 引擎命令模块注册表，窄提取需专项设计）与 messages.ts 评估结论入库 (Files: src/server/utils/worktreeModeEnabled.ts, src/** 4 文件重指)

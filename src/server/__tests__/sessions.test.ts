@@ -14,7 +14,7 @@ import {
   prepareSessionWorkspace,
 } from '../services/repositoryLaunchService.js'
 import { conversationService } from '../services/conversationService.js'
-import { clearCommandsCache } from '../../commands.js'
+import { clearCommandsCache } from '../utils/commandLookup.js'
 import { parseJSONL } from '../utils/json.js'
 import { formatSessionCollaborationPrompt } from '../utils/sessionCollaborationEnvelope.js'
 import { createSessionBranch } from '../../utils/sessionBranching.js'
