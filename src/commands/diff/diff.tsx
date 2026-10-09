@@ -1,5 +1,5 @@
 import * as React from 'react';
-import type { LocalJSXCommandCall } from '../../types/command.js';
+import type { LocalJSXCommandCall } from '../../server/types/command.js';
 export const call: LocalJSXCommandCall = async (onDone, context) => {
   const {
     DiffDialog

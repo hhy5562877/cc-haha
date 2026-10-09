@@ -27,7 +27,7 @@ import type {
 } from '../../services/mcp/types.js'
 import type { Tool, Tools, ToolUseContext } from '../../../Tool.js'
 import { killShellTasksForAgent } from '../../../tasks/LocalShellTask/killShellTasks.js'
-import type { Command } from '../../../types/command.js'
+import type { Command } from '../../types/command.js'
 import type { AgentId } from '../../types/ids.js'
 import type {
   AssistantMessage,

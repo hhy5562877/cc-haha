@@ -1,7 +1,7 @@
 import { feature } from 'bun:bundle'
 import { getIsRemoteMode } from '../../server/bootstrap/state.js'
 import { redownloadUserSettings } from '../../services/settingsSync/index.js'
-import type { LocalCommandCall } from '../../types/command.js'
+import type { LocalCommandCall } from '../../server/types/command.js'
 import { isEnvTruthy } from '../../server/utils/envUtils.js'
 import { refreshActivePlugins } from '../../server/utils/plugins/refresh.js'
 import { settingsChangeDetector } from '../../server/utils/settings/changeDetector.js'

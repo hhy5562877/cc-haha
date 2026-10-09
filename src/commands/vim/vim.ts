@@ -2,7 +2,7 @@ import {
   type AnalyticsMetadata_I_VERIFIED_THIS_IS_NOT_CODE_OR_FILEPATHS,
   logEvent,
 } from '../../server/services/analytics/index.js'
-import type { LocalCommandCall } from '../../types/command.js'
+import type { LocalCommandCall } from '../../server/types/command.js'
 import { getGlobalConfig, saveGlobalConfig } from '../../server/utils/config.js'
 
 export const call: LocalCommandCall = async () => {

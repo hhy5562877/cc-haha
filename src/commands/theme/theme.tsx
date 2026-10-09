@@ -4,7 +4,7 @@ import type { CommandResultDisplay } from '../../commands.js';
 import { Pane } from '../../components/design-system/Pane.js';
 import { ThemePicker } from '../../components/ThemePicker.js';
 import { useTheme } from '../../ink.js';
-import type { LocalJSXCommandCall } from '../../types/command.js';
+import type { LocalJSXCommandCall } from '../../server/types/command.js';
 type Props = {
   onDone: (result?: string, options?: {
     display?: CommandResultDisplay;

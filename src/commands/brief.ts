@@ -13,7 +13,7 @@ import type {
   Command,
   LocalJSXCommandContext,
   LocalJSXCommandOnDone,
-} from '../types/command.js'
+} from '../server/types/command.js'
 import { lazySchema } from '../server/utils/lazySchema.js'
 
 // Zod guards against fat-fingered GB pushes (same pattern as pollConfig.ts /

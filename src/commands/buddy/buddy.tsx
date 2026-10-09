@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { Box, Text } from '../../ink.js'
-import type { LocalJSXCommandCall } from '../../types/command.js'
+import type { LocalJSXCommandCall } from '../../server/types/command.js'
 import {
   getCompanion,
   roll,

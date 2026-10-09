@@ -1,4 +1,4 @@
-import type { Command } from '../types/command.js'
+import type { Command } from '../server/types/command.js'
 
 export function supportsHeadlessSlashCommand(command: Command): boolean {
   if (command.type === 'prompt') return command.disableNonInteractive !== true

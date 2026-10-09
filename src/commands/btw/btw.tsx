@@ -13,7 +13,7 @@ import { useTerminalSize } from '../../hooks/useTerminalSize.js';
 import ScrollBox, { type ScrollBoxHandle } from '../../ink/components/ScrollBox.js';
 import type { KeyboardEvent } from '../../ink/events/keyboard-event.js';
 import { Box, Text } from '../../ink.js';
-import type { LocalJSXCommandOnDone } from '../../types/command.js';
+import type { LocalJSXCommandOnDone } from '../../server/types/command.js';
 import { createAbortController } from '../../server/utils/abortController.js';
 import { saveGlobalConfig } from '../../server/utils/config.js';
 import { errorMessage } from '../../server/utils/errors.js';

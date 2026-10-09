@@ -15,7 +15,7 @@ import { stringWidth } from '../../ink/stringWidth.js';
 import { setClipboard } from '../../ink/termio/osc.js';
 import { Box, Text } from '../../ink.js';
 import { logEvent } from '../../server/services/analytics/index.js';
-import type { LocalJSXCommandCall } from '../../types/command.js';
+import type { LocalJSXCommandCall } from '../../server/types/command.js';
 import type { AssistantMessage, Message } from '../../server/types/message.js';
 import { getGlobalConfig, saveGlobalConfig } from '../../server/utils/config.js';
 import { extractTextContent, stripPromptXMLTags } from '../../utils/messages.js';

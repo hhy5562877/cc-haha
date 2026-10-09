@@ -6,7 +6,7 @@ import { Dialog } from '../../components/design-system/Dialog.js';
 import { LoadingState } from '../../components/design-system/LoadingState.js';
 import { Box, Text } from '../../ink.js';
 import { logEvent, type AnalyticsMetadata_I_VERIFIED_THIS_IS_NOT_CODE_OR_FILEPATHS as SafeString } from '../../server/services/analytics/index.js';
-import type { LocalJSXCommandOnDone } from '../../types/command.js';
+import type { LocalJSXCommandOnDone } from '../../server/types/command.js';
 import { openBrowser } from '../../server/utils/browser.js';
 import { getGhAuthStatus } from '../../utils/github/ghAuthStatus.js';
 import { createDefaultEnvironment, getCodeWebUrl, type ImportTokenError, importGithubToken, isSignedIn, RedactedGithubToken } from './api.js';

@@ -22,7 +22,7 @@ import {
   roughTokenCountEstimationForAPIRequest,
   roughTokenCountEstimationForContent,
 } from '../services/tokenEstimation.js'
-import { estimateSkillFrontmatterTokens } from '../skills/loadSkillsDir.js'
+import { estimateSkillFrontmatterTokens } from '../server/skills/loadSkillsDir.js'
 import {
   findToolByName,
   type Tool,

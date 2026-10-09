@@ -1,6 +1,6 @@
 import { getBridgeDebugHandle } from '../bridge/bridgeDebug.js'
 import type { Command } from '../commands.js'
-import type { LocalCommandCall } from '../types/command.js'
+import type { LocalCommandCall } from '../server/types/command.js'
 
 /**
  * Ant-only: inject bridge failure states to manually test recovery paths.

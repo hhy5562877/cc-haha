@@ -1,6 +1,6 @@
 import { relative } from 'path'
 import type { ToolUseContext } from '../../Tool.js'
-import type { LocalCommandResult } from '../../types/command.js'
+import type { LocalCommandResult } from '../../server/types/command.js'
 import { getCwd } from '../../server/utils/cwd.js'
 import { cacheKeys } from '../../server/utils/fileStateCache.js'
 

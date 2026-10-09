@@ -7,7 +7,7 @@ import { getFeatureValue_CACHED_MAY_BE_STALE } from '../server/services/analytic
 import { type AnalyticsMetadata_I_VERIFIED_THIS_IS_NOT_CODE_OR_FILEPATHS, logEvent } from '../server/services/analytics/index.js';
 import type { AppState } from '../state/AppStateStore.js';
 import { checkRemoteAgentEligibility, formatPreconditionError, RemoteAgentTask, type RemoteAgentTaskState, registerRemoteAgentTask } from '../tasks/RemoteAgentTask/RemoteAgentTask.js';
-import type { LocalJSXCommandCall } from '../types/command.js';
+import type { LocalJSXCommandCall } from '../server/types/command.js';
 import { logForDebugging } from '../server/utils/debug.js';
 import { errorMessage } from '../server/utils/errors.js';
 import { logError } from '../server/utils/log.js';

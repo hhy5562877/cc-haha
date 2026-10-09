@@ -19,7 +19,7 @@ import { runPostCompactCleanup } from '../../services/compact/postCompactCleanup
 import { trySessionMemoryCompaction } from '../../services/compact/sessionMemoryCompact.js'
 import { setLastSummarizedMessageId } from '../../services/SessionMemory/sessionMemoryUtils.js'
 import type { ToolUseContext } from '../../Tool.js'
-import type { LocalCommandCall } from '../../types/command.js'
+import type { LocalCommandCall } from '../../server/types/command.js'
 import type { Message } from '../../server/types/message.js'
 import { hasExactErrorMessage } from '../../server/utils/errors.js'
 import { executePreCompactHooks } from '../../utils/hooks.js'

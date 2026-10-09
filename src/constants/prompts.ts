@@ -17,7 +17,7 @@ import { FILE_EDIT_TOOL_NAME } from '../server/tools/FileEditTool/constants.js'
 import { TODO_WRITE_TOOL_NAME } from '../server/tools/TodoWriteTool/constants.js'
 import { TASK_CREATE_TOOL_NAME } from '../server/tools/TaskCreateTool/constants.js'
 import type { Tools } from '../Tool.js'
-import type { Command } from '../types/command.js'
+import type { Command } from '../server/types/command.js'
 import { BASH_TOOL_NAME } from '../server/tools/BashTool/toolName.js'
 import {
   getCanonicalName,

@@ -3,7 +3,7 @@ import * as React from 'react';
 import { handlePlanModeTransition } from '../../server/bootstrap/state.js';
 import type { LocalJSXCommandContext } from '../../commands.js';
 import { Box, Text } from '../../ink.js';
-import type { LocalJSXCommandOnDone } from '../../types/command.js';
+import type { LocalJSXCommandOnDone } from '../../server/types/command.js';
 import { getExternalEditor } from '../../utils/editor.js';
 import { toIDEDisplayName } from '../../utils/ide.js';
 import { applyPermissionUpdate } from '../../server/utils/permissions/PermissionUpdate.js';

@@ -18,7 +18,7 @@ import {
   skipWorkflowAgent,
   type LocalWorkflowTaskState,
 } from '../../tasks/LocalWorkflowTask/LocalWorkflowTask.js'
-import type { LocalJSXCommandOnDone } from '../../types/command.js'
+import type { LocalJSXCommandOnDone } from '../../server/types/command.js'
 import type { DeepImmutable } from '../../types/utils.js'
 import { saveWorkflowScript } from '../../server/utils/workflows/save.js'
 

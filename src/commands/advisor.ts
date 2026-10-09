@@ -1,5 +1,5 @@
 import type { Command } from '../commands.js'
-import type { LocalCommandCall } from '../types/command.js'
+import type { LocalCommandCall } from '../server/types/command.js'
 import {
   canUserConfigureAdvisor,
   isValidAdvisorModel,

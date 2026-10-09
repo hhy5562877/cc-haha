@@ -156,7 +156,7 @@ import {
   getSkillDirCommands,
   clearSkillCaches,
   getDynamicSkills,
-} from './skills/loadSkillsDir.js'
+} from './server/skills/loadSkillsDir.js'
 import { getBundledSkills } from './skills/bundledSkills.js'
 import { initBundledSkills } from './skills/bundled/index.js'
 import { getBuiltinPluginSkillCommands } from './plugins/builtinPlugins.js'
@@ -207,7 +207,7 @@ import {
   type Command,
   getCommandName,
   isCommandEnabled,
-} from './types/command.js'
+} from './server/types/command.js'
 
 // Re-export types from the centralized location
 export type {
@@ -218,8 +218,8 @@ export type {
   LocalJSXCommandContext,
   PromptCommand,
   ResumeEntrypoint,
-} from './types/command.js'
-export { getCommandName, isCommandEnabled } from './types/command.js'
+} from './server/types/command.js'
+export { getCommandName, isCommandEnabled } from './server/types/command.js'
 
 // Commands that get eliminated from the external build
 export const INTERNAL_ONLY_COMMANDS = [

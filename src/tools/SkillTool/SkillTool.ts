@@ -17,7 +17,7 @@ import type {
   ValidationResult,
 } from 'src/Tool.js'
 import { buildTool, type ToolDef } from 'src/Tool.js'
-import type { Command } from 'src/types/command.js'
+import type { Command } from 'src/server/types/command.js'
 import type {
   AssistantMessage,
   AttachmentMessage,

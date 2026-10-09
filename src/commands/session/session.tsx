@@ -6,7 +6,7 @@ import { Pane } from '../../components/design-system/Pane.js';
 import { Box, Text } from '../../ink.js';
 import { useKeybinding } from '../../keybindings/useKeybinding.js';
 import { useAppState } from '../../state/AppState.js';
-import type { LocalJSXCommandCall } from '../../types/command.js';
+import type { LocalJSXCommandCall } from '../../server/types/command.js';
 import { logForDebugging } from '../../server/utils/debug.js';
 type Props = {
   onDone: () => void;

@@ -14,7 +14,7 @@ import {
   clearSkillCaches,
   getSkillsPath,
   onDynamicSkillsLoaded,
-} from '../../skills/loadSkillsDir.js'
+} from '../../server/skills/loadSkillsDir.js'
 import {
   AGENT_SKILLS_DIR,
   getUserAgentSkillsDir,

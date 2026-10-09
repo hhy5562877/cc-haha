@@ -8,7 +8,7 @@ import {
 import type {
   LocalJSXCommandContext,
   LocalJSXCommandOnDone,
-} from '../../types/command.js'
+} from '../../server/types/command.js'
 import {
   getTranscriptPath,
   saveAgentColor,

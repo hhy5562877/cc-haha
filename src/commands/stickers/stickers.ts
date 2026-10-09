@@ -1,4 +1,4 @@
-import type { LocalCommandResult } from '../../types/command.js'
+import type { LocalCommandResult } from '../../server/types/command.js'
 import { openBrowser } from '../../server/utils/browser.js'
 
 export async function call(): Promise<LocalCommandResult> {

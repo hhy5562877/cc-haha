@@ -4,10 +4,10 @@
 
 ## 总量
 
-- src/server 文件数：841
-- server → 引擎 **直接依赖边**：262（涉及 129 个引擎文件）
-- 引擎传递闭包（直接+间接可达）：**1612 个文件**
-- 其中疑似类型/模型定义类直接依赖：7
+- src/server 文件数：844
+- server → 引擎 **直接依赖边**：259（涉及 128 个引擎文件）
+- 引擎传递闭包（直接+间接可达）：**1609 个文件**
+- 其中疑似类型/模型定义类直接依赖：3
 
 ## 直接依赖按引擎目录分布
 
@@ -39,7 +39,6 @@
 | src/utils/workflows | 1 |
 | src/utils/statsCache.ts | 1 |
 | src/utils/effort.ts | 1 |
-| src/skills/loadSkillsDir.ts | 1 |
 | src/entrypoints/agentSdkTypes.ts | 1 |
 | src/entrypoints/sdk | 1 |
 | src/remote/RemoteSessionManager.ts | 1 |
@@ -49,7 +48,6 @@
 | src/utils/http.ts | 1 |
 | src/utils/betas.ts | 1 |
 | src/utils/teammate.ts | 1 |
-| src/types/command.ts | 1 |
 | src/services/plugins | 1 |
 | src/utils/imageResizer.ts | 1 |
 | src/utils/shellConfig.ts | 1 |
@@ -75,6 +73,7 @@
 | src/utils/sessionMessageInbox.ts | 1 |
 | src/utils/teammateMailbox.ts | 1 |
 | src/utils/sessionTitle.ts | 1 |
+| src/utils/promptShellExecution.ts | 1 |
 | src/constants/prompts.ts | 1 |
 | src/coordinator/coordinatorMode.ts | 1 |
 | src/services/AgentSummary | 1 |
@@ -109,6 +108,7 @@
 | src/utils/processUserInput | 1 |
 | src/tasks/MonitorMcpTask | 1 |
 | src/utils/diff.ts | 1 |
+| src/services/compact | 1 |
 | src/skills/bundledSkills.ts | 1 |
 | src/tools/WebSearchTool | 1 |
 | src/services/mockRateLimits.ts | 1 |
@@ -128,7 +128,6 @@
 | src/utils/gracefulShutdown.ts | 1 |
 | src/utils/bash | 1 |
 | src/tools/SkillTool | 1 |
-| src/utils/promptShellExecution.ts | 1 |
 | src/services/lsp | 1 |
 | src/schemas/hooks.ts | 1 |
 | src/entrypoints/sandboxTypes.ts | 1 |
@@ -139,12 +138,11 @@
 |---|---|
 | src/ink.ts | 390 |
 | src/Tool.ts | 212 |
-| src/commands.ts | 169 |
+| src/commands.ts | 165 |
 | src/utils/messages.ts | 117 |
 | src/state/AppState.tsx | 109 |
 | src/utils/format.ts | 95 |
 | src/keybindings/useKeybinding.ts | 91 |
-| src/types/command.ts | 78 |
 | src/utils/sessionStorage.ts | 59 |
 | src/hooks/useTerminalSize.ts | 59 |
 | src/components/design-system/KeyboardShortcutHint.tsx | 55 |
@@ -161,6 +159,7 @@
 | src/utils/tasks.ts | 28 |
 | src/components/CustomSelect/index.ts | 28 |
 | src/utils/effort.ts | 26 |
+| src/Task.ts | 26 |
 | src/hooks/useCanUseTool.tsx | 26 |
 
 ## 分批解耦建议

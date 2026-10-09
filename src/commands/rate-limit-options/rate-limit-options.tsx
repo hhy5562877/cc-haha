@@ -7,7 +7,7 @@ import { getFeatureValue_CACHED_MAY_BE_STALE } from '../../server/services/analy
 import { logEvent } from '../../server/services/analytics/index.js';
 import { useClaudeAiLimits } from '../../services/claudeAiLimitsHook.js';
 import type { ToolUseContext } from '../../Tool.js';
-import type { LocalJSXCommandOnDone } from '../../types/command.js';
+import type { LocalJSXCommandOnDone } from '../../server/types/command.js';
 import { getOauthAccountInfo, getRateLimitTier, getSubscriptionType } from '../../server/utils/auth.js';
 import { hasClaudeAiBillingAccess } from '../../utils/billing.js';
 import { call as extraUsageCall } from '../extra-usage/extra-usage.js';

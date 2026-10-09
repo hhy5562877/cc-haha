@@ -16,7 +16,7 @@ import { useKeybindings } from '../../keybindings/useKeybinding.js';
 import { type AnalyticsMetadata_I_VERIFIED_THIS_IS_NOT_CODE_OR_FILEPATHS, logEvent } from '../../server/services/analytics/index.js';
 import { useAppState, useSetAppState } from '../../state/AppState.js';
 import type { ToolUseContext } from '../../Tool.js';
-import type { LocalJSXCommandContext, LocalJSXCommandOnDone } from '../../types/command.js';
+import type { LocalJSXCommandContext, LocalJSXCommandOnDone } from '../../server/types/command.js';
 import { logForDebugging } from '../../server/utils/debug.js';
 type Props = {
   onDone: LocalJSXCommandOnDone;

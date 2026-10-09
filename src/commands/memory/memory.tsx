@@ -5,7 +5,7 @@ import { Dialog } from '../../components/design-system/Dialog.js';
 import { MemoryFileSelector } from '../../components/memory/MemoryFileSelector.js';
 import { getRelativeMemoryPath } from '../../components/memory/MemoryUpdateNotification.js';
 import { Box, Link, Text } from '../../ink.js';
-import type { LocalJSXCommandCall } from '../../types/command.js';
+import type { LocalJSXCommandCall } from '../../server/types/command.js';
 import { clearMemoryFileCaches, getMemoryFiles } from '../../utils/claudemd.js';
 import { getClaudeConfigHomeDir } from '../../server/utils/envUtils.js';
 import { getErrnoCode } from '../../server/utils/errors.js';

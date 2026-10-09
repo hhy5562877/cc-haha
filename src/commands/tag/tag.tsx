@@ -9,7 +9,7 @@ import { Dialog } from '../../components/design-system/Dialog.js';
 import { COMMON_HELP_ARGS, COMMON_INFO_ARGS } from '../../server/constants/xml.js';
 import { Box, Text } from '../../ink.js';
 import { logEvent } from '../../server/services/analytics/index.js';
-import type { LocalJSXCommandOnDone } from '../../types/command.js';
+import type { LocalJSXCommandOnDone } from '../../server/types/command.js';
 import { recursivelySanitizeUnicode } from '../../server/utils/sanitization.js';
 import { getCurrentSessionTag, getTranscriptPath, saveTag } from '../../utils/sessionStorage.js';
 function ConfirmRemoveTag(t0) {

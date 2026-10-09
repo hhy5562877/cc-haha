@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { getSessionId } from '../../server/bootstrap/state.js'
 import type { LocalJSXCommandContext } from '../../commands.js'
-import type { LocalJSXCommandOnDone } from '../../types/command.js'
+import type { LocalJSXCommandOnDone } from '../../server/types/command.js'
 import {
   getThreadGoal,
   clearThreadGoalHook,

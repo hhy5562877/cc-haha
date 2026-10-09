@@ -3,7 +3,7 @@ import * as React from 'react';
 import { useMainLoopModel } from '../../hooks/useMainLoopModel.js';
 import { type AnalyticsMetadata_I_VERIFIED_THIS_IS_NOT_CODE_OR_FILEPATHS, logEvent } from '../../server/services/analytics/index.js';
 import { useAppState, useSetAppState } from '../../state/AppState.js';
-import type { LocalJSXCommandOnDone } from '../../types/command.js';
+import type { LocalJSXCommandOnDone } from '../../server/types/command.js';
 import { type EffortValue, getDisplayedEffortLevel, getEffortEnvOverride, getEffortValueDescription, isEffortLevel, toPersistableEffort } from '../../utils/effort.js';
 import { updateSettingsForSource } from '../../server/utils/settings/settings.js';
 import { canEnableUltracode, describeUltracodeRefusal, ULTRACODE_EFFORT_ARG, ULTRACODE_EFFORT_LEVEL, ULTRACODE_MENU_DESCRIPTION } from '../../utils/workflows/ultracode.js';

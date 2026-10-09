@@ -4,7 +4,7 @@ import { MCPSettings } from '../../components/mcp/index.js';
 import { MCPReconnect } from '../../components/mcp/MCPReconnect.js';
 import { useMcpToggleEnabled } from '../../server/services/mcp/MCPConnectionManager.js';
 import { useAppState } from '../../state/AppState.js';
-import type { LocalJSXCommandOnDone } from '../../types/command.js';
+import type { LocalJSXCommandOnDone } from '../../server/types/command.js';
 import { PluginSettings } from '../plugin/PluginSettings.js';
 
 // TODO: This is a hack to get the context value from toggleMcpServer (useContext only works in a component)

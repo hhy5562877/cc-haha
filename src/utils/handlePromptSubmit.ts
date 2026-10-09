@@ -10,7 +10,7 @@ import type { CanUseToolFn } from '../hooks/useCanUseTool.js'
 import type { IDESelection } from '../hooks/useIdeSelection.js'
 import type { AppState } from '../state/AppState.js'
 import type { SetToolJSXFn } from '../Tool.js'
-import type { LocalJSXCommandOnDone } from '../types/command.js'
+import type { LocalJSXCommandOnDone } from '../server/types/command.js'
 import type { Message } from '../server/types/message.js'
 import {
   isValidImagePaste,

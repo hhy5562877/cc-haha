@@ -16,7 +16,7 @@ import { resetMicrocompactState } from '../../services/compact/microCompact.js';
 import type { Progress as AgentProgress } from '../../server/tools/AgentTool/AgentTool.js';
 import { runAgent } from '../../server/tools/AgentTool/runAgent.js';
 import { renderToolUseProgressMessage } from '../../server/tools/AgentTool/UI.js';
-import type { CommandResultDisplay } from '../../types/command.js';
+import type { CommandResultDisplay } from '../../server/types/command.js';
 import { createAbortController } from '../../server/utils/abortController.js';
 import { getAgentContext } from '../../server/utils/agentContext.js';
 import { createAttachmentMessage, getAttachmentMessages } from '../attachments.js';

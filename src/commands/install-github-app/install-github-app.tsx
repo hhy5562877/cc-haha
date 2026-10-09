@@ -6,7 +6,7 @@ import { GITHUB_ACTION_SETUP_DOCS_URL } from '../../constants/github-app.js';
 import { useExitOnCtrlCDWithKeybindings } from '../../hooks/useExitOnCtrlCDWithKeybindings.js';
 import type { KeyboardEvent } from '../../ink/events/keyboard-event.js';
 import { Box } from '../../ink.js';
-import type { LocalJSXCommandOnDone } from '../../types/command.js';
+import type { LocalJSXCommandOnDone } from '../../server/types/command.js';
 import { getAnthropicApiKey, isAnthropicAuthEnabled } from '../../server/utils/auth.js';
 import { openBrowser } from '../../server/utils/browser.js';
 import { execFileNoThrow } from '../../server/utils/execFileNoThrow.js';

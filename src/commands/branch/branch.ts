@@ -1,7 +1,7 @@
 import { getOriginalCwd, getSessionId } from '../../server/bootstrap/state.js'
 import type { LocalJSXCommandContext } from '../../commands.js'
 import { logEvent } from '../../server/services/analytics/index.js'
-import type { LocalJSXCommandOnDone } from '../../types/command.js'
+import type { LocalJSXCommandOnDone } from '../../server/types/command.js'
 import type { LogOption } from '../../server/types/logs.js'
 import { getTranscriptPath } from '../../utils/sessionStorage.js'
 import {
