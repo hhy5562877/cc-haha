@@ -261,7 +261,7 @@ async function main(): Promise<void> {
     enableConfigs();
     const {
       isWorktreeModeEnabled
-    } = await import('../utils/worktreeModeEnabled.js');
+    } = await import('../server/utils/worktreeModeEnabled.js');
     if (isWorktreeModeEnabled()) {
       const {
         execIntoTmuxWorktree

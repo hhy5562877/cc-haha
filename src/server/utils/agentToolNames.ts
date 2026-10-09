@@ -27,7 +27,7 @@ import {
 } from './shell/shellToolUtils.js'
 import { isWebSearchEnabledForModel } from '../../tools/WebSearchTool/backend.js'
 import { isTodoV2Enabled } from '../../utils/tasks.js'
-import { isWorktreeModeEnabled } from '../../utils/worktreeModeEnabled.js'
+import { isWorktreeModeEnabled } from './worktreeModeEnabled.js'
 
 /**
  * ASYNC_AGENT_ALLOWED_TOOLS 中「无独立 isEnabled 门控、恒在基础池」的工具。

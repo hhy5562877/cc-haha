@@ -4,9 +4,9 @@
 
 ## 总量
 
-- src/server 文件数：840
-- server → 引擎 **直接依赖边**：263（涉及 130 个引擎文件）
-- 引擎传递闭包（直接+间接可达）：**1613 个文件**
+- src/server 文件数：841
+- server → 引擎 **直接依赖边**：262（涉及 129 个引擎文件）
+- 引擎传递闭包（直接+间接可达）：**1612 个文件**
 - 其中疑似类型/模型定义类直接依赖：7
 
 ## 直接依赖按引擎目录分布
@@ -111,7 +111,6 @@
 | src/utils/diff.ts | 1 |
 | src/skills/bundledSkills.ts | 1 |
 | src/tools/WebSearchTool | 1 |
-| src/utils/worktreeModeEnabled.ts | 1 |
 | src/services/mockRateLimits.ts | 1 |
 | src/utils/authPortable.ts | 1 |
 | src/utils/aws.ts | 1 |

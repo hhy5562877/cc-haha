@@ -149,7 +149,7 @@ import {
   isPowerShellToolEnabled,
 } from './server/utils/shell/shellToolUtils.js'
 import { isAgentSwarmsEnabled } from './server/utils/agentSwarmsEnabled.js'
-import { isWorktreeModeEnabled } from './utils/worktreeModeEnabled.js'
+import { isWorktreeModeEnabled } from './server/utils/worktreeModeEnabled.js'
 import {
   REPL_TOOL_NAME,
   REPL_ONLY_TOOLS,
